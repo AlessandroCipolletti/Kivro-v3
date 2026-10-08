@@ -28,4 +28,15 @@ export {
   parseInferenceDependency,
   type InferenceDependency,
 } from "./inference-dependency.js";
+export {
+  CapabilityPackageSchema,
+  parseCapabilityPackage,
+  type CapabilityPackage,
+} from "./capability-package.js";
+export {
+  DependencyGraphSchema,
+  DependencyNodeSchema,
+  parseDependencyGraph,
+  type DependencyGraph,
+} from "./dependency-graph.js";
 export { parseWithSchema, SchemaValidationError } from "./validate.js";

@@ -492,17 +492,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0034`    P0         §30      `TODO`   ---              ---        ---
 
-  `IO-0007`     P1         §31      `TODO`   ---              ---        ---
+  `IO-0007`    P1         §31      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0008`     P1         §31      `TODO`   ---              ---        ---
+  `IO-0008`    P1         §31      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0009`     P1         §31      `TODO`   ---              ---        ---
+  `IO-0009`    P1         §31      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0002`    P1         §32      `TODO`   ---              ---        ---
+  `CAP-0002`    P1         §32      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0003`    P1         §32      `TODO`   ---              ---        ---
+  `CAP-0003`    P1         §32      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0004`    P1         §32      `TODO`   ---              ---        ---
+  `CAP-0004`    P1         §32      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
   `SEC-0035`    P1         §33      `TODO`   ---              ---        ---
 
@@ -1530,9 +1530,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0062`     P1         §193     `TODO`   ---              ---        ---
 
-  `IO-0063`     P1         §194     `TODO`   ---              ---        ---
+  `IO-0063`    P1         §194      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0064`     P1         §194     `TODO`   ---              ---        ---
+  `IO-0064`    P1         §194      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
   `IO-0065`     P1         §195     `TODO`   ---              ---        ---
 
@@ -1626,13 +1626,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0097`     P1         §214     `TODO`   ---              ---        ---
 
-  `IO-0098`     P1         §215     `TODO`   ---              ---        ---
+  `IO-0098`    P1         §215      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0099`     P1         §215     `TODO`   ---              ---        ---
+  `IO-0099`    P1         §215      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0100`     P1         §215     `TODO`   ---              ---        ---
+  `IO-0100`    P1         §215      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0101`     P1         §215     `TODO`   ---              ---        ---
+  `IO-0101`    P1         §215      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
   `IO-0102`     P1         §216     `TODO`   ---              ---        ---
 
@@ -2132,9 +2132,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0082`    P1         §309      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0083`    P1         §310     `TODO`   ---              ---        ---
+  `CAP-0083`    P1         §310      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `SEC-0107`    P1         §311     `TODO`   ---              ---        ---
+  `SEC-0107`    P1         §311      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
   `CAP-0084`    P1         §312     `TODO`   ---              ---        ---
 

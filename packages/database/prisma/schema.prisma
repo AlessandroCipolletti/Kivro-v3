@@ -250,6 +250,8 @@ model CapabilityVersion {
   workerManifest       Json?
   workerManifestHash   String?
   inferenceDependency  Json?
+  dependencyGraphSnapshot Json?
+  supplyChainSnapshot  Json?
   priceSnapshotCents   Int
   currency             String   @default("USD")
   publishedAt          DateTime?

@@ -2,6 +2,7 @@
 import { Command } from "commander";
 import { buildWorkerManifestTemplate } from "@kivro/capability-publish";
 import { generateDeviceKeyPair } from "@kivro/crypto";
+import { verifyWorkerManifestSkillHashes } from "@kivro/capability-publish";
 import { hashOpenClawSkill } from "@kivro/openclaw-adapter";
 import { WORKER_COMMANDS } from "@kivro/job-protocol";
 import { createOpenClawAdapter } from "@kivro/openclaw-adapter";
@@ -83,6 +84,20 @@ program
       })),
     });
     console.log(JSON.stringify(manifest, null, 2));
+  });
+
+program
+  .command("verify-manifest")
+  .description("Verify local skill folders match manifest content hashes")
+  .requiredOption("--file <path>", "Path to worker manifest JSON file")
+  .action((opts: { file: string }) => {
+    const raw = fs.readFileSync(opts.file, "utf8");
+    const manifest = JSON.parse(raw) as Parameters<typeof verifyWorkerManifestSkillHashes>[0];
+    const result = verifyWorkerManifestSkillHashes(manifest);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.ok) {
+      process.exit(1);
+    }
   });
 
 program

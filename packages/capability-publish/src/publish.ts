@@ -1,9 +1,13 @@
 import {
   parseCapabilityContract,
+  parseDependencyGraph,
   parseInferenceDependency,
   parsePublicPermissionManifest,
 } from "@kivro/contracts";
 import { permissionConsentRows } from "./consent-records.js";
+import { checkContractDependencyCompatibility } from "./contract-compatibility.js";
+import { findPublishBlockers } from "./dependency-analyze.js";
+import { verifyWorkerManifestSkillHashes } from "./skill-hash-verify.js";
 import type {
   Capability,
   CapabilityVersion,
@@ -77,6 +81,7 @@ export interface PublishInput {
   inferenceDependency: unknown;
   executionModelAcknowledged: boolean;
   packageAssetIds?: string[];
+  dependencyGraph: unknown;
 }
 
 export async function publishCapability(
@@ -90,9 +95,6 @@ export async function publishCapability(
   });
   if (!capability) {
     throw new Error("NOT_FOUND");
-  }
-  if (capability.status === "PUBLISHED" && capability.currentVersionId) {
-    throw new Error("ALREADY_PUBLISHED");
   }
   if (!input.executionModelAcknowledged) {
     throw new Error("EXECUTION_MODEL_NOT_ACKNOWLEDGED");
@@ -115,8 +117,35 @@ export async function publishCapability(
     throw new Error("WORKER_DEVICE_NOT_FOUND");
   }
 
+  const hashCheck = verifyWorkerManifestSkillHashes(workerManifest);
+  if (!hashCheck.ok) {
+    throw new Error("SKILL_HASH_MISMATCH");
+  }
+
+  const dependencyGraph = parseDependencyGraph(input.dependencyGraph);
+  const blockers = findPublishBlockers(dependencyGraph);
+  if (blockers.length > 0) {
+    throw new Error(`PUBLISH_BLOCKED:${blockers[0]}`);
+  }
+  checkContractDependencyCompatibility(
+    contract,
+    workerManifest.skills.map((s) => s.name),
+  );
+
   const manifestHash = hashPermissionManifest(permissionManifest);
-  const versionNumber = 1;
+  const latest = await db.capabilityVersion.findFirst({
+    where: { capabilityId: capability.id },
+    orderBy: { versionNumber: "desc" },
+  });
+  const versionNumber = (latest?.versionNumber ?? 0) + 1;
+
+  const supplyChainSnapshot = {
+    supplyChainVersion: 1,
+    openClawVersion: device.openClawVersion,
+    workerVersion: device.workerVersion,
+    policyVersion: "1",
+    recordedAt: new Date().toISOString(),
+  };
 
   const packageAssetIds = input.packageAssetIds ?? [];
   if (packageAssetIds.length > 0) {
@@ -139,6 +168,8 @@ export async function publishCapability(
         capabilityId: capability.id,
         versionNumber,
         versionLabel: `${versionNumber}.0.0`,
+        dependencyGraphSnapshot: toJsonValue(dependencyGraph),
+        supplyChainSnapshot: toJsonValue(supplyChainSnapshot),
         inputSchema: toJsonValue(contract.inputs),
         outputSchema: toJsonValue(contract.output),
         publicDescription: contract.description,

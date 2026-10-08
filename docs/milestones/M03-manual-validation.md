@@ -1,51 +1,41 @@
-# M03 — manual validation checklist (in progress)
+# M03 — validation (agent terminal)
+
+M03 is validated via API/CLI and `pnpm verify:m03`, not browser UI.
 
 ## Prerequisites
 
-Complete [M02 manual validation](./M02-manual-validation.md) (auth, pairing, `pnpm db:migrate` including M02 auth tables).
-
 ```bash
 pnpm db:setup
+pnpm storage:setup   # optional for upload-slot tests
 pnpm build
-node apps/api/dist/main.js
 ```
 
-## 1. Import consent (§96)
+Start API (terminal 1):
 
 ```bash
-curl -s -X POST localhost:3001/seller/import/validate-consent \
-  -H 'content-type: application/json' \
-  -b /tmp/kivro.cookies \
-  -d '{
-    "discovery": {"snapshotVersion":1,"skills":["company-research"],"tools":[],"warnings":[]},
-    "consent": {
-      "consentVersion":1,
-      "selectedSkills":["company-research"],
-      "selectedTools":[],
-      "permissionManifest": {
-        "manifestVersion":1,
-        "categories":[{"key":"PUBLIC_INTERNET","state":"USED","buyerLabel":"Web"}]
-      }
-    }
-  }' | jq
+NODE_ENV=development KIVRO_DEV_AUTH_SHORTCUTS=true node scripts/run-with-env.mjs node apps/api/dist/main.js
 ```
 
-## 2. Draft + publish capability
+Ensure `.env` matches `.env.example` (Postgres 5433, MinIO, dev auth shortcuts).
 
-Use a sample contract matching `packages/contracts/src/capability-io.test.ts`, paired `workerDeviceId`, and `localWorkerId` from your Worker.
-
-```bash
-curl -s -b /tmp/kivro.cookies -X POST localhost:3001/seller/capabilities \
-  -H 'content-type: application/json' \
-  -d @docs/fixtures/sample-capability-draft.json | jq
-
-curl -s -b /tmp/kivro.cookies -X POST "localhost:3001/seller/capabilities/<id>/publish" \
-  -H 'content-type: application/json' \
-  -d @docs/fixtures/sample-capability-publish.json | jq
-```
-
-## 3. Automated checks
+## Automated gate
 
 ```bash
 pnpm typecheck && pnpm lint && pnpm test && pnpm build
+pnpm verify:m03
 ```
+
+## What `verify:m03` covers
+
+- Email auth + worker pairing
+- Import consent + dependency graph analysis
+- Publish with worker manifest hash verification, inference dependency, consent records
+- Public marketplace `GET /capabilities/:slug`
+
+## Optional API checks
+
+- `POST /seller/capabilities/:id/pause`
+- `POST /seller/capabilities/:id/rollback` with `{ "targetVersionId": "..." }`
+- `GET /seller/capabilities/:id/package` (§114 package export)
+- `GET /seller/capabilities/:id/version-diff?fromVersionId=&toVersionId=`
+- Worker: `kivro-worker verify-manifest --file manifest.json`

@@ -44,6 +44,9 @@ importers:
       '@kivro/capability-publish':
         specifier: workspace:*
         version: link:../../packages/capability-publish
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@kivro/database':
         specifier: workspace:*
         version: link:../../packages/database
@@ -100,6 +103,9 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
+      '@kivro/openclaw-adapter':
+        specifier: workspace:*
+        version: link:../openclaw-adapter
       '@kivro/storage':
         specifier: workspace:*
         version: link:../storage

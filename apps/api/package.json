@@ -13,6 +13,7 @@
   "dependencies": {
     "@kivro/auth": "workspace:*",
     "@kivro/capability-publish": "workspace:*",
+    "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
     "@kivro/observability": "workspace:*",
     "@hono/node-server": "^1.13.7",

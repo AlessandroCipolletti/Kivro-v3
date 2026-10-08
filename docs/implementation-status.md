@@ -5,7 +5,7 @@
 | M00 monorepo bootstrap | Implemented | Done |
 | M01 domain model & contracts | Implemented | Prisma schema, @kivro/domain, I/O + permission contracts |
 | M02 auth & worker foundation | Implemented | @kivro/auth, API routes, worker pair/doctor/scan, OpenClaw CLI adapter |
-| M03 import & publish | In progress | Publish tx, manifest hash, MinIO upload slots, GET /capabilities, worker `manifest` |
+| M03 import & publish | Implemented | Dependency graph, publish/rollback/pause, package export, MinIO slots, `pnpm verify:m03` |
 | OpenClaw adapter (real) | Partial | CLI detection/discovery; execute/sandbox deferred M04 |
 | Auth (email/Google) | Implemented | Sessions, verify email, Google OAuth when configured |
 | Cloud dispatch | Not implemented | M07 |
