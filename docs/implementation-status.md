@@ -2,8 +2,10 @@
 
 | Area | Status | Notes |
 |------|--------|-------|
-| M00 monorepo bootstrap | Implemented | This commit |
+| M00 monorepo bootstrap | Implemented | Done |
+| M01 domain model & contracts | Implemented | Prisma schema, @kivro/domain, I/O + permission contracts |
 | OpenClaw adapter (real) | Not implemented | M02 |
+| Auth (email/Google) | Not implemented | M02 |
 | Cloud dispatch | Not implemented | M07 |
 | Payments | Not implemented | M08 |
 | Marketplace UI | Partial | Placeholder only |

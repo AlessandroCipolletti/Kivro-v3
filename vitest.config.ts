@@ -7,6 +7,7 @@ export default defineConfig({
       "@kivro/contracts": path.resolve("packages/contracts/src/index.ts"),
       "@kivro/policy-engine": path.resolve("packages/policy-engine/src/index.ts"),
       "@kivro/observability": path.resolve("packages/observability/src/index.ts"),
+      "@kivro/domain": path.resolve("packages/domain/src/index.ts"),
     },
   },
   test: {

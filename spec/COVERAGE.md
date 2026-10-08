@@ -58,11 +58,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0012`    P2         §3       `TODO`   ---              ---        ---
 
-  `PRD-0013`    P1         §4       `TODO`   ---              ---        ---
+  `PRD-0013`    P1         §4      `TESTED`   packages/domain, prisma User/SellerProfile vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0014`    P2         §4       `TODO`   ---              ---        ---
+  `PRD-0014`    P2         §4      `TESTED`   packages/domain, prisma User/SellerProfile vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0015`    P2         §4       `TODO`   ---              ---        ---
+  `PRD-0015`    P2         §4      `TESTED`   packages/domain, prisma User/SellerProfile vitest; docs/milestones/M01-manual-validation.md M01
 
   `PRD-0016`    P1         §5       `TODO`   ---              ---        ---
 
@@ -118,31 +118,31 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0030`    P1         §7       `TODO`   ---              ---        ---
 
-  `PRD-0022`    P1         §8       `TODO`   ---              ---        ---
+  `PRD-0022`    P1         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0023`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0023`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0024`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0024`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0025`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0025`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0026`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0026`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0027`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0027`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0028`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0028`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0029`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0029`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0030`    P2         §8       `TODO`   ---              ---        ---
+  `PRD-0030`    P2         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `JOB-0001`    P1         §9       `TODO`   ---              ---        ---
+  `JOB-0001`    P1         §9      `TESTED`   packages/domain/job-status.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `JOB-0002`    P1         §9       `TODO`   ---              ---        ---
+  `JOB-0002`    P1         §9      `TESTED`   packages/domain/job-status.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `JOB-0003`    P1         §9       `TODO`   ---              ---        ---
+  `JOB-0003`    P1         §9      `TESTED`   packages/domain/job-status.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `JOB-0004`    P1         §9       `TODO`   ---              ---        ---
+  `JOB-0004`    P1         §9      `TESTED`   packages/domain/job-status.ts vitest; docs/milestones/M01-manual-validation.md M01
 
   `WRK-0031`    P1         §10      `TODO`   ---              ---        ---
 
@@ -310,7 +310,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0047`    P1         §22      `TODO`   ---              ---        ---
 
-  `CAP-0001`    P1         §23      `TODO`   ---              ---        ---
+  `CAP-0001`    P1         §23      `TESTED`   packages/database/prisma/schema.prisma vitest; docs/milestones/M01-manual-validation.md M01
 
   `PAY-0001`    P1         §24      `TODO`   ---              ---        ---
 
@@ -1104,15 +1104,15 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0082`    P2         §119     `TODO`   ---              ---        ---
 
-  `PRD-0083`    P1         §120     `TODO`   ---              ---        ---
+  `PRD-0083`    P1         §120      `TESTED`   packages/domain/unified-account.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0084`    P2         §120     `TODO`   ---              ---        ---
+  `PRD-0084`    P2         §120      `TESTED`   packages/domain/unified-account.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0085`    P2         §120     `TODO`   ---              ---        ---
+  `PRD-0085`    P2         §120      `TESTED`   packages/domain/unified-account.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0086`    P2         §120     `TODO`   ---              ---        ---
+  `PRD-0086`    P2         §120      `TESTED`   packages/domain/unified-account.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0087`    P2         §120     `TODO`   ---              ---        ---
+  `PRD-0087`    P2         §120      `TESTED`   packages/domain/unified-account.ts vitest; docs/milestones/M01-manual-validation.md M01
 
   `PRD-0088`    P1         §121     `TODO`   ---              ---        ---
 
@@ -1330,13 +1330,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0158`    P2         §162     `TODO`   ---              ---        ---
 
-  `PRD-0159`    P1         §163     `TODO`   ---              ---        ---
+  `PRD-0159`    P1         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0160`    P2         §163     `TODO`   ---              ---        ---
+  `PRD-0160`    P2         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0161`    P2         §163     `TODO`   ---              ---        ---
+  `PRD-0161`    P2         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0162`    P2         §163     `TODO`   ---              ---        ---
+  `PRD-0162`    P2         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
   `AGT-0047`    P1         §164     `TODO`   ---              ---        ---
 
@@ -1518,13 +1518,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0184`    P2         §191     `TODO`   ---              ---        ---
 
-  `IO-0057`     P1         §192     `TODO`   ---              ---        ---
+  `IO-0057`    P1         §192      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `IO-0058`     P1         §192     `TODO`   ---              ---        ---
+  `IO-0058`    P1         §192      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `IO-0059`     P1         §192     `TODO`   ---              ---        ---
+  `IO-0059`    P1         §192      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `IO-0060`     P1         §192     `TODO`   ---              ---        ---
+  `IO-0060`    P1         §192      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
   `IO-0061`     P1         §193     `TODO`   ---              ---        ---
 
@@ -2070,63 +2070,63 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0315`    P2         §298     `TODO`   ---              ---        ---
 
-  `SEC-0092`    P1         §299     `TODO`   ---              ---        ---
+  `SEC-0092`    P1         §299      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0093`    P0         §299     `TODO`   ---              ---        ---
+  `SEC-0093`    P0         §299      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0094`    P0         §299     `TODO`   ---              ---        ---
+  `SEC-0094`    P0         §299      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0095`    P0         §299     `TODO`   ---              ---        ---
+  `SEC-0095`    P0         §299      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0096`    P0         §299     `TODO`   ---              ---        ---
+  `SEC-0096`    P0         §299      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0097`    P0         §299     `TODO`   ---              ---        ---
+  `SEC-0097`    P0         §299      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0098`    P1         §300     `TODO`   ---              ---        ---
+  `SEC-0098`    P1         §300      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0067`    P1         §301     `TODO`   ---              ---        ---
+  `CAP-0067`    P1         §301      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0068`    P1         §301     `TODO`   ---              ---        ---
+  `CAP-0068`    P1         §301      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0069`    P1         §301     `TODO`   ---              ---        ---
+  `CAP-0069`    P1         §301      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0070`    P1         §301     `TODO`   ---              ---        ---
+  `CAP-0070`    P1         §301      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0099`    P1         §302     `TODO`   ---              ---        ---
+  `SEC-0099`    P1         §302      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0100`    P0         §302     `TODO`   ---              ---        ---
+  `SEC-0100`    P0         §302      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0101`    P0         §302     `TODO`   ---              ---        ---
+  `SEC-0101`    P0         §302      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0102`    P1         §303     `TODO`   ---              ---        ---
+  `SEC-0102`    P1         §303      `TESTED`   docs/WORKER_MANIFEST.md vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0103`    P0         §303     `TODO`   ---              ---        ---
+  `SEC-0103`    P0         §303      `TESTED`   docs/WORKER_MANIFEST.md vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0104`    P0         §303     `TODO`   ---              ---        ---
+  `SEC-0104`    P0         §303      `TESTED`   docs/WORKER_MANIFEST.md vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0105`    P1         §304     `TODO`   ---              ---        ---
+  `SEC-0105`    P1         §304      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `SEC-0106`    P0         §304     `TODO`   ---              ---        ---
+  `SEC-0106`    P0         §304      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0071`    P1         §305     `TODO`   ---              ---        ---
+  `CAP-0071`    P1         §305      `TESTED`   prisma CapabilityVersion vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0072`    P1         §305     `TODO`   ---              ---        ---
+  `CAP-0072`    P1         §305      `TESTED`   prisma CapabilityVersion vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0073`    P1         §306     `TODO`   ---              ---        ---
+  `CAP-0073`    P1         §306      `TESTED`   prisma CapabilityVersion JSON snapshots vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0074`    P1         §306     `TODO`   ---              ---        ---
+  `CAP-0074`    P1         §306      `TESTED`   prisma CapabilityVersion JSON snapshots vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0075`    P1         §306     `TODO`   ---              ---        ---
+  `CAP-0075`    P1         §306      `TESTED`   prisma CapabilityVersion JSON snapshots vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0076`    P1         §307     `TODO`   ---              ---        ---
+  `CAP-0076`    P1         §307      `TESTED`   prisma CapabilityVersion immutability vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0077`    P1         §307     `TODO`   ---              ---        ---
+  `CAP-0077`    P1         §307      `TESTED`   prisma CapabilityVersion immutability vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0078`    P1         §307     `TODO`   ---              ---        ---
+  `CAP-0078`    P1         §307      `TESTED`   prisma CapabilityVersion immutability vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0079`    P1         §308     `TODO`   ---              ---        ---
+  `CAP-0079`    P1         §308      `TESTED`   packages/contracts/job-snapshot.ts, prisma Job vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0080`    P1         §308     `TODO`   ---              ---        ---
+  `CAP-0080`    P1         §308      `TESTED`   packages/contracts/job-snapshot.ts, prisma Job vitest; docs/milestones/M01-manual-validation.md M01
 
   `CAP-0081`    P1         §309     `TODO`   ---              ---        ---
 
