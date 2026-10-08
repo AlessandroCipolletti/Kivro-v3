@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { createCorrelationId, logInfo } from "@kivro/observability";
 import { getPrismaClient } from "@kivro/database";
 import { authRoutes } from "./routes/auth.js";
+import { sellerCapabilityRoutes } from "./routes/seller-capabilities.js";
 import { workerDeviceRoutes } from "./routes/worker-devices.js";
 import type { AppEnv } from "./types.js";
 
@@ -39,10 +40,11 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M02" });
+    return c.json({ name: "kivro-api", phase: "M03" });
   });
 
   app.route("/auth", authRoutes());
+  app.route("/seller", sellerCapabilityRoutes());
   app.route("/worker-devices", workerDeviceRoutes());
 
   return app;

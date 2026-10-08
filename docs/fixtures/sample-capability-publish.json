@@ -1,0 +1,40 @@
+{
+  "workerDeviceId": "REPLACE_WITH_DEVICE_ID",
+  "localWorkerId": "openclaw-local-1",
+  "contract": {
+    "name": "Company Research",
+    "description": "Research a company from public sources.",
+    "currency": "USD",
+    "priceTierCents": 500,
+    "inputs": {
+      "contractVersion": 1,
+      "fields": [
+        {
+          "key": "companyName",
+          "type": "string",
+          "required": true,
+          "maxLength": 200
+        }
+      ]
+    },
+    "output": {
+      "contractVersion": 1,
+      "type": "MARKDOWN"
+    }
+  },
+  "permissionManifest": {
+    "manifestVersion": 1,
+    "categories": [
+      {
+        "key": "PUBLIC_INTERNET",
+        "state": "USED",
+        "buyerLabel": "Public web research"
+      },
+      {
+        "key": "AI_INFERENCE",
+        "state": "USED",
+        "buyerLabel": "AI summarization"
+      }
+    ]
+  }
+}
