@@ -74,6 +74,12 @@ enum AuditEventActor {
   ADMIN
 }
 
+enum StoredAssetPurpose {
+  CAPABILITY_PACKAGE
+  SKILL_BUNDLE
+  EXAMPLE_INPUT
+}
+
 model User {
   id                         String    @id @default(uuid())
   email                      String    @unique
@@ -179,6 +185,8 @@ model SellerProfile {
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   workerDevices WorkerDevice[]
   capabilities  Capability[]
+  storedAssets  StoredAsset[]
+  permissionConsents PermissionConsentRecord[]
 }
 
 model WorkerDevice {
@@ -199,6 +207,7 @@ model WorkerDevice {
   bindings      LocalWorkerBinding[]
   jobs          Job[]
   auditEvents   AuditEvent[]
+  permissionConsents PermissionConsentRecord[]
 
   @@index([sellerProfileId])
 }
@@ -238,6 +247,9 @@ model CapabilityVersion {
   internalManifestHash String
   permissionManifest   Json
   permissionSummary    Json?
+  workerManifest       Json?
+  workerManifestHash   String?
+  inferenceDependency  Json?
   priceSnapshotCents   Int
   currency             String   @default("USD")
   publishedAt          DateTime?
@@ -247,9 +259,60 @@ model CapabilityVersion {
   currentForCapability Capability?         @relation("CurrentCapabilityVersion")
   bindings            LocalWorkerBinding[]
   jobs                Job[]
+  packageAssets       CapabilityVersionAsset[]
+  permissionConsents  PermissionConsentRecord[]
 
   @@unique([capabilityId, versionNumber])
   @@index([capabilityId])
+}
+
+model StoredAsset {
+  id                String             @id @default(uuid())
+  sellerProfileId   String
+  purpose           StoredAssetPurpose
+  bucket            String
+  objectKey         String
+  contentHash       String
+  sizeBytes         BigInt
+  mimeType          String?
+  uploadConfirmedAt DateTime?
+  createdAt         DateTime           @default(now())
+
+  sellerProfile SellerProfile @relation(fields: [sellerProfileId], references: [id], onDelete: Cascade)
+  versionLinks  CapabilityVersionAsset[]
+
+  @@unique([bucket, objectKey])
+  @@index([sellerProfileId])
+}
+
+model CapabilityVersionAsset {
+  id                  String @id @default(uuid())
+  capabilityVersionId String
+  storedAssetId       String
+  role                String
+
+  capabilityVersion CapabilityVersion @relation(fields: [capabilityVersionId], references: [id], onDelete: Cascade)
+  storedAsset       StoredAsset       @relation(fields: [storedAssetId], references: [id], onDelete: Cascade)
+
+  @@unique([capabilityVersionId, storedAssetId])
+}
+
+model PermissionConsentRecord {
+  id                  String   @id @default(uuid())
+  sellerProfileId     String
+  workerDeviceId      String?
+  capabilityVersionId String
+  permissionType      String
+  permissionValue     String
+  manifestHash        String
+  approvedAt          DateTime @default(now())
+
+  sellerProfile     SellerProfile     @relation(fields: [sellerProfileId], references: [id], onDelete: Cascade)
+  capabilityVersion CapabilityVersion @relation(fields: [capabilityVersionId], references: [id], onDelete: Cascade)
+  workerDevice      WorkerDevice?     @relation(fields: [workerDeviceId], references: [id])
+
+  @@index([capabilityVersionId])
+  @@index([sellerProfileId])
 }
 
 model LocalWorkerBinding {

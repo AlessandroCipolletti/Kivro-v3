@@ -18,6 +18,7 @@
   "dependencies": {
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
+    "@kivro/storage": "workspace:*",
     "zod": "^3.24.1"
   }
 }

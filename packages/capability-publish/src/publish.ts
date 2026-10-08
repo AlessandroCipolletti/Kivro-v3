@@ -1,7 +1,9 @@
 import {
   parseCapabilityContract,
+  parseInferenceDependency,
   parsePublicPermissionManifest,
 } from "@kivro/contracts";
+import { permissionConsentRows } from "./consent-records.js";
 import type {
   Capability,
   CapabilityVersion,
@@ -10,6 +12,8 @@ import type {
   SellerProfile,
 } from "@kivro/database";
 import { hashPermissionManifest } from "./manifest-hash.js";
+import { finalizeWorkerManifest, verifyWorkerManifestPayload } from "./worker-manifest-verify.js";
+import { randomUUID } from "node:crypto";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -69,6 +73,10 @@ export interface PublishInput {
   localWorkerId: string;
   contract: unknown;
   permissionManifest: unknown;
+  workerManifest: unknown;
+  inferenceDependency: unknown;
+  executionModelAcknowledged: boolean;
+  packageAssetIds?: string[];
 }
 
 export async function publishCapability(
@@ -86,9 +94,19 @@ export async function publishCapability(
   if (capability.status === "PUBLISHED" && capability.currentVersionId) {
     throw new Error("ALREADY_PUBLISHED");
   }
+  if (!input.executionModelAcknowledged) {
+    throw new Error("EXECUTION_MODEL_NOT_ACKNOWLEDGED");
+  }
 
   const contract = parseCapabilityContract(input.contract);
   const permissionManifest = parsePublicPermissionManifest(input.permissionManifest);
+  const inferenceDependency = parseInferenceDependency(input.inferenceDependency);
+  const { manifest: workerManifestTemplate } = verifyWorkerManifestPayload(input.workerManifest);
+  const versionId = randomUUID();
+  const { manifest: workerManifest, hash: workerManifestHash } = finalizeWorkerManifest(
+    workerManifestTemplate,
+    { capabilityVersionId: versionId, workerDeviceId: input.workerDeviceId },
+  );
 
   const device = await db.workerDevice.findFirst({
     where: { id: input.workerDeviceId, sellerProfileId },
@@ -100,9 +118,24 @@ export async function publishCapability(
   const manifestHash = hashPermissionManifest(permissionManifest);
   const versionNumber = 1;
 
+  const packageAssetIds = input.packageAssetIds ?? [];
+  if (packageAssetIds.length > 0) {
+    const assets = await db.storedAsset.findMany({
+      where: {
+        id: { in: packageAssetIds },
+        sellerProfileId,
+        uploadConfirmedAt: { not: null },
+      },
+    });
+    if (assets.length !== packageAssetIds.length) {
+      throw new Error("PACKAGE_ASSET_INVALID");
+    }
+  }
+
   return db.$transaction(async (tx: Prisma.TransactionClient) => {
     const version = await tx.capabilityVersion.create({
       data: {
+        id: versionId,
         capabilityId: capability.id,
         versionNumber,
         versionLabel: `${versionNumber}.0.0`,
@@ -112,13 +145,36 @@ export async function publishCapability(
         internalManifestHash: manifestHash,
         permissionManifest: toJsonValue(permissionManifest),
         permissionSummary: toJsonValue({
-          selectedSkills: [],
+          selectedSkills: workerManifest.skills.map((s) => s.name),
           manifestVersion: permissionManifest.manifestVersion,
         }),
+        workerManifest: toJsonValue(workerManifest),
+        workerManifestHash,
+        inferenceDependency: toJsonValue(inferenceDependency),
         priceSnapshotCents: contract.priceTierCents,
         currency: contract.currency,
         publishedAt: new Date(),
       },
+    });
+
+    if (packageAssetIds.length > 0) {
+      await tx.capabilityVersionAsset.createMany({
+        data: packageAssetIds.map((storedAssetId) => ({
+          capabilityVersionId: version.id,
+          storedAssetId,
+          role: "package",
+        })),
+      });
+    }
+
+    await tx.permissionConsentRecord.createMany({
+      data: permissionConsentRows(
+        sellerProfileId,
+        version.id,
+        device.id,
+        manifestHash,
+        permissionManifest,
+      ),
     });
 
     await tx.localWorkerBinding.create({

@@ -11,19 +11,25 @@ const sharedPackages = fs
 
 let violations = [];
 
+/** S3-compatible object storage port (MinIO/AWS) lives in @kivro/storage. */
+const awsSdkAllowedPackages = new Set(["storage"]);
+
 for (const pkg of sharedPackages) {
   const src = path.join(sharedDir, pkg, "src");
   if (!fs.existsSync(src)) continue;
-  walk(src);
+  walk(src, pkg);
 }
 
-function walk(dir) {
+function walk(dir, pkgName) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) walk(full);
+    if (entry.isDirectory()) walk(full, pkgName);
     else if (entry.name.endsWith(".ts")) {
       const text = fs.readFileSync(full, "utf8");
       for (const pattern of forbiddenImports) {
+        if (pattern.source === "@aws-sdk\\/" && awsSdkAllowedPackages.has(pkgName)) {
+          continue;
+        }
         if (pattern.test(text)) {
           violations.push(`${full} matches ${pattern}`);
         }

@@ -3,6 +3,8 @@ import { Hono } from "hono";
 import { createCorrelationId, logInfo } from "@kivro/observability";
 import { getPrismaClient } from "@kivro/database";
 import { authRoutes } from "./routes/auth.js";
+import { marketplaceCapabilityRoutes } from "./routes/capabilities.js";
+import { sellerAssetRoutes } from "./routes/seller-assets.js";
 import { sellerCapabilityRoutes } from "./routes/seller-capabilities.js";
 import { workerDeviceRoutes } from "./routes/worker-devices.js";
 import type { AppEnv } from "./types.js";
@@ -44,7 +46,9 @@ export function createApp(): Hono<AppEnv> {
   });
 
   app.route("/auth", authRoutes());
+  app.route("/", marketplaceCapabilityRoutes());
   app.route("/seller", sellerCapabilityRoutes());
+  app.route("/seller", sellerAssetRoutes());
   app.route("/worker-devices", workerDeviceRoutes());
 
   return app;

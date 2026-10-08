@@ -906,203 +906,203 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0073`    P1         §95      `TESTED`   README.md        vitest; docs/milestones/M00-manual-validation.md M00
 
-  `PRD-0074`    P1         §96      `TODO`   ---              ---        ---
+  `PRD-0074`    P1         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0075`    P2         §96      `TODO`   ---              ---        ---
+  `PRD-0075`    P2         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0076`    P2         §96      `TODO`   ---              ---        ---
+  `PRD-0076`    P2         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0077`    P2         §96      `TODO`   ---              ---        ---
+  `PRD-0077`    P2         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0078`    P2         §96      `TODO`   ---              ---        ---
+  `PRD-0078`    P2         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0079`    P2         §96      `TODO`   ---              ---        ---
+  `PRD-0079`    P2         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0001`    P1         §97      `TODO`   ---              ---        ---
+  `AGT-0001`    P1         §97      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0002`    P1         §97      `TODO`   ---              ---        ---
+  `AGT-0002`    P1         §97      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0003`    P1         §97      `TODO`   ---              ---        ---
+  `AGT-0003`    P1         §97      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0004`    P1         §97      `TODO`   ---              ---        ---
+  `AGT-0004`    P1         §97      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0005`    P1         §98      `TODO`   ---              ---        ---
+  `AGT-0005`    P1         §98      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0006`    P1         §98      `TODO`   ---              ---        ---
+  `AGT-0006`    P1         §98      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0007`    P1         §98      `TODO`   ---              ---        ---
+  `AGT-0007`    P1         §98      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0008`    P1         §98      `TODO`   ---              ---        ---
+  `AGT-0008`    P1         §98      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0009`    P1         §99      `TODO`   ---              ---        ---
+  `AGT-0009`    P1         §99      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0010`    P1         §99      `TODO`   ---              ---        ---
+  `AGT-0010`    P1         §99      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0011`    P1         §99      `TODO`   ---              ---        ---
+  `AGT-0011`    P1         §99      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0012`    P1         §99      `TODO`   ---              ---        ---
+  `AGT-0012`    P1         §99      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0013`    P1         §99      `TODO`   ---              ---        ---
+  `AGT-0013`    P1         §99      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0014`    P1         §99      `TODO`   ---              ---        ---
+  `AGT-0014`    P1         §99      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0015`    P1         §100     `TODO`   ---              ---        ---
+  `AGT-0015`    P1         §100      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0016`    P1         §100     `TODO`   ---              ---        ---
+  `AGT-0016`    P1         §100      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0017`    P1         §100     `TODO`   ---              ---        ---
+  `AGT-0017`    P1         §100      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0018`    P1         §100     `TODO`   ---              ---        ---
+  `AGT-0018`    P1         §100      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0019`    P1         §100     `TODO`   ---              ---        ---
+  `AGT-0019`    P1         §100      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0020`    P1         §101     `TODO`   ---              ---        ---
+  `AGT-0020`    P1         §101      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0021`    P1         §101     `TODO`   ---              ---        ---
+  `AGT-0021`    P1         §101      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0022`    P1         §101     `TODO`   ---              ---        ---
+  `AGT-0022`    P1         §101      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0018`    P1         §102     `TODO`   ---              ---        ---
+  `CAP-0018`    P1         §102      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0019`    P1         §102     `TODO`   ---              ---        ---
+  `CAP-0019`    P1         §102      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0020`    P1         §102     `TODO`   ---              ---        ---
+  `CAP-0020`    P1         §102      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0021`    P1         §103     `TODO`   ---              ---        ---
+  `CAP-0021`    P1         §103      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0023`    P1         §104     `TODO`   ---              ---        ---
+  `AGT-0023`    P1         §104      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0024`    P1         §104     `TODO`   ---              ---        ---
+  `AGT-0024`    P1         §104      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0025`    P1         §104     `TODO`   ---              ---        ---
+  `AGT-0025`    P1         §104      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0026`    P1         §104     `TODO`   ---              ---        ---
+  `AGT-0026`    P1         §104      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0027`    P1         §104     `TODO`   ---              ---        ---
+  `AGT-0027`    P1         §104      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0022`    P1         §105     `TODO`   ---              ---        ---
+  `CAP-0022`    P1         §105      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0023`    P1         §105     `TODO`   ---              ---        ---
+  `CAP-0023`    P1         §105      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0024`    P1         §105     `TODO`   ---              ---        ---
+  `CAP-0024`    P1         §105      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0025`    P1         §105     `TODO`   ---              ---        ---
+  `CAP-0025`    P1         §105      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0001`     P1         §106     `TODO`   ---              ---        ---
+  `UI-0001`    P1         §106      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0002`     P2         §106     `TODO`   ---              ---        ---
+  `UI-0002`    P2         §106      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0003`     P2         §106     `TODO`   ---              ---        ---
+  `UI-0003`    P2         §106      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0004`     P2         §106     `TODO`   ---              ---        ---
+  `UI-0004`    P2         §106      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0005`     P2         §106     `TODO`   ---              ---        ---
+  `UI-0005`    P2         §106      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0006`     P2         §106     `TODO`   ---              ---        ---
+  `UI-0006`    P2         §106      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0007`     P2         §106     `TODO`   ---              ---        ---
+  `UI-0007`    P2         §106      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0008`     P1         §107     `TODO`   ---              ---        ---
+  `UI-0008`    P1         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0009`     P2         §107     `TODO`   ---              ---        ---
+  `UI-0009`    P2         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0010`     P2         §107     `TODO`   ---              ---        ---
+  `UI-0010`    P2         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0011`     P2         §107     `TODO`   ---              ---        ---
+  `UI-0011`    P2         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0012`     P2         §107     `TODO`   ---              ---        ---
+  `UI-0012`    P2         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0013`     P2         §107     `TODO`   ---              ---        ---
+  `UI-0013`    P2         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0014`     P2         §107     `TODO`   ---              ---        ---
+  `UI-0014`    P2         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `UI-0015`     P2         §107     `TODO`   ---              ---        ---
+  `UI-0015`    P2         §107      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0026`    P1         §108     `TODO`   ---              ---        ---
+  `CAP-0026`    P1         §108      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0027`    P1         §108     `TODO`   ---              ---        ---
+  `CAP-0027`    P1         §108      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0028`    P1         §108     `TODO`   ---              ---        ---
+  `CAP-0028`    P1         §108      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0029`    P1         §108     `TODO`   ---              ---        ---
+  `CAP-0029`    P1         §108      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0030`    P1         §108     `TODO`   ---              ---        ---
+  `CAP-0030`    P1         §108      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0031`    P1         §108     `TODO`   ---              ---        ---
+  `CAP-0031`    P1         §108      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0032`    P1         §108     `TODO`   ---              ---        ---
+  `CAP-0032`    P1         §108      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0028`    P1         §109     `TODO`   ---              ---        ---
+  `AGT-0028`    P1         §109      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0029`    P1         §109     `TODO`   ---              ---        ---
+  `AGT-0029`    P1         §109      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0030`    P1         §109     `TODO`   ---              ---        ---
+  `AGT-0030`    P1         §109      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0031`    P1         §109     `TODO`   ---              ---        ---
+  `AGT-0031`    P1         §109      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0032`    P1         §109     `TODO`   ---              ---        ---
+  `AGT-0032`    P1         §109      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0033`    P1         §110     `TODO`   ---              ---        ---
+  `CAP-0033`    P1         §110      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0034`    P1         §110     `TODO`   ---              ---        ---
+  `CAP-0034`    P1         §110      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0035`    P1         §110     `TODO`   ---              ---        ---
+  `CAP-0035`    P1         §110      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0036`    P1         §110     `TODO`   ---              ---        ---
+  `CAP-0036`    P1         §110      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0037`    P1         §111     `TODO`   ---              ---        ---
+  `CAP-0037`    P1         §111      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0038`    P1         §111     `TODO`   ---              ---        ---
+  `CAP-0038`    P1         §111      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0039`    P1         §111     `TODO`   ---              ---        ---
+  `CAP-0039`    P1         §111      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0040`    P1         §111     `TODO`   ---              ---        ---
+  `CAP-0040`    P1         §111      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0041`    P1         §111     `TODO`   ---              ---        ---
+  `CAP-0041`    P1         §111      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0042`    P1         §111     `TODO`   ---              ---        ---
+  `CAP-0042`    P1         §111      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0043`    P1         §112     `TODO`   ---              ---        ---
+  `CAP-0043`    P1         §112      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0044`    P1         §113     `TODO`   ---              ---        ---
+  `CAP-0044`    P1         §113      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0045`    P1         §113     `TODO`   ---              ---        ---
+  `CAP-0045`    P1         §113      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0046`    P1         §113     `TODO`   ---              ---        ---
+  `CAP-0046`    P1         §113      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0047`    P1         §114     `TODO`   ---              ---        ---
+  `CAP-0047`    P1         §114      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0048`    P1         §114     `TODO`   ---              ---        ---
+  `CAP-0048`    P1         §114      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `SEC-0065`    P1         §115     `TODO`   ---              ---        ---
+  `SEC-0065`    P1         §115      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `JOB-0050`    P1         §116     `TODO`   ---              ---        ---
+  `JOB-0050`    P1         §116      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `JOB-0051`    P1         §116     `TODO`   ---              ---        ---
+  `JOB-0051`    P1         §116      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `JOB-0052`    P1         §116     `TODO`   ---              ---        ---
+  `JOB-0052`    P1         §116      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `JOB-0053`    P1         §116     `TODO`   ---              ---        ---
+  `JOB-0053`    P1         §116      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `JOB-0054`    P1         §116     `TODO`   ---              ---        ---
+  `JOB-0054`    P1         §116      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `JOB-0055`    P1         §116     `TODO`   ---              ---        ---
+  `JOB-0055`    P1         §116      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0033`    P1         §117     `TODO`   ---              ---        ---
+  `AGT-0033`    P1         §117      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `AGT-0034`    P1         §117     `TODO`   ---              ---        ---
+  `AGT-0034`    P1         §117      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0049`    P1         §118     `TODO`   ---              ---        ---
+  `CAP-0049`    P1         §118      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0050`    P1         §118     `TODO`   ---              ---        ---
+  `CAP-0050`    P1         §118      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0051`    P1         §118     `TODO`   ---              ---        ---
+  `CAP-0051`    P1         §118      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0080`    P1         §119     `TODO`   ---              ---        ---
+  `PRD-0080`    P1         §119      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0081`    P2         §119     `TODO`   ---              ---        ---
+  `PRD-0081`    P2         §119      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `PRD-0082`    P2         §119     `TODO`   ---              ---        ---
+  `PRD-0082`    P2         §119      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
   `PRD-0083`    P1         §120      `TESTED`   packages/domain/unified-account.ts vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -2128,9 +2128,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0080`    P1         §308      `TESTED`   packages/contracts/job-snapshot.ts, prisma Job vitest; docs/milestones/M01-manual-validation.md M01
 
-  `CAP-0081`    P1         §309     `TODO`   ---              ---        ---
+  `CAP-0081`    P1         §309      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0082`    P1         §309     `TODO`   ---              ---        ---
+  `CAP-0082`    P1         §309      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
   `CAP-0083`    P1         §310     `TODO`   ---              ---        ---
 

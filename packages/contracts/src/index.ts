@@ -3,6 +3,7 @@ export {
   WorkerManifestSchema,
   type WorkerManifest,
   hashWorkerManifest,
+  parseWorkerManifest,
 } from "./worker-manifest.js";
 export {
   CapabilityContractSchema,
@@ -22,4 +23,9 @@ export {
   parseJobPurchaseSnapshot,
   type JobPurchaseSnapshot,
 } from "./job-snapshot.js";
+export {
+  InferenceDependencySchema,
+  parseInferenceDependency,
+  type InferenceDependency,
+} from "./inference-dependency.js";
 export { parseWithSchema, SchemaValidationError } from "./validate.js";

@@ -62,12 +62,19 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
       localWorkerId?: string;
       contract?: unknown;
       permissionManifest?: unknown;
+      workerManifest?: unknown;
+      inferenceDependency?: unknown;
+      executionModelAcknowledged?: boolean;
+      packageAssetIds?: string[];
     }>();
     if (
       !body.workerDeviceId ||
       !body.localWorkerId ||
       body.contract === undefined ||
-      body.permissionManifest === undefined
+      body.permissionManifest === undefined ||
+      body.workerManifest === undefined ||
+      body.inferenceDependency === undefined ||
+      body.executionModelAcknowledged !== true
     ) {
       return c.json({ error: "INVALID_INPUT" }, 400);
     }
@@ -77,6 +84,10 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         localWorkerId: body.localWorkerId,
         contract: body.contract,
         permissionManifest: body.permissionManifest,
+        workerManifest: body.workerManifest,
+        inferenceDependency: body.inferenceDependency,
+        executionModelAcknowledged: true,
+        packageAssetIds: body.packageAssetIds,
       });
       return c.json(result);
     } catch (err) {
@@ -89,6 +100,12 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         }
         if (err.message === "ALREADY_PUBLISHED") {
           return c.json({ error: "ALREADY_PUBLISHED" }, 409);
+        }
+        if (err.message === "EXECUTION_MODEL_NOT_ACKNOWLEDGED") {
+          return c.json({ error: err.message }, 400);
+        }
+        if (err.message === "PACKAGE_ASSET_INVALID") {
+          return c.json({ error: err.message }, 400);
         }
       }
       throw err;

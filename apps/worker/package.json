@@ -12,6 +12,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@kivro/capability-publish": "workspace:*",
     "@kivro/crypto": "workspace:*",
     "@kivro/job-protocol": "workspace:*",
     "@kivro/openclaw-adapter": "workspace:*",

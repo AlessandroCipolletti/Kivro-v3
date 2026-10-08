@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { buildWorkerManifestTemplate } from "@kivro/capability-publish";
 import { generateDeviceKeyPair } from "@kivro/crypto";
+import { hashOpenClawSkill } from "@kivro/openclaw-adapter";
 import { WORKER_COMMANDS } from "@kivro/job-protocol";
 import { createOpenClawAdapter } from "@kivro/openclaw-adapter";
 import {
@@ -13,7 +15,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const WORKER_VERSION = "0.0.0-m02";
+const WORKER_VERSION = "0.0.0-m03";
 
 function runtimeRoot(): string {
   const configured = process.env.KIVRO_RUNTIME_ROOT ?? "~/.kivro/runtime";
@@ -63,6 +65,24 @@ program
     const adapter = await createOpenClawAdapter();
     const discovery = await adapter.discover();
     console.log(JSON.stringify(discovery, null, 2));
+  });
+
+program
+  .command("manifest")
+  .description("Build worker manifest template with verified skill hashes (§54)")
+  .requiredOption("--skills <names>", "Comma-separated skill names from explicit consent")
+  .action((opts: { skills: string }) => {
+    const names = opts.skills
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const manifest = buildWorkerManifestTemplate({
+      skills: names.map((name) => ({
+        name,
+        contentHash: hashOpenClawSkill(name),
+      })),
+    });
+    console.log(JSON.stringify(manifest, null, 2));
   });
 
 program

@@ -1,6 +1,20 @@
 # Local dev infrastructure (expanded in M18). Postgres uses host port 5433
 # to avoid clashing with other PostgreSQL instances on 5432.
 services:
+  minio:
+    image: minio/minio:latest
+    container_name: kivro-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: kivro
+      MINIO_ROOT_PASSWORD: kivrodevsecret
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - kivro_minio_data:/data
+
   postgres:
     image: postgres:16-alpine
     container_name: kivro-postgres
@@ -21,3 +35,4 @@ services:
 
 volumes:
   kivro_pg_data:
+  kivro_minio_data:
