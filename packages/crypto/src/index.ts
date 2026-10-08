@@ -1,1 +1,1 @@
-export const PACKAGE = "crypto";
+export { generateDeviceKeyPair, type DeviceKeyPair } from "./device.js";

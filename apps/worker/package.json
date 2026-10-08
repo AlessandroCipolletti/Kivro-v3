@@ -12,8 +12,10 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@kivro/crypto": "workspace:*",
     "@kivro/job-protocol": "workspace:*",
     "@kivro/openclaw-adapter": "workspace:*",
+    "@kivro/worker-store": "workspace:*",
     "commander": "^12.1.0"
   }
 }

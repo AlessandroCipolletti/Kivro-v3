@@ -1,9 +1,13 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { createCorrelationId, logInfo } from "@kivro/observability";
+import { getPrismaClient } from "@kivro/database";
+import { authRoutes } from "./routes/auth.js";
+import { workerDeviceRoutes } from "./routes/worker-devices.js";
+import type { AppEnv } from "./types.js";
 
-export function createApp(): Hono {
-  const app = new Hono();
+export function createApp(): Hono<AppEnv> {
+  const app = new Hono<AppEnv>();
 
   app.use("*", async (c, next) => {
     const correlationId =
@@ -14,18 +18,32 @@ export function createApp(): Hono {
 
   app.get("/health/live", (c) => c.json({ status: "live" }));
 
-  app.get("/health/ready", (c) =>
-    c.json({ status: "ready", checks: { bootstrap: true } }),
-  );
+  app.get("/health/ready", async (c) => {
+    let db = false;
+    try {
+      await getPrismaClient().$queryRaw`SELECT 1`;
+      db = true;
+    } catch {
+      db = false;
+    }
+    const ready = db;
+    return c.json(
+      { status: ready ? "ready" : "degraded", checks: { database: db } },
+      ready ? 200 : 503,
+    );
+  });
 
   app.get("/", (c) => {
     const correlationId = c.req.header("x-correlation-id") ?? createCorrelationId();
     logInfo({
       correlationId,
-      message: "Kivro API bootstrap",
+      message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M00" });
+    return c.json({ name: "kivro-api", phase: "M02" });
   });
+
+  app.route("/auth", authRoutes());
+  app.route("/worker-devices", workerDeviceRoutes());
 
   return app;
 }

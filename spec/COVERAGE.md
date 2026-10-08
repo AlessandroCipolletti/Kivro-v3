@@ -64,59 +64,59 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0015`    P2         §4      `TESTED`   packages/domain, prisma User/SellerProfile vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0016`    P1         §5       `TODO`   ---              ---        ---
+  `PRD-0016`    P1         §5      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `PRD-0017`    P2         §5       `TODO`   ---              ---        ---
+  `PRD-0017`    P2         §5      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `PRD-0018`    P2         §5       `TODO`   ---              ---        ---
+  `PRD-0018`    P2         §5      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `PRD-0019`    P2         §5       `TODO`   ---              ---        ---
+  `PRD-0019`    P2         §5      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `PRD-0020`    P2         §5       `TODO`   ---              ---        ---
+  `PRD-0020`    P2         §5      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `PRD-0021`    P2         §5       `TODO`   ---              ---        ---
+  `PRD-0021`    P2         §5      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0010`    P1         §6       `TODO`   ---              ---        ---
+  `WRK-0010`    P1         §6      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0011`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0011`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0012`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0012`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0013`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0013`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0014`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0014`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0015`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0015`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0016`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0016`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0017`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0017`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0018`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0018`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0019`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0019`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0020`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0020`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0021`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0021`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0022`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0022`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0023`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0023`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0024`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0024`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0025`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0025`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0026`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0026`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0027`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0027`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0028`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0028`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0029`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0029`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0030`    P1         §7       `TODO`   ---              ---        ---
+  `WRK-0030`    P1         §7      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
   `PRD-0022`    P1         §8      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -144,77 +144,77 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0004`    P1         §9      `TESTED`   packages/domain/job-status.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `WRK-0031`    P1         §10      `TODO`   ---              ---        ---
+  `WRK-0031`    P1         §10      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0032`    P1         §10      `TODO`   ---              ---        ---
+  `WRK-0032`    P1         §10      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0033`    P1         §10      `TODO`   ---              ---        ---
+  `WRK-0033`    P1         §10      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0034`    P1         §10      `TODO`   ---              ---        ---
+  `WRK-0034`    P1         §10      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0035`    P1         §10      `TODO`   ---              ---        ---
+  `WRK-0035`    P1         §10      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0005`    P1         §11      `TODO`   ---              ---        ---
+  `JOB-0005`    P1         §11      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0006`    P1         §11      `TODO`   ---              ---        ---
+  `JOB-0006`    P1         §11      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0007`    P1         §11      `TODO`   ---              ---        ---
+  `JOB-0007`    P1         §11      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0001`     P1         §12      `TODO`   ---              ---        ---
+  `IO-0001`    P1         §12      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0002`     P1         §12      `TODO`   ---              ---        ---
+  `IO-0002`    P1         §12      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0003`     P1         §12      `TODO`   ---              ---        ---
+  `IO-0003`    P1         §12      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0004`     P1         §12      `TODO`   ---              ---        ---
+  `IO-0004`    P1         §12      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0005`     P1         §12      `TODO`   ---              ---        ---
+  `IO-0005`    P1         §12      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0006`     P1         §12      `TODO`   ---              ---        ---
+  `IO-0006`    P1         §12      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0001`    P1         §13      `TODO`   ---              ---        ---
+  `SEC-0001`    P1         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0002`    P0         §13      `TODO`   ---              ---        ---
+  `SEC-0002`    P0         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0003`    P0         §13      `TODO`   ---              ---        ---
+  `SEC-0003`    P0         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0004`    P0         §13      `TODO`   ---              ---        ---
+  `SEC-0004`    P0         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0005`    P0         §13      `TODO`   ---              ---        ---
+  `SEC-0005`    P0         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0006`    P0         §13      `TODO`   ---              ---        ---
+  `SEC-0006`    P0         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0007`    P0         §13      `TODO`   ---              ---        ---
+  `SEC-0007`    P0         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0008`    P0         §13      `TODO`   ---              ---        ---
+  `SEC-0008`    P0         §13      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0009`    P1         §14      `TODO`   ---              ---        ---
+  `SEC-0009`    P1         §14      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0010`    P0         §14      `TODO`   ---              ---        ---
+  `SEC-0010`    P0         §14      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0011`    P0         §14      `TODO`   ---              ---        ---
+  `SEC-0011`    P0         §14      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0012`    P0         §14      `TODO`   ---              ---        ---
+  `SEC-0012`    P0         §14      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0013`    P0         §14      `TODO`   ---              ---        ---
+  `SEC-0013`    P0         §14      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0014`    P0         §14      `TODO`   ---              ---        ---
+  `SEC-0014`    P0         §14      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0015`    P0         §14      `TODO`   ---              ---        ---
+  `SEC-0015`    P0         §14      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0036`    P1         §15      `TODO`   ---              ---        ---
+  `WRK-0036`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0037`    P1         §15      `TODO`   ---              ---        ---
+  `WRK-0037`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0038`    P1         §15      `TODO`   ---              ---        ---
+  `WRK-0038`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0039`    P1         §15      `TODO`   ---              ---        ---
+  `WRK-0039`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0040`    P1         §15      `TODO`   ---              ---        ---
+  `WRK-0040`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0041`    P1         §15      `TODO`   ---              ---        ---
+  `WRK-0041`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0042`    P1         §15      `TODO`   ---              ---        ---
+  `WRK-0042`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
   `SEC-0016`    P1         §16      `TODO`   ---              ---        ---
 
@@ -288,27 +288,27 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0025`    P1         §19      `TODO`   ---              ---        ---
 
-  `SEC-0026`    P1         §20      `TODO`   ---              ---        ---
+  `SEC-0026`    P1         §20      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0027`    P0         §20      `TODO`   ---              ---        ---
+  `SEC-0027`    P0         §20      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0028`    P0         §20      `TODO`   ---              ---        ---
+  `SEC-0028`    P0         §20      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0029`    P0         §20      `TODO`   ---              ---        ---
+  `SEC-0029`    P0         §20      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0030`    P0         §20      `TODO`   ---              ---        ---
+  `SEC-0030`    P0         §20      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0031`    P0         §20      `TODO`   ---              ---        ---
+  `SEC-0031`    P0         §20      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0043`    P1         §21      `TODO`   ---              ---        ---
+  `WRK-0043`    P1         §21      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0044`    P1         §21      `TODO`   ---              ---        ---
+  `WRK-0044`    P1         §21      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0045`    P1         §21      `TODO`   ---              ---        ---
+  `WRK-0045`    P1         §21      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0046`    P1         §22      `TODO`   ---              ---        ---
+  `WRK-0046`    P1         §22      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0047`    P1         §22      `TODO`   ---              ---        ---
+  `WRK-0047`    P1         §22      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
   `CAP-0001`    P1         §23      `TESTED`   packages/database/prisma/schema.prisma vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -680,95 +680,95 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0037`    P1         §60      `TESTED`   packages/openclaw-adapter/job-paths.ts vitest; docs/milestones/M00-manual-validation.md M00
 
-  `IO-0013`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0013`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0014`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0014`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0015`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0015`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0016`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0016`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0017`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0017`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0018`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0018`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0019`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0019`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0020`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0020`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0021`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0021`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0022`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0022`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0023`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0023`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0024`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0024`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0025`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0025`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0026`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0026`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0027`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0027`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0028`     P1         §61      `TODO`   ---              ---        ---
+  `IO-0028`    P1         §61      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0029`     P1         §62      `TODO`   ---              ---        ---
+  `IO-0029`    P1         §62      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0030`     P1         §62      `TODO`   ---              ---        ---
+  `IO-0030`    P1         §62      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0031`     P1         §62      `TODO`   ---              ---        ---
+  `IO-0031`    P1         §62      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0032`     P1         §62      `TODO`   ---              ---        ---
+  `IO-0032`    P1         §62      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0033`     P1         §63      `TODO`   ---              ---        ---
+  `IO-0033`    P1         §63      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `IO-0034`     P1         §63      `TODO`   ---              ---        ---
+  `IO-0034`    P1         §63      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0038`    P1         §64      `TODO`   ---              ---        ---
+  `JOB-0038`    P1         §64      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0039`    P1         §64      `TODO`   ---              ---        ---
+  `JOB-0039`    P1         §64      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0040`    P1         §64      `TODO`   ---              ---        ---
+  `JOB-0040`    P1         §64      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0041`    P1         §64      `TODO`   ---              ---        ---
+  `JOB-0041`    P1         §64      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `PRD-0061`    P1         §65      `TODO`   ---              ---        ---
+  `PRD-0061`    P1         §65      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `PRD-0062`    P2         §65      `TODO`   ---              ---        ---
+  `PRD-0062`    P2         §65      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0082`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0082`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0083`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0083`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0084`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0084`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0085`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0085`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0086`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0086`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0087`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0087`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0088`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0088`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0089`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0089`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0090`    P1         §66      `TODO`   ---              ---        ---
+  `WRK-0090`    P1         §66      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0091`    P1         §67      `TODO`   ---              ---        ---
+  `WRK-0091`    P1         §67      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0092`    P1         §67      `TODO`   ---              ---        ---
+  `WRK-0092`    P1         §67      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0010`    P1         §68      `TODO`   ---              ---        ---
+  `CAP-0010`    P1         §68      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0011`    P1         §68      `TODO`   ---              ---        ---
+  `CAP-0011`    P1         §68      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0012`    P1         §68      `TODO`   ---              ---        ---
+  `CAP-0012`    P1         §68      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0013`    P1         §68      `TODO`   ---              ---        ---
+  `CAP-0013`    P1         §68      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0042`    P1         §69      `TODO`   ---              ---        ---
+  `JOB-0042`    P1         §69      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0043`    P1         §69      `TODO`   ---              ---        ---
+  `JOB-0043`    P1         §69      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
   `JOB-0044`    P1         §70      `TODO`   ---              ---        ---
 
@@ -2406,27 +2406,27 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0109`    P1         §368     `TODO`   ---              ---        ---
 
-  `OBS-0007`    P1         §369     `TODO`   ---              ---        ---
+  `OBS-0007`    P1         §369      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `OBS-0008`    P2         §369     `TODO`   ---              ---        ---
+  `OBS-0008`    P2         §369      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `OBS-0009`    P2         §369     `TODO`   ---              ---        ---
+  `OBS-0009`    P2         §369      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `OBS-0010`    P2         §369     `TODO`   ---              ---        ---
+  `OBS-0010`    P2         §369      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0101`    P1         §370     `TODO`   ---              ---        ---
+  `WRK-0101`    P1         §370      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0102`    P1         §370     `TODO`   ---              ---        ---
+  `WRK-0102`    P1         §370      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0110`    P1         §371     `TODO`   ---              ---        ---
+  `CAP-0110`    P1         §371      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0111`    P1         §371     `TODO`   ---              ---        ---
+  `CAP-0111`    P1         §371      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0112`    P1         §371     `TODO`   ---              ---        ---
+  `CAP-0112`    P1         §371      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `CAP-0113`    P1         §371     `TODO`   ---              ---        ---
+  `CAP-0113`    P1         §371      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `WRK-0103`    P1         §372     `TODO`   ---              ---        ---
+  `WRK-0103`    P1         §372      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
   `SEC-0108`    P1         §373     `TODO`   ---              ---        ---
 
@@ -3399,30 +3399,30 @@ feature post-MVP or the user explicitly approves the deferral.
 
   Requirement   Priority   Status   Implementation   Tests   Notes
   ------------- ---------- -------- ---------------- ------- -------
-  AUTH-001      P1         TODO     ---              ---     §574
-  AUTH-002      P1         TODO     ---              ---     §574
-  AUTH-003      P0         TODO     ---              ---     §575
-  AUTH-004      P0         TODO     ---              ---     §575
-  AUTH-005      P0         TODO     ---              ---     §575
-  AUTH-006      P1         TODO     ---              ---     §575
-  AUTH-007      P0         TODO     ---              ---     §575
-  AUTH-008      P1         TODO     ---              ---     §576
-  AUTH-009      P0         TODO     ---              ---     §576
-  AUTH-010      P0         TODO     ---              ---     §576
-  AUTH-011      P0         TODO     ---              ---     §577
-  AUTH-012      P0         TODO     ---              ---     §577
-  AUTH-013      P1         TODO     ---              ---     §577
-  AUTH-014      P2         TODO     ---              ---     §577
-  AUTH-015      P1         TODO     ---              ---     §578
-  AUTH-016      P1         TODO     ---              ---     §578
-  AUTH-017      P0         TODO     ---              ---     §579
-  AUTH-018      P0         TODO     ---              ---     §579
-  AUTH-019      P1         TODO     ---              ---     §579
-  AUTH-020      P1         TODO     ---              ---     §579
-  AUTH-021      P0         TODO     ---              ---     §579
-  AUTH-022      P1         TODO     ---              ---     §580
-  AUTH-023      P1         TODO     ---              ---     §580
-  AUTH-024      P1         TODO     ---              ---     §580
+  AUTH-001      P1         TESTED   packages/auth, apps/api   vitest   §574 M02
+  AUTH-002      P1         TESTED   packages/auth, apps/api   vitest   §574 M02
+  AUTH-003      P0         TESTED   packages/auth, apps/api   vitest   §575 M02
+  AUTH-004      P0         TESTED   packages/auth, apps/api   vitest   §575 M02
+  AUTH-005      P0         TESTED   packages/auth, apps/api   vitest   §575 M02
+  AUTH-006      P1         TESTED   packages/auth, apps/api   vitest   §575 M02
+  AUTH-007      P0         TESTED   packages/auth, apps/api   vitest   §575 M02
+  AUTH-008      P1         TESTED   packages/auth, apps/api   vitest   §576 M02
+  AUTH-009      P0         TESTED   packages/auth, apps/api   vitest   §576 M02
+  AUTH-010      P0         TESTED   packages/auth, apps/api   vitest   §576 M02
+  AUTH-011      P0         TESTED   packages/auth, apps/api   vitest   §577 M02
+  AUTH-012      P0         TESTED   packages/auth, apps/api   vitest   §577 M02
+  AUTH-013      P1         TESTED   packages/auth, apps/api   vitest   §577 M02
+  AUTH-014      P2         TESTED   packages/auth, apps/api   vitest   §577 M02
+  AUTH-015      P1         TESTED   packages/auth, apps/api   vitest   §578 M02
+  AUTH-016      P1         TESTED   packages/auth, apps/api   vitest   §578 M02
+  AUTH-017      P0         TESTED   packages/auth, apps/api   vitest   §579 M02
+  AUTH-018      P0         TESTED   packages/auth, apps/api   vitest   §579 M02
+  AUTH-019      P1         TESTED   packages/auth, apps/api   vitest   §579 M02
+  AUTH-020      P1         TESTED   packages/auth, apps/api   vitest   §579 M02
+  AUTH-021      P0         TESTED   packages/auth, apps/api   vitest   §579 M02
+  AUTH-022      P1         TESTED   packages/auth, apps/api   vitest   §580 M02
+  AUTH-023      P1         TESTED   packages/auth, apps/api   vitest   §580 M02
+  AUTH-024      P1         TESTED   packages/auth, apps/api   vitest   §580 M02
 
 ## Netsons production profile
 
