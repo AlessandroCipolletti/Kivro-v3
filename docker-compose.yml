@@ -1,0 +1,23 @@
+# Local dev infrastructure (expanded in M18). Postgres uses host port 5433
+# to avoid clashing with other PostgreSQL instances on 5432.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: kivro-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: kivro
+      POSTGRES_PASSWORD: kivro
+      POSTGRES_DB: kivro
+    ports:
+      - "5433:5432"
+    volumes:
+      - kivro_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kivro -d kivro"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  kivro_pg_data:

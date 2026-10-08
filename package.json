@@ -11,7 +11,13 @@
     "lint": "pnpm -r run lint && node scripts/check-architecture.mjs",
     "test": "vitest run",
     "format": "prettier --check .",
-    "format:write": "prettier --write ."
+    "format:write": "prettier --write .",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:wait": "node scripts/wait-for-postgres.mjs",
+    "db:migrate": "node scripts/run-with-env.mjs pnpm --filter @kivro/database exec prisma migrate deploy",
+    "db:generate": "node scripts/run-with-env.mjs pnpm --filter @kivro/database exec prisma generate",
+    "db:setup": "pnpm db:up && pnpm db:wait && pnpm db:migrate"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

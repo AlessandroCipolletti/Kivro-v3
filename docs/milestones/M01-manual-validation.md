@@ -20,14 +20,20 @@ pnpm build
 
 - [ ] All exit 0
 
-## 3. Optional DB migrate (requires PostgreSQL)
+## 3. Local PostgreSQL (Docker)
 
 ```bash
-export DATABASE_URL=postgresql://kivro:kivro@localhost:5432/kivro
-pnpm --filter @kivro/database exec prisma migrate deploy
+cp .env.example .env   # if .env missing
+pnpm db:setup          # docker compose + migrate (port 5433)
 ```
 
-- [ ] Migration applies without error (skip if no local Postgres yet)
+Or step by step: `pnpm db:up` → `pnpm db:wait` → `pnpm db:migrate`
+
+Prisma is only via pnpm: `pnpm db:migrate` or `pnpm --filter @kivro/database exec prisma …` (not global `prisma`).
+
+If migrate still hits port **5432**, unset a stale shell variable: `unset DATABASE_URL`, then `pnpm db:migrate` (`.env` uses **5433**).
+
+- [ ] `pnpm db:migrate` exits 0
 
 ## 4. Traceability
 

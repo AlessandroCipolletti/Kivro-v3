@@ -16,6 +16,13 @@ pnpm test
 pnpm build
 ```
 
+## Local database
+
+```bash
+cp .env.example .env
+pnpm db:setup
+```
+
 API health (after build):
 
 ```bash
