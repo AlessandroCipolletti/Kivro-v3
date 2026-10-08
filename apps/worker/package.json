@@ -1,0 +1,19 @@
+{
+  "name": "@kivro/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "kivro-worker": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@kivro/job-protocol": "workspace:*",
+    "@kivro/openclaw-adapter": "workspace:*",
+    "commander": "^12.1.0"
+  }
+}

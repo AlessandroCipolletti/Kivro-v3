@@ -1,0 +1,16 @@
+{
+  "name": "Document Analyzer",
+  "description": "Canonical demo capability fixture (Master Spec §90)",
+  "input": {
+    "question": "string",
+    "document": "PDF or TXT upload"
+  },
+  "output": {
+    "files": ["summary.md", "structured-result.json"]
+  },
+  "workerConstraints": {
+    "browser": false,
+    "arbitraryInternet": false,
+    "privateSellerDb": false
+  }
+}
