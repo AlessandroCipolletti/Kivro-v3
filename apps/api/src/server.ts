@@ -85,7 +85,7 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M15" });
+    return c.json({ name: "kivro-api", phase: "M16" });
   });
 
   app.route("/auth", authRoutes());

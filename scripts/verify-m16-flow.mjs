@@ -18,6 +18,8 @@ for (const required of [
   "docs/MVP-SUCCESS-CHECKLIST.md",
   "tests/fixtures/catalog.json",
   "docs/milestones/M16-closure.md",
+  "docs/testing/HAPPY-PATH-TRACE.md",
+  "docs/testing/PRODUCT-RELEASE-GATE.md",
 ]) {
   if (!fs.existsSync(path.join(root, required))) {
     console.error(`Missing ${required}`);
@@ -27,12 +29,20 @@ for (const required of [
 
 run("node", ["scripts/verify-fixtures-catalog.mjs"]);
 run("node", ["scripts/verify-api-contract-mvp.mjs"]);
+run("node", ["scripts/verify-repo-structure.mjs"]);
+run("node", ["scripts/verify-happy-path-trace.mjs"]);
+run("node", ["scripts/verify-failure-path-trace.mjs"]);
+run("node", ["scripts/verify-integration-matrix.mjs"]);
+run("node", ["scripts/verify-release-gate-evidence.mjs"]);
+run("node", ["scripts/verify-code-quality-gate.mjs"]);
 
 run("pnpm", [
   "exec",
   "vitest",
   "run",
   "security/tests/acceptance-m16.test.ts",
+  "security/tests/e2e-fixtures-m16.test.ts",
+  "security/tests/fixture-ad-m06.test.ts",
   "security/tests/invariants.test.ts",
 ]);
 
@@ -40,4 +50,7 @@ run("node", ["scripts/sync-m16-coverage.mjs"]);
 
 run("pnpm", ["exec", "node", "scripts/check-architecture.mjs"]);
 
-console.log("M16 verify flow passed (full paid local E2E → M18 test:e2e:local)");
+run("pnpm", ["--filter", "@kivro/api", "run", "typecheck"]);
+run("pnpm", ["--filter", "@kivro/web", "run", "typecheck"]);
+
+console.log("M16 verify flow passed (§573 full paid local E2E → M18 test:e2e:local)");

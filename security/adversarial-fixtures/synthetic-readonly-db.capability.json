@@ -1,0 +1,24 @@
+{
+  "name": "Synthetic Read-Only DB Analyzer",
+  "description": "Second canonical fixture — resource broker validation (Master Spec §90)",
+  "input": {
+    "query": "string"
+  },
+  "resources": [
+    {
+      "id": "company-db",
+      "type": "database",
+      "permissions": ["read"],
+      "tables": ["products", "pricing"]
+    }
+  ],
+  "output": {
+    "files": ["report.json"]
+  },
+  "workerConstraints": {
+    "browser": false,
+    "undeclaredTableAccess": false,
+    "writeToPrivateDb": false
+  },
+  "automatedEvidence": "security/tests/fixture-ad-m06.test.ts"
+}

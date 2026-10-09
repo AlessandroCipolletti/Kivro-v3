@@ -47,3 +47,12 @@ node apps/worker/dist/cli.js doctor
 ```
 
 Manual milestone validation: `docs/milestones/M00-manual-validation.md`.
+
+## Release gates (M16)
+
+```bash
+pnpm verify:m16      # fixtures, traces, integration matrix, §91 evidence
+pnpm test:e2e:local  # composed M16 gate (full §573 path → M18)
+```
+
+Authoritative objective: `spec/MASTER-SPEC.md` §95 — secure paid vertical slice, not UI-only marketplace.

@@ -1,0 +1,14 @@
+{
+  "specSection": "34.2",
+  "flows": [
+    { "name": "Worker pairing + OpenClaw detect", "verify": "scripts/verify-m03-flow.mjs" },
+    { "name": "scan config + publish path", "verify": "scripts/verify-m03-flow.mjs" },
+    { "name": "execute safe job (sandbox)", "verify": "scripts/verify-m04-flow.mjs" },
+    { "name": "asset pipeline", "verify": "scripts/verify-m05-flow.mjs" },
+    { "name": "remote dispatch", "verify": "scripts/verify-m06-flow.mjs" },
+    { "name": "offline / recovery", "verify": "scripts/verify-m07-flow.mjs" },
+    { "name": "reserve/capture credits", "verify": "scripts/verify-m08-flow.mjs" },
+    { "name": "scheduling + availability", "verify": "scripts/verify-m09-flow.mjs" },
+    { "name": "buyer marketplace path", "verify": "scripts/verify-m10-flow.mjs" }
+  ]
+}

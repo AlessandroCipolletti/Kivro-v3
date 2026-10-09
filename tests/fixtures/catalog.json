@@ -1,18 +1,42 @@
 {
-  "catalogVersion": 1,
+  "catalogVersion": 2,
   "description": "Canonical test/dev fixtures for M16 release gates (Master Spec §34, §88–§90).",
   "entries": [
     {
       "id": "adversarial-document-analyzer",
       "path": "security/adversarial-fixtures/document-analyzer.capability.json",
       "kind": "capability",
-      "milestones": ["M04", "M06"]
+      "milestones": ["M04", "M16"]
     },
     {
-      "id": "verify-m03-openclaw-skill",
-      "path": "scripts/verify-m03-flow.mjs",
-      "kind": "integration-script",
-      "milestones": ["M03"]
+      "id": "synthetic-readonly-db",
+      "path": "security/adversarial-fixtures/synthetic-readonly-db.capability.json",
+      "kind": "capability",
+      "milestones": ["M06", "M16"]
+    },
+    {
+      "id": "happy-path-trace",
+      "path": "tests/fixtures/happy-path-trace.json",
+      "kind": "trace",
+      "milestones": ["M16"]
+    },
+    {
+      "id": "failure-path-trace",
+      "path": "tests/fixtures/failure-path-trace.json",
+      "kind": "trace",
+      "milestones": ["M16"]
+    },
+    {
+      "id": "security-release-gate",
+      "path": "tests/fixtures/security-release-gate.json",
+      "kind": "release-gate",
+      "milestones": ["M16"]
+    },
+    {
+      "id": "integration-test-matrix",
+      "path": "tests/fixtures/integration-test-matrix.json",
+      "kind": "matrix",
+      "milestones": ["M16"]
     },
     {
       "id": "security-invariants",

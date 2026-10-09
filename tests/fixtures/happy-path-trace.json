@@ -1,0 +1,16 @@
+{
+  "specSection": "88",
+  "steps": [
+    { "n": 1, "actor": "SELLER", "label": "Worker install / pair", "evidence": ["apps/worker/src/cli.ts", "apps/api/src/routes/worker-devices.ts", "packages/auth"] },
+    { "n": 2, "actor": "SELLER", "label": "OpenClaw discovery", "evidence": ["packages/openclaw-adapter", "scripts/verify-m03-flow.mjs"] },
+    { "n": 3, "actor": "SELLER", "label": "Consent + separate runtime", "evidence": ["packages/capability-publish", "scripts/verify-m03-flow.mjs"] },
+    { "n": 4, "actor": "SELLER", "label": "Publish capability version", "evidence": ["apps/api/src/routes/seller-capabilities.ts", "scripts/verify-m05-flow.mjs"] },
+    { "n": 5, "actor": "BUYER", "label": "Account + credits", "evidence": ["apps/api/src/routes/auth.ts", "apps/api/src/routes/buyer-billing.ts", "scripts/verify-m08-flow.mjs"] },
+    { "n": 6, "actor": "BUYER", "label": "Submit structured job", "evidence": ["apps/api/src/routes/buyer-jobs-submit.ts", "packages/job-io", "scripts/verify-m10-flow.mjs"] },
+    { "n": 7, "actor": "CLOUD", "label": "Reserve credits + dispatch", "evidence": ["packages/billing", "packages/job-dispatch", "scripts/verify-m06-flow.mjs"] },
+    { "n": 8, "actor": "WORKER", "label": "Accept offer + sandbox execution", "evidence": ["apps/api/src/routes/worker-jobs.ts", "packages/sandbox", "scripts/verify-m04-flow.mjs"] },
+    { "n": 9, "actor": "WORKER", "label": "Output upload + finalize", "evidence": ["packages/job-io", "apps/api/src/routes/buyer-job-assets.ts", "scripts/verify-m05-flow.mjs"] },
+    { "n": 10, "actor": "CLOUD", "label": "Deliver + settle ledger", "evidence": ["packages/billing", "scripts/verify-m08-flow.mjs"] },
+    { "n": 11, "actor": "BUYER", "label": "Result + audit UI", "evidence": ["apps/web/src/app", "packages/marketplace/src/job-audit-summary.ts", "scripts/verify-m15-flow.mjs"] }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "specSection": "91",
+  "automated": [
+    { "item": "arbitrary host filesystem inaccessible", "tests": ["security/tests/adversarial-m04.test.ts"] },
+    { "item": "Docker socket inaccessible", "tests": ["security/tests/adversarial-m04.test.ts"] },
+    { "item": "localhost/LAN blocked unless declared", "tests": ["security/tests/adversarial-m06.test.ts"] },
+    { "item": "forbidden tools impossible", "tests": ["security/tests/acceptance-m15.test.ts"] },
+    { "item": "DB permissions tested", "tests": ["security/tests/adversarial-m04.test.ts", "security/tests/fixture-ad-m06.test.ts"] },
+    { "item": "file path traversal tested", "tests": ["security/tests/adversarial-m04.test.ts", "packages/job-io/src/result-safety.test.ts"] },
+    { "item": "duplicate payment settlement tested", "tests": ["security/tests/m08-payment-db.test.ts", "scripts/verify-m08-flow.mjs"] },
+    { "item": "malicious skill scenario tested", "tests": ["security/tests/adversarial-m04.test.ts", "packages/capability-publish/src/native-plugin-gate.test.ts"] }
+  ],
+  "manualOnly": [
+    "external security review completed or explicitly accepted as private-beta risk",
+    "container escape scenarios for pinned sandbox image",
+    "global kill switch tested in staging"
+  ]
+}

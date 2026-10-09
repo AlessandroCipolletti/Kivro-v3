@@ -1,0 +1,25 @@
+{
+  "specSection": "89",
+  "sequence": [
+    "payment secured",
+    "job dispatched",
+    "Worker accepts",
+    "sandbox created",
+    "OpenClaw exits non-zero",
+    "Worker records sanitized failure",
+    "Worker sends FAILED_EXECUTION",
+    "cloud idempotent transition",
+    "buyer reservation released",
+    "buyer safe error + audit retained"
+  ],
+  "evidence": [
+    "packages/job-failure/src/invariants.ts",
+    "packages/job-failure/src/lost-worker-sweep.ts",
+    "packages/job-failure/src/ops-sweeps.ts",
+    "packages/billing",
+    "apps/api/src/routes/worker-jobs.ts",
+    "packages/job-failure/src/invariants.test.ts",
+    "scripts/verify-m08-flow.mjs",
+    "scripts/verify-m15-flow.mjs"
+  ]
+}

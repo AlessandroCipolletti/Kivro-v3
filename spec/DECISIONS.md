@@ -589,4 +589,4 @@ greenfield.
 
 **Context:** M16 maps 51 requirements spanning roadmap docs, API sketch parity, fixture catalog, experiments traceability, MVP/product checklists, and CI release gates.
 
-**Decision:** Ship `tests/fixtures/catalog.json` with integrity verification, MVP API contract doc + route smoke script, architecture/roadmap and OpenClaw study indexes, experiment→test mapping, MVP/product validation markdown, `docs/RELEASE-GATES.md`, `pnpm verify:m16`, and `pnpm test:e2e:local` as composed gate smoke. Full §573 paid two-user Docker E2E remains **M18**. Gate: `pnpm verify:m16`.
+**Decision:** Ship fixture catalog (Document Analyzer + synthetic DB), machine-verified §88–§89 traces, §91 automated security gate map, §34.2 integration matrix verifiers, repo-structure §40 check, code-quality §94 check, expanded `acceptance-m16` / `e2e-fixtures-m16`, and composed `pnpm test:e2e:local` → `verify:m16`. Full §573 paid two-user Docker + OpenClaw E2E automation remains **M18** per IMPLEMENTATION-PLAN. Gate: `pnpm verify:m16`.

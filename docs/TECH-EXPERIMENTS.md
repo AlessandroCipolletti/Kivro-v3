@@ -10,4 +10,4 @@
 | F — Cost attack | Timeout / caps | job limits in manifest, billing timeouts M08 |
 | G — Job protocol | Outbound dispatch | M06–M07 dispatch, `verify:m06` |
 
-Full local reproduction of G with two users remains **`pnpm test:e2e:local`** (M18 scope); M16 gates document and fixture coverage only.
+M16 verifies experiment→test mapping via `verify:m16` and `docs/testing/INTEGRATION-TEST-MATRIX.md`. Full two-user OpenClaw reproduction remains **`pnpm test:e2e:local` expansion in M18** (§573).

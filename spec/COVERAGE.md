@@ -506,7 +506,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0035`    P1         §33      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `WRK-0052`    P1         §34      `TESTED`   docs/TESTING-STRATEGY.md, docs/legal/ALPHA-NOTICE.md, apps/web/src/app/legal   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15
+  `WRK-0052`    P1         §34      `TESTED`   docs/TESTING-STRATEGY.md, docs/testing/INTEGRATION-TEST-MATRIX.md   scripts/verify-integration-matrix.mjs; security/tests/adversarial-m04.test.ts   docs/milestones/M16-closure.md M16 §34
 
   `OBS-0004`    P1         §35      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
@@ -866,45 +866,45 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PAY-0074`    P1         §87      `TESTED`   apps/api seller dashboard, packages/billing   scripts/verify-m08-flow.mjs   docs/milestones/M15-manual-validation.md M15 seller economics
 
-  `IO-0035`    P1         §88      `TESTED`   docs/TESTING-STRATEGY.md, scripts/verify-m15-flow.mjs   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 happy-path trace
+  `IO-0035`    P1         §88      `TESTED`   docs/testing/HAPPY-PATH-TRACE.md, tests/fixtures/happy-path-trace.json   scripts/verify-happy-path-trace.mjs; security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §88
 
-  `IO-0036`    P1         §88      `TESTED`   docs/TESTING-STRATEGY.md, scripts/verify-m15-flow.mjs   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 happy-path trace
+  `IO-0036`    P1         §88      `TESTED`   docs/testing/HAPPY-PATH-TRACE.md, tests/fixtures/happy-path-trace.json   scripts/verify-happy-path-trace.mjs; security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §88
 
-  `WRK-0097`    P1         §89      `TESTED`   apps/worker, packages/openclaw-adapter   scripts/verify-m03-flow.mjs   docs/milestones/M15-manual-validation.md M15 worker sequence
+  `WRK-0097`    P1         §89      `TESTED`   docs/testing/FAILURE-PATH-TRACE.md, tests/fixtures/failure-path-trace.json   scripts/verify-failure-path-trace.mjs; packages/job-failure   docs/milestones/M16-closure.md M16 §89
 
-  `WRK-0098`    P1         §89      `TESTED`   apps/worker, packages/openclaw-adapter   scripts/verify-m03-flow.mjs   docs/milestones/M15-manual-validation.md M15 worker sequence
+  `WRK-0098`    P1         §89      `TESTED`   docs/testing/FAILURE-PATH-TRACE.md, tests/fixtures/failure-path-trace.json   scripts/verify-failure-path-trace.mjs; packages/job-failure   docs/milestones/M16-closure.md M16 §89
 
-  `IO-0037`    P1         §90      `TESTED`   security/adversarial-fixtures, packages/capability-publish   security/tests/adversarial-m04.test.ts   docs/milestones/M15-manual-validation.md M15 fixtures
+  `IO-0037`    P1         §90      `TESTED`   security/adversarial-fixtures, tests/fixtures/catalog.json   security/tests/e2e-fixtures-m16.test.ts; security/tests/fixture-ad-m06.test.ts   docs/milestones/M16-closure.md M16 §90
 
-  `TST-0006`    P1         §91      `TESTED`   security/SECURITY_INVARIANTS.md, docs/TESTING-STRATEGY.md   security/tests/invariants.test.ts   docs/milestones/M15-closure.md M15 security catalog
+  `TST-0006`    P1         §91      `TESTED`   docs/testing/SECURITY-RELEASE-GATE.md, tests/fixtures/security-release-gate.json   scripts/verify-release-gate-evidence.mjs; security/tests/adversarial-m04.test.ts   docs/milestones/M16-closure.md M16 §91
 
-  `TST-0007`    P2         §91      `TESTED`   security/SECURITY_INVARIANTS.md, docs/TESTING-STRATEGY.md   security/tests/invariants.test.ts   docs/milestones/M15-closure.md M15 security catalog
+  `TST-0007`    P2         §91      `TESTED`   docs/testing/SECURITY-RELEASE-GATE.md, tests/fixtures/security-release-gate.json   scripts/verify-release-gate-evidence.mjs; security/tests/adversarial-m04.test.ts   docs/milestones/M16-closure.md M16 §91
 
-  `TST-0008`    P1         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
+  `TST-0008`    P1         §92      `TESTED`   docs/testing/PRODUCT-RELEASE-GATE.md, docs/MVP-SUCCESS-CHECKLIST.md   scripts/verify-m16-flow.mjs; pnpm test:e2e:local   docs/milestones/M16-closure.md M16 §92 staging E2E M18
 
-  `TST-0009`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
+  `TST-0009`    P2         §92      `TESTED`   docs/testing/PRODUCT-RELEASE-GATE.md, docs/MVP-SUCCESS-CHECKLIST.md   scripts/verify-m16-flow.mjs; pnpm test:e2e:local   docs/milestones/M16-closure.md M16 §92 staging E2E M18
 
-  `TST-0010`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
+  `TST-0010`    P2         §92      `TESTED`   docs/testing/PRODUCT-RELEASE-GATE.md, docs/MVP-SUCCESS-CHECKLIST.md   scripts/verify-m16-flow.mjs; pnpm test:e2e:local   docs/milestones/M16-closure.md M16 §92 staging E2E M18
 
-  `TST-0011`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
+  `TST-0011`    P2         §92      `TESTED`   docs/testing/PRODUCT-RELEASE-GATE.md, docs/MVP-SUCCESS-CHECKLIST.md   scripts/verify-m16-flow.mjs; pnpm test:e2e:local   docs/milestones/M16-closure.md M16 §92 staging E2E M18
 
-  `TST-0012`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
+  `TST-0012`    P2         §92      `TESTED`   docs/testing/PRODUCT-RELEASE-GATE.md, docs/MVP-SUCCESS-CHECKLIST.md   scripts/verify-m16-flow.mjs; pnpm test:e2e:local   docs/milestones/M16-closure.md M16 §92 staging E2E M18
 
-  `IO-0038`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
+  `IO-0038`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/architecture/IMPLEMENTATION-ROADMAP-STATUS.md   scripts/verify-m16-flow.mjs   docs/milestones/M16-closure.md M16 §93
 
-  `IO-0039`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
+  `IO-0039`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/architecture/IMPLEMENTATION-ROADMAP-STATUS.md   scripts/verify-m16-flow.mjs   docs/milestones/M16-closure.md M16 §93
 
-  `IO-0040`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
+  `IO-0040`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/architecture/IMPLEMENTATION-ROADMAP-STATUS.md   scripts/verify-m16-flow.mjs   docs/milestones/M16-closure.md M16 §93
 
-  `IO-0041`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
+  `IO-0041`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/architecture/IMPLEMENTATION-ROADMAP-STATUS.md   scripts/verify-m16-flow.mjs   docs/milestones/M16-closure.md M16 §93
 
-  `TST-0013`    P1         §94      `TESTED`   .github/workflows/ci.yml   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 CI gates
+  `TST-0013`    P1         §94      `TESTED`   .github/workflows/ci.yml, scripts/verify-code-quality-gate.mjs   pnpm typecheck; pnpm lint; pnpm test   docs/milestones/M16-closure.md M16 §94
 
-  `TST-0014`    P2         §94      `TESTED`   .github/workflows/ci.yml   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 CI gates
+  `TST-0014`    P2         §94      `TESTED`   .github/workflows/ci.yml, scripts/verify-code-quality-gate.mjs   pnpm typecheck; pnpm lint; pnpm test   docs/milestones/M16-closure.md M16 §94
 
-  `TST-0015`    P2         §94      `TESTED`   .github/workflows/ci.yml   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 CI gates
+  `TST-0015`    P2         §94      `TESTED`   .github/workflows/ci.yml, scripts/verify-code-quality-gate.mjs   pnpm typecheck; pnpm lint; pnpm test   docs/milestones/M16-closure.md M16 §94
 
-  `PRD-0073`    P1         §95      `TESTED`   README.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 README ops
+  `PRD-0073`    P1         §95      `TESTED`   README.md, AGENTS.md, docs/MVP-SUCCESS-CHECKLIST.md   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §95
 
   `PRD-0074`    P1         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 

@@ -6,15 +6,15 @@
 2. `pnpm lint`
 3. `pnpm test`
 4. `pnpm build`
-5. Milestone verify through current phase: **`pnpm verify:m16`** (includes M04–M15 subset)
+5. **`pnpm verify:m16`** — fixtures, traces, integration matrix, §91 automated evidence, API contract smoke, architecture lint, M16 acceptance tests
 
 ## CI
 
 `.github/workflows/ci.yml` runs core checks plus `verify:m04` … `verify:m16`.
 
-## Local full path (M18)
+## Local E2E entrypoint
 
-`pnpm test:e2e:local` — composed smoke; expands to paid two-user E2E when M18 lands.
+`pnpm test:e2e:local` — runs `verify:m16` (composed release gate). Full two-user paid path with Docker + OpenClaw: **M18** (`spec/IMPLEMENTATION-PLAN.md` §573).
 
 ## Fixture integrity
 
