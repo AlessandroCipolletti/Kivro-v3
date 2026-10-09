@@ -54,6 +54,7 @@ export const WorkerManifestSchema = z.object({
   }),
   internet: InternetResearchPolicySchema.optional(),
   apiConnectors: z.array(ApiConnectorSchema).optional(),
+  pauseSupport: z.enum(["FULL_RESUME", "RESTART_STEP", "NOT_SUPPORTED"]).optional(),
 });
 
 export type WorkerManifest = z.infer<typeof WorkerManifestSchema>;

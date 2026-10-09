@@ -19,6 +19,9 @@
     "@kivro/job-io": "workspace:*",
     "@kivro/platform-policy": "workspace:*",
     "@kivro/research-broker": "workspace:*",
+    "@kivro/job-control": "workspace:*",
+    "@kivro/job-dispatch": "workspace:*",
+    "@kivro/domain": "workspace:*",
     "@hono/node-server": "^1.13.7",
     "hono": "^4.6.14"
   }

@@ -23,15 +23,19 @@ import { WORKER_COMMANDS } from "@kivro/job-protocol";
 import { createOpenClawAdapter } from "@kivro/openclaw-adapter";
 import {
   getDeviceIdentity,
+  getLocalJobExecutionState,
+  listLocalJobExecutionStates,
   openWorkerStore,
   saveDeviceIdentity,
+  setLocalJobExecutionState,
   setWorkerDeviceId,
 } from "@kivro/worker-store";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { randomUUID } from "node:crypto";
 
-const WORKER_VERSION = "0.0.0-m06";
+const WORKER_VERSION = "0.0.0-m07";
 
 function runtimeRoot(): string {
   const configured = process.env.KIVRO_RUNTIME_ROOT ?? "~/.kivro/runtime";
@@ -278,6 +282,129 @@ program
     }
     setWorkerDeviceId(db, payload.workerDeviceId);
     console.log(JSON.stringify({ paired: true, workerDeviceId: payload.workerDeviceId }));
+  });
+
+const jobCmd = program.command("job").description("Per-job execution control (§429, §445)");
+
+jobCmd
+  .command("cancel")
+  .description("Cancel local execution attempt (§450); cloud cancel via seller API")
+  .argument("<job-id>", "Job UUID")
+  .option("--attempt <id>", "Attempt id", "1")
+  .action(async (jobId: string, opts: { attempt: string }) => {
+    const adapter = await createOpenClawAdapter();
+    await adapter.cancel(opts.attempt);
+    const store = openWorkerStore(runtimeRoot());
+    setLocalJobExecutionState(store, {
+      jobId,
+      attemptId: opts.attempt,
+      status: "CANCELLED",
+      updatedAt: new Date().toISOString(),
+      cloudSyncPending: true,
+    });
+    console.log(JSON.stringify({ jobId, cancelled: true }));
+  });
+
+jobCmd
+  .command("pause")
+  .description("Pause a running job locally and stop resource consumption")
+  .argument("<job-id>", "Job UUID")
+  .option("--attempt <id>", "Attempt id", "1")
+  .action(async (jobId: string, opts: { attempt: string }) => {
+    const store = openWorkerStore(runtimeRoot());
+    const adapter = await createOpenClawAdapter();
+    const pauseResult = await adapter.pause(jobId, opts.attempt);
+    setLocalJobExecutionState(store, {
+      jobId,
+      attemptId: opts.attempt,
+      status: pauseResult.ok ? "PAUSED" : "PAUSE_REQUESTED",
+      updatedAt: new Date().toISOString(),
+      cloudSyncPending: true,
+    });
+    const identity = getDeviceIdentity(store);
+    if (identity?.workerDeviceId && identity.cloudUrl) {
+      try {
+        await fetch(`${identity.cloudUrl}/worker/jobs/${jobId}/pause-ack`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "x-worker-device-id": identity.workerDeviceId,
+          },
+          body: JSON.stringify({
+            type: "JOB_PAUSE_ACK",
+            protocolVersion: 1,
+            jobId,
+            commandId: randomUUID(),
+            acknowledgedAt: new Date().toISOString(),
+            localState: pauseResult.ok ? "PAUSED" : "PAUSE_NOT_SUPPORTED",
+          }),
+        });
+      } catch {
+        /* offline local pause still valid §430 */
+      }
+    }
+    console.log(JSON.stringify({ jobId, local: getLocalJobExecutionState(store, jobId) }));
+  });
+
+jobCmd
+  .command("list")
+  .description("List locally tracked job execution states")
+  .action(() => {
+    const store = openWorkerStore(runtimeRoot());
+    console.log(JSON.stringify(listLocalJobExecutionStates(store), null, 2));
+  });
+
+jobCmd
+  .command("sync")
+  .description("Sync pending local pause state to cloud when reachable")
+  .argument("<job-id>", "Job UUID")
+  .action(async (jobId: string) => {
+    const store = openWorkerStore(runtimeRoot());
+    const local = getLocalJobExecutionState(store, jobId);
+    const identity = getDeviceIdentity(store);
+    if (!local || !identity?.workerDeviceId) {
+      console.error(JSON.stringify({ error: "NO_LOCAL_STATE_OR_DEVICE" }));
+      process.exit(1);
+    }
+    if (local.status !== "PAUSED") {
+      console.log(JSON.stringify({ synced: false, reason: "not_paused_locally" }));
+      return;
+    }
+    const res = await fetch(`${identity.cloudUrl}/worker/jobs/${jobId}/pause-ack`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-worker-device-id": identity.workerDeviceId,
+      },
+      body: JSON.stringify({
+        type: "JOB_PAUSE_ACK",
+        protocolVersion: 1,
+        jobId,
+        commandId: randomUUID(),
+        acknowledgedAt: new Date().toISOString(),
+        localState: "PAUSED",
+      }),
+    });
+    console.log(JSON.stringify({ status: res.status, cloudSyncPending: !res.ok }));
+  });
+
+jobCmd
+  .command("resume")
+  .description("Resume a paused job after readiness checks")
+  .argument("<job-id>", "Job UUID")
+  .option("--attempt <id>", "Attempt id", "1")
+  .action(async (jobId: string, opts: { attempt: string }) => {
+    const store = openWorkerStore(runtimeRoot());
+    const adapter = await createOpenClawAdapter();
+    const resumeResult = await adapter.resume(jobId, opts.attempt);
+    setLocalJobExecutionState(store, {
+      jobId,
+      attemptId: opts.attempt,
+      status: resumeResult.ok ? "RUNNING" : "PAUSED",
+      updatedAt: new Date().toISOString(),
+      cloudSyncPending: true,
+    });
+    console.log(JSON.stringify({ jobId, resume: resumeResult }));
   });
 
 program.command("version").action(() => console.log(WORKER_VERSION));

@@ -147,12 +147,13 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
     const dryRun =
       process.env.KIVRO_SANDBOX_DRY_RUN === "true" ||
       process.env.KIVRO_EXECUTION_MODE === "preflight";
-    if (dryRun) {
+    const synthetic = process.env.KIVRO_EXECUTION_MODE === "synthetic";
+    if (dryRun || synthetic) {
       return Promise.resolve({
         exitCode: 0,
         timedOut: false,
         metadata: {
-          mode: "preflight",
+          mode: synthetic ? "synthetic" : "preflight",
           executionTimeoutMs: String(timeouts.executionTimeoutMs),
           workDir: paths.work,
         },
@@ -163,8 +164,33 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
       timedOut: false,
       metadata: {
         error:
-          "Full OpenClaw agent execution requires job dispatch wiring (M06+); set KIVRO_SANDBOX_DRY_RUN=true for policy preflight only",
+          "OpenClaw agent spawn requires OPENCLAW_BIN and runtime configuration; use KIVRO_EXECUTION_MODE=synthetic for dispatch/pause integration tests",
       },
+    });
+  }
+
+  pause(jobId: string, attemptId: string): Promise<{ ok: boolean; state: string }> {
+    const supervisor = this.supervisors.get(`${jobId}:${attemptId}`);
+    if (!supervisor) {
+      return Promise.resolve({ ok: false, state: "unknown" });
+    }
+    const updated = supervisor.requestPause(jobId, attemptId);
+    if (!updated) {
+      return Promise.resolve({ ok: false, state: supervisor.getAttempt(jobId, attemptId)?.state ?? "unknown" });
+    }
+    supervisor.confirmPaused(jobId, attemptId);
+    return Promise.resolve({ ok: true, state: "paused" });
+  }
+
+  resume(jobId: string, attemptId: string): Promise<{ ok: boolean; state: string }> {
+    const supervisor = this.supervisors.get(`${jobId}:${attemptId}`);
+    if (!supervisor) {
+      return Promise.resolve({ ok: false, state: "unknown" });
+    }
+    const updated = supervisor.resume(jobId, attemptId);
+    return Promise.resolve({
+      ok: Boolean(updated),
+      state: supervisor.getAttempt(jobId, attemptId)?.state ?? "unknown",
     });
   }
 

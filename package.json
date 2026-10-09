@@ -24,7 +24,8 @@
     "verify:m03": "node scripts/run-with-env.mjs node scripts/verify-m03-flow.mjs",
     "verify:m04": "node scripts/run-with-env.mjs node scripts/verify-m04-flow.mjs",
     "verify:m05": "node scripts/run-with-env.mjs node scripts/verify-m05-flow.mjs",
-    "verify:m06": "node scripts/run-with-env.mjs node scripts/verify-m06-flow.mjs"
+    "verify:m06": "node scripts/run-with-env.mjs node scripts/verify-m06-flow.mjs",
+    "verify:m07": "node scripts/run-with-env.mjs node scripts/verify-m07-flow.mjs"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.750.0",

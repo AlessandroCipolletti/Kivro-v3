@@ -5,7 +5,15 @@ export {
   assertJobTransition,
   isTerminalJobStatus,
   type JobStatus,
+  isPausableExecutionStatus,
+  isPauseControlStatus,
 } from "./job-status.js";
+export {
+  PAUSE_SUPPORT_LEVELS,
+  parsePauseSupportLevel,
+  pauseAllowedForSupport,
+  type PauseSupportLevel,
+} from "./pause-support.js";
 export {
   deriveMarketplaceParticipation,
   type MarketplaceParticipation,

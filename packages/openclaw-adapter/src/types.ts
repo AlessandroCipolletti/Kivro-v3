@@ -52,6 +52,8 @@ export interface AgentRuntimeAdapter {
   buildWorkerEnvironment(manifest: WorkerManifest): Promise<WorkerEnvironment>;
   validateWorkerEnvironment(env: WorkerEnvironment): Promise<WorkerValidationReport>;
   execute(context: JobExecutionContext): Promise<JobExecutionResult>;
+  pause(jobId: string, attemptId: string): Promise<{ ok: boolean; state: string }>;
+  resume(jobId: string, attemptId: string): Promise<{ ok: boolean; state: string }>;
   cancel(jobAttemptId: string): Promise<void>;
   cleanup(jobAttemptId: string): Promise<void>;
 }

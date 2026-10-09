@@ -68,6 +68,14 @@ export class OpenClawAdapterStub implements AgentRuntimeAdapter {
     });
   }
 
+  pause(_jobId: string, _attemptId: string): Promise<{ ok: boolean; state: string }> {
+    return Promise.resolve({ ok: true, state: "paused" });
+  }
+
+  resume(_jobId: string, _attemptId: string): Promise<{ ok: boolean; state: string }> {
+    return Promise.resolve({ ok: true, state: "running" });
+  }
+
   cancel(_jobAttemptId: string): Promise<void> {
     return Promise.resolve();
   }

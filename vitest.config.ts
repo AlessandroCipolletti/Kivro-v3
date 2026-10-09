@@ -16,6 +16,8 @@ export default defineConfig({
       "@kivro/capability-publish": path.resolve("packages/capability-publish/src/index.ts"),
       "@kivro/observability": path.resolve("packages/observability/src/index.ts"),
       "@kivro/domain": path.resolve("packages/domain/src/index.ts"),
+      "@kivro/job-control": path.resolve("packages/job-control/src/index.ts"),
+      "@kivro/job-dispatch": path.resolve("packages/job-dispatch/src/index.ts"),
     },
   },
   test: {

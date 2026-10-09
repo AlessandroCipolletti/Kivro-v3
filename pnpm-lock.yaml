@@ -50,6 +50,15 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../../packages/domain
+      '@kivro/job-control':
+        specifier: workspace:*
+        version: link:../../packages/job-control
+      '@kivro/job-dispatch':
+        specifier: workspace:*
+        version: link:../../packages/job-dispatch
       '@kivro/job-io':
         specifier: workspace:*
         version: link:../../packages/job-io
@@ -196,6 +205,36 @@ importers:
       '@kivro/policy-engine':
         specifier: workspace:*
         version: link:../policy-engine
+
+  packages/job-control:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@kivro/platform-policy':
+        specifier: workspace:*
+        version: link:../platform-policy
+
+  packages/job-dispatch:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@kivro/platform-policy':
+        specifier: workspace:*
+        version: link:../platform-policy
 
   packages/job-io:
     dependencies:

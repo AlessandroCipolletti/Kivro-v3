@@ -1,6 +1,13 @@
 import type { JobTimeoutPolicy } from "./timeouts.js";
 
-export type SupervisionState = "idle" | "running" | "cancel_requested" | "terminated" | "timed_out";
+export type SupervisionState =
+  | "idle"
+  | "running"
+  | "pause_requested"
+  | "paused"
+  | "cancel_requested"
+  | "terminated"
+  | "timed_out";
 
 export interface SupervisedAttempt {
   jobId: string;
@@ -33,6 +40,36 @@ export class JobProcessSupervisor {
     return record;
   }
 
+  requestPause(jobId: string, attemptId: string): SupervisedAttempt | undefined {
+    const key = this.attemptKey(jobId, attemptId);
+    const existing = this.attempts.get(key);
+    if (!existing || existing.state !== "running") {
+      return undefined;
+    }
+    existing.state = "pause_requested";
+    return existing;
+  }
+
+  confirmPaused(jobId: string, attemptId: string): SupervisedAttempt | undefined {
+    const key = this.attemptKey(jobId, attemptId);
+    const existing = this.attempts.get(key);
+    if (!existing) {
+      return undefined;
+    }
+    existing.state = "paused";
+    return existing;
+  }
+
+  resume(jobId: string, attemptId: string): SupervisedAttempt | undefined {
+    const key = this.attemptKey(jobId, attemptId);
+    const existing = this.attempts.get(key);
+    if (!existing || existing.state !== "paused") {
+      return undefined;
+    }
+    existing.state = "running";
+    return existing;
+  }
+
   requestCancel(jobId: string, attemptId: string): SupervisedAttempt | undefined {
     const key = this.attemptKey(jobId, attemptId);
     const existing = this.attempts.get(key);
@@ -41,6 +78,18 @@ export class JobProcessSupervisor {
     }
     existing.state = "cancel_requested";
     return existing;
+  }
+
+  blocksNewProviderCalls(jobId: string, attemptId: string): boolean {
+    const attempt = this.getAttempt(jobId, attemptId);
+    if (!attempt) {
+      return false;
+    }
+    return (
+      attempt.state === "pause_requested" ||
+      attempt.state === "paused" ||
+      attempt.state === "cancel_requested"
+    );
   }
 
   markTerminated(jobId: string, attemptId: string, timedOut = false): SupervisedAttempt | undefined {

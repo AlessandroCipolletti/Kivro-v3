@@ -1,4 +1,5 @@
 import { getPrismaClient } from "@kivro/database";
+import { sweepExpiredJobPauses } from "@kivro/job-control";
 import {
   assertAdminToken,
   isGlobalDispatchEnabled,
@@ -37,6 +38,17 @@ export function platformAdminRoutes(): Hono {
       return c.json({ error: message }, 403);
     }
     return c.json({ dispatchEnabled: isGlobalDispatchEnabled() });
+  });
+
+  app.post("/jobs/sweep-pause-timeouts", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const result = await sweepExpiredJobPauses(getPrismaClient());
+    return c.json(result);
   });
 
   app.post("/worker-devices/:id/revoke", async (c) => {

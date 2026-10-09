@@ -9,3 +9,8 @@ export {
   DEFAULT_PLATFORM_RESEARCH_CEILINGS,
   type PlatformResearchCeilings,
 } from "./research-ceilings.js";
+export {
+  maxPauseDurationMs,
+  computePauseDeadline,
+  isPauseDurationExceeded,
+} from "./job-pause-policy.js";

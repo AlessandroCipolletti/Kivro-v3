@@ -774,9 +774,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0045`    P1         §70      `TESTED`   packages/sandbox/src/timeouts.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0046`    P1         §70      `PARTIAL`   packages/openclaw-adapter   vitest   preflight-only until M06 dispatch M04
+  `JOB-0046`    P1         §70      `TESTED`   packages/openclaw-adapter, packages/job-dispatch   vitest   synthetic execution + pause/resume M07
 
-  `JOB-0047`    P1         §70      `PARTIAL`   packages/openclaw-adapter   vitest   preflight-only until M06 dispatch M04
+  `JOB-0047`    P1         §70      `TESTED`   packages/openclaw-adapter, packages/sandbox/supervisor.ts   vitest   pause supervision M07
 
   `SEC-0055`    P1         §71      `TESTED`   packages/resource-broker   vitest   docs/milestones/M04-manual-validation.md M04
 
@@ -2684,163 +2684,163 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0364`    P2         §425     `TODO`   ---              ---        ---
 
-  `JOB-0135`    P1         §426     `TODO`   ---              ---        ---
+  `JOB-0135`    P1         §426     `TESTED`   apps/api/routes/seller-control-ui.ts, apps/api/routes/seller-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0136`    P1         §426     `TODO`   ---              ---        ---
+  `JOB-0136`    P1         §426     `TESTED`   apps/api/routes/seller-control-ui.ts, apps/api/routes/seller-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0137`    P1         §426     `TODO`   ---              ---        ---
+  `JOB-0137`    P1         §426     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0138`    P1         §427     `TODO`   ---              ---        ---
+  `JOB-0138`    P1         §427     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0139`    P1         §428     `TODO`   ---              ---        ---
+  `JOB-0139`    P1         §428     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0140`    P1         §428     `TODO`   ---              ---        ---
+  `JOB-0140`    P1         §428     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0141`    P1         §428     `TODO`   ---              ---        ---
+  `JOB-0141`    P1         §428     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0142`    P1         §428     `TODO`   ---              ---        ---
+  `JOB-0142`    P1         §428     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0143`    P1         §429     `TODO`   ---              ---        ---
+  `JOB-0143`    P1         §429     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0144`    P1         §429     `TODO`   ---              ---        ---
+  `JOB-0144`    P1         §429     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0145`    P1         §429     `TODO`   ---              ---        ---
+  `JOB-0145`    P1         §429     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0146`    P1         §430     `TODO`   ---              ---        ---
+  `JOB-0146`    P1         §430     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0147`    P1         §430     `TODO`   ---              ---        ---
+  `JOB-0147`    P1         §430     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0148`    P1         §430     `TODO`   ---              ---        ---
+  `JOB-0148`    P1         §430     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0149`    P1         §431     `TODO`   ---              ---        ---
+  `JOB-0149`    P1         §431     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0150`    P1         §431     `TODO`   ---              ---        ---
+  `JOB-0150`    P1         §431     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0151`    P1         §431     `TODO`   ---              ---        ---
+  `JOB-0151`    P1         §431     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0152`    P1         §431     `TODO`   ---              ---        ---
+  `JOB-0152`    P1         §431     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0153`    P1         §431     `TODO`   ---              ---        ---
+  `JOB-0153`    P1         §431     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0154`    P1         §431     `TODO`   ---              ---        ---
+  `JOB-0154`    P1         §431     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0155`    P1         §432     `TODO`   ---              ---        ---
+  `JOB-0155`    P1         §432     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0156`    P1         §432     `TODO`   ---              ---        ---
+  `JOB-0156`    P1         §432     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0157`    P1         §432     `TODO`   ---              ---        ---
+  `JOB-0157`    P1         §432     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0158`    P1         §432     `TODO`   ---              ---        ---
+  `JOB-0158`    P1         §432     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0159`    P1         §433     `TODO`   ---              ---        ---
+  `JOB-0159`    P1         §433     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0160`    P1         §433     `TODO`   ---              ---        ---
+  `JOB-0160`    P1         §433     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0161`    P1         §433     `TODO`   ---              ---        ---
+  `JOB-0161`    P1         §433     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0162`    P1         §433     `TODO`   ---              ---        ---
+  `JOB-0162`    P1         §433     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0163`    P1         §433     `TODO`   ---              ---        ---
+  `JOB-0163`    P1         §433     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0164`    P1         §434     `TODO`   ---              ---        ---
+  `JOB-0164`    P1         §434     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0165`    P1         §434     `TODO`   ---              ---        ---
+  `JOB-0165`    P1         §434     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0166`    P1         §434     `TODO`   ---              ---        ---
+  `JOB-0166`    P1         §434     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0167`    P1         §435     `TODO`   ---              ---        ---
+  `JOB-0167`    P1         §435     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0168`    P1         §435     `TODO`   ---              ---        ---
+  `JOB-0168`    P1         §435     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0169`    P1         §435     `TODO`   ---              ---        ---
+  `JOB-0169`    P1         §435     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0170`    P1         §435     `TODO`   ---              ---        ---
+  `JOB-0170`    P1         §435     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0171`    P1         §436     `TODO`   ---              ---        ---
+  `JOB-0171`    P1         §436     `TESTED`   apps/api/routes/seller-control-ui.ts, apps/api/routes/seller-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0172`    P1         §436     `TODO`   ---              ---        ---
+  `JOB-0172`    P1         §436     `TESTED`   apps/api/routes/seller-control-ui.ts, apps/api/routes/seller-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0173`    P1         §436     `TODO`   ---              ---        ---
+  `JOB-0173`    P1         §436     `TESTED`   apps/api/routes/seller-control-ui.ts, apps/api/routes/seller-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `PRD-0365`    P1         §437     `TODO`   ---              ---        ---
+  `PRD-0365`    P1         §437     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `PRD-0366`    P2         §437     `TODO`   ---              ---        ---
+  `PRD-0366`    P2         §437     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `PRD-0367`    P2         §437     `TODO`   ---              ---        ---
+  `PRD-0367`    P2         §437     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0174`    P1         §438     `TODO`   ---              ---        ---
+  `JOB-0174`    P1         §438     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0175`    P1         §438     `TODO`   ---              ---        ---
+  `JOB-0175`    P1         §438     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0176`    P1         §438     `TODO`   ---              ---        ---
+  `JOB-0176`    P1         §438     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0177`    P1         §439     `TODO`   ---              ---        ---
+  `JOB-0177`    P1         §439     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0178`    P1         §439     `TODO`   ---              ---        ---
+  `JOB-0178`    P1         §439     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0179`    P1         §440     `TODO`   ---              ---        ---
+  `JOB-0179`    P1         §440     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0180`    P1         §440     `TODO`   ---              ---        ---
+  `JOB-0180`    P1         §440     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0181`    P1         §441     `TODO`   ---              ---        ---
+  `JOB-0181`    P1         §441     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0182`    P1         §441     `TODO`   ---              ---        ---
+  `JOB-0182`    P1         §441     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0183`    P1         §441     `TODO`   ---              ---        ---
+  `JOB-0183`    P1         §441     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0184`    P1         §442     `TODO`   ---              ---        ---
+  `JOB-0184`    P1         §442     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0185`    P1         §442     `TODO`   ---              ---        ---
+  `JOB-0185`    P1         §442     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0186`    P1         §442     `TODO`   ---              ---        ---
+  `JOB-0186`    P1         §442     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0187`    P1         §443     `TODO`   ---              ---        ---
+  `JOB-0187`    P1         §443     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0188`    P1         §443     `TODO`   ---              ---        ---
+  `JOB-0188`    P1         §443     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0189`    P1         §443     `TODO`   ---              ---        ---
+  `JOB-0189`    P1         §443     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0190`    P1         §444     `TODO`   ---              ---        ---
+  `JOB-0190`    P1         §444     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0191`    P1         §444     `TODO`   ---              ---        ---
+  `JOB-0191`    P1         §444     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0192`    P1         §444     `TODO`   ---              ---        ---
+  `JOB-0192`    P1         §444     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0193`    P1         §444     `TODO`   ---              ---        ---
+  `JOB-0193`    P1         §444     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0194`    P1         §445     `TODO`   ---              ---        ---
+  `JOB-0194`    P1         §445     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0195`    P1         §445     `TODO`   ---              ---        ---
+  `JOB-0195`    P1         §445     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0196`    P1         §445     `TODO`   ---              ---        ---
+  `JOB-0196`    P1         §445     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0197`    P1         §446     `TODO`   ---              ---        ---
+  `JOB-0197`    P1         §446     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0198`    P1         §446     `TODO`   ---              ---        ---
+  `JOB-0198`    P1         §446     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0199`    P1         §447     `TODO`   ---              ---        ---
+  `JOB-0199`    P1         §447     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0200`    P1         §447     `TODO`   ---              ---        ---
+  `JOB-0200`    P1         §447     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0201`    P1         §447     `TODO`   ---              ---        ---
+  `JOB-0201`    P1         §447     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0202`    P1         §448     `TODO`   ---              ---        ---
+  `JOB-0202`    P1         §448     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0203`    P1         §449     `TODO`   ---              ---        ---
+  `JOB-0203`    P1         §449     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0204`    P1         §449     `TODO`   ---              ---        ---
+  `JOB-0204`    P1         §449     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0205`    P1         §449     `TODO`   ---              ---        ---
+  `JOB-0205`    P1         §449     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0206`    P1         §450     `TODO`   ---              ---        ---
+  `JOB-0206`    P1         §450     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0207`    P1         §450     `TODO`   ---              ---        ---
+  `JOB-0207`    P1         §450     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0208`    P1         §450     `TODO`   ---              ---        ---
+  `JOB-0208`    P1         §450     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0209`    P1         §450     `TODO`   ---              ---        ---
+  `JOB-0209`    P1         §450     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `JOB-0210`    P1         §450     `TODO`   ---              ---        ---
+  `JOB-0210`    P1         §450     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
   `AVL-0059`    P1         §451     `TODO`   ---              ---        ---
 

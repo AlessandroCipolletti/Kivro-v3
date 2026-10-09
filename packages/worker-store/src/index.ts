@@ -14,17 +14,31 @@ interface DeviceState {
   createdAt: string;
 }
 
+export interface LocalJobExecutionState {
+  jobId: string;
+  attemptId: string;
+  status: "RUNNING" | "PAUSE_REQUESTED" | "PAUSED" | "RESUME_REQUESTED" | "CANCELLED";
+  updatedAt: string;
+  cloudSyncPending?: boolean;
+}
+
 interface StoreFile {
   device: DeviceState | null;
   syncState: Record<string, string>;
+  localJobs: Record<string, LocalJobExecutionState>;
 }
 
 function readStore(statePath: string): StoreFile {
   if (!fs.existsSync(statePath)) {
-    return { device: null, syncState: {} };
+    return { device: null, syncState: {}, localJobs: {} };
   }
   const raw = fs.readFileSync(statePath, "utf8");
-  return JSON.parse(raw) as StoreFile;
+  const parsed = JSON.parse(raw) as Partial<StoreFile>;
+  return {
+    device: parsed.device ?? null,
+    syncState: parsed.syncState ?? {},
+    localJobs: parsed.localJobs ?? {},
+  };
 }
 
 function writeStore(statePath: string, store: StoreFile): void {
@@ -39,7 +53,7 @@ export function openWorkerStore(rootDir: string): WorkerStoreHandle {
   fs.mkdirSync(rootDir, { recursive: true, mode: 0o700 });
   const statePath = path.join(rootDir, "worker-state.json");
   if (!fs.existsSync(statePath)) {
-    writeStore(statePath, { device: null, syncState: {} });
+    writeStore(statePath, { device: null, syncState: {}, localJobs: {} });
   }
   return { rootDir, statePath };
 }
@@ -75,6 +89,28 @@ export function getDeviceIdentity(store: WorkerStoreHandle): {
     cloudUrl: file.device.cloudUrl,
     workerDeviceId: file.device.workerDeviceId,
   };
+}
+
+export function setLocalJobExecutionState(
+  store: WorkerStoreHandle,
+  state: LocalJobExecutionState,
+): void {
+  const file = readStore(store.statePath);
+  file.localJobs[state.jobId] = state;
+  writeStore(store.statePath, file);
+}
+
+export function getLocalJobExecutionState(
+  store: WorkerStoreHandle,
+  jobId: string,
+): LocalJobExecutionState | null {
+  const file = readStore(store.statePath);
+  return file.localJobs[jobId] ?? null;
+}
+
+export function listLocalJobExecutionStates(store: WorkerStoreHandle): LocalJobExecutionState[] {
+  const file = readStore(store.statePath);
+  return Object.values(file.localJobs);
 }
 
 export function setWorkerDeviceId(store: WorkerStoreHandle, workerDeviceId: string): void {

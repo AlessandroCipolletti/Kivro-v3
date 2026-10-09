@@ -458,3 +458,15 @@ greenfield.
 **Impact:** `COVERAGE.md` may cite manual validation paths for scenario-level requirements. Unit/integration tests remain for schemas, invariants, and health endpoints where applicable.
 
 **Spec alignment:** Deviates from Master Spec §80/§90 default CI E2E expectation until explicitly revisited.
+
+## DEC-M07-001 — Minimal seller control UI in API (full UX later)
+
+**Context:** §426–§436 require seller web pause controls; full marketplace seller UX is a later milestone.
+
+**Decision:** M07 ships authenticated `/seller/jobs/control-ui` (running jobs list with Pause/Resume/Cancel) plus JSON APIs and Worker CLI. Polished seller dashboard styling and job detail pages remain for seller UX milestones.
+
+## DEC-M07-002 — Worker device header auth for job protocol (dev/staging)
+
+**Context:** Full device credential signing for Worker job endpoints is specified in §10 but not fully wired in early milestones.
+
+**Decision:** M07 Worker job routes authenticate via `x-worker-device-id` bound to a PAIRED device record. Production hardening adds request signing in a later milestone without changing pause semantics.

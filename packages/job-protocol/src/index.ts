@@ -9,5 +9,6 @@ export const WORKER_COMMANDS = [
   "logs",
   "version",
   "update",
+  "job",
 ] as const;
 export type WorkerCommand = (typeof WORKER_COMMANDS)[number];
