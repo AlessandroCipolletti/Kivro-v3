@@ -20,7 +20,17 @@ const allowedPkgByDir = {
     "netsons-maintenance-sweeps.ts",
     "worker-dispatch-signal.ts",
   ]),
-  "packages/cloud-aws/src": new Set(["composition.ts", "index.ts"]),
+  "packages/cloud-aws/src": new Set([
+    "composition.ts",
+    "index.ts",
+    "durable-work-port.ts",
+    "sqs-durable-work.ts",
+    "aws-event-tick.ts",
+    "aws-runtime-config.ts",
+    "aws-bounds.ts",
+    "aws-maintenance-sweeps.ts",
+    "worker-dispatch-signal.ts",
+  ]),
 };
 const maxCompositionLines = 80;
 

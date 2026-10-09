@@ -11,9 +11,10 @@ export function resolveDatabaseUrlWithPoolLimit(rawUrl?: string): string | undef
   if (!url) {
     return undefined;
   }
+  const profile = process.env.KIVRO_CLOUD_PROFILE?.trim().toLowerCase();
   const limitRaw =
     process.env.KIVRO_DATABASE_POOL_MAX ??
-    (process.env.KIVRO_CLOUD_PROFILE === "netsons" ? "5" : undefined);
+    (profile === "netsons" ? "5" : profile === "aws" ? "10" : undefined);
   if (!limitRaw) {
     return url;
   }

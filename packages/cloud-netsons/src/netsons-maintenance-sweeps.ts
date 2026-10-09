@@ -1,53 +1,10 @@
 import type { PrismaClient } from "@kivro/database";
-import {
-  reconcileJobPaymentAfterTerminal,
-  sweepPendingSellerTransfers,
-  sweepStaleJobPaymentReservations,
-} from "@kivro/billing";
-import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
-import { sweepExpiredJobPauses } from "@kivro/job-control";
+import { runCloudMaintenanceSweeps } from "@kivro/cloud-core";
 import { NETSONS_DEFAULT_BATCH_LIMITS } from "./netsons-bounds.js";
 
 /** HOST-NET-019/024/592 — payment and job maintenance without queue daemons. */
-export async function runNetsonsMaintenanceSweeps(prisma: PrismaClient): Promise<{
-  staleReservations: Awaited<ReturnType<typeof sweepStaleJobPaymentReservations>>;
-  pendingTransfers: Awaited<ReturnType<typeof sweepPendingSellerTransfers>>;
-  pauseTimeouts: Awaited<ReturnType<typeof sweepExpiredJobPauses>>;
-  failureOps: Awaited<ReturnType<typeof runJobFailureOperationsSweeps>>;
-  paymentsReleased: number;
-}> {
-  const staleReservations = await sweepStaleJobPaymentReservations(prisma);
-  const pendingTransfers = await sweepPendingSellerTransfers(prisma);
-  const pauseTimeouts = await sweepExpiredJobPauses(prisma);
-  const failureOps = await runJobFailureOperationsSweeps(prisma);
-
-  const terminalJobIds = new Set<string>();
-  for (const jobId of failureOps.lostWorker.jobIds) {
-    terminalJobIds.add(jobId);
-  }
-
-  const expiredJobs = await prisma.job.findMany({
-    where: { status: "EXPIRED", reservedAmountCents: { gt: 0 } },
-    take: NETSONS_DEFAULT_BATCH_LIMITS.paymentReservationSweep,
-    select: { id: true },
+export async function runNetsonsMaintenanceSweeps(prisma: PrismaClient) {
+  return runCloudMaintenanceSweeps(prisma, {
+    paymentReservationSweep: NETSONS_DEFAULT_BATCH_LIMITS.paymentReservationSweep,
   });
-  for (const job of expiredJobs) {
-    terminalJobIds.add(job.id);
-  }
-
-  let paymentsReleased = 0;
-  for (const jobId of terminalJobIds) {
-    const reconciled = await reconcileJobPaymentAfterTerminal(prisma, jobId);
-    if (reconciled.released) {
-      paymentsReleased += 1;
-    }
-  }
-
-  return {
-    staleReservations,
-    pendingTransfers,
-    pauseTimeouts,
-    failureOps,
-    paymentsReleased,
-  };
 }

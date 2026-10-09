@@ -1,4 +1,5 @@
 export { getObjectStorageConfig, type ObjectStorageConfig } from "./config.js";
+export { probeObjectStorageHealth } from "./storage-health.js";
 export {
   createObjectStorageClient,
   createPresignedUpload,

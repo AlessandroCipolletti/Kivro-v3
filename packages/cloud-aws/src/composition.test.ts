@@ -7,6 +7,7 @@ describe("cloud-aws composition root", () => {
     expect(c.profile).toBe("aws");
     expect(c.workerTransport.kind).toBe("wss");
     expect(c.durableWorkProfile).toBe("aws-managed-queue");
+    expect(c.objectStorageProfile).toBe("aws-s3");
     expect(c.workerTransport.buildPoll().controlPlaneId).toBe(AWS_DEFAULT_CONTROL_PLANE_ID);
   });
 });

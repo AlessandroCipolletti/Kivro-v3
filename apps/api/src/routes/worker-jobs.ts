@@ -19,7 +19,7 @@ import {
   workerAcknowledgeJobResumed,
 } from "@kivro/job-control";
 import { executeWorkerPoll } from "../services/worker-poll-service.js";
-import { dispatchJobToWorkerWithProfileSignal } from "../services/netsons-dispatch-hook.js";
+import { dispatchJobToWorkerWithProfileSignal } from "../services/cloud-dispatch-hook.js";
 import { sanitizeAuditPayload } from "@kivro/observability";
 import type { Prisma } from "@kivro/database";
 import { Hono } from "hono";

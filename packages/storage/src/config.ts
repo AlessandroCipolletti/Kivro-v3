@@ -1,23 +1,46 @@
 export interface ObjectStorageConfig {
-  endpoint: string;
+  endpoint?: string;
   bucket: string;
-  accessKey: string;
-  secretKey: string;
+  accessKey?: string;
+  secretKey?: string;
   region: string;
   forcePathStyle: boolean;
+  /** When true, use default AWS credential chain (ECS/Lambda IAM). */
+  useNativeAws: boolean;
 }
 
-function envValue(key: string): string | undefined {
-  const v = process.env[key];
+function readEnv(env: NodeJS.ProcessEnv, key: string): string | undefined {
+  const v = env[key];
   return v?.trim() ? v.trim() : undefined;
 }
 
-export function getObjectStorageConfig(): ObjectStorageConfig | null {
-  const endpoint = envValue("S3_ENDPOINT");
-  const bucket = envValue("S3_BUCKET");
-  const accessKey = envValue("S3_ACCESS_KEY");
-  const secretKey = envValue("S3_SECRET_KEY");
-  if (!endpoint || !bucket || !accessKey || !secretKey) {
+/** MinIO/local: S3_ENDPOINT + keys. AWS profile: bucket + region (+ optional keys). */
+export function getObjectStorageConfig(env: NodeJS.ProcessEnv = process.env): ObjectStorageConfig | null {
+  const bucket = readEnv(env, "S3_BUCKET") ?? readEnv(env, "AWS_S3_BUCKET");
+  if (!bucket) {
+    return null;
+  }
+  const region = readEnv(env, "S3_REGION") ?? readEnv(env, "AWS_REGION") ?? "us-east-1";
+  const endpoint = readEnv(env, "S3_ENDPOINT");
+  const accessKey = readEnv(env, "S3_ACCESS_KEY");
+  const secretKey = readEnv(env, "S3_SECRET_KEY");
+  const profile = readEnv(env, "KIVRO_CLOUD_PROFILE")?.toLowerCase();
+  const nativeAws =
+    readEnv(env, "KIVRO_S3_NATIVE") === "true" ||
+    (profile === "aws" && !endpoint) ||
+    (!endpoint && !accessKey && !secretKey);
+
+  if (nativeAws) {
+    return {
+      bucket,
+      region,
+      forcePathStyle: false,
+      useNativeAws: true,
+      ...(accessKey && secretKey ? { accessKey, secretKey } : {}),
+    };
+  }
+
+  if (!endpoint || !accessKey || !secretKey) {
     return null;
   }
   return {
@@ -25,7 +48,8 @@ export function getObjectStorageConfig(): ObjectStorageConfig | null {
     bucket,
     accessKey,
     secretKey,
-    region: process.env.S3_REGION ?? "us-east-1",
-    forcePathStyle: process.env.S3_FORCE_PATH_STYLE !== "false",
+    region,
+    forcePathStyle: readEnv(env, "S3_FORCE_PATH_STYLE") !== "false",
+    useNativeAws: false,
   };
 }

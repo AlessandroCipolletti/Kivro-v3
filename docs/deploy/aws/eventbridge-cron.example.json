@@ -1,0 +1,17 @@
+{
+  "Comment": "M21 — invoke Kivro aws-tick on a schedule (wire target URL + secret via env/SSM)",
+  "ScheduleExpression": "rate(5 minutes)",
+  "State": "ENABLED",
+  "Target": {
+    "Arn": "arn:aws:scheduler:::http-invoke:KivroAwsTick",
+    "RoleArn": "arn:aws:iam::ACCOUNT:role/KivroEventBridgeHttpRole",
+    "HttpParameters": {
+      "HeaderParameters": {
+        "x-kivro-cron-secret": "{{resolve:secretsmanager:KIVRO_CRON_SECRET}}",
+        "Content-Type": "application/json"
+      },
+      "QueryStringParameters": {}
+    },
+    "Input": "{\"durableWorkLimit\":25,\"webhookLimit\":25,\"sqsLimit\":10}"
+  }
+}

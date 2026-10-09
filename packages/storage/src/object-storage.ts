@@ -10,13 +10,26 @@ import type { ObjectStorageConfig } from "./config.js";
 import { getObjectStorageConfig } from "./config.js";
 
 export function createObjectStorageClient(config: ObjectStorageConfig): S3Client {
+  if (config.useNativeAws) {
+    return new S3Client({
+      region: config.region,
+      ...(config.accessKey && config.secretKey
+        ? {
+            credentials: {
+              accessKeyId: config.accessKey,
+              secretAccessKey: config.secretKey,
+            },
+          }
+        : {}),
+    });
+  }
   return new S3Client({
     region: config.region,
     endpoint: config.endpoint,
     forcePathStyle: config.forcePathStyle,
     credentials: {
-      accessKeyId: config.accessKey,
-      secretAccessKey: config.secretKey,
+      accessKeyId: config.accessKey!,
+      secretAccessKey: config.secretKey!,
     },
   });
 }

@@ -19,7 +19,7 @@ for (const required of [
   "packages/job-dispatch/src/worker-reconcile.ts",
   "docs/milestones/M20-closure.md",
   "docs/milestones/M20-manual-validation.md",
-  "apps/api/src/services/netsons-dispatch-hook.ts",
+  "apps/api/src/services/cloud-dispatch-hook.ts",
   "packages/cloud-netsons/src/durable-work-db-port.ts",
   "packages/cloud-netsons/src/netsons-cron-tick.ts",
   "apps/api/src/routes/platform-cron.ts",

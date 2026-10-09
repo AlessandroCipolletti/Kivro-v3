@@ -17,6 +17,7 @@ import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
 import { suspendBuyerAccount } from "@kivro/abuse-controls";
 import { randomUUID } from "node:crypto";
 import { Hono } from "hono";
+import { getActiveCloudComposition } from "../cloud-composition.js";
 
 export function platformAdminRoutes(): Hono {
   const app = new Hono();
@@ -150,7 +151,13 @@ export function platformAdminRoutes(): Hono {
       return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
     }
     const metrics = await collectCloudMetricsSnapshot(getPrismaClient());
-    return c.json(metrics);
+    const composition = getActiveCloudComposition();
+    return c.json({
+      ...metrics,
+      cloudProfile: composition.profile,
+      durableWorkProfile: composition.durableWorkProfile,
+      workerTransport: composition.workerTransport.kind,
+    });
   });
 
   app.get("/abuse/denylist", async (c) => {

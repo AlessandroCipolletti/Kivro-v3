@@ -9,7 +9,7 @@ let active: KivroCloudComposition | null = null;
 export function resolveCloudComposition(profileRaw?: string): KivroCloudComposition {
   const profile = profileRaw?.trim().toLowerCase();
   if (profile === "aws") {
-    active = createAwsComposition();
+    active = createAwsComposition({ prisma: getPrismaClient() });
     return active;
   }
   active = createNetsonsComposition({ prisma: getPrismaClient() });

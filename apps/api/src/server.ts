@@ -77,16 +77,10 @@ export function createApp(): Hono<AppEnv> {
     } catch {
       db = false;
     }
-    let objectStorage = false;
-    const s3Endpoint = process.env.S3_ENDPOINT;
-    if (s3Endpoint) {
-      try {
-        const res = await fetch(`${s3Endpoint.replace(/\/$/, "")}/minio/health/live`);
-        objectStorage = res.ok;
-      } catch {
-        objectStorage = false;
-      }
-    }
+    const { probeObjectStorageHealth } = await import("@kivro/storage");
+    const objectStorageProbe = await probeObjectStorageHealth();
+    const objectStorage =
+      objectStorageProbe === null ? null : objectStorageProbe;
     let redis = false;
     const redisUrl = process.env.REDIS_URL;
     if (redisUrl) {
@@ -107,14 +101,22 @@ export function createApp(): Hono<AppEnv> {
         redis = false;
       }
     }
-    const ready = db && (!s3Endpoint || objectStorage);
+    const storageOk = objectStorage === null || objectStorage === true;
+    const ready = db && storageOk;
     const composition = getActiveCloudComposition();
+    const sqsConfigured = Boolean(process.env.AWS_SQS_DURABLE_WORK_QUEUE_URL?.trim());
     return c.json(
       {
         status: ready ? "ready" : "degraded",
-        checks: { database: db, objectStorage, redis: redisUrl ? redis : null },
+        checks: {
+          database: db,
+          objectStorage,
+          redis: redisUrl ? redis : null,
+          sqsFanOut: composition.profile === "aws" ? sqsConfigured : null,
+        },
         cloudProfile: composition.profile,
         workerTransport: composition.workerTransport.kind,
+        durableWorkProfile: composition.durableWorkProfile,
         apiContractVersion: composition.apiContractVersion,
       },
       ready ? 200 : 503,
@@ -185,5 +187,7 @@ export function startServer(port = Number(process.env.PORT ?? 3001)): void {
     port,
     cloudProfile: composition.profile,
     workerTransport: composition.workerTransport.kind,
+    durableWorkProfile: composition.durableWorkProfile,
+    objectStorageProfile: composition.objectStorageProfile,
   });
 }

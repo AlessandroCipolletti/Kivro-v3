@@ -16,6 +16,10 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@kivro/contracts": "workspace:*"
+    "@kivro/billing": "workspace:*",
+    "@kivro/contracts": "workspace:*",
+    "@kivro/database": "workspace:*",
+    "@kivro/job-control": "workspace:*",
+    "@kivro/job-failure": "workspace:*"
   }
 }

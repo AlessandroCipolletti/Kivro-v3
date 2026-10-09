@@ -1,4 +1,5 @@
 import { getPrismaClient } from "@kivro/database";
+import { runAwsEventTick } from "@kivro/cloud-aws";
 import { runNetsonsCronTick } from "@kivro/cloud-netsons";
 import { getActiveCloudComposition } from "../cloud-composition.js";
 import { Hono } from "hono";
@@ -42,6 +43,37 @@ export function platformCronRoutes(): Hono {
     const result = await runNetsonsCronTick(getPrismaClient(), {
       durableWorkLimit: body.durableWorkLimit,
       webhookLimit: body.webhookLimit,
+    });
+    return c.json({ ok: true, ...result });
+  });
+
+  app.post("/aws-tick", async (c) => {
+    try {
+      assertCronSecret(c.req.header("x-kivro-cron-secret"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "CRON_UNAUTHORIZED";
+      const status =
+        message === "CRON_UNAUTHORIZED" ? 401 : message === "CRON_SECRET_NOT_CONFIGURED" ? 503 : 401;
+      return c.json({ error: message }, status);
+    }
+    const composition = getActiveCloudComposition();
+    if (composition.profile !== "aws") {
+      return c.json({ error: "AWS_PROFILE_REQUIRED" }, 403);
+    }
+    let body: { durableWorkLimit?: number; webhookLimit?: number; sqsLimit?: number } = {};
+    try {
+      body = await c.req.json<{
+        durableWorkLimit?: number;
+        webhookLimit?: number;
+        sqsLimit?: number;
+      }>();
+    } catch {
+      body = {};
+    }
+    const result = await runAwsEventTick(getPrismaClient(), {
+      durableWorkLimit: body.durableWorkLimit,
+      webhookLimit: body.webhookLimit,
+      sqsLimit: body.sqsLimit,
     });
     return c.json({ ok: true, ...result });
   });

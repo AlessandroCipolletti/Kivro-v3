@@ -9,6 +9,14 @@ export {
   type ObjectStorageProfile,
 } from "./composition.js";
 export type { DurableWorkPort } from "./durable-work-port.js";
+export {
+  createPostgresDurableWorkPort,
+  DURABLE_WORK_KIND,
+  enqueueDurableWorkItem,
+  processPostgresDurableWorkBatch,
+  type ProcessDurableWorkResult,
+} from "./postgres-durable-work.js";
+export { runCloudMaintenanceSweeps } from "./cloud-maintenance-sweeps.js";
 export type {
   WorkerPollResult,
   WorkerProtocolEnvelope,

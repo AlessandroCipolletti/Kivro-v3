@@ -15,8 +15,12 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@aws-sdk/client-sqs": "^3.750.0",
+    "@kivro/buyer-webhooks": "workspace:*",
     "@kivro/cloud-core": "workspace:*",
     "@kivro/contracts": "workspace:*",
+    "@kivro/database": "workspace:*",
+    "@kivro/job-scheduling": "workspace:*",
     "@kivro/worker-transport": "workspace:*"
   }
 }
