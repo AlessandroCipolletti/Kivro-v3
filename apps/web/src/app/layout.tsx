@@ -23,6 +23,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/favorites">Saved</Link>
               <Link href="/agent">Agent</Link>
               <Link href="/jobs">My jobs</Link>
+              <Link href="/settings/api-keys">Developer</Link>
+              <Link href="/seller/dashboard">Seller</Link>
               <SiteNavAuth />
             </nav>
           </div>

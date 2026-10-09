@@ -1,4 +1,5 @@
 import { CapabilityCard } from "@/components/CapabilityCard";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { RecentlyUsed } from "@/components/RecentlyUsed";
 import { fetchMarketplaceCapabilities } from "@/lib/kivro-api";
 import Link from "next/link";
@@ -26,7 +27,11 @@ export default async function DiscoverPage() {
         </Link>
       </section>
       {capabilities.length === 0 ? (
-        <p className="meta">No published capabilities yet. Check back after sellers publish.</p>
+        <EmptyState
+          title="No published capabilities"
+          description="When sellers publish from OpenClaw, they will appear here with live availability."
+          action={{ href: "/search", label: "Search marketplace" }}
+        />
       ) : (
         <div className="grid">
           {capabilities.map((cap) => (

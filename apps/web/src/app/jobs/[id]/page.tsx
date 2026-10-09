@@ -1,6 +1,9 @@
 "use client";
 
+import { PageHeader } from "@/components/ui/PageHeader";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
+import { buyerJobStatusUi } from "@/lib/status-ui";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -102,11 +105,20 @@ export default function JobDetailPage() {
       <p className="meta">
         <Link href="/jobs">← My jobs</Link>
       </p>
-      <h1>{job.capabilityName}</h1>
-      <p className="meta">
-        <Link href={`/sellers/${job.sellerProfileId}`}>{job.sellerDisplayName}</Link> ·{" "}
-        {job.buyerVisible.label}
-      </p>
+      <PageHeader
+        title={job.capabilityName}
+        description={
+          <>
+            <Link href={`/sellers/${job.sellerProfileId}`}>{job.sellerDisplayName}</Link>
+          </>
+        }
+        actions={
+          <StatusBadge
+            label={job.buyerVisible.label}
+            variant={buyerJobStatusUi(job.buyerVisible.label, job.status)}
+          />
+        }
+      />
       {job.buyerVisible.detail && <p className="meta">{job.buyerVisible.detail}</p>}
       {job.inputSummary && (
         <div className="detail-panel">
@@ -118,7 +130,7 @@ export default function JobDetailPage() {
         <div className="detail-panel">
           <strong>Result</strong>
           {job.result.structuredOutput != null && (
-            <pre style={{ overflow: "auto", fontSize: "0.85rem" }}>
+            <pre className="pre-block font-mono">
               {JSON.stringify(job.result.structuredOutput, null, 2)}
             </pre>
           )}

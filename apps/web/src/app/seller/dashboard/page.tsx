@@ -1,6 +1,11 @@
 "use client";
 
+import { Alert } from "@/components/ui/Alert";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
+import { marketplaceAvailabilityUi, sellerHealthUi } from "@/lib/status-ui";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
@@ -122,28 +127,27 @@ export default function SellerDashboardPage() {
   }
 
   return (
-    <main className="page-shell">
-      <header className="page-header">
-        <div>
-          <p className="eyebrow">Seller</p>
-          <h1>Worker health</h1>
-        </div>
-        <Link href="/">Marketplace</Link>
-      </header>
+    <>
+      <PageHeader
+        title="Seller dashboard"
+        description="Worker health, pause controls, and capability acceptance at a glance."
+        actions={
+          <Link className="button secondary" href="/">
+            Marketplace
+          </Link>
+        }
+      />
 
-      {error && <p className="form-error">{error}</p>}
+      {error && <Alert tone="danger">{error}</Alert>}
 
       {data && (
         <>
           {data.platformSecurityPause.active && (
-            <section className="detail-panel form-error">
-              <h2>Platform security pause</h2>
-              <p>
-                Kivro blocked new jobs until this is resolved:{" "}
-                <strong>{data.platformSecurityPause.reason ?? "SECURITY"}</strong>
-              </p>
-              <p className="muted">Resume and emergency unpause are disabled until health recovers.</p>
-            </section>
+            <Alert tone="danger">
+              <strong>Platform security pause.</strong> New jobs are blocked until:{" "}
+              {data.platformSecurityPause.reason ?? "SECURITY"}. Resume stays disabled until
+              telemetry recovers.
+            </Alert>
           )}
 
           <section className="detail-panel">
@@ -161,7 +165,9 @@ export default function SellerDashboardPage() {
             </p>
             <button
               type="button"
-              className={data.emergencyPause.active ? "btn-secondary" : "btn-danger"}
+              className={
+                data.emergencyPause.active ? "button secondary" : "button button--danger"
+              }
               disabled={busy || data.platformSecurityPause.active}
               onClick={() => void toggleEmergencyPause()}
             >
@@ -171,27 +177,41 @@ export default function SellerDashboardPage() {
 
           <section className="detail-panel">
             <h2>Workers</h2>
-            {data.workers.length === 0 && <p>No paired Workers yet.</p>}
-            <ul className="stack-list">
+            {data.workers.length === 0 && (
+              <EmptyState
+                title="No paired Workers"
+                description="Pair kivro-worker from your machine to accept marketplace jobs."
+              />
+            )}
+            <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "0.75rem" }}>
               {data.workers.map((w) => (
                 <li key={w.id}>
-                  <strong>{w.name}</strong> — {w.healthLabel} (v{w.workerVersion}
+                  <div className="job-list-row">
+                    <strong>{w.name}</strong>
+                    <StatusBadge
+                      label={w.healthLabel}
+                      variant={sellerHealthUi(w.healthLabel)}
+                    />
+                  </div>
+                  <span className="meta">
+                    v{w.workerVersion}
                   {data.workerVersionPolicy && (
-                    <span className="muted">
+                    <span className="meta">
                       {" "}
                       · min {data.workerVersionPolicy.minimumSecurityVersion} · latest{" "}
                       {data.workerVersionPolicy.latestSupportedVersion}
                     </span>
                   )}
-                  )
-                  <div className="muted">
+                  </span>
+                  <div className="meta">
                     Docker {w.dockerOk ? "OK" : "—"} · Sandbox {w.sandboxOk ? "OK" : "—"}
                   </div>
                   {w.warnings.length > 0 && (
-                    <ul>
+                    <ul style={{ margin: "0.5rem 0 0", paddingLeft: "1.1rem" }}>
                       {w.warnings.map((warn, i) => (
-                        <li key={i}>
-                          [{warn.severity}] {warn.title}
+                        <li key={i} className="meta">
+                          {warn.title}
+                          {warn.blocking ? " (blocks dispatch)" : ""}
                         </li>
                       ))}
                     </ul>
@@ -203,15 +223,28 @@ export default function SellerDashboardPage() {
 
           <section className="detail-panel">
             <h2>Capabilities</h2>
-            <ul className="stack-list">
+            <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "0.75rem" }}>
               {data.capabilities.map((c) => (
                 <li key={c.id}>
-                  <strong>{c.name}</strong> — {c.healthLabel}
-                  {c.detail && <span className="muted"> · {c.detail}</span>}
-                  <div>
+                  <div className="job-list-row">
+                    <div>
+                      <strong>{c.name}</strong>
+                      {c.detail && <span className="meta"> · {c.detail}</span>}
+                    </div>
+                    <StatusBadge
+                      label={c.accepting ? "Accepting jobs" : "Paused"}
+                      variant={
+                        marketplaceAvailabilityUi({
+                          status: c.accepting ? "ONLINE" : "PAUSED",
+                          accepting: c.accepting,
+                        }).variant
+                      }
+                    />
+                  </div>
+                  <div style={{ marginTop: "0.5rem" }}>
                     <button
                       type="button"
-                      className="btn-secondary"
+                      className="button secondary"
                       disabled={busy || (c.globalPauseBlocksResume && !c.accepting)}
                       onClick={() => void toggleCapabilityPause(c)}
                     >
@@ -239,17 +272,16 @@ export default function SellerDashboardPage() {
 
           <section className="detail-panel">
             <h2>Health timeline</h2>
-            <ul className="stack-list">
+            <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "0.5rem" }}>
               {data.healthTimeline.map((e) => (
-                <li key={`${e.createdAt}-${e.summary}`}>
-                  <span className="muted">{e.createdAt}</span> [{e.eventType}/{e.severity}]{" "}
-                  {e.summary}
+                <li key={`${e.createdAt}-${e.summary}`} className="meta">
+                  {new Date(e.createdAt).toLocaleString()} — {e.summary}
                 </li>
               ))}
             </ul>
           </section>
         </>
       )}
-    </main>
+    </>
   );
 }

@@ -1,6 +1,8 @@
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import Link from "next/link";
 import { fetchAvailability, fetchCapabilityDetail, fetchCapabilityReviews } from "@/lib/kivro-api";
+import { marketplaceAvailabilityUi } from "@/lib/status-ui";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -29,6 +31,10 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
   const seller = detail.seller;
   const accepting = availability?.accepting === true;
   const priceCents = cap.priceTierCents ?? cap.currentVersion?.priceSnapshotCents;
+  const availUi = marketplaceAvailabilityUi({
+    status: availability?.status,
+    accepting: availability?.accepting,
+  });
 
   return (
     <>
@@ -44,12 +50,10 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
             <span className="meta"> · ~{Math.round(cap.estimatedDuration / 60)} min typical</span>
           )}
         </p>
-        <p>
-          <span className={`badge ${accepting ? "" : "offline"}`}>
-            {availability?.status ?? "Unknown"}
-          </span>
+        <p style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem" }}>
+          <StatusBadge label={availUi.label} variant={availUi.variant} dotLabel={availUi.dotLabel} />
           {!accepting && availability?.nextAvailableAt && (
-            <span className="meta"> · Available from {new Date(availability.nextAvailableAt).toLocaleString()}</span>
+            <span className="meta">Available from {new Date(availability.nextAvailableAt).toLocaleString()}</span>
           )}
         </p>
         {seller && (

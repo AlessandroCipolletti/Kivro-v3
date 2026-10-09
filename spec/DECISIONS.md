@@ -566,3 +566,9 @@ greenfield.
 **Context:** Initial M13 MVP left §319–§328 coverage rows open, single webhook event, coarse rate limits, and minimal v1 job responses.
 
 **Decision:** Hardening adds API key audit + custom scopes/expiry, PostgreSQL rate buckets with `X-RateLimit-*` headers, v1 asset upload intents, §323 response shape + `INSUFFICIENT_FUNDS`, OpenAPI stub, job list pagination + v1 cancel, full §328 lifecycle webhooks, webhook delivery history/rotate/retry sweep (`m13_hardening` migration). **§349 buyer settings UI** remains explicitly **M14**. Gate unchanged: `pnpm verify:m13`.
+
+## DEC-M14-001 — UI design system & product polish (§517–§550)
+
+**Context:** M14 maps 96 requirements for typography, status language, marketplace/job/seller UI quality, developer settings, and accessibility.
+
+**Decision:** Document tokens in `docs/design-system.md`; implement shared web components and `status-ui.ts`; ship buyer developer settings (API keys + webhooks); apply `StatusBadge` / `EmptyState` / `PageHeader` across capability, job, and seller dashboard routes. Automated visual regression remains manual checklist until M15+ tooling. Gate: `pnpm verify:m14`.

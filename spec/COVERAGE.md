@@ -2304,9 +2304,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0016`    P1         §348     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `UI-0024`     P1         §349     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, apps/api/src/routes/buyer-webhooks-manage.ts   docs/milestones/M13-closure.md M13 session API only; buyer UI §349 → M14
+  `UI-0024`     P1         §349     `TESTED`   apps/web/src/app/settings/api-keys/page.tsx, apps/web/src/app/settings/webhooks/page.tsx, apps/web/src/lib/kivro-api.ts   docs/milestones/M14-manual-validation.md M14 developer settings §349
 
-  `UI-0025`     P2         §349     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, apps/api/src/routes/buyer-webhooks-manage.ts   docs/milestones/M13-closure.md M13 session API only; buyer UI §349 → M14
+  `UI-0025`     P2         §349     `TESTED`   apps/web/src/app/settings/api-keys/page.tsx, apps/web/src/app/settings/webhooks/page.tsx, apps/web/src/lib/kivro-api.ts   docs/milestones/M14-manual-validation.md M14 developer settings §349
 
   `AVL-0017`    P1         §350     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
@@ -3162,203 +3162,203 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0109`    P1         §516     `TODO`   ---              ---        ---
 
-  `PRD-0405`    P1         §517     `TODO`   ---              ---        ---
+  `PRD-0405`    P1         §517     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `PRD-0406`    P2         §517     `TODO`   ---              ---        ---
+  `PRD-0406`    P2         §517     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `PRD-0407`    P2         §517     `TODO`   ---              ---        ---
+  `PRD-0407`    P2         §517     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0040`     P1         §518     `TODO`   ---              ---        ---
+  `UI-0040`     P1         §518     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0041`     P2         §518     `TODO`   ---              ---        ---
+  `UI-0041`     P2         §518     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0042`     P2         §518     `TODO`   ---              ---        ---
+  `UI-0042`     P2         §518     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0043`     P2         §518     `TODO`   ---              ---        ---
+  `UI-0043`     P2         §518     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0044`     P1         §519     `TODO`   ---              ---        ---
+  `UI-0044`     P1         §519     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0045`     P2         §519     `TODO`   ---              ---        ---
+  `UI-0045`     P2         §519     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0046`     P2         §519     `TODO`   ---              ---        ---
+  `UI-0046`     P2         §519     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0047`     P2         §519     `TODO`   ---              ---        ---
+  `UI-0047`     P2         §519     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0048`     P2         §519     `TODO`   ---              ---        ---
+  `UI-0048`     P2         §519     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0049`     P1         §520     `TODO`   ---              ---        ---
+  `UI-0049`     P1         §520     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0050`     P2         §520     `TODO`   ---              ---        ---
+  `UI-0050`     P2         §520     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0051`     P2         §520     `TODO`   ---              ---        ---
+  `UI-0051`     P2         §520     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0052`     P2         §520     `TODO`   ---              ---        ---
+  `UI-0052`     P2         §520     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0053`     P2         §520     `TODO`   ---              ---        ---
+  `UI-0053`     P2         §520     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0054`     P1         §521     `TODO`   ---              ---        ---
+  `UI-0054`     P1         §521     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0055`     P2         §521     `TODO`   ---              ---        ---
+  `UI-0055`     P2         §521     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0056`     P2         §521     `TODO`   ---              ---        ---
+  `UI-0056`     P2         §521     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0057`     P2         §521     `TODO`   ---              ---        ---
+  `UI-0057`     P2         §521     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0058`     P1         §522     `TODO`   ---              ---        ---
+  `UI-0058`     P1         §522     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0059`     P2         §522     `TODO`   ---              ---        ---
+  `UI-0059`     P2         §522     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0060`     P2         §522     `TODO`   ---              ---        ---
+  `UI-0060`     P2         §522     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0061`     P2         §522     `TODO`   ---              ---        ---
+  `UI-0061`     P2         §522     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0062`     P2         §522     `TODO`   ---              ---        ---
+  `UI-0062`     P2         §522     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0063`     P1         §523     `TODO`   ---              ---        ---
+  `UI-0063`     P1         §523     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0064`     P2         §523     `TODO`   ---              ---        ---
+  `UI-0064`     P2         §523     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0065`     P2         §523     `TODO`   ---              ---        ---
+  `UI-0065`     P2         §523     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0066`     P2         §523     `TODO`   ---              ---        ---
+  `UI-0066`     P2         §523     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0067`     P2         §523     `TODO`   ---              ---        ---
+  `UI-0067`     P2         §523     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0068`     P1         §524     `TODO`   ---              ---        ---
+  `UI-0068`     P1         §524     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0069`     P2         §524     `TODO`   ---              ---        ---
+  `UI-0069`     P2         §524     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0070`     P1         §525     `TODO`   ---              ---        ---
+  `UI-0070`     P1         §525     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0071`     P2         §525     `TODO`   ---              ---        ---
+  `UI-0071`     P2         §525     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0072`     P2         §525     `TODO`   ---              ---        ---
+  `UI-0072`     P2         §525     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `JOB-0255`    P1         §526     `TODO`   ---              ---        ---
+  `JOB-0255`    P1         §526     `TESTED`   apps/web/src/app/jobs/page.tsx, apps/web/src/app/jobs/[id]/page.tsx   docs/milestones/M14-manual-validation.md M14 job UI §526–§537
 
-  `JOB-0256`    P1         §526     `TODO`   ---              ---        ---
+  `JOB-0256`    P1         §526     `TESTED`   apps/web/src/app/jobs/page.tsx, apps/web/src/app/jobs/[id]/page.tsx   docs/milestones/M14-manual-validation.md M14 job UI §526–§537
 
-  `JOB-0257`    P1         §526     `TODO`   ---              ---        ---
+  `JOB-0257`    P1         §526     `TESTED`   apps/web/src/app/jobs/page.tsx, apps/web/src/app/jobs/[id]/page.tsx   docs/milestones/M14-manual-validation.md M14 job UI §526–§537
 
-  `JOB-0258`    P1         §526     `TODO`   ---              ---        ---
+  `JOB-0258`    P1         §526     `TESTED`   apps/web/src/app/jobs/page.tsx, apps/web/src/app/jobs/[id]/page.tsx   docs/milestones/M14-manual-validation.md M14 job UI §526–§537
 
-  `UI-0073`     P1         §527     `TODO`   ---              ---        ---
+  `UI-0073`     P1         §527     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `UI-0074`     P2         §527     `TODO`   ---              ---        ---
+  `UI-0074`     P2         §527     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `PRD-0408`    P1         §528     `TODO`   ---              ---        ---
+  `PRD-0408`    P1         §528     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `PRD-0409`    P2         §528     `TODO`   ---              ---        ---
+  `PRD-0409`    P2         §528     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `PRD-0410`    P2         §528     `TODO`   ---              ---        ---
+  `PRD-0410`    P2         §528     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `PRD-0411`    P1         §529     `TODO`   ---              ---        ---
+  `PRD-0411`    P1         §529     `TESTED`   apps/web/src/app/agent/page.tsx, apps/web/src/app/search/page.tsx   docs/milestones/M14-manual-validation.md M14 marketplace/agent §529–§530
 
-  `PRD-0412`    P2         §529     `TODO`   ---              ---        ---
+  `PRD-0412`    P2         §529     `TESTED`   apps/web/src/app/agent/page.tsx, apps/web/src/app/search/page.tsx   docs/milestones/M14-manual-validation.md M14 marketplace/agent §529–§530
 
-  `PRD-0413`    P2         §529     `TODO`   ---              ---        ---
+  `PRD-0413`    P2         §529     `TESTED`   apps/web/src/app/agent/page.tsx, apps/web/src/app/search/page.tsx   docs/milestones/M14-manual-validation.md M14 marketplace/agent §529–§530
 
-  `PRD-0414`    P2         §529     `TODO`   ---              ---        ---
+  `PRD-0414`    P2         §529     `TESTED`   apps/web/src/app/agent/page.tsx, apps/web/src/app/search/page.tsx   docs/milestones/M14-manual-validation.md M14 marketplace/agent §529–§530
 
-  `AGT-0104`    P1         §530     `TODO`   ---              ---        ---
+  `AGT-0104`    P1         §530     `TESTED`   apps/web/src/app/agent/page.tsx, apps/web/src/app/search/page.tsx   docs/milestones/M14-manual-validation.md M14 marketplace/agent §529–§530
 
-  `AGT-0105`    P1         §530     `TODO`   ---              ---        ---
+  `AGT-0105`    P1         §530     `TESTED`   apps/web/src/app/agent/page.tsx, apps/web/src/app/search/page.tsx   docs/milestones/M14-manual-validation.md M14 marketplace/agent §529–§530
 
-  `AGT-0106`    P1         §530     `TODO`   ---              ---        ---
+  `AGT-0106`    P1         §530     `TESTED`   apps/web/src/app/agent/page.tsx, apps/web/src/app/search/page.tsx   docs/milestones/M14-manual-validation.md M14 marketplace/agent §529–§530
 
-  `JOB-0259`    P1         §531     `TODO`   ---              ---        ---
+  `JOB-0259`    P1         §531     `TESTED`   apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 seller dashboard §531–§532
 
-  `JOB-0260`    P1         §531     `TODO`   ---              ---        ---
+  `JOB-0260`    P1         §531     `TESTED`   apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 seller dashboard §531–§532
 
-  `JOB-0261`    P1         §531     `TODO`   ---              ---        ---
+  `JOB-0261`    P1         §531     `TESTED`   apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 seller dashboard §531–§532
 
-  `SEC-0119`    P1         §532     `TODO`   ---              ---        ---
+  `SEC-0119`    P1         §532     `TESTED`   apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 seller dashboard §531–§532
 
-  `SEC-0120`    P0         §532     `TODO`   ---              ---        ---
+  `SEC-0120`    P0         §532     `TESTED`   apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 seller dashboard §531–§532
 
-  `SEC-0121`    P0         §532     `TODO`   ---              ---        ---
+  `SEC-0121`    P0         §532     `TESTED`   apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 seller dashboard §531–§532
 
-  `UI-0075`     P1         §533     `TODO`   ---              ---        ---
+  `UI-0075`     P1         §533     `TESTED`   apps/web/src/lib/status-ui.ts, apps/web/src/components/ui/StatusBadge.tsx   apps/web/src/lib/status-ui.test.ts   docs/milestones/M14-manual-validation.md M14 status language §533
 
-  `UI-0076`     P2         §533     `TODO`   ---              ---        ---
+  `UI-0076`     P2         §533     `TESTED`   apps/web/src/lib/status-ui.ts, apps/web/src/components/ui/StatusBadge.tsx   apps/web/src/lib/status-ui.test.ts   docs/milestones/M14-manual-validation.md M14 status language §533
 
-  `CAP-0121`    P1         §534     `TODO`   ---              ---        ---
+  `CAP-0121`    P1         §534     `TESTED`   apps/web/src/components/ui/EmptyState.tsx, apps/web/src/app/jobs/page.tsx, apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 empty states §534
 
-  `CAP-0122`    P1         §534     `TODO`   ---              ---        ---
+  `CAP-0122`    P1         §534     `TESTED`   apps/web/src/components/ui/EmptyState.tsx, apps/web/src/app/jobs/page.tsx, apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 empty states §534
 
-  `CAP-0123`    P1         §534     `TODO`   ---              ---        ---
+  `CAP-0123`    P1         §534     `TESTED`   apps/web/src/components/ui/EmptyState.tsx, apps/web/src/app/jobs/page.tsx, apps/web/src/app/seller/dashboard/page.tsx   docs/milestones/M14-manual-validation.md M14 empty states §534
 
-  `PRD-0415`    P1         §535     `TODO`   ---              ---        ---
+  `PRD-0415`    P1         §535     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `PRD-0416`    P2         §535     `TODO`   ---              ---        ---
+  `PRD-0416`    P2         §535     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `PRD-0417`    P2         §535     `TODO`   ---              ---        ---
+  `PRD-0417`    P2         §535     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `PRD-0418`    P2         §535     `TODO`   ---              ---        ---
+  `PRD-0418`    P2         §535     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `JOB-0262`    P1         §536     `TODO`   ---              ---        ---
+  `JOB-0262`    P1         §536     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `JOB-0263`    P1         §536     `TODO`   ---              ---        ---
+  `JOB-0263`    P1         §536     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `JOB-0264`    P1         §536     `TODO`   ---              ---        ---
+  `JOB-0264`    P1         §536     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `JOB-0265`    P1         §537     `TODO`   ---              ---        ---
+  `JOB-0265`    P1         §537     `TESTED`   apps/web/src/app/jobs/page.tsx, apps/web/src/app/jobs/[id]/page.tsx   docs/milestones/M14-manual-validation.md M14 job UI §526–§537
 
-  `JOB-0266`    P1         §537     `TODO`   ---              ---        ---
+  `JOB-0266`    P1         §537     `TESTED`   apps/web/src/app/jobs/page.tsx, apps/web/src/app/jobs/[id]/page.tsx   docs/milestones/M14-manual-validation.md M14 job UI §526–§537
 
-  `PRD-0419`    P1         §538     `TODO`   ---              ---        ---
+  `PRD-0419`    P1         §538     `TESTED`   apps/web/src/app/globals.css, apps/web/src/app/layout.tsx   docs/milestones/M14-manual-validation.md M14 responsive §538
 
-  `PRD-0420`    P2         §538     `TODO`   ---              ---        ---
+  `PRD-0420`    P2         §538     `TESTED`   apps/web/src/app/globals.css, apps/web/src/app/layout.tsx   docs/milestones/M14-manual-validation.md M14 responsive §538
 
-  `PRD-0421`    P2         §538     `TODO`   ---              ---        ---
+  `PRD-0421`    P2         §538     `TESTED`   apps/web/src/app/globals.css, apps/web/src/app/layout.tsx   docs/milestones/M14-manual-validation.md M14 responsive §538
 
-  `PRD-0422`    P2         §538     `TODO`   ---              ---        ---
+  `PRD-0422`    P2         §538     `TESTED`   apps/web/src/app/globals.css, apps/web/src/app/layout.tsx   docs/milestones/M14-manual-validation.md M14 responsive §538
 
-  `UI-0077`     P1         §539     `TODO`   ---              ---        ---
+  `UI-0077`     P1         §539     `TESTED`   apps/web/src/app/globals.css, apps/web/src/components/ui   security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 a11y §539
 
-  `PAY-0111`    P1         §540     `TODO`   ---              ---        ---
+  `PAY-0111`    P1         §540     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `PAY-0112`    P0         §540     `TODO`   ---              ---        ---
+  `PAY-0112`    P0         §540     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `UI-0078`     P1         §541     `TODO`   ---              ---        ---
+  `UI-0078`     P1         §541     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0079`     P2         §541     `TODO`   ---              ---        ---
+  `UI-0079`     P2         §541     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `API-0028`    P1         §542     `TODO`   ---              ---        ---
+  `API-0028`    P1         §542     `TESTED`   apps/web/src/components/icons.tsx   docs/milestones/M14-manual-validation.md M14 icons §542
 
-  `API-0029`    P1         §542     `TODO`   ---              ---        ---
+  `API-0029`    P1         §542     `TESTED`   apps/web/src/components/icons.tsx   docs/milestones/M14-manual-validation.md M14 icons §542
 
-  `UI-0080`     P1         §543     `TODO`   ---              ---        ---
+  `UI-0080`     P1         §543     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0081`     P2         §543     `TODO`   ---              ---        ---
+  `UI-0081`     P2         §543     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `PRD-0423`    P1         §544     `TODO`   ---              ---        ---
+  `PRD-0423`    P1         §544     `TESTED`   apps/web/src/components/CapabilityCard.tsx, apps/web/src/app/capabilities/[slug]/page.tsx   docs/milestones/M14-manual-validation.md M14 capability cards §527–§528
 
-  `UI-0082`     P1         §545     `TODO`   ---              ---        ---
+  `UI-0082`     P1         §545     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0083`     P2         §545     `TODO`   ---              ---        ---
+  `UI-0083`     P2         §545     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0084`     P1         §546     `TODO`   ---              ---        ---
+  `UI-0084`     P1         §546     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0085`     P2         §546     `TODO`   ---              ---        ---
+  `UI-0085`     P2         §546     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0086`     P2         §546     `TODO`   ---              ---        ---
+  `UI-0086`     P2         §546     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0087`     P1         §547     `TODO`   ---              ---        ---
+  `UI-0087`     P1         §547     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0088`     P2         §547     `TODO`   ---              ---        ---
+  `UI-0088`     P2         §547     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0089`     P1         §548     `TODO`   ---              ---        ---
+  `UI-0089`     P1         §548     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0090`     P2         §548     `TODO`   ---              ---        ---
+  `UI-0090`     P2         §548     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `PRD-0424`    P1         §549     `TODO`   ---              ---        ---
+  `PRD-0424`    P1         §549     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0091`     P1         §550     `TODO`   ---              ---        ---
+  `UI-0091`     P1         §550     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0092`     P2         §550     `TODO`   ---              ---        ---
+  `UI-0092`     P2         §550     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
-  `UI-0093`     P2         §550     `TODO`   ---              ---        ---
+  `UI-0093`     P2         §550     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
   --------------------------------------------------------------------------------
 
 ## Local development environment

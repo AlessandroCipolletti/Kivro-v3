@@ -1,4 +1,6 @@
 import { CapabilityCard } from "@/components/CapabilityCard";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { fetchMarketplaceCapabilities } from "@/lib/kivro-api";
 
 export const dynamic = "force-dynamic";
@@ -27,7 +29,10 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
 
   return (
     <>
-      <h1>Search</h1>
+      <PageHeader
+        title="Search"
+        description="Filter by category, price, rating, and online availability."
+      />
       <form className="filter-panel" action="/search" method="get">
         <div className="filter-grid">
           <div className="form-field filter-search">

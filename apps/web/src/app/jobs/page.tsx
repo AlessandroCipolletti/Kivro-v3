@@ -1,6 +1,10 @@
 "use client";
 
+import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
+import { buyerJobStatusUi } from "@/lib/status-ui";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -61,7 +65,7 @@ export default function MyJobsPage() {
 
   return (
     <>
-      <h1>My jobs</h1>
+      <PageHeader title="My jobs" description="Track queued, running, and completed capability runs." />
       <div className="nav" style={{ flexWrap: "wrap", marginBottom: "1rem" }}>
         {BUCKETS.map((b) => (
           <button
@@ -76,17 +80,27 @@ export default function MyJobsPage() {
       </div>
       {jobs == null && !error && <p className="meta">Loading…</p>}
       {error === "load_failed" && <p className="meta">Could not load jobs.</p>}
-      {jobs?.length === 0 && <p className="meta">No jobs yet.</p>}
+      {jobs?.length === 0 && (
+        <EmptyState
+          title="No jobs in this view"
+          description="Run a capability from Discover or Search to see it here."
+          action={{ href: "/search", label: "Search capabilities" }}
+        />
+      )}
       <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "0.75rem" }}>
         {jobs?.map((job) => (
-          <li key={job.id} className="detail-panel">
-            <Link href={`/jobs/${job.id}`}>
-              <strong>{job.capabilityName}</strong>
-            </Link>
-            <div className="meta">
-              {job.buyerVisible.label} · {new Date(job.createdAt).toLocaleString()}
+          <li key={job.id} className="detail-panel job-list-row">
+            <div>
+              <Link href={`/jobs/${job.id}`}>
+                <strong>{job.capabilityName}</strong>
+              </Link>
+              <div className="meta">{new Date(job.createdAt).toLocaleString()}</div>
+              {job.buyerVisible.detail && <div className="meta">{job.buyerVisible.detail}</div>}
             </div>
-            {job.buyerVisible.detail && <div className="meta">{job.buyerVisible.detail}</div>}
+            <StatusBadge
+              label={job.buyerVisible.label}
+              variant={buyerJobStatusUi(job.buyerVisible.label, job.status)}
+            />
           </li>
         ))}
       </ul>
