@@ -19,6 +19,7 @@
     "@kivro/database": "workspace:*",
     "@kivro/domain": "workspace:*",
     "@kivro/job-control": "workspace:*",
+    "@kivro/job-delivery": "workspace:*",
     "@kivro/job-scheduling": "workspace:*",
     "stripe": "^17.7.0"
   }

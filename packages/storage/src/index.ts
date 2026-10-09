@@ -6,4 +6,5 @@ export {
   verifyUploadedObject,
   readObjectPrefix,
   createPresignedDownload,
+  putObjectBytes,
 } from "./object-storage.js";

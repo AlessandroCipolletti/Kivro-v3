@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import net from "node:net";
 
-const url = process.env.REDIS_URL ?? "redis://localhost:6379";
+const url = process.env.REDIS_URL ?? "redis://localhost:6380";
 const { hostname, port } = new URL(url);
 const host = hostname === "localhost" ? "127.0.0.1" : hostname;
 const p = Number(port || 6379);

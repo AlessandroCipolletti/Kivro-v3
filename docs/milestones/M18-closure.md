@@ -9,13 +9,16 @@ Master Spec §551–§573 / `DEV-LOCAL-001`–`029`.
 - **Seed** — deterministic buyer/seller + credits (`scripts/dev-seed.mjs`)
 - **Fake payment adapter** — `packages/billing/src/fake-payment-adapter.ts` + production guard
 - **Readiness** — `/health/ready`, `scripts/local-dev-doctor.mjs`
-- **E2E** — `scripts/run-local-e2e.mjs`, `pnpm test:e2e:local`, failure matrix fixture + acceptance tests
+- **E2E** — `scripts/run-local-e2e.mjs` (Docker sandbox fixture + deliverables + ledger), failure HTTP smoke, §573 checklist verifier
+- **Delivery** — `@kivro/job-delivery`, worker `job run-fixture`, execution bundle API
 - **Docs** — `docs/DEV-LOCAL.md`, `docs/testing/LOCAL-DEV-E2E-CHECKLIST.md`
 - Gate: **`pnpm verify:m18`**
 
 ## Bounded / manual
 
-- **Full OpenClaw + real Docker sandbox** on every CI run — manual with `KIVRO_SANDBOX_DRY_RUN=false` and pinned OpenClaw (§557–§558); automated path uses synthetic worker completion without weakening sandbox invariants
+- **OpenClaw `agent exec`** — adapter tries headless exec (§7.5/§59) then Docker fallback; requires working OpenClaw CLI + marketplace config on seller machine
+- **Pinned `KIVRO_SANDBOX_IMAGE` with in-image agent** — production image build out of band
+- **Stripe test-mode card E2E** — `scripts/run-local-stripe-e2e.mjs` when `STRIPE_SECRET_KEY=sk_test_*` + API up; credits path remains default
 - **Playwright** browser E2E — not required for M18 gate
 
 ## Gate

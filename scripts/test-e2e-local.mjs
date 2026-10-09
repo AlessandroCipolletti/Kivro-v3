@@ -17,3 +17,6 @@ function run(cmd, args) {
 console.log("test:e2e:local — M18 local dev gate + optional live API path");
 run("node", ["scripts/verify-m18-flow.mjs"]);
 run("node", ["scripts/run-with-env.mjs", "node", "scripts/run-local-e2e.mjs"]);
+run("node", ["scripts/run-with-env.mjs", "node", "scripts/run-local-e2e-failures.mjs"]);
+run("node", ["scripts/run-with-env.mjs", "node", "scripts/run-local-stripe-e2e.mjs"]);
+run("node", ["scripts/run-with-env.mjs", "node", "scripts/run-local-openclaw-e2e.mjs"]);

@@ -3,6 +3,10 @@ export { mergeSandboxConfig, type SellerSandboxOverrides } from "./merge.js";
 export { validateSandboxForManifest, type SandboxValidationResult } from "./validate.js";
 export { jobTimeoutPolicyFromManifest, type JobTimeoutPolicy } from "./timeouts.js";
 export { buildDockerSandboxSpec, type DockerSandboxSpec } from "./docker-spec.js";
+export {
+  isDockerAvailable,
+  runDockerFixtureOutput,
+} from "./docker-fixture-run.js";
 export { assertPathWithinJobRoot, isForbiddenHostPath } from "./filesystem-policy.js";
 export {
   JobProcessSupervisor,

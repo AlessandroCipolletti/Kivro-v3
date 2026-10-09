@@ -49,9 +49,13 @@ run("pnpm", [
   "security/tests/acceptance-m18.test.ts",
   "security/tests/acceptance-m18-local-failures.test.ts",
   "packages/billing/src/fake-payment-adapter.test.ts",
+  "packages/job-delivery/src/worker-deliverables.test.ts",
+  "packages/sandbox/src/docker-fixture-run.test.ts",
   "apps/api/src/startup-guards.test.ts",
 ]);
 
+run("node", ["scripts/verify-m18-s573-checklist.mjs"]);
+run("node", ["scripts/verify-dev-clone-contract.mjs"]);
 run("node", ["scripts/sync-m18-coverage.mjs"]);
 run("pnpm", ["verify:m17"]);
 

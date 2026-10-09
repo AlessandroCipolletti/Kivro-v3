@@ -20,6 +20,8 @@ import {
   workerAcknowledgeJobResumed,
 } from "@kivro/job-control";
 import { deriveMarketplaceControlState, parseWorkerHealthReport } from "@kivro/seller-health";
+import { sanitizeAuditPayload } from "@kivro/observability";
+import type { Prisma } from "@kivro/database";
 import { Hono } from "hono";
 import type { AppEnv } from "../types.js";
 import { randomUUID } from "node:crypto";
@@ -240,6 +242,33 @@ export function workerJobRoutes(): Hono<AppEnv> {
     return c.json(result);
   });
 
+  app.get("/jobs/:jobId/execution-bundle", async (c) => {
+    const workerDeviceId = resolveWorkerDeviceId(c);
+    if (!workerDeviceId) {
+      return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
+    }
+    const jobId = c.req.param("jobId");
+    const job = await getPrismaClient().job.findUnique({
+      where: { id: jobId },
+      include: {
+        input: true,
+        capabilityVersion: { include: { capability: true } },
+      },
+    });
+    if (!job || job.workerDeviceId !== workerDeviceId) {
+      return c.json({ error: "FORBIDDEN" }, 403);
+    }
+    if (!job.input || !job.capabilityVersion.workerManifest) {
+      return c.json({ error: "BUNDLE_INCOMPLETE" }, 409);
+    }
+    return c.json({
+      jobId: job.id,
+      structuredInput: job.input.structuredInput as Record<string, unknown>,
+      workerManifest: job.capabilityVersion.workerManifest,
+      sellerProfileId: job.capabilityVersion.capability.sellerProfileId,
+    });
+  });
+
   app.post("/jobs/:jobId/dispatch", async (c) => {
     const workerDeviceId = resolveWorkerDeviceId(c);
     if (!workerDeviceId) {
@@ -261,13 +290,57 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
+    let body: {
+      structuredOutput?: unknown;
+      outputAssetManifest?: unknown;
+      correlationId?: string;
+    } = {};
+    try {
+      body = await c.req.json();
+    } catch {
+      body = {};
+    }
+    const correlationId = c.req.header("x-correlation-id") ?? body.correlationId;
+    if (correlationId) {
+      c.header("x-correlation-id", correlationId);
+    }
+    const deliverables =
+      body.structuredOutput !== undefined || body.outputAssetManifest !== undefined
+        ? {
+            structuredOutput: body.structuredOutput,
+            outputAssetManifest: body.outputAssetManifest,
+          }
+        : undefined;
+    if (
+      deliverables?.structuredOutput !== undefined &&
+      (typeof deliverables.structuredOutput !== "object" ||
+        deliverables.structuredOutput === null ||
+        Array.isArray(deliverables.structuredOutput))
+    ) {
+      return c.json({ error: "INVALID_DELIVERABLE_OUTPUT" }, 400);
+    }
     const result = await markJobDeliveredAndSettle(getPrismaClient(), {
       jobId: c.req.param("jobId"),
       workerDeviceId,
+      deliverables,
     });
     if ("error" in result) {
       return c.json(result, 409);
     }
+    const jobId = c.req.param("jobId");
+    await getPrismaClient().auditEvent.create({
+      data: {
+        jobId,
+        workerDeviceId,
+        type: "JOB_COMPLETED",
+        actor: "WORKER",
+        correlationId: correlationId ?? undefined,
+        sanitizedPayload: sanitizeAuditPayload({
+          status: result.status,
+          hasDeliverables: Boolean(deliverables),
+        }) as Prisma.InputJsonValue,
+      },
+    });
     const { onOrchestrationJobCompleted } = await import("../services/orchestration-execution.js");
     await onOrchestrationJobCompleted(getPrismaClient(), c.req.param("jobId"));
     const { emitBuyerJobWebhook } = await import("../services/buyer-webhook-emitter.js");

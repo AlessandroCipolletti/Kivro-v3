@@ -19,6 +19,19 @@ const runtime = path.join(os.tmpdir(), `kivro-e2e-worker-${process.pid}`);
 
 async function main() {
   const live = await fetch(`${base}/health/live`).then((r) => r.ok).catch(() => false);
+  const ready = live
+    ? await fetch(`${base}/health/ready`)
+        .then((r) => r.json())
+        .catch(() => null)
+    : null;
+  if (ready?.checks && (!ready.checks.database || ready.checks.objectStorage === false)) {
+    throw new Error(`API not ready: ${JSON.stringify(ready)}`);
+  }
+  const webUrl = process.env.WEB_APP_URL ?? "http://localhost:3000";
+  if (process.env.KIVRO_E2E_CHECK_WEB === "true") {
+    const webOk = await fetch(webUrl).then((r) => r.ok).catch(() => false);
+    if (!webOk) throw new Error(`Web not reachable at ${webUrl} — is pnpm dev running?`);
+  }
   if (!live) {
     if (process.env.KIVRO_E2E_REQUIRE_API === "true") {
       throw new Error(`API not reachable at ${base}`);
@@ -155,21 +168,94 @@ async function main() {
   });
   if (!runningRes.ok) throw new Error(`running failed ${runningRes.status}`);
 
-  const completeRes = await fetch(`${base}/worker/jobs/${jobId}/complete`, {
-    method: "POST",
-    headers: { "x-worker-device-id": deviceId },
-  });
-  if (!completeRes.ok) {
-    const body = await completeRes.json().catch(() => ({}));
-    throw new Error(`complete failed ${completeRes.status} ${JSON.stringify(body)}`);
+  const dockerOk =
+    spawnSync("docker", ["info"], { stdio: "ignore" }).status === 0 &&
+    process.env.KIVRO_E2E_SANDBOX !== "false";
+  let correlationId = "local-e2e-synthetic";
+  let executionMode = "synthetic";
+  let audit = null;
+  if (dockerOk) {
+    const openclawBin = process.env.OPENCLAW_BIN ?? "openclaw";
+    const openclawOk =
+      process.env.KIVRO_E2E_OPENCLAW === "true" &&
+      spawnSync(openclawBin, ["--version"], { stdio: "ignore" }).status === 0;
+    const subcommand = openclawOk ? "run-openclaw" : "run-fixture";
+    executionMode = openclawOk ? "openclaw-docker-sandbox" : "sandbox-fixture";
+    const fixtureRun = spawnSync(
+      "node",
+      ["apps/worker/dist/cli.js", "job", subcommand, jobId],
+      {
+        cwd: root,
+        stdio: "inherit",
+        env: {
+          ...process.env,
+          KIVRO_RUNTIME_ROOT: runtime,
+          KIVRO_CLOUD_URL: base,
+          KIVRO_SANDBOX_DRY_RUN: "false",
+          KIVRO_EXECUTION_MODE: openclawOk ? "openclaw" : "sandbox-fixture",
+        },
+      },
+    );
+    if (fixtureRun.status !== 0) {
+      throw new Error("sandbox fixture execution failed (is Docker running?)");
+    }
+    const { getPrismaClient } = await import("@kivro/database");
+    audit = await getPrismaClient().auditEvent.findFirst({
+      where: { jobId, type: "JOB_COMPLETED" },
+      orderBy: { createdAt: "desc" },
+    });
+    correlationId = audit?.correlationId ?? executionMode;
+  } else {
+    const completeRes = await fetch(`${base}/worker/jobs/${jobId}/complete`, {
+      method: "POST",
+      headers: { "x-worker-device-id": deviceId },
+    });
+    if (!completeRes.ok) {
+      const body = await completeRes.json().catch(() => ({}));
+      throw new Error(`complete failed ${completeRes.status} ${JSON.stringify(body)}`);
+    }
   }
 
   const detail = await getBuyer(`/buyer/jobs/${jobId}`);
-  if (detail.status !== "COMPLETED") {
-    throw new Error(`expected COMPLETED job, got ${detail.status}`);
+  const jobView = detail.job ?? detail;
+  if (jobView.status !== "COMPLETED") {
+    throw new Error(`expected COMPLETED job, got ${jobView.status}`);
+  }
+  if (dockerOk) {
+    if (!jobView.result?.structuredOutput?.text) {
+      throw new Error("expected structured text deliverable");
+    }
+    if (!jobView.result?.hasAssets) {
+      throw new Error("expected file deliverable asset");
+    }
+    const { getPrismaClient } = await import("@kivro/database");
+    const captures = await getPrismaClient().ledgerEntry.count({
+      where: { jobId, type: "JOB_CAPTURE" },
+    });
+    if (captures !== 1) {
+      throw new Error(`expected exactly one JOB_CAPTURE, got ${captures}`);
+    }
+    if (!audit?.correlationId) {
+      throw new Error("expected JOB_COMPLETED audit correlationId");
+    }
+    process.env.KIVRO_CORRELATION_JOB_ID = jobId;
+    process.env.KIVRO_CORRELATION_ID = audit.correlationId;
+    spawnSync("node", ["scripts/run-with-env.mjs", "node", "scripts/verify-local-job-correlation.mjs"], {
+      cwd: root,
+      stdio: "inherit",
+      env: { ...process.env, KIVRO_CORRELATION_JOB_ID: jobId, KIVRO_CORRELATION_ID: audit.correlationId },
+    });
   }
 
-  console.log(JSON.stringify({ e2e: "ok", jobId, status: detail.status, correlation: "local-e2e" }));
+  console.log(
+    JSON.stringify({
+      e2e: "ok",
+      jobId,
+      status: jobView.status,
+      mode: dockerOk ? executionMode : "synthetic",
+      correlationId,
+    }),
+  );
 }
 
 async function login(email, cookieFile) {

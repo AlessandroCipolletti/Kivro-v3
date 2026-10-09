@@ -457,6 +457,18 @@ async function collectLocalHealthSnapshot(): Promise<{
 }
 
 program
+  .command("sandbox-self-test")
+  .description("§573 — Docker fixture + OpenClaw detection/sandbox list smoke")
+  .action(async () => {
+    const { runSandboxSelfTest } = await import("./sandbox-self-test.js");
+    const result = await runSandboxSelfTest();
+    console.log(JSON.stringify({ sandboxSelfTest: result }, null, 2));
+    if (!result.docker || !result.dockerFixture) {
+      process.exit(1);
+    }
+  });
+
+program
   .command("health")
   .description("Worker health summary and cloud heartbeat (§379)")
   .option("--no-cloud", "Skip cloud heartbeat")
@@ -587,6 +599,44 @@ program
         note: "Running jobs default policy is pause-only; stop --all is destructive.",
       }),
     );
+  });
+
+jobCmd
+  .command("run-openclaw")
+  .description("Execute one job with OpenClaw detected + Docker sandbox (§557 / §573)")
+  .argument("<job-id>", "Job UUID")
+  .action(async (jobId: string) => {
+    const store = openWorkerStore(runtimeRoot());
+    const identity = getDeviceIdentity(store);
+    if (!identity?.workerDeviceId) {
+      console.error(JSON.stringify({ error: "WORKER_NOT_PAIRED" }));
+      process.exit(1);
+    }
+    const { runOpenClawSandboxForJob } = await import("./execute-openclaw-offer.js");
+    await runOpenClawSandboxForJob({
+      runtimeRoot: runtimeRoot(),
+      identity: { cloudUrl: identity.cloudUrl, workerDeviceId: identity.workerDeviceId },
+      jobId,
+    });
+  });
+
+jobCmd
+  .command("run-fixture")
+  .description("Execute one job in Docker sandbox fixture mode (§573 local E2E)")
+  .argument("<job-id>", "Job UUID")
+  .action(async (jobId: string) => {
+    const store = openWorkerStore(runtimeRoot());
+    const identity = getDeviceIdentity(store);
+    if (!identity?.workerDeviceId) {
+      console.error(JSON.stringify({ error: "WORKER_NOT_PAIRED" }));
+      process.exit(1);
+    }
+    const { runSandboxFixtureForJob } = await import("./execute-sandbox-offer.js");
+    await runSandboxFixtureForJob({
+      runtimeRoot: runtimeRoot(),
+      identity: { cloudUrl: identity.cloudUrl, workerDeviceId: identity.workerDeviceId },
+      jobId,
+    });
   });
 
 program

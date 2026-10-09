@@ -14,6 +14,15 @@ importers:
       '@eslint/js':
         specifier: ^9.17.0
         version: 9.39.5
+      '@kivro/auth':
+        specifier: workspace:*
+        version: link:packages/auth
+      '@kivro/billing':
+        specifier: workspace:*
+        version: link:packages/billing
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:packages/database
       '@types/node':
         specifier: ^22.10.2
         version: 22.20.5
@@ -144,6 +153,15 @@ importers:
       '@kivro/crypto':
         specifier: workspace:*
         version: link:../../packages/crypto
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@kivro/job-delivery':
+        specifier: workspace:*
+        version: link:../../packages/job-delivery
+      '@kivro/job-failure':
+        specifier: workspace:*
+        version: link:../../packages/job-failure
       '@kivro/job-io':
         specifier: workspace:*
         version: link:../../packages/job-io
@@ -201,6 +219,9 @@ importers:
       '@kivro/job-control':
         specifier: workspace:*
         version: link:../job-control
+      '@kivro/job-delivery':
+        specifier: workspace:*
+        version: link:../job-delivery
       '@kivro/job-scheduling':
         specifier: workspace:*
         version: link:../job-scheduling
@@ -324,6 +345,21 @@ importers:
       '@kivro/platform-policy':
         specifier: workspace:*
         version: link:../platform-policy
+
+  packages/job-delivery:
+    dependencies:
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@kivro/job-io':
+        specifier: workspace:*
+        version: link:../job-io
+      '@kivro/storage':
+        specifier: workspace:*
+        version: link:../storage
 
   packages/job-dispatch:
     dependencies:

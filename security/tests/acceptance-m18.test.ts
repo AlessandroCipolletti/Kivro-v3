@@ -31,6 +31,8 @@ describe("M18 acceptance — local dev perimeter", () => {
     expect(pkg.scripts["worker:dev"]).toBeTruthy();
     expect(pkg.scripts["dev:demo"]).toBeTruthy();
     expect(pkg.scripts["verify:m18"]).toBeTruthy();
+    expect(pkg.scripts["test:m18:preflight"]).toBeTruthy();
+    expect(pkg.scripts["dev:doctor"]).toBeTruthy();
     expect(pkg.scripts["test:e2e:local"]).toContain("test-e2e-local");
   });
 
@@ -39,5 +41,12 @@ describe("M18 acceptance — local dev perimeter", () => {
     expect(example).toMatch(/REDIS_URL=/);
     expect(example).toMatch(/KIVRO_FAKE_PAYMENT_ADAPTER=/);
     expect(example).toMatch(/KIVRO_DEV_PAYMENT_SHORTCUTS=true/);
+    expect(example).toMatch(/KIVRO_EXECUTION_MODE=sandbox-fixture/);
+  });
+
+  it("worker exposes sandbox fixture execution", () => {
+    const worker = fs.readFileSync(path.join(root, "apps/worker/src/sandbox-fixture-run.ts"), "utf8");
+    expect(worker).toMatch(/docker/);
+    expect(worker).toMatch(/shouldFailClosedOnSandboxInit/);
   });
 });

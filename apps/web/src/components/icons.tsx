@@ -53,6 +53,15 @@ export function IconCheck({ className, size = 20 }: IconProps) {
   );
 }
 
+export function IconCopy({ className, size = 20 }: IconProps) {
+  return (
+    <svg {...base(size, className)}>
+      <rect x="8" y="8" width="12" height="12" rx="2" />
+      <path d="M6 16H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
 export function IconAlert({ className, size = 20 }: IconProps) {
   return (
     <svg {...base(size, className)}>

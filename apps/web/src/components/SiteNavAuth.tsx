@@ -2,13 +2,14 @@
 
 import { API_BASE } from "@/lib/kivro-api";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 type MeResponse = { id: string; email: string; emailVerified: boolean };
 
 export function SiteNavAuth() {
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<MeResponse | null | undefined>(undefined);
 
   const loadMe = useCallback(async () => {
@@ -26,7 +27,7 @@ export function SiteNavAuth() {
 
   useEffect(() => {
     void loadMe();
-  }, [loadMe]);
+  }, [loadMe, pathname]);
 
   async function signOut() {
     await fetch(`${API_BASE}/auth/logout`, { method: "POST", credentials: "include" });

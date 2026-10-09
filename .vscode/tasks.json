@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Kivro: local env (API + Web + Worker + Docker)",
+      "type": "shell",
+      "command": "node scripts/run-with-env.mjs node scripts/dev-local-all.mjs",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "kivro",
+        "pattern": { "regexp": "." },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Running dev:setup|dev:setup",
+          "endsPattern": "Press Ctrl\\+C to stop all processes"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "label": "Kivro: local env + demo seed",
+      "type": "shell",
+      "command": "node scripts/run-with-env.mjs node scripts/dev-local-all.mjs --seed",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "kivro",
+        "pattern": { "regexp": "." },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Running dev:setup|dev:setup",
+          "endsPattern": "Press Ctrl\\+C to stop all processes"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    }
+  ]
+}

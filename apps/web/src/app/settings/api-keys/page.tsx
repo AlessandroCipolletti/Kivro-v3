@@ -1,6 +1,7 @@
 "use client";
 
 import { Alert } from "@/components/ui/Alert";
+import { CopySecretOnce } from "@/components/ui/CopySecretOnce";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -86,10 +87,9 @@ export default function ApiKeysSettingsPage() {
       {error && error !== "sign_in" && <Alert tone="danger">{error}</Alert>}
       {newSecret && (
         <Alert tone="warning">
-          <p style={{ margin: 0 }}>
+          <CopySecretOnce secret={newSecret}>
             <strong>Copy this secret now.</strong> It will not be shown again.
-          </p>
-          <div className="secret-once">{newSecret}</div>
+          </CopySecretOnce>
         </Alert>
       )}
       <form className="detail-panel form-stack" onSubmit={(e) => void onCreate(e)}>

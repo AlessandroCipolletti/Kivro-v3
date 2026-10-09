@@ -1,10 +1,18 @@
 import type { PrismaClient } from "@kivro/database";
 import { assertJobTransition, type JobStatus } from "@kivro/domain";
+import {
+  persistWorkerJobDeliverables,
+  type WorkerDeliverablesInput,
+} from "@kivro/job-delivery";
 import { captureAndSettleJobPayment } from "./job-payment.js";
 
 export async function markJobDeliveredAndSettle(
   prisma: PrismaClient,
-  input: { jobId: string; workerDeviceId: string },
+  input: {
+    jobId: string;
+    workerDeviceId: string;
+    deliverables?: WorkerDeliverablesInput;
+  },
 ): Promise<{ status: JobStatus } | { error: string }> {
   const job = await prisma.job.findUnique({ where: { id: input.jobId } });
   if (!job || job.workerDeviceId !== input.workerDeviceId) {
@@ -26,6 +34,16 @@ export async function markJobDeliveredAndSettle(
   }
   if (status !== "UPLOADING_RESULT") {
     return { error: "INVALID_STATE" };
+  }
+  if (input.deliverables) {
+    const saved = await persistWorkerJobDeliverables(prisma, {
+      jobId: job.id,
+      workerDeviceId: input.workerDeviceId,
+      deliverables: input.deliverables,
+    });
+    if ("error" in saved) {
+      return saved;
+    }
   }
   assertJobTransition(status, "COMPLETED");
   await prisma.job.update({

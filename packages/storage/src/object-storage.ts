@@ -94,6 +94,29 @@ export async function verifyUploadedObject(input: {
 }
 
 /** §216 — read leading bytes for content sniffing (bounded). */
+export async function putObjectBytes(input: {
+  bucket: string;
+  objectKey: string;
+  body: Uint8Array;
+  contentHash: string;
+  mimeType?: string;
+  metadata?: Record<string, string>;
+}): Promise<void> {
+  const { client } = requireObjectStorage();
+  await client.send(
+    new PutObjectCommand({
+      Bucket: input.bucket,
+      Key: input.objectKey,
+      Body: input.body,
+      ContentType: input.mimeType,
+      Metadata: {
+        "content-hash": input.contentHash,
+        ...(input.metadata ?? {}),
+      },
+    }),
+  );
+}
+
 export async function readObjectPrefix(input: {
   bucket: string;
   objectKey: string;

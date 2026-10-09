@@ -9,9 +9,18 @@ spawnSync("pnpm", ["--filter", "@kivro/worker", "run", "build"], {
   stdio: "inherit",
   env: {
     ...process.env,
-    KIVRO_EXECUTION_MODE: process.env.KIVRO_EXECUTION_MODE ?? "synthetic",
+    KIVRO_EXECUTION_MODE: process.env.KIVRO_EXECUTION_MODE ?? "sandbox-fixture",
   },
 });
+
+const autoPair = spawnSync("node", ["scripts/run-with-env.mjs", "node", "scripts/dev-worker-auto-pair.mjs"], {
+  cwd: root,
+  stdio: "inherit",
+  env: process.env,
+});
+if (autoPair.status !== 0) {
+  process.exit(autoPair.status ?? 1);
+}
 
 const res = spawnSync("node", ["apps/worker/dist/cli.js", "start"], {
   cwd: root,

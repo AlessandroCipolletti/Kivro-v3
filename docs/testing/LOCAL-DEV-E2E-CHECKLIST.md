@@ -24,8 +24,8 @@ Checklist for **DEV-LOCAL-029**. Automated evidence: `pnpm verify:m18`, `pnpm te
 ## Worker & sandbox
 
 - [ ] Worker runs host-native (`pnpm worker:dev`)
-- [ ] Default E2E uses API/worker **synthetic** complete path (sandbox architecture unchanged)
-- [ ] Manual: `KIVRO_SANDBOX_DRY_RUN=false` + real OpenClaw for full §557 acceptance
+- [ ] With Docker: E2E uses **`sandbox-fixture`** (restricted `docker run`, deliverables in MinIO, single `JOB_CAPTURE`)
+- [ ] Manual: `KIVRO_EXECUTION_MODE=openclaw` + pinned OpenClaw for §557 agent spawn
 
 ## Failure matrix (DEV-LOCAL-024)
 

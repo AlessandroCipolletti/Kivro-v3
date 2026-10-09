@@ -33,7 +33,17 @@ if (!fs.existsSync(envPath)) {
 }
 
 console.log("Starting Docker services (postgres, redis, minio)…");
-run("docker", ["compose", "up", "-d", "postgres", "redis", "minio"]);
+const composeUp = spawnSync("docker", ["compose", "up", "-d", "postgres", "redis", "minio"], {
+  cwd: root,
+  stdio: "inherit",
+  env: process.env,
+});
+if (composeUp.status !== 0) {
+  console.error(
+    "\nIf Redis failed with “port is already allocated”, set KIVRO_REDIS_HOST_PORT (e.g. 6380) and matching REDIS_URL in .env — see .env.example.\n",
+  );
+  process.exit(composeUp.status ?? 1);
+}
 
 console.log("Waiting for PostgreSQL…");
 run("node", ["scripts/wait-for-postgres.mjs"]);
@@ -52,7 +62,7 @@ run("node", ["scripts/run-with-env.mjs", "node", "scripts/init-minio-bucket.mjs"
 
 if (process.env.KIVRO_DEV_SEED_ON_SETUP === "true") {
   console.log("Running dev seed…");
-  run("node", ["scripts/run-with-env.mjs", "node", "scripts/dev-seed.mjs"]);
+  run("node", ["scripts/run-with-env.mjs", "node", "scripts/run-dev-seed.mjs"]);
 }
 
 console.log("dev:setup complete.");

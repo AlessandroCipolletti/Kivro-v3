@@ -2,18 +2,35 @@
 
 Reproducible Kivro on a supported Mac: Docker for Postgres, Redis, and MinIO; host-native Worker; cloud API via `pnpm dev`.
 
+## Clean clone bootstrap
+
+1. `pnpm install`
+2. copy `.env.example` to `.env` (adjust ports/secrets only for your machine)
+3. `pnpm dev:setup` — Docker Compose, migrations, MinIO bucket
+4. `pnpm dev:demo` — seed buyer/seller fixtures
+5. `pnpm dev` and (optional) `pnpm worker:dev`
+
 ## Prerequisites
 
 - Node 20+, pnpm 9, Docker Desktop
-- Copy `.env.example` → `.env` and keep dev-only flags out of production
-- Optional full OpenClaw path: set `KIVRO_SANDBOX_DRY_RUN=false`, install pinned OpenClaw, run `pnpm worker:dev` with `KIVRO_EXECUTION_MODE=openclaw`
+- copy `.env.example` → `.env` and keep dev-only flags out of production
+- Default **`KIVRO_EXECUTION_MODE=sandbox-fixture`**: jobs run inside a restricted **Docker** container (Alpine fixture), upload text/file deliverables to MinIO, settle ledger once.
+- Full OpenClaw agent spawn: set `KIVRO_EXECUTION_MODE=openclaw`, `KIVRO_SANDBOX_DRY_RUN=false`, install pinned OpenClaw (manual §573).
+
+## Local test runbook
+
+See **`docs/testing/M18-LOCAL-TEST-RUNBOOK.md`** — start with `pnpm test:m18:preflight`, then `pnpm dev`, then `KIVRO_E2E_REQUIRE_API=true pnpm test:e2e:local`.
 
 ## Commands
 
 | Command | Purpose |
 |---------|---------|
+| `pnpm test:m18:preflight` | Docker + setup + worker `sandbox-self-test` |
+| `pnpm dev:doctor` | Bootstrap checks (OpenClaw, Redis, sandbox) |
 | `pnpm dev:setup` | Compose up, wait for health, migrate, MinIO bucket |
 | `pnpm dev` | API (+ web per `scripts/dev.mjs`) |
+| `pnpm dev:all` | Setup + API + Web + Worker; auto-pairs Worker as `seller@kivro.local` when not paired yet |
+| `pnpm dev:all:demo` | `dev:all` plus buyer/seller seed |
 | `pnpm worker:dev` | Build Worker and run poll daemon (`KIVRO_EXECUTION_MODE=synthetic` default) |
 | `pnpm dev:demo` | Setup + seed buyer/seller fixtures |
 | `pnpm test:e2e:local` | `verify:m18` + optional live HTTP E2E when API is up |

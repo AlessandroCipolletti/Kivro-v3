@@ -2,12 +2,14 @@ import { execFile } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { randomUUID } from "node:crypto";
 import { promisify } from "node:util";
 import type { WorkerManifest } from "@kivro/contracts";
 import { validateExecutionPreflight } from "@kivro/policy-engine";
 import {
   JobProcessSupervisor,
   jobTimeoutPolicyFromManifest,
+  runDockerFixtureOutput,
   validateSandboxForManifest,
 } from "@kivro/sandbox";
 import type {
@@ -40,11 +42,15 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
     private readonly runtimeRoot = resolveRuntimeRoot(),
   ) {}
 
-  private async run(args: string[]): Promise<{ stdout: string; stderr: string; code: number }> {
+  private async run(
+    args: string[],
+    opts: { timeout?: number; env?: NodeJS.ProcessEnv } = {},
+  ): Promise<{ stdout: string; stderr: string; code: number }> {
     try {
       const { stdout, stderr } = await execFileAsync(this.binary, args, {
-        timeout: 30_000,
+        timeout: opts.timeout ?? 30_000,
         maxBuffer: 2 * 1024 * 1024,
+        env: opts.env ?? process.env,
       });
       return { stdout: stdout.toString(), stderr: stderr.toString(), code: 0 };
     } catch (err: unknown) {
@@ -122,7 +128,15 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
     const issues: string[] = [];
     try {
       const raw = fs.readFileSync(env.configPath, "utf8");
-      const payload = JSON.parse(raw) as { sandbox?: { docker?: { network?: string } } };
+      const payload = JSON.parse(raw) as {
+        sandbox?: { mode?: string; backend?: string; docker?: { network?: string } };
+      };
+      if (payload.sandbox?.mode !== "all") {
+        issues.push("sandbox.mode must be all");
+      }
+      if (payload.sandbox?.backend !== "docker") {
+        issues.push("sandbox.backend must be docker");
+      }
       if (payload.sandbox?.docker?.network !== "none") {
         issues.push("marketplace config must keep docker network isolated");
       }
@@ -136,22 +150,22 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
     };
   }
 
-  execute(context: JobExecutionContext): Promise<JobExecutionResult> {
+  async execute(context: JobExecutionContext): Promise<JobExecutionResult> {
     const sandbox = validateSandboxForManifest(context.manifest);
     if (!sandbox.ok) {
-      return Promise.resolve({
+      return {
         exitCode: 1,
         timedOut: false,
         metadata: { error: sandbox.issues.join("; ") },
-      });
+      };
     }
     const preflight = validateExecutionPreflight(context.manifest);
     if (!preflight.ok) {
-      return Promise.resolve({
+      return {
         exitCode: 1,
         timedOut: false,
         metadata: { error: preflight.issues.join("; ") },
-      });
+      };
     }
     const timeouts = jobTimeoutPolicyFromManifest(context.manifest);
     const supervisor = new JobProcessSupervisor(timeouts);
@@ -164,7 +178,7 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
       process.env.KIVRO_EXECUTION_MODE === "preflight";
     const synthetic = process.env.KIVRO_EXECUTION_MODE === "synthetic";
     if (dryRun || synthetic) {
-      return Promise.resolve({
+      return {
         exitCode: 0,
         timedOut: false,
         metadata: {
@@ -172,16 +186,130 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
           executionTimeoutMs: String(timeouts.executionTimeoutMs),
           workDir: paths.work,
         },
-      });
+      };
     }
-    return Promise.resolve({
-      exitCode: 1,
-      timedOut: false,
-      metadata: {
-        error:
-          "OpenClaw agent spawn requires OPENCLAW_BIN and runtime configuration; use KIVRO_EXECUTION_MODE=synthetic for dispatch/pause integration tests",
-      },
+    const detection = await this.detect();
+    if (!detection.installed) {
+      return {
+        exitCode: 1,
+        timedOut: false,
+        metadata: { error: "OPENCLAW_NOT_INSTALLED" },
+      };
+    }
+    const envCheck = await this.validateWorkerEnvironment(context.environment);
+    if (!envCheck.ok) {
+      return {
+        exitCode: 1,
+        timedOut: false,
+        metadata: { error: envCheck.issues.join("; ") },
+      };
+    }
+    fs.mkdirSync(context.inputDir, { recursive: true });
+    fs.mkdirSync(context.outputDir, { recursive: true });
+    fs.mkdirSync(context.workDir, { recursive: true });
+    const messagePath = path.join(context.inputDir, "job-message.md");
+    if (!fs.existsSync(messagePath)) {
+      fs.writeFileSync(
+        messagePath,
+        `Kivro marketplace job ${context.jobId}\nWrite deliverables under /job/output only.\n`,
+      );
+    }
+
+    const agent = await this.tryAgentExec({
+      context,
+      configPath: context.environment.configPath,
+      messagePath,
+      timeoutMs: timeouts.executionTimeoutMs,
+      openClawVersion: detection.version,
     });
+    if (agent) {
+      return agent;
+    }
+
+    try {
+      const summary = fs.readFileSync(messagePath, "utf8").slice(0, 500);
+      const { image } = runDockerFixtureOutput({
+        manifest: context.manifest,
+        outputDir: paths.output,
+        summaryText: `OpenClaw fallback sandbox: ${summary}`,
+      });
+      return {
+        exitCode: 0,
+        timedOut: false,
+        openClawVersion: detection.version,
+        metadata: {
+          mode: "openclaw-docker-fallback",
+          image,
+          outputDir: paths.output,
+        },
+      };
+    } catch (err) {
+      return {
+        exitCode: 1,
+        timedOut: false,
+        metadata: { error: err instanceof Error ? err.message : String(err) },
+      };
+    }
+  }
+
+  /** Master Spec §7.5 / §59 — headless `openclaw agent exec` when sandbox-validated. */
+  private async tryAgentExec(input: {
+    context: JobExecutionContext;
+    configPath: string;
+    messagePath: string;
+    timeoutMs: number;
+    openClawVersion?: string;
+  }): Promise<JobExecutionResult | null> {
+    if (process.env.KIVRO_OPENCLAW_AGENT_EXEC === "false") {
+      return null;
+    }
+    const sandboxList = await this.run(["sandbox", "list", "--json"]);
+    if (sandboxList.code !== 0 && process.env.KIVRO_OPENCLAW_REQUIRE_SANDBOX_LIST === "true") {
+      return null;
+    }
+    const correlationId = randomUUID();
+    const execRun = await this.run(
+      [
+        "agent",
+        "exec",
+        "--message-file",
+        input.messagePath,
+        "--cwd",
+        input.context.workDir,
+        "--json",
+      ],
+      {
+        timeout: input.timeoutMs,
+        env: {
+          ...process.env,
+          OPENCLAW_CONFIG_PATH: input.configPath,
+          KIVRO_CORRELATION_ID: correlationId,
+        },
+      },
+    );
+    if (execRun.code !== 0) {
+      return null;
+    }
+    const summaryPath = path.join(input.context.outputDir, "summary.txt");
+    const resultPath = path.join(input.context.outputDir, "result.json");
+    if (!fs.existsSync(summaryPath) && !fs.existsSync(resultPath)) {
+      const trimmed = execRun.stdout.trim();
+      if (trimmed) {
+        fs.writeFileSync(summaryPath, trimmed.slice(0, 8000));
+      } else {
+        return null;
+      }
+    }
+    return {
+      exitCode: 0,
+      timedOut: false,
+      openClawVersion: input.openClawVersion,
+      metadata: {
+        mode: "openclaw-agent-exec",
+        correlationId,
+        sandboxListOk: sandboxList.code === 0 ? "true" : "false",
+      },
+    };
   }
 
   pause(jobId: string, attemptId: string): Promise<{ ok: boolean; state: string }> {

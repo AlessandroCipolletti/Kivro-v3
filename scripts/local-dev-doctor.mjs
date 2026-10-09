@@ -39,5 +39,33 @@ if (dryRun) {
   pass("sandbox", "real sandbox mode enabled");
 }
 
+const openclawBin = process.env.OPENCLAW_BIN ?? "openclaw";
+if (spawnSync(openclawBin, ["--version"], { stdio: "ignore" }).status === 0) {
+  pass("openclaw", `${openclawBin} detected`);
+} else {
+  warn("openclaw", "OpenClaw not on PATH — sandbox-fixture E2E still works with Docker");
+}
+
+if (process.env.REDIS_URL) {
+  pass("redis_config", process.env.REDIS_URL);
+} else {
+  warn("redis_config", "REDIS_URL unset — /health/ready skips Redis");
+}
+
+const workerDist = path.join(root, "apps/worker/dist/cli.js");
+if (fs.existsSync(workerDist)) {
+  const selfTest = spawnSync("node", [workerDist, "sandbox-self-test"], {
+    cwd: root,
+    stdio: "pipe",
+    encoding: "utf8",
+    env: process.env,
+  });
+  if (selfTest.status === 0) {
+    pass("sandbox_self_test", "worker sandbox-self-test");
+  } else {
+    warn("sandbox_self_test", "run pnpm --filter @kivro/worker build && sandbox-self-test");
+  }
+}
+
 console.log(JSON.stringify({ doctor: checks }, null, 2));
 if (checks.some((c) => c.status === "FAIL")) process.exit(1);

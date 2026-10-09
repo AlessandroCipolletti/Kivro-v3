@@ -9,9 +9,16 @@ import path from "node:path";
 import type { WorkerEnvironment } from "./types.js";
 
 export function marketplaceConfigPayload(manifest: WorkerManifest): Record<string, unknown> {
+  const sandbox = mergeSandboxConfig();
   return {
     baselineVersion: MARKETPLACE_SANDBOX_BASELINE.baselineVersion,
-    sandbox: mergeSandboxConfig(),
+    sandbox: {
+      mode: sandbox.mode,
+      backend: sandbox.backend,
+      scope: sandbox.scope,
+      workspaceAccess: sandbox.workspaceAccess,
+      docker: sandbox.docker,
+    },
     dockerSpec: buildDockerSandboxSpec(manifest),
     manifest: {
       tools: manifest.tools,

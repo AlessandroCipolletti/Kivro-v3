@@ -35,6 +35,10 @@ export async function runWorkerPollDaemon(): Promise<void> {
   if (!identity?.workerDeviceId) {
     throw new Error("WORKER_NOT_PAIRED — run kivro-worker pair first");
   }
+  const workerIdentity = {
+    cloudUrl: identity.cloudUrl,
+    workerDeviceId: identity.workerDeviceId,
+  };
   const pollMs = Number(process.env.KIVRO_WORKER_POLL_MS ?? 3000);
   const executionMode = process.env.KIVRO_EXECUTION_MODE ?? "synthetic";
 
@@ -50,39 +54,56 @@ export async function runWorkerPollDaemon(): Promise<void> {
 
   while (true) {
     try {
-      const hb = await workerFetch(identity, "/worker/heartbeat", {
+      const hb = await workerFetch(workerIdentity, "/worker/heartbeat", {
         method: "POST",
         body: JSON.stringify({
           workerVersion: "0.0.0-m18",
           dockerOk: true,
-          sandboxOk: executionMode !== "openclaw" || process.env.KIVRO_SANDBOX_DRY_RUN === "false",
-          openClawInstalled: false,
+          sandboxOk:
+            executionMode === "sandbox-fixture" ||
+            executionMode !== "openclaw" ||
+            process.env.KIVRO_SANDBOX_DRY_RUN === "false",
+          openClawInstalled: executionMode === "openclaw",
           openClawCompatible: true,
           globalPauseActive: false,
         }),
       });
       await hb.json().catch(() => undefined);
 
-      const pollRes = await workerFetch(identity, "/worker/poll", { method: "POST", body: "{}" });
+      const pollRes = await workerFetch(workerIdentity, "/worker/poll", { method: "POST", body: "{}" });
       const poll = (await pollRes.json()) as {
         offers?: Array<{ jobId: string; workerId: string; capabilityVersionId: string }>;
       };
 
       for (const offer of poll.offers ?? []) {
-        await workerFetch(identity, "/worker/jobs/accept", {
+        await workerFetch(workerIdentity, "/worker/jobs/accept", {
           method: "POST",
           body: JSON.stringify({
             type: "JOB_ACCEPTED",
             protocolVersion: 1,
             jobId: offer.jobId,
-            workerDeviceId: identity.workerDeviceId,
+            workerDeviceId: workerIdentity.workerDeviceId,
             acceptedAt: new Date().toISOString(),
           }),
         });
-        await workerFetch(identity, `/worker/jobs/${offer.jobId}/running`, { method: "POST" });
+        await workerFetch(workerIdentity, `/worker/jobs/${offer.jobId}/running`, { method: "POST" });
         if (executionMode === "synthetic") {
-          await workerFetch(identity, `/worker/jobs/${offer.jobId}/complete`, { method: "POST" });
+          await workerFetch(workerIdentity, `/worker/jobs/${offer.jobId}/complete`, { method: "POST" });
           console.log(JSON.stringify({ event: "job_completed_synthetic", jobId: offer.jobId }));
+        } else if (executionMode === "sandbox-fixture") {
+          const { runSandboxFixtureForJob } = await import("./execute-sandbox-offer.js");
+          await runSandboxFixtureForJob({
+            runtimeRoot: runtimeRoot(),
+            identity: workerIdentity,
+            jobId: offer.jobId,
+          });
+        } else if (executionMode === "openclaw") {
+          const { runOpenClawSandboxForJob } = await import("./execute-openclaw-offer.js");
+          await runOpenClawSandboxForJob({
+            runtimeRoot: runtimeRoot(),
+            identity: workerIdentity,
+            jobId: offer.jobId,
+          });
         }
       }
     } catch (err) {

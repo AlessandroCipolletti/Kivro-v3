@@ -14,5 +14,5 @@ run("node", ["scripts/run-with-env.mjs", "node", "scripts/dev-setup.mjs"]);
 run("pnpm", ["--filter", "@kivro/database", "run", "build"]);
 run("pnpm", ["--filter", "@kivro/auth", "run", "build"]);
 run("pnpm", ["--filter", "@kivro/billing", "run", "build"]);
-run("node", ["scripts/run-with-env.mjs", "node", "scripts/dev-seed.mjs"]);
+run("node", ["scripts/run-with-env.mjs", "node", "scripts/run-dev-seed.mjs"]);
 console.log("Demo ready — use buyer@kivro.local / seller@kivro.local (password in dev-seed output).");

@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Kivro: local env (API + Web + Worker + Docker)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "node scripts/run-with-env.mjs node scripts/dev-local-all.mjs",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Kivro: local env + demo seed",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "node scripts/run-with-env.mjs node scripts/dev-local-all.mjs --seed",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
