@@ -23,16 +23,57 @@ export default function MarketplaceAgentPage() {
   const [error, setError] = useState<string | null>(null);
   const [recommendations, setRecommendations] = useState<Recommendation[] | null>(null);
   const [parsed, setParsed] = useState<Record<string, unknown> | null>(null);
+  const [plan, setPlan] = useState<{
+    id: string;
+    estimatedCostCents: number;
+    status: string;
+    steps: Array<{ id: string; label: string; estimatedPriceCents: number; dependsOnStepIds: unknown }>;
+  } | null>(null);
+  const [planNotes, setPlanNotes] = useState<string[]>([]);
+  const [conversationId, setConversationId] = useState<string | null>(null);
+
+  function buildConstraints(): Record<string, unknown> {
+    const constraints: Record<string, unknown> = {};
+    if (maxDollars) {
+      const cents = Math.round(Number.parseFloat(maxDollars) * 100);
+      constraints.maxPerJobSpendCents = cents;
+      constraints.maxTotalSpendCents = cents;
+    }
+    if (minRating) {
+      constraints.minRating = Number.parseFloat(minRating);
+    }
+    if (onlineOnly) {
+      constraints.onlineOnly = true;
+    }
+    return constraints;
+  }
+
+  async function ensureConversation(): Promise<string | null> {
+    if (conversationId) {
+      return conversationId;
+    }
+    const res = await fetch(`${API_BASE}/marketplace/agent/conversations`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+    if (!res.ok) {
+      return null;
+    }
+    const body = (await res.json()) as { conversationId: string };
+    setConversationId(body.conversationId);
+    return body.conversationId;
+  }
 
   async function discover(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setPlan(null);
     try {
-      const constraints: Record<string, unknown> = {};
-      if (maxDollars) {
-        constraints.maxPerJobSpendCents = Math.round(Number.parseFloat(maxDollars) * 100);
-      }
+      const constraints = buildConstraints();
+      const convId = await ensureConversation();
       if (minRating) {
         constraints.minRating = Number.parseFloat(minRating);
       }
@@ -43,7 +84,7 @@ export default function MarketplaceAgentPage() {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ goal, constraints }),
+        body: JSON.stringify({ goal, constraints, conversationId: convId }),
       });
       if (res.status === 401) {
         window.location.href = "/login";
@@ -60,6 +101,63 @@ export default function MarketplaceAgentPage() {
       }
       setRecommendations(body.recommendations ?? []);
       setParsed(body.parsedConstraints ?? null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function buildPlan() {
+    setLoading(true);
+    setError(null);
+    setRecommendations(null);
+    try {
+      const convId = await ensureConversation();
+      const res = await fetch(`${API_BASE}/marketplace/agent/plan`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goal, constraints: buildConstraints(), conversationId: convId }),
+      });
+      if (res.status === 401) {
+        window.location.href = "/login";
+        return;
+      }
+      const body = (await res.json()) as {
+        error?: string;
+        plan?: typeof plan;
+        notes?: string[];
+      };
+      if (!res.ok) {
+        setError(body.error ?? "Could not build plan");
+        return;
+      }
+      setPlan(body.plan ?? null);
+      setPlanNotes(body.notes ?? []);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function approvePlan() {
+    if (!plan?.id) {
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${API_BASE}/marketplace/agent/plans/${plan.id}/approve`, {
+        method: "POST",
+        credentials: "include",
+      });
+      const body = (await res.json()) as { error?: string; startedJobIds?: string[] };
+      if (!res.ok) {
+        setError(body.error ?? "Approval failed");
+        return;
+      }
+      setPlan({ ...plan, status: "RUNNING" });
+      if (body.startedJobIds?.length) {
+        setPlanNotes((n) => [...n, `Started ${body.startedJobIds!.length} job(s). Track them under My jobs.`]);
+      }
     } finally {
       setLoading(false);
     }
@@ -129,9 +227,17 @@ export default function MarketplaceAgentPage() {
           </div>
         </div>
         {error && <p className="field-error">{error}</p>}
-        <div className="form-actions">
+        <div className="form-actions" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
           <button className="button" type="submit" disabled={loading}>
             {loading ? "Searching…" : "Find the best services"}
+          </button>
+          <button
+            className="button secondary"
+            type="button"
+            disabled={loading || !goal.trim()}
+            onClick={() => void buildPlan()}
+          >
+            Build execution plan
           </button>
         </div>
       </form>
@@ -139,6 +245,31 @@ export default function MarketplaceAgentPage() {
         <p className="meta" style={{ marginTop: "1rem" }}>
           Applied constraints: {JSON.stringify(parsed)}
         </p>
+      )}
+      {plan && (
+        <section style={{ marginTop: "1.5rem" }} className="detail-panel">
+          <h2 style={{ fontSize: "1.15rem" }}>Proposed plan</h2>
+          <p className="meta">
+            Estimated cost: ${(plan.estimatedCostCents / 100).toFixed(2)} · Status: {plan.status}
+          </p>
+          <ol style={{ paddingLeft: "1.2rem" }}>
+            {plan.steps.map((step) => (
+              <li key={step.id} className="meta" style={{ marginTop: "0.5rem" }}>
+                {step.label} — ${(step.estimatedPriceCents / 100).toFixed(2)}
+              </li>
+            ))}
+          </ol>
+          {planNotes.map((note) => (
+            <p key={note} className="meta">
+              {note}
+            </p>
+          ))}
+          {plan.status === "AWAITING_APPROVAL" && (
+            <button className="button" type="button" disabled={loading} onClick={() => void approvePlan()}>
+              Approve &amp; run
+            </button>
+          )}
+        </section>
       )}
       {recommendations && (
         <section style={{ marginTop: "1.5rem" }}>

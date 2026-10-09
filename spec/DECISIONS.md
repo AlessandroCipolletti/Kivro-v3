@@ -530,3 +530,9 @@ greenfield.
 **Context:** Master Spec §575 requires verification email delivery; local dev may expose tokens only when Brevo is not configured.
 
 **Decision:** `@kivro/email` sends Brevo template mail using `BREVO_*` env vars. Verification links target `GET /auth/verify-email?token=` on the public API (redirect to web). Dev `verificationToken` in API responses is enabled only when `KIVRO_DEV_AUTH_SHORTCUTS=true` and Brevo is not fully configured.
+
+## DEC-M11-001 — Orchestration planner deterministic MVP (§136–§142)
+
+**Context:** Strong MVP extension requires structured plans, DAG, and purchase authorization without LLM-controlled payments.
+
+**Decision:** `@kivro/marketplace-agent` builds competitor-research DAG plans from live listings and hard constraints; plans persist in PostgreSQL; `authorizePlanApproval` gates approval; job launch uses existing `submitPaidJob`. Full cross-job asset mapping, parallel sweep reconciliation, and staging scenario §160 remain incremental hardening after M11 foundation.

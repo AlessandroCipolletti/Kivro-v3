@@ -1188,43 +1188,43 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0037`    P1         §135     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0117`    P1         §136     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PRD-0117`    P1         §136     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `PRD-0118`    P2         §136     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PRD-0118`    P2         §136     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `AGT-0038`    P1         §137     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `AGT-0038`    P1         §137     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `AGT-0039`    P1         §137     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `AGT-0039`    P1         §137     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `PRD-0119`    P1         §138     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PRD-0119`    P1         §138     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `PRD-0120`    P2         §138     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PRD-0120`    P2         §138     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `PRD-0121`    P2         §138     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PRD-0121`    P2         §138     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `IO-0042`     P1         §139     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `IO-0042`     P1         §139     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `IO-0043`     P1         §139     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `IO-0043`     P1         §139     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `IO-0044`     P1         §139     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `IO-0044`     P1         §139     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `JOB-0060`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `JOB-0060`    P1         §140     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `JOB-0061`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `JOB-0061`    P1         §140     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `JOB-0062`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `JOB-0062`    P1         §140     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `JOB-0063`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `JOB-0063`    P1         §140     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `JOB-0064`    P1         §141     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `JOB-0064`    P1         §141     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `JOB-0065`    P1         §141     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `JOB-0065`    P1         §141     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `PAY-0075`    P1         §142     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PAY-0075`    P1         §142     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `PAY-0076`    P0         §142     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PAY-0076`    P0         §142     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `PAY-0077`    P0         §142     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
+  `PAY-0077`    P0         §142     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
   `AGT-0040`    P1         §143     `TODO`   ---              ---        ---
 
@@ -1248,37 +1248,37 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0046`    P1         §145     `TODO`   ---              ---        ---
 
-  `PRD-0126`    P1         §146     `TODO`   ---              ---        ---
+  `PRD-0126`    P1         §146     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0127`    P2         §146     `TODO`   ---              ---        ---
+  `PRD-0127`    P2         §146     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0128`    P2         §146     `TODO`   ---              ---        ---
+  `PRD-0128`    P2         §146     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0129`    P2         §146     `TODO`   ---              ---        ---
+  `PRD-0129`    P2         §146     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0130`    P1         §147     `TODO`   ---              ---        ---
+  `PRD-0130`    P1         §147     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0131`    P2         §147     `TODO`   ---              ---        ---
+  `PRD-0131`    P2         §147     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0132`    P2         §147     `TODO`   ---              ---        ---
+  `PRD-0132`    P2         §147     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `CAP-0053`    P1         §148     `TODO`   ---              ---        ---
+  `CAP-0053`    P1         §148     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `CAP-0054`    P1         §148     `TODO`   ---              ---        ---
+  `CAP-0054`    P1         §148     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0133`    P1         §149     `TODO`   ---              ---        ---
+  `PRD-0133`    P1         §149     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
-  `PRD-0134`    P1         §150     `TODO`   ---              ---        ---
+  `PRD-0134`    P1         §150     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
-  `PRD-0135`    P2         §150     `TODO`   ---              ---        ---
+  `PRD-0135`    P2         §150     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
-  `PRD-0136`    P2         §150     `TODO`   ---              ---        ---
+  `PRD-0136`    P2         §150     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
-  `PRD-0137`    P1         §151     `TODO`   ---              ---        ---
+  `PRD-0137`    P1         §151     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
-  `PRD-0138`    P2         §151     `TODO`   ---              ---        ---
+  `PRD-0138`    P2         §151     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
-  `PRD-0139`    P2         §151     `TODO`   ---              ---        ---
+  `PRD-0139`    P2         §151     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
   `PRD-0140`    P1         §152     `TODO`   ---              ---        ---
 

@@ -24,6 +24,7 @@
     "@kivro/job-dispatch": "workspace:*",
     "@kivro/job-scheduling": "workspace:*",
     "@kivro/marketplace": "workspace:*",
+    "@kivro/marketplace-agent": "workspace:*",
     "@kivro/storage": "workspace:*",
     "@kivro/domain": "workspace:*",
     "@kivro/email": "workspace:*",

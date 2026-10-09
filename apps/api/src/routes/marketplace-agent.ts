@@ -1,38 +1,290 @@
-import { getPrismaClient } from "@kivro/database";
-import { runAssistedDiscovery, type CapabilityListingRow } from "@kivro/marketplace";
+import { submitPaidJob } from "@kivro/billing";
+import { getPrismaClient, type Prisma } from "@kivro/database";
 import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
+import {
+  authorizePlanApproval,
+  buildOrchestrationPlanDraft,
+  getPlatformInference,
+  type OrchestrationListingRow,
+} from "@kivro/marketplace-agent";
+import { runAssistedDiscovery, type CapabilityListingRow } from "@kivro/marketplace";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
 import type { AppEnv } from "../types.js";
 
-/** §129–§135 — assisted discovery (Mode A: recommend only). */
+/** §129–§151 — assisted discovery + orchestration plan (Mode B foundation). */
 export function marketplaceAgentRoutes(): Hono<AppEnv> {
   const app = new Hono<AppEnv>();
   app.use("*", requireAuth, requireVerifiedEmail);
 
+  app.post("/marketplace/agent/conversations", async (c) => {
+    const user = c.get("user");
+    const body = (await c.req.json<{ title?: string }>().catch(() => ({}) as { title?: string })) as {
+      title?: string;
+    };
+    const conversation = await getPrismaClient().marketplaceConversation.create({
+      data: {
+        userId: user.id,
+        title: body.title?.trim() || null,
+      },
+    });
+    return c.json({ conversationId: conversation.id });
+  });
+
+  app.get("/marketplace/agent/conversations/:id", async (c) => {
+    const user = c.get("user");
+    const conversation = await getPrismaClient().marketplaceConversation.findFirst({
+      where: { id: c.req.param("id"), userId: user.id },
+      include: {
+        messages: { orderBy: { createdAt: "asc" }, take: 100 },
+        plans: { include: { steps: { orderBy: { sortOrder: "asc" } } }, orderBy: { createdAt: "desc" }, take: 5 },
+      },
+    });
+    if (!conversation) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    return c.json({ conversation });
+  });
+
   app.post("/marketplace/agent/discover", async (c) => {
+    const user = c.get("user");
     const body = await c.req.json<{
       goal?: string;
       constraints?: Record<string, unknown>;
       limit?: number;
+      conversationId?: string;
     }>();
     if (!body.goal?.trim()) {
       return c.json({ error: "GOAL_REQUIRED" }, 400);
     }
+    const inference = getPlatformInference();
+    const parsed = await inference.parseGoal(body.goal, body.constraints as never);
     const listings = await loadListings();
     const result = runAssistedDiscovery(listings, {
       goal: body.goal,
-      constraints: body.constraints as never,
+      constraints: {
+        ...parsed.constraints,
+        ...(body.constraints as Record<string, unknown> | undefined),
+      },
       limit: body.limit,
     });
+    if (body.conversationId) {
+      await appendConversationTurn(user.id, body.conversationId, body.goal, {
+        type: "discovery",
+        result,
+      });
+    }
     return c.json({
       ...result,
+      intentLabel: parsed.intentLabel,
       approvalMode: "RECOMMEND_ONLY",
       note: "Select a capability to run; each job requires explicit purchase.",
     });
   });
 
+  app.post("/marketplace/agent/plan", async (c) => {
+    const user = c.get("user");
+    const body = await c.req.json<{
+      goal?: string;
+      constraints?: Record<string, unknown>;
+      conversationId?: string;
+    }>();
+    if (!body.goal?.trim()) {
+      return c.json({ error: "GOAL_REQUIRED" }, 400);
+    }
+    const listings = await loadOrchestrationListings();
+    const draft = buildOrchestrationPlanDraft(listings, body.goal, body.constraints as never);
+    if ("error" in draft) {
+      return c.json({ error: draft.error }, 400);
+    }
+    const authz = authorizePlanApproval({ plan: draft, constraints: draft.constraints });
+    if (!authz.ok) {
+      return c.json({ error: authz.code }, 400);
+    }
+    const plan = await getPrismaClient().orchestrationPlan.create({
+      data: {
+        userId: user.id,
+        conversationId: body.conversationId ?? null,
+        goal: draft.goal,
+        constraintsJson: draft.constraints,
+        maxBudgetCents: draft.maxBudgetCents,
+        estimatedCostCents: draft.estimatedCostCents,
+        status: "AWAITING_APPROVAL",
+        steps: {
+          create: draft.steps.map((step, index) => ({
+            sortOrder: index,
+            label: step.label,
+            capabilityId: step.capabilityId,
+            capabilityVersionId: step.capabilityVersionId,
+            dependsOnStepIds: step.dependsOnStepIds,
+            inputMappingJson: {
+              ...(step.inputMappingJson ?? {}),
+              _clientStepKey: step.clientStepKey,
+            },
+            estimatedPriceCents: step.estimatedPriceCents,
+            status: "PLANNED",
+          })),
+        },
+      },
+      include: { steps: { orderBy: { sortOrder: "asc" } } },
+    });
+    if (body.conversationId) {
+      await appendConversationTurn(user.id, body.conversationId, body.goal, {
+        type: "plan",
+        planId: plan.id,
+        estimatedCostCents: plan.estimatedCostCents,
+      });
+    }
+    return c.json({
+      plan,
+      notes: draft.notes,
+      approvalMode: "APPROVE_PLAN",
+    });
+  });
+
+  app.post("/marketplace/agent/plans/:id/approve", async (c) => {
+    const user = c.get("user");
+    const plan = await getPrismaClient().orchestrationPlan.findFirst({
+      where: { id: c.req.param("id"), userId: user.id },
+      include: { steps: { orderBy: { sortOrder: "asc" } } },
+    });
+    if (!plan) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    if (plan.status !== "AWAITING_APPROVAL" && plan.status !== "DRAFT") {
+      return c.json({ error: "INVALID_STATE" }, 400);
+    }
+    const draft = {
+      goal: plan.goal,
+      constraints: plan.constraintsJson as never,
+      maxBudgetCents: plan.maxBudgetCents,
+      estimatedCostCents: plan.estimatedCostCents,
+      steps: plan.steps.map((s) => ({
+        clientStepKey: s.id,
+        label: s.label,
+        capabilityId: s.capabilityId,
+        capabilitySlug: "",
+        capabilityVersionId: s.capabilityVersionId,
+        estimatedPriceCents: s.estimatedPriceCents,
+        dependsOnStepIds: (s.dependsOnStepIds as string[]) ?? [],
+      })),
+      notes: [],
+    };
+    const authz = authorizePlanApproval({ plan: draft, constraints: draft.constraints });
+    if (!authz.ok) {
+      return c.json({ error: authz.code }, 400);
+    }
+    await getPrismaClient().orchestrationPlan.update({
+      where: { id: plan.id },
+      data: { status: "RUNNING", approvedAt: new Date() },
+    });
+    const started = await startReadyOrchestrationSteps(user.id, plan.id);
+    return c.json({ ok: true, startedJobIds: started });
+  });
+
+  app.post("/marketplace/agent/plans/:id/draft-input", async (c) => {
+    const user = c.get("user");
+    const body = await c.req.json<{ stepId?: string; agentContext?: Record<string, unknown> }>();
+    const step = await getPrismaClient().orchestrationStep.findFirst({
+      where: {
+        id: body.stepId,
+        plan: { id: c.req.param("id"), userId: user.id },
+      },
+      include: { plan: true },
+    });
+    if (!step) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    return c.json({
+      stepId: step.id,
+      capabilityId: step.capabilityId,
+      suggestedInputs: {
+        agentGoal: step.plan.goal,
+        ...(body.agentContext ?? {}),
+      },
+      note: "§159 AI prepares job draft — refine on capability run page before purchase.",
+    });
+  });
+
   return app;
+}
+
+async function appendConversationTurn(
+  userId: string,
+  conversationId: string,
+  userText: string,
+  assistantPayload: Record<string, unknown>,
+): Promise<void> {
+  const db = getPrismaClient();
+  const conv = await db.marketplaceConversation.findFirst({
+    where: { id: conversationId, userId },
+  });
+  if (!conv) {
+    return;
+  }
+  await db.$transaction([
+    db.marketplaceMessage.create({
+      data: {
+        conversationId,
+        role: "USER",
+        content: { text: userText },
+      },
+    }),
+    db.marketplaceMessage.create({
+      data: {
+        conversationId,
+        role: "ASSISTANT",
+        content: assistantPayload as Prisma.InputJsonValue,
+      },
+    }),
+    db.marketplaceConversation.update({
+      where: { id: conversationId },
+      data: { updatedAt: new Date() },
+    }),
+  ]);
+}
+
+async function startReadyOrchestrationSteps(buyerId: string, planId: string): Promise<string[]> {
+  const db = getPrismaClient();
+  const steps = await db.orchestrationStep.findMany({
+    where: { planId },
+    orderBy: { sortOrder: "asc" },
+  });
+  const byClientKey = new Map<string, (typeof steps)[number]>();
+  for (const s of steps) {
+    const mapping = s.inputMappingJson as { _clientStepKey?: string } | null;
+    if (mapping?._clientStepKey) {
+      byClientKey.set(mapping._clientStepKey, s);
+    }
+  }
+  const started: string[] = [];
+  for (const step of steps) {
+    const deps = (step.dependsOnStepIds as string[]) ?? [];
+    const depsResolved = deps.every((depKey) => {
+      const depStep = byClientKey.get(depKey);
+      return depStep != null && (depStep.status === "COMPLETED" || depStep.jobId != null);
+    });
+    if (deps.length > 0 && !depsResolved) {
+      continue;
+    }
+    if (step.jobId) {
+      continue;
+    }
+    const result = await submitPaidJob(db, {
+      buyerId,
+      capabilityId: step.capabilityId,
+      structuredInput: { agentOrchestrationPlanId: planId, agentStepId: step.id },
+      assetManifest: {},
+    });
+    if ("jobId" in result) {
+      await db.orchestrationStep.update({
+        where: { id: step.id },
+        data: { jobId: result.jobId, status: "RUNNING" },
+      });
+      started.push(result.jobId);
+    }
+  }
+  return started;
 }
 
 async function loadListings(): Promise<CapabilityListingRow[]> {
@@ -68,4 +320,25 @@ async function loadListings(): Promise<CapabilityListingRow[]> {
       nextAvailableAt: avail?.nextAvailableAt ?? null,
     };
   });
+}
+
+async function loadOrchestrationListings(): Promise<OrchestrationListingRow[]> {
+  const rows = await getPrismaClient().capability.findMany({
+    where: { status: "PUBLISHED", currentVersionId: { not: null } },
+    include: {
+      sellerProfile: { select: { id: true, displayName: true } },
+      currentVersion: { select: { id: true, priceSnapshotCents: true } },
+    },
+  });
+  const base = await loadListings();
+  const versionByCap = new Map(rows.map((r) => [r.id, r.currentVersion?.id ?? r.currentVersionId!]));
+  return base
+    .map((row) => {
+      const vid = versionByCap.get(row.id);
+      if (!vid) {
+        return null;
+      }
+      return { ...row, currentVersionId: vid };
+    })
+    .filter((r): r is OrchestrationListingRow => r != null);
 }

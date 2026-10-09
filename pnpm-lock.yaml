@@ -74,6 +74,9 @@ importers:
       '@kivro/marketplace':
         specifier: workspace:*
         version: link:../../packages/marketplace
+      '@kivro/marketplace-agent':
+        specifier: workspace:*
+        version: link:../../packages/marketplace-agent
       '@kivro/observability':
         specifier: workspace:*
         version: link:../../packages/observability
@@ -336,6 +339,12 @@ importers:
       '@kivro/job-scheduling':
         specifier: workspace:*
         version: link:../job-scheduling
+
+  packages/marketplace-agent:
+    dependencies:
+      '@kivro/marketplace':
+        specifier: workspace:*
+        version: link:../marketplace
 
   packages/observability: {}
 

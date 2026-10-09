@@ -122,6 +122,106 @@ model User {
   buyerStoredAssets       StoredAsset[]
   favorites               Favorite[]
   capabilityReviews       CapabilityReview[]
+  marketplaceConversations MarketplaceConversation[]
+  orchestrationPlans      OrchestrationPlan[]
+}
+
+enum MarketplaceMessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+enum OrchestrationPlanStatus {
+  DRAFT
+  AWAITING_APPROVAL
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum OrchestrationStepStatus {
+  PLANNED
+  READY
+  PAYMENT_RESERVED
+  RUNNING
+  COMPLETED
+  FAILED
+  SKIPPED
+}
+
+enum AgentApprovalMode {
+  RECOMMEND_ONLY
+  APPROVE_PLAN
+}
+
+model MarketplaceConversation {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages MarketplaceMessage[]
+  plans    OrchestrationPlan[]
+
+  @@index([userId])
+}
+
+model MarketplaceMessage {
+  id             String                 @id @default(uuid())
+  conversationId String
+  role           MarketplaceMessageRole
+  content        Json
+  createdAt      DateTime               @default(now())
+
+  conversation MarketplaceConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+}
+
+model OrchestrationPlan {
+  id                  String                  @id @default(uuid())
+  userId              String
+  conversationId      String?
+  goal                String
+  constraintsJson     Json
+  maxBudgetCents      Int?
+  estimatedCostCents  Int
+  status              OrchestrationPlanStatus @default(DRAFT)
+  approvalMode        AgentApprovalMode       @default(APPROVE_PLAN)
+  approvedAt          DateTime?
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
+
+  user         User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation MarketplaceConversation? @relation(fields: [conversationId], references: [id], onDelete: SetNull)
+  steps        OrchestrationStep[]
+
+  @@index([userId])
+  @@index([conversationId])
+}
+
+model OrchestrationStep {
+  id                   String                  @id @default(uuid())
+  planId               String
+  sortOrder            Int
+  label                String
+  capabilityId         String
+  capabilityVersionId  String
+  dependsOnStepIds     Json                    @default("[]")
+  inputMappingJson     Json?
+  estimatedPriceCents  Int
+  status               OrchestrationStepStatus @default(PLANNED)
+  jobId                String?
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+
+  plan OrchestrationPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+
+  @@index([planId])
 }
 
 model CapabilityReview {
