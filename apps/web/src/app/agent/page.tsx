@@ -19,6 +19,7 @@ export default function MarketplaceAgentPage() {
   const [maxDollars, setMaxDollars] = useState("");
   const [minRating, setMinRating] = useState("");
   const [onlineOnly, setOnlineOnly] = useState(false);
+  const [maxRuntimeMinutes, setMaxRuntimeMinutes] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [recommendations, setRecommendations] = useState<Recommendation[] | null>(null);
@@ -45,7 +46,24 @@ export default function MarketplaceAgentPage() {
     if (onlineOnly) {
       constraints.onlineOnly = true;
     }
+    if (maxRuntimeMinutes) {
+      constraints.maxRuntimeSeconds = Math.round(Number.parseFloat(maxRuntimeMinutes) * 60);
+    }
     return constraints;
+  }
+
+  async function refreshPlan(planId: string) {
+    const res = await fetch(`${API_BASE}/marketplace/agent/plans/${planId}`, {
+      credentials: "include",
+    });
+    if (!res.ok) {
+      return;
+    }
+    const body = (await res.json()) as { plan: typeof plan & { synthesisSummary?: string | null } };
+    setPlan(body.plan);
+    if (body.plan.synthesisSummary) {
+      setPlanNotes((n) => [...n, body.plan.synthesisSummary!]);
+    }
   }
 
   async function ensureConversation(): Promise<string | null> {
@@ -74,12 +92,6 @@ export default function MarketplaceAgentPage() {
     try {
       const constraints = buildConstraints();
       const convId = await ensureConversation();
-      if (minRating) {
-        constraints.minRating = Number.parseFloat(minRating);
-      }
-      if (onlineOnly) {
-        constraints.onlineOnly = true;
-      }
       const res = await fetch(`${API_BASE}/marketplace/agent/discover`, {
         method: "POST",
         credentials: "include",
@@ -133,6 +145,9 @@ export default function MarketplaceAgentPage() {
       }
       setPlan(body.plan ?? null);
       setPlanNotes(body.notes ?? []);
+      if (body.plan?.id) {
+        void refreshPlan(body.plan.id);
+      }
     } finally {
       setLoading(false);
     }
@@ -154,7 +169,9 @@ export default function MarketplaceAgentPage() {
         setError(body.error ?? "Approval failed");
         return;
       }
-      setPlan({ ...plan, status: "RUNNING" });
+      if (plan?.id) {
+        await refreshPlan(plan.id);
+      }
       if (body.startedJobIds?.length) {
         setPlanNotes((n) => [...n, `Started ${body.startedJobIds!.length} job(s). Track them under My jobs.`]);
       }
@@ -225,7 +242,23 @@ export default function MarketplaceAgentPage() {
               <span>Online now</span>
             </label>
           </div>
+          <div className="form-field">
+            <label className="field-label" htmlFor="agent-runtime">
+              Max duration (min)
+            </label>
+            <input
+              id="agent-runtime"
+              type="number"
+              min="1"
+              placeholder="Any"
+              value={maxRuntimeMinutes}
+              onChange={(e) => setMaxRuntimeMinutes(e.target.value)}
+            />
+          </div>
         </div>
+        {conversationId && (
+          <p className="meta">Conversation saved · id {conversationId.slice(0, 8)}…</p>
+        )}
         {error && <p className="field-error">{error}</p>}
         <div className="form-actions" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
           <button className="button" type="submit" disabled={loading}>
@@ -256,6 +289,9 @@ export default function MarketplaceAgentPage() {
             {plan.steps.map((step) => (
               <li key={step.id} className="meta" style={{ marginTop: "0.5rem" }}>
                 {step.label} — ${(step.estimatedPriceCents / 100).toFixed(2)}
+                {Array.isArray(step.dependsOnStepIds) && step.dependsOnStepIds.length > 0 && (
+                  <span> ← after {String(step.dependsOnStepIds.join(", "))}</span>
+                )}
               </li>
             ))}
           </ol>

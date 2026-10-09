@@ -16,6 +16,8 @@ run("pnpm", [
   "vitest",
   "run",
   "packages/marketplace-agent/src/orchestration-planner.test.ts",
+  "packages/marketplace-agent/src/orchestration-runner.test.ts",
+  "packages/marketplace-agent/src/prompt-safety.test.ts",
   "security/tests/acceptance-m11.test.ts",
 ]);
 

@@ -1,15 +1,24 @@
-import { submitPaidJob } from "@kivro/billing";
+import { parseCapabilityContract } from "@kivro/contracts";
 import { getPrismaClient, type Prisma } from "@kivro/database";
+import { prepareAgentJobSubmission } from "@kivro/job-io";
 import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import {
   authorizePlanApproval,
   buildOrchestrationPlanDraft,
+  buildStepAgentDraft,
   getPlatformInference,
+  requotePlanSteps,
+  stepCompletedOutputs,
+  toStepRecord,
   type OrchestrationListingRow,
 } from "@kivro/marketplace-agent";
 import { runAssistedDiscovery, type CapabilityListingRow } from "@kivro/marketplace";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
+import {
+  reserveOrchestrationBudget,
+  startReadyOrchestrationSteps,
+} from "../services/orchestration-execution.js";
 import type { AppEnv } from "../types.js";
 
 /** §129–§151 — assisted discovery + orchestration plan (Mode B foundation). */
@@ -93,10 +102,12 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
       return c.json({ error: "GOAL_REQUIRED" }, 400);
     }
     const listings = await loadOrchestrationListings();
-    const draft = buildOrchestrationPlanDraft(listings, body.goal, body.constraints as never);
+    let draft = buildOrchestrationPlanDraft(listings, body.goal, body.constraints as never);
     if ("error" in draft) {
       return c.json({ error: draft.error }, 400);
     }
+    const requoted = requotePlanSteps(draft.steps, listings);
+    draft = { ...draft, steps: requoted.steps, estimatedCostCents: requoted.estimatedCostCents };
     const authz = authorizePlanApproval({ plan: draft, constraints: draft.constraints });
     if (!authz.ok) {
       return c.json({ error: authz.code }, 400);
@@ -142,9 +153,22 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
     });
   });
 
-  app.post("/marketplace/agent/plans/:id/approve", async (c) => {
+  app.get("/marketplace/agent/plans/:id", async (c) => {
     const user = c.get("user");
     const plan = await getPrismaClient().orchestrationPlan.findFirst({
+      where: { id: c.req.param("id"), userId: user.id },
+      include: { steps: { orderBy: { sortOrder: "asc" } } },
+    });
+    if (!plan) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    return c.json({ plan });
+  });
+
+  app.post("/marketplace/agent/plans/:id/approve", async (c) => {
+    const user = c.get("user");
+    const db = getPrismaClient();
+    const plan = await db.orchestrationPlan.findFirst({
       where: { id: c.req.param("id"), userId: user.id },
       include: { steps: { orderBy: { sortOrder: "asc" } } },
     });
@@ -154,55 +178,113 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
     if (plan.status !== "AWAITING_APPROVAL" && plan.status !== "DRAFT") {
       return c.json({ error: "INVALID_STATE" }, 400);
     }
+    const listings = await loadOrchestrationListings();
+    const plannedSteps = plan.steps.map((s) => ({
+      clientStepKey: (s.inputMappingJson as { _clientStepKey?: string })?._clientStepKey ?? s.id,
+      label: s.label,
+      capabilityId: s.capabilityId,
+      capabilitySlug: "",
+      capabilityVersionId: s.capabilityVersionId,
+      estimatedPriceCents: s.estimatedPriceCents,
+      dependsOnStepIds: (s.dependsOnStepIds as string[]) ?? [],
+      inputMappingJson: s.inputMappingJson as Record<string, unknown> | undefined,
+    }));
+    const requoted = requotePlanSteps(plannedSteps, listings);
     const draft = {
       goal: plan.goal,
       constraints: plan.constraintsJson as never,
       maxBudgetCents: plan.maxBudgetCents,
-      estimatedCostCents: plan.estimatedCostCents,
-      steps: plan.steps.map((s) => ({
-        clientStepKey: s.id,
-        label: s.label,
-        capabilityId: s.capabilityId,
-        capabilitySlug: "",
-        capabilityVersionId: s.capabilityVersionId,
-        estimatedPriceCents: s.estimatedPriceCents,
-        dependsOnStepIds: (s.dependsOnStepIds as string[]) ?? [],
-      })),
-      notes: [],
+      estimatedCostCents: requoted.estimatedCostCents,
+      steps: requoted.steps,
+      notes: requoted.priceChanged ? ["Prices refreshed from marketplace at approval."] : [],
     };
     const authz = authorizePlanApproval({ plan: draft, constraints: draft.constraints });
     if (!authz.ok) {
       return c.json({ error: authz.code }, 400);
     }
-    await getPrismaClient().orchestrationPlan.update({
+    for (const step of requoted.steps) {
+      const row = plan.steps.find((s) => s.capabilityId === step.capabilityId);
+      if (row) {
+        await db.orchestrationStep.update({
+          where: { id: row.id },
+          data: {
+            estimatedPriceCents: step.estimatedPriceCents,
+            quotedPriceCents: step.estimatedPriceCents,
+            capabilityVersionId:
+              listings.find((l) => l.id === step.capabilityId)?.currentVersionId ??
+              row.capabilityVersionId,
+          },
+        });
+      }
+    }
+    await db.orchestrationPlan.update({
       where: { id: plan.id },
-      data: { status: "RUNNING", approvedAt: new Date() },
+      data: {
+        status: "RUNNING",
+        approvedAt: new Date(),
+        approvedEstimatedCostCents: requoted.estimatedCostCents,
+        estimatedCostCents: requoted.estimatedCostCents,
+      },
     });
-    const started = await startReadyOrchestrationSteps(user.id, plan.id);
+    await reserveOrchestrationBudget(db, plan.id, requoted.estimatedCostCents);
+    const started = await startReadyOrchestrationSteps(db, user.id, plan.id);
+    return c.json({
+      ok: true,
+      startedJobIds: started,
+      estimatedCostCents: requoted.estimatedCostCents,
+      priceChanged: requoted.priceChanged,
+    });
+  });
+
+  app.post("/marketplace/agent/plans/:id/advance", async (c) => {
+    const user = c.get("user");
+    const plan = await getPrismaClient().orchestrationPlan.findFirst({
+      where: { id: c.req.param("id"), userId: user.id, status: "RUNNING" },
+    });
+    if (!plan) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    const started = await startReadyOrchestrationSteps(getPrismaClient(), user.id, plan.id);
     return c.json({ ok: true, startedJobIds: started });
   });
 
   app.post("/marketplace/agent/plans/:id/draft-input", async (c) => {
     const user = c.get("user");
-    const body = await c.req.json<{ stepId?: string; agentContext?: Record<string, unknown> }>();
+    const body = await c.req.json<{ stepId?: string }>();
     const step = await getPrismaClient().orchestrationStep.findFirst({
       where: {
         id: body.stepId,
         plan: { id: c.req.param("id"), userId: user.id },
       },
-      include: { plan: true },
+      include: { plan: { include: { steps: true } } },
     });
     if (!step) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
+    const capability = await getPrismaClient().capability.findUnique({
+      where: { id: step.capabilityId },
+      include: { currentVersion: true },
+    });
+    if (!capability?.currentVersion) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    const contract = parseCapabilityContract({
+      name: capability.name,
+      description: capability.description,
+      currency: capability.currentVersion.currency,
+      priceTierCents: capability.currentVersion.priceSnapshotCents,
+      inputs: capability.currentVersion.inputSchema,
+      output: capability.currentVersion.outputSchema,
+    });
+    const records = step.plan.steps.map(toStepRecord);
+    const completed = stepCompletedOutputs(records);
+    const agentDraft = buildStepAgentDraft(step.plan.goal, toStepRecord(step), completed);
+    const prepared = prepareAgentJobSubmission(contract, agentDraft);
     return c.json({
       stepId: step.id,
       capabilityId: step.capabilityId,
-      suggestedInputs: {
-        agentGoal: step.plan.goal,
-        ...(body.agentContext ?? {}),
-      },
-      note: "§159 AI prepares job draft — refine on capability run page before purchase.",
+      capabilitySlug: capability.slug,
+      ...prepared,
     });
   });
 
@@ -242,49 +324,6 @@ async function appendConversationTurn(
       data: { updatedAt: new Date() },
     }),
   ]);
-}
-
-async function startReadyOrchestrationSteps(buyerId: string, planId: string): Promise<string[]> {
-  const db = getPrismaClient();
-  const steps = await db.orchestrationStep.findMany({
-    where: { planId },
-    orderBy: { sortOrder: "asc" },
-  });
-  const byClientKey = new Map<string, (typeof steps)[number]>();
-  for (const s of steps) {
-    const mapping = s.inputMappingJson as { _clientStepKey?: string } | null;
-    if (mapping?._clientStepKey) {
-      byClientKey.set(mapping._clientStepKey, s);
-    }
-  }
-  const started: string[] = [];
-  for (const step of steps) {
-    const deps = (step.dependsOnStepIds as string[]) ?? [];
-    const depsResolved = deps.every((depKey) => {
-      const depStep = byClientKey.get(depKey);
-      return depStep != null && (depStep.status === "COMPLETED" || depStep.jobId != null);
-    });
-    if (deps.length > 0 && !depsResolved) {
-      continue;
-    }
-    if (step.jobId) {
-      continue;
-    }
-    const result = await submitPaidJob(db, {
-      buyerId,
-      capabilityId: step.capabilityId,
-      structuredInput: { agentOrchestrationPlanId: planId, agentStepId: step.id },
-      assetManifest: {},
-    });
-    if ("jobId" in result) {
-      await db.orchestrationStep.update({
-        where: { id: step.id },
-        data: { jobId: result.jobId, status: "RUNNING" },
-      });
-      started.push(result.jobId);
-    }
-  }
-  return started;
 }
 
 async function loadListings(): Promise<CapabilityListingRow[]> {

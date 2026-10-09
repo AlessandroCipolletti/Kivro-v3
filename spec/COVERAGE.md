@@ -1226,27 +1226,27 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PAY-0077`    P0         §142     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `AGT-0040`    P1         §143     `TODO`   ---              ---        ---
+  `AGT-0040`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0041`    P1         §143     `TODO`   ---              ---        ---
+  `AGT-0041`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0042`    P1         §143     `TODO`   ---              ---        ---
+  `AGT-0042`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0043`    P1         §143     `TODO`   ---              ---        ---
+  `AGT-0043`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0044`    P1         §143     `TODO`   ---              ---        ---
+  `AGT-0044`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0122`    P1         §144     `TODO`   ---              ---        ---
+  `PRD-0122`    P1         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0123`    P2         §144     `TODO`   ---              ---        ---
+  `PRD-0123`    P2         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0124`    P2         §144     `TODO`   ---              ---        ---
+  `PRD-0124`    P2         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0125`    P2         §144     `TODO`   ---              ---        ---
+  `PRD-0125`    P2         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0045`    P1         §145     `TODO`   ---              ---        ---
+  `AGT-0045`    P1         §145     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0046`    P1         §145     `TODO`   ---              ---        ---
+  `AGT-0046`    P1         §145     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
   `PRD-0126`    P1         §146     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 

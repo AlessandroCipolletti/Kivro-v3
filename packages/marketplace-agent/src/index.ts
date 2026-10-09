@@ -9,3 +9,18 @@ export {
 } from "./orchestration-planner.js";
 export { authorizePlanApproval } from "./purchase-authorization.js";
 export { toolSearchCapabilities, toolGetCapability } from "./agent-tools.js";
+export {
+  buildStepAgentDraft,
+  clientStepKeyFromMapping,
+  dependenciesMet,
+  findRunnableSteps,
+  parseStoredAssetRefs,
+  stepCompletedOutputs,
+  synthesizePlanSummary,
+  toStepRecord,
+  type OrchestrationStepRecord,
+} from "./orchestration-runner.js";
+export { buildCrossJobAgentDraft } from "./cross-job-input.js";
+export { requotePlanSteps } from "./plan-requote.js";
+export { sanitizeMarketplaceTextForAgent } from "./prompt-safety.js";
+export { resetPlatformInferenceCache } from "./platform-inference.js";

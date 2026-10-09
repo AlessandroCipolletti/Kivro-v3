@@ -228,6 +228,8 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if ("error" in result) {
       return c.json(result, 409);
     }
+    const { onOrchestrationJobCompleted } = await import("../services/orchestration-execution.js");
+    await onOrchestrationJobCompleted(getPrismaClient(), c.req.param("jobId"));
     return c.json(result);
   });
 

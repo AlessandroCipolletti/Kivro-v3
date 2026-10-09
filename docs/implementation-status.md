@@ -15,7 +15,7 @@
 | M08 payments & pricing | Implemented | `@kivro/billing`, credits + card authorization, tiers §282, Stripe Checkout/Connect/transfer, `pnpm verify:m08` (DEC-M08-001..003) |
 | M09 scheduling & availability | Implemented (bounded) | Weekly schedules, acceptance gate, `SCHEDULED`/`scheduleWaitDeadlineAt`, dispatch window gate, buyer cancel, sweeps, agent availability payload; `pnpm verify:m09` (DEC-M09-001..003) |
 | M10 marketplace buyer UX | Implemented (bounded) | Discover/search/detail/seller/favorites/history/reviews/agent discovery, buyer job detail + downloads; `pnpm verify:m10` |
-| M11 marketplace agent & orchestration | Implemented (bounded) | `@kivro/marketplace-agent`, conversations, deterministic platform inference, orchestration plan + approve (Mode B foundation); staging DAG E2E §160 partial; `pnpm verify:m11` |
+| M11 marketplace agent & orchestration | Implemented (bounded) | Orchestration runner, cross-job drafts, budget hold, re-quote at approve, agent tool routes, optional OpenAI intent; §160 staging E2E still open; `pnpm verify:m11` |
 
 ## Security assumptions
 

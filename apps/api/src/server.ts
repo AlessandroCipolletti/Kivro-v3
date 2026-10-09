@@ -24,6 +24,7 @@ import { buyerJobsListRoutes } from "./routes/buyer-jobs-list.js";
 import { marketplaceSellerRoutes } from "./routes/marketplace-sellers.js";
 import { capabilityReviewRoutes } from "./routes/capability-reviews.js";
 import { marketplaceAgentRoutes } from "./routes/marketplace-agent.js";
+import { marketplaceAgentToolRoutes } from "./routes/marketplace-agent-tools.js";
 import { buyerJobAssetRoutes } from "./routes/buyer-job-assets.js";
 import type { AppEnv } from "./types.js";
 
@@ -97,6 +98,7 @@ export function createApp(): Hono<AppEnv> {
   app.route("/buyer", buyerJobAssetRoutes());
   app.route("/buyer", buyerFavoritesRoutes());
   app.route("/", marketplaceAgentRoutes());
+  app.route("/", marketplaceAgentToolRoutes());
   app.route("/buyer", buyerJobRoutes());
   app.route("/seller", sellerBillingRoutes());
   app.route("/seller", sellerJobRoutes());

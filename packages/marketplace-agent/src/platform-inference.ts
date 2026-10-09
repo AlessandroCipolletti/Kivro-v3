@@ -1,5 +1,6 @@
 import type { BuyerConstraints } from "@kivro/marketplace";
 import { extractConstraintsFromText } from "@kivro/marketplace";
+import { OpenAiPlatformInference } from "./platform-inference-openai.js";
 
 /** §146 — platform-owned inference; deterministic path is always available. */
 export type PlatformIntent = {
@@ -35,7 +36,13 @@ let cached: PlatformInferencePort | undefined;
 
 export function getPlatformInference(): PlatformInferencePort {
   if (!cached) {
-    cached = new DeterministicPlatformInference();
+    cached = process.env.KIVRO_PLATFORM_OPENAI_API_KEY?.trim()
+      ? new OpenAiPlatformInference()
+      : new DeterministicPlatformInference();
   }
   return cached;
+}
+
+export function resetPlatformInferenceCache(): void {
+  cached = undefined;
 }

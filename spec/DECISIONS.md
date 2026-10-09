@@ -535,4 +535,4 @@ greenfield.
 
 **Context:** Strong MVP extension requires structured plans, DAG, and purchase authorization without LLM-controlled payments.
 
-**Decision:** `@kivro/marketplace-agent` builds competitor-research DAG plans from live listings and hard constraints; plans persist in PostgreSQL; `authorizePlanApproval` gates approval; job launch uses existing `submitPaidJob`. Full cross-job asset mapping, parallel sweep reconciliation, and staging scenario §160 remain incremental hardening after M11 foundation.
+**Decision:** `@kivro/marketplace-agent` builds competitor-research DAG plans from live listings and hard constraints; plans persist in PostgreSQL; `authorizePlanApproval` gates approval; job launch uses existing `submitPaidJob`. M11 hardening adds cross-job draft mapping, step advancement on job completion, orchestration budget hold in credit balance, tool HTTP surface (§149), optional OpenAI intent parsing, and re-quote at approval. Canonical staging scenario §160 and Mode C delegated budget remain follow-up.

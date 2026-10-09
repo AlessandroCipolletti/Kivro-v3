@@ -75,7 +75,16 @@ export async function getBuyerCreditBalanceCents(
     },
     select: { reservedAmountCents: true },
   });
-  const reservedCents = activeJobs.reduce((sum, j) => sum + (j.reservedAmountCents ?? 0), 0);
+  const jobReservedCents = activeJobs.reduce((sum, j) => sum + (j.reservedAmountCents ?? 0), 0);
+  const orchestrationHolds = await prisma.orchestrationPlan.findMany({
+    where: { userId: buyerId, status: "RUNNING", budgetReservedCents: { gt: 0 } },
+    select: { budgetReservedCents: true },
+  });
+  const orchestrationReservedCents = orchestrationHolds.reduce(
+    (sum, p) => sum + p.budgetReservedCents,
+    0,
+  );
+  const reservedCents = jobReservedCents + orchestrationReservedCents;
   return { availableCents: credits - reservedCents, reservedCents };
 }
 

@@ -17,7 +17,10 @@ Signed-in buyer with verified email and credits (M02/M08).
 
 - Same page → **Build execution plan** with a multi-competitor + PDF style goal and budget/rating constraints.
 - Expect `AWAITING_APPROVAL` plan with step DAG and estimated total.
-- **Approve plan** creates jobs for ready steps (parallel research when funded).
+- **Approve plan** re-quotes prices, reserves orchestration budget, starts ready steps (parallel research when funded).
+- When a step’s job completes (worker `/complete`), the next dependent step should auto-start.
+- `POST /marketplace/agent/plans/:id/advance` manually advances a stuck RUNNING plan.
+- Agent tools: `POST /marketplace/agent/tools/search_capabilities`, `GET .../get_capability/:slug`, etc.
 
 ## 3. Conversation persistence
 
