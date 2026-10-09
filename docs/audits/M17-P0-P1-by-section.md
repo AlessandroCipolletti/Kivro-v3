@@ -1,6 +1,6 @@
 # M17 — P0/P1 open requirements by section
 
-Open here means status TODO/PARTIAL/BLOCKED with an explicit **scheduled:Mxx** note (post-M17 work).
+Open = TODO/PARTIAL/BLOCKED with explicit schedule note (post-closure milestones).
 
 | Section | Target milestone | TODO | PARTIAL | BLOCKED |
 |---------|------------------|------|---------|---------|
@@ -84,3 +84,23 @@ Open here means status TODO/PARTIAL/BLOCKED with an explicit **scheduled:Mxx** n
 | §492 | ? | 2 | 0 | 0 |
 | §496 | ? | 2 | 0 | 0 |
 | §497 | ? | 2 | 0 | 0 |
+| §508 | ? | 2 | 0 | 0 |
+| §509 | ? | 2 | 0 | 0 |
+| §512 | ? | 2 | 0 | 0 |
+| §1 | ? | 1 | 0 | 0 |
+| §3 | ? | 1 | 0 | 0 |
+| §47 | ? | 1 | 0 | 0 |
+| §144 | M11 | 0 | 1 | 0 |
+| §152 | ? | 1 | 0 | 0 |
+| §153 | ? | 1 | 0 | 0 |
+| §154 | ? | 1 | 0 | 0 |
+| §155 | ? | 1 | 0 | 0 |
+| §156 | ? | 1 | 0 | 0 |
+| §157 | ? | 1 | 0 | 0 |
+| §159 | ? | 1 | 0 | 0 |
+| §160 | ? | 1 | 0 | 0 |
+| §161 | ? | 1 | 0 | 0 |
+| §162 | ? | 1 | 0 | 0 |
+| §174 | ? | 1 | 0 | 0 |
+| §175 | ? | 1 | 0 | 0 |
+| §177 | ? | 1 | 0 | 0 |

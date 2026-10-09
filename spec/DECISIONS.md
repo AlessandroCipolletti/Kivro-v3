@@ -600,6 +600,12 @@ greenfield.
 
 **Decision:** Deliver automated audit (`audit-m17-compliance.mjs`), section→milestone index, schedule notes on every open COVERAGE row, M00–M16 closure check (no TODO in sections owned by completed milestones), evidence path validation for TESTED rows, and published audit reports. M17 does **not** claim full MASTER-SPEC implementation; terminal proof remains M23/M28. Gate: `pnpm verify:m17`.
 
+## DEC-M23-001 — Unified compliance audit harness (M00–M22 closure + readiness)
+
+**Context:** IMPLEMENTATION-PLAN M23 requires an independent audit against the full Master Spec; M28 is the terminal lossless gate. M22 completes dual control-plane switch readiness.
+
+**Decision:** Extract shared `compliance-audit-core.mjs`; add `audit-m23-unified.mjs` with M00–M22 section closure, evidence validation, unified-backend readiness checklist, and M23 audit reports. Staging paid E2E and dual-CP transition E2E remain optional (env-gated) until M28. Gate: `pnpm verify:m23` (includes `verify:m22`).
+
 ## DEC-M18-001 — Local development environment & local E2E (§551–§573)
 
 **Context:** M18 maps `DEV-LOCAL-001`–`029`: Compose infra, dev scripts, fake payment adapter, health/readiness, local paid path, and §573 checklist evidence.

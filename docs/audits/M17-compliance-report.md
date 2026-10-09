@@ -1,25 +1,25 @@
 # M17 compliance audit snapshot
 
-Generated: 2026-10-09T22:52:22.425Z
+Generated: 2026-10-09T22:55:14.604Z
 
 ## Totals
 
-- Requirements parsed: **1923**
-- TESTED: 1376 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
+- Requirements parsed: **1926**
+- TESTED: 1379 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
 
 ## M00–M16 closure check
 
-- Sections owned by milestones M00–M16: 337
+- Sections referenced by milestones through M16: 337
 - TODO rows inside that section set: **0** (must be 0)
-- PARTIAL in that set: 9 (documented in milestone closures)
+- PARTIAL in that set: 9
 
 ## Gate inputs
 
-- Unexplained TODO/PARTIAL/BLOCKED (missing schedule note): **0**
+- Unexplained TODO/PARTIAL/BLOCKED: **0**
 - TESTED rows with missing evidence paths: **0**
 
-## P0/P1 still open (scheduled to later milestones)
+## P0/P1 still open (scheduled later)
 
-See `docs/audits/M17-P0-P1-by-section.md` for the section rollup.
+See `docs/audits/M17-P0-P1-by-section.md`.
 
 Full machine report: `docs/audits/M17-compliance-report.json`.

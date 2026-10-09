@@ -16,47 +16,47 @@ feature post-MVP or the user explicitly approves the deferral.
   Requirement   Priority   Source   Status   Implementation   Test       Notes
                                              evidence         evidence   
   ------------- ---------- -------- -------- ---------------- ---------- ---------
-  `PRD-0001`    P1         §1       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0001`    P1         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0002`    P2         §1       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0002`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0003`    P2         §1       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0003`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0004`    P2         §1       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0004`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0005`    P2         §1       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0005`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0006`    P2         §1       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0006`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0007`    P2         §1       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0007`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0001`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0001`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0002`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0002`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0003`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0003`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0004`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0004`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0005`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0005`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0006`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0006`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0007`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0007`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0008`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0008`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0009`    P1         §2       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0009`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0008`    P1         §3       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0008`    P1         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0009`    P2         §3       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0009`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0010`    P2         §3       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0010`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0011`    P2         §3       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0011`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0012`    P2         §3       `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0012`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0013`    P1         §4      `TESTED`   packages/domain, prisma User/SellerProfile vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -470,13 +470,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0002`    P1         §26      `TESTED`   packages/job-scheduling/src/availability-status.ts, packages/job-scheduling/src/availability-service.ts, packages/job-scheduling/src/submission-gate.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `WRK-0048`    P1         §27      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0048`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0049`    P1         §27      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0049`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0050`    P1         §27      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0050`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0051`    P1         §27      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0051`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0043`    P1         §28      `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
@@ -576,9 +576,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0060`    P2         §47      `TODO`   ---              ---        post-MVP (Master Spec); M17 audit accounted
 
-  `SEC-0042`    P1         §48      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0042`    P1         §48      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0043`    P0         §48      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0043`    P0         §48      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `WRK-0054`    P1         §49      `TESTED`   docs/ARCHITECTURE.md vitest; docs/milestones/M00-manual-validation.md M00
 
@@ -590,9 +590,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0058`    P1         §49      `TESTED`   docs/ARCHITECTURE.md vitest; docs/milestones/M00-manual-validation.md M00
 
-  `WRK-0059`    P1         §50      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0059`    P1         §50      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0060`    P1         §50      `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `WRK-0060`    P1         §50      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `SEC-0044`    P1         §51      `TESTED`   AGENTS.md, spec/DECISIONS.md vitest; docs/milestones/M00-manual-validation.md M00
 
@@ -1280,55 +1280,55 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0139`    P2         §151     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
-  `PRD-0140`    P1         §152     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0140`    P1         §152     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0141`    P2         §152     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0141`    P2         §152     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0142`    P1         §153     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0142`    P1         §153     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0143`    P2         §153     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0143`    P2         §153     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0144`    P1         §154     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0144`    P1         §154     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0145`    P2         §154     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0145`    P2         §154     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0146`    P1         §155     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0146`    P1         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0147`    P2         §155     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0147`    P2         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0148`    P2         §155     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0148`    P2         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0055`    P1         §156     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0055`    P1         §156     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0045`     P1         §157     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0045`     P1         §157     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0046`     P1         §158     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0046`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0047`     P1         §158     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0047`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0048`     P1         §158     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0048`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0049`     P1         §158     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0049`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0149`    P1         §159     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0149`    P1         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0150`    P2         §159     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0150`    P2         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0151`    P2         §159     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0151`    P2         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0152`    P1         §160     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0152`    P1         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0153`    P2         §160     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0153`    P2         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0154`    P2         §160     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0154`    P2         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0155`    P1         §161     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0155`    P1         §161     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0156`    P2         §161     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0156`    P2         §161     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0157`    P1         §162     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0157`    P1         §162     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0158`    P2         §162     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0158`    P2         §162     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0159`    P1         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -1338,185 +1338,185 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0162`    P2         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `AGT-0047`    P1         §164     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0047`    P1         §164     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0048`    P1         §164     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0048`    P1         §164     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0049`    P1         §164     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0049`    P1         §164     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0050`    P1         §165     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0050`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0051`    P1         §165     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0051`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0052`    P1         §165     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0052`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0053`    P1         §165     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0053`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0054`    P1         §165     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0054`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0055`    P1         §165     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0055`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0066`    P1         §166     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0066`    P1         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0067`    P0         §166     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0067`    P0         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0068`    P0         §166     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0068`    P0         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0069`    P0         §166     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0069`    P0         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0056`    P1         §167     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0056`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0057`    P1         §167     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0057`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0058`    P1         §167     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0058`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0059`    P1         §167     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0059`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0060`    P1         §168     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0060`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0061`    P1         §168     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0061`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0062`    P1         §168     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0062`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0063`    P1         §169     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0063`    P1         §169     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0064`    P1         §169     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0064`    P1         §169     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0065`    P1         §170     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0065`    P1         §170     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0066`    P1         §170     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0066`    P1         §170     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0067`    P1         §171     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0067`    P1         §171     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0068`    P1         §171     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0068`    P1         §171     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0069`    P1         §171     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0069`    P1         §171     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0050`     P1         §172     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0050`     P1         §172     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0051`     P1         §172     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0051`     P1         §172     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0052`     P1         §172     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0052`     P1         §172     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0070`    P1         §173     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0070`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0071`    P1         §173     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0071`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0072`    P1         §173     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0072`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0073`    P1         §173     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0073`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0163`    P1         §174     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0163`    P1         §174     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0164`    P2         §174     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0164`    P2         §174     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0165`    P2         §174     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0165`    P2         §174     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0074`    P1         §175     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0074`    P1         §175     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0075`    P1         §176     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0075`    P1         §176     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0076`    P1         §176     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0076`    P1         §176     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0166`    P1         §177     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0166`    P1         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0167`    P2         §177     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0167`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0168`    P2         §177     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0168`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0169`    P2         §177     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0169`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0170`    P2         §177     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0170`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0171`    P2         §177     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0171`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0172`    P1         §178     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0172`    P1         §178     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0173`    P2         §178     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0173`    P2         §178     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0174`    P2         §178     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0174`    P2         §178     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0175`    P1         §179     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0175`    P1         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0176`    P2         §179     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0176`    P2         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0177`    P2         §179     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0177`    P2         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0178`    P2         §179     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0178`    P2         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0077`    P1         §180     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0077`    P1         §180     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0078`    P1         §180     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0078`    P1         §180     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0079`    P1         §181     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0079`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0080`    P1         §181     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0080`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0081`    P1         §181     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0081`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0082`    P1         §181     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0082`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0083`    P1         §182     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0083`    P1         §182     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0084`    P1         §182     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0084`    P1         §182     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0085`    P1         §182     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0085`    P1         §182     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0053`     P1         §183     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0053`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0054`     P1         §183     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0054`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0055`     P1         §183     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0055`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0056`     P1         §183     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0056`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0016`     P1         §184     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0016`     P1         §184     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0017`     P2         §184     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0017`     P2         §184     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0018`     P2         §184     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0018`     P2         §184     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0086`    P1         §185     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0086`    P1         §185     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0087`    P1         §186     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0087`    P1         §186     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0088`    P1         §186     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0088`    P1         §186     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0089`    P1         §186     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0089`    P1         §186     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0090`    P1         §187     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0090`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0091`    P1         §187     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0091`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0092`    P1         §187     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0092`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0093`    P1         §187     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0093`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0179`    P1         §188     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0179`    P1         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0180`    P2         §188     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0180`    P2         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0181`    P2         §188     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0181`    P2         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0182`    P2         §188     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0182`    P2         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `TST-0016`    P1         §189     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `TST-0016`    P1         §189     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `TST-0017`    P2         §189     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `TST-0017`    P2         §189     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `TST-0018`    P2         §189     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `TST-0018`    P2         §189     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0094`    P1         §190     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0094`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0095`    P1         §190     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0095`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0096`    P1         §190     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0096`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0097`    P1         §190     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0097`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0183`    P1         §191     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0183`    P1         §191     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0184`    P2         §191     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0184`    P2         §191     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `IO-0057`    P1         §192      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -1638,105 +1638,105 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0103`     P1         §216     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0104`     P1         §217     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0104`     P1         §217     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0105`     P1         §217     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0105`     P1         §217     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0106`     P1         §217     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0106`     P1         §217     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0107`     P1         §218     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0107`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0108`     P1         §218     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0108`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0109`     P1         §218     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0109`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0110`     P1         §218     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0110`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0060`    P1         §219     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0060`    P1         §219     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0061`    P1         §219     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0061`    P1         §219     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0062`    P1         §219     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0062`    P1         §219     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0111`     P1         §220     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0111`     P1         §220     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0112`     P1         §220     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0112`     P1         §220     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0113`     P1         §221     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0113`     P1         §221     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0114`     P1         §222     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0114`     P1         §222     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0115`     P1         §222     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0115`     P1         §222     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0116`     P1         §222     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0116`     P1         §222     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0117`     P1         §223     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0117`     P1         §223     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0190`    P1         §224     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0190`    P1         §224     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0191`    P2         §224     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0191`    P2         §224     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0118`     P1         §225     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0118`     P1         §225     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0119`     P1         §225     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0119`     P1         §225     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0120`     P1         §225     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0120`     P1         §225     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0121`     P1         §226     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0121`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0122`     P1         §226     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0122`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0123`     P1         §226     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0123`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0124`     P1         §226     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0124`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0192`    P1         §227     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0192`    P1         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0193`    P2         §227     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0193`    P2         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0194`    P2         §227     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0194`    P2         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0195`    P2         §227     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0195`    P2         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0125`     P1         §228     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0125`     P1         §228     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0126`     P1         §228     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0126`     P1         §228     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0127`     P1         §228     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0127`     P1         §228     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0196`    P1         §229     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0196`    P1         §229     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0197`    P2         §229     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0197`    P2         §229     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0128`     P1         §230     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0128`     P1         §230     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0129`     P1         §230     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0129`     P1         §230     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `TST-0019`    P1         §231     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `TST-0019`    P1         §231     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PAY-0078`    P1         §232     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PAY-0078`    P1         §232     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PAY-0079`    P0         §232     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PAY-0079`    P0         §232     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PAY-0080`    P0         §232     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PAY-0080`    P0         §232     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0198`    P1         §233     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0198`    P1         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0199`    P2         §233     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0199`    P2         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0200`    P2         §233     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0200`    P2         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0201`    P2         §233     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0201`    P2         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0130`     P1         §234     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0130`     P1         §234     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0131`     P1         §235     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0131`     P1         §235     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0132`     P1         §235     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0132`     P1         §235     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0202`    P1         §236     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0202`    P1         §236     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0203`    P2         §236     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0203`    P2         §236     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0204`    P1         §237     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
@@ -1946,9 +1946,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0276`    P2         §276     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0090`    P1         §277     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0090`    P1         §277     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0091`    P0         §277     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `SEC-0091`    P0         §277     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0277`    P1         §278     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
@@ -2136,31 +2136,31 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0107`    P1         §311      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0084`    P1         §312     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0084`    P1         §312     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0085`    P1         §312     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0085`    P1         §312     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `TST-0020`    P1         §313     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `TST-0020`    P1         §313     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0316`    P1         §314     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0316`    P1         §314     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0317`    P2         §314     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0317`    P2         §314     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0318`    P1         §315     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0318`    P1         §315     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0319`    P2         §315     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0319`    P2         §315     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0086`    P1         §316     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0086`    P1         §316     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0066`    P1         §317     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0066`    P1         §317     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0067`    P1         §317     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0067`    P1         §317     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0320`    P1         §318     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0320`    P1         §318     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0321`    P2         §318     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0321`    P2         §318     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0322`    P2         §318     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0322`    P2         §318     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `API-0008`    P1         §319     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
@@ -2330,81 +2330,81 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0020`    P1         §354     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `CAP-0090`    P1         §355     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0090`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0091`    P1         §355     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0091`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0092`    P1         §355     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0092`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0093`    P1         §355     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0093`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0094`    P1         §355     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0094`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0331`    P1         §356     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0331`    P1         §356     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0332`    P2         §356     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0332`    P2         §356     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0095`    P1         §357     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0095`    P1         §357     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0096`    P1         §357     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0096`    P1         §357     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0097`    P1         §357     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0097`    P1         §357     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0098`    P1         §358     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0098`    P1         §358     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0099`    P1         §358     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0099`    P1         §358     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0100`    P1         §358     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0100`    P1         §358     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0101`    P1         §359     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0101`    P1         §359     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0333`    P1         §360     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0333`    P1         §360     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0334`    P2         §360     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0334`    P2         §360     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0335`    P2         §360     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0335`    P2         §360     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0138`     P1         §361     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0138`     P1         §361     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0139`     P1         §361     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0139`     P1         §361     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0102`    P1         §362     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0102`    P1         §362     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0103`    P1         §362     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0103`    P1         §362     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0104`    P1         §362     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0104`    P1         §362     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0336`    P1         §363     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0336`    P1         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0337`    P2         §363     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0337`    P2         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0338`    P2         §363     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0338`    P2         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0339`    P2         §363     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0339`    P2         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0140`     P1         §364     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0140`     P1         §364     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0141`     P1         §364     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0141`     P1         §364     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0142`     P1         §364     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0142`     P1         §364     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0105`    P1         §365     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0105`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0106`    P1         §365     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0106`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0107`    P1         §365     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0107`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0108`    P1         §365     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0108`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0340`    P1         §366     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0340`    P1         §366     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0341`    P2         §366     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0341`    P2         §366     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0143`     P1         §367     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0143`     P1         §367     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0144`     P1         §367     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `IO-0144`     P1         §367     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0109`    P1         §368     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0109`    P1         §368     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `OBS-0007`    P1         §369      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
@@ -2524,19 +2524,19 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0118`    P0         §393     `TESTED`   apps/api/src/services/platform-security-pause-service.ts, packages/seller-health/src/platform-security.ts, apps/api/src/services/worker-heartbeat-service.ts   packages/seller-health/src/platform-security.test.ts; security/tests/acceptance-m12.test.ts   docs/milestones/M12-closure.md M12 §393 platform security pause
 
-  `JOB-0115`    P1         §394     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0115`    P1         §394     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0116`    P1         §394     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0116`    P1         §394     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0117`    P1         §394     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0117`    P1         §394     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0345`    P1         §395     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0345`    P1         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0346`    P2         §395     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0346`    P2         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0347`    P2         §395     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0347`    P2         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0348`    P2         §395     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0348`    P2         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0349`    P1         §396     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
@@ -2652,37 +2652,37 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0358`    P2         §419     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0051`    P1         §420     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0051`    P1         §420     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0052`    P1         §420     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0052`    P1         §420     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0359`    P1         §421     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0359`    P1         §421     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0133`    P1         §422     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0133`    P1         §422     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0134`    P1         §422     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0134`    P1         §422     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0053`    P1         §423     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0053`    P1         §423     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0054`    P1         §424     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0054`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0055`    P1         §424     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0055`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0056`    P1         §424     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0056`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0057`    P1         §424     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0057`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0058`    P1         §424     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0058`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0360`    P1         §425     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0360`    P1         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0361`    P2         §425     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0361`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0362`    P2         §425     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0362`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0363`    P2         §425     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0363`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0364`    P2         §425     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0364`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `JOB-0135`    P1         §426     `TESTED`   apps/api/routes/seller-control-ui.ts, apps/api/routes/seller-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
@@ -2842,51 +2842,51 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0210`    P1         §450     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `AVL-0059`    P1         §451     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0059`    P1         §451     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0060`    P1         §451     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0060`    P1         §451     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0061`    P1         §451     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0061`    P1         §451     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0062`    P1         §452     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0062`    P1         §452     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0063`    P1         §452     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0063`    P1         §452     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0211`    P1         §453     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0211`    P1         §453     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0212`    P1         §453     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0212`    P1         §453     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0213`    P1         §454     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0213`    P1         §454     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0214`    P1         §454     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0214`    P1         §454     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0215`    P1         §455     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0215`    P1         §455     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0216`    P1         §455     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0216`    P1         §455     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0217`    P1         §456     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0217`    P1         §456     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0218`    P1         §457     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0218`    P1         §457     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0219`    P1         §457     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0219`    P1         §457     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0220`    P1         §458     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0220`    P1         §458     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0221`    P1         §459     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0221`    P1         §459     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0222`    P1         §459     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0222`    P1         §459     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PAY-0109`    P1         §460     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PAY-0109`    P1         §460     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PAY-0110`    P0         §460     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PAY-0110`    P0         §460     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0028`     P1         §461     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0028`     P1         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0029`     P2         §461     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0029`     P2         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0030`     P2         §461     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0030`     P2         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0031`     P2         §461     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0031`     P2         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0368`    P1         §462     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
@@ -2932,235 +2932,235 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0069`    P1         §472     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0231`    P1         §473     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0231`    P1         §473     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0114`    P1         §474     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0114`    P1         §474     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0070`    P1         §475     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0070`    P1         §475     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0071`    P1         §475     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0071`    P1         §475     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0376`    P1         §476     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0376`    P1         §476     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0072`    P1         §477     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0072`    P1         §477     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0073`    P1         §478     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0073`    P1         §478     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0377`    P1         §479     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0377`    P1         §479     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0378`    P2         §479     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0378`    P2         §479     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0098`    P1         §480     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0098`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0099`    P1         §480     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0099`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0100`    P1         §480     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0100`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0101`    P1         §480     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0101`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0232`    P1         §481     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0232`    P1         §481     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0233`    P1         §481     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0233`    P1         §481     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0234`    P1         §481     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0234`    P1         §481     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0235`    P1         §482     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0235`    P1         §482     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0236`    P1         §483     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0236`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0237`    P1         §483     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0237`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0238`    P1         §483     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0238`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0239`    P1         §483     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0239`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0379`    P1         §484     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0379`    P1         §484     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0380`    P2         §484     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0380`    P2         §484     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0381`    P2         §484     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0381`    P2         §484     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0240`    P1         §485     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0240`    P1         §485     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0241`    P1         §486     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0241`    P1         §486     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0242`    P1         §486     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0242`    P1         §486     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0243`    P1         §486     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0243`    P1         §486     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0382`    P1         §487     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0382`    P1         §487     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0383`    P2         §487     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0383`    P2         §487     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0074`    P1         §488     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0074`    P1         §488     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0075`    P1         §488     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0075`    P1         §488     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0076`    P1         §488     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0076`    P1         §488     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0384`    P1         §489     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0384`    P1         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0385`    P2         §489     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0385`    P2         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0386`    P2         §489     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0386`    P2         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0387`    P2         §489     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0387`    P2         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0388`    P1         §490     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0388`    P1         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0389`    P2         §490     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0389`    P2         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0390`    P2         §490     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0390`    P2         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0391`    P2         §490     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0391`    P2         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0115`    P1         §491     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0115`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0116`    P1         §491     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0116`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0117`    P1         §491     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0117`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0118`    P1         §491     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0118`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0077`    P1         §492     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0077`    P1         §492     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0078`    P1         §492     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0078`    P1         §492     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0244`    P1         §493     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0244`    P1         §493     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0245`    P1         §493     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0245`    P1         §493     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0246`    P1         §493     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0246`    P1         §493     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0392`    P1         §494     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0392`    P1         §494     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0393`    P2         §494     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0393`    P2         §494     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0079`    P1         §495     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0079`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0080`    P1         §495     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0080`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0081`    P1         §495     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0081`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0082`    P1         §496     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0082`    P1         §496     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0083`    P1         §496     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0083`    P1         §496     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0247`    P1         §497     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0247`    P1         §497     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0248`    P1         §497     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0248`    P1         §497     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0032`     P1         §498     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0032`     P1         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0033`     P2         §498     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0033`     P2         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0034`     P2         §498     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0034`     P2         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0035`     P2         §498     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0035`     P2         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0036`     P1         §499     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0036`     P1         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0037`     P2         §499     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0037`     P2         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0038`     P2         §499     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0038`     P2         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0039`     P2         §499     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `UI-0039`     P2         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0084`    P1         §500     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0084`    P1         §500     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0085`    P1         §500     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0085`    P1         §500     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0086`    P1         §500     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0086`    P1         §500     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0394`    P1         §501     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0394`    P1         §501     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0395`    P2         §501     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0395`    P2         §501     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0087`    P1         §502     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0087`    P1         §502     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0088`    P1         §502     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0088`    P1         §502     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0089`    P1         §502     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0089`    P1         §502     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0090`    P1         §503     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0090`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0091`    P1         §503     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0091`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0092`    P1         §503     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0092`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0093`    P1         §504     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0093`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0094`    P1         §504     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0094`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0095`    P1         §504     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0095`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0096`    P1         §504     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0096`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0396`    P1         §505     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0396`    P1         §505     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0397`    P2         §505     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0397`    P2         §505     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0398`    P2         §505     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0398`    P2         §505     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0249`    P1         §506     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0249`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0250`    P1         §506     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0250`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0251`    P1         §506     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0251`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `TST-0021`    P1         §507     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `TST-0021`    P1         §507     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0097`    P1         §508     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0097`    P1         §508     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0098`    P1         §508     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0098`    P1         §508     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0119`    P1         §509     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0119`    P1         §509     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0120`    P1         §509     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `CAP-0120`    P1         §509     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0099`    P1         §510     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0099`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0100`    P1         §510     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0100`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0101`    P1         §510     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0101`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0102`    P1         §510     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0102`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0399`    P1         §511     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0399`    P1         §511     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0400`    P2         §511     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0400`    P2         §511     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0102`    P1         §512     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0102`    P1         §512     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0103`    P1         §512     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AGT-0103`    P1         §512     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0401`    P1         §513     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0401`    P1         §513     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0402`    P2         §513     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0402`    P2         §513     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0403`    P1         §514     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0403`    P1         §514     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0404`    P2         §514     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `PRD-0404`    P2         §514     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0252`    P1         §515     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0252`    P1         §515     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0253`    P1         §515     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0253`    P1         §515     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0254`    P1         §515     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `JOB-0254`    P1         §515     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0103`    P1         §516     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0103`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0104`    P1         §516     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0104`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0105`    P1         §516     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0105`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0106`    P1         §516     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0106`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0107`    P1         §516     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0107`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0108`    P1         §516     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0108`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0109`    P1         §516     `TODO`   ---              ---        scheduled:M23 per IMPLEMENTATION-PLAN; M17 audit accounted
+  `AVL-0109`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0405`    P1         §517     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 
@@ -3595,11 +3595,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-017      P0           TODO         ---              ---
 
-  HARD-018      P0           TODO         ---              ---
+  HARD-018   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs   security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-019      P1           TODO         ---              ---
+  HARD-019   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs   security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-020      P1           TODO         ---              ---
+  HARD-020   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs   security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
   HARD-021      P0           TODO         ---              ---
 

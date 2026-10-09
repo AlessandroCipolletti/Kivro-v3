@@ -1,0 +1,979 @@
+{
+  "audit": "T16",
+  "generatedAt": "2026-10-09T22:54:10.802Z",
+  "totalRequirements": 1923,
+  "summary": {
+    "TESTED": 1376,
+    "TODO": 528,
+    "PARTIAL": 15,
+    "BLOCKED": 0,
+    "DEFERRED": 4,
+    "IMPLEMENTED": 0
+  },
+  "byPriority": {
+    "P0": {
+      "TESTED": 255,
+      "DEFERRED": 2,
+      "TODO": 102
+    },
+    "P1": {
+      "TODO": 329,
+      "TESTED": 869,
+      "PARTIAL": 9,
+      "DEFERRED": 1
+    },
+    "P2": {
+      "TODO": 97,
+      "TESTED": 252,
+      "PARTIAL": 6,
+      "DEFERRED": 1
+    }
+  },
+  "maxClosedMilestone": 16,
+  "closedScopeSectionCount": 337,
+  "closedScopeTodoCount": 0,
+  "unexplainedCount": 0,
+  "invalidTestedCount": 0,
+  "p0p1OpenCount": 440,
+  "p0OpenCount": 102,
+  "p1OpenCount": 329,
+  "p2OpenCount": 97,
+  "sectionRollupP0P1Open": {
+    "§1": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§2": {
+      "TODO": 9,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§3": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§27": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§47": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§48": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§50": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§143": {
+      "TODO": 0,
+      "PARTIAL": 5,
+      "BLOCKED": 0,
+      "scheduled": "M11"
+    },
+    "§144": {
+      "TODO": 0,
+      "PARTIAL": 1,
+      "BLOCKED": 0,
+      "scheduled": "M11"
+    },
+    "§145": {
+      "TODO": 0,
+      "PARTIAL": 2,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§152": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§153": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§154": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§155": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§156": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§157": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§158": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§159": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§160": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§161": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§162": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§164": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§165": {
+      "TODO": 6,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§166": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§167": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§168": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§169": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§170": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§171": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§172": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§173": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§174": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§175": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§176": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§177": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§178": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§179": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§180": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§181": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§182": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§183": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§184": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§185": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§186": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§187": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§188": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§189": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§190": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§191": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§217": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§218": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§219": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§220": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§221": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§222": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§223": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§224": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§225": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§226": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§227": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§228": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§229": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§230": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§231": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§232": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§233": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§234": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§235": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§236": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§269": {
+      "TODO": 0,
+      "PARTIAL": 1,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§277": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§312": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§313": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§314": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§315": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§316": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§317": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§318": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§355": {
+      "TODO": 5,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§356": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§357": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§358": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§359": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§360": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§361": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§362": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§363": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§364": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§365": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§366": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§367": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§368": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§394": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§395": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§420": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§421": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§422": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§423": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§424": {
+      "TODO": 5,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§425": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§451": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§452": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§453": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§454": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§455": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§456": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§457": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§458": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§459": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§460": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§461": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§473": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§474": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§475": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§476": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§477": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§478": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§479": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§480": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§481": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§482": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§483": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§484": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§485": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§486": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§487": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§488": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§489": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§490": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§491": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§492": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§493": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§494": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§495": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§496": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§497": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§498": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§499": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§500": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§501": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§502": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§503": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§504": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§505": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§506": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§507": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§508": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§509": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§510": {
+      "TODO": 4,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§511": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§512": {
+      "TODO": 2,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§513": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§514": {
+      "TODO": 1,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§515": {
+      "TODO": 3,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§516": {
+      "TODO": 7,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    },
+    "§0": {
+      "TODO": 116,
+      "PARTIAL": 0,
+      "BLOCKED": 0,
+      "scheduled": "?"
+    }
+  }
+}
