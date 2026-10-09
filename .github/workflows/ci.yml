@@ -29,3 +29,4 @@ jobs:
       - run: pnpm verify:m09
       - run: pnpm verify:m10
       - run: pnpm verify:m11
+      - run: pnpm verify:m12

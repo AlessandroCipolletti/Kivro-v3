@@ -22,13 +22,16 @@ import { hashOpenClawSkill } from "@kivro/openclaw-adapter";
 import { WORKER_COMMANDS } from "@kivro/job-protocol";
 import { createOpenClawAdapter } from "@kivro/openclaw-adapter";
 import {
+  clearWorkerGlobalPause,
   getDeviceIdentity,
   getLocalJobExecutionState,
+  getWorkerGlobalPause,
   listLocalJobExecutionStates,
   openWorkerStore,
   saveDeviceIdentity,
   setLocalJobExecutionState,
   setWorkerDeviceId,
+  setWorkerGlobalPause,
 } from "@kivro/worker-store";
 import fs from "node:fs";
 import os from "node:os";
@@ -405,6 +408,122 @@ jobCmd
       cloudSyncPending: true,
     });
     console.log(JSON.stringify({ jobId, resume: resumeResult }));
+  });
+
+async function collectLocalHealthSnapshot(): Promise<{
+  workerVersion: string;
+  openClawVersion: string | null;
+  dockerOk: boolean;
+  sandboxOk: boolean;
+  openClawInstalled: boolean;
+  openClawCompatible: boolean;
+  globalPauseActive: boolean;
+}> {
+  const adapter = await createOpenClawAdapter();
+  const detection = await adapter.detect();
+  const compatibility = await adapter.validateCompatibility();
+  const dockerOk = fs.existsSync("/var/run/docker.sock");
+  const store = openWorkerStore(runtimeRoot());
+  const globalPause = getWorkerGlobalPause(store);
+  return {
+    workerVersion: WORKER_VERSION,
+    openClawVersion: detection.version ?? null,
+    dockerOk,
+    sandboxOk: dockerOk && compatibility.compatible,
+    openClawInstalled: detection.installed,
+    openClawCompatible: compatibility.compatible,
+    globalPauseActive: globalPause?.active === true,
+  };
+}
+
+program
+  .command("health")
+  .description("Worker health summary and cloud heartbeat (§379)")
+  .option("--no-cloud", "Skip cloud heartbeat")
+  .action(async (opts: { cloud: boolean }) => {
+    const snapshot = await collectLocalHealthSnapshot();
+    const store = openWorkerStore(runtimeRoot());
+    const identity = getDeviceIdentity(store);
+    let cloud: unknown = { skipped: true };
+    if (opts.cloud !== false && identity?.workerDeviceId && identity.cloudUrl) {
+      const res = await fetch(`${identity.cloudUrl}/worker/heartbeat`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-worker-device-id": identity.workerDeviceId,
+        },
+        body: JSON.stringify(snapshot),
+      });
+      cloud = await res.json().catch(() => ({ error: "INVALID_JSON" }));
+    }
+    console.log(
+      JSON.stringify(
+        {
+          marketplaceWorker: snapshot.workerVersion,
+          local: snapshot,
+          cloud,
+        },
+        null,
+        2,
+      ),
+    );
+  });
+
+program
+  .command("pause")
+  .description("Pause marketplace job acceptance (§382–§384)")
+  .option("--all", "Pause all new marketplace jobs on this Worker")
+  .action(async (opts: { all?: boolean }) => {
+    if (!opts.all) {
+      console.error("Use pause --all for emergency marketplace pause, or job pause <id> for a running job.");
+      process.exit(1);
+    }
+    const store = openWorkerStore(runtimeRoot());
+    setWorkerGlobalPause(store, {
+      active: true,
+      pausedAt: new Date().toISOString(),
+      source: "CLI",
+      reason: "seller_emergency",
+    });
+    const identity = getDeviceIdentity(store);
+    if (identity?.workerDeviceId && identity.cloudUrl) {
+      const snapshot = await collectLocalHealthSnapshot();
+      await fetch(`${identity.cloudUrl}/worker/heartbeat`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-worker-device-id": identity.workerDeviceId,
+        },
+        body: JSON.stringify(snapshot),
+      }).catch(() => undefined);
+    }
+    console.log(JSON.stringify({ globalPause: true }));
+  });
+
+program
+  .command("resume")
+  .description("Resume marketplace job acceptance after pause --all")
+  .option("--all", "Clear global marketplace pause")
+  .action(async (opts: { all?: boolean }) => {
+    if (!opts.all) {
+      console.error("Use resume --all to clear global pause, or job resume <id> for a running job.");
+      process.exit(1);
+    }
+    const store = openWorkerStore(runtimeRoot());
+    clearWorkerGlobalPause(store);
+    const identity = getDeviceIdentity(store);
+    if (identity?.workerDeviceId && identity.cloudUrl) {
+      const snapshot = await collectLocalHealthSnapshot();
+      await fetch(`${identity.cloudUrl}/worker/heartbeat`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-worker-device-id": identity.workerDeviceId,
+        },
+        body: JSON.stringify(snapshot),
+      }).catch(() => undefined);
+    }
+    console.log(JSON.stringify({ globalPause: false }));
   });
 
 program.command("version").action(() => console.log(WORKER_VERSION));

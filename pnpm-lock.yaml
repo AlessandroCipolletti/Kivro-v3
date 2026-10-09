@@ -86,6 +86,9 @@ importers:
       '@kivro/research-broker':
         specifier: workspace:*
         version: link:../../packages/research-broker
+      '@kivro/seller-health':
+        specifier: workspace:*
+        version: link:../../packages/seller-health
       '@kivro/storage':
         specifier: workspace:*
         version: link:../../packages/storage
@@ -327,6 +330,9 @@ importers:
       '@kivro/platform-policy':
         specifier: workspace:*
         version: link:../platform-policy
+      '@kivro/seller-health':
+        specifier: workspace:*
+        version: link:../seller-health
 
   packages/marketplace:
     dependencies:
@@ -406,6 +412,8 @@ importers:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+
+  packages/seller-health: {}
 
   packages/storage:
     dependencies:

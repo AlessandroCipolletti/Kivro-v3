@@ -26,6 +26,8 @@ import { capabilityReviewRoutes } from "./routes/capability-reviews.js";
 import { marketplaceAgentRoutes } from "./routes/marketplace-agent.js";
 import { marketplaceAgentToolRoutes } from "./routes/marketplace-agent-tools.js";
 import { buyerJobAssetRoutes } from "./routes/buyer-job-assets.js";
+import { sellerDashboardRoutes } from "./routes/seller-dashboard.js";
+import { workerHealthRoutes } from "./routes/worker-health.js";
 import type { AppEnv } from "./types.js";
 
 function webAppOrigin(): string {
@@ -42,7 +44,10 @@ export function createApp(): Hono<AppEnv> {
       c.header("Access-Control-Allow-Origin", allowed);
       c.header("Access-Control-Allow-Credentials", "true");
       c.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-      c.header("Access-Control-Allow-Headers", "Content-Type, x-correlation-id");
+      c.header(
+        "Access-Control-Allow-Headers",
+        "Content-Type, x-correlation-id, x-worker-device-id",
+      );
     }
     if (c.req.method === "OPTIONS") {
       return c.body(null, 204);
@@ -76,7 +81,7 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M10" });
+    return c.json({ name: "kivro-api", phase: "M12" });
   });
 
   app.route("/auth", authRoutes());
@@ -103,7 +108,9 @@ export function createApp(): Hono<AppEnv> {
   app.route("/seller", sellerBillingRoutes());
   app.route("/seller", sellerJobRoutes());
   app.route("/seller", sellerControlUiRoutes());
+  app.route("/seller", sellerDashboardRoutes());
   app.route("/worker", workerJobRoutes());
+  app.route("/worker", workerHealthRoutes());
   app.route("/webhooks", stripeWebhookRoutes());
 
   return app;

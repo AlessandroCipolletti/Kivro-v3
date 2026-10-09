@@ -339,6 +339,9 @@ model SellerProfile {
   connectOnboardingStatus  String?
   transfersCapabilityStatus String?
   payoutsEnabled         Boolean  @default(false)
+  marketplaceEmergencyPause      Boolean   @default(false)
+  marketplaceEmergencyPausedAt   DateTime?
+  marketplaceEmergencyPauseSource String?
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 
@@ -360,6 +363,7 @@ model WorkerDevice {
   openClawVersion String?
   status          WorkerDeviceStatus @default(PAIRED)
   lastSeenAt      DateTime?
+  lastHealthReport Json?
   revokedAt       DateTime?
   createdAt       DateTime           @default(now())
   updatedAt       DateTime           @updatedAt
@@ -369,8 +373,23 @@ model WorkerDevice {
   jobs          Job[]
   auditEvents   AuditEvent[]
   permissionConsents PermissionConsentRecord[]
+  healthEvents  WorkerHealthEvent[]
 
   @@index([sellerProfileId])
+}
+
+model WorkerHealthEvent {
+  id             String   @id @default(uuid())
+  workerDeviceId String
+  eventType      String
+  severity       String
+  summary        String
+  payload        Json?
+  createdAt      DateTime @default(now())
+
+  workerDevice WorkerDevice @relation(fields: [workerDeviceId], references: [id], onDelete: Cascade)
+
+  @@index([workerDeviceId, createdAt(sort: Desc)])
 }
 
 model Capability {

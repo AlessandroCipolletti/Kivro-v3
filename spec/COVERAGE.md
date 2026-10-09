@@ -2428,39 +2428,39 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0103`    P1         §372      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0108`    P1         §373     `TODO`   ---              ---        ---
+  `SEC-0108`    P1         §373     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `SEC-0109`    P0         §373     `TODO`   ---              ---        ---
+  `SEC-0109`    P0         §373     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `SEC-0110`    P0         §373     `TODO`   ---              ---        ---
+  `SEC-0110`    P0         §373     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `WRK-0104`    P1         §374     `TODO`   ---              ---        ---
+  `WRK-0104`    P1         §374     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `WRK-0105`    P1         §374     `TODO`   ---              ---        ---
+  `WRK-0105`    P1         §374     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `JOB-0090`    P1         §375     `TODO`   ---              ---        ---
+  `JOB-0090`    P1         §375     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `JOB-0091`    P1         §375     `TODO`   ---              ---        ---
+  `JOB-0091`    P1         §375     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `JOB-0092`    P1         §375     `TODO`   ---              ---        ---
+  `JOB-0092`    P1         §375     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `JOB-0093`    P1         §375     `TODO`   ---              ---        ---
+  `JOB-0093`    P1         §375     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `OBS-0011`    P1         §376     `TODO`   ---              ---        ---
+  `OBS-0011`    P1         §376     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `SEC-0111`    P1         §377     `TODO`   ---              ---        ---
+  `SEC-0111`    P1         §377     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `SEC-0112`    P0         §377     `TODO`   ---              ---        ---
+  `SEC-0112`    P0         §377     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `SEC-0113`    P1         §378     `TODO`   ---              ---        ---
+  `SEC-0113`    P1         §378     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `SEC-0114`    P0         §378     `TODO`   ---              ---        ---
+  `SEC-0114`    P0         §378     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `SEC-0115`    P0         §378     `TODO`   ---              ---        ---
+  `SEC-0115`    P0         §378     `TESTED`   packages/seller-health, apps/api/src/routes/seller-dashboard.ts, apps/api/src/routes/worker-health.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/security-warnings.test.ts; security/tests/acceptance-m12.test.ts; scripts/verify-m12-flow.mjs   docs/milestones/M12-manual-validation.md M12 seller health dashboard foundation
 
-  `WRK-0106`    P1         §379     `TODO`   ---              ---        ---
+  `WRK-0106`    P1         §379     `TESTED`   apps/worker/src/cli.ts, apps/api/src/routes/worker-health.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md kivro-worker health
 
-  `WRK-0107`    P1         §379     `TODO`   ---              ---        ---
+  `WRK-0107`    P1         §379     `TESTED`   apps/worker/src/cli.ts, apps/api/src/routes/worker-health.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md kivro-worker health
 
   `WRK-0108`    P1         §380     `TODO`   ---              ---        ---
 
@@ -2470,25 +2470,25 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0111`    P1         §381     `TODO`   ---              ---        ---
 
-  `JOB-0094`    P1         §382     `TODO`   ---              ---        ---
+  `JOB-0094`    P1         §382     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0095`    P1         §382     `TODO`   ---              ---        ---
+  `JOB-0095`    P1         §382     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0096`    P1         §383     `TODO`   ---              ---        ---
+  `JOB-0096`    P1         §383     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0097`    P1         §383     `TODO`   ---              ---        ---
+  `JOB-0097`    P1         §383     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0098`    P1         §384     `TODO`   ---              ---        ---
+  `JOB-0098`    P1         §384     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0099`    P1         §384     `TODO`   ---              ---        ---
+  `JOB-0099`    P1         §384     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0100`    P1         §384     `TODO`   ---              ---        ---
+  `JOB-0100`    P1         §384     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0101`    P1         §385     `TODO`   ---              ---        ---
+  `JOB-0101`    P1         §385     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0102`    P1         §385     `TODO`   ---              ---        ---
+  `JOB-0102`    P1         §385     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0103`    P1         §385     `TODO`   ---              ---        ---
+  `JOB-0103`    P1         §385     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
   `JOB-0104`    P1         §386     `TODO`   ---              ---        ---
 

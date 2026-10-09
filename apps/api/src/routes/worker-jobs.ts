@@ -36,14 +36,28 @@ export function workerJobRoutes(): Hono<AppEnv> {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
     const prisma = getPrismaClient();
-    const device = await prisma.workerDevice.findUnique({ where: { id: workerDeviceId } });
+    const device = await prisma.workerDevice.findUnique({
+      where: { id: workerDeviceId },
+      include: { sellerProfile: { select: { marketplaceEmergencyPause: true } } },
+    });
     if (!device || device.status === "REVOKED") {
       return c.json({ error: "FORBIDDEN" }, 403);
     }
-    const offers = await prisma.job.findMany({
-      where: { workerDeviceId, status: "DISPATCHED" },
-      take: 5,
+    await prisma.workerDevice.update({
+      where: { id: device.id },
+      data: { status: "ONLINE", lastSeenAt: new Date() },
     });
+    const pauseBlocksOffers =
+      device.sellerProfile.marketplaceEmergencyPause ||
+      (device.lastHealthReport &&
+        typeof device.lastHealthReport === "object" &&
+        (device.lastHealthReport as { globalPauseActive?: boolean }).globalPauseActive === true);
+    const offers = pauseBlocksOffers
+      ? []
+      : await prisma.job.findMany({
+          where: { workerDeviceId, status: "DISPATCHED" },
+          take: 5,
+        });
     const controlJobs = await prisma.job.findMany({
       where: {
         workerDeviceId,

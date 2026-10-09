@@ -18,6 +18,7 @@
   "dependencies": {
     "@kivro/database": "workspace:*",
     "@kivro/domain": "workspace:*",
-    "@kivro/platform-policy": "workspace:*"
+    "@kivro/platform-policy": "workspace:*",
+    "@kivro/seller-health": "workspace:*"
   }
 }

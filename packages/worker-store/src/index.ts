@@ -22,15 +22,23 @@ export interface LocalJobExecutionState {
   cloudSyncPending?: boolean;
 }
 
+export interface WorkerGlobalPauseState {
+  active: boolean;
+  pausedAt: string;
+  source: "CLI" | "WEB_SYNC";
+  reason?: string;
+}
+
 interface StoreFile {
   device: DeviceState | null;
   syncState: Record<string, string>;
   localJobs: Record<string, LocalJobExecutionState>;
+  globalPause: WorkerGlobalPauseState | null;
 }
 
 function readStore(statePath: string): StoreFile {
   if (!fs.existsSync(statePath)) {
-    return { device: null, syncState: {}, localJobs: {} };
+    return { device: null, syncState: {}, localJobs: {}, globalPause: null };
   }
   const raw = fs.readFileSync(statePath, "utf8");
   const parsed = JSON.parse(raw) as Partial<StoreFile>;
@@ -38,6 +46,7 @@ function readStore(statePath: string): StoreFile {
     device: parsed.device ?? null,
     syncState: parsed.syncState ?? {},
     localJobs: parsed.localJobs ?? {},
+    globalPause: parsed.globalPause ?? null,
   };
 }
 
@@ -53,9 +62,29 @@ export function openWorkerStore(rootDir: string): WorkerStoreHandle {
   fs.mkdirSync(rootDir, { recursive: true, mode: 0o700 });
   const statePath = path.join(rootDir, "worker-state.json");
   if (!fs.existsSync(statePath)) {
-    writeStore(statePath, { device: null, syncState: {}, localJobs: {} });
+    writeStore(statePath, { device: null, syncState: {}, localJobs: {}, globalPause: null });
   }
   return { rootDir, statePath };
+}
+
+export function getWorkerGlobalPause(store: WorkerStoreHandle): WorkerGlobalPauseState | null {
+  const file = readStore(store.statePath);
+  return file.globalPause;
+}
+
+export function setWorkerGlobalPause(
+  store: WorkerStoreHandle,
+  pause: WorkerGlobalPauseState,
+): void {
+  const file = readStore(store.statePath);
+  file.globalPause = pause;
+  writeStore(store.statePath, file);
+}
+
+export function clearWorkerGlobalPause(store: WorkerStoreHandle): void {
+  const file = readStore(store.statePath);
+  file.globalPause = null;
+  writeStore(store.statePath, file);
 }
 
 export function saveDeviceIdentity(

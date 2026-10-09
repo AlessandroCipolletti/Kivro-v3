@@ -22,6 +22,7 @@ export default defineConfig({
       "@kivro/job-scheduling": path.resolve("packages/job-scheduling/src/index.ts"),
       "@kivro/marketplace": path.resolve("packages/marketplace/src/index.ts"),
       "@kivro/marketplace-agent": path.resolve("packages/marketplace-agent/src/index.ts"),
+      "@kivro/seller-health": path.resolve("packages/seller-health/src/index.ts"),
       "@kivro/database": path.resolve("packages/database/src/index.ts"),
     },
   },

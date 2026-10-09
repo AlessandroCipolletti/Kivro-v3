@@ -536,3 +536,9 @@ greenfield.
 **Context:** Strong MVP extension requires structured plans, DAG, and purchase authorization without LLM-controlled payments.
 
 **Decision:** `@kivro/marketplace-agent` builds competitor-research DAG plans from live listings and hard constraints; plans persist in PostgreSQL; `authorizePlanApproval` gates approval; job launch uses existing `submitPaidJob`. M11 hardening adds cross-job draft mapping, step advancement on job completion, orchestration budget hold in credit balance, tool HTTP surface (§149), optional OpenAI intent parsing, and re-quote at approval. Canonical staging scenario §160 and Mode C delegated budget remain follow-up.
+
+## DEC-M12-001 — Seller health dashboard MVP (§369–§393 subset)
+
+**Context:** M12 maps 218 requirements across Worker health, metrics, security warnings, and emergency controls; much of §369–§372 was partially covered by M02 `doctor`/`scan`.
+
+**Decision:** M12 adds `@kivro/seller-health` (deterministic warnings, job metrics, heartbeat ingestion), seller web `/seller/dashboard`, `POST /worker/heartbeat`, web emergency pause with capability manual pause + `SellerProfile.marketplaceEmergencyPause`, and Worker CLI `health` / `pause --all` / `resume --all` with persisted local pause in `@kivro/worker-store`. Acceptance gates via `pnpm verify:m12`. Rich capability-level dependency health, full health-history retention policy, and signed Worker request auth remain follow-up.

@@ -2,6 +2,11 @@ import type { Prisma, PrismaClient } from "@kivro/database";
 
 type SchedulingDb = PrismaClient | Prisma.TransactionClient;
 import { isGlobalDispatchEnabled } from "@kivro/platform-policy";
+import {
+  buildSecurityWarnings,
+  hasBlockingSecurityWarning,
+  parseWorkerHealthReport,
+} from "@kivro/seller-health";
 import { evaluateAcceptingNewJobs } from "./accepting-jobs.js";
 import { parseScheduleConfig } from "./capability-schedule.js";
 import { computeNextAvailableAt } from "./next-available.js";
@@ -33,6 +38,7 @@ export async function evaluateCapabilityAvailability(
   const capability = await prisma.capability.findUnique({
     where: { id: capabilityId },
     include: {
+      sellerProfile: { select: { marketplaceEmergencyPause: true } },
       currentVersion: {
         include: {
           bindings: { include: { workerDevice: true } },
@@ -56,12 +62,20 @@ export async function evaluateCapabilityAvailability(
     });
     hasActiveJob = active > 0;
   }
+  const healthReport = device ? parseWorkerHealthReport(device.lastHealthReport) : null;
+  const securityWarnings = buildSecurityWarnings({
+    report: healthReport,
+    deviceStatus: device?.status ?? "OFFLINE",
+    sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
+  });
   const evaluation = evaluateAcceptingNewJobs({
     capabilityPublished: capability.status === "PUBLISHED",
     schedule,
     workerDeviceStatus: device?.status ?? "OFFLINE",
     hasActiveJobOnWorker: hasActiveJob,
     globalDispatchEnabled: isGlobalDispatchEnabled(),
+    sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
+    securityBlocksDispatch: hasBlockingSecurityWarning(securityWarnings),
   });
   const nextAvailableAt = computeNextAvailableAt(schedule);
   return {
