@@ -1,5 +1,8 @@
 "use client";
 
+import { Alert } from "@/components/ui/Alert";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { API_BASE } from "@/lib/kivro-api";
 import Link from "next/link";
 import { useState } from "react";
@@ -182,12 +185,11 @@ export default function MarketplaceAgentPage() {
 
   return (
     <>
-      <h1>Marketplace Agent</h1>
-      <p className="meta">
-        Describe what you need. Kivro searches published capabilities and returns a shortlist — you
-        choose which provider to run (assisted discovery, Mode A).
-      </p>
-      <form className="detail-panel form-stack" onSubmit={(e) => void discover(e)}>
+      <PageHeader
+        title="Marketplace Agent"
+        description="Structured discovery with constraints — not a chat-only interface. You pick which capability to run."
+      />
+      <form className="filter-panel form-stack" onSubmit={(e) => void discover(e)}>
         <div className="form-field">
           <label className="field-label" htmlFor="goal">
             What do you need?
@@ -259,7 +261,7 @@ export default function MarketplaceAgentPage() {
         {conversationId && (
           <p className="meta">Conversation saved · id {conversationId.slice(0, 8)}…</p>
         )}
-        {error && <p className="field-error">{error}</p>}
+        {error && <Alert tone="danger">{error}</Alert>}
         <div className="form-actions" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
           <button className="button" type="submit" disabled={loading}>
             {loading ? "Searching…" : "Find the best services"}
@@ -311,7 +313,10 @@ export default function MarketplaceAgentPage() {
         <section style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontSize: "1.15rem" }}>Shortlist</h2>
           {recommendations.length === 0 && (
-            <p className="meta">No capabilities match your constraints. Try relaxing filters.</p>
+            <EmptyState
+              title="No matches"
+              description="Relax budget, rating, or online-only filters and search again."
+            />
           )}
           <ol style={{ paddingLeft: "1.2rem" }}>
             {recommendations.map((rec, i) => (

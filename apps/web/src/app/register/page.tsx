@@ -1,5 +1,6 @@
 "use client";
 
+import { Alert } from "@/components/ui/Alert";
 import { API_BASE } from "@/lib/kivro-api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -97,7 +98,7 @@ export default function RegisterPage() {
             onChange={(e) => setConfirm(e.target.value)}
           />
         </div>
-        {error && <p className="field-error">{error}</p>}
+        {error && <Alert tone="danger">{error}</Alert>}
         <div className="form-actions">
           <button className="button" type="submit">
             Create account

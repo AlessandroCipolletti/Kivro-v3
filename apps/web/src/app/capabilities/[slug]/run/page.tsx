@@ -1,7 +1,12 @@
 "use client";
 
 import { BuyerInputForm, type BuyerFormField } from "@/components/BuyerInputForm";
+import { Alert } from "@/components/ui/Alert";
+import { LoadingState } from "@/components/ui/LoadingState";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
+import { marketplaceAvailabilityUi } from "@/lib/status-ui";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -94,24 +99,39 @@ export default function RunCapabilityPage() {
     await submitInputs(inputs);
   }
 
+  const availUi = marketplaceAvailabilityUi({
+    status: accepting ? "ONLINE" : "OFFLINE",
+    accepting,
+  });
+
+  if (!capabilityId && !error) {
+    return <LoadingState label="Loading checkout…" />;
+  }
+
   return (
     <>
-      <h1>Run job</h1>
-      <p className="meta">
-        You must be signed in with verified email and sufficient credits.
-        {priceLabel && (
+      <PageHeader
+        title="Run job"
+        description={
           <>
-            {" "}
-            Current price: <strong>{priceLabel}</strong> (charged at submit time).
+            Signed in with verified email and credits required.
+            {priceLabel && (
+              <>
+                {" "}
+                Price at submit: <strong>{priceLabel}</strong>
+              </>
+            )}
           </>
-        )}
-      </p>
+        }
+        actions={<StatusBadge label={availUi.label} variant={availUi.variant} />}
+      />
       {!accepting && (
         <div className="detail-panel form-stack">
-          <p className="field-hint">
-            Provider is not accepting immediate runs
-            {nextAvailableAt ? ` until ${new Date(nextAvailableAt).toLocaleString()}` : ""}.
-          </p>
+          <Alert tone="warning">
+            Not accepting immediate runs
+            {nextAvailableAt ? ` until ${new Date(nextAvailableAt).toLocaleString()}` : ""}. Schedule
+            below or return later.
+          </Alert>
           <div className="form-field">
             <label className="field-label" htmlFor="schedule">
               Schedule run
@@ -125,7 +145,7 @@ export default function RunCapabilityPage() {
           </div>
         </div>
       )}
-      {error && <p className="field-error">{error}</p>}
+      {error && <Alert tone="danger">{error}</Alert>}
       {fields && !useJson && (
         <div className="detail-panel">
           <BuyerInputForm fields={fields} loading={loading} onSubmit={submitInputs} />

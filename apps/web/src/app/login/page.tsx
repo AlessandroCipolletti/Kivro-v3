@@ -1,5 +1,6 @@
 "use client";
 
+import { Alert } from "@/components/ui/Alert";
 import { API_BASE } from "@/lib/kivro-api";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -76,7 +77,7 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {error && <p className="field-error">{error}</p>}
+        {error && <Alert tone="danger">{error}</Alert>}
         <div className="form-actions">
           <button className="button" type="submit">
             Sign in

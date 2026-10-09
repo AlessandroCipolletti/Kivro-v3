@@ -136,11 +136,19 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
         </div>
       </form>
       <p className="meta">{capabilities.length} results</p>
-      <div className="grid">
-        {capabilities.map((cap) => (
-          <CapabilityCard key={cap.id} capability={cap} />
-        ))}
-      </div>
+      {capabilities.length === 0 ? (
+        <EmptyState
+          title="No matching capabilities"
+          description="Try a broader search term or remove filters."
+          action={{ href: "/search", label: "Clear filters" }}
+        />
+      ) : (
+        <div className="grid">
+          {capabilities.map((cap) => (
+            <CapabilityCard key={cap.id} capability={cap} />
+          ))}
+        </div>
+      )}
     </>
   );
 }

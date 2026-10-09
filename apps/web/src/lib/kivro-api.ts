@@ -221,6 +221,37 @@ export async function createBuyerWebhook(input: {
   };
 }
 
+export async function fetchWebhookDeliveries(
+  endpointId: string,
+): Promise<
+  | {
+      deliveries: Array<{
+        id: string;
+        eventType: string;
+        success: boolean;
+        statusCode: number | null;
+        createdAt: string;
+      }>;
+    }
+  | { error: string }
+> {
+  const res = await fetch(`${API_BASE}/buyer/webhooks/${endpointId}/deliveries`, {
+    credentials: "include",
+  });
+  if (!res.ok) {
+    return { error: "FETCH_FAILED" };
+  }
+  return (await res.json()) as {
+    deliveries: Array<{
+      id: string;
+      eventType: string;
+      success: boolean;
+      statusCode: number | null;
+      createdAt: string;
+    }>;
+  };
+}
+
 export async function disableBuyerWebhook(endpointId: string): Promise<{ ok: true } | { error: string }> {
   const res = await fetch(`${API_BASE}/buyer/webhooks/${endpointId}/disable`, {
     method: "POST",

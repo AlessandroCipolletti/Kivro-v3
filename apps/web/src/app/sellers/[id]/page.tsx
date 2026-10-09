@@ -1,3 +1,5 @@
+import { EmptyState } from "@/components/ui/EmptyState";
+import { PageHeader } from "@/components/ui/PageHeader";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -33,15 +35,17 @@ export default async function SellerProfilePage({ params }: { params: Params }) 
 
   return (
     <>
-      <section className="detail-hero">
-        <p className="meta">Seller</p>
-        <h1>{data.seller.displayName}</h1>
-        <p className="meta">
-          {data.seller.verificationStatus.replaceAll("_", " ").toLowerCase()} ·{" "}
-          {data.seller.capabilityCount} published capabilities
-        </p>
-      </section>
-      <h2 style={{ fontSize: "1.15rem", marginTop: "1.5rem" }}>Capabilities</h2>
+      <PageHeader
+        title={data.seller.displayName}
+        description={`${data.seller.verificationStatus.replaceAll("_", " ").toLowerCase()} · ${data.seller.capabilityCount} published capabilities`}
+      />
+      <h2 style={{ fontSize: "1.15rem", marginTop: "0.5rem" }}>Capabilities</h2>
+      {data.capabilities.length === 0 && (
+        <EmptyState
+          title="No published capabilities"
+          description="This seller has not published to the marketplace yet."
+        />
+      )}
       <ul className="grid" style={{ listStyle: "none", padding: 0 }}>
         {data.capabilities.map((cap) => (
           <li key={cap.slug} className="card">

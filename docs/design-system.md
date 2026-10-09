@@ -24,6 +24,7 @@ Restrained marketplace UI: clarity over decoration. Tokens live in `apps/web/src
 - `PageHeader` — title + description + actions
 - `Alert` — inline errors/info
 - `Button` — primary / secondary / danger wrappers
+- `LoadingState` — short loading copy with `role="status"` (§537)
 
 ## Icons
 

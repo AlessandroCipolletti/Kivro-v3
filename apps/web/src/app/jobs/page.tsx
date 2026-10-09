@@ -1,6 +1,7 @@
 "use client";
 
 import { EmptyState } from "@/components/ui/EmptyState";
+import { LoadingState } from "@/components/ui/LoadingState";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
@@ -78,7 +79,7 @@ export default function MyJobsPage() {
           </button>
         ))}
       </div>
-      {jobs == null && !error && <p className="meta">Loading…</p>}
+      {jobs == null && !error && <LoadingState label="Loading jobs…" />}
       {error === "load_failed" && <p className="meta">Could not load jobs.</p>}
       {jobs?.length === 0 && (
         <EmptyState

@@ -1,6 +1,11 @@
 "use client";
 
+import { EmptyState } from "@/components/ui/EmptyState";
+import { LoadingState } from "@/components/ui/LoadingState";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
+import { marketplaceAvailabilityUi } from "@/lib/status-ui";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -39,36 +44,49 @@ export default function FavoritesPage() {
 
   if (error === "sign_in") {
     return (
-      <>
-        <h1>Saved capabilities</h1>
-        <p className="meta">
-          <Link href="/login">Sign in</Link> to view favorites.
-        </p>
-      </>
+      <EmptyState
+        title="Sign in required"
+        description="Save capabilities from their detail page to compare them here."
+        action={{ href: "/login", label: "Sign in" }}
+      />
     );
   }
 
   return (
     <>
-      <h1>Saved capabilities</h1>
-      {rows == null && !error && <p className="meta">Loading…</p>}
-      {error === "load_failed" && <p className="meta">Could not load favorites.</p>}
-      {rows?.length === 0 && <p className="meta">No saved capabilities yet.</p>}
+      <PageHeader
+        title="Saved capabilities"
+        description="Quick access to capabilities you marked as favorites."
+      />
+      {rows == null && !error && <LoadingState label="Loading saved capabilities…" />}
+      {error === "load_failed" && (
+        <EmptyState title="Could not load" description="Try again in a moment." />
+      )}
+      {rows?.length === 0 && (
+        <EmptyState
+          title="No saved capabilities"
+          description="Open a capability and use Save to pin it here."
+          action={{ href: "/search", label: "Browse marketplace" }}
+        />
+      )}
       <ul className="grid" style={{ listStyle: "none", padding: 0 }}>
-        {rows?.map((f) => (
-          <li key={f.slug} className="card">
-            <Link href={`/capabilities/${f.slug}`}>
-              <strong>{f.name}</strong>
-            </Link>
-            <p className="meta">
-              {f.sellerDisplayName} · {f.priceLabel}
-            </p>
-            <p className="meta">
-              {f.availability}
-              {!f.accepting && " · not accepting now"}
-            </p>
-          </li>
-        ))}
+        {rows?.map((f) => {
+          const avail = marketplaceAvailabilityUi({
+            status: f.accepting ? "ONLINE" : "OFFLINE",
+            accepting: f.accepting,
+          });
+          return (
+            <li key={f.slug} className="card">
+              <Link href={`/capabilities/${f.slug}`}>
+                <strong>{f.name}</strong>
+              </Link>
+              <p className="meta">
+                {f.sellerDisplayName} · {f.priceLabel}
+              </p>
+              <StatusBadge label={avail.label} variant={avail.variant} />
+            </li>
+          );
+        })}
       </ul>
     </>
   );

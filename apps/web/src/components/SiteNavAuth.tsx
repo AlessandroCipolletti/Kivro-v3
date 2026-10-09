@@ -52,6 +52,9 @@ export function SiteNavAuth() {
       <span className="nav-auth-email" title={user.email}>
         {user.email}
       </span>
+      <Link href="/settings/api-keys" className="nav-auth">
+        Settings
+      </Link>
       <button type="button" className="nav-auth-signout" onClick={() => void signOut()}>
         Sign out
       </button>

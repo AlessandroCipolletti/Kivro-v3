@@ -9,6 +9,7 @@ import {
   createBuyerWebhook,
   disableBuyerWebhook,
   fetchBuyerWebhooks,
+  fetchWebhookDeliveries,
   type WebhookEndpointRow,
 } from "@/lib/kivro-api";
 import { useCallback, useEffect, useState } from "react";
@@ -21,6 +22,10 @@ export default function WebhooksSettingsPage() {
   const [newSecret, setNewSecret] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [deliveriesFor, setDeliveriesFor] = useState<string | null>(null);
+  const [deliveries, setDeliveries] = useState<
+    Array<{ id: string; eventType: string; success: boolean; statusCode: number | null; createdAt: string }>
+  >([]);
 
   const load = useCallback(async () => {
     setError(null);
@@ -53,6 +58,20 @@ export default function WebhooksSettingsPage() {
     setNewSecret(result.secret);
     setUrl("");
     await load();
+  }
+
+  async function onShowDeliveries(id: string) {
+    if (deliveriesFor === id) {
+      setDeliveriesFor(null);
+      return;
+    }
+    setDeliveriesFor(id);
+    const result = await fetchWebhookDeliveries(id);
+    if ("error" in result) {
+      setError("Could not load delivery log.");
+      return;
+    }
+    setDeliveries(result.deliveries);
   }
 
   async function onDisable(id: string) {
@@ -141,12 +160,26 @@ export default function WebhooksSettingsPage() {
                   variant={ep.enabled ? "success" : "neutral"}
                 />
               </div>
-              {ep.enabled && (
-                <div className="form-actions" style={{ marginTop: "0.75rem" }}>
-                  <Button variant="secondary" disabled={busy} onClick={() => void onDisable(ep.id)}>
+              <div className="form-actions" style={{ marginTop: "0.75rem" }}>
+                <Button variant="secondary" disabled={busy} onClick={() => void onShowDeliveries(ep.id)}>
+                  {deliveriesFor === ep.id ? "Hide deliveries" : "Recent deliveries"}
+                </Button>
+                {ep.enabled && (
+                  <Button variant="danger" disabled={busy} onClick={() => void onDisable(ep.id)}>
                     Disable
                   </Button>
-                </div>
+                )}
+              </div>
+              {deliveriesFor === ep.id && (
+                <ul style={{ margin: "0.75rem 0 0", paddingLeft: "1.1rem" }}>
+                  {deliveries.length === 0 && <li className="meta">No delivery attempts yet.</li>}
+                  {deliveries.map((d) => (
+                    <li key={d.id} className="meta">
+                      {new Date(d.createdAt).toLocaleString()} — {d.eventType}{" "}
+                      {d.success ? "OK" : `failed (${d.statusCode ?? "—"})`}
+                    </li>
+                  ))}
+                </ul>
               )}
             </li>
           ))}
