@@ -1,0 +1,14 @@
+{
+  "name": "@kivro/cloud-netsons-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node start.mjs",
+    "build": "node -e \"process.exit(0)\""
+  },
+  "dependencies": {
+    "@kivro/api": "workspace:*",
+    "@kivro/cloud-netsons": "workspace:*"
+  }
+}

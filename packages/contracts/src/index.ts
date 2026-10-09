@@ -5,6 +5,10 @@ export {
   type JobOffer,
 } from "./job-offer.js";
 export {
+  WORKER_PROTOCOL_COMPATIBILITY_WINDOW,
+  isProtocolVersionWithinCompatibilityWindow,
+} from "./protocol-compatibility.js";
+export {
   JOB_CONTROL_SOURCES,
   JobPauseRequestSchema,
   JobPauseAckSchema,

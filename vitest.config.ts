@@ -32,6 +32,7 @@ export default defineConfig({
       "@kivro/cloud-netsons": path.resolve("packages/cloud-netsons/src/index.ts"),
       "@kivro/cloud-aws": path.resolve("packages/cloud-aws/src/index.ts"),
       "@kivro/worker-transport": path.resolve("packages/worker-transport/src/index.ts"),
+      "@kivro/job-protocol": path.resolve("packages/job-protocol/src/index.ts"),
     },
   },
   test: {

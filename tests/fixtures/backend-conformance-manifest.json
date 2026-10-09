@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-10-09T22:17:26.568Z",
+  "apiContractVersion": "v1-mvp",
+  "workerProtocolCompatibility": {
+    "minSupportedProtocolVersion": 1,
+    "maxAdvertisedProtocolVersion": 1
+  },
+  "profiles": {
+    "netsons": {
+      "workerTransport": "polling",
+      "durableWorkProfile": "netsons-db-cron",
+      "objectStorageProfile": "s3-compatible"
+    },
+    "aws": {
+      "workerTransport": "wss",
+      "durableWorkProfile": "aws-managed-queue",
+      "objectStorageProfile": "aws-s3"
+    }
+  }
+}

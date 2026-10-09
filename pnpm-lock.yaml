@@ -128,6 +128,31 @@ importers:
       hono:
         specifier: ^4.6.14
         version: 4.13.13
+      ws:
+        specifier: ^8.18.0
+        version: 8.22.0
+    devDependencies:
+      '@types/ws':
+        specifier: ^8.5.13
+        version: 8.18.2
+
+  apps/cloud-aws:
+    dependencies:
+      '@kivro/api':
+        specifier: workspace:*
+        version: link:../api
+      '@kivro/cloud-aws':
+        specifier: workspace:*
+        version: link:../../packages/cloud-aws
+
+  apps/cloud-netsons:
+    dependencies:
+      '@kivro/api':
+        specifier: workspace:*
+        version: link:../api
+      '@kivro/cloud-netsons':
+        specifier: workspace:*
+        version: link:../../packages/cloud-netsons
 
   apps/web:
     dependencies:
@@ -159,6 +184,9 @@ importers:
       '@kivro/capability-publish':
         specifier: workspace:*
         version: link:../../packages/capability-publish
+      '@kivro/cloud-core':
+        specifier: workspace:*
+        version: link:../../packages/cloud-core
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -198,6 +226,9 @@ importers:
       '@kivro/worker-store':
         specifier: workspace:*
         version: link:../../packages/worker-store
+      '@kivro/worker-transport':
+        specifier: workspace:*
+        version: link:../../packages/worker-transport
       commander:
         specifier: ^12.1.0
         version: 12.1.0
@@ -557,6 +588,13 @@ importers:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+      ws:
+        specifier: ^8.18.0
+        version: 8.22.0
+    devDependencies:
+      '@types/ws':
+        specifier: ^8.5.13
+        version: 8.18.2
 
 packages:
 
@@ -1248,6 +1286,9 @@ packages:
 
   '@types/react@19.3.0':
     resolution: {integrity: sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==}
+
+  '@types/ws@8.18.2':
+    resolution: {integrity: sha512-67MQl+fpWKVTT1NYdnmo3U4sc/xPo/zQBncVnI74qmQa0z/b+1g6iYqNmGCPbxO+zz2aklb08a0oHfegiVd0/w==}
 
   '@typescript-eslint/eslint-plugin@8.71.1':
     resolution: {integrity: sha512-nNlBf6HuotqMgZvSkWD5hNdemiBIxQ2NmrlgfcUIeZRs+BbakjscCQRq/Hb74EFVnFiSWWdL12JruqwBy3ERDw==}
@@ -2124,6 +2165,18 @@ packages:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
 
+  ws@8.22.0:
+    resolution: {integrity: sha512-Ydggc987+RO0AnWtZ/7Wq9FtNvcrL1b/RO0ud9mWjUPgDrsAAwQSF51sm2hm1XofbU/4jkpGEsLFsZZxU+1DOg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
@@ -2749,6 +2802,10 @@ snapshots:
   '@types/react@19.3.0':
     dependencies:
       csstype: 3.2.3
+
+  '@types/ws@8.18.2':
+    dependencies:
+      '@types/node': 22.20.5
 
   '@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)':
     dependencies:
@@ -3679,6 +3736,8 @@ snapshots:
       stackback: 0.0.2
 
   word-wrap@1.2.5: {}
+
+  ws@8.22.0: {}
 
   yocto-queue@0.1.0: {}
 

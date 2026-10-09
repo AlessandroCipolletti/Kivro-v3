@@ -17,6 +17,10 @@
   },
   "dependencies": {
     "@kivro/cloud-core": "workspace:*",
-    "@kivro/contracts": "workspace:*"
+    "@kivro/contracts": "workspace:*",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.13"
   }
 }

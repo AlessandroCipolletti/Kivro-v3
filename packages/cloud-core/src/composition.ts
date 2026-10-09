@@ -1,4 +1,6 @@
 import { PROTOCOL_VERSION } from "@kivro/contracts";
+import type { DurableWorkPort } from "./durable-work-port.js";
+import { createInMemoryDurableWorkStub } from "./durable-work-port.js";
 import type { WorkerTransportPort } from "./ports.js";
 
 /** Single public API contract revision for all profiles (ARCH-UNI-011). */
@@ -16,7 +18,21 @@ export interface KivroCloudComposition {
   workerProtocolVersion: typeof PROTOCOL_VERSION;
   workerTransport: WorkerTransportPort;
   durableWorkProfile: DurableWorkProfile;
+  durableWork: DurableWorkPort;
   objectStorageProfile: ObjectStorageProfile;
+}
+
+export function attachDurableWorkPort(
+  composition: Omit<KivroCloudComposition, "durableWork">,
+): KivroCloudComposition {
+  const profile =
+    composition.durableWorkProfile === "netsons-db-cron"
+      ? "netsons-db-cron"
+      : "aws-managed-queue";
+  return {
+    ...composition,
+    durableWork: createInMemoryDurableWorkStub(profile),
+  };
 }
 
 export function assertCompositionParity(

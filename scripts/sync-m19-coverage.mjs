@@ -6,10 +6,10 @@ const file = path.join(path.resolve(import.meta.dirname, ".."), "spec/COVERAGE.m
 let text = fs.readFileSync(file, "utf8");
 
 const coreEvidence =
-  "packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19";
+  "packages/cloud-core, apps/api, apps/cloud-netsons, apps/cloud-aws   security/tests/conformance-both-roots-m19.test.ts; security/tests/architecture-uni-023-m19.test.ts; scripts/check-composition-thinness.mjs; scripts/verify-both-composition-roots.mjs   docs/milestones/M19-closure.md M19 shared+adapters";
 
 const portEvidence =
-  "packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT";
+  "packages/worker-transport, apps/api/src/worker-wss-server.ts   packages/worker-transport/src/wss-native-dispatch.ts; security/tests/conformance-dual-transport-m19.test.ts; packages/worker-transport/src/retry-backoff.test.ts   docs/milestones/M19-closure.md M19 PORT shared";
 
 function formatLine(id, priority, evidence) {
   const [impl, tests, ...noteParts] = evidence.split("   ");

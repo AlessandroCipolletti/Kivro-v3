@@ -39,6 +39,20 @@ describe("M19 unified backend & conformance harness", () => {
     expect(createAwsComposition().workerTransport.kind).toBe("wss");
   });
 
+  it("documents WSS dispatch shim for AWS transport parity", () => {
+    expect(
+      fs.existsSync(path.join(root, "apps/api/src/routes/worker-wss-shim.ts")),
+    ).toBe(true);
+  });
+
+  it("exposes worker service discovery and composition entry apps (PORT-021)", () => {
+    expect(fs.existsSync(path.join(root, "apps/api/src/routes/worker-discovery.ts"))).toBe(
+      true,
+    );
+    expect(fs.existsSync(path.join(root, "apps/cloud-netsons/start.mjs"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "apps/cloud-aws/start.mjs"))).toBe(true);
+  });
+
   it("transport adapters remain semantically equivalent", () => {
     const polling = createPollingWorkerTransport({
       controlPlaneId: "cp",

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "description": "M19 provider-neutral golden scenarios (CONFORMANCE.md registry seed)",
+  "scenarios": [
+    {
+      "id": "M19-GOLD-001",
+      "name": "composition parity",
+      "assert": "netsons and aws share apiContractVersion and workerProtocolVersion"
+    },
+    {
+      "id": "M19-GOLD-002",
+      "name": "transport poll semantics",
+      "assert": "polling and wss adapters parse identical poll payloads"
+    },
+    {
+      "id": "M19-GOLD-003",
+      "name": "worker application messages",
+      "assert": "job-protocol heartbeat and job accepted include protocolVersion"
+    },
+    {
+      "id": "M19-GOLD-004",
+      "name": "worker service discovery",
+      "assert": "discovery advertises DRAINING polling and ACTIVE wss control planes"
+    },
+    {
+      "id": "M19-GOLD-005",
+      "name": "dual transport coexistence",
+      "assert": "one Worker session routes by controlPlaneId without cross-routing"
+    },
+    {
+      "id": "M19-GOLD-006",
+      "name": "protocol compatibility window",
+      "assert": "WORKER_PROTOCOL_COMPATIBILITY_WINDOW covers advertised PROTOCOL_VERSION"
+    }
+  ]
+}

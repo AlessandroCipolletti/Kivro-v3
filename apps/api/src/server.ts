@@ -29,6 +29,9 @@ import { marketplaceAgentToolRoutes } from "./routes/marketplace-agent-tools.js"
 import { buyerJobAssetRoutes } from "./routes/buyer-job-assets.js";
 import { sellerDashboardRoutes } from "./routes/seller-dashboard.js";
 import { workerHealthRoutes } from "./routes/worker-health.js";
+import { workerWssShimRoutes } from "./routes/worker-wss-shim.js";
+import { workerDiscoveryRoutes } from "./routes/worker-discovery.js";
+import { attachWorkerWssServer } from "./worker-wss-server.js";
 import { buyerApiKeyRoutes } from "./routes/buyer-api-keys.js";
 import { buyerWebhookManageRoutes } from "./routes/buyer-webhooks-manage.js";
 import { v1BuyerApiRoutes } from "./routes/v1-buyer-api.js";
@@ -163,6 +166,8 @@ export function createApp(): Hono<AppEnv> {
   app.route("/seller", sellerDashboardRoutes());
   app.route("/worker", workerJobRoutes());
   app.route("/worker", workerHealthRoutes());
+  app.route("/worker", workerDiscoveryRoutes());
+  app.route("/worker/wss", workerWssShimRoutes());
   app.route("/webhooks", stripeWebhookRoutes());
 
   return app;
@@ -170,7 +175,8 @@ export function createApp(): Hono<AppEnv> {
 
 export function startServer(port = Number(process.env.PORT ?? 3001)): void {
   const composition = resolveCloudComposition(process.env.KIVRO_CLOUD_PROFILE);
-  serve({ fetch: createApp().fetch, port });
+  const server = serve({ fetch: createApp().fetch, port });
+  attachWorkerWssServer(server as import("node:http").Server);
   logInfo({
     correlationId: createCorrelationId(),
     message: "API listening",

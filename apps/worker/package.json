@@ -26,6 +26,8 @@
     "@kivro/job-io": "workspace:*",
     "@kivro/research-broker": "workspace:*",
     "@kivro/worker-store": "workspace:*",
+    "@kivro/cloud-core": "workspace:*",
+    "@kivro/worker-transport": "workspace:*",
     "commander": "^12.1.0"
   }
 }

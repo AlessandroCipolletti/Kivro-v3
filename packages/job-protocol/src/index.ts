@@ -1,4 +1,5 @@
 export { PROTOCOL_VERSION } from "@kivro/contracts";
+export { buildJobAcceptedMessage, buildWorkerHeartbeatBody } from "./application.js";
 export const WORKER_COMMANDS = [
   "doctor",
   "scan",
