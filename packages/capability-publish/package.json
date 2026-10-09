@@ -16,6 +16,7 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@kivro/billing": "workspace:*",
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
     "@kivro/openclaw-adapter": "workspace:*",

@@ -6,11 +6,13 @@ import {
 } from "@kivro/contracts";
 import { recordJobCheckpoint } from "@kivro/job-control";
 import { getPrismaClient } from "@kivro/database";
+import { markJobDeliveredAndSettle, reconcileJobPaymentAfterTerminal } from "@kivro/billing";
 import {
   acceptJobOffer,
   dispatchJobToWorker,
   markJobRunning,
   recoverWorkerOfflineJob,
+  rejectJobOffer,
 } from "@kivro/job-dispatch";
 import {
   sellerRequestJobPause,
@@ -86,6 +88,32 @@ export function workerJobRoutes(): Hono<AppEnv> {
       })),
       commands,
     });
+  });
+
+  app.post("/jobs/reject", async (c) => {
+    const workerDeviceId = resolveWorkerDeviceId(c);
+    if (!workerDeviceId) {
+      return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
+    }
+    let body: { jobId?: string; reason?: string } = {};
+    try {
+      body = await c.req.json();
+    } catch {
+      body = {};
+    }
+    if (!body.jobId) {
+      return c.json({ error: "JOB_ID_REQUIRED" }, 400);
+    }
+    const result = await rejectJobOffer(getPrismaClient(), {
+      jobId: body.jobId,
+      workerDeviceId,
+      reason: body.reason,
+    });
+    if ("error" in result) {
+      return c.json(result, 409);
+    }
+    await reconcileJobPaymentAfterTerminal(getPrismaClient(), body.jobId);
+    return c.json(result);
   });
 
   app.post("/jobs/accept", async (c) => {
@@ -164,7 +192,8 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
-    const result = await recoverWorkerOfflineJob(getPrismaClient(), c.req.param("jobId"));
+    const jobId = c.req.param("jobId");
+    const result = await recoverWorkerOfflineJob(getPrismaClient(), jobId);
     if ("error" in result) {
       return c.json(result, 409);
     }
@@ -180,6 +209,21 @@ export function workerJobRoutes(): Hono<AppEnv> {
       jobId: c.req.param("jobId"),
       workerDeviceId,
       offerExpiresAt: new Date(Date.now() + 5 * 60_000),
+    });
+    if ("error" in result) {
+      return c.json(result, 409);
+    }
+    return c.json(result);
+  });
+
+  app.post("/jobs/:jobId/complete", async (c) => {
+    const workerDeviceId = resolveWorkerDeviceId(c);
+    if (!workerDeviceId) {
+      return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
+    }
+    const result = await markJobDeliveredAndSettle(getPrismaClient(), {
+      jobId: c.req.param("jobId"),
+      workerDeviceId,
     });
     if ("error" in result) {
       return c.json(result, 409);

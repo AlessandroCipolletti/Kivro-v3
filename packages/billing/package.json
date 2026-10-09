@@ -14,5 +14,10 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint src"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@kivro/database": "workspace:*",
+    "@kivro/domain": "workspace:*",
+    "@kivro/job-control": "workspace:*",
+    "stripe": "^17.7.0"
+  }
 }

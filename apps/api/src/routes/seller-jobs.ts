@@ -13,6 +13,7 @@ import { isPausableExecutionStatus, type JobStatus } from "@kivro/domain";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
 import type { AppEnv } from "../types.js";
+import { reconcileJobPaymentAfterTerminal } from "@kivro/billing";
 import { randomUUID } from "node:crypto";
 
 export function sellerJobRoutes(): Hono<AppEnv> {
@@ -145,6 +146,7 @@ export function sellerJobRoutes(): Hono<AppEnv> {
     if ("error" in result) {
       return c.json({ error: result.error }, result.error === "FORBIDDEN" ? 403 : 409);
     }
+    await reconcileJobPaymentAfterTerminal(getPrismaClient(), jobId);
     return c.json(result);
   });
 

@@ -470,3 +470,21 @@ greenfield.
 **Context:** Full device credential signing for Worker job endpoints is specified in §10 but not fully wired in early milestones.
 
 **Decision:** M07 Worker job routes authenticate via `x-worker-device-id` bound to a PAIRED device record. Production hardening adds request signing in a later milestone without changing pause semantics.
+
+## DEC-M08-001 — Dual funding: prepaid credits (default) + per-job card authorization
+
+**Context:** Master Spec §24.4–§24.5 allows credits or direct per-job authorization.
+
+**Decision:** M08 implements canonical USD tiers, prepaid credit ledger (default `paymentMode=credits`), and optional per-job Stripe PaymentIntent with `capture_method=manual` (`paymentMode=card`, §24.5). Settlement uses ledger + Connect transfer; card jobs capture the PaymentIntent at delivery instead of debiting prepaid credits.
+
+## DEC-M08-002 — Dev payment shortcuts mirror auth gating
+
+**Context:** Local development must exercise paid paths without full Stripe Connect for every seller.
+
+**Decision:** `KIVRO_DEV_PAYMENT_SHORTCUTS=true` (non-production only) bypasses Connect readiness for publish and enables `POST /buyer/billing/credits/dev-grant`. Production disables both paths.
+
+## DEC-M08-003 — §298 is pricing principle, not scheduling
+
+**Context:** `COVERAGE.md` briefly mis-tagged §298 as scheduled-job payment; Master Spec §298 defines buyer/seller pricing clarity.
+
+**Decision:** M08 satisfies §298 via canonical tiers, public buyer tier list, seller pricing preview, and `pricingProductPrincipleCopy` tests. Scheduled-job state machine remains M09 (Master Spec §462+).

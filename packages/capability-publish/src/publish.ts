@@ -24,6 +24,8 @@ import { finalizeWorkerManifest, verifyWorkerManifestPayload } from "./worker-ma
 import { validateAndNormalizeCapabilityContract } from "@kivro/job-io";
 import { validateInternetPolicyForPublish } from "./internet-publish-gate.js";
 import { randomUUID } from "node:crypto";
+import { requireEnabledPriceTier } from "@kivro/billing";
+import { assertPublishPaymentReady } from "./publish-payment-gate.js";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -64,6 +66,7 @@ export async function createDraftCapability(
   }
   const contract = parseCapabilityContract(input.contract);
   parsePublicPermissionManifest(input.permissionManifest);
+  const tier = requireEnabledPriceTier({ buyerPriceMinor: contract.priceTierCents });
 
   return db.capability.create({
     data: {
@@ -72,7 +75,8 @@ export async function createDraftCapability(
       name: contract.name,
       description: contract.description,
       status: "DRAFT",
-      priceTierCents: contract.priceTierCents,
+      priceTierCents: tier.buyerPriceMinor,
+      priceTierId: tier.id,
       currency: contract.currency,
     },
   });
@@ -130,6 +134,12 @@ export async function publishCapability(
   }
   workerManifest = internetGate.manifest;
   workerManifestHash = hashWorkerManifest(workerManifest);
+
+  const seller = await db.sellerProfile.findUnique({ where: { id: sellerProfileId } });
+  if (!seller) {
+    throw new Error("SELLER_NOT_FOUND");
+  }
+  const priceTier = assertPublishPaymentReady(seller, contract.priceTierCents);
 
   const device = await db.workerDevice.findFirst({
     where: { id: input.workerDeviceId, sellerProfileId },
@@ -218,7 +228,10 @@ export async function publishCapability(
         workerManifest: toJsonValue(workerManifest),
         workerManifestHash,
         inferenceDependency: toJsonValue(inferenceDependency),
-        priceSnapshotCents: contract.priceTierCents,
+        priceSnapshotCents: priceTier.buyerPriceMinor,
+        priceTierId: priceTier.id,
+        platformFeeSnapshotCents: priceTier.platformFeeMinor,
+        sellerNetSnapshotCents: priceTier.sellerNetMinor,
         currency: contract.currency,
         publishedAt: new Date(),
       },
@@ -258,7 +271,8 @@ export async function publishCapability(
         status: "PUBLISHED",
         name: contract.name,
         description: contract.description,
-        priceTierCents: contract.priceTierCents,
+        priceTierCents: priceTier.buyerPriceMinor,
+        priceTierId: priceTier.id,
         currentVersionId: version.id,
       },
     });

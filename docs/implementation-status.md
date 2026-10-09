@@ -11,8 +11,8 @@
 | M06 controlled Internet research | Implemented (bounded) | DNS-aware SSRF, content sanitize/hash, publish internet gate, seller `/internet/validate`, §260 fixture tests, `pnpm verify:m06`; §264 browser + §269–§273 cloud deploy PARTIAL/DEFERRED |
 | OpenClaw adapter (real) | Partial | CLI + marketplace env + preflight/`KIVRO_SANDBOX_DRY_RUN`; live agent exec M06+ |
 | Auth (email/Google) | Implemented | Sessions, verify email, Google OAuth when configured |
-| Cloud dispatch | Not implemented | M07 |
-| Payments | Not implemented | M08 |
+| M07 job dispatch & pause control | Implemented (bounded) | `@kivro/job-dispatch`, `@kivro/job-control`, seller control UI, `pnpm verify:m07` |
+| M08 payments & pricing | Implemented | `@kivro/billing`, credits + card authorization, tiers §282, Stripe Checkout/Connect/transfer, `pnpm verify:m08` (DEC-M08-001..003) |
 | Marketplace UI | Partial | Placeholder only |
 
 ## Security assumptions

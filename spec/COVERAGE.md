@@ -312,159 +312,159 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0001`    P1         §23      `TESTED`   packages/database/prisma/schema.prisma vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PAY-0001`    P1         §24      `TODO`   ---              ---        ---
+  `PAY-0001`    P1         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0002`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0002`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0003`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0003`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0004`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0004`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0005`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0005`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0006`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0006`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0007`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0007`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0008`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0008`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0009`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0009`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0010`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0010`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0011`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0011`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0012`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0012`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0013`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0013`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0014`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0014`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0015`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0015`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0016`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0016`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0017`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0017`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0018`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0018`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0019`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0019`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0020`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0020`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0021`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0021`    P0         §24      `TESTED`   packages/billing/src/job-card-payment.ts, apps/api/routes/buyer-jobs-submit.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08 per-job PaymentIntent §24.5
 
-  `PAY-0022`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0022`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0023`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0023`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0024`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0024`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0025`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0025`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0026`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0026`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0027`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0027`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0028`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0028`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0029`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0029`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0030`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0030`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0031`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0031`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0032`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0032`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0033`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0033`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0034`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0034`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0035`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0035`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0036`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0036`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0037`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0037`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0038`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0038`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0039`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0039`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0040`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0040`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0041`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0041`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0042`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0042`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0043`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0043`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0044`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0044`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0045`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0045`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0046`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0046`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0047`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0047`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0048`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0048`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0049`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0049`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0050`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0050`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0051`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0051`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0052`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0052`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0053`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0053`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0054`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0054`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0055`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0055`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0056`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0056`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0057`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0057`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0058`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0058`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0059`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0059`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0060`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0060`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0061`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0061`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0062`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0062`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0063`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0063`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0064`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0064`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0065`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0065`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0066`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0066`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0067`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0067`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0068`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0068`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0069`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0069`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0070`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0070`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0071`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0071`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0072`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0072`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0073`    P0         §24      `TODO`   ---              ---        ---
+  `PAY-0073`    P0         §24      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0039`    P1         §25      `TODO`   ---              ---        ---
+  `PRD-0039`    P1         §25      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0040`    P2         §25      `TODO`   ---              ---        ---
+  `PRD-0040`    P2         §25      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0041`    P2         §25      `TODO`   ---              ---        ---
+  `PRD-0041`    P2         §25      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0042`    P2         §25      `TODO`   ---              ---        ---
+  `PRD-0042`    P2         §25      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
   `AVL-0001`    P1         §26      `TODO`   ---              ---        ---
 
@@ -1950,125 +1950,125 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0091`    P0         §277     `TODO`   ---              ---        ---
 
-  `PRD-0277`    P1         §278     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0277`    P1         §278     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0278`    P2         §278     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0278`    P2         §278     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0279`    P2         §278     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0279`    P2         §278     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0280`    P1         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0280`    P1         §279     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0281`    P2         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0281`    P2         §279     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0282`    P2         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0282`    P2         §279     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0283`    P2         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0283`    P2         §279     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0284`    P1         §280     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0284`    P1         §280     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0285`    P2         §280     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0285`    P2         §280     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0286`    P2         §280     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0286`    P2         §280     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0287`    P1         §281     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0287`    P1         §281     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0288`    P2         §281     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0288`    P2         §281     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0289`    P2         §281     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PRD-0289`    P2         §281     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0081`    P1         §282     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PAY-0081`    P1         §282     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0082`    P0         §282     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PAY-0082`    P0         §282     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0083`    P0         §282     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
+  `PAY-0083`    P0         §282     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0290`    P1         §283     `TODO`   ---              ---        ---
+  `PRD-0290`    P1         §283     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0291`    P2         §283     `TODO`   ---              ---        ---
+  `PRD-0291`    P2         §283     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0292`    P1         §284     `TODO`   ---              ---        ---
+  `PRD-0292`    P1         §284     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0293`    P1         §285     `TODO`   ---              ---        ---
+  `PRD-0293`    P1         §285     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0294`    P2         §285     `TODO`   ---              ---        ---
+  `PRD-0294`    P2         §285     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0295`    P1         §286     `TODO`   ---              ---        ---
+  `PRD-0295`    P1         §286     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0296`    P1         §287     `TODO`   ---              ---        ---
+  `PRD-0296`    P1         §287     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0297`    P2         §287     `TODO`   ---              ---        ---
+  `PRD-0297`    P2         §287     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0298`    P2         §287     `TODO`   ---              ---        ---
+  `PRD-0298`    P2         §287     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0299`    P2         §287     `TODO`   ---              ---        ---
+  `PRD-0299`    P2         §287     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0084`    P1         §288     `TODO`   ---              ---        ---
+  `PAY-0084`    P1         §288     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0085`    P0         §288     `TODO`   ---              ---        ---
+  `PAY-0085`    P0         §288     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0086`    P0         §288     `TODO`   ---              ---        ---
+  `PAY-0086`    P0         §288     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0087`    P0         §288     `TODO`   ---              ---        ---
+  `PAY-0087`    P0         §288     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0088`    P0         §288     `TODO`   ---              ---        ---
+  `PAY-0088`    P0         §288     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0089`    P1         §289     `TODO`   ---              ---        ---
+  `PAY-0089`    P1         §289     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0090`    P0         §289     `TODO`   ---              ---        ---
+  `PAY-0090`    P0         §289     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0091`    P0         §289     `TODO`   ---              ---        ---
+  `PAY-0091`    P0         §289     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0092`    P1         §290     `TODO`   ---              ---        ---
+  `PAY-0092`    P1         §290     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0093`    P0         §290     `TODO`   ---              ---        ---
+  `PAY-0093`    P0         §290     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0094`    P0         §290     `TODO`   ---              ---        ---
+  `PAY-0094`    P0         §290     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0095`    P0         §290     `TODO`   ---              ---        ---
+  `PAY-0095`    P0         §290     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0300`    P1         §291     `TODO`   ---              ---        ---
+  `PRD-0300`    P1         §291     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0301`    P2         §291     `TODO`   ---              ---        ---
+  `PRD-0301`    P2         §291     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0302`    P1         §292     `TODO`   ---              ---        ---
+  `PRD-0302`    P1         §292     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0303`    P2         §292     `TODO`   ---              ---        ---
+  `PRD-0303`    P2         §292     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0096`    P1         §293     `TODO`   ---              ---        ---
+  `PAY-0096`    P1         §293     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0097`    P0         §293     `TODO`   ---              ---        ---
+  `PAY-0097`    P0         §293     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0304`    P1         §294     `TODO`   ---              ---        ---
+  `PRD-0304`    P1         §294     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0305`    P2         §294     `TODO`   ---              ---        ---
+  `PRD-0305`    P2         §294     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0306`    P1         §295     `TODO`   ---              ---        ---
+  `PRD-0306`    P1         §295     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0307`    P2         §295     `TODO`   ---              ---        ---
+  `PRD-0307`    P2         §295     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0098`    P1         §296     `TODO`   ---              ---        ---
+  `PAY-0098`    P1         §296     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0099`    P0         §296     `TODO`   ---              ---        ---
+  `PAY-0099`    P0         §296     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0100`    P0         §296     `TODO`   ---              ---        ---
+  `PAY-0100`    P0         §296     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PAY-0101`    P0         §296     `TODO`   ---              ---        ---
+  `PAY-0101`    P0         §296     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0308`    P1         §297     `TODO`   ---              ---        ---
+  `PRD-0308`    P1         §297     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0309`    P2         §297     `TODO`   ---              ---        ---
+  `PRD-0309`    P2         §297     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0310`    P2         §297     `TODO`   ---              ---        ---
+  `PRD-0310`    P2         §297     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0311`    P2         §297     `TODO`   ---              ---        ---
+  `PRD-0311`    P2         §297     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0312`    P2         §297     `TODO`   ---              ---        ---
+  `PRD-0312`    P2         §297     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `PRD-0313`    P1         §298     `TODO`   ---              ---        ---
+  `PRD-0313`    P1         §298     `TESTED`   packages/billing/src/pricing-principle.test.ts, packages/billing/src/buyer-billing-read.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08 §298 pricing principle
 
-  `PRD-0314`    P2         §298     `TODO`   ---              ---        ---
+  `PRD-0314`    P2         §298     `TESTED`   packages/billing/src/pricing-principle.test.ts, packages/billing/src/buyer-billing-read.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08 §298 pricing principle
 
-  `PRD-0315`    P2         §298     `TODO`   ---              ---        ---
+  `PRD-0315`    P2         §298     `TESTED`   packages/billing/src/pricing-principle.test.ts, packages/billing/src/buyer-billing-read.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08 §298 pricing principle
 
   `SEC-0092`    P1         §299      `TESTED`   packages/contracts/permission-manifest.ts vitest; docs/milestones/M01-manual-validation.md M01
 

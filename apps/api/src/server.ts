@@ -12,6 +12,10 @@ import { workerDeviceRoutes } from "./routes/worker-devices.js";
 import { buyerJobRoutes, sellerJobRoutes } from "./routes/seller-jobs.js";
 import { sellerControlUiRoutes } from "./routes/seller-control-ui.js";
 import { workerJobRoutes } from "./routes/worker-jobs.js";
+import { buyerBillingRoutes } from "./routes/buyer-billing.js";
+import { buyerJobSubmitRoutes } from "./routes/buyer-jobs-submit.js";
+import { sellerBillingRoutes } from "./routes/seller-billing.js";
+import { stripeWebhookRoutes } from "./routes/stripe-webhooks.js";
 import type { AppEnv } from "./types.js";
 
 export function createApp(): Hono<AppEnv> {
@@ -47,7 +51,7 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M07" });
+    return c.json({ name: "kivro-api", phase: "M08" });
   });
 
   app.route("/auth", authRoutes());
@@ -57,10 +61,14 @@ export function createApp(): Hono<AppEnv> {
   app.route("/worker-devices", workerDeviceRoutes());
   app.route("/platform/admin", platformAdminRoutes());
   app.route("/buyer", buyerAssetRoutes());
+  app.route("/buyer", buyerBillingRoutes());
+  app.route("/buyer", buyerJobSubmitRoutes());
   app.route("/buyer", buyerJobRoutes());
+  app.route("/seller", sellerBillingRoutes());
   app.route("/seller", sellerJobRoutes());
   app.route("/seller", sellerControlUiRoutes());
   app.route("/worker", workerJobRoutes());
+  app.route("/webhooks", stripeWebhookRoutes());
 
   return app;
 }

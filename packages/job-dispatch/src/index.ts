@@ -3,4 +3,5 @@ export {
   acceptJobOffer,
   markJobRunning,
   recoverWorkerOfflineJob,
+  rejectJobOffer,
 } from "./dispatch-service.js";

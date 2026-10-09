@@ -33,6 +33,11 @@ enum LocalWorkerBindingStatus {
   INACTIVE
 }
 
+enum JobPaymentFunding {
+  PREPAID_CREDITS
+  CARD_AUTHORIZATION
+}
+
 enum JobStatus {
   CREATED
   PAYMENT_RESERVED
@@ -194,6 +199,7 @@ model SellerProfile {
   capabilities  Capability[]
   storedAssets  StoredAsset[]
   permissionConsents PermissionConsentRecord[]
+  transferRecords SellerTransferRecord[]
 }
 
 model WorkerDevice {
@@ -228,6 +234,7 @@ model Capability {
   status            CapabilityStatus @default(DRAFT)
   currentVersionId  String?          @unique
   priceTierCents    Int?
+  priceTierId       String?
   currency          String           @default("USD")
   estimatedDuration Int?
   rating            Float?
@@ -260,6 +267,9 @@ model CapabilityVersion {
   dependencyGraphSnapshot Json?
   supplyChainSnapshot  Json?
   priceSnapshotCents   Int
+  priceTierId          String?
+  platformFeeSnapshotCents Int?
+  sellerNetSnapshotCents   Int?
   currency             String   @default("USD")
   publishedAt          DateTime?
   createdAt            DateTime @default(now())
@@ -351,9 +361,14 @@ model Job {
   inputContractSnapshot      Json
   outputContractSnapshot     Json
   priceSnapshotCents         Int
+  priceTierId                String?
+  platformFeeSnapshotCents   Int?
+  sellerNetSnapshotCents     Int?
   currency                   String    @default("USD")
   status                     JobStatus @default(CREATED)
   reservedAmountCents        Int?
+  paymentFunding             JobPaymentFunding @default(PREPAID_CREDITS)
+  stripePaymentIntentId      String?           @unique
   workerDeviceId             String?
   correlationId              String?
   failureCode                String?
@@ -381,6 +396,7 @@ model Job {
   checkpoints       JobCheckpoint[]
   ledgerEntries     LedgerEntry[]
   auditEvents       AuditEvent[]
+  sellerTransfer    SellerTransferRecord?
 
   @@index([buyerId])
   @@index([capabilityVersionId])
@@ -469,6 +485,31 @@ model LedgerEntry {
 
   @@index([userId])
   @@index([jobId])
+}
+
+model StripeWebhookEvent {
+  id            String   @id @default(uuid())
+  stripeEventId String   @unique
+  type          String
+  processedAt   DateTime @default(now())
+  createdAt     DateTime @default(now())
+}
+
+model SellerTransferRecord {
+  id               String   @id @default(uuid())
+  jobId            String   @unique
+  sellerProfileId  String
+  amountCents      Int
+  currency         String   @default("USD")
+  stripeTransferId String?
+  status           String   @default("PENDING")
+  idempotencyKey   String   @unique
+  createdAt        DateTime @default(now())
+
+  job           Job           @relation(fields: [jobId], references: [id])
+  sellerProfile SellerProfile @relation(fields: [sellerProfileId], references: [id])
+
+  @@index([sellerProfileId])
 }
 
 model AuditEvent {

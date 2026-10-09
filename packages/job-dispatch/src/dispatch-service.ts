@@ -43,6 +43,9 @@ export async function dispatchJobToWorker(
   if (!job.input) {
     return { error: "JOB_INPUT_MISSING" };
   }
+  if (job.reservedAmountCents == null || job.reservedAmountCents <= 0) {
+    return { error: "PAYMENT_NOT_SECURED" };
+  }
   await transition(prisma, job.id, "QUEUED", "DISPATCHED", {
     workerDeviceId: input.workerDeviceId,
     dispatchExpiresAt: input.offerExpiresAt,
@@ -110,6 +113,27 @@ export async function markJobRunning(
 }
 
 /** §9 recovery — worker offline returns job to queue when safe. */
+export async function rejectJobOffer(
+  prisma: PrismaClient,
+  input: { jobId: string; workerDeviceId: string; reason?: string },
+): Promise<{ status: JobStatus } | { error: string }> {
+  const job = await prisma.job.findUnique({ where: { id: input.jobId } });
+  if (!job || job.workerDeviceId !== input.workerDeviceId) {
+    return { error: "FORBIDDEN" };
+  }
+  if (job.status === "REJECTED") {
+    return { status: "REJECTED" };
+  }
+  if (job.status !== "DISPATCHED") {
+    return { error: "INVALID_STATE" };
+  }
+  await transition(prisma, job.id, "DISPATCHED", "REJECTED", {
+    failureCode: input.reason ?? "WORKER_REJECTED",
+    workerDeviceId: null,
+  });
+  return { status: "REJECTED" };
+}
+
 export async function recoverWorkerOfflineJob(
   prisma: PrismaClient,
   jobId: string,
