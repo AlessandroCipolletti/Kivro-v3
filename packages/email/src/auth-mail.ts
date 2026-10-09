@@ -1,5 +1,6 @@
 import { getBrevoConfig } from "./brevo-config.js";
 import { sendBrevoTemplate } from "./brevo-transactional.js";
+import { baseTemplateParams } from "./template-params.js";
 
 export function buildVerificationLink(webAppUrl: string, rawToken: string): string {
   const base = webAppUrl.replace(/\/$/, "");
@@ -13,21 +14,22 @@ export function buildPasswordResetLink(webAppUrl: string, rawToken: string): str
 
 export async function sendEmailVerificationMessage(input: {
   to: string;
-  verifyLink: string;
+  confirmLink: string;
+  acceptLink?: string;
   correlationId?: string;
 }): Promise<{ sent: boolean; reason?: string }> {
   const config = getBrevoConfig();
   if (!config) {
     return { sent: false, reason: "BREVO_NOT_CONFIGURED" };
   }
+  const acceptLink = input.acceptLink ?? input.confirmLink;
   const result = await sendBrevoTemplate(config, {
     to: input.to,
     templateId: config.templates.emailVerification,
     params: {
-      verify_link: input.verifyLink,
-      VERIFY_LINK: input.verifyLink,
-      email: input.to,
-      EMAIL: input.to,
+      ...baseTemplateParams(input.to),
+      confirmLink: input.confirmLink,
+      acceptLink,
     },
     correlationId: input.correlationId,
   });
@@ -36,23 +38,16 @@ export async function sendEmailVerificationMessage(input: {
 
 export async function sendAccountConfirmedMessage(input: {
   to: string;
-  webAppUrl: string;
   correlationId?: string;
 }): Promise<{ sent: boolean; reason?: string }> {
   const config = getBrevoConfig();
   if (!config) {
     return { sent: false, reason: "BREVO_NOT_CONFIGURED" };
   }
-  const webApp = input.webAppUrl.replace(/\/$/, "");
   const result = await sendBrevoTemplate(config, {
     to: input.to,
     templateId: config.templates.accountConfirmed,
-    params: {
-      email: input.to,
-      EMAIL: input.to,
-      web_app_url: webApp,
-      WEB_APP_URL: webApp,
-    },
+    params: baseTemplateParams(input.to),
     correlationId: input.correlationId,
   });
   return result.ok ? { sent: true } : { sent: false, reason: result.reason };
@@ -71,10 +66,8 @@ export async function sendPasswordResetMessage(input: {
     to: input.to,
     templateId: config.templates.passwordReset,
     params: {
-      reset_link: input.resetLink,
-      RESET_LINK: input.resetLink,
-      email: input.to,
-      EMAIL: input.to,
+      ...baseTemplateParams(input.to),
+      resetLink: input.resetLink,
     },
     correlationId: input.correlationId,
   });

@@ -13,7 +13,7 @@ describe("sendBrevoTemplate", () => {
     const fetchImpl = vi.fn(async () => new Response("", { status: 201 }));
     const result = await sendBrevoTemplate(
       config,
-      { to: "user@example.com", templateId: 1, params: { verify_link: "https://x" } },
+      { to: "user@example.com", templateId: 1, params: { confirmLink: "https://x" } },
       fetchImpl,
     );
     expect(result).toEqual({ ok: true });

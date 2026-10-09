@@ -24,10 +24,12 @@ export async function deliverVerificationEmail(input: {
   verificationToken: string;
   correlationId?: string;
 }): Promise<void> {
-  const verifyLink = apiVerificationLink(input.verificationToken);
+  const confirmLink = apiVerificationLink(input.verificationToken);
+  const web = webAppUrl().replace(/\/$/, "");
   const result = await sendEmailVerificationMessage({
     to: input.email,
-    verifyLink,
+    confirmLink,
+    acceptLink: `${web}/verify-email`,
     correlationId: input.correlationId,
   });
   if (!result.sent) {
@@ -45,7 +47,6 @@ export async function deliverAccountConfirmedEmail(input: {
 }): Promise<void> {
   const result = await sendAccountConfirmedMessage({
     to: input.email,
-    webAppUrl: webAppUrl(),
     correlationId: input.correlationId,
   });
   if (!result.sent) {
