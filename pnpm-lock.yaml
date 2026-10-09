@@ -340,6 +340,9 @@ importers:
 
   packages/cloud-netsons:
     dependencies:
+      '@kivro/billing':
+        specifier: workspace:*
+        version: link:../billing
       '@kivro/buyer-webhooks':
         specifier: workspace:*
         version: link:../buyer-webhooks
@@ -352,6 +355,12 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
+      '@kivro/job-control':
+        specifier: workspace:*
+        version: link:../job-control
+      '@kivro/job-failure':
+        specifier: workspace:*
+        version: link:../job-failure
       '@kivro/job-scheduling':
         specifier: workspace:*
         version: link:../job-scheduling

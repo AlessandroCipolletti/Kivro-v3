@@ -45,7 +45,7 @@ Processes PostgreSQL durable work, due buyer webhook retries, and scheduling swe
 | `S3_*` | Object storage |
 | `REDIS_URL` | Optional |
 
-See root `.env.example`.
+See root `.env.example` and **`DEPLOYMENT-GUIDE.md`** (full HOST-NET-027 checklist).
 
 ## Smoke / staging (HOST-NET-029/030)
 

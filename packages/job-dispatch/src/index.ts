@@ -5,3 +5,4 @@ export {
   recoverWorkerOfflineJob,
   rejectJobOffer,
 } from "./dispatch-service.js";
+export { reconcileWorkerSessionOnReconnect } from "./worker-reconcile.js";

@@ -10,6 +10,8 @@ describe("M20 Netsons deployment profile", () => {
     const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
     expect(pkg.scripts["verify:m20"]).toBeTruthy();
     expect(fs.existsSync(path.join(root, "docs/deploy/netsons/README.md"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "docs/deploy/netsons/DEPLOYMENT-GUIDE.md"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "scripts/netsons-unified-start.mjs"))).toBe(true);
     expect(fs.existsSync(path.join(root, "apps/api/src/routes/platform-cron.ts"))).toBe(true);
   });
 

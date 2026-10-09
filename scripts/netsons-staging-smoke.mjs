@@ -29,4 +29,20 @@ const discovery = await check("/worker/discovery");
 if (!Array.isArray(discovery.controlPlanes) || discovery.controlPlanes.length < 1) {
   throw new Error("worker discovery missing control planes");
 }
+if (ready.checks?.database !== true) {
+  throw new Error("database check failed on staging");
+}
+const cronProbe = await fetch(`${base}/platform/cron/netsons-tick`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+    "x-kivro-cron-secret": process.env.KIVRO_CRON_SECRET ?? "",
+  },
+  body: "{}",
+});
+if (cronProbe.status === 401 && !process.env.KIVRO_CRON_SECRET) {
+  console.log("cron tick auth skipped (KIVRO_CRON_SECRET unset)");
+} else if (!cronProbe.ok && cronProbe.status !== 403) {
+  throw new Error(`cron tick probe failed: ${cronProbe.status}`);
+}
 console.log("Netsons staging smoke OK");

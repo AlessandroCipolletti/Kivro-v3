@@ -16,6 +16,9 @@ const allowedPkgByDir = {
     "durable-work-db-port.ts",
     "netsons-cron-tick.ts",
     "netsons-runtime-config.ts",
+    "netsons-bounds.ts",
+    "netsons-maintenance-sweeps.ts",
+    "worker-dispatch-signal.ts",
   ]),
   "packages/cloud-aws/src": new Set(["composition.ts", "index.ts"]),
 };

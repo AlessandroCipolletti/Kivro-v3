@@ -6,7 +6,7 @@ const file = path.join(path.resolve(import.meta.dirname, ".."), "spec/COVERAGE.m
 let text = fs.readFileSync(file, "utf8");
 
 const evidence =
-  "packages/cloud-netsons, apps/api/src/routes/platform-cron.ts, docs/deploy/netsons   security/tests/acceptance-m20.test.ts; packages/cloud-netsons/src/durable-work-db-port.test.ts; scripts/netsons-staging-smoke.mjs   docs/milestones/M20-closure.md M20 Netsons adapter+shared";
+  "packages/cloud-netsons, apps/api, packages/job-dispatch, packages/database, docs/deploy/netsons   security/tests/host-net-production-m20.test.ts; security/tests/acceptance-m20.test.ts; packages/cloud-netsons/src/durable-work-db-port.test.ts; scripts/check-no-bullmq-production.mjs; scripts/netsons-staging-smoke.mjs   docs/milestones/M20-closure.md M20";
 
 function formatLine(id, priority) {
   const [impl, tests, ...noteParts] = evidence.split("   ");

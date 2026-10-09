@@ -15,6 +15,7 @@ import {
   tryClearPlatformSecurityPause,
 } from "./platform-security-pause-service.js";
 import { syncCloudFromWorkerLocalPause } from "./sync-worker-local-pause.js";
+import { reconcileWorkerSessionOnReconnect } from "@kivro/job-dispatch";
 
 async function pruneHealthEvents(prisma: PrismaClient, workerDeviceId: string): Promise<void> {
   const count = await prisma.workerHealthEvent.count({ where: { workerDeviceId } });
@@ -46,6 +47,7 @@ export async function applyWorkerHeartbeat(
       blocking: boolean;
       marketplaceControl: ReturnType<typeof deriveMarketplaceControlState>;
       platformSecurityPause: boolean;
+      reconciliation: Awaited<ReturnType<typeof reconcileWorkerSessionOnReconnect>>;
     }
   | { error: string }
 > {
@@ -175,6 +177,8 @@ export async function applyWorkerHeartbeat(
 
   await pruneHealthEvents(prisma, device.id);
 
+  const reconciliation = await reconcileWorkerSessionOnReconnect(prisma, device.id);
+
   return {
     ok: true,
     healthLabel,
@@ -182,5 +186,6 @@ export async function applyWorkerHeartbeat(
     blocking,
     marketplaceControl,
     platformSecurityPause: profile.platformSecurityPause,
+    reconciliation,
   };
 }

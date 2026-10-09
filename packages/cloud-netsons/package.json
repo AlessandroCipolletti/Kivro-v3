@@ -15,10 +15,13 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@kivro/billing": "workspace:*",
     "@kivro/buyer-webhooks": "workspace:*",
     "@kivro/cloud-core": "workspace:*",
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
+    "@kivro/job-control": "workspace:*",
+    "@kivro/job-failure": "workspace:*",
     "@kivro/job-scheduling": "workspace:*",
     "@kivro/worker-transport": "workspace:*"
   }

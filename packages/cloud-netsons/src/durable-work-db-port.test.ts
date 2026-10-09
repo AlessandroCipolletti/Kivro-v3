@@ -34,4 +34,18 @@ describe.runIf(hasDb)("Netsons durable work (PostgreSQL)", () => {
       where: { idempotencyKey: `job-promotion:${jobId}` },
     });
   });
+
+  it("processes worker signal durable rows (HOST-NET-012)", async () => {
+    const prisma = getPrismaClient();
+    const port = createNetsonsDurableWorkPort(prisma);
+    await port.enqueueWorkerSignal({
+      workerDeviceId: "wd-m20-signal",
+      signal: "DISPATCH:test-job",
+    });
+    const batch = await processNetsonsDurableWorkBatch(prisma, 5);
+    expect(batch.completed).toBeGreaterThanOrEqual(1);
+    await prisma.durableWorkItem.deleteMany({
+      where: { idempotencyKey: "worker-signal:wd-m20-signal:DISPATCH:test-job" },
+    });
+  });
 });

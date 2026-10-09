@@ -9,7 +9,6 @@ import { getPrismaClient } from "@kivro/database";
 import { markJobDeliveredAndSettle, reconcileJobPaymentAfterTerminal } from "@kivro/billing";
 import {
   acceptJobOffer,
-  dispatchJobToWorker,
   markJobRunning,
   recoverWorkerOfflineJob,
   rejectJobOffer,
@@ -20,6 +19,7 @@ import {
   workerAcknowledgeJobResumed,
 } from "@kivro/job-control";
 import { executeWorkerPoll } from "../services/worker-poll-service.js";
+import { dispatchJobToWorkerWithProfileSignal } from "../services/netsons-dispatch-hook.js";
 import { sanitizeAuditPayload } from "@kivro/observability";
 import type { Prisma } from "@kivro/database";
 import { Hono } from "hono";
@@ -194,7 +194,7 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
-    const result = await dispatchJobToWorker(getPrismaClient(), {
+    const result = await dispatchJobToWorkerWithProfileSignal(getPrismaClient(), {
       jobId: c.req.param("jobId"),
       workerDeviceId,
       offerExpiresAt: new Date(Date.now() + 5 * 60_000),

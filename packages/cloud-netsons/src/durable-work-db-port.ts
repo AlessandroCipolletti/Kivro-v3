@@ -153,9 +153,18 @@ export async function processNetsonsDurableWorkBatch(
 
 async function executeDurableWorkItem(
   kind: string,
-  _payload: Record<string, unknown>,
+  payload: Record<string, unknown>,
 ): Promise<void> {
-  if (kind === DURABLE_WORK_KIND.JOB_PROMOTION || kind === DURABLE_WORK_KIND.WORKER_SIGNAL) {
+  if (kind === DURABLE_WORK_KIND.WORKER_SIGNAL) {
+    if (!payload.workerDeviceId || !payload.signal) {
+      throw new Error("WORKER_SIGNAL_PAYLOAD_INVALID");
+    }
+    return;
+  }
+  if (kind === DURABLE_WORK_KIND.JOB_PROMOTION) {
+    if (!payload.jobId) {
+      throw new Error("JOB_PROMOTION_PAYLOAD_INVALID");
+    }
     return;
   }
   throw new Error(`UNKNOWN_DURABLE_WORK_KIND:${kind}`);

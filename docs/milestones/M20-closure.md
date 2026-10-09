@@ -1,22 +1,24 @@
 # M20 — milestone closure (Netsons deployment profile)
 
-`HOST-NET-001`–`031`, `spec/DEPLOYMENT-NETSONS.md`, shared `ARCH-UNI-*` / `PORT-*` exercised via Netsons root.
+`HOST-NET-001`–`031`, `spec/DEPLOYMENT-NETSONS.md`, shared conformance via Netsons composition root.
 
 ## Shipped
 
-- **PostgreSQL durable work** — `DurableWorkItem` migration; `createNetsonsDurableWorkPort`, `processNetsonsDurableWorkBatch` (HOST-NET-010/015)
-- **Netsons cron tick** — `POST /platform/cron/netsons-tick` (`KIVRO_CRON_SECRET`) runs durable work, webhook retries, scheduling sweeps
-- **Runtime config** — `loadNetsonsRuntimeConfig`; `@kivro/cloud-netsons-app` startup validation
-- **API composition** — Netsons profile wires DB-backed `DurableWorkPort` (AWS remains M21 queue stub)
-- **Deploy docs** — `docs/deploy/netsons/README.md`
-- **Staging smoke** — `scripts/netsons-staging-smoke.mjs` (skip unless `KIVRO_NETSONS_STAGING_URL`)
-- Gate: **`pnpm verify:m20`** (includes `verify:m19`)
+- **Durable PostgreSQL work** — `DurableWorkItem`, idempotent enqueue/claim, cron batch processor (HOST-NET-010)
+- **Dispatch correctness** — job committed before worker signal; durable `WORKER_SIGNAL` + poll recovery (HOST-NET-011/012/017)
+- **Worker reconnect** — `reconcileWorkerSessionOnReconnect` on heartbeat (HOST-NET-014)
+- **Cron** — `POST /platform/cron/netsons-tick` + maintenance sweeps (payments, webhooks, scheduling, failures) (HOST-NET-015/018/019)
+- **Pool & guards** — `KIVRO_DATABASE_POOL_MAX`, `assertNetsonsProductionEnvironment` (HOST-NET-007/025)
+- **No BullMQ** — `check-no-bullmq-production.mjs` (HOST-NET-002/009/587)
+- **Deploy** — `docs/deploy/netsons/*`, unified start script, Next standalone toggle (HOST-NET-004/005/027)
+- **Staging gates** — `netsons-staging-smoke.mjs`, `netsons-staging-e2e.mjs` (HOST-NET-029/030 when env set)
+- Gate: **`pnpm verify:m20`** (+ `verify:m19`)
 
-## Bounded
+## Operator-only (cannot automate in repo)
 
-- **HOST-NET-029/030** — full staging paid E2E on real Netsons host (manual / when staging URL + credentials provided)
-- **HOST-NET-005/013** — Next.js + WSS on same managed app documented; local dev uses split processes
-- LiteSpeed/cPanel-specific packaging files (hosting panel config is operator-specific)
+- Real Netsons cPanel/LiteSpeed panel configuration and TLS certificate provisioning
+- Live SMTP/Google/Stripe dashboard setup on production host
+- Executing staging E2E on real Netsons without credentials (script skips)
 
 ## Gate
 

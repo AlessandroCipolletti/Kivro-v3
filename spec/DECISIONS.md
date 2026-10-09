@@ -186,10 +186,13 @@ Redis are signaling/optimization layers.
 No persistent BullMQ consumer is required in production. Retries and
 maintenance use durable PostgreSQL work plus bounded cron.
 
-### DEC-NET-005 --- WSS remains primary Worker transport
+### DEC-NET-005 --- Netsons baseline transport is HTTPS polling
 
-The seller Worker uses WSS for immediate dispatch with mandatory
-reconnect/reconciliation.
+The Netsons control plane advertises **HTTPS polling** on the shared
+Worker Protocol. The same Worker binary also supports WSS for other
+control planes during transitions. PostgreSQL remains authoritative;
+transport signals are wake-ups only (see `DEPLOYMENT-NETSONS.md`,
+`ARCH-UNI-007`).
 
 ### DEC-NET-006 --- Minimize Node app count
 
