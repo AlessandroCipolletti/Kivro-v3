@@ -6,6 +6,7 @@ import {
   loginOrLinkGoogleUser,
   loginWithEmail,
   registerWithEmail,
+  resendEmailVerification,
   revokeSession,
   verifyEmailToken,
 } from "@kivro/auth";
@@ -14,6 +15,11 @@ import { Hono } from "hono";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { isDevAuthShortcutsEnabled, sessionCookieName } from "../env.js";
 import { requireAuth } from "../middleware/auth.js";
+import {
+  deliverAccountConfirmedEmail,
+  deliverVerificationEmail,
+  isTransactionalEmailConfigured,
+} from "../services/transactional-mail.js";
 import type { AppEnv } from "../types.js";
 
 function setSessionCookie(c: Parameters<typeof setCookie>[0], token: string, expiresAt: Date): void {
@@ -26,6 +32,14 @@ function setSessionCookie(c: Parameters<typeof setCookie>[0], token: string, exp
   });
 }
 
+function webAppUrl(): string {
+  return process.env.WEB_APP_URL?.trim() || "http://localhost:3000";
+}
+
+function exposeDevVerificationToken(): boolean {
+  return isDevAuthShortcutsEnabled() && !isTransactionalEmailConfigured();
+}
+
 export function authRoutes(): Hono<AppEnv> {
   const app = new Hono<AppEnv>();
 
@@ -34,22 +48,26 @@ export function authRoutes(): Hono<AppEnv> {
     if (!body.email || !body.password) {
       return c.json({ error: "INVALID_INPUT" }, 400);
     }
-    const result = await registerWithEmail(
-      getPrismaClient(),
-      { email: body.email, password: body.password },
-      { exposeDevVerificationToken: isDevAuthShortcutsEnabled() },
-    );
+    const result = await registerWithEmail(getPrismaClient(), {
+      email: body.email,
+      password: body.password,
+    });
     if (!result.ok) {
       if (result.code === "EMAIL_TAKEN") {
         return c.json({ error: "INVALID_CREDENTIALS" }, 400);
       }
       return c.json({ error: result.code }, 400);
     }
+    await deliverVerificationEmail({
+      email: result.user.email,
+      verificationToken: result.verificationToken,
+      correlationId: c.req.header("x-correlation-id"),
+    });
     return c.json({
       userId: result.user.id,
       emailVerified: false,
-      verificationToken: result.verificationToken,
-      message: "Check your email to verify your account.",
+      verificationToken: exposeDevVerificationToken() ? result.verificationToken : undefined,
+      message: "Check your email to verify your account before using paid or seller features.",
     });
   });
 
@@ -97,11 +115,57 @@ export function authRoutes(): Hono<AppEnv> {
     if (!body.token) {
       return c.json({ error: "INVALID_INPUT" }, 400);
     }
-    const ok = await verifyEmailToken(getPrismaClient(), body.token);
-    if (!ok) {
-      return c.json({ error: "INVALID_OR_EXPIRED_TOKEN" }, 400);
+    const result = await verifyEmailToken(getPrismaClient(), body.token);
+    if (!result.ok) {
+      return c.json({ error: result.code }, 400);
     }
-    return c.json({ ok: true });
+    if (!result.alreadyVerified) {
+      await deliverAccountConfirmedEmail({
+        email: result.user.email,
+        correlationId: c.req.header("x-correlation-id"),
+      });
+    }
+    return c.json({ ok: true, emailVerified: true, alreadyVerified: result.alreadyVerified });
+  });
+
+  app.get("/verify-email", async (c) => {
+    const token = c.req.query("token");
+    if (!token) {
+      return c.redirect(`${webAppUrl()}/verify-email?error=missing_token`);
+    }
+    const result = await verifyEmailToken(getPrismaClient(), token);
+    if (!result.ok) {
+      return c.redirect(`${webAppUrl()}/verify-email?error=invalid_token`);
+    }
+    if (!result.alreadyVerified) {
+      await deliverAccountConfirmedEmail({
+        email: result.user.email,
+        correlationId: c.req.header("x-correlation-id"),
+      });
+    }
+    return c.redirect(`${webAppUrl()}/verify-email?verified=1`);
+  });
+
+  app.post("/resend-verification", async (c) => {
+    const body = await c.req.json<{ email?: string }>();
+    if (!body.email) {
+      return c.json({ error: "INVALID_INPUT" }, 400);
+    }
+    const result = await resendEmailVerification(getPrismaClient(), body.email);
+    if (result.status === "RATE_LIMITED") {
+      return c.json({ error: "RATE_LIMITED" }, 429);
+    }
+    if (result.status === "SENT") {
+      await deliverVerificationEmail({
+        email: result.email,
+        verificationToken: result.verificationToken,
+        correlationId: c.req.header("x-correlation-id"),
+      });
+    }
+    return c.json({
+      ok: true,
+      message: "If an unverified account exists for that email, we sent a new verification link.",
+    });
   });
 
   return app;

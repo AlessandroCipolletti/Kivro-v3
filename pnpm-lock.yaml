@@ -56,6 +56,9 @@ importers:
       '@kivro/domain':
         specifier: workspace:*
         version: link:../../packages/domain
+      '@kivro/email':
+        specifier: workspace:*
+        version: link:../../packages/email
       '@kivro/job-control':
         specifier: workspace:*
         version: link:../../packages/job-control
@@ -255,6 +258,12 @@ importers:
       '@kivro/policy-engine':
         specifier: workspace:*
         version: link:../policy-engine
+
+  packages/email:
+    dependencies:
+      '@kivro/observability':
+        specifier: workspace:*
+        version: link:../observability
 
   packages/job-control:
     dependencies:

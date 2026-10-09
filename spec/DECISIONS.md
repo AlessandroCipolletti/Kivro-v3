@@ -524,3 +524,9 @@ greenfield.
 **Context:** M10 plan lists §136–§142; Master Spec §159 classifies multi-job autonomous orchestration as a strong MVP extension beyond classic marketplace + assisted agent discovery.
 
 **Decision:** M10 delivers assisted discovery (Mode A / §131–§135) with deterministic constraint enforcement and typed marketplace search. Orchestration plans, DAG execution, cross-job asset mapping, budget reservation, and quote expiry (§136–§142) are **deferred to M11** with explicit `DEFERRED` coverage rows until orchestration engine lands.
+
+## DEC-EMAIL-001 — Brevo transactional templates (M02 UI completion)
+
+**Context:** Master Spec §575 requires verification email delivery; local dev may expose tokens only when Brevo is not configured.
+
+**Decision:** `@kivro/email` sends Brevo template mail using `BREVO_*` env vars. Verification links target `GET /auth/verify-email?token=` on the public API (redirect to web). Dev `verificationToken` in API responses is enabled only when `KIVRO_DEV_AUTH_SHORTCUTS=true` and Brevo is not fully configured.

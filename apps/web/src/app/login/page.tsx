@@ -1,11 +1,14 @@
 "use client";
 
 import { API_BASE } from "@/lib/kivro-api";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const verifiedBanner = searchParams.get("verified") === "1";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -19,8 +22,13 @@ export default function LoginPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
+    const body = (await res.json().catch(() => ({}))) as { emailVerified?: boolean };
     if (!res.ok) {
       setError("Invalid credentials");
+      return;
+    }
+    if (body.emailVerified === false) {
+      router.push(`/verify-email?email=${encodeURIComponent(email)}`);
       return;
     }
     router.push("/jobs");
@@ -29,6 +37,11 @@ export default function LoginPage() {
   return (
     <div className="auth-page">
       <h1>Sign in</h1>
+      {verifiedBanner && (
+        <p className="meta" style={{ textAlign: "center", marginBottom: "1rem" }}>
+          Email verified. Sign in to continue.
+        </p>
+      )}
       <form
         className="auth-card form-stack"
         onSubmit={(e) => {
@@ -76,6 +89,17 @@ export default function LoginPage() {
       <a className="button secondary google-signin" href={`${API_BASE}/api/users/auth/google`}>
         Continue with Google
       </a>
+      <p className="meta" style={{ textAlign: "center", marginTop: "1.25rem" }}>
+        New here? <Link href="/register">Create an account</Link>
+      </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="auth-page"><p className="meta">Loading…</p></div>}>
+      <LoginForm />
+    </Suspense>
   );
 }

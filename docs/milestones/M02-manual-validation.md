@@ -8,7 +8,7 @@ pnpm build
 node apps/api/dist/main.js   # terminal 1
 ```
 
-Ensure `.env` has `KIVRO_DEV_AUTH_SHORTCUTS=true` for dev verification token in register response.
+Ensure `.env` has `KIVRO_DEV_AUTH_SHORTCUTS=true` for dev verification token when Brevo is not configured. With `BREVO_*` set, use `/register` in the web app and the verification link from email (or resend on `/verify-email`).
 
 ## 1. Email auth
 

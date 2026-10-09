@@ -26,6 +26,7 @@
     "@kivro/marketplace": "workspace:*",
     "@kivro/storage": "workspace:*",
     "@kivro/domain": "workspace:*",
+    "@kivro/email": "workspace:*",
     "@hono/node-server": "^1.13.7",
     "hono": "^4.6.14"
   }
