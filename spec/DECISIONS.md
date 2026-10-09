@@ -554,3 +554,9 @@ greenfield.
 **Context:** Master Spec §393 requires automatic PLATFORM_SECURITY pause that sellers cannot clear with a simple resume while the blocking condition persists.
 
 **Decision:** `SellerProfile.platformSecurityPause*` is set from critical Worker telemetry via heartbeat (`activatePlatformSecurityPause`), clears automatically when telemetry recovers (`tryClearPlatformSecurityPause`). Emergency/capability resume returns `409 PLATFORM_SECURITY_PAUSE`. Worker request signing remains DEC-M07-002 follow-up.
+
+## DEC-M13-001 — Buyer REST API v1 MVP (§330–§354 bounded)
+
+**Context:** M13 maps 66 requirements for programmatic buyer access, API keys, idempotency, rate limits, and outbound webhooks.
+
+**Decision:** Shared packages `@kivro/buyer-api` and `@kivro/buyer-webhooks` implement key lifecycle, Bearer auth middleware, `Idempotency-Key` on job create, per-key rate limiting, SSRF-safe webhook registration, AES-GCM secret storage, and HMAC-signed delivery with bounded retries. Session-authenticated management lives at `/buyer/api-keys` and `/buyer/webhooks`; public v1 surface at `/v1/*`. `job.completed` is emitted from Worker completion handler. Buyer-facing **UI for keys/webhooks (§349)**, v1 **asset upload intents**, and **`job.started` / `job.failed`** events are deferred to M14+ with documented closure in `docs/milestones/M13-closure.md`. Gate: `pnpm verify:m13`.

@@ -2210,125 +2210,125 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0069`    P1         §328     `TODO`   ---              ---        ---
 
-  `API-0022`    P1         §329     `TODO`   ---              ---        ---
+  `API-0022`    P1         §329     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `JOB-0070`    P1         §330     `TODO`   ---              ---        ---
+  `JOB-0070`    P1         §330     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0071`    P1         §330     `TODO`   ---              ---        ---
+  `JOB-0071`    P1         §330     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `PRD-0324`    P1         §331     `TODO`   ---              ---        ---
+  `PRD-0324`    P1         §331     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `PRD-0325`    P2         §331     `TODO`   ---              ---        ---
+  `PRD-0325`    P2         §331     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `PRD-0326`    P1         §332     `TODO`   ---              ---        ---
+  `PRD-0326`    P1         §332     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `PRD-0327`    P2         §332     `TODO`   ---              ---        ---
+  `PRD-0327`    P2         §332     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `PRD-0328`    P2         §332     `TODO`   ---              ---        ---
+  `PRD-0328`    P2         §332     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `AVL-0003`    P1         §333     `TODO`   ---              ---        ---
+  `AVL-0003`    P1         §333     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `API-0023`    P1         §334     `TODO`   ---              ---        ---
+  `API-0023`    P1         §334     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
-  `API-0024`    P1         §334     `TODO`   ---              ---        ---
+  `API-0024`    P1         §334     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
-  `API-0025`    P1         §334     `TODO`   ---              ---        ---
+  `API-0025`    P1         §334     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
-  `API-0026`    P1         §335     `TODO`   ---              ---        ---
+  `API-0026`    P1         §335     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
-  `API-0027`    P1         §335     `TODO`   ---              ---        ---
+  `API-0027`    P1         §335     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
-  `JOB-0072`    P1         §336     `TODO`   ---              ---        ---
+  `JOB-0072`    P1         §336     `TESTED`   packages/buyer-api/src/idempotency.ts, apps/api/src/routes/v1-buyer-api.ts   packages/buyer-api/src/idempotency.test.ts   docs/milestones/M13-manual-validation.md M13 Idempotency-Key
 
-  `JOB-0073`    P1         §336     `TODO`   ---              ---        ---
+  `JOB-0073`    P1         §336     `TESTED`   packages/buyer-api/src/idempotency.ts, apps/api/src/routes/v1-buyer-api.ts   packages/buyer-api/src/idempotency.test.ts   docs/milestones/M13-manual-validation.md M13 Idempotency-Key
 
-  `AVL-0004`    P1         §337     `TODO`   ---              ---        ---
+  `AVL-0004`    P1         §337     `TESTED`   packages/buyer-api/src/rate-limit.ts, apps/api/src/middleware/buyer-api-auth.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API rate limits
 
-  `AVL-0005`    P1         §337     `TODO`   ---              ---        ---
+  `AVL-0005`    P1         §337     `TESTED`   packages/buyer-api/src/rate-limit.ts, apps/api/src/middleware/buyer-api-auth.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API rate limits
 
-  `JOB-0074`    P1         §338     `TODO`   ---              ---        ---
+  `JOB-0074`    P1         §338     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0075`    P1         §338     `TODO`   ---              ---        ---
+  `JOB-0075`    P1         §338     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0076`    P1         §338     `TODO`   ---              ---        ---
+  `JOB-0076`    P1         §338     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0077`    P1         §339     `TODO`   ---              ---        ---
+  `JOB-0077`    P1         §339     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0078`    P1         §339     `TODO`   ---              ---        ---
+  `JOB-0078`    P1         §339     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0079`    P1         §339     `TODO`   ---              ---        ---
+  `JOB-0079`    P1         §339     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `AVL-0006`    P1         §340     `TODO`   ---              ---        ---
+  `AVL-0006`    P1         §340     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0007`    P1         §340     `TODO`   ---              ---        ---
+  `AVL-0007`    P1         §340     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0008`    P1         §340     `TODO`   ---              ---        ---
+  `AVL-0008`    P1         §340     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0009`    P1         §340     `TODO`   ---              ---        ---
+  `AVL-0009`    P1         §340     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `JOB-0080`    P1         §341     `TODO`   ---              ---        ---
+  `JOB-0080`    P1         §341     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `JOB-0081`    P1         §341     `TODO`   ---              ---        ---
+  `JOB-0081`    P1         §341     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `JOB-0082`    P1         §342     `TODO`   ---              ---        ---
+  `JOB-0082`    P1         §342     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `PRD-0329`    P1         §343     `TODO`   ---              ---        ---
+  `PRD-0329`    P1         §343     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `PRD-0330`    P2         §343     `TODO`   ---              ---        ---
+  `PRD-0330`    P2         §343     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `JOB-0083`    P1         §344     `TODO`   ---              ---        ---
+  `JOB-0083`    P1         §344     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `JOB-0084`    P1         §344     `TODO`   ---              ---        ---
+  `JOB-0084`    P1         §344     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `PAY-0106`    P1         §345     `TODO`   ---              ---        ---
+  `PAY-0106`    P1         §345     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `PAY-0107`    P0         §345     `TODO`   ---              ---        ---
+  `PAY-0107`    P0         §345     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `PAY-0108`    P0         §345     `TODO`   ---              ---        ---
+  `PAY-0108`    P0         §345     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `WRK-0099`    P1         §346     `TODO`   ---              ---        ---
+  `WRK-0099`    P1         §346     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `WRK-0100`    P1         §346     `TODO`   ---              ---        ---
+  `WRK-0100`    P1         §346     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `AVL-0010`    P1         §347     `TODO`   ---              ---        ---
+  `AVL-0010`    P1         §347     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0011`    P1         §347     `TODO`   ---              ---        ---
+  `AVL-0011`    P1         §347     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0012`    P1         §347     `TODO`   ---              ---        ---
+  `AVL-0012`    P1         §347     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0013`    P1         §347     `TODO`   ---              ---        ---
+  `AVL-0013`    P1         §347     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0014`    P1         §347     `TODO`   ---              ---        ---
+  `AVL-0014`    P1         §347     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0015`    P1         §348     `TODO`   ---              ---        ---
+  `AVL-0015`    P1         §348     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0016`    P1         §348     `TODO`   ---              ---        ---
+  `AVL-0016`    P1         §348     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `UI-0024`     P1         §349     `TODO`   ---              ---        ---
+  `UI-0024`     P1         §349     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, apps/api/src/routes/buyer-webhooks-manage.ts   docs/milestones/M13-closure.md M13 session API only; buyer UI §349 → M14
 
-  `UI-0025`     P2         §349     `TODO`   ---              ---        ---
+  `UI-0025`     P2         §349     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, apps/api/src/routes/buyer-webhooks-manage.ts   docs/milestones/M13-closure.md M13 session API only; buyer UI §349 → M14
 
-  `AVL-0017`    P1         §350     `TODO`   ---              ---        ---
+  `AVL-0017`    P1         §350     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0018`    P1         §350     `TODO`   ---              ---        ---
+  `AVL-0018`    P1         §350     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `CAP-0088`    P1         §351     `TODO`   ---              ---        ---
+  `CAP-0088`    P1         §351     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `CAP-0089`    P1         §351     `TODO`   ---              ---        ---
+  `CAP-0089`    P1         §351     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 
-  `JOB-0085`    P1         §352     `TODO`   ---              ---        ---
+  `JOB-0085`    P1         §352     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0086`    P1         §352     `TODO`   ---              ---        ---
+  `JOB-0086`    P1         §352     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit
 
-  `JOB-0087`    P1         §353     `TODO`   ---              ---        ---
+  `JOB-0087`    P1         §353     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `JOB-0088`    P1         §353     `TODO`   ---              ---        ---
+  `JOB-0088`    P1         §353     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `JOB-0089`    P1         §353     `TODO`   ---              ---        ---
+  `JOB-0089`    P1         §353     `TESTED`   packages/buyer-webhooks, apps/api/src/routes/buyer-webhooks-manage.ts, apps/api/src/services/buyer-webhook-emitter.ts   packages/buyer-webhooks/src/signing.test.ts; packages/buyer-webhooks/src/url-validation.test.ts   docs/milestones/M13-manual-validation.md M13 signed webhooks
 
-  `AVL-0019`    P1         §354     `TODO`   ---              ---        ---
+  `AVL-0019`    P1         §354     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `AVL-0020`    P1         §354     `TODO`   ---              ---        ---
+  `AVL-0020`    P1         §354     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
   `CAP-0090`    P1         §355     `TODO`   ---              ---        ---
 

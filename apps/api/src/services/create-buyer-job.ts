@@ -1,0 +1,65 @@
+import { submitPaidJob } from "@kivro/billing";
+import type { PrismaClient } from "@kivro/database";
+import type { CapabilityContract } from "@kivro/contracts";
+import { validateBuyerInput } from "@kivro/job-io";
+
+export async function createBuyerJobFromApi(
+  prisma: PrismaClient,
+  input: {
+    buyerId: string;
+    buyerEmail: string;
+    capabilityId: string;
+    inputs?: Record<string, unknown>;
+    assets?: Record<string, unknown>;
+    scheduledRunAt?: Date;
+    buyerApiKeyId?: string;
+  },
+): Promise<
+  | { jobId: string; status: string }
+  | { error: string; reasons?: string[] }
+> {
+  const capability = await prisma.capability.findUnique({
+    where: { id: input.capabilityId },
+    include: { currentVersion: true },
+  });
+  if (!capability?.currentVersion) {
+    return { error: "NOT_FOUND" };
+  }
+  const version = capability.currentVersion;
+  const contract = {
+    name: capability.name,
+    description: capability.description,
+    currency: version.currency,
+    priceTierCents: version.priceSnapshotCents,
+    inputs: version.inputSchema,
+    output: version.outputSchema,
+  } as CapabilityContract;
+  const validation = validateBuyerInput({
+    contract,
+    inputs: input.inputs ?? {},
+    assets: (input.assets as Record<string, never>) ?? {},
+  });
+  if (!validation.ok) {
+    return { error: "VALIDATION_FAILED" };
+  }
+
+  const result = await submitPaidJob(prisma, {
+    buyerId: input.buyerId,
+    capabilityId: input.capabilityId,
+    structuredInput: input.inputs ?? {},
+    assetManifest: input.assets,
+    scheduledRunAt: input.scheduledRunAt,
+  });
+  if ("error" in result) {
+    return { error: result.error, reasons: "reasons" in result ? (result.reasons as string[]) : undefined };
+  }
+
+  if (input.buyerApiKeyId) {
+    await prisma.job.update({
+      where: { id: result.jobId },
+      data: { buyerApiKeyId: input.buyerApiKeyId },
+    });
+  }
+
+  return { jobId: result.jobId, status: result.status };
+}

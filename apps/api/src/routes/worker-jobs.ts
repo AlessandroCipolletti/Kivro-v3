@@ -263,6 +263,8 @@ export function workerJobRoutes(): Hono<AppEnv> {
     }
     const { onOrchestrationJobCompleted } = await import("../services/orchestration-execution.js");
     await onOrchestrationJobCompleted(getPrismaClient(), c.req.param("jobId"));
+    const { emitBuyerJobWebhook } = await import("../services/buyer-webhook-emitter.js");
+    await emitBuyerJobWebhook(getPrismaClient(), c.req.param("jobId"), "job.completed");
     return c.json(result);
   });
 

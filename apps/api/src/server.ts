@@ -28,6 +28,9 @@ import { marketplaceAgentToolRoutes } from "./routes/marketplace-agent-tools.js"
 import { buyerJobAssetRoutes } from "./routes/buyer-job-assets.js";
 import { sellerDashboardRoutes } from "./routes/seller-dashboard.js";
 import { workerHealthRoutes } from "./routes/worker-health.js";
+import { buyerApiKeyRoutes } from "./routes/buyer-api-keys.js";
+import { buyerWebhookManageRoutes } from "./routes/buyer-webhooks-manage.js";
+import { v1BuyerApiRoutes } from "./routes/v1-buyer-api.js";
 import type { AppEnv } from "./types.js";
 
 function webAppOrigin(): string {
@@ -46,7 +49,7 @@ export function createApp(): Hono<AppEnv> {
       c.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
       c.header(
         "Access-Control-Allow-Headers",
-        "Content-Type, x-correlation-id, x-worker-device-id",
+        "Content-Type, x-correlation-id, x-worker-device-id, Authorization, Idempotency-Key",
       );
     }
     if (c.req.method === "OPTIONS") {
@@ -81,7 +84,7 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M12" });
+    return c.json({ name: "kivro-api", phase: "M13" });
   });
 
   app.route("/auth", authRoutes());
@@ -102,6 +105,9 @@ export function createApp(): Hono<AppEnv> {
   app.route("/buyer", buyerJobsListRoutes());
   app.route("/buyer", buyerJobAssetRoutes());
   app.route("/buyer", buyerFavoritesRoutes());
+  app.route("/buyer", buyerApiKeyRoutes());
+  app.route("/buyer", buyerWebhookManageRoutes());
+  app.route("/v1", v1BuyerApiRoutes());
   app.route("/", marketplaceAgentRoutes());
   app.route("/", marketplaceAgentToolRoutes());
   app.route("/buyer", buyerJobRoutes());
