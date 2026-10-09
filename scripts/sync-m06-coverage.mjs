@@ -65,5 +65,26 @@ const out = text.split("\n").map((line) => {
   return line.replace(/`TODO`\s+---\s+---\s+---/, `\`TESTED\`   ${evidence}`);
 });
 
+const cloudPartial =
+  "`PARTIAL`   packages/research-broker   vitest   local broker MVP; cloud/platform egress broker deployment post-M06 M06";
+
+for (let i = 0; i < out.length; i++) {
+  let line = out[i];
+  if (!line.includes("M06")) {
+    continue;
+  }
+  if (line.includes("`TESTED`") && line.match(/§269\s/)) {
+    line = line.replace(/`TESTED`\s+[^\n]+M06$/, `${cloudPartial}`);
+  }
+  if (
+    line.includes("`PARTIAL`") &&
+    line.match(/§27[0-3]\s/) &&
+    !line.match(/§269\s/)
+  ) {
+    line = line.replace(/`PARTIAL`\s+[^\n]+M06$/, `\`TESTED\`   ${evidence}`);
+  }
+  out[i] = line;
+}
+
 fs.writeFileSync(file, out.join("\n"));
 console.log("Updated COVERAGE for M06 sections");

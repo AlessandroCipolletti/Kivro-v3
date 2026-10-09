@@ -1,5 +1,5 @@
 import type { PlatformResearchCeilings } from "@kivro/platform-policy";
-import { validateResearchUrl } from "./ssrf.js";
+import { type DnsResolver, validateResearchDestination } from "./dns-resolve.js";
 
 export interface SafeFetchRequest {
   url: string;
@@ -16,6 +16,7 @@ export interface SafeFetchResult {
   contentType?: string;
   bytes?: number;
   bodyText?: string;
+  bodyBytes?: Uint8Array;
   finalUrl?: string;
 }
 
@@ -28,6 +29,7 @@ export type FetchImpl = (
 export async function safeResearchFetch(
   request: SafeFetchRequest,
   fetchImpl: FetchImpl,
+  dnsResolver?: DnsResolver,
 ): Promise<SafeFetchResult> {
   const method = (request.method ?? "GET").toUpperCase();
   if (method !== "GET" && method !== "HEAD") {
@@ -38,7 +40,7 @@ export async function safeResearchFetch(
   let redirects = 0;
 
   while (true) {
-    const validated = validateResearchUrl(currentUrl);
+    const validated = await validateResearchDestination(currentUrl, dnsResolver);
     if (!validated.ok) {
       return { ok: false, reason: validated.reason };
     }
@@ -108,6 +110,7 @@ export async function safeResearchFetch(
       contentType,
       bytes: total,
       bodyText,
+      bodyBytes: merged,
       finalUrl: currentUrl,
     };
   }

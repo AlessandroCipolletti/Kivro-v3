@@ -21,6 +21,7 @@
     "@kivro/openclaw-adapter": "workspace:*",
     "@kivro/policy-engine": "workspace:*",
     "@kivro/job-io": "workspace:*",
+    "@kivro/research-broker": "workspace:*",
     "@kivro/sandbox": "workspace:*",
     "@kivro/storage": "workspace:*",
     "zod": "^3.24.1"

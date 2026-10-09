@@ -25,11 +25,12 @@ node apps/worker/dist/cli.js research-probe --file manifest.json --url http://12
 ## API
 
 - `GET /capabilities/:slug` includes `internetDisclosure` (§258)
+- `POST /seller/internet/validate` — clamp/validate internet policy + seller summary (§257)
 
 ## Deferred (explicit)
 
 - **Browser-based research (§264)** — search API + safe HTTP fetch only for MVP
-- **Cloud research broker deployment (§269–§273)** — local broker implementation; architecture allows cloud egress later
+- **Cloud research broker deployment (§269–§273)** — `PARTIAL` in coverage; local hardened broker MVP only
 
 ## Canonical fixture
 

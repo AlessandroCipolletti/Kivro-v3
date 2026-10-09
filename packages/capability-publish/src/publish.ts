@@ -3,6 +3,7 @@ import {
   parseDependencyGraph,
   parseInferenceDependency,
   parsePublicPermissionManifest,
+  hashWorkerManifest,
   type WorkerManifest,
 } from "@kivro/contracts";
 import { permissionConsentRows } from "./consent-records.js";
@@ -21,6 +22,7 @@ import { diffWorkerManifestPermissions, hasPermissionExpansion } from "./permiss
 import { validatePublishSecurity } from "./security-publish-gate.js";
 import { finalizeWorkerManifest, verifyWorkerManifestPayload } from "./worker-manifest-verify.js";
 import { validateAndNormalizeCapabilityContract } from "@kivro/job-io";
+import { validateInternetPolicyForPublish } from "./internet-publish-gate.js";
 import { randomUUID } from "node:crypto";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -117,10 +119,17 @@ export async function publishCapability(
   const inferenceDependency = parseInferenceDependency(input.inferenceDependency);
   const { manifest: workerManifestTemplate } = verifyWorkerManifestPayload(input.workerManifest);
   const versionId = randomUUID();
-  const { manifest: workerManifest, hash: workerManifestHash } = finalizeWorkerManifest(
+  let { manifest: workerManifest, hash: workerManifestHash } = finalizeWorkerManifest(
     workerManifestTemplate,
     { capabilityVersionId: versionId, workerDeviceId: input.workerDeviceId },
   );
+
+  const internetGate = validateInternetPolicyForPublish(workerManifest);
+  if (!internetGate.ok) {
+    throw new Error(`INTERNET_POLICY_INVALID:${internetGate.issues[0] ?? "unknown"}`);
+  }
+  workerManifest = internetGate.manifest;
+  workerManifestHash = hashWorkerManifest(workerManifest);
 
   const device = await db.workerDevice.findFirst({
     where: { id: input.workerDeviceId, sellerProfileId },

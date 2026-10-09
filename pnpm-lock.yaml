@@ -139,6 +139,9 @@ importers:
       '@kivro/policy-engine':
         specifier: workspace:*
         version: link:../policy-engine
+      '@kivro/research-broker':
+        specifier: workspace:*
+        version: link:../research-broker
       '@kivro/sandbox':
         specifier: workspace:*
         version: link:../sandbox
@@ -245,6 +248,9 @@ importers:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@kivro/job-io':
+        specifier: workspace:*
+        version: link:../job-io
       '@kivro/platform-policy':
         specifier: workspace:*
         version: link:../platform-policy

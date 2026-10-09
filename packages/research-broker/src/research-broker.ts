@@ -1,9 +1,16 @@
+import { createHash } from "node:crypto";
 import type { InternetResearchPolicy, ResearchSource, WorkerManifest } from "@kivro/contracts";
 import {
   DEFAULT_PLATFORM_RESEARCH_CEILINGS,
   type PlatformResearchCeilings,
 } from "@kivro/platform-policy";
 import { buildAuditEntry, hashSearchQuery, type ResearchAuditEntry } from "./audit.js";
+import { assertSafeResearchContent } from "./download-guard.js";
+import type { DnsResolver } from "./dns-resolve.js";
+import { validateResearchDestination } from "./dns-resolve.js";
+import type { ResearchProvenanceCollector } from "./provenance.js";
+import { researchPolicyError, type ResearchPolicyError } from "./research-errors.js";
+import { sanitizeResearchText, type WebPageResult } from "./sanitize-content.js";
 import {
   checkFetchBudget,
   checkSearchBudget,
@@ -14,8 +21,6 @@ import { isDomainAllowedForResearch } from "./domain-policy.js";
 import { isAllowedResearchMethod } from "./method-policy.js";
 import { safeResearchFetch, type FetchImpl } from "./safe-fetch.js";
 import type { SearchResult, WebSearchProvider } from "./search-provider.js";
-import { validateResearchUrl } from "./ssrf.js";
-
 export interface ResearchBrokerContext {
   jobId?: string;
   manifest: WorkerManifest;
@@ -23,6 +28,8 @@ export interface ResearchBrokerContext {
   ceilings?: PlatformResearchCeilings;
   budget?: ResearchBudgetState;
   auditLog?: ResearchAuditEntry[];
+  provenance?: ResearchProvenanceCollector;
+  dnsResolver?: DnsResolver;
 }
 
 export interface WebSearchRequest {
@@ -38,6 +45,7 @@ export interface WebFetchRequest {
 export interface ResearchBrokerDecision<T = unknown> {
   allowed: boolean;
   reason?: string;
+  error?: ResearchPolicyError;
   data?: T;
   audit?: ResearchAuditEntry;
 }
@@ -56,6 +64,7 @@ export class ResearchBroker {
   constructor(
     private readonly searchProvider: WebSearchProvider,
     private readonly fetchImpl: FetchImpl,
+    private readonly defaultDnsResolver?: DnsResolver,
   ) {}
 
   async webSearch(
@@ -104,7 +113,9 @@ export class ResearchBroker {
   async webFetch(
     ctx: ResearchBrokerContext,
     request: WebFetchRequest,
-  ): Promise<ResearchBrokerDecision<{ bodyText?: string; source: ResearchSource }>> {
+  ): Promise<
+    ResearchBrokerDecision<{ bodyText?: string; source: ResearchSource; page?: WebPageResult }>
+  > {
     const policy = resolvePolicy(ctx);
     const ceilings = ctx.ceilings ?? DEFAULT_PLATFORM_RESEARCH_CEILINGS;
     const budget = ctx.budget ?? createResearchBudgetState();
@@ -121,7 +132,8 @@ export class ResearchBroker {
       return this.block(ctx, "web.fetch", "method not allowed for research mode", auditLog);
     }
 
-    const urlCheck = validateResearchUrl(request.url);
+    const dnsResolver = ctx.dnsResolver ?? this.defaultDnsResolver;
+    const urlCheck = await validateResearchDestination(request.url, dnsResolver);
     if (!urlCheck.ok || !urlCheck.host) {
       return this.block(ctx, "web.fetch", urlCheck.reason ?? "invalid url", auditLog);
     }
@@ -149,6 +161,7 @@ export class ResearchBroker {
           ceilings,
         },
         this.fetchImpl,
+        dnsResolver,
       );
       if (!fetched.ok) {
         return this.block(ctx, "web.fetch", fetched.reason ?? "fetch blocked", auditLog, {
@@ -158,13 +171,34 @@ export class ResearchBroker {
           status: fetched.status,
         });
       }
+      if (fetched.bodyBytes) {
+        const safeContent = assertSafeResearchContent(fetched.bodyBytes, fetched.contentType);
+        if (!safeContent.ok) {
+          return this.block(ctx, "web.fetch", safeContent.reason ?? "content blocked", auditLog);
+        }
+      }
+
       budget.fetchedPages += 1;
       budget.downloadedBytes += fetched.bytes ?? 0;
       budget.totalNetworkBytes += fetched.bytes ?? 0;
 
+      const finalUrl = fetched.finalUrl ?? request.url;
+      const contentType = fetched.contentType ?? "text/plain";
+      const sanitized = sanitizeResearchText(fetched.bodyText ?? "", contentType);
+      const contentSha256 = createHash("sha256")
+        .update(fetched.bodyBytes ?? new Uint8Array())
+        .digest("hex");
       const source: ResearchSource = {
-        url: fetched.finalUrl ?? request.url,
+        url: finalUrl,
         accessedAt: new Date().toISOString(),
+      };
+      ctx.provenance?.add(source);
+      const page: WebPageResult = {
+        finalUrl,
+        text: sanitized,
+        contentType,
+        fetchedAt: source.accessedAt,
+        contentSha256,
       };
       const entry = buildAuditEntry({
         jobId: ctx.jobId,
@@ -177,7 +211,7 @@ export class ResearchBroker {
         status: fetched.status,
       });
       auditLog.push(entry);
-      return { allowed: true, data: { bodyText: fetched.bodyText, source }, audit: entry };
+      return { allowed: true, data: { bodyText: sanitized, source, page }, audit: entry };
     } finally {
       budget.inFlight -= 1;
     }
@@ -198,6 +232,33 @@ export class ResearchBroker {
       ...extra,
     });
     auditLog.push(entry);
-    return { allowed: false, reason, audit: entry };
+    return {
+      allowed: false,
+      reason,
+      error: mapBlockReasonToError(operation, reason),
+      audit: entry,
+    };
   }
+}
+
+function mapBlockReasonToError(
+  operation: ResearchAuditEntry["operation"],
+  reason: string,
+): ResearchPolicyError {
+  if (reason.includes("budget") || reason.includes("concurrency")) {
+    return researchPolicyError("BUDGET_EXCEEDED", reason);
+  }
+  if (reason.includes("method")) {
+    return researchPolicyError("METHOD_NOT_ALLOWED", reason);
+  }
+  if (reason.includes("content") || reason.includes("executable")) {
+    return researchPolicyError("CONTENT_NOT_ALLOWED", reason);
+  }
+  if (reason.includes("blocked") || reason.includes("dns") || reason.includes("domain")) {
+    return researchPolicyError("DESTINATION_BLOCKED", reason);
+  }
+  if (operation === "connector.invoke") {
+    return researchPolicyError("CONNECTOR_NOT_DECLARED", reason);
+  }
+  return researchPolicyError("NETWORK_POLICY_VIOLATION", reason);
 }

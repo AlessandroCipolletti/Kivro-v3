@@ -1904,13 +1904,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0087`    P0         §268     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0260`    P1         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
+  `PRD-0260`    P1         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
 
-  `PRD-0261`    P2         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
+  `PRD-0261`    P2         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
 
-  `PRD-0262`    P2         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
+  `PRD-0262`    P2         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
 
-  `PRD-0263`    P2         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
+  `PRD-0263`    P2         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
 
   `PRD-0264`    P1         §270     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 

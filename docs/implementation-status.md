@@ -8,7 +8,7 @@
 | M03 import & publish | Implemented | Dependency graph, publish/rollback/pause, package export, MinIO slots, `pnpm verify:m03` |
 | M04 sandbox & security baseline | Implemented (bounded) | `pnpm verify:m04`; full agent exec M06+ |
 | M05 capability I/O & assets | Implemented | `@kivro/job-io`, contract validate/publish gate, buyer form schema, agent prepare API, upload sniff, worker I/O CLI, `pnpm verify:m05`; seller visual builder UI deferred to product milestone |
-| M06 controlled Internet research | Implemented (bounded) | `@kivro/research-broker`, SSRF-safe fetch/search, budgets/audit, API connectors, `pnpm verify:m06`; cloud browser + cloud egress broker deferred |
+| M06 controlled Internet research | Implemented (bounded) | DNS-aware SSRF, content sanitize/hash, publish internet gate, seller `/internet/validate`, §260 fixture tests, `pnpm verify:m06`; §264 browser + §269–§273 cloud deploy PARTIAL/DEFERRED |
 | OpenClaw adapter (real) | Partial | CLI + marketplace env + preflight/`KIVRO_SANDBOX_DRY_RUN`; live agent exec M06+ |
 | Auth (email/Google) | Implemented | Sessions, verify email, Google OAuth when configured |
 | Cloud dispatch | Not implemented | M07 |

@@ -56,6 +56,12 @@ run("pnpm", [
   "packages/research-broker/src/ssrf.test.ts",
   "packages/contracts/src/research-policy.test.ts",
   "security/tests/adversarial-m06.test.ts",
+  "security/tests/acceptance-m06.test.ts",
+  "packages/research-broker/src/dns-resolve.test.ts",
+  "packages/research-broker/src/merge-policy.test.ts",
+  "packages/research-broker/src/research-errors.test.ts",
+  "security/tests/fixture-ad-m06.test.ts",
+  "packages/capability-publish/src/internet-publish-gate.test.ts",
 ]);
 
 run("node", ["apps/worker/dist/cli.js", "research-probe", "--file", manifestPath], {

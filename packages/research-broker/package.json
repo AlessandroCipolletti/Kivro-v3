@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@kivro/contracts": "workspace:*",
+    "@kivro/job-io": "workspace:*",
     "@kivro/platform-policy": "workspace:*",
     "@kivro/policy-engine": "workspace:*"
   }

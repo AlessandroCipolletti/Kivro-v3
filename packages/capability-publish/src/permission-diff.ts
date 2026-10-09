@@ -2,7 +2,7 @@ import type { WorkerManifest } from "@kivro/contracts";
 import { normalizeNetworkAllowList } from "@kivro/policy-engine";
 
 export interface PermissionDiffLine {
-  kind: "tool" | "network" | "resource";
+  kind: "tool" | "network" | "resource" | "internet";
   value: string;
   change: "added" | "removed" | "unchanged";
 }
@@ -55,5 +55,13 @@ function linesFromManifest(manifest: WorkerManifest): Array<{ kind: PermissionDi
     kind: "resource" as const,
     label: `${r.id}:${r.permissions.join(",")}`,
   }));
-  return [...tools, ...network, ...resources];
+  const internet = manifest.internet
+    ? [
+        {
+          kind: "internet" as const,
+          label: `mode:${manifest.internet.mode}`,
+        },
+      ]
+    : [{ kind: "internet" as const, label: "mode:NO_NETWORK" }];
+  return [...tools, ...network, ...resources, ...internet];
 }

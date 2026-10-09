@@ -55,7 +55,11 @@ describe("ResearchBroker", () => {
           headers: { "content-type": "text/plain" },
         }),
       );
-    const broker = new ResearchBroker(new StaticWebSearchProvider(), fetchImpl);
+    const broker = new ResearchBroker(
+      new StaticWebSearchProvider(),
+      fetchImpl,
+      () => Promise.resolve(["93.184.216.34"]),
+    );
     const result = await broker.webFetch({ manifest }, { url: "https://example.com/page" });
     expect(result.allowed).toBe(true);
     expect(result.data?.bodyText).toBe("public facts");

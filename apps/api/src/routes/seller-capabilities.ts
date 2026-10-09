@@ -14,12 +14,17 @@ import {
   summarizeVersionDiff,
   validateImportConsent,
 } from "@kivro/capability-publish";
-import { parseCapabilityContract } from "@kivro/contracts";
+import { parseCapabilityContract, parseInternetResearchPolicy } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
 import {
   buildBuyerFormSchema,
   validateAndNormalizeCapabilityContract,
 } from "@kivro/job-io";
+import {
+  buildInternetPermissionSummary,
+  clampInternetResearchPolicy,
+  validateInternetResearchPolicy,
+} from "@kivro/research-broker";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
 import type { AppEnv } from "../types.js";
@@ -281,8 +286,48 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
             400,
           );
         }
+        if (err.message.startsWith("INTERNET_POLICY_INVALID:")) {
+          return c.json(
+            { error: err.message.replace("INTERNET_POLICY_INVALID:", "") },
+            400,
+          );
+        }
       }
       throw err;
+    }
+  });
+
+  app.post("/internet/validate", async (c) => {
+    const body = await c.req.json<{ policy?: unknown }>();
+    if (body.policy === undefined) {
+      return c.json({ error: "INVALID_INPUT" }, 400);
+    }
+    try {
+      const parsed = parseInternetResearchPolicy(body.policy);
+      const validation = validateInternetResearchPolicy(parsed);
+      const clamped = clampInternetResearchPolicy(parsed);
+      const disclosure = buildInternetPermissionSummary({
+        manifestVersion: 1,
+        workerId: "00000000-0000-0000-0000-000000000000",
+        capabilityVersionId: "00000000-0000-0000-0000-000000000000",
+        runtime: { type: "openclaw", supportedVersionRange: "1.x" },
+        skills: [],
+        tools: { allow: [], deny: ["browser"] },
+        resources: [],
+        network: { default: "deny", allow: [] },
+        limits: {
+          timeoutSeconds: 120,
+          memoryMb: 1024,
+          cpu: 1,
+          maxPids: 128,
+          maxInputBytes: 0,
+          maxOutputBytes: 0,
+        },
+        internet: clamped,
+      });
+      return c.json({ ...validation, policy: clamped, sellerSummary: disclosure.sellerSummary });
+    } catch {
+      return c.json({ error: "INVALID_POLICY" }, 400);
     }
   });
 
