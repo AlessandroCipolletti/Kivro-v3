@@ -64,7 +64,10 @@ export function marketplaceCapabilityRoutes(): Hono {
     const slug = c.req.param("slug");
     const row = await getPrismaClient().capability.findFirst({
       where: { slug, status: "PUBLISHED", currentVersionId: { not: null } },
-      include: { currentVersion: true },
+      include: {
+        currentVersion: true,
+        sellerProfile: { select: { id: true, displayName: true, verificationStatus: true } },
+      },
     });
     if (!row) {
       return c.json({ error: "NOT_FOUND" }, 404);
@@ -102,12 +105,28 @@ export function marketplaceCapabilityRoutes(): Hono {
             accepting: availability.accepting,
             nextAvailableAt: availability.nextAvailableAt ?? null,
           };
+    const privacyDisclosure = {
+      executionModel:
+        "Each job runs in an isolated marketplace worker environment on seller-controlled hardware; your inputs are not shared with other buyers.",
+      dataHandling:
+        internetDisclosure?.buyerDetail?.join(" ") ??
+        "See trust summary for network and tool permissions for this published version.",
+      retention: "Deliverables are retained per platform policy; download completed job outputs from My Jobs.",
+    };
     return c.json({
       capability: row,
+      seller: row.sellerProfile,
       buyerTrust,
       buyerForm,
       internetDisclosure,
+      privacyDisclosure,
+      examples: contract?.examples ?? [],
+      outputSummary: contract?.output,
       availability: scheduleAwareness,
+      reviews: {
+        average: row.rating,
+        count: row.reviewCount,
+      },
     });
   });
 

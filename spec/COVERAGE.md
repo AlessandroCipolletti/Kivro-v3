@@ -478,13 +478,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0051`    P1         §27      `TODO`   ---              ---        ---
 
-  `PRD-0043`    P1         §28      `TODO`   ---              ---        ---
+  `PRD-0043`    P1         §28      `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `OBS-0001`    P1         §29      `TODO`   ---              ---        ---
+  `OBS-0001`    P1         §29      `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `OBS-0002`    P2         §29      `TODO`   ---              ---        ---
+  `OBS-0002`    P2         §29      `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `OBS-0003`    P2         §29      `TODO`   ---              ---        ---
+  `OBS-0003`    P2         §29      `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
   `SEC-0032`    P1         §30      `TODO`   ---              ---        ---
 
@@ -1114,117 +1114,117 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0087`    P2         §120      `TESTED`   packages/domain/unified-account.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `PRD-0088`    P1         §121     `TODO`   ---              ---        ---
+  `PRD-0088`    P1         §121     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0089`    P2         §121     `TODO`   ---              ---        ---
+  `PRD-0089`    P2         §121     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0090`    P1         §122     `TODO`   ---              ---        ---
+  `PRD-0090`    P1         §122     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0091`    P2         §122     `TODO`   ---              ---        ---
+  `PRD-0091`    P2         §122     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0092`    P1         §123     `TODO`   ---              ---        ---
+  `PRD-0092`    P1         §123     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0093`    P2         §123     `TODO`   ---              ---        ---
+  `PRD-0093`    P2         §123     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0094`    P2         §123     `TODO`   ---              ---        ---
+  `PRD-0094`    P2         §123     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0095`    P1         §124     `TODO`   ---              ---        ---
+  `PRD-0095`    P1         §124     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0096`    P2         §124     `TODO`   ---              ---        ---
+  `PRD-0096`    P2         §124     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0097`    P1         §125     `TODO`   ---              ---        ---
+  `PRD-0097`    P1         §125     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0098`    P2         §125     `TODO`   ---              ---        ---
+  `PRD-0098`    P2         §125     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `CAP-0052`    P1         §126     `TODO`   ---              ---        ---
+  `CAP-0052`    P1         §126     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `JOB-0056`    P1         §127     `TODO`   ---              ---        ---
+  `JOB-0056`    P1         §127     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `JOB-0057`    P1         §127     `TODO`   ---              ---        ---
+  `JOB-0057`    P1         §127     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `JOB-0058`    P1         §127     `TODO`   ---              ---        ---
+  `JOB-0058`    P1         §127     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `JOB-0059`    P1         §127     `TODO`   ---              ---        ---
+  `JOB-0059`    P1         §127     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0099`    P1         §128     `TODO`   ---              ---        ---
+  `PRD-0099`    P1         §128     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0100`    P2         §128     `TODO`   ---              ---        ---
+  `PRD-0100`    P2         §128     `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `PRD-0101`    P1         §129     `TODO`   ---              ---        ---
+  `PRD-0101`    P1         §129     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0102`    P2         §129     `TODO`   ---              ---        ---
+  `PRD-0102`    P2         §129     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0103`    P1         §130     `TODO`   ---              ---        ---
+  `PRD-0103`    P1         §130     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0104`    P2         §130     `TODO`   ---              ---        ---
+  `PRD-0104`    P2         §130     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0105`    P1         §131     `TODO`   ---              ---        ---
+  `PRD-0105`    P1         §131     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0106`    P2         §131     `TODO`   ---              ---        ---
+  `PRD-0106`    P2         §131     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0107`    P2         §131     `TODO`   ---              ---        ---
+  `PRD-0107`    P2         §131     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0108`    P2         §131     `TODO`   ---              ---        ---
+  `PRD-0108`    P2         §131     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0109`    P2         §131     `TODO`   ---              ---        ---
+  `PRD-0109`    P2         §131     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0110`    P1         §132     `TODO`   ---              ---        ---
+  `PRD-0110`    P1         §132     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0111`    P2         §132     `TODO`   ---              ---        ---
+  `PRD-0111`    P2         §132     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0112`    P1         §133     `TODO`   ---              ---        ---
+  `PRD-0112`    P1         §133     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0113`    P2         §133     `TODO`   ---              ---        ---
+  `PRD-0113`    P2         §133     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0114`    P2         §133     `TODO`   ---              ---        ---
+  `PRD-0114`    P2         §133     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0115`    P2         §133     `TODO`   ---              ---        ---
+  `PRD-0115`    P2         §133     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0116`    P1         §134     `TODO`   ---              ---        ---
+  `PRD-0116`    P1         §134     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `AGT-0035`    P1         §135     `TODO`   ---              ---        ---
+  `AGT-0035`    P1         §135     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `AGT-0036`    P1         §135     `TODO`   ---              ---        ---
+  `AGT-0036`    P1         §135     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `AGT-0037`    P1         §135     `TODO`   ---              ---        ---
+  `AGT-0037`    P1         §135     `TESTED`   packages/marketplace/src/agent-discovery.ts, packages/marketplace/src/agent-ranking.ts, packages/marketplace/src/buyer-constraints.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace/src/agent-discovery.test.ts; security/tests/acceptance-m10.test.ts   docs/milestones/M10-manual-validation.md M10 assisted discovery Mode A
 
-  `PRD-0117`    P1         §136     `TODO`   ---              ---        ---
+  `PRD-0117`    P1         §136     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `PRD-0118`    P2         §136     `TODO`   ---              ---        ---
+  `PRD-0118`    P2         §136     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `AGT-0038`    P1         §137     `TODO`   ---              ---        ---
+  `AGT-0038`    P1         §137     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `AGT-0039`    P1         §137     `TODO`   ---              ---        ---
+  `AGT-0039`    P1         §137     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `PRD-0119`    P1         §138     `TODO`   ---              ---        ---
+  `PRD-0119`    P1         §138     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `PRD-0120`    P2         §138     `TODO`   ---              ---        ---
+  `PRD-0120`    P2         §138     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `PRD-0121`    P2         §138     `TODO`   ---              ---        ---
+  `PRD-0121`    P2         §138     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `IO-0042`     P1         §139     `TODO`   ---              ---        ---
+  `IO-0042`     P1         §139     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `IO-0043`     P1         §139     `TODO`   ---              ---        ---
+  `IO-0043`     P1         §139     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `IO-0044`     P1         §139     `TODO`   ---              ---        ---
+  `IO-0044`     P1         §139     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `JOB-0060`    P1         §140     `TODO`   ---              ---        ---
+  `JOB-0060`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `JOB-0061`    P1         §140     `TODO`   ---              ---        ---
+  `JOB-0061`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `JOB-0062`    P1         §140     `TODO`   ---              ---        ---
+  `JOB-0062`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `JOB-0063`    P1         §140     `TODO`   ---              ---        ---
+  `JOB-0063`    P1         §140     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `JOB-0064`    P1         §141     `TODO`   ---              ---        ---
+  `JOB-0064`    P1         §141     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `JOB-0065`    P1         §141     `TODO`   ---              ---        ---
+  `JOB-0065`    P1         §141     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `PAY-0075`    P1         §142     `TODO`   ---              ---        ---
+  `PAY-0075`    P1         §142     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `PAY-0076`    P0         §142     `TODO`   ---              ---        ---
+  `PAY-0076`    P0         §142     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
-  `PAY-0077`    P0         §142     `TODO`   ---              ---        ---
+  `PAY-0077`    P0         §142     `DEFERRED`   ---              ---        Master Spec §159; Master Spec §159 Strong MVP extension — multi-job orchestration, DAG, budget reservation M11
 
   `AGT-0040`    P1         §143     `TODO`   ---              ---        ---
 
@@ -2554,9 +2554,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0026`    P1         §399     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `UI-0026`     P1         §400     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
+  `UI-0026`     P1         §400     `TESTED`   apps/web/src/app/capabilities/[slug]/page.tsx, apps/web/src/app/capabilities/[slug]/run/page.tsx, apps/api/src/routes/capability-availability.ts   pnpm verify:m10   M10 buyer scheduling UX on run/detail
 
-  `UI-0027`     P2         §400     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
+  `UI-0027`     P2         §400     `TESTED`   apps/web/src/app/capabilities/[slug]/page.tsx, apps/web/src/app/capabilities/[slug]/run/page.tsx, apps/api/src/routes/capability-availability.ts   pnpm verify:m10   M10 buyer scheduling UX on run/detail
 
   `AVL-0027`    P1         §401     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
@@ -2574,17 +2574,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0034`    P1         §404     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0035`    P1         §405     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
+  `AVL-0035`    P1         §405     `TESTED`   apps/web/src/app/capabilities/[slug]/page.tsx, apps/web/src/app/capabilities/[slug]/run/page.tsx, apps/api/src/routes/capability-availability.ts   pnpm verify:m10   M10 buyer scheduling UX on run/detail
 
-  `AVL-0036`    P1         §405     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
+  `AVL-0036`    P1         §405     `TESTED`   apps/web/src/app/capabilities/[slug]/page.tsx, apps/web/src/app/capabilities/[slug]/run/page.tsx, apps/api/src/routes/capability-availability.ts   pnpm verify:m10   M10 buyer scheduling UX on run/detail
 
   `AVL-0037`    P1         §406     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
   `AVL-0038`    P1         §406     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0118`    P1         §407     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
+  `JOB-0118`    P1         §407     `TESTED`   apps/web/src/app/capabilities/[slug]/page.tsx, apps/web/src/app/capabilities/[slug]/run/page.tsx, apps/api/src/routes/capability-availability.ts   pnpm verify:m10   M10 buyer scheduling UX on run/detail
 
-  `JOB-0119`    P1         §407     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
+  `JOB-0119`    P1         §407     `TESTED`   apps/web/src/app/capabilities/[slug]/page.tsx, apps/web/src/app/capabilities/[slug]/run/page.tsx, apps/api/src/routes/capability-availability.ts   pnpm verify:m10   M10 buyer scheduling UX on run/detail
 
   `JOB-0120`    P1         §408     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 

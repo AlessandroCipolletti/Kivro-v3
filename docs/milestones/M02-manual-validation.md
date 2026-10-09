@@ -50,7 +50,7 @@ node apps/worker/dist/cli.js scan
 
 ## 4. Google OAuth (optional)
 
-Configure `GOOGLE_OAUTH_CLIENT_ID` / `SECRET` in `.env`, then open `http://localhost:3001/auth/google`.
+Configure `GOOGLE_OAUTH_CLIENT_ID` / `SECRET` and matching `GOOGLE_OAUTH_REDIRECT_URI` in `.env`, then open `http://localhost:3001/api/users/auth/google`.
 
 ## 5. Automated checks
 

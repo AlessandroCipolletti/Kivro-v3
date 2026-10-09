@@ -506,3 +506,21 @@ greenfield.
 **Context:** §410 — schedule is operational, not contract/versioned behavior.
 
 **Decision:** Seller `PUT /seller/capabilities/:id/schedule` updates capability columns and appends `CapabilityScheduleChange` audit rows; published version snapshots remain immutable.
+
+## DEC-M10-001 — Next.js marketplace shell (M10 bootstrap)
+
+**Context:** Master Spec §122–§125 requires a real buyer marketplace, not only API URLs.
+
+**Decision:** M10 introduces `@kivro/marketplace` (search/sort DTOs), `/marketplace/capabilities` API, and `apps/web` Next.js App Router pages (Discover, Search, detail, run, My jobs, login, favorites, seller profile, job detail). Full Marketplace Agent conversational UX remains M11; M10 ships API + `/agent` shell.
+
+## DEC-M10-002 — Capability reviews on completed jobs (§128)
+
+**Context:** Buyers may rate capabilities after successful completion; aggregates drive marketplace sort/trust.
+
+**Decision:** `CapabilityReview` is 1:1 with `Job`, upsert on repeat submit; `Capability.rating` / `reviewCount` recomputed on write. Self-review blocked; only `COMPLETED` jobs. Public list via `GET /capabilities/:slug/reviews`; submit via `POST /buyer/jobs/:jobId/review`.
+
+## DEC-M10-003 — Orchestration scope boundary (§136–§142)
+
+**Context:** M10 plan lists §136–§142; Master Spec §159 classifies multi-job autonomous orchestration as a strong MVP extension beyond classic marketplace + assisted agent discovery.
+
+**Decision:** M10 delivers assisted discovery (Mode A / §131–§135) with deterministic constraint enforcement and typed marketplace search. Orchestration plans, DAG execution, cross-job asset mapping, budget reservation, and quote expiry (§136–§142) are **deferred to M11** with explicit `DEFERRED` coverage rows until orchestration engine lands.

@@ -104,6 +104,13 @@ export function authRoutes(): Hono<AppEnv> {
     return c.json({ ok: true });
   });
 
+  return app;
+}
+
+/** Google OAuth — path aligned with shared Google Cloud redirect URI (e.g. /api/users/auth/google/callback). */
+export function googleOAuthRoutes(): Hono<AppEnv> {
+  const app = new Hono<AppEnv>();
+
   app.get("/google", async (c) => {
     if (!getGoogleConfig()) {
       return c.json({ error: "GOOGLE_OAUTH_NOT_CONFIGURED" }, 503);
@@ -117,6 +124,10 @@ export function authRoutes(): Hono<AppEnv> {
       maxAge: 600,
     });
     const url = await buildGoogleAuthorizationUrl(state);
+    if (process.env.NODE_ENV === "development") {
+      const cfg = getGoogleConfig();
+      console.info("[google-oauth] redirect_uri sent to Google:", cfg?.redirectUri);
+    }
     return c.redirect(url);
   });
 

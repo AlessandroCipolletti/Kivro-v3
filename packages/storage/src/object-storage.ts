@@ -53,6 +53,25 @@ export async function createPresignedUpload(input: {
   return { bucket: config.bucket, objectKey, uploadUrl, expiresInSeconds };
 }
 
+export async function createPresignedDownload(input: {
+  bucket: string;
+  objectKey: string;
+  filename?: string;
+  expiresInSeconds?: number;
+}): Promise<{ downloadUrl: string; expiresInSeconds: number }> {
+  const { client } = requireObjectStorage();
+  const expiresInSeconds = input.expiresInSeconds ?? 900;
+  const command = new GetObjectCommand({
+    Bucket: input.bucket,
+    Key: input.objectKey,
+    ResponseContentDisposition: input.filename
+      ? `attachment; filename="${input.filename.replace(/"/g, "")}"`
+      : undefined,
+  });
+  const downloadUrl = await getSignedUrl(client, command, { expiresIn: expiresInSeconds });
+  return { downloadUrl, expiresInSeconds };
+}
+
 export async function verifyUploadedObject(input: {
   bucket: string;
   objectKey: string;

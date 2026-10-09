@@ -13,8 +13,8 @@
 | Auth (email/Google) | Implemented | Sessions, verify email, Google OAuth when configured |
 | M07 job dispatch & pause control | Implemented (bounded) | `@kivro/job-dispatch`, `@kivro/job-control`, seller control UI, `pnpm verify:m07` |
 | M08 payments & pricing | Implemented | `@kivro/billing`, credits + card authorization, tiers §282, Stripe Checkout/Connect/transfer, `pnpm verify:m08` (DEC-M08-001..003) |
-| M09 scheduling & availability | Implemented (bounded) | Weekly schedules, acceptance gate, `SCHEDULED`/`scheduleWaitDeadlineAt`, dispatch window gate, buyer cancel, sweeps, agent availability payload; seller schedule UI + notify-me deferred M10+; `pnpm verify:m09` (DEC-M09-001..003) |
-| Marketplace UI | Partial | Placeholder only |
+| M09 scheduling & availability | Implemented (bounded) | Weekly schedules, acceptance gate, `SCHEDULED`/`scheduleWaitDeadlineAt`, dispatch window gate, buyer cancel, sweeps, agent availability payload; `pnpm verify:m09` (DEC-M09-001..003) |
+| M10 marketplace buyer UX | Implemented (bounded) | Discover/search/detail/seller/favorites/history/reviews/agent discovery, buyer job detail + downloads; orchestration §136–§142 → M11; `pnpm verify:m10` |
 
 ## Security assumptions
 

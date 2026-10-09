@@ -5,4 +5,5 @@ export {
   requireObjectStorage,
   verifyUploadedObject,
   readObjectPrefix,
+  createPresignedDownload,
 } from "./object-storage.js";

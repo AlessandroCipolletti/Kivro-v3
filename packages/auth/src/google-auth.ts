@@ -1,6 +1,7 @@
 import type { PrismaClient, User } from "@kivro/database";
 import * as client from "openid-client";
 import { normalizeEmail } from "./crypto.js";
+import { resolveGoogleOAuthRedirectUri } from "./api-base-url.js";
 
 export interface GoogleAuthConfig {
   clientId: string;
@@ -16,8 +17,7 @@ export function getGoogleConfig(): GoogleAuthConfig | null {
   }
   const clientId = process.env.GOOGLE_OAUTH_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_OAUTH_CLIENT_SECRET;
-  const redirectUri =
-    process.env.GOOGLE_OAUTH_REDIRECT_URI ?? "http://localhost:3001/auth/google/callback";
+  const redirectUri = resolveGoogleOAuthRedirectUri();
   if (!clientId || !clientSecret) {
     return null;
   }

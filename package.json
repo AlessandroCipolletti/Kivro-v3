@@ -18,6 +18,8 @@
     "db:migrate": "node scripts/run-with-env.mjs pnpm --filter @kivro/database exec prisma migrate deploy",
     "db:generate": "node scripts/run-with-env.mjs pnpm --filter @kivro/database exec prisma generate",
     "db:setup": "pnpm db:up && pnpm db:wait && pnpm db:migrate",
+    "dev:setup": "node scripts/run-with-env.mjs node scripts/dev-setup.mjs",
+    "dev": "node scripts/run-with-env.mjs node scripts/dev.mjs",
     "storage:up": "docker compose up -d minio",
     "storage:init": "node scripts/run-with-env.mjs node scripts/init-minio-bucket.mjs",
     "storage:setup": "pnpm storage:up && sleep 2 && pnpm storage:init",
@@ -27,7 +29,8 @@
     "verify:m06": "node scripts/run-with-env.mjs node scripts/verify-m06-flow.mjs",
     "verify:m07": "node scripts/run-with-env.mjs node scripts/verify-m07-flow.mjs",
     "verify:m08": "node scripts/run-with-env.mjs node scripts/verify-m08-flow.mjs",
-    "verify:m09": "node scripts/run-with-env.mjs node scripts/verify-m09-flow.mjs"
+    "verify:m09": "node scripts/run-with-env.mjs node scripts/verify-m09-flow.mjs",
+    "verify:m10": "node scripts/run-with-env.mjs node scripts/verify-m10-flow.mjs"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.750.0",

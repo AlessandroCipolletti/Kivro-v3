@@ -2,7 +2,7 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { createCorrelationId, logInfo } from "@kivro/observability";
 import { getPrismaClient } from "@kivro/database";
-import { authRoutes } from "./routes/auth.js";
+import { authRoutes, googleOAuthRoutes } from "./routes/auth.js";
 import { marketplaceCapabilityRoutes } from "./routes/capabilities.js";
 import { sellerAssetRoutes } from "./routes/seller-assets.js";
 import { sellerCapabilityRoutes } from "./routes/seller-capabilities.js";
@@ -18,12 +18,34 @@ import { sellerBillingRoutes } from "./routes/seller-billing.js";
 import { stripeWebhookRoutes } from "./routes/stripe-webhooks.js";
 import { sellerScheduleRoutes } from "./routes/seller-schedule.js";
 import { capabilityAvailabilityRoutes } from "./routes/capability-availability.js";
+import { marketplaceRoutes } from "./routes/marketplace.js";
+import { buyerFavoritesRoutes } from "./routes/buyer-favorites.js";
+import { buyerJobsListRoutes } from "./routes/buyer-jobs-list.js";
+import { marketplaceSellerRoutes } from "./routes/marketplace-sellers.js";
+import { capabilityReviewRoutes } from "./routes/capability-reviews.js";
+import { marketplaceAgentRoutes } from "./routes/marketplace-agent.js";
+import { buyerJobAssetRoutes } from "./routes/buyer-job-assets.js";
 import type { AppEnv } from "./types.js";
+
+function webAppOrigin(): string {
+  return process.env.WEB_APP_URL ?? "http://localhost:3000";
+}
 
 export function createApp(): Hono<AppEnv> {
   const app = new Hono<AppEnv>();
 
   app.use("*", async (c, next) => {
+    const origin = c.req.header("Origin");
+    const allowed = webAppOrigin();
+    if (origin === allowed) {
+      c.header("Access-Control-Allow-Origin", allowed);
+      c.header("Access-Control-Allow-Credentials", "true");
+      c.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+      c.header("Access-Control-Allow-Headers", "Content-Type, x-correlation-id");
+    }
+    if (c.req.method === "OPTIONS") {
+      return c.body(null, 204);
+    }
     const correlationId =
       c.req.header("x-correlation-id") ?? createCorrelationId();
     await next();
@@ -53,11 +75,15 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M09" });
+    return c.json({ name: "kivro-api", phase: "M10" });
   });
 
   app.route("/auth", authRoutes());
+  app.route("/api/users/auth", googleOAuthRoutes());
+  app.route("/", marketplaceRoutes());
+  app.route("/", marketplaceSellerRoutes());
   app.route("/", marketplaceCapabilityRoutes());
+  app.route("/", capabilityReviewRoutes());
   app.route("/", capabilityAvailabilityRoutes());
   app.route("/seller", sellerCapabilityRoutes());
   app.route("/seller", sellerScheduleRoutes());
@@ -67,6 +93,10 @@ export function createApp(): Hono<AppEnv> {
   app.route("/buyer", buyerAssetRoutes());
   app.route("/buyer", buyerBillingRoutes());
   app.route("/buyer", buyerJobSubmitRoutes());
+  app.route("/buyer", buyerJobsListRoutes());
+  app.route("/buyer", buyerJobAssetRoutes());
+  app.route("/buyer", buyerFavoritesRoutes());
+  app.route("/", marketplaceAgentRoutes());
   app.route("/buyer", buyerJobRoutes());
   app.route("/seller", sellerBillingRoutes());
   app.route("/seller", sellerJobRoutes());

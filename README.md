@@ -16,18 +16,28 @@ pnpm test
 pnpm build
 ```
 
-## Local database
+## Local dev (browser + API)
 
 ```bash
-cp .env.example .env
-pnpm db:setup
+cp .env.example .env   # first time only
+pnpm install
+pnpm dev               # Docker Postgres + MinIO, migrate, build API, :3001 + :3000
 ```
 
-API health (after build):
+Open http://localhost:3000 (marketplace). API health: http://localhost:3001/health/ready
+
+Infra only (no app processes):
 
 ```bash
-node apps/api/dist/server.js
-curl -s localhost:3001/health/live
+pnpm dev:setup         # same as db:setup + MinIO bucket
+```
+
+Legacy step-by-step:
+
+```bash
+pnpm db:setup
+pnpm --filter @kivro/api run build && pnpm --filter @kivro/api run dev
+pnpm --filter @kivro/web dev
 ```
 
 Worker CLI:
