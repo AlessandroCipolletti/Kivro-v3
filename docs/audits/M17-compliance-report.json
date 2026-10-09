@@ -1,10 +1,10 @@
 {
   "audit": "M17",
-  "generatedAt": "2026-10-09T22:17:28.834Z",
+  "generatedAt": "2026-10-09T22:27:04.198Z",
   "totalRequirements": 1908,
   "summary": {
-    "TESTED": 1330,
-    "TODO": 559,
+    "TESTED": 1361,
+    "TODO": 528,
     "PARTIAL": 15,
     "BLOCKED": 0,
     "DEFERRED": 4,
@@ -12,13 +12,13 @@
   },
   "byPriority": {
     "P0": {
-      "TESTED": 224,
+      "TESTED": 240,
       "DEFERRED": 2,
-      "TODO": 118
+      "TODO": 102
     },
     "P1": {
-      "TODO": 344,
-      "TESTED": 854,
+      "TODO": 329,
+      "TESTED": 869,
       "PARTIAL": 9,
       "DEFERRED": 1
     },
@@ -33,7 +33,7 @@
   "m00m16TodoCount": 0,
   "unexplainedCount": 0,
   "invalidTestedCount": 0,
-  "p0p1OpenCount": 471,
+  "p0p1OpenCount": 440,
   "sectionRollupP0P1Open": {
     "§1": {
       "TODO": 1,
@@ -961,168 +961,6 @@
     },
     "§516": {
       "TODO": 7,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§581": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§582": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§583": {
-      "TODO": 2,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§584": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§585": {
-      "TODO": 2,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§586": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§587": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§588": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§589": {
-      "TODO": 2,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§590": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§591": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§592": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§593": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§594": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§595": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§596": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§597": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§598": {
-      "TODO": 2,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§599": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§600": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§601": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§602": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§603": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§604": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§605": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§606": {
-      "TODO": 1,
-      "PARTIAL": 0,
-      "BLOCKED": 0,
-      "scheduled": "?"
-    },
-    "§607": {
-      "TODO": 1,
       "PARTIAL": 0,
       "BLOCKED": 0,
       "scheduled": "?"

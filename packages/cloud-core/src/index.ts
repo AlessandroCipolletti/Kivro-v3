@@ -2,6 +2,7 @@ export {
   SHARED_API_CONTRACT_VERSION,
   assertCompositionParity,
   attachDurableWorkPort,
+  createInMemoryDurableWorkStub,
   type CloudProfileId,
   type DurableWorkProfile,
   type KivroCloudComposition,

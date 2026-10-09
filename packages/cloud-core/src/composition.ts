@@ -22,6 +22,8 @@ export interface KivroCloudComposition {
   objectStorageProfile: ObjectStorageProfile;
 }
 
+export { createInMemoryDurableWorkStub } from "./durable-work-port.js";
+
 export function attachDurableWorkPort(
   composition: Omit<KivroCloudComposition, "durableWork">,
 ): KivroCloudComposition {

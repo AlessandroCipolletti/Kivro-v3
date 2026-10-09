@@ -877,3 +877,23 @@ model BuyerSubmissionRateBucket {
   @@unique([userId, windowStart])
   @@index([windowStart])
 }
+
+/// M20 — PostgreSQL-backed durable async work (Netsons cron profile, HOST-NET-010).
+model DurableWorkItem {
+  id             String    @id @default(uuid())
+  kind           String
+  idempotencyKey String
+  payloadJson    Json
+  status         String    @default("PENDING")
+  runAt          DateTime  @default(now())
+  claimToken     String?
+  claimedAt      DateTime?
+  attemptCount   Int       @default(0)
+  maxAttempts    Int       @default(8)
+  lastError      String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([kind, idempotencyKey])
+  @@index([status, runAt])
+}

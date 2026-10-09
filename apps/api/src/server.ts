@@ -9,6 +9,7 @@ import { sellerAssetRoutes } from "./routes/seller-assets.js";
 import { sellerCapabilityRoutes } from "./routes/seller-capabilities.js";
 import { buyerAssetRoutes } from "./routes/buyer-assets.js";
 import { platformAdminRoutes } from "./routes/platform-admin.js";
+import { platformCronRoutes } from "./routes/platform-cron.js";
 import { workerDeviceRoutes } from "./routes/worker-devices.js";
 import { buyerJobRoutes, sellerJobRoutes } from "./routes/seller-jobs.js";
 import { sellerControlUiRoutes } from "./routes/seller-control-ui.js";
@@ -147,6 +148,7 @@ export function createApp(): Hono<AppEnv> {
   app.route("/seller", sellerAssetRoutes());
   app.route("/worker-devices", workerDeviceRoutes());
   app.route("/platform/admin", platformAdminRoutes());
+  app.route("/platform/cron", platformCronRoutes());
   app.route("/buyer", buyerAssetRoutes());
   app.route("/buyer", buyerBillingRoutes());
   app.route("/buyer", buyerJobSubmitRoutes());

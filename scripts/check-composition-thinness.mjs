@@ -9,18 +9,28 @@ const profiles = [
   { pkg: "packages/cloud-aws/src", app: "apps/cloud-aws" },
 ];
 
-const allowedPkgFiles = new Set(["composition.ts", "index.ts"]);
+const allowedPkgByDir = {
+  "packages/cloud-netsons/src": new Set([
+    "composition.ts",
+    "index.ts",
+    "durable-work-db-port.ts",
+    "netsons-cron-tick.ts",
+    "netsons-runtime-config.ts",
+  ]),
+  "packages/cloud-aws/src": new Set(["composition.ts", "index.ts"]),
+};
 const maxCompositionLines = 80;
 
 let failed = false;
 
 for (const { pkg, app } of profiles) {
   const srcDir = path.join(root, pkg);
+  const allowedPkgFiles = allowedPkgByDir[pkg] ?? new Set(["composition.ts", "index.ts"]);
   for (const name of fs.readdirSync(srcDir)) {
     if (!name.endsWith(".ts")) continue;
     if (name.endsWith(".test.ts")) continue;
     if (!allowedPkgFiles.has(name)) {
-      console.error(`${pkg}/${name} — provider src must only contain composition.ts + index.ts`);
+      console.error(`${pkg}/${name} — unexpected provider src file (update check-composition-thinness allowlist)`);
       failed = true;
     }
   }

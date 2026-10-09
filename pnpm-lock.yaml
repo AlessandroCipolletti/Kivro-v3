@@ -340,12 +340,21 @@ importers:
 
   packages/cloud-netsons:
     dependencies:
+      '@kivro/buyer-webhooks':
+        specifier: workspace:*
+        version: link:../buyer-webhooks
       '@kivro/cloud-core':
         specifier: workspace:*
         version: link:../cloud-core
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/job-scheduling':
+        specifier: workspace:*
+        version: link:../job-scheduling
       '@kivro/worker-transport':
         specifier: workspace:*
         version: link:../worker-transport

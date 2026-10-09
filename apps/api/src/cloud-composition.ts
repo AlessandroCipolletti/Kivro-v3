@@ -1,6 +1,7 @@
 import { assertCompositionParity, type KivroCloudComposition } from "@kivro/cloud-core";
 import { createAwsComposition } from "@kivro/cloud-aws";
 import { createNetsonsComposition } from "@kivro/cloud-netsons";
+import { getPrismaClient } from "@kivro/database";
 
 let active: KivroCloudComposition | null = null;
 
@@ -11,7 +12,7 @@ export function resolveCloudComposition(profileRaw?: string): KivroCloudComposit
     active = createAwsComposition();
     return active;
   }
-  active = createNetsonsComposition();
+  active = createNetsonsComposition({ prisma: getPrismaClient() });
   return active;
 }
 
