@@ -14,7 +14,13 @@ describe("buildDependencyGraph", () => {
       },
     });
     const graph = buildDependencyGraph(
-      { snapshotVersion: 1, skills: ["video"], tools: ["personal browser session"], warnings: [] },
+      {
+        snapshotVersion: 1,
+        skills: ["video"],
+        tools: ["personal browser session"],
+        nativePlugins: [],
+        warnings: [],
+      },
       consent,
       "Video",
     );

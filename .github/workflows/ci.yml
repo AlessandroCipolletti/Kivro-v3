@@ -32,3 +32,4 @@ jobs:
       - run: pnpm verify:m12
       - run: pnpm verify:m13
       - run: pnpm verify:m14
+      - run: pnpm verify:m15

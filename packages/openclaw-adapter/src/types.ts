@@ -9,6 +9,8 @@ export interface RuntimeDetection {
 export interface RuntimeDiscovery {
   skills: string[];
   tools: string[];
+  /** Host-native OpenClaw plugins (§33 — blocked for marketplace import). */
+  nativePlugins: string[];
   warnings: string[];
 }
 

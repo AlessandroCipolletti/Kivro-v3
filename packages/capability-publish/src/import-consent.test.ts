@@ -9,6 +9,7 @@ const discovery: DiscoverySnapshot = {
   snapshotVersion: 1,
   skills: ["company-research"],
   tools: ["web-search"],
+  nativePlugins: [],
   warnings: [],
 };
 

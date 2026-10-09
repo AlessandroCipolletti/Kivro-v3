@@ -1,5 +1,6 @@
 "use client";
 
+import { AbuseReportForm } from "@/components/AbuseReportForm";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 
 type JobDetail = {
   id: string;
+  capabilityId?: string;
   capabilityName: string;
   capabilitySlug: string;
   sellerDisplayName: string;
@@ -30,6 +32,8 @@ type JobDetail = {
 
 type TimelineEntry = { at: string; label: string; detail?: string };
 
+type AuditSummary = { lines: string[] };
+
 export default function JobDetailPage() {
   const params = useParams<{ id: string }>();
   const [job, setJob] = useState<JobDetail | null>(null);
@@ -37,6 +41,7 @@ export default function JobDetailPage() {
   const [stars, setStars] = useState(5);
   const [body, setBody] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [auditSummary, setAuditSummary] = useState<AuditSummary | null>(null);
 
   useEffect(() => {
     fetch(`${API_BASE}/buyer/jobs/${params.id}`, { credentials: "include" })
@@ -48,12 +53,17 @@ export default function JobDetailPage() {
         if (!res.ok) {
           throw new Error("failed");
         }
-        return (await res.json()) as { job: JobDetail; timeline: TimelineEntry[] };
+        return (await res.json()) as {
+          job: JobDetail;
+          timeline: TimelineEntry[];
+          auditSummary?: AuditSummary;
+        };
       })
       .then((data) => {
         if (data?.job) {
           setJob(data.job);
           setTimeline(data.timeline);
+          setAuditSummary(data.auditSummary ?? null);
           if (data.job.review) {
             setStars(data.job.review.stars);
             setBody(data.job.review.body ?? "");
@@ -131,7 +141,9 @@ export default function JobDetailPage() {
           <strong>Result</strong>
           {job.result.structuredOutput != null && (
             <pre className="pre-block font-mono">
-              {JSON.stringify(job.result.structuredOutput, null, 2)}
+              {typeof job.result.structuredOutput === "string"
+                ? job.result.structuredOutput
+                : JSON.stringify(job.result.structuredOutput, null, 2)}
             </pre>
           )}
           {job.result.assets?.map((asset) => (
@@ -160,6 +172,14 @@ export default function JobDetailPage() {
               </button>
             </p>
           ))}
+        </div>
+      )}
+      {auditSummary && auditSummary.lines.length > 0 && (
+        <div className="detail-panel">
+          <strong>Audit summary</strong>
+          <pre className="pre-block font-mono" style={{ whiteSpace: "pre-wrap" }}>
+            {auditSummary.lines.join("\n")}
+          </pre>
         </div>
       )}
       <div className="detail-panel">
@@ -210,6 +230,13 @@ export default function JobDetailPage() {
             </div>
           )}
         </form>
+      )}
+      {job.capabilityId && (
+        <AbuseReportForm
+          targetType="CAPABILITY"
+          targetId={job.capabilityId}
+          capabilityId={job.capabilityId}
+        />
       )}
       <p style={{ marginTop: "1rem" }}>
         <Link className="button secondary" href={`/capabilities/${job.capabilitySlug}/run`}>

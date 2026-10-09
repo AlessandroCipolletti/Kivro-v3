@@ -105,13 +105,24 @@ export function marketplaceCapabilityRoutes(): Hono {
             accepting: availability.accepting,
             nextAvailableAt: availability.nextAvailableAt ?? null,
           };
+    const externalProcessors =
+      version && Array.isArray(version.externalProcessorsSnapshot)
+        ? (version.externalProcessorsSnapshot as string[])
+        : [];
     const privacyDisclosure = {
       executionModel:
-        "Each job runs in an isolated marketplace worker environment on seller-controlled hardware; your inputs are not shared with other buyers.",
+        "Jobs execute on seller-controlled hardware in an isolated marketplace worker sandbox; the seller's worker processes your inputs for this capability.",
       dataHandling:
         internetDisclosure?.buyerDetail?.join(" ") ??
         "See trust summary for network and tool permissions for this published version.",
-      retention: "Deliverables are retained per platform policy; download completed job outputs from My Jobs.",
+      retention:
+        "Kivro temporarily stores uploaded inputs and completed deliverables so you can download results; see Legal for retention details.",
+      thirdPartyServices:
+        externalProcessors.length > 0
+          ? externalProcessors
+          : ["Seller has not declared external processors for this version; LLM or API use may still apply per permissions."],
+      llmDisclosure:
+        "When inference permissions are enabled, configured LLM providers may receive job content per the published permission manifest.",
     };
     return c.json({
       capability: row,

@@ -100,6 +100,18 @@ export function authRoutes(): Hono<AppEnv> {
     return c.json({ ok: true });
   });
 
+  app.post("/accept-marketplace-terms", requireAuth, async (c) => {
+    const user = c.get("user");
+    if (user.marketplaceTermsAcceptedAt) {
+      return c.json({ accepted: true, marketplaceTermsAcceptedAt: user.marketplaceTermsAcceptedAt });
+    }
+    const updated = await getPrismaClient().user.update({
+      where: { id: user.id },
+      data: { marketplaceTermsAcceptedAt: new Date() },
+    });
+    return c.json({ accepted: true, marketplaceTermsAcceptedAt: updated.marketplaceTermsAcceptedAt });
+  });
+
   app.get("/me", requireAuth, (c) => {
     const user = c.get("user");
     return c.json({

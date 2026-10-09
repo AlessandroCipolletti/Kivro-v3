@@ -1,6 +1,7 @@
 import type { JobCheckpointRecord } from "@kivro/contracts";
 import type { PrismaClient } from "@kivro/database";
 import type { Prisma } from "@kivro/database";
+import { sanitizeAuditPayload } from "@kivro/observability";
 
 export async function recordJobCheckpoint(
   prisma: PrismaClient,
@@ -21,6 +22,20 @@ export async function recordJobCheckpoint(
       checkpointKey: input.checkpoint.checkpointKey,
       recordedAt: new Date(input.checkpoint.recordedAt),
       payload: (input.checkpoint.payload ?? undefined) as Prisma.InputJsonValue | undefined,
+    },
+  });
+  await prisma.auditEvent.create({
+    data: {
+      jobId: input.checkpoint.jobId,
+      workerDeviceId: input.workerDeviceId,
+      type: "JOB_CHECKPOINT",
+      actor: "WORKER",
+      correlationId: input.checkpoint.checkpointKey,
+      sanitizedPayload: sanitizeAuditPayload({
+        stage: input.checkpoint.stageLabel,
+        checkpointKey: input.checkpoint.checkpointKey,
+        attemptNumber: input.checkpoint.attemptNumber,
+      }) as Prisma.InputJsonValue,
     },
   });
   return { ok: true };

@@ -11,7 +11,9 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
+    "@kivro/abuse-controls": "workspace:*",
     "@kivro/billing": "workspace:*",
+    "@kivro/job-failure": "workspace:*",
     "@kivro/auth": "workspace:*",
     "@kivro/capability-publish": "workspace:*",
     "@kivro/contracts": "workspace:*",

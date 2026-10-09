@@ -1,5 +1,6 @@
 import { getPrismaClient } from "@kivro/database";
 import { getBuyerJobDetail, parseJobOutputAssetManifest } from "@kivro/marketplace";
+import { sanitizeDownloadFilename } from "@kivro/job-io";
 import { createPresignedDownload } from "@kivro/storage";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
@@ -46,7 +47,7 @@ export function buyerJobAssetRoutes(): Hono<AppEnv> {
       const signed = await createPresignedDownload({
         bucket,
         objectKey,
-        filename: asset.filename,
+        filename: sanitizeDownloadFilename(asset.filename),
       });
       return c.json(signed);
     } catch (err) {

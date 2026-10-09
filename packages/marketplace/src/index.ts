@@ -23,4 +23,5 @@ export { rankAgentCandidates, type RankedCapability } from "./agent-ranking.js";
 export { runAssistedDiscovery, type AgentDiscoveryResult } from "./agent-discovery.js";
 export { capabilityReviewDistribution } from "./review-distribution.js";
 export { buildBuyerJobTimeline } from "./buyer-audit-timeline.js";
+export { buildJobAuditSummary, type JobAuditSummary } from "./job-audit-summary.js";
 export { parseJobOutputAssetManifest, type JobOutputAssetRef } from "./output-assets.js";

@@ -17,6 +17,9 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
 
   app.post("/jobs", async (c) => {
     const user = c.get("user");
+    if (!user.marketplaceTermsAcceptedAt) {
+      return c.json({ error: "MARKETPLACE_TERMS_REQUIRED" }, 403);
+    }
     let body: {
       capabilityId?: string;
       inputs?: Record<string, unknown>;

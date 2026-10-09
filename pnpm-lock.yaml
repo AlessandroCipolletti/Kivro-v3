@@ -38,6 +38,9 @@ importers:
       '@hono/node-server':
         specifier: ^1.13.7
         version: 1.19.17(hono@4.13.13)
+      '@kivro/abuse-controls':
+        specifier: workspace:*
+        version: link:../../packages/abuse-controls
       '@kivro/auth':
         specifier: workspace:*
         version: link:../../packages/auth
@@ -71,6 +74,9 @@ importers:
       '@kivro/job-dispatch':
         specifier: workspace:*
         version: link:../../packages/job-dispatch
+      '@kivro/job-failure':
+        specifier: workspace:*
+        version: link:../../packages/job-failure
       '@kivro/job-io':
         specifier: workspace:*
         version: link:../../packages/job-io
@@ -166,6 +172,12 @@ importers:
         specifier: ^12.1.0
         version: 12.1.0
 
+  packages/abuse-controls:
+    dependencies:
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+
   packages/auth:
     dependencies:
       '@kivro/database':
@@ -177,6 +189,9 @@ importers:
 
   packages/billing:
     dependencies:
+      '@kivro/abuse-controls':
+        specifier: workspace:*
+        version: link:../abuse-controls
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
@@ -303,6 +318,9 @@ importers:
       '@kivro/domain':
         specifier: workspace:*
         version: link:../domain
+      '@kivro/observability':
+        specifier: workspace:*
+        version: link:../observability
       '@kivro/platform-policy':
         specifier: workspace:*
         version: link:../platform-policy
@@ -324,6 +342,15 @@ importers:
       '@kivro/platform-policy':
         specifier: workspace:*
         version: link:../platform-policy
+
+  packages/job-failure:
+    dependencies:
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../domain
 
   packages/job-io:
     dependencies:
@@ -373,7 +400,14 @@ importers:
         specifier: workspace:*
         version: link:../marketplace
 
-  packages/observability: {}
+  packages/observability:
+    dependencies:
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/seller-health':
+        specifier: workspace:*
+        version: link:../seller-health
 
   packages/openclaw-adapter:
     dependencies:

@@ -572,3 +572,15 @@ greenfield.
 **Context:** M14 maps 96 requirements for typography, status language, marketplace/job/seller UI quality, developer settings, and accessibility.
 
 **Decision:** Document tokens in `docs/design-system.md`; implement shared web components and `status-ui.ts`; ship buyer developer settings (API keys + webhooks); apply `StatusBadge` / `EmptyState` / `PageHeader` across capability, job, and seller dashboard routes. Automated visual regression remains manual checklist until M15+ tooling. Gate: `pnpm verify:m14`.
+
+## DEC-M15-001 — Observability, abuse, privacy & operations (§29–§38, §84–§95)
+
+**Context:** M15 closes deterministic abuse controls, cloud metrics, failure sweeps, privacy/legal surfaces, and native plugin import policy without LLM moderation.
+
+**Decision:** `@kivro/abuse-controls` gates job submit (denylist, hourly job frequency only — no account spend cap); `@kivro/job-failure` sweeps stale executing jobs when workers go offline (no resume); `@kivro/observability` exposes admin metrics snapshots and audit sanitization; admin routes manage denylist/reports/suspend/sweep; buyers file abuse reports; capability versions store seller-declared `externalProcessors`; discovery blocks native plugins (§33). Legal alpha pages and `docs/TESTING-STRATEGY.md` satisfy §34/§38 planning evidence. ML anomaly detection and automated red-team CI remain deferred. Gate: `pnpm verify:m15`.
+
+## DEC-M15-002 — M15 full perimeter hardening
+
+**Context:** Bounded M15 gate left UI/ops gaps (manual sweeps, no terms gate, thin §29/§31 evidence).
+
+**Decision:** Add buyer/seller-facing report UI, marketplace terms acceptance on paid submit, auto-pause after report threshold, user suspend + report resolve admin APIs, worker fleet metrics, lost-worker sweep wired into `POST /platform/admin/jobs/promote-scheduled`, `buildJobAuditSummary` on job detail, `job-io` result-safety helpers, red-team checklist doc, and extended verify tests (including optional DB triage test). ML anomaly and external pen test execution remain post-MVP. Gate unchanged: `pnpm verify:m15`.

@@ -23,6 +23,7 @@ export class OpenClawAdapterStub implements AgentRuntimeAdapter {
     return Promise.resolve({
       skills: [],
       tools: [],
+      nativePlugins: [],
       warnings: ["OpenClaw adapter not configured"],
     });
   }

@@ -5,6 +5,7 @@ export {
   type DiscoverySnapshot,
   type ImportConsent,
 } from "./import-consent.js";
+export { assertNoNativePluginsInDiscovery } from "./native-plugin-gate.js";
 export { hashPermissionManifest } from "./manifest-hash.js";
 export {
   createDraftCapability,

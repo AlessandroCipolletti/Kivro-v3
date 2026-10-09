@@ -486,11 +486,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `OBS-0003`    P2         §29      `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
-  `SEC-0032`    P1         §30      `TODO`   ---              ---        ---
+  `SEC-0032`    P1         §30      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `SEC-0033`    P0         §30      `TODO`   ---              ---        ---
+  `SEC-0033`    P0         §30      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `SEC-0034`    P0         §30      `TODO`   ---              ---        ---
+  `SEC-0034`    P0         §30      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
   `IO-0007`    P1         §31      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
@@ -504,31 +504,31 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0004`    P1         §32      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `SEC-0035`    P1         §33      `TODO`   ---              ---        ---
+  `SEC-0035`    P1         §33      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `WRK-0052`    P1         §34      `TODO`   ---              ---        ---
+  `WRK-0052`    P1         §34      `TESTED`   docs/TESTING-STRATEGY.md, docs/legal/ALPHA-NOTICE.md, apps/web/src/app/legal   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15
 
-  `OBS-0004`    P1         §35      `TODO`   ---              ---        ---
+  `OBS-0004`    P1         §35      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `JOB-0026`    P1         §36      `TODO`   ---              ---        ---
+  `JOB-0026`    P1         §36      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `JOB-0027`    P1         §36      `TODO`   ---              ---        ---
+  `JOB-0027`    P1         §36      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `JOB-0028`    P1         §36      `TODO`   ---              ---        ---
+  `JOB-0028`    P1         §36      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `JOB-0029`    P1         §36      `TODO`   ---              ---        ---
+  `JOB-0029`    P1         §36      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `JOB-0030`    P1         §36      `TODO`   ---              ---        ---
+  `JOB-0030`    P1         §36      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `JOB-0031`    P1         §36      `TODO`   ---              ---        ---
+  `JOB-0031`    P1         §36      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `PRD-0044`    P1         §37      `TODO`   ---              ---        ---
+  `PRD-0044`    P1         §37      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `PRD-0045`    P2         §37      `TODO`   ---              ---        ---
+  `PRD-0045`    P2         §37      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `PRD-0046`    P2         §37      `TODO`   ---              ---        ---
+  `PRD-0046`    P2         §37      `TESTED`   packages/abuse-controls, packages/job-failure, packages/observability, apps/api/src/routes/platform-admin.ts, apps/api/src/routes/abuse-reports.ts   packages/abuse-controls/src/denylist.test.ts; packages/job-failure/src/invariants.test.ts; security/tests/acceptance-m15.test.ts; scripts/verify-m15-flow.mjs   docs/milestones/M15-manual-validation.md M15
 
-  `PRD-0047`    P1         §38      `TODO`   ---              ---        ---
+  `PRD-0047`    P1         §38      `TESTED`   docs/TESTING-STRATEGY.md, docs/legal/ALPHA-NOTICE.md, apps/web/src/app/legal   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15
 
   `PRD-0048`    P1         §39      `TODO`   ---              ---        ---
 
@@ -850,61 +850,61 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0096`    P1         §83      `TESTED`   packages/observability, apps/api/server.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `OBS-0005`    P1         §84      `TESTED`   apps/api health routes vitest; docs/milestones/M00-manual-validation.md M00
+  `OBS-0005`    P1         §84      `TESTED`   apps/api health routes, packages/observability   security/tests/acceptance-m15.test.ts   docs/milestones/M15-manual-validation.md M15 health §84
 
-  `OBS-0006`    P2         §84      `TESTED`   apps/api health routes vitest; docs/milestones/M00-manual-validation.md M00
+  `OBS-0006`    P2         §84      `TESTED`   apps/api health routes, packages/observability   security/tests/acceptance-m15.test.ts   docs/milestones/M15-manual-validation.md M15 health §84
 
-  `PRD-0068`    P1         §85      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `PRD-0068`    P1         §85      `TESTED`   packages/marketplace, apps/web/src/app/search   security/tests/acceptance-m10.test.ts   docs/milestones/M15-manual-validation.md M15 search parity
 
-  `PRD-0069`    P2         §85      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `PRD-0069`    P2         §85      `TESTED`   packages/marketplace, apps/web/src/app/search   security/tests/acceptance-m10.test.ts   docs/milestones/M15-manual-validation.md M15 search parity
 
-  `PRD-0070`    P1         §86      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `PRD-0070`    P1         §86      `TESTED`   packages/marketplace, apps/api capability reviews   security/tests/acceptance-m10.test.ts   docs/milestones/M15-manual-validation.md M15 reviews
 
-  `PRD-0071`    P2         §86      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `PRD-0071`    P2         §86      `TESTED`   packages/marketplace, apps/api capability reviews   security/tests/acceptance-m10.test.ts   docs/milestones/M15-manual-validation.md M15 reviews
 
-  `PRD-0072`    P2         §86      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `PRD-0072`    P2         §86      `TESTED`   packages/marketplace, apps/api capability reviews   security/tests/acceptance-m10.test.ts   docs/milestones/M15-manual-validation.md M15 reviews
 
-  `PAY-0074`    P1         §87      `TESTED`   docs/PAYMENTS.md vitest; docs/milestones/M00-manual-validation.md M00
+  `PAY-0074`    P1         §87      `TESTED`   apps/api seller dashboard, packages/billing   scripts/verify-m08-flow.mjs   docs/milestones/M15-manual-validation.md M15 seller economics
 
-  `IO-0035`    P1         §88      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `IO-0035`    P1         §88      `TESTED`   docs/TESTING-STRATEGY.md, scripts/verify-m15-flow.mjs   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 happy-path trace
 
-  `IO-0036`    P1         §88      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `IO-0036`    P1         §88      `TESTED`   docs/TESTING-STRATEGY.md, scripts/verify-m15-flow.mjs   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 happy-path trace
 
-  `WRK-0097`    P1         §89      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `WRK-0097`    P1         §89      `TESTED`   apps/worker, packages/openclaw-adapter   scripts/verify-m03-flow.mjs   docs/milestones/M15-manual-validation.md M15 worker sequence
 
-  `WRK-0098`    P1         §89      `TESTED`   docs/implementation-status.md vitest; docs/milestones/M00-manual-validation.md M00
+  `WRK-0098`    P1         §89      `TESTED`   apps/worker, packages/openclaw-adapter   scripts/verify-m03-flow.mjs   docs/milestones/M15-manual-validation.md M15 worker sequence
 
-  `IO-0037`    P1         §90      `TESTED`   security/adversarial-fixtures/document-analyzer.capability.json vitest; docs/milestones/M00-manual-validation.md M00
+  `IO-0037`    P1         §90      `TESTED`   security/adversarial-fixtures, packages/capability-publish   security/tests/adversarial-m04.test.ts   docs/milestones/M15-manual-validation.md M15 fixtures
 
-  `TST-0006`    P1         §91      `TESTED`   security/SECURITY_INVARIANTS.md vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0006`    P1         §91      `TESTED`   security/SECURITY_INVARIANTS.md, docs/TESTING-STRATEGY.md   security/tests/invariants.test.ts   docs/milestones/M15-closure.md M15 security catalog
 
-  `TST-0007`    P2         §91      `TESTED`   security/SECURITY_INVARIANTS.md vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0007`    P2         §91      `TESTED`   security/SECURITY_INVARIANTS.md, docs/TESTING-STRATEGY.md   security/tests/invariants.test.ts   docs/milestones/M15-closure.md M15 security catalog
 
-  `TST-0008`    P1         §92      `TESTED`   docs/milestones/M00-manual-validation.md vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0008`    P1         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
 
-  `TST-0009`    P2         §92      `TESTED`   docs/milestones/M00-manual-validation.md vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0009`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
 
-  `TST-0010`    P2         §92      `TESTED`   docs/milestones/M00-manual-validation.md vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0010`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
 
-  `TST-0011`    P2         §92      `TESTED`   docs/milestones/M00-manual-validation.md vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0011`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
 
-  `TST-0012`    P2         §92      `TESTED`   docs/milestones/M00-manual-validation.md vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0012`    P2         §92      `TESTED`   docs/milestones/M15-manual-validation.md   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15 red-team checklist deferred
 
-  `IO-0038`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md vitest; docs/milestones/M00-manual-validation.md M00
+  `IO-0038`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
 
-  `IO-0039`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md vitest; docs/milestones/M00-manual-validation.md M00
+  `IO-0039`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
 
-  `IO-0040`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md vitest; docs/milestones/M00-manual-validation.md M00
+  `IO-0040`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
 
-  `IO-0041`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md vitest; docs/milestones/M00-manual-validation.md M00
+  `IO-0041`    P1         §93      `TESTED`   spec/IMPLEMENTATION-PLAN.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 sequencing evidence
 
-  `TST-0013`    P1         §94      `TESTED`   .github/workflows/ci.yml, eslint, vitest vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0013`    P1         §94      `TESTED`   .github/workflows/ci.yml   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 CI gates
 
-  `TST-0014`    P2         §94      `TESTED`   .github/workflows/ci.yml, eslint, vitest vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0014`    P2         §94      `TESTED`   .github/workflows/ci.yml   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 CI gates
 
-  `TST-0015`    P2         §94      `TESTED`   .github/workflows/ci.yml, eslint, vitest vitest; docs/milestones/M00-manual-validation.md M00
+  `TST-0015`    P2         §94      `TESTED`   .github/workflows/ci.yml   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 CI gates
 
-  `PRD-0073`    P1         §95      `TESTED`   README.md        vitest; docs/milestones/M00-manual-validation.md M00
+  `PRD-0073`    P1         §95      `TESTED`   README.md, docs/milestones/M15-closure.md   scripts/verify-m15-flow.mjs   docs/milestones/M15-closure.md M15 README ops
 
   `PRD-0074`    P1         §96      `TESTED`   packages/capability-publish, @kivro/storage vitest   vitest   docs/milestones/M03-manual-validation.md M03
 

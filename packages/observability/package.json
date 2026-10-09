@@ -14,5 +14,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint src"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@kivro/database": "workspace:*",
+    "@kivro/seller-health": "workspace:*"
+  }
 }

@@ -12,6 +12,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [termsAck, setTermsAck] = useState(false);
   async function submitRegister(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -21,6 +22,10 @@ export default function RegisterPage() {
     }
     if (password.length < 8) {
       setError("Password must be at least 8 characters");
+      return;
+    }
+    if (!termsAck) {
+      setError("Accept the marketplace terms to create an account");
       return;
     }
     const res = await fetch(`${API_BASE}/auth/register`, {
@@ -98,6 +103,18 @@ export default function RegisterPage() {
             onChange={(e) => setConfirm(e.target.value)}
           />
         </div>
+        <label className="meta" style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+          <input
+            type="checkbox"
+            checked={termsAck}
+            onChange={(e) => setTermsAck(e.target.checked)}
+          />
+          <span>
+            I agree to the alpha{" "}
+            <Link href="/legal/terms">Terms</Link>, <Link href="/legal/privacy">Privacy</Link>, and{" "}
+            <Link href="/legal/aup">Acceptable use</Link>.
+          </span>
+        </label>
         {error && <Alert tone="danger">{error}</Alert>}
         <div className="form-actions">
           <button className="button" type="submit">

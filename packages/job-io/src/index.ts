@@ -32,3 +32,9 @@ export {
   type AgentInputDraft,
   type AgentPrepareResult,
 } from "./agent-input-mapper.js";
+export {
+  escapeForSafeTextDisplay,
+  normalizeTextOutput,
+  safeExternalUrlForRender,
+  sanitizeDownloadFilename,
+} from "./result-safety.js";

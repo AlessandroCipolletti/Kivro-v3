@@ -2,6 +2,7 @@ import type { PrismaClient } from "@kivro/database";
 import { buyerVisibleJobStatus } from "@kivro/job-control";
 import { resolveBuyerSchedulingPhase } from "@kivro/job-scheduling";
 import { buildBuyerJobTimeline } from "./buyer-audit-timeline.js";
+import { buildJobAuditSummary } from "./job-audit-summary.js";
 import { parseJobOutputAssetManifest } from "./output-assets.js";
 
 /** §127 / §29 — buyer job detail with sanitized timeline (no secrets). */
@@ -12,6 +13,7 @@ export async function getBuyerJobDetail(
   | {
       job: Record<string, unknown>;
       timeline: Array<{ at: string; label: string; detail?: string }>;
+      auditSummary: ReturnType<typeof buildJobAuditSummary>;
     }
   | { error: string }
 > {
@@ -39,6 +41,16 @@ export async function getBuyerJobDetail(
     transitions: job.transitions,
     auditEvents: job.auditEvents,
   });
+  const auditSummary = buildJobAuditSummary({
+    jobId: job.id,
+    startedAt: job.startedAt,
+    completedAt: job.completedAt,
+    priceSnapshotCents: job.priceSnapshotCents,
+    currency: job.currency,
+    sellerNetSnapshotCents: job.sellerNetSnapshotCents,
+    platformFeeSnapshotCents: job.platformFeeSnapshotCents,
+    timeline,
+  });
   const outputAssets = job.result
     ? parseJobOutputAssetManifest(job.result.outputAssetManifest)
     : [];
@@ -51,6 +63,7 @@ export async function getBuyerJobDetail(
         status: job.status,
         scheduledRunAt: job.scheduledRunAt,
       }),
+      capabilityId: cap.id,
       capabilitySlug: cap.slug,
       capabilityName: cap.name,
       sellerDisplayName: cap.sellerProfile.displayName,
@@ -74,6 +87,7 @@ export async function getBuyerJobDetail(
       canReview: job.status === "COMPLETED" && !job.review,
     },
     timeline,
+    auditSummary,
   };
 }
 

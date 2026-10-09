@@ -1,6 +1,7 @@
 "use client";
 
 import { BuyerInputForm, type BuyerFormField } from "@/components/BuyerInputForm";
+import { MarketplaceTermsGate } from "@/components/MarketplaceTermsGate";
 import { Alert } from "@/components/ui/Alert";
 import { LoadingState } from "@/components/ui/LoadingState";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -24,8 +25,21 @@ export default function RunCapabilityPage() {
   const [inputsJson, setInputsJson] = useState("{}");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [termsRequired, setTermsRequired] = useState(false);
 
   useEffect(() => {
+    fetch(`${API_BASE}/auth/me`, { credentials: "include" })
+      .then(async (res) => {
+        if (!res.ok) {
+          return null;
+        }
+        return (await res.json()) as { marketplaceTermsAcceptedAt?: string | null };
+      })
+      .then((me) => {
+        setTermsRequired(!me?.marketplaceTermsAcceptedAt);
+      })
+      .catch(() => undefined);
+
     fetch(`${API_BASE}/capabilities/${params.slug}`)
       .then(async (res) => {
         if (!res.ok) {
@@ -78,6 +92,11 @@ export default function RunCapabilityPage() {
       });
       const body = (await res.json()) as { error?: string; jobId?: string };
       if (!res.ok) {
+        if (body.error === "MARKETPLACE_TERMS_REQUIRED") {
+          setTermsRequired(true);
+          setError(null);
+          return;
+        }
         setError(body.error ?? "Submit failed");
         return;
       }
@@ -125,6 +144,13 @@ export default function RunCapabilityPage() {
         }
         actions={<StatusBadge label={availUi.label} variant={availUi.variant} />}
       />
+      {termsRequired && (
+        <MarketplaceTermsGate
+          onAccepted={() => {
+            setTermsRequired(false);
+          }}
+        />
+      )}
       {!accepting && (
         <div className="detail-panel form-stack">
           <Alert tone="warning">

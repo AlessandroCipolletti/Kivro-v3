@@ -25,6 +25,8 @@ export default defineConfig({
       "@kivro/seller-health": path.resolve("packages/seller-health/src/index.ts"),
       "@kivro/buyer-api": path.resolve("packages/buyer-api/src/index.ts"),
       "@kivro/buyer-webhooks": path.resolve("packages/buyer-webhooks/src/index.ts"),
+      "@kivro/abuse-controls": path.resolve("packages/abuse-controls/src/index.ts"),
+      "@kivro/job-failure": path.resolve("packages/job-failure/src/index.ts"),
       "@kivro/database": path.resolve("packages/database/src/index.ts"),
     },
   },

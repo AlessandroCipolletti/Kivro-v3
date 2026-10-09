@@ -37,3 +37,13 @@ export function logInfo(fields: LogFields): void {
   // Structured JSON logs (Master Spec §83)
   console.log(JSON.stringify({ level: "info", message, ...payload }));
 }
+
+export function logWarn(fields: LogFields): void {
+  const { message, ...rest } = fields;
+  const payload = redactRecord(rest);
+  console.warn(JSON.stringify({ level: "warn", message, ...payload }));
+}
+
+export { sanitizeAuditPayload } from "./audit-sanitize.js";
+export { collectCloudMetricsSnapshot } from "./cloud-metrics.js";
+export { collectWorkerFleetMetrics } from "./worker-metrics.js";

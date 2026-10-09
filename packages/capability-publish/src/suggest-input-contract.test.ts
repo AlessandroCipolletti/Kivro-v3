@@ -7,6 +7,7 @@ describe("suggestInputContractFromDiscovery", () => {
       snapshotVersion: 1,
       skills: ["blender-render"],
       tools: [],
+      nativePlugins: [],
       warnings: [],
     });
     expect(result.suggested.fields.some((f) => f.key === "scene")).toBe(true);

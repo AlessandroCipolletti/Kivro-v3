@@ -79,11 +79,26 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
             .map((l) => l.trim())
             .filter(Boolean)
         : [];
+    const plugins = await this.run(["plugins", "list"]);
+    const nativePlugins =
+      plugins.code === 0
+        ? plugins.stdout
+            .split("\n")
+            .map((l) => l.trim())
+            .filter(Boolean)
+        : [];
+    const warnings: string[] =
+      skills.code !== 0 ? ["Could not list skills; is OpenClaw configured?"] : [];
+    if (nativePlugins.length > 0) {
+      warnings.push(
+        `Native plugins detected (${nativePlugins.length}); marketplace workers cannot import native plugins (§33).`,
+      );
+    }
     return {
       skills: skillNames,
       tools: [],
-      warnings:
-        skills.code !== 0 ? ["Could not list skills; is OpenClaw configured?"] : [],
+      nativePlugins,
+      warnings,
     };
   }
 

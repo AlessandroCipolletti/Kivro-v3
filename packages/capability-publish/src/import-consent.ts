@@ -1,11 +1,13 @@
 import { z } from "zod";
 import { PublicPermissionManifestSchema } from "@kivro/contracts";
+import { assertNoNativePluginsInDiscovery } from "./native-plugin-gate.js";
 
 /** §96 — discovery snapshot from Worker scan (read-only). */
 export const DiscoverySnapshotSchema = z.object({
   snapshotVersion: z.literal(1),
   skills: z.array(z.string()),
   tools: z.array(z.string()),
+  nativePlugins: z.array(z.string()).default([]),
   warnings: z.array(z.string()).default([]),
 });
 
@@ -25,6 +27,10 @@ export function validateImportConsent(
   discovery: DiscoverySnapshot,
   consent: ImportConsent,
 ): { ok: true } | { ok: false; code: string } {
+  const nativeGate = assertNoNativePluginsInDiscovery(discovery);
+  if (!nativeGate.ok) {
+    return { ok: false, code: nativeGate.code };
+  }
   for (const skill of consent.selectedSkills) {
     if (!discovery.skills.includes(skill)) {
       return { ok: false, code: "SKILL_NOT_IN_DISCOVERY" };

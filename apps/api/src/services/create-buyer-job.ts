@@ -25,6 +25,10 @@ export async function createBuyerJobFromApi(
     }
   | { error: string; reasons?: string[] }
 > {
+  const buyer = await prisma.user.findUnique({ where: { id: input.buyerId } });
+  if (!buyer?.marketplaceTermsAcceptedAt) {
+    return { error: "MARKETPLACE_TERMS_REQUIRED" };
+  }
   const capability = await prisma.capability.findUnique({
     where: { id: input.capabilityId },
     include: { currentVersion: true },

@@ -128,6 +128,8 @@ model User {
   buyerApiKeyAuditEvents  BuyerApiKeyAuditEvent[]
   buyerWebhookEndpoints   BuyerWebhookEndpoint[]
   apiIdempotencyRecords   ApiIdempotencyRecord[]
+  abuseReports            AbuseReport[]
+  buyerSubmissionRateBuckets BuyerSubmissionRateBucket[]
 }
 
 enum MarketplaceMessageRole {
@@ -461,6 +463,7 @@ model CapabilityVersion {
   workerManifest       Json?
   workerManifestHash   String?
   inferenceDependency  Json?
+  externalProcessorsSnapshot Json @default("[]")
   dependencyGraphSnapshot Json?
   supplyChainSnapshot  Json?
   priceSnapshotCents   Int
@@ -836,4 +839,41 @@ model WebhookDeliveryAttempt {
   @@index([endpointId, createdAt(sort: Desc)])
   @@index([nextRetryAt])
   @@unique([endpointId, eventId])
+}
+
+model AbuseDenylistPattern {
+  id        String   @id @default(uuid())
+  pattern   String   @unique
+  category  String   @default("GENERIC")
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model AbuseReport {
+  id             String   @id @default(uuid())
+  reporterUserId String
+  targetType     String
+  targetId       String
+  capabilityId   String?
+  reason         String
+  details        String?
+  status         String   @default("OPEN")
+  createdAt      DateTime @default(now())
+
+  reporter User @relation(fields: [reporterUserId], references: [id], onDelete: Cascade)
+
+  @@index([status, createdAt(sort: Desc)])
+  @@index([reporterUserId])
+}
+
+model BuyerSubmissionRateBucket {
+  id          String   @id @default(uuid())
+  userId      String
+  windowStart DateTime
+  jobCount    Int      @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, windowStart])
+  @@index([windowStart])
 }

@@ -1,3 +1,4 @@
+import { AbuseReportForm } from "@/components/AbuseReportForm";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import Link from "next/link";
@@ -116,6 +117,20 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
             <p className="meta">{detail.privacyDisclosure.executionModel}</p>
             <p className="meta">{detail.privacyDisclosure.dataHandling}</p>
             <p className="meta">{detail.privacyDisclosure.retention}</p>
+            {"llmDisclosure" in detail.privacyDisclosure && detail.privacyDisclosure.llmDisclosure ? (
+              <p className="meta">{String(detail.privacyDisclosure.llmDisclosure)}</p>
+            ) : null}
+            {"thirdPartyServices" in detail.privacyDisclosure &&
+            Array.isArray(detail.privacyDisclosure.thirdPartyServices) ? (
+              <div className="meta">
+                <strong>External processors declared by seller</strong>
+                <ul>
+                  {detail.privacyDisclosure.thirdPartyServices.map((name: string) => (
+                    <li key={name}>{name}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
         )}
         {reviews && reviews.reviews.length > 0 && (
@@ -152,6 +167,9 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
             via the API or return when the seller opens their window.
           </p>
         )}
+        <div style={{ marginTop: "1.25rem" }}>
+          <AbuseReportForm targetType="CAPABILITY" targetId={cap.id} capabilityId={cap.id} />
+        </div>
       </div>
     </>
   );

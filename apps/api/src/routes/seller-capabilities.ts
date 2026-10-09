@@ -222,6 +222,7 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
       discovery?: unknown;
       consent?: unknown;
       rootName?: string;
+      externalProcessors?: string[];
     }>();
     if (
       !body.workerDeviceId ||
@@ -268,6 +269,9 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         permissionExpansionAcknowledged: body.permissionExpansionAcknowledged === true,
         packageAssetIds: body.packageAssetIds,
         dependencyGraph,
+        externalProcessors: Array.isArray(body.externalProcessors)
+          ? body.externalProcessors.filter((s: unknown) => typeof s === "string")
+          : undefined,
       });
       return c.json(result);
     } catch (err) {

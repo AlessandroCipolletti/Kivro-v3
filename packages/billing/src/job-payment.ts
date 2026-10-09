@@ -16,6 +16,10 @@ import {
   assertImmediateSubmissionBeforePayment,
   queueJobAfterPayment,
 } from "@kivro/job-scheduling";
+import {
+  assertBuyerJobSubmissionAllowed,
+  recordBuyerSubmissionAttempt,
+} from "@kivro/abuse-controls";
 
 function toJsonValue(value: unknown): Prisma.InputJsonValue {
   return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
@@ -250,6 +254,15 @@ export async function submitPaidJob(
     buyerPriceMinor: version.priceSnapshotCents,
   });
 
+  const abuseGate = await assertBuyerJobSubmissionAllowed(prisma, {
+    buyerId: input.buyerId,
+    capabilityId: input.capabilityId,
+    structuredInput: input.structuredInput,
+  });
+  if (!abuseGate.ok) {
+    return { error: abuseGate.code, reasons: abuseGate.reasons };
+  }
+
   const balance = await getBuyerCreditBalanceCents(prisma, input.buyerId);
   if (balance.availableCents < tier.buyerPriceMinor) {
     return { error: "INSUFFICIENT_CREDITS" };
@@ -322,6 +335,7 @@ export async function submitPaidJob(
     await abortJobAfterQueueFailure(prisma, job.id);
     return queued;
   }
+  await recordBuyerSubmissionAttempt(prisma, input.buyerId);
   return { jobId: job.id, status: queued.status };
 }
 

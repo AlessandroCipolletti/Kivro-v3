@@ -12,6 +12,10 @@ import {
   isGlobalDispatchEnabled,
   setGlobalDispatchEnabled,
 } from "@kivro/platform-policy";
+import { collectCloudMetricsSnapshot, collectWorkerFleetMetrics } from "@kivro/observability";
+import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
+import { suspendBuyerAccount } from "@kivro/abuse-controls";
+import { randomUUID } from "node:crypto";
 import { Hono } from "hono";
 
 export function platformAdminRoutes(): Hono {
@@ -95,7 +99,14 @@ export function platformAdminRoutes(): Hono {
         paymentsReleased += 1;
       }
     }
-    return c.json({ ...result, paymentsReleased });
+    const failureOps = await runJobFailureOperationsSweeps(prisma);
+    for (const jobId of failureOps.lostWorker.jobIds) {
+      const reconciled = await reconcileJobPaymentAfterTerminal(prisma, jobId);
+      if (reconciled.released) {
+        paymentsReleased += 1;
+      }
+    }
+    return c.json({ ...result, paymentsReleased, failureOps });
   });
 
   app.post("/jobs/sweep-pause-timeouts", async (c) => {
@@ -118,6 +129,158 @@ export function platformAdminRoutes(): Hono {
     }
     const result = await retryDueWebhookDeliveries(getPrismaClient());
     return c.json(result);
+  });
+
+  app.get("/metrics/workers", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const metrics = await collectWorkerFleetMetrics(getPrismaClient());
+    return c.json(metrics);
+  });
+
+  app.get("/metrics/cloud", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const metrics = await collectCloudMetricsSnapshot(getPrismaClient());
+    return c.json(metrics);
+  });
+
+  app.get("/abuse/denylist", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const rows = await getPrismaClient().abuseDenylistPattern.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 100,
+    });
+    return c.json({ patterns: rows });
+  });
+
+  app.post("/abuse/denylist", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const body = await c.req.json<{ pattern?: string; category?: string }>();
+    if (!body.pattern || body.pattern.length > 256) {
+      return c.json({ error: "INVALID_PATTERN" }, 400);
+    }
+    try {
+      new RegExp(body.pattern);
+    } catch {
+      return c.json({ error: "INVALID_REGEX" }, 400);
+    }
+    const row = await getPrismaClient().abuseDenylistPattern.create({
+      data: {
+        id: randomUUID(),
+        pattern: body.pattern,
+        category: body.category?.slice(0, 64) ?? "GENERIC",
+      },
+    });
+    return c.json({ pattern: row }, 201);
+  });
+
+  app.get("/abuse/reports", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const reports = await getPrismaClient().abuseReport.findMany({
+      where: { status: "OPEN" },
+      orderBy: { createdAt: "desc" },
+      take: 50,
+    });
+    return c.json({ reports });
+  });
+
+  app.post("/abuse/reports/:id/resolve", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const id = c.req.param("id");
+    const updated = await getPrismaClient().abuseReport.updateMany({
+      where: { id, status: "OPEN" },
+      data: { status: "RESOLVED" },
+    });
+    if (updated.count === 0) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    return c.json({ resolved: true, reportId: id });
+  });
+
+  app.post("/users/:id/suspend", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const result = await suspendBuyerAccount(getPrismaClient(), c.req.param("id"));
+    if (!result.suspended) {
+      return c.json({ error: "NOT_FOUND_OR_ALREADY_SUSPENDED" }, 404);
+    }
+    return c.json({ suspended: true, userId: c.req.param("id") });
+  });
+
+  app.post("/capabilities/:id/suspend", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const id = c.req.param("id");
+    let body: { reason?: string } = {};
+    try {
+      body = await c.req.json();
+    } catch {
+      body = {};
+    }
+    const updated = await getPrismaClient().capability.updateMany({
+      where: { id, status: "PUBLISHED" },
+      data: { status: "PAUSED" },
+    });
+    if (updated.count === 0) {
+      return c.json({ error: "NOT_FOUND_OR_NOT_PUBLISHED" }, 404);
+    }
+    return c.json({ suspended: true, capabilityId: id, reason: body.reason ?? "ABUSE" });
+  });
+
+  app.post("/jobs/sweep-lost-workers", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const prisma = getPrismaClient();
+    const sweep = (await runJobFailureOperationsSweeps(prisma)).lostWorker;
+    let paymentsReleased = 0;
+    for (const jobId of sweep.jobIds) {
+      const reconciled = await reconcileJobPaymentAfterTerminal(prisma, jobId);
+      if ("released" in reconciled && reconciled.released) {
+        paymentsReleased += 1;
+      }
+    }
+    return c.json({ ...sweep, paymentsReleased });
   });
 
   app.post("/worker-devices/:id/revoke", async (c) => {

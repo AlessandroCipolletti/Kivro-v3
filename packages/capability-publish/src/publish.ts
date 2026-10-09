@@ -93,6 +93,8 @@ export interface PublishInput {
   permissionExpansionAcknowledged?: boolean;
   packageAssetIds?: string[];
   dependencyGraph: unknown;
+  /** §37 — seller-declared external processors (LLM hosts, APIs, etc.). */
+  externalProcessors?: string[];
 }
 
 export async function publishCapability(
@@ -193,6 +195,11 @@ export async function publishCapability(
     recordedAt: new Date().toISOString(),
   };
 
+  const externalProcessors = (input.externalProcessors ?? [])
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, 32);
+
   const packageAssetIds = input.packageAssetIds ?? [];
   if (packageAssetIds.length > 0) {
     const assets = await db.storedAsset.findMany({
@@ -215,6 +222,7 @@ export async function publishCapability(
         versionNumber,
         versionLabel: `${versionNumber}.0.0`,
         dependencyGraphSnapshot: toJsonValue(dependencyGraph),
+        externalProcessorsSnapshot: toJsonValue(externalProcessors),
         supplyChainSnapshot: toJsonValue(supplyChainSnapshot),
         inputSchema: toJsonValue(contract.inputs),
         outputSchema: toJsonValue(contract.output),

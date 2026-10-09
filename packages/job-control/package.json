@@ -19,6 +19,7 @@
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
     "@kivro/domain": "workspace:*",
-    "@kivro/platform-policy": "workspace:*"
+    "@kivro/platform-policy": "workspace:*",
+    "@kivro/observability": "workspace:*"
   }
 }
