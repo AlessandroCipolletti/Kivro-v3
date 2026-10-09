@@ -1738,213 +1738,213 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0203`    P2         §236     `TODO`   ---              ---        ---
 
-  `PRD-0204`    P1         §237     `TODO`   ---              ---        ---
+  `PRD-0204`    P1         §237     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0205`    P2         §237     `TODO`   ---              ---        ---
+  `PRD-0205`    P2         §237     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0206`    P2         §237     `TODO`   ---              ---        ---
+  `PRD-0206`    P2         §237     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0207`    P2         §237     `TODO`   ---              ---        ---
+  `PRD-0207`    P2         §237     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0208`    P2         §237     `TODO`   ---              ---        ---
+  `PRD-0208`    P2         §237     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0209`    P1         §238     `TODO`   ---              ---        ---
+  `PRD-0209`    P1         §238     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0210`    P2         §238     `TODO`   ---              ---        ---
+  `PRD-0210`    P2         §238     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0211`    P2         §238     `TODO`   ---              ---        ---
+  `PRD-0211`    P2         §238     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0212`    P2         §238     `TODO`   ---              ---        ---
+  `PRD-0212`    P2         §238     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0070`    P1         §239     `TODO`   ---              ---        ---
+  `SEC-0070`    P1         §239     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0071`    P0         §239     `TODO`   ---              ---        ---
+  `SEC-0071`    P0         §239     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0072`    P0         §239     `TODO`   ---              ---        ---
+  `SEC-0072`    P0         §239     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0213`    P1         §240     `TODO`   ---              ---        ---
+  `PRD-0213`    P1         §240     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0214`    P1         §241     `TODO`   ---              ---        ---
+  `PRD-0214`    P1         §241     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0215`    P2         §241     `TODO`   ---              ---        ---
+  `PRD-0215`    P2         §241     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0216`    P2         §241     `TODO`   ---              ---        ---
+  `PRD-0216`    P2         §241     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `UI-0023`     P1         §242     `TODO`   ---              ---        ---
+  `UI-0023`     P1         §242     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0073`    P1         §243     `TODO`   ---              ---        ---
+  `SEC-0073`    P1         §243     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0074`    P0         §243     `TODO`   ---              ---        ---
+  `SEC-0074`    P0         §243     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0075`    P0         §243     `TODO`   ---              ---        ---
+  `SEC-0075`    P0         §243     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0217`    P1         §244     `TODO`   ---              ---        ---
+  `PRD-0217`    P1         §244     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0218`    P2         §244     `TODO`   ---              ---        ---
+  `PRD-0218`    P2         §244     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0219`    P2         §244     `TODO`   ---              ---        ---
+  `PRD-0219`    P2         §244     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0220`    P1         §245     `TODO`   ---              ---        ---
+  `PRD-0220`    P1         §245     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0221`    P2         §245     `TODO`   ---              ---        ---
+  `PRD-0221`    P2         §245     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0222`    P2         §245     `TODO`   ---              ---        ---
+  `PRD-0222`    P2         §245     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0223`    P2         §245     `TODO`   ---              ---        ---
+  `PRD-0223`    P2         §245     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0224`    P1         §246     `TODO`   ---              ---        ---
+  `PRD-0224`    P1         §246     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `CAP-0063`    P1         §247     `TODO`   ---              ---        ---
+  `CAP-0063`    P1         §247     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `CAP-0064`    P1         §247     `TODO`   ---              ---        ---
+  `CAP-0064`    P1         §247     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0076`    P1         §248     `TODO`   ---              ---        ---
+  `SEC-0076`    P1         §248     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0077`    P0         §248     `TODO`   ---              ---        ---
+  `SEC-0077`    P0         §248     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0225`    P1         §249     `TODO`   ---              ---        ---
+  `PRD-0225`    P1         §249     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0226`    P2         §249     `TODO`   ---              ---        ---
+  `PRD-0226`    P2         §249     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0227`    P2         §249     `TODO`   ---              ---        ---
+  `PRD-0227`    P2         §249     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `IO-0133`     P1         §250     `TODO`   ---              ---        ---
+  `IO-0133`     P1         §250     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `IO-0134`     P1         §250     `TODO`   ---              ---        ---
+  `IO-0134`     P1         §250     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `IO-0135`     P1         §250     `TODO`   ---              ---        ---
+  `IO-0135`     P1         §250     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0228`    P1         §251     `TODO`   ---              ---        ---
+  `PRD-0228`    P1         §251     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0229`    P2         §251     `TODO`   ---              ---        ---
+  `PRD-0229`    P2         §251     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0230`    P2         §251     `TODO`   ---              ---        ---
+  `PRD-0230`    P2         §251     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0078`    P1         §252     `TODO`   ---              ---        ---
+  `SEC-0078`    P1         §252     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0079`    P0         §252     `TODO`   ---              ---        ---
+  `SEC-0079`    P0         §252     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0080`    P0         §252     `TODO`   ---              ---        ---
+  `SEC-0080`    P0         §252     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0081`    P0         §252     `TODO`   ---              ---        ---
+  `SEC-0081`    P0         §252     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0231`    P1         §253     `TODO`   ---              ---        ---
+  `PRD-0231`    P1         §253     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0232`    P2         §253     `TODO`   ---              ---        ---
+  `PRD-0232`    P2         §253     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0233`    P1         §254     `TODO`   ---              ---        ---
+  `PRD-0233`    P1         §254     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0234`    P2         §254     `TODO`   ---              ---        ---
+  `PRD-0234`    P2         §254     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0235`    P1         §255     `TODO`   ---              ---        ---
+  `PRD-0235`    P1         §255     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0236`    P1         §256     `TODO`   ---              ---        ---
+  `PRD-0236`    P1         §256     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0237`    P1         §257     `TODO`   ---              ---        ---
+  `PRD-0237`    P1         §257     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0238`    P2         §257     `TODO`   ---              ---        ---
+  `PRD-0238`    P2         §257     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0239`    P1         §258     `TODO`   ---              ---        ---
+  `PRD-0239`    P1         §258     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0240`    P1         §259     `TODO`   ---              ---        ---
+  `PRD-0240`    P1         §259     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0241`    P2         §259     `TODO`   ---              ---        ---
+  `PRD-0241`    P2         §259     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0242`    P1         §260     `TODO`   ---              ---        ---
+  `PRD-0242`    P1         §260     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0243`    P2         §260     `TODO`   ---              ---        ---
+  `PRD-0243`    P2         §260     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0244`    P2         §260     `TODO`   ---              ---        ---
+  `PRD-0244`    P2         §260     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0245`    P1         §261     `TODO`   ---              ---        ---
+  `PRD-0245`    P1         §261     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0246`    P2         §261     `TODO`   ---              ---        ---
+  `PRD-0246`    P2         §261     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0247`    P2         §261     `TODO`   ---              ---        ---
+  `PRD-0247`    P2         §261     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0248`    P1         §262     `TODO`   ---              ---        ---
+  `PRD-0248`    P1         §262     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0249`    P2         §262     `TODO`   ---              ---        ---
+  `PRD-0249`    P2         §262     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0250`    P2         §262     `TODO`   ---              ---        ---
+  `PRD-0250`    P2         §262     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `API-0005`    P1         §263     `TODO`   ---              ---        ---
+  `API-0005`    P1         §263     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `API-0006`    P1         §263     `TODO`   ---              ---        ---
+  `API-0006`    P1         §263     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `API-0007`    P1         §263     `TODO`   ---              ---        ---
+  `API-0007`    P1         §263     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0251`    P1         §264     `TODO`   ---              ---        ---
+  `PRD-0251`    P1         §264     `DEFERRED`   packages/research-broker   ---        cloud/isolated browser research post-MVP (§264); search+fetch MVP M06
 
-  `PRD-0252`    P2         §264     `TODO`   ---              ---        ---
+  `PRD-0252`    P2         §264     `DEFERRED`   packages/research-broker   ---        cloud/isolated browser research post-MVP (§264); search+fetch MVP M06
 
-  `PRD-0253`    P1         §265     `TODO`   ---              ---        ---
+  `PRD-0253`    P1         §265     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0254`    P2         §265     `TODO`   ---              ---        ---
+  `PRD-0254`    P2         §265     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0255`    P2         §265     `TODO`   ---              ---        ---
+  `PRD-0255`    P2         §265     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0256`    P2         §265     `TODO`   ---              ---        ---
+  `PRD-0256`    P2         §265     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0257`    P2         §265     `TODO`   ---              ---        ---
+  `PRD-0257`    P2         §265     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0082`    P1         §266     `TODO`   ---              ---        ---
+  `SEC-0082`    P1         §266     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0083`    P0         §266     `TODO`   ---              ---        ---
+  `SEC-0083`    P0         §266     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0084`    P0         §266     `TODO`   ---              ---        ---
+  `SEC-0084`    P0         §266     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0258`    P1         §267     `TODO`   ---              ---        ---
+  `PRD-0258`    P1         §267     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0259`    P2         §267     `TODO`   ---              ---        ---
+  `PRD-0259`    P2         §267     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0085`    P1         §268     `TODO`   ---              ---        ---
+  `SEC-0085`    P1         §268     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0086`    P0         §268     `TODO`   ---              ---        ---
+  `SEC-0086`    P0         §268     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0087`    P0         §268     `TODO`   ---              ---        ---
+  `SEC-0087`    P0         §268     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0260`    P1         §269     `TODO`   ---              ---        ---
+  `PRD-0260`    P1         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0261`    P2         §269     `TODO`   ---              ---        ---
+  `PRD-0261`    P2         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0262`    P2         §269     `TODO`   ---              ---        ---
+  `PRD-0262`    P2         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0263`    P2         §269     `TODO`   ---              ---        ---
+  `PRD-0263`    P2         §269     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0264`    P1         §270     `TODO`   ---              ---        ---
+  `PRD-0264`    P1         §270     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0265`    P2         §270     `TODO`   ---              ---        ---
+  `PRD-0265`    P2         §270     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0266`    P1         §271     `TODO`   ---              ---        ---
+  `PRD-0266`    P1         §271     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0267`    P2         §271     `TODO`   ---              ---        ---
+  `PRD-0267`    P2         §271     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `CAP-0065`    P1         §272     `TODO`   ---              ---        ---
+  `CAP-0065`    P1         §272     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `CAP-0066`    P1         §272     `TODO`   ---              ---        ---
+  `CAP-0066`    P1         §272     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0088`    P1         §273     `TODO`   ---              ---        ---
+  `SEC-0088`    P1         §273     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0089`    P0         §273     `TODO`   ---              ---        ---
+  `SEC-0089`    P0         §273     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0268`    P1         §274     `TODO`   ---              ---        ---
+  `PRD-0268`    P1         §274     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0269`    P2         §274     `TODO`   ---              ---        ---
+  `PRD-0269`    P2         §274     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0270`    P1         §275     `TODO`   ---              ---        ---
+  `PRD-0270`    P1         §275     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0271`    P2         §275     `TODO`   ---              ---        ---
+  `PRD-0271`    P2         §275     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0272`    P2         §275     `TODO`   ---              ---        ---
+  `PRD-0272`    P2         §275     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0273`    P1         §276     `TODO`   ---              ---        ---
+  `PRD-0273`    P1         §276     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0274`    P2         §276     `TODO`   ---              ---        ---
+  `PRD-0274`    P2         §276     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0275`    P2         §276     `TODO`   ---              ---        ---
+  `PRD-0275`    P2         §276     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0276`    P2         §276     `TODO`   ---              ---        ---
+  `PRD-0276`    P2         §276     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
   `SEC-0090`    P1         §277     `TODO`   ---              ---        ---
 

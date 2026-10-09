@@ -59,6 +59,9 @@ importers:
       '@kivro/platform-policy':
         specifier: workspace:*
         version: link:../../packages/platform-policy
+      '@kivro/research-broker':
+        specifier: workspace:*
+        version: link:../../packages/research-broker
       hono:
         specifier: ^4.6.14
         version: 4.13.13
@@ -95,6 +98,9 @@ importers:
       '@kivro/policy-engine':
         specifier: workspace:*
         version: link:../../packages/policy-engine
+      '@kivro/research-broker':
+        specifier: workspace:*
+        version: link:../../packages/research-broker
       '@kivro/sandbox':
         specifier: workspace:*
         version: link:../../packages/sandbox
@@ -233,6 +239,18 @@ importers:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+
+  packages/research-broker:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/platform-policy':
+        specifier: workspace:*
+        version: link:../platform-policy
+      '@kivro/policy-engine':
+        specifier: workspace:*
+        version: link:../policy-engine
 
   packages/resource-broker:
     dependencies:

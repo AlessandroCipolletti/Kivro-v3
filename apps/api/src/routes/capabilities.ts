@@ -8,6 +8,7 @@ import {
   validateBuyerInput,
   type JobAssetRef,
 } from "@kivro/job-io";
+import { buildInternetPermissionSummary } from "@kivro/research-broker";
 import { Hono } from "hono";
 
 export function marketplaceCapabilityRoutes(): Hono {
@@ -52,12 +53,15 @@ export function marketplaceCapabilityRoutes(): Hono {
     }
     const version = row.currentVersion;
     let buyerTrust = null;
+    let internetDisclosure = null;
     if (version?.workerManifest) {
       try {
         const manifest = parseWorkerManifest(version.workerManifest);
         buyerTrust = buildBuyerTrustSummary(manifest);
+        internetDisclosure = buildInternetPermissionSummary(manifest);
       } catch {
         buyerTrust = null;
+        internetDisclosure = null;
       }
     }
     const contract =
@@ -71,7 +75,7 @@ export function marketplaceCapabilityRoutes(): Hono {
         output: row.currentVersion.outputSchema,
       });
     const buyerForm = contract ? buildBuyerFormSchema(contract) : null;
-    return c.json({ capability: row, buyerTrust, buyerForm });
+    return c.json({ capability: row, buyerTrust, buyerForm, internetDisclosure });
   });
 
   app.post("/capabilities/:slug/prepare-agent-input", async (c) => {

@@ -12,6 +12,8 @@ export default defineConfig({
       "@kivro/platform-policy": path.resolve("packages/platform-policy/src/index.ts"),
       "@kivro/provider-broker": path.resolve("packages/provider-broker/src/index.ts"),
       "@kivro/job-io": path.resolve("packages/job-io/src/index.ts"),
+      "@kivro/research-broker": path.resolve("packages/research-broker/src/index.ts"),
+      "@kivro/capability-publish": path.resolve("packages/capability-publish/src/index.ts"),
       "@kivro/observability": path.resolve("packages/observability/src/index.ts"),
       "@kivro/domain": path.resolve("packages/domain/src/index.ts"),
     },

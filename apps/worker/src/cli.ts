@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { parseCapabilityContract, parseWorkerManifest } from "@kivro/contracts";
+import {
+  defaultPublicWebResearchPolicy,
+  parseCapabilityContract,
+  parseWorkerManifest,
+} from "@kivro/contracts";
 import {
   buildInternalJobInstructions,
   validateBuyerInput,
@@ -8,6 +12,7 @@ import {
   type WorkerResultManifest,
 } from "@kivro/job-io";
 import { buildWorkerManifestTemplate } from "@kivro/capability-publish";
+import { ResearchBroker, StaticWebSearchProvider } from "@kivro/research-broker";
 import { validateExecutionPreflight } from "@kivro/policy-engine";
 import { buildDockerSandboxSpec } from "@kivro/sandbox";
 import { isGlobalDispatchEnabled } from "@kivro/platform-policy";
@@ -26,7 +31,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const WORKER_VERSION = "0.0.0-m05";
+const WORKER_VERSION = "0.0.0-m06";
 
 function runtimeRoot(): string {
   const configured = process.env.KIVRO_RUNTIME_ROOT ?? "~/.kivro/runtime";
@@ -142,6 +147,34 @@ program
       ),
     );
     if (!ok) {
+      process.exit(1);
+    }
+  });
+
+program
+  .command("research-probe")
+  .description("Evaluate Research Broker policy against a manifest (§240)")
+  .requiredOption("--file <path>", "Worker manifest JSON")
+  .option("--url <url>", "Optional URL to probe via web.fetch")
+  .action(async (opts: { file: string; url?: string }) => {
+    const manifest = parseWorkerManifest(JSON.parse(fs.readFileSync(opts.file, "utf8")));
+    const policy = manifest.internet ?? defaultPublicWebResearchPolicy();
+    const broker = new ResearchBroker(
+      new StaticWebSearchProvider([]),
+      () => Promise.resolve(new Response("")),
+    );
+    const audit: import("@kivro/research-broker").ResearchAuditEntry[] = [];
+    const ctx = { manifest: { ...manifest, internet: policy }, auditLog: audit };
+    const search = await broker.webSearch(ctx, { query: "probe", maxResults: 1 });
+    let fetch = null;
+    if (opts.url) {
+      fetch = await broker.webFetch(ctx, { url: opts.url });
+    }
+    console.log(JSON.stringify({ search, fetch, audit }, null, 2));
+    if (!search.allowed && !opts.url) {
+      process.exit(1);
+    }
+    if (opts.url && fetch && !fetch.allowed) {
       process.exit(1);
     }
   });

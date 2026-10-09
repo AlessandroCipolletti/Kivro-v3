@@ -49,4 +49,20 @@ export {
   parseDependencyGraph,
   type DependencyGraph,
 } from "./dependency-graph.js";
+export {
+  InternetAccessModeSchema,
+  InternetResearchPolicySchema,
+  ResearchSourceSchema,
+  defaultPublicWebResearchPolicy,
+  parseInternetResearchPolicy,
+  type InternetResearchPolicy,
+  type ResearchSource,
+} from "./research-policy.js";
+export {
+  ApiConnectorSchema,
+  ApiConnectorRegistrySchema,
+  parseApiConnectorRegistry,
+  type ApiConnector,
+  type ApiConnectorRegistry,
+} from "./api-connector.js";
 export { parseWithSchema, SchemaValidationError } from "./validate.js";

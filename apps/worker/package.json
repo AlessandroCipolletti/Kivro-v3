@@ -21,6 +21,7 @@
     "@kivro/platform-policy": "workspace:*",
     "@kivro/contracts": "workspace:*",
     "@kivro/job-io": "workspace:*",
+    "@kivro/research-broker": "workspace:*",
     "@kivro/worker-store": "workspace:*",
     "commander": "^12.1.0"
   }

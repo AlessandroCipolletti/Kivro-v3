@@ -443,6 +443,12 @@ greenfield.
 
 **Decision:** M04 delivers policy/sandbox/broker/proxy/supervisor interfaces, Docker spec generation, and preflight execution (`KIVRO_SANDBOX_DRY_RUN`). Full paid execution wiring is not started in M04.
 
+## DEC-M06-001 — Local Research Broker MVP; cloud browser deferred
+
+**Context:** Master Spec §269–§273 targets cloud/platform-controlled research egress; §264 browser rendering is post–search+fetch MVP.
+
+**Decision:** M06 ships `@kivro/research-broker` with `web.search` / `web.fetch`, SSRF validation, budgets, audit, and typed API connectors on the Worker side. Cloud research broker deployment and `browser.readPage` remain deferred with explicit `COVERAGE.md` notes.
+
 ## DEC-M00-001 — Manual milestone validation (2026-03-26)
 
 **Context:** Product owner requested milestone-by-milestone delivery with human validation gates.

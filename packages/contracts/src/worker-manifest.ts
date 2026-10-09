@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
+import { ApiConnectorSchema } from "./api-connector.js";
+import { InternetResearchPolicySchema } from "./research-policy.js";
 import { parseWithSchema } from "./validate.js";
 
 export const NetworkAllowEntrySchema = z.union([
@@ -50,6 +52,8 @@ export const WorkerManifestSchema = z.object({
     maxInputBytes: z.number().int().nonnegative(),
     maxOutputBytes: z.number().int().nonnegative(),
   }),
+  internet: InternetResearchPolicySchema.optional(),
+  apiConnectors: z.array(ApiConnectorSchema).optional(),
 });
 
 export type WorkerManifest = z.infer<typeof WorkerManifestSchema>;
