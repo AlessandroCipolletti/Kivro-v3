@@ -1,29 +1,45 @@
 # Implementation status
 
-| Area | Status | Notes |
-|------|--------|-------|
-| M00 monorepo bootstrap | Implemented | Done |
-| M01 domain model & contracts | Implemented | Prisma schema, @kivro/domain, I/O + permission contracts |
-| M02 auth & worker foundation | Implemented | @kivro/auth, API routes, worker pair/doctor/scan, OpenClaw CLI adapter |
-| M03 import & publish | Implemented | Dependency graph, publish/rollback/pause, package export, MinIO slots, `pnpm verify:m03` |
-| M04 sandbox & security baseline | Implemented (bounded) | `pnpm verify:m04`; full agent exec M06+ |
-| M05 capability I/O & assets | Implemented | `@kivro/job-io`, contract validate/publish gate, buyer form schema, agent prepare API, upload sniff, worker I/O CLI, `pnpm verify:m05`; seller visual builder UI deferred to product milestone |
-| M06 controlled Internet research | Implemented (bounded) | DNS-aware SSRF, content sanitize/hash, publish internet gate, seller `/internet/validate`, §260 fixture tests, `pnpm verify:m06`; §264 browser + §269–§273 cloud deploy PARTIAL/DEFERRED |
-| OpenClaw adapter (real) | Partial | CLI + marketplace env + preflight/`KIVRO_SANDBOX_DRY_RUN`; live agent exec M06+ |
-| Auth (email/Google) | Implemented | Sessions, verify email, Google OAuth when configured |
-| M07 job dispatch & pause control | Implemented (bounded) | `@kivro/job-dispatch`, `@kivro/job-control`, seller control UI, `pnpm verify:m07` |
-| M08 payments & pricing | Implemented | `@kivro/billing`, credits + card authorization, tiers §282, Stripe Checkout/Connect/transfer, `pnpm verify:m08` (DEC-M08-001..003) |
-| M09 scheduling & availability | Implemented (bounded) | Weekly schedules, acceptance gate, `SCHEDULED`/`scheduleWaitDeadlineAt`, dispatch window gate, buyer cancel, sweeps, agent availability payload; `pnpm verify:m09` (DEC-M09-001..003) |
-| M10 marketplace buyer UX | Implemented (bounded) | Discover/search/detail/seller/favorites/history/reviews/agent discovery, buyer job detail + downloads; `pnpm verify:m10` |
-| M11 marketplace agent & orchestration | Implemented (bounded) | Orchestration runner, cross-job drafts, budget hold, re-quote at approve, agent tool routes, optional OpenAI intent; §160 staging E2E still open; `pnpm verify:m11` |
+Last aligned: **M17** (compliance audit gate). Authoritative traceability: `spec/COVERAGE.md` + `docs/audits/M17-compliance-report.json`.
+
+| Milestone | Status | Gate |
+|-----------|--------|------|
+| M00 bootstrap | Done | typecheck/lint/test/build |
+| M01 domain & auth contracts | Done | verify flows + COVERAGE |
+| M02 worker & OpenClaw foundation | Done | verify:m03 (includes pairing) |
+| M03 import & publish | Done | `pnpm verify:m03` |
+| M04 sandbox & security | Done (bounded) | `pnpm verify:m04` |
+| M05 I/O & assets | Done | `pnpm verify:m05` |
+| M06 research & brokers | Done (bounded) | `pnpm verify:m06` |
+| M07 dispatch & job control | Done (bounded) | `pnpm verify:m07` |
+| M08 payments | Done | `pnpm verify:m08` |
+| M09 scheduling | Done (bounded) | `pnpm verify:m09` |
+| M10 buyer marketplace UX | Done (bounded) | `pnpm verify:m10` |
+| M11 marketplace agent | Done (bounded) | `pnpm verify:m11` |
+| M12 seller dashboard & health | Done | `pnpm verify:m12` |
+| M13 buyer API keys & webhooks | Done | `pnpm verify:m13` |
+| M14 design system | Done (bounded) | `pnpm verify:m14` |
+| M15 observability & abuse | Done (bounded) | `pnpm verify:m15` |
+| M16 testing & release gates | Done | `pnpm verify:m16` |
+| M17 compliance audit | Done | `pnpm verify:m17` |
+| M18+ local E2E, deploy, UX extensions | **Scheduled** | see `docs/audits/M17-P0-P1-by-section.md` |
+
+## Spec compliance snapshot (M17)
+
+- **1872** requirements parsed from `COVERAGE.md`
+- **~1265** `TESTED` with resolvable evidence (gate-checked)
+- **0** unexplained open rows; **0** `TODO` inside M00–M16-owned sections
+- Remaining P0/P1 work routed to **M18–M34** or **post-MVP** in COVERAGE notes
+
+## Known bounded / deferred areas (unchanged)
+
+- Full §573 paid two-user OpenClaw E2E → **M18**
+- Unified Netsons/AWS backend + conformance → **M19–M23**
+- Cloud browser research (§264) → post-MVP
+- External pen test execution → manual checklist (M15/M16)
 
 ## Security assumptions
 
-- Marketplace jobs use deny-by-default network/tool policy and controlled egress evaluation (not prompt-only).
-- Docker/OpenClaw agent execution remains preflight-only until job dispatch (M06); use `KIVRO_SANDBOX_DRY_RUN=true` locally.
-- Worker local store uses JSON under `KIVRO_RUNTIME_ROOT`.
-
-## Known deviations
-
-- Real Docker/OpenClaw integration tests on CI runners without Docker remain post-M04 hardening (§80 dedicated runner).
-- Automated paid E2E not in repo; milestone docs + unit/integration gates apply.
+- Deny-by-default sandbox and brokered egress (not prompt-only).
+- Development must not fall back to host execution for buyer jobs.
+- Worker local state under `KIVRO_RUNTIME_ROOT`.

@@ -51,7 +51,7 @@ Manual milestone validation: `docs/milestones/M00-manual-validation.md`.
 ## Release gates (M16)
 
 ```bash
-pnpm verify:m16      # fixtures, traces, integration matrix, §91 evidence
+pnpm verify:m17      # M16 + compliance audit (1872 requirements)
 pnpm test:e2e:local  # composed M16 gate (full §573 path → M18)
 ```
 

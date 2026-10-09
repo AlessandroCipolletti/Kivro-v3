@@ -590,3 +590,9 @@ greenfield.
 **Context:** M16 maps 51 requirements spanning roadmap docs, API sketch parity, fixture catalog, experiments traceability, MVP/product checklists, and CI release gates.
 
 **Decision:** Ship fixture catalog (Document Analyzer + synthetic DB), machine-verified §88–§89 traces, §91 automated security gate map, §34.2 integration matrix verifiers, repo-structure §40 check, code-quality §94 check, expanded `acceptance-m16` / `e2e-fixtures-m16`, and composed `pnpm test:e2e:local` → `verify:m16`. Full §573 paid two-user Docker + OpenClaw E2E automation remains **M18** per IMPLEMENTATION-PLAN. Gate: `pnpm verify:m16`.
+
+## DEC-M17-001 — First full-spec compliance audit (§1–§550+ traceability)
+
+**Context:** M17 maps all 1672 requirements. The product is mid-greenfield (M16 complete); most remaining work is scheduled in M18–M34.
+
+**Decision:** Deliver automated audit (`audit-m17-compliance.mjs`), section→milestone index, schedule notes on every open COVERAGE row, M00–M16 closure check (no TODO in sections owned by completed milestones), evidence path validation for TESTED rows, and published audit reports. M17 does **not** claim full MASTER-SPEC implementation; terminal proof remains M23/M28. Gate: `pnpm verify:m17`.

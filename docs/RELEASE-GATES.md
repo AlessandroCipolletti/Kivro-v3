@@ -6,7 +6,7 @@
 2. `pnpm lint`
 3. `pnpm test`
 4. `pnpm build`
-5. **`pnpm verify:m16`** — fixtures, traces, integration matrix, §91 automated evidence, API contract smoke, architecture lint, M16 acceptance tests
+5. **`pnpm verify:m17`** — includes M16 + full COVERAGE audit (1872 requirements accounted)
 
 ## CI
 
