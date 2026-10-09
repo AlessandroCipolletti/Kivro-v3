@@ -1,6 +1,8 @@
+import { PROTOCOL_VERSION } from "@kivro/contracts";
 import {
   AWS_DEFAULT_CONTROL_PLANE_ID,
   NETSONS_DEFAULT_CONTROL_PLANE_ID,
+  type ControlPlaneAdvertisement,
   type ControlPlaneLifecycleState,
 } from "./worker-discovery.js";
 import type { CloudProfileId } from "./composition.js";
@@ -87,4 +89,88 @@ export function assertExecutionControlPlaneMatch(input: {
       `CROSS_CONTROL_PLANE_ROUTING:${input.envelopeControlPlaneId}->${owner}`,
     );
   }
+}
+
+/** PORT-005 — once set, execution ownership does not change on re-dispatch. */
+export function resolveExecutionControlPlaneForDispatch(input: {
+  existingExecutionControlPlaneId: string | null;
+  proposedControlPlaneId: string;
+}): string {
+  if (input.existingExecutionControlPlaneId) {
+    return input.existingExecutionControlPlaneId;
+  }
+  return input.proposedControlPlaneId;
+}
+
+export function controlPlaneAdvertisesTransport(
+  lifecycleState: ControlPlaneLifecycleState,
+): boolean {
+  return lifecycleState !== "RETIRED";
+}
+
+/** PORT-009 / dual poll — same jobId must not be accepted twice from two transports. */
+export function dedupePollOffersByJobId<T extends { jobId: string }>(offers: T[]): T[] {
+  const seen = new Set<string>();
+  const out: T[] = [];
+  for (const offer of offers) {
+    if (seen.has(offer.jobId)) {
+      continue;
+    }
+    seen.add(offer.jobId);
+    out.push(offer);
+  }
+  return out;
+}
+
+export function preferActiveControlPlaneForIdleWork(
+  registry: ControlPlaneRegistryEntry[],
+): string | null {
+  const active = registry.filter((cp) => cp.lifecycleState === "ACTIVE");
+  if (active.length === 1) {
+    return active[0]!.controlPlaneId;
+  }
+  return null;
+}
+
+/** PORT-021 / M22 — env-driven dual CP ads; RETIRED planes omitted (incl. Worker discovery fallback). */
+export function buildDualProfileControlPlaneAdvertisements(
+  publicApiBaseUrl: string,
+  env: NodeJS.ProcessEnv = process.env,
+): ControlPlaneAdvertisement[] {
+  const base = publicApiBaseUrl.replace(/\/$/, "");
+  const wsBase = base.replace(/^http/, "ws");
+  const out: ControlPlaneAdvertisement[] = [];
+  for (const entry of readControlPlaneRegistry(env)) {
+    if (!controlPlaneAdvertisesTransport(entry.lifecycleState)) {
+      continue;
+    }
+    if (entry.controlPlaneId === NETSONS_DEFAULT_CONTROL_PLANE_ID) {
+      out.push({
+        controlPlaneId: entry.controlPlaneId,
+        lifecycleState: entry.lifecycleState,
+        transports: [
+          {
+            kind: "polling",
+            protocolVersion: PROTOCOL_VERSION,
+            baseUrl: base,
+            pollPath: "/worker/poll",
+            heartbeatPath: "/worker/heartbeat",
+          },
+        ],
+      });
+    } else if (entry.controlPlaneId === AWS_DEFAULT_CONTROL_PLANE_ID) {
+      out.push({
+        controlPlaneId: entry.controlPlaneId,
+        lifecycleState: entry.lifecycleState,
+        transports: [
+          {
+            kind: "wss",
+            protocolVersion: PROTOCOL_VERSION,
+            wssUrl: `${wsBase}/worker/wss`,
+          },
+        ],
+      });
+    }
+  }
+  return out;
 }

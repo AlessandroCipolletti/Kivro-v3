@@ -25,6 +25,11 @@ export {
   jobVisibleOnControlPlane,
   readControlPlaneRegistry,
   resolveActiveControlPlaneIdForNewExecutions,
+  resolveExecutionControlPlaneForDispatch,
+  controlPlaneAdvertisesTransport,
+  dedupePollOffersByJobId,
+  preferActiveControlPlaneForIdleWork,
+  buildDualProfileControlPlaneAdvertisements,
   type ControlPlaneRegistryEntry,
 } from "./control-plane-policy.js";
 export type {

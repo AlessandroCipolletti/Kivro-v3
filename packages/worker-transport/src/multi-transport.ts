@@ -74,6 +74,9 @@ export function selectWorkerTransportBinding(input: {
 
   const out: ControlPlaneTransportBinding[] = [];
   for (const cp of sorted) {
+    if (cp.lifecycleState === "RETIRED") {
+      continue;
+    }
     const transports = [...cp.transports].sort((a, b) => a.kind.localeCompare(b.kind));
     const primary = transports[0];
     if (!primary) {

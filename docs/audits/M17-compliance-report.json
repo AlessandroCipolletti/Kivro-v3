@@ -1,9 +1,9 @@
 {
   "audit": "M17",
-  "generatedAt": "2026-10-09T22:30:32.322Z",
-  "totalRequirements": 1908,
+  "generatedAt": "2026-10-09T22:52:22.425Z",
+  "totalRequirements": 1923,
   "summary": {
-    "TESTED": 1361,
+    "TESTED": 1376,
     "TODO": 528,
     "PARTIAL": 15,
     "BLOCKED": 0,
@@ -12,7 +12,7 @@
   },
   "byPriority": {
     "P0": {
-      "TESTED": 240,
+      "TESTED": 255,
       "DEFERRED": 2,
       "TODO": 102
     },

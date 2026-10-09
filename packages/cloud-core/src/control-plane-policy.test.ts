@@ -4,9 +4,12 @@ import {
   NETSONS_DEFAULT_CONTROL_PLANE_ID,
 } from "./worker-discovery.js";
 import {
+  buildDualProfileControlPlaneAdvertisements,
+  controlPlaneAdvertisesTransport,
   controlPlaneMayAcceptNewExecutions,
   jobVisibleOnControlPlane,
   resolveActiveControlPlaneIdForNewExecutions,
+  resolveExecutionControlPlaneForDispatch,
 } from "./control-plane-policy.js";
 
 describe("control-plane-policy (M22)", () => {
@@ -53,6 +56,39 @@ describe("control-plane-policy (M22)", () => {
         fallbackControlPlaneId: AWS_DEFAULT_CONTROL_PLANE_ID,
       }),
     ).toBe(false);
+  });
+
+  it("immutable dispatch keeps existing execution control plane", () => {
+    expect(
+      resolveExecutionControlPlaneForDispatch({
+        existingExecutionControlPlaneId: NETSONS_DEFAULT_CONTROL_PLANE_ID,
+        proposedControlPlaneId: AWS_DEFAULT_CONTROL_PLANE_ID,
+      }),
+    ).toBe(NETSONS_DEFAULT_CONTROL_PLANE_ID);
+  });
+
+  it("RETIRED control planes do not advertise transport", () => {
+    expect(controlPlaneAdvertisesTransport("RETIRED")).toBe(false);
+    expect(controlPlaneAdvertisesTransport("DRAINING")).toBe(true);
+  });
+
+  it("rejects ambiguous ACTIVE registry (zero or many ACTIVE)", () => {
+    snapshot(["KIVRO_DUAL_CONTROL_PLANE", "KIVRO_NETSONS_CP_STATE", "KIVRO_AWS_CP_STATE"]);
+    process.env.KIVRO_DUAL_CONTROL_PLANE = "1";
+    process.env.KIVRO_NETSONS_CP_STATE = "ACTIVE";
+    process.env.KIVRO_AWS_CP_STATE = "ACTIVE";
+    expect(() => resolveActiveControlPlaneIdForNewExecutions(process.env)).toThrow(
+      /CONTROL_PLANE_ACTIVE_AMBIGUOUS/,
+    );
+  });
+
+  it("dual profile advertisements drop RETIRED (Worker fallback parity)", () => {
+    snapshot(["KIVRO_NETSONS_CP_STATE", "KIVRO_AWS_CP_STATE"]);
+    process.env.KIVRO_NETSONS_CP_STATE = "RETIRED";
+    process.env.KIVRO_AWS_CP_STATE = "ACTIVE";
+    const ads = buildDualProfileControlPlaneAdvertisements("http://localhost:3001", process.env);
+    expect(ads).toHaveLength(1);
+    expect(ads[0]?.controlPlaneId).toBe(AWS_DEFAULT_CONTROL_PLANE_ID);
   });
 
   it("rollback: Netsons ACTIVE again accepts new dispatch target", () => {

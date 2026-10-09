@@ -3464,24 +3464,24 @@ feature post-MVP or the user explicitly approves the deferral.
 
   Requirement   Priority   Status   Implementation   Tests
   ------------- ---------- -------- ---------------- -------
-  PORT-001      P0         TODO     ---              ---
-  PORT-002      P0         TODO     ---              ---
-  PORT-003      P0         TODO     ---              ---
-  PORT-004      P0         TODO     ---              ---
+  PORT-001   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
+  PORT-002   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
+  PORT-003   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
+  PORT-004   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
   PORT-005   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
-  PORT-006      P0         TODO     ---              ---
-  PORT-007      P0         TODO     ---              ---
+  PORT-006   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
+  PORT-007   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
   PORT-008   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
-  PORT-009      P0         TODO     ---              ---
-  PORT-010      P0         TODO     ---              ---
+  PORT-009   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
+  PORT-010   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
   PORT-011      P1         TODO     ---              ---
   PORT-012   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
-  PORT-013      P0         TODO     ---              ---
+  PORT-013   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
   PORT-014      P1         TODO     ---              ---
-  PORT-015      P0         TODO     ---              ---
+  PORT-015   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
   PORT-016   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
   PORT-017      P1         TODO     ---              ---
-  PORT-018      P0         TODO     ---              ---
+  PORT-018   P0         TESTED   packages/cloud-core, packages/job-dispatch, apps/api   security/tests/conformance-dual-control-plane-m22.test.ts; packages/cloud-core/src/control-plane-policy.test.ts; packages/job-dispatch/src/control-plane-guard.test.ts   docs/milestones/M22-closure.md M22
 
 ## Transport-independent Worker connectivity
 

@@ -9,8 +9,7 @@ import {
   type WssDispatchMode,
 } from "@kivro/worker-transport";
 import {
-  AWS_DEFAULT_CONTROL_PLANE_ID,
-  NETSONS_DEFAULT_CONTROL_PLANE_ID,
+  buildDualProfileControlPlaneAdvertisements,
   buildWorkerServiceDiscoveryDocument,
   type WorkerServiceDiscoveryDocument,
 } from "@kivro/cloud-core";
@@ -81,35 +80,7 @@ export async function resolveWorkerCloudRuntime(input: {
     buildWorkerServiceDiscoveryDocument({
       protocolVersion: PROTOCOL_VERSION,
       publicApiBaseUrl: input.cloudUrl,
-      controlPlanes: [
-        {
-          controlPlaneId: NETSONS_DEFAULT_CONTROL_PLANE_ID,
-          lifecycleState:
-            (process.env.KIVRO_NETSONS_CP_STATE as "DRAINING" | "ACTIVE" | undefined) ??
-            "DRAINING",
-          transports: [
-            {
-              kind: "polling",
-              protocolVersion: PROTOCOL_VERSION,
-              baseUrl: input.cloudUrl,
-              pollPath: "/worker/poll",
-              heartbeatPath: "/worker/heartbeat",
-            },
-          ],
-        },
-        {
-          controlPlaneId: AWS_DEFAULT_CONTROL_PLANE_ID,
-          lifecycleState:
-            (process.env.KIVRO_AWS_CP_STATE as "ACTIVE" | "DRAINING" | undefined) ?? "ACTIVE",
-          transports: [
-            {
-              kind: "wss",
-              protocolVersion: PROTOCOL_VERSION,
-              wssUrl: wsUrl(input.cloudUrl),
-            },
-          ],
-        },
-      ],
+      controlPlanes: buildDualProfileControlPlaneAdvertisements(input.cloudUrl, process.env),
     });
 
   const bindings = selectWorkerTransportBinding({

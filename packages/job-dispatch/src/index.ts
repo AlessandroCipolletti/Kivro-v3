@@ -6,4 +6,8 @@ export {
   rejectJobOffer,
 } from "./dispatch-service.js";
 export { reconcileWorkerSessionOnReconnect } from "./worker-reconcile.js";
-export { assertWorkerJobOnControlPlane } from "./control-plane-guard.js";
+export {
+  assertWorkerJobOnControlPlane,
+  gateWorkerJobOnControlPlane,
+  type WorkerControlPlaneContext,
+} from "./control-plane-guard.js";

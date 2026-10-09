@@ -16,5 +16,6 @@ describe("M22 dual control-plane milestone", () => {
         ),
       ),
     ).toBe(true);
+    expect(fs.existsSync(path.join(root, "docs/deploy/dual-control-plane-transition.md"))).toBe(true);
   });
 });

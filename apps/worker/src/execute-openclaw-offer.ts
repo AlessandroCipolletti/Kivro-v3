@@ -14,8 +14,13 @@ export async function runOpenClawSandboxForJob(input: {
   runtimeRoot: string;
   identity: { cloudUrl: string; workerDeviceId: string };
   jobId: string;
+  controlPlaneId?: string;
 }): Promise<{ correlationId: string }> {
-  const bundle = await fetchJobExecutionBundle(input.identity, input.jobId);
+  const bundle = await fetchJobExecutionBundle(
+    input.identity,
+    input.jobId,
+    input.controlPlaneId,
+  );
   const manifest = parseWorkerManifest(bundle.workerManifest);
   const adapter = await createOpenClawAdapter();
   const detection = await adapter.detect();
@@ -82,6 +87,7 @@ export async function runOpenClawSandboxForJob(input: {
       },
     },
     correlationId,
+    input.controlPlaneId,
   );
   console.log(
     JSON.stringify({

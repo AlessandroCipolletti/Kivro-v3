@@ -6,6 +6,7 @@ import {
   controlPlaneMayAcceptNewExecutions,
   defaultControlPlaneIdForProfile,
   resolveActiveControlPlaneIdForNewExecutions,
+  resolveExecutionControlPlaneForDispatch,
 } from "@kivro/cloud-core";
 import { getActiveCloudComposition } from "../cloud-composition.js";
 
@@ -21,12 +22,20 @@ export async function dispatchJobToWorkerWithProfileSignal(
   } catch {
     executionControlPlaneId = defaultControlPlaneIdForProfile(composition.profile);
   }
-  if (!controlPlaneMayAcceptNewExecutions(executionControlPlaneId, process.env)) {
+  const job = await prisma.job.findUnique({ where: { id: input.jobId } });
+  const boundCp = resolveExecutionControlPlaneForDispatch({
+    existingExecutionControlPlaneId: job?.executionControlPlaneId ?? null,
+    proposedControlPlaneId: executionControlPlaneId,
+  });
+  if (
+    !job?.executionControlPlaneId &&
+    !controlPlaneMayAcceptNewExecutions(boundCp, process.env)
+  ) {
     return { error: "CONTROL_PLANE_NOT_ACTIVE" };
   }
   const result = await dispatchJobToWorker(prisma, {
     ...input,
-    executionControlPlaneId,
+    executionControlPlaneId: boundCp,
   });
   if ("error" in result) {
     return result;

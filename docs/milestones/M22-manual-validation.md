@@ -7,3 +7,5 @@
 5. Simulate in-flight Netsons job (CP `netsons-default`) — offers only on Netsons poll transport / CP header
 6. `GET /platform/admin/control-planes` (admin token) — shows registry + `activeForNewExecutions`
 7. Flip rollback env (Netsons ACTIVE, AWS DRAINING) — new dispatch binds to Netsons without Worker re-pair
+8. Set Netsons `RETIRED` — discovery omits Netsons; Worker daemon shows AWS-only bindings after restart
+9. Ops checklist: `docs/deploy/dual-control-plane-transition.md`

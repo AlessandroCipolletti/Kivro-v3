@@ -20,10 +20,13 @@ export function createWorkerCloudClient(input: {
 }): WorkerCloudClient {
   const base = input.cloudBaseUrl.replace(/\/$/, "");
   const wssMode = input.wssDispatchMode ?? "native";
-  const headers = {
-    "content-type": "application/json",
-    "x-worker-device-id": input.workerDeviceId,
-  };
+  function headersFor(envelope: ReturnType<WorkerTransportPort["buildPoll"]>): Record<string, string> {
+    return {
+      "content-type": "application/json",
+      "x-worker-device-id": input.workerDeviceId,
+      "x-kivro-control-plane-id": envelope.controlPlaneId,
+    };
+  }
 
   async function dispatch(envelope: ReturnType<WorkerTransportPort["buildPoll"]>): Promise<Response> {
     if (input.transport.kind === "polling") {
@@ -35,7 +38,7 @@ export function createWorkerCloudClient(input: {
         `${base}${wire.http.path}`,
         {
           method: wire.http.method,
-          headers,
+          headers: headersFor(envelope),
           body:
             envelope.operation === "poll"
               ? "{}"
@@ -59,7 +62,7 @@ export function createWorkerCloudClient(input: {
     return fetch(`${base}/worker/wss/dispatch`, {
       method: "POST",
       headers: {
-        ...headers,
+        ...headersFor(envelope),
         "content-type": "text/plain; charset=utf-8",
       },
       body: encoded,

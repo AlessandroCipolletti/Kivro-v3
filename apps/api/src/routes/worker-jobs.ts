@@ -9,6 +9,7 @@ import { getPrismaClient } from "@kivro/database";
 import { markJobDeliveredAndSettle, reconcileJobPaymentAfterTerminal } from "@kivro/billing";
 import {
   acceptJobOffer,
+  gateWorkerJobOnControlPlane,
   markJobRunning,
   recoverWorkerOfflineJob,
   rejectJobOffer,
@@ -29,6 +30,26 @@ import { randomUUID } from "node:crypto";
 
 function resolveWorkerDeviceId(c: { req: { header: (name: string) => string | undefined } }): string | null {
   return c.req.header("x-worker-device-id") ?? null;
+}
+
+async function authorizeWorkerJobOnRequestControlPlane(
+  jobId: string,
+  workerDeviceId: string,
+  controlPlaneHeader: string | undefined,
+): Promise<
+  | { job: { id: string; executionControlPlaneId: string | null } }
+  | { error: string; httpStatus: 403 | 409 }
+> {
+  const job = await getPrismaClient().job.findUnique({ where: { id: jobId } });
+  if (!job || job.workerDeviceId !== workerDeviceId) {
+    return { error: "FORBIDDEN", httpStatus: 403 };
+  }
+  const cp = resolveWorkerRequestControlPlane(controlPlaneHeader);
+  const cpBlock = gateWorkerJobOnControlPlane(job, cp);
+  if (cpBlock) {
+    return { error: cpBlock.error, httpStatus: 409 };
+  }
+  return { job };
 }
 
 export function workerJobRoutes(): Hono<AppEnv> {
@@ -61,10 +82,12 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (!body.jobId) {
       return c.json({ error: "JOB_ID_REQUIRED" }, 400);
     }
+    const cp = resolveWorkerRequestControlPlane(c.req.header("x-kivro-control-plane-id"));
     const result = await rejectJobOffer(getPrismaClient(), {
       jobId: body.jobId,
       workerDeviceId,
       reason: body.reason,
+      controlPlane: cp,
     });
     if ("error" in result) {
       return c.json(result, 409);
@@ -91,8 +114,7 @@ export function workerJobRoutes(): Hono<AppEnv> {
     const result = await acceptJobOffer(getPrismaClient(), {
       jobId: accepted.jobId,
       workerDeviceId,
-      controlPlaneId: cp.controlPlaneId,
-      fallbackControlPlaneId: cp.fallbackControlPlaneId,
+      controlPlane: cp,
     });
     if ("error" in result) {
       return c.json(result, 409);
@@ -105,9 +127,11 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
+    const cp = resolveWorkerRequestControlPlane(c.req.header("x-kivro-control-plane-id"));
     const result = await markJobRunning(getPrismaClient(), {
       jobId: c.req.param("jobId"),
       workerDeviceId,
+      controlPlane: cp,
     });
     if ("error" in result) {
       return c.json(result, 409);
@@ -173,6 +197,14 @@ export function workerJobRoutes(): Hono<AppEnv> {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
     const jobId = c.req.param("jobId");
+    const auth = await authorizeWorkerJobOnRequestControlPlane(
+      jobId,
+      workerDeviceId,
+      c.req.header("x-kivro-control-plane-id"),
+    );
+    if ("error" in auth) {
+      return c.json({ error: auth.error }, auth.httpStatus);
+    }
     const job = await getPrismaClient().job.findUnique({
       where: { id: jobId },
       include: {
@@ -180,11 +212,8 @@ export function workerJobRoutes(): Hono<AppEnv> {
         capabilityVersion: { include: { capability: true } },
       },
     });
-    if (!job || job.workerDeviceId !== workerDeviceId) {
-      return c.json({ error: "FORBIDDEN" }, 403);
-    }
-    if (!job.input || !job.capabilityVersion.workerManifest) {
-      return c.json({ error: "BUNDLE_INCOMPLETE" }, 409);
+    if (!job || !job.input || !job.capabilityVersion.workerManifest) {
+      return c.json({ error: job ? "BUNDLE_INCOMPLETE" : "FORBIDDEN" }, job ? 409 : 403);
     }
     return c.json({
       jobId: job.id,
@@ -214,6 +243,15 @@ export function workerJobRoutes(): Hono<AppEnv> {
     const workerDeviceId = resolveWorkerDeviceId(c);
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
+    }
+    const jobId = c.req.param("jobId");
+    const auth = await authorizeWorkerJobOnRequestControlPlane(
+      jobId,
+      workerDeviceId,
+      c.req.header("x-kivro-control-plane-id"),
+    );
+    if ("error" in auth) {
+      return c.json({ error: auth.error }, auth.httpStatus);
     }
     let body: {
       structuredOutput?: unknown;
@@ -245,14 +283,13 @@ export function workerJobRoutes(): Hono<AppEnv> {
       return c.json({ error: "INVALID_DELIVERABLE_OUTPUT" }, 400);
     }
     const result = await markJobDeliveredAndSettle(getPrismaClient(), {
-      jobId: c.req.param("jobId"),
+      jobId,
       workerDeviceId,
       deliverables,
     });
     if ("error" in result) {
       return c.json(result, 409);
     }
-    const jobId = c.req.param("jobId");
     await getPrismaClient().auditEvent.create({
       data: {
         jobId,
@@ -267,9 +304,9 @@ export function workerJobRoutes(): Hono<AppEnv> {
       },
     });
     const { onOrchestrationJobCompleted } = await import("../services/orchestration-execution.js");
-    await onOrchestrationJobCompleted(getPrismaClient(), c.req.param("jobId"));
+    await onOrchestrationJobCompleted(getPrismaClient(), jobId);
     const { emitBuyerJobWebhook } = await import("../services/buyer-webhook-emitter.js");
-    await emitBuyerJobWebhook(getPrismaClient(), c.req.param("jobId"), "job.completed");
+    await emitBuyerJobWebhook(getPrismaClient(), jobId, "job.completed");
     return c.json(result);
   });
 
@@ -277,6 +314,15 @@ export function workerJobRoutes(): Hono<AppEnv> {
     const workerDeviceId = resolveWorkerDeviceId(c);
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
+    }
+    const jobId = c.req.param("jobId");
+    const auth = await authorizeWorkerJobOnRequestControlPlane(
+      jobId,
+      workerDeviceId,
+      c.req.header("x-kivro-control-plane-id"),
+    );
+    if ("error" in auth) {
+      return c.json({ error: auth.error }, auth.httpStatus);
     }
     const body: unknown = await c.req.json();
     const checkpoint = parseJobCheckpointRecord(body);

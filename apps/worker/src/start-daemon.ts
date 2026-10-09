@@ -2,6 +2,7 @@ import { buildJobAcceptedMessage, buildWorkerHeartbeatBody } from "@kivro/job-pr
 import { getDeviceIdentity, openWorkerStore } from "@kivro/worker-store";
 import os from "node:os";
 import path from "node:path";
+import { dedupePollOffersByJobId } from "@kivro/cloud-core";
 import { resolveWorkerCloudRuntime } from "./worker-cloud-client.js";
 
 function runtimeRoot(): string {
@@ -18,14 +19,16 @@ function sleep(ms: number): Promise<void> {
 async function workerFetch(
   identity: { cloudUrl: string; workerDeviceId: string },
   path: string,
-  init?: RequestInit,
+  init?: RequestInit & { controlPlaneId?: string },
 ): Promise<Response> {
+  const { controlPlaneId, ...rest } = init ?? {};
   return fetch(`${identity.cloudUrl}${path}`, {
-    ...init,
+    ...rest,
     headers: {
       "content-type": "application/json",
       "x-worker-device-id": identity.workerDeviceId,
-      ...(init?.headers ?? {}),
+      ...(controlPlaneId ? { "x-kivro-control-plane-id": controlPlaneId } : {}),
+      ...(rest.headers ?? {}),
     },
   });
 }
@@ -78,42 +81,44 @@ export async function runWorkerPollDaemon(): Promise<void> {
 
   while (true) {
     try {
-      const pollResults: Array<{
-        offers?: Array<{ jobId: string; workerId: string; capabilityVersionId: string }>;
-      }> = [];
+      type TaggedOffer = {
+        jobId: string;
+        workerId: string;
+        capabilityVersionId: string;
+        controlPlaneId?: string;
+      };
+      const taggedOffers: TaggedOffer[] = [];
 
       if (cloudRuntime.mode === "dual") {
         const hbs = await cloudRuntime.client.sendHeartbeatOnAll(heartbeatBody);
         await Promise.all(hbs.map((r) => r.json().catch(() => undefined)));
-        const polls = await cloudRuntime.client.sendPollOnAll();
-        for (const pollRes of polls) {
-          pollResults.push(
-            (await pollRes.json()) as {
-              offers?: Array<{ jobId: string; workerId: string; capabilityVersionId: string }>;
-            },
-          );
+        for (const binding of cloudRuntime.client.session.listBindings()) {
+          const pollRes = await cloudRuntime.client.sendPollOn(binding.controlPlaneId);
+          const poll = (await pollRes.json()) as {
+            offers?: Array<{ jobId: string; workerId: string; capabilityVersionId: string }>;
+          };
+          for (const offer of poll.offers ?? []) {
+            taggedOffers.push({ ...offer, controlPlaneId: binding.controlPlaneId });
+          }
         }
       } else {
         const hb = await cloudRuntime.client.sendHeartbeat(heartbeatBody);
         await hb.json().catch(() => undefined);
         const pollRes = await cloudRuntime.client.sendPoll();
-        pollResults.push(
-          (await pollRes.json()) as {
-            offers?: Array<{ jobId: string; workerId: string; capabilityVersionId: string }>;
-          },
-        );
+        const poll = (await pollRes.json()) as {
+          offers?: Array<{ jobId: string; workerId: string; capabilityVersionId: string }>;
+        };
+        for (const offer of poll.offers ?? []) {
+          taggedOffers.push(offer);
+        }
       }
 
-      const offers = pollResults.flatMap((p) => p.offers ?? []);
-      const seenJobIds = new Set<string>();
+      const offers = dedupePollOffersByJobId(taggedOffers);
 
       for (const offer of offers) {
-        if (seenJobIds.has(offer.jobId)) {
-          continue;
-        }
-        seenJobIds.add(offer.jobId);
         await workerFetch(workerIdentity, "/worker/jobs/accept", {
           method: "POST",
+          controlPlaneId: offer.controlPlaneId,
           body: JSON.stringify(
             buildJobAcceptedMessage({
               jobId: offer.jobId,
@@ -121,9 +126,15 @@ export async function runWorkerPollDaemon(): Promise<void> {
             }),
           ),
         });
-        await workerFetch(workerIdentity, `/worker/jobs/${offer.jobId}/running`, { method: "POST" });
+        await workerFetch(workerIdentity, `/worker/jobs/${offer.jobId}/running`, {
+          method: "POST",
+          controlPlaneId: offer.controlPlaneId,
+        });
         if (executionMode === "synthetic") {
-          await workerFetch(workerIdentity, `/worker/jobs/${offer.jobId}/complete`, { method: "POST" });
+          await workerFetch(workerIdentity, `/worker/jobs/${offer.jobId}/complete`, {
+            method: "POST",
+            controlPlaneId: offer.controlPlaneId,
+          });
           console.log(JSON.stringify({ event: "job_completed_synthetic", jobId: offer.jobId }));
         } else if (executionMode === "sandbox-fixture") {
           const { runSandboxFixtureForJob } = await import("./execute-sandbox-offer.js");
@@ -131,6 +142,7 @@ export async function runWorkerPollDaemon(): Promise<void> {
             runtimeRoot: runtimeRoot(),
             identity: workerIdentity,
             jobId: offer.jobId,
+            controlPlaneId: offer.controlPlaneId,
           });
         } else if (executionMode === "openclaw") {
           const { runOpenClawSandboxForJob } = await import("./execute-openclaw-offer.js");
@@ -138,6 +150,7 @@ export async function runWorkerPollDaemon(): Promise<void> {
             runtimeRoot: runtimeRoot(),
             identity: workerIdentity,
             jobId: offer.jobId,
+            controlPlaneId: offer.controlPlaneId,
           });
         }
       }

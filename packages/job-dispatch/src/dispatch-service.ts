@@ -6,7 +6,7 @@ import {
   assertImmediateJobSubmissionAllowed,
   assertQueuedJobDispatchAllowed,
 } from "@kivro/job-scheduling";
-import { assertWorkerJobOnControlPlane } from "./control-plane-guard.js";
+import { gateWorkerJobOnControlPlane, type WorkerControlPlaneContext } from "./control-plane-guard.js";
 
 async function transition(
   prisma: PrismaClient,
@@ -64,10 +64,12 @@ export async function dispatchJobToWorker(
   if ("error" in acceptGate) {
     return { error: acceptGate.error };
   }
+  const executionControlPlaneId =
+    job.executionControlPlaneId ?? input.executionControlPlaneId;
   await transition(prisma, job.id, "QUEUED", "DISPATCHED", {
     workerDeviceId: input.workerDeviceId,
     dispatchExpiresAt: input.offerExpiresAt,
-    executionControlPlaneId: input.executionControlPlaneId,
+    executionControlPlaneId,
   });
   const offer: JobOffer = {
     protocolVersion: PROTOCOL_VERSION,
@@ -83,21 +85,19 @@ export async function dispatchJobToWorker(
 
 export async function acceptJobOffer(
   prisma: PrismaClient,
-  input: { jobId: string; workerDeviceId: string; controlPlaneId?: string; fallbackControlPlaneId?: string },
+  input: {
+    jobId: string;
+    workerDeviceId: string;
+    controlPlane?: WorkerControlPlaneContext;
+  },
 ): Promise<{ status: JobStatus } | { error: string }> {
   const job = await prisma.job.findUnique({ where: { id: input.jobId } });
   if (!job || job.workerDeviceId !== input.workerDeviceId) {
     return { error: "FORBIDDEN" };
   }
-  if (input.controlPlaneId && input.fallbackControlPlaneId) {
-    const gate = assertWorkerJobOnControlPlane({
-      jobExecutionControlPlaneId: job.executionControlPlaneId,
-      requestControlPlaneId: input.controlPlaneId,
-      fallbackControlPlaneId: input.fallbackControlPlaneId,
-    });
-    if ("error" in gate) {
-      return { error: gate.error };
-    }
+  const cpBlock = gateWorkerJobOnControlPlane(job, input.controlPlane);
+  if (cpBlock) {
+    return { error: cpBlock.error };
   }
   if (job.status === "ACCEPTED") {
     return { status: "ACCEPTED" };
@@ -111,11 +111,20 @@ export async function acceptJobOffer(
 
 export async function markJobRunning(
   prisma: PrismaClient,
-  input: { jobId: string; workerDeviceId: string; attemptNumber?: number },
+  input: {
+    jobId: string;
+    workerDeviceId: string;
+    attemptNumber?: number;
+    controlPlane?: WorkerControlPlaneContext;
+  },
 ): Promise<{ status: JobStatus } | { error: string }> {
   const job = await prisma.job.findUnique({ where: { id: input.jobId } });
   if (!job || job.workerDeviceId !== input.workerDeviceId) {
     return { error: "FORBIDDEN" };
+  }
+  const cpBlock = gateWorkerJobOnControlPlane(job, input.controlPlane);
+  if (cpBlock) {
+    return { error: cpBlock.error };
   }
   const from: JobStatus = job.status;
   if (from === "RUNNING") {
@@ -144,11 +153,20 @@ export async function markJobRunning(
 /** §9 recovery — worker offline returns job to queue when safe. */
 export async function rejectJobOffer(
   prisma: PrismaClient,
-  input: { jobId: string; workerDeviceId: string; reason?: string },
+  input: {
+    jobId: string;
+    workerDeviceId: string;
+    reason?: string;
+    controlPlane?: WorkerControlPlaneContext;
+  },
 ): Promise<{ status: JobStatus } | { error: string }> {
   const job = await prisma.job.findUnique({ where: { id: input.jobId } });
   if (!job || job.workerDeviceId !== input.workerDeviceId) {
     return { error: "FORBIDDEN" };
+  }
+  const cpBlock = gateWorkerJobOnControlPlane(job, input.controlPlane);
+  if (cpBlock) {
+    return { error: cpBlock.error };
   }
   if (job.status === "REJECTED") {
     return { status: "REJECTED" };

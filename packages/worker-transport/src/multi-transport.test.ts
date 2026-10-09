@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildWorkerServiceDiscoveryDocument } from "@kivro/cloud-core";
 import { PROTOCOL_VERSION } from "@kivro/contracts";
 import {
+  assertTransportReconnectIsSideEffectFree,
   createPollingWorkerTransport,
   createWssWorkerTransport,
   selectWorkerTransportBinding,
@@ -96,5 +97,44 @@ describe("worker multi-transport session", () => {
 
     expect(bindings.map((b) => b.controlPlaneId)).toEqual(["a-cp", "b-cp"]);
     expect(bindings[0]?.lifecycleState).toBe("ACTIVE");
+  });
+
+  it("DRAINING binding remains while ACTIVE CP serves new work (one-transport outage tolerance)", () => {
+    const session = new WorkerMultiTransportSession();
+    session.register({
+      controlPlaneId: "netsons-default",
+      lifecycleState: "DRAINING",
+      transport: createPollingWorkerTransport({
+        controlPlaneId: "netsons-default",
+        workerDeviceId: "wd",
+        cloudBaseUrl: "http://localhost:3001",
+      }),
+    });
+    session.register({
+      controlPlaneId: "aws-default",
+      lifecycleState: "ACTIVE",
+      transport: createWssWorkerTransport({
+        controlPlaneId: "aws-default",
+        workerDeviceId: "wd",
+        wssUrl: "ws://localhost:3001/worker/wss",
+      }),
+    });
+    expect(session.listBindings()).toHaveLength(2);
+    expect(session.getBinding("netsons-default").lifecycleState).toBe("DRAINING");
+  });
+
+  it("transport reconnect preserves idempotency key (PORT-028 / duplicate message guard)", () => {
+    expect(() =>
+      assertTransportReconnectIsSideEffectFree({
+        priorAckIdempotencyKey: "ack-1",
+        nextAckIdempotencyKey: "ack-2",
+      }),
+    ).toThrow(/idempotency key/);
+    expect(() =>
+      assertTransportReconnectIsSideEffectFree({
+        priorAckIdempotencyKey: "ack-1",
+        nextAckIdempotencyKey: "ack-1",
+      }),
+    ).not.toThrow();
   });
 });

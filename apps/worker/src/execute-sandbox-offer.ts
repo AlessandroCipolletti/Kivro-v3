@@ -5,14 +5,16 @@ import { runSandboxFixtureExecution, type JobExecutionBundle } from "./sandbox-f
 async function workerFetch(
   identity: { cloudUrl: string; workerDeviceId: string },
   path: string,
-  init?: RequestInit,
+  init?: RequestInit & { controlPlaneId?: string },
 ): Promise<Response> {
+  const { controlPlaneId, ...rest } = init ?? {};
   return fetch(`${identity.cloudUrl}${path}`, {
-    ...init,
+    ...rest,
     headers: {
       "content-type": "application/json",
       "x-worker-device-id": identity.workerDeviceId,
-      ...(init?.headers ?? {}),
+      ...(controlPlaneId ? { "x-kivro-control-plane-id": controlPlaneId } : {}),
+      ...(rest.headers ?? {}),
     },
   });
 }
@@ -20,8 +22,11 @@ async function workerFetch(
 export async function fetchJobExecutionBundle(
   identity: { cloudUrl: string; workerDeviceId: string },
   jobId: string,
+  controlPlaneId?: string,
 ): Promise<JobExecutionBundle> {
-  const res = await workerFetch(identity, `/worker/jobs/${jobId}/execution-bundle`);
+  const res = await workerFetch(identity, `/worker/jobs/${jobId}/execution-bundle`, {
+    controlPlaneId,
+  });
   const json = (await res.json()) as JobExecutionBundle & { error?: string };
   if (!res.ok) {
     throw new Error(json.error ?? `BUNDLE_${res.status}`);
@@ -34,9 +39,11 @@ export async function completeJobWithDeliverables(
   jobId: string,
   deliverables: { structuredOutput: unknown; outputAssetManifest: unknown },
   correlationId?: string,
+  controlPlaneId?: string,
 ): Promise<void> {
   const res = await workerFetch(identity, `/worker/jobs/${jobId}/complete`, {
     method: "POST",
+    controlPlaneId,
     headers: correlationId ? { "x-correlation-id": correlationId } : {},
     body: JSON.stringify({
       ...deliverables,
@@ -53,8 +60,13 @@ export async function runSandboxFixtureForJob(input: {
   runtimeRoot: string;
   identity: { cloudUrl: string; workerDeviceId: string };
   jobId: string;
+  controlPlaneId?: string;
 }): Promise<{ correlationId: string }> {
-  const bundle = await fetchJobExecutionBundle(input.identity, input.jobId);
+  const bundle = await fetchJobExecutionBundle(
+    input.identity,
+    input.jobId,
+    input.controlPlaneId,
+  );
   const prisma = getPrismaClient();
   const result = await runSandboxFixtureExecution({
     runtimeRoot: input.runtimeRoot,
@@ -76,6 +88,7 @@ export async function runSandboxFixtureForJob(input: {
       outputAssetManifest: result.outputAssetManifest,
     },
     result.correlationId,
+    input.controlPlaneId,
   );
   console.log(
     JSON.stringify({
