@@ -33,7 +33,23 @@ curl -s -H "Authorization: Bearer $KEY" \
   -d '{"inputs":{}}'
 ```
 
-Repeat the POST with the same idempotency key → identical `201` body. Change body with same key → `409 IDEMPOTENCY_KEY_REUSE`.
+Repeat the POST with the same idempotency key → identical `201` body (includes `price`, `capabilityVersion`). Change body with same key → `409 IDEMPOTENCY_KEY_REUSE`.
+
+402 responses use `INSUFFICIENT_FUNDS` (not `INSUFFICIENT_CREDITS`).
+
+## 2b. v1 assets
+
+```bash
+curl -s -H "Authorization: Bearer $KEY" -H 'content-type: application/json' \
+  -X POST http://localhost:3001/v1/assets/upload-intents \
+  -d '{"contentHash":"sha256:abc123"}'
+```
+
+## 2c. OpenAPI
+
+```bash
+curl -s http://localhost:3001/v1/openapi.json | head
+```
 
 ## 3. Webhook endpoint
 

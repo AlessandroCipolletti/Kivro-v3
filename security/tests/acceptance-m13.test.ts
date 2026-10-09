@@ -6,7 +6,8 @@ import {
   parseScopes,
 } from "@kivro/buyer-api";
 import { buildWebhookSignatureHeader, verifyWebhookSignature } from "@kivro/buyer-webhooks";
-import { validateWebhookUrl } from "@kivro/buyer-webhooks";
+import { mapV1PaymentError } from "@kivro/buyer-api";
+import { validateWebhookUrl, webhookEventForJobStatus } from "@kivro/buyer-webhooks";
 
 describe("M13 acceptance — API scopes §334", () => {
   it("defaults to read/create job scopes", () => {
@@ -34,6 +35,21 @@ describe("M13 acceptance — webhook SSRF guard §343", () => {
     expect("ok" in validateWebhookUrl("http://127.0.0.1/hook")).toBe(false);
     expect("ok" in validateWebhookUrl("http://169.254.169.254/")).toBe(false);
     expect("ok" in validateWebhookUrl("https://example.com/webhooks/kivro")).toBe(true);
+  });
+});
+
+describe("M13 acceptance — API payment errors §324", () => {
+  it("maps insufficient credits to INSUFFICIENT_FUNDS", () => {
+    expect(mapV1PaymentError("INSUFFICIENT_CREDITS")).toBe("INSUFFICIENT_FUNDS");
+  });
+});
+
+describe("M13 acceptance — webhook events §328", () => {
+  it("maps terminal statuses to webhook types", () => {
+    expect(webhookEventForJobStatus("RUNNING")).toBe("job.started");
+    expect(webhookEventForJobStatus("COMPLETED")).toBe("job.completed");
+    expect(webhookEventForJobStatus("CANCELLED")).toBe("job.cancelled");
+    expect(webhookEventForJobStatus("FAILED_EXECUTION")).toBe("job.failed");
   });
 });
 

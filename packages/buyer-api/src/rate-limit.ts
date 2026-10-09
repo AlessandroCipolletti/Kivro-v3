@@ -1,19 +1,40 @@
 import type { PrismaClient } from "@kivro/database";
 
 const WINDOW_MS = 60_000;
-const MAX_REQUESTS_PER_WINDOW = 120;
+export const MAX_REQUESTS_PER_WINDOW = 120;
 
-/** §326 — lightweight per-key rate limit using recent idempotency/writes as proxy. */
+function windowStart(now = Date.now()): Date {
+  const bucket = Math.floor(now / WINDOW_MS) * WINDOW_MS;
+  return new Date(bucket);
+}
+
+/** §326 — per-key sliding window counter in PostgreSQL. */
 export async function checkBuyerApiRateLimit(
   prisma: PrismaClient,
   input: { apiKeyId: string },
-): Promise<{ allowed: true } | { allowed: false; retryAfterSeconds: number }> {
-  const since = new Date(Date.now() - WINDOW_MS);
-  const count = await prisma.apiIdempotencyRecord.count({
-    where: { apiKeyId: input.apiKeyId, createdAt: { gte: since } },
+): Promise<
+  | { allowed: true; limit: number; remaining: number; resetAt: Date }
+  | { allowed: false; retryAfterSeconds: number; limit: number; remaining: 0; resetAt: Date }
+> {
+  const start = windowStart();
+  const resetAt = new Date(start.getTime() + WINDOW_MS);
+  const row = await prisma.buyerApiRateBucket.upsert({
+    where: {
+      apiKeyId_windowStart: { apiKeyId: input.apiKeyId, windowStart: start },
+    },
+    create: { apiKeyId: input.apiKeyId, windowStart: start, count: 1 },
+    update: { count: { increment: 1 } },
   });
-  if (count >= MAX_REQUESTS_PER_WINDOW) {
-    return { allowed: false, retryAfterSeconds: 60 };
+  const remaining = Math.max(0, MAX_REQUESTS_PER_WINDOW - row.count);
+  if (row.count > MAX_REQUESTS_PER_WINDOW) {
+    const retryAfterSeconds = Math.ceil((resetAt.getTime() - Date.now()) / 1000);
+    return {
+      allowed: false,
+      retryAfterSeconds: Math.max(1, retryAfterSeconds),
+      limit: MAX_REQUESTS_PER_WINDOW,
+      remaining: 0,
+      resetAt,
+    };
   }
-  return { allowed: true };
+  return { allowed: true, limit: MAX_REQUESTS_PER_WINDOW, remaining, resetAt };
 }

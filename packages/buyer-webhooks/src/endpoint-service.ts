@@ -27,6 +27,24 @@ export async function createBuyerWebhookEndpoint(
   return { id, secret, url: valid.url.toString(), events };
 }
 
+export async function rotateBuyerWebhookSecret(
+  prisma: PrismaClient,
+  input: { userId: string; endpointId: string },
+): Promise<{ secret: string } | { error: "NOT_FOUND" }> {
+  const row = await prisma.buyerWebhookEndpoint.findFirst({
+    where: { id: input.endpointId, userId: input.userId, enabled: true },
+  });
+  if (!row) {
+    return { error: "NOT_FOUND" };
+  }
+  const secret = generateWebhookSecret();
+  await prisma.buyerWebhookEndpoint.update({
+    where: { id: row.id },
+    data: { secretEncrypted: encryptWebhookSecret(secret) },
+  });
+  return { secret };
+}
+
 export async function listBuyerWebhookEndpoints(prisma: PrismaClient, userId: string) {
   const rows = await prisma.buyerWebhookEndpoint.findMany({
     where: { userId },

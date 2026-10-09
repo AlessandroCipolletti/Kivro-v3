@@ -1,4 +1,10 @@
-import { createBuyerWebhookEndpoint, listBuyerWebhookEndpoints, parseWebhookEvents } from "@kivro/buyer-webhooks";
+import {
+  createBuyerWebhookEndpoint,
+  listBuyerWebhookEndpoints,
+  listWebhookDeliveries,
+  parseWebhookEvents,
+  rotateBuyerWebhookSecret,
+} from "@kivro/buyer-webhooks";
 import { getPrismaClient } from "@kivro/database";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
@@ -42,6 +48,33 @@ export function buyerWebhookManageRoutes(): Hono<AppEnv> {
       },
       201,
     );
+  });
+
+  app.get("/webhooks/:id/deliveries", async (c) => {
+    const user = c.get("user");
+    const result = await listWebhookDeliveries(getPrismaClient(), {
+      userId: user.id,
+      endpointId: c.req.param("id"),
+    });
+    if ("error" in result) {
+      return c.json(result, 404);
+    }
+    return c.json(result);
+  });
+
+  app.post("/webhooks/:id/rotate-secret", async (c) => {
+    const user = c.get("user");
+    const result = await rotateBuyerWebhookSecret(getPrismaClient(), {
+      userId: user.id,
+      endpointId: c.req.param("id"),
+    });
+    if ("error" in result) {
+      return c.json(result, 404);
+    }
+    return c.json({
+      secret: result.secret,
+      warning: "Store the new secret now; it will not be shown again.",
+    });
   });
 
   app.post("/webhooks/:id/disable", async (c) => {

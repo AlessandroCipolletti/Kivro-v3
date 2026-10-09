@@ -16,6 +16,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@kivro/database": "workspace:*"
+    "@kivro/database": "workspace:*",
+    "@kivro/domain": "workspace:*"
   }
 }

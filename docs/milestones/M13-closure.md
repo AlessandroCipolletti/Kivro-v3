@@ -1,23 +1,22 @@
 # M13 — milestone closure (bounded)
 
-Buyer REST API v1, programmatic API keys, idempotency, rate limits, and signed outbound webhooks ship in this milestone.
+Buyer REST API v1, programmatic API keys, idempotency, rate limits, asset intents, and signed outbound webhooks.
 
 ## Shipped
 
-- `@kivro/buyer-api` — scoped keys (scrypt hash), verify/revoke, per-key rate limit, idempotency records
-- `@kivro/buyer-webhooks` — SSRF-safe URL validation, encrypted secrets, HMAC delivery + retries
-- Session routes — `GET/POST /buyer/api-keys`, `GET/POST /buyer/webhooks`, disable webhook
-- v1 routes — `GET /v1/capabilities`, `GET /v1/capabilities/:id`, `POST .../jobs`, `GET /v1/jobs`, `GET /v1/jobs/:id`
-- Job completion → `job.completed` webhook via `emitBuyerJobWebhook`
-- Prisma migration `20260327180000_m13_buyer_api`
+- `@kivro/buyer-api` — scoped keys, audit trail, per-key rate buckets, idempotency
+- `@kivro/buyer-webhooks` — SSRF-safe URLs, encrypted secrets, HMAC delivery, deferred retry sweep
+- Session routes — API keys (scopes/expiry/audit), webhooks (deliveries, rotate secret, disable)
+- v1 — capabilities, jobs (create/list/detail/cancel), asset upload-intents/finalize/get, `GET /v1/openapi.json`
+- Webhooks — `job.started`, `job.completed`, `job.failed`, `job.cancelled` (status-driven emitter)
+- Admin — `POST /platform/admin/webhooks/retry-failed`
+- Migrations — `m13_buyer_api`, `m13_hardening`
 
-## Deferred / later milestones
+## Deferred (outside M13 / M14)
 
-- Buyer **web UI** for keys/webhooks (§349 → **M14**)
-- v1 **asset upload intents** (`assets:create` scope stub; use session buyer asset flow until dedicated v1 endpoints)
-- **`job.started` / `job.failed`** webhook events (only `job.completed` wired)
-- Full staging E2E with external webhook receiver in CI
-- P2 polish rows (e.g. extended webhook management UI)
+- Buyer **web UI** for keys/webhooks (§349 → **M14** only)
+- Full staging E2E with live webhook receiver in CI
+- Orchestration webhook events (future spec)
 
 ## Gate
 

@@ -18,6 +18,7 @@ run("pnpm", [
   "packages/buyer-api/src/idempotency.test.ts",
   "packages/buyer-webhooks/src/url-validation.test.ts",
   "packages/buyer-webhooks/src/signing.test.ts",
+  "packages/buyer-webhooks/src/job-events.test.ts",
   "security/tests/acceptance-m13.test.ts",
 ]);
 
@@ -28,4 +29,4 @@ run("pnpm", ["--filter", "@kivro/buyer-webhooks", "run", "build"]);
 run("pnpm", ["--filter", "@kivro/database", "run", "build"]);
 run("pnpm", ["--filter", "@kivro/api", "run", "typecheck"]);
 
-console.log("M13 verify flow passed (bounded — buyer API UI §349 and v1 asset intents deferred)");
+console.log("M13 verify flow passed (bounded — buyer settings UI §349 deferred to M14)");

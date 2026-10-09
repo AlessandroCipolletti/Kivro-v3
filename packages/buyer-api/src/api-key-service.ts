@@ -6,7 +6,8 @@ import {
   hashBuyerApiKeySecret,
   verifyBuyerApiKeySecret,
 } from "./api-key-crypto.js";
-import { DEFAULT_BUYER_API_SCOPES, parseScopes, type BuyerApiScope } from "./scopes.js";
+import { recordBuyerApiKeyAudit } from "./api-key-audit.js";
+import { BUYER_API_SCOPES, DEFAULT_BUYER_API_SCOPES, parseScopes, type BuyerApiScope } from "./scopes.js";
 
 export type VerifiedBuyerApiKey = {
   id: string;
@@ -19,7 +20,11 @@ export async function createBuyerApiKey(
   input: { userId: string; name: string; scopes?: BuyerApiScope[]; expiresAt?: Date },
 ): Promise<{ id: string; prefix: string; secret: string; scopes: string[] }> {
   const { secret, prefix } = generateBuyerApiKeyMaterial();
-  const scopes = input.scopes ?? DEFAULT_BUYER_API_SCOPES;
+  const requested = input.scopes ?? DEFAULT_BUYER_API_SCOPES;
+  const scopes = requested.filter((s) => (BUYER_API_SCOPES as readonly string[]).includes(s));
+  if (scopes.length === 0) {
+    throw new Error("INVALID_SCOPES");
+  }
   const id = randomUUID();
   await prisma.buyerApiKey.create({
     data: {
@@ -31,6 +36,12 @@ export async function createBuyerApiKey(
       scopes,
       expiresAt: input.expiresAt ?? null,
     },
+  });
+  await recordBuyerApiKeyAudit(prisma, {
+    apiKeyId: id,
+    userId: input.userId,
+    action: "CREATED",
+    meta: { name: input.name.trim(), scopes },
   });
   return { id, prefix, secret, scopes };
 }
@@ -83,5 +94,38 @@ export async function revokeBuyerApiKey(
     where: { id: row.id },
     data: { revokedAt: new Date() },
   });
+  await recordBuyerApiKeyAudit(prisma, {
+    apiKeyId: row.id,
+    userId: input.userId,
+    action: "REVOKED",
+    meta: { prefix: row.prefix },
+  });
   return { ok: true };
+}
+
+export async function listBuyerApiKeyAudit(
+  prisma: PrismaClient,
+  input: { userId: string; keyId: string; limit?: number },
+): Promise<
+  | { events: Array<{ action: string; createdAt: string; meta: unknown }> }
+  | { error: "NOT_FOUND" }
+> {
+  const row = await prisma.buyerApiKey.findFirst({
+    where: { id: input.keyId, userId: input.userId },
+  });
+  if (!row) {
+    return { error: "NOT_FOUND" };
+  }
+  const events = await prisma.buyerApiKeyAuditEvent.findMany({
+    where: { apiKeyId: row.id },
+    orderBy: { createdAt: "desc" },
+    take: input.limit ?? 50,
+  });
+  return {
+    events: events.map((e) => ({
+      action: e.action,
+      createdAt: e.createdAt.toISOString(),
+      meta: e.meta,
+    })),
+  };
 }

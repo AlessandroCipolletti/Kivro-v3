@@ -125,6 +125,7 @@ model User {
   marketplaceConversations MarketplaceConversation[]
   orchestrationPlans      OrchestrationPlan[]
   buyerApiKeys            BuyerApiKey[]
+  buyerApiKeyAuditEvents  BuyerApiKeyAuditEvent[]
   buyerWebhookEndpoints   BuyerWebhookEndpoint[]
   apiIdempotencyRecords   ApiIdempotencyRecord[]
 }
@@ -745,9 +746,38 @@ model BuyerApiKey {
   expiresAt  DateTime?
   revokedAt  DateTime?
 
-  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  jobs Job[]
+  user        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobs        Job[]
+  rateBuckets BuyerApiRateBucket[]
+  auditEvents BuyerApiKeyAuditEvent[]
 
+  @@index([userId])
+}
+
+model BuyerApiRateBucket {
+  id          String   @id @default(uuid())
+  apiKeyId    String
+  windowStart DateTime
+  count       Int      @default(0)
+
+  apiKey BuyerApiKey @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+
+  @@unique([apiKeyId, windowStart])
+  @@index([windowStart])
+}
+
+model BuyerApiKeyAuditEvent {
+  id        String   @id @default(uuid())
+  apiKeyId  String
+  userId    String
+  action    String
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  apiKey BuyerApiKey @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+  user   User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([apiKeyId, createdAt(sort: Desc)])
   @@index([userId])
 }
 
@@ -788,17 +818,22 @@ model BuyerWebhookEndpoint {
 }
 
 model WebhookDeliveryAttempt {
-  id         String   @id @default(uuid())
-  endpointId String
-  eventId    String
-  eventType  String
-  statusCode Int?
-  success    Boolean
-  error      String?
-  createdAt  DateTime @default(now())
+  id            String    @id @default(uuid())
+  endpointId    String
+  eventId       String
+  eventType     String
+  statusCode    Int?
+  success       Boolean
+  error         String?
+  payloadJson   Json?
+  attemptCount  Int       @default(1)
+  nextRetryAt   DateTime?
+  createdAt     DateTime  @default(now())
+  lastAttemptAt DateTime  @default(now())
 
   endpoint BuyerWebhookEndpoint @relation(fields: [endpointId], references: [id], onDelete: Cascade)
 
   @@index([endpointId, createdAt(sort: Desc)])
+  @@index([nextRetryAt])
   @@unique([endpointId, eventId])
 }

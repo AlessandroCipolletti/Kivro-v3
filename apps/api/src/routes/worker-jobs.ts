@@ -146,6 +146,10 @@ export function workerJobRoutes(): Hono<AppEnv> {
       return c.json(result, 409);
     }
     await reconcileJobPaymentAfterTerminal(getPrismaClient(), body.jobId);
+    const { emitBuyerJobWebhookForCurrentStatus } = await import(
+      "../services/buyer-webhook-emitter.js"
+    );
+    await emitBuyerJobWebhookForCurrentStatus(getPrismaClient(), body.jobId);
     return c.json(result);
   });
 
@@ -181,6 +185,9 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if ("error" in result) {
       return c.json(result, 409);
     }
+    const jobId = c.req.param("jobId") ?? "";
+    const { emitBuyerJobWebhook } = await import("../services/buyer-webhook-emitter.js");
+    await emitBuyerJobWebhook(getPrismaClient(), jobId, "job.started");
     return c.json(result);
   });
 

@@ -204,6 +204,9 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../domain
 
   packages/capability-publish:
     dependencies:

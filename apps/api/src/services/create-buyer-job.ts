@@ -15,7 +15,14 @@ export async function createBuyerJobFromApi(
     buyerApiKeyId?: string;
   },
 ): Promise<
-  | { jobId: string; status: string }
+  | {
+      jobId: string;
+      status: string;
+      capabilityId: string;
+      versionNumber: number;
+      currency: string;
+      priceCents: number;
+    }
   | { error: string; reasons?: string[] }
 > {
   const capability = await prisma.capability.findUnique({
@@ -61,5 +68,12 @@ export async function createBuyerJobFromApi(
     });
   }
 
-  return { jobId: result.jobId, status: result.status };
+  return {
+    jobId: result.jobId,
+    status: result.status,
+    capabilityId: input.capabilityId,
+    versionNumber: version.versionNumber,
+    currency: version.currency,
+    priceCents: version.priceSnapshotCents,
+  };
 }

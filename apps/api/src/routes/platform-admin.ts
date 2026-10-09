@@ -5,6 +5,7 @@ import {
 } from "@kivro/billing";
 import { getPrismaClient } from "@kivro/database";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
+import { retryDueWebhookDeliveries } from "@kivro/buyer-webhooks";
 import { runSchedulingSweeps } from "@kivro/job-scheduling";
 import {
   assertAdminToken,
@@ -105,6 +106,17 @@ export function platformAdminRoutes(): Hono {
       return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
     }
     const result = await sweepExpiredJobPauses(getPrismaClient());
+    return c.json(result);
+  });
+
+  app.post("/webhooks/retry-failed", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const result = await retryDueWebhookDeliveries(getPrismaClient());
     return c.json(result);
   });
 

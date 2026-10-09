@@ -2162,53 +2162,53 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0322`    P2         §318     `TODO`   ---              ---        ---
 
-  `API-0008`    P1         §319     `TODO`   ---              ---        ---
+  `API-0008`    P1         §319     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
-  `API-0009`    P1         §319     `TODO`   ---              ---        ---
+  `API-0009`    P1         §319     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
-  `API-0010`    P1         §319     `TODO`   ---              ---        ---
+  `API-0010`    P1         §319     `TESTED`   packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/rate-limit.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API key security §321
 
-  `API-0011`    P1         §319     `TODO`   ---              ---        ---
+  `API-0011`    P1         §319     `TESTED`   packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/rate-limit.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API key security §321
 
-  `API-0012`    P1         §320     `TODO`   ---              ---        ---
+  `API-0012`    P1         §320     `TESTED`   packages/buyer-api/src/scopes.ts, apps/api/src/routes/buyer-api-keys.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API scopes §320
 
-  `API-0013`    P1         §320     `TODO`   ---              ---        ---
+  `API-0013`    P1         §320     `TESTED`   packages/buyer-api/src/scopes.ts, apps/api/src/routes/buyer-api-keys.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API scopes §320
 
-  `API-0014`    P1         §320     `TODO`   ---              ---        ---
+  `API-0014`    P1         §320     `TESTED`   packages/buyer-api/src/scopes.ts, apps/api/src/routes/buyer-api-keys.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API scopes §320
 
-  `API-0015`    P1         §321     `TODO`   ---              ---        ---
+  `API-0015`    P1         §321     `TESTED`   packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/rate-limit.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API key security §321
 
-  `API-0016`    P1         §321     `TODO`   ---              ---        ---
+  `API-0016`    P1         §321     `TESTED`   packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/rate-limit.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API key security §321
 
-  `IO-0136`     P1         §322     `TODO`   ---              ---        ---
+  `IO-0136`     P1         §322     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/capability-publish/src/buyer-stored-asset.ts   docs/milestones/M13-manual-validation.md M13 v1 asset upload intents §322
 
-  `IO-0137`     P1         §322     `TODO`   ---              ---        ---
+  `IO-0137`     P1         §322     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/capability-publish/src/buyer-stored-asset.ts   docs/milestones/M13-manual-validation.md M13 v1 asset upload intents §322
 
-  `CAP-0087`    P1         §323     `TODO`   ---              ---        ---
+  `CAP-0087`    P1         §323     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/services/v1-buyer-response.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit §323–§324
 
-  `PAY-0102`    P1         §324     `TODO`   ---              ---        ---
+  `PAY-0102`    P1         §324     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/services/v1-buyer-response.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit §323–§324
 
-  `PAY-0103`    P0         §324     `TODO`   ---              ---        ---
+  `PAY-0103`    P0         §324     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/services/v1-buyer-response.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit §323–§324
 
-  `PAY-0104`    P0         §324     `TODO`   ---              ---        ---
+  `PAY-0104`    P0         §324     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/services/v1-buyer-response.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit §323–§324
 
-  `PAY-0105`    P0         §324     `TODO`   ---              ---        ---
+  `PAY-0105`    P0         §324     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/services/v1-buyer-response.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit §323–§324
 
-  `API-0017`    P1         §325     `TODO`   ---              ---        ---
+  `API-0017`    P1         §325     `TESTED`   apps/api/src/services/create-buyer-job.ts, apps/api/src/services/v1-buyer-response.ts, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API job submit §323–§324
 
-  `API-0018`    P1         §325     `TODO`   ---              ---        ---
+  `API-0018`    P1         §325     `TESTED`   packages/buyer-api/src/idempotency.ts, apps/api/src/routes/v1-buyer-api.ts   packages/buyer-api/src/idempotency.test.ts   docs/milestones/M13-manual-validation.md M13 Idempotency-Key §325
 
-  `API-0019`    P1         §325     `TODO`   ---              ---        ---
+  `API-0019`    P1         §325     `TESTED`   packages/buyer-api/src/rate-limit.ts, apps/api/src/middleware/buyer-api-auth.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API rate limits §326
 
-  `API-0020`    P1         §326     `TODO`   ---              ---        ---
+  `API-0020`    P1         §326     `TESTED`   packages/buyer-api/src/rate-limit.ts, apps/api/src/middleware/buyer-api-auth.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API rate limits §326
 
-  `API-0021`    P1         §326     `TODO`   ---              ---        ---
+  `API-0021`    P1         §326     `TESTED`   packages/buyer-api/src/rate-limit.ts, apps/api/src/middleware/buyer-api-auth.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 API rate limits §326
 
-  `PRD-0323`    P1         §327     `TODO`   ---              ---        ---
+  `PRD-0323`    P1         §327     `TESTED`   apps/api/src/routes/buyer-webhooks-manage.ts, packages/buyer-webhooks/src/endpoint-service.ts   docs/milestones/M13-manual-validation.md M13 webhook registration §329
 
-  `JOB-0068`    P1         §328     `TODO`   ---              ---        ---
+  `JOB-0068`    P1         §328     `TESTED`   apps/api/src/services/buyer-webhook-emitter.ts, apps/api/src/routes/worker-jobs.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 webhook events §328
 
-  `JOB-0069`    P1         §328     `TODO`   ---              ---        ---
+  `JOB-0069`    P1         §328     `TESTED`   apps/api/src/services/buyer-webhook-emitter.ts, apps/api/src/routes/worker-jobs.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 webhook events §328
 
   `API-0022`    P1         §329     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, apps/api/src/middleware/buyer-api-auth.ts, packages/buyer-api   packages/buyer-api/src/idempotency.test.ts; security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 REST v1 Bearer API
 

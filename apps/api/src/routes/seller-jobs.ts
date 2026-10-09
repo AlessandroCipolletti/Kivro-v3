@@ -151,6 +151,10 @@ export function sellerJobRoutes(): Hono<AppEnv> {
       return c.json({ error: result.error }, result.error === "FORBIDDEN" ? 403 : 409);
     }
     await reconcileJobPaymentAfterTerminal(getPrismaClient(), jobId);
+    const { emitBuyerJobWebhookForCurrentStatus } = await import(
+      "../services/buyer-webhook-emitter.js"
+    );
+    await emitBuyerJobWebhookForCurrentStatus(getPrismaClient(), jobId);
     return c.json(result);
   });
 
@@ -235,7 +239,12 @@ export function buyerJobRoutes(): Hono<AppEnv> {
       const status = result.error === "NOT_FOUND" ? 404 : 409;
       return c.json({ error: result.error }, status);
     }
-    await reconcileJobPaymentAfterTerminal(getPrismaClient(), c.req.param("jobId"));
+    const jobId = c.req.param("jobId");
+    await reconcileJobPaymentAfterTerminal(getPrismaClient(), jobId);
+    const { emitBuyerJobWebhookForCurrentStatus } = await import(
+      "../services/buyer-webhook-emitter.js"
+    );
+    await emitBuyerJobWebhookForCurrentStatus(getPrismaClient(), jobId);
     return c.json(result);
   });
 

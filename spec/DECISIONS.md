@@ -560,3 +560,9 @@ greenfield.
 **Context:** M13 maps 66 requirements for programmatic buyer access, API keys, idempotency, rate limits, and outbound webhooks.
 
 **Decision:** Shared packages `@kivro/buyer-api` and `@kivro/buyer-webhooks` implement key lifecycle, Bearer auth middleware, `Idempotency-Key` on job create, per-key rate limiting, SSRF-safe webhook registration, AES-GCM secret storage, and HMAC-signed delivery with bounded retries. Session-authenticated management lives at `/buyer/api-keys` and `/buyer/webhooks`; public v1 surface at `/v1/*`. `job.completed` is emitted from Worker completion handler. Buyer-facing **UI for keys/webhooks (§349)**, v1 **asset upload intents**, and **`job.started` / `job.failed`** events are deferred to M14+ with documented closure in `docs/milestones/M13-closure.md`. Gate: `pnpm verify:m13`.
+
+## DEC-M13-002 — M13 hardening (§319–§328 completion)
+
+**Context:** Initial M13 MVP left §319–§328 coverage rows open, single webhook event, coarse rate limits, and minimal v1 job responses.
+
+**Decision:** Hardening adds API key audit + custom scopes/expiry, PostgreSQL rate buckets with `X-RateLimit-*` headers, v1 asset upload intents, §323 response shape + `INSUFFICIENT_FUNDS`, OpenAPI stub, job list pagination + v1 cancel, full §328 lifecycle webhooks, webhook delivery history/rotate/retry sweep (`m13_hardening` migration). **§349 buyer settings UI** remains explicitly **M14**. Gate unchanged: `pnpm verify:m13`.

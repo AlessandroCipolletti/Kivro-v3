@@ -1,19 +1,29 @@
+import {
+  confirmBuyerStoredAssetUpload,
+  createBuyerUploadSlot,
+} from "@kivro/capability-publish";
 import { getPrismaClient } from "@kivro/database";
 import {
   hashRequestBody,
+  mapV1PaymentError,
   readIdempotentResponse,
   storeIdempotentResponse,
 } from "@kivro/buyer-api";
-import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
+import { buyerCancelScheduledOrQueuedJob, summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import { getBuyerJobDetail } from "@kivro/marketplace";
 import { Hono } from "hono";
+import { v1BuyerOpenApiSpec } from "../openapi/v1-buyer-api.spec.js";
 import { requireBuyerApiKey } from "../middleware/buyer-api-auth.js";
+import { emitBuyerJobWebhookForCurrentStatus } from "../services/buyer-webhook-emitter.js";
 import { createBuyerJobFromApi } from "../services/create-buyer-job.js";
+import { formatV1JobCreateSuccess } from "../services/v1-buyer-response.js";
 import type { AppEnv } from "../types.js";
 
 /** §322–§325 — buyer REST API v1 (Bearer API key). */
 export function v1BuyerApiRoutes(): Hono<AppEnv> {
   const app = new Hono<AppEnv>();
+
+  app.get("/openapi.json", (c) => c.json(v1BuyerOpenApiSpec));
 
   app.get("/capabilities", requireBuyerApiKey("capabilities:read"), async (c) => {
     const rows = await getPrismaClient().capability.findMany({
@@ -128,6 +138,11 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
       buyerApiKeyId: apiKey?.id,
     });
 
+    const responseBody =
+      "error" in result
+        ? { error: mapV1PaymentError(result.error), reasons: result.reasons }
+        : formatV1JobCreateSuccess(result);
+
     const statusCode =
       "error" in result
         ? result.error === "INSUFFICIENT_CREDITS"
@@ -147,14 +162,14 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
         idempotencyKey,
         requestHash,
         statusCode,
-        responseJson: result,
+        responseJson: responseBody,
       });
       if ("conflict" in stored) {
         return c.json({ error: "IDEMPOTENCY_KEY_REUSE" }, 409);
       }
     }
 
-    return c.json(result, statusCode);
+    return c.json(responseBody, statusCode);
   });
 
   app.get("/jobs/:id", requireBuyerApiKey("jobs:read"), async (c) => {
@@ -175,16 +190,25 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
 
   app.get("/jobs", requireBuyerApiKey("jobs:read"), async (c) => {
     const user = c.get("user");
+    const limitRaw = Number.parseInt(c.req.query("limit") ?? "50", 10);
+    const limit = Math.min(100, Math.max(1, Number.isFinite(limitRaw) ? limitRaw : 50));
+    const cursor = c.req.query("cursor");
     const jobs = await getPrismaClient().job.findMany({
-      where: { buyerId: user.id },
+      where: {
+        buyerId: user.id,
+        ...(cursor ? { createdAt: { lt: new Date(cursor) } } : {}),
+      },
       orderBy: { createdAt: "desc" },
-      take: 50,
+      take: limit + 1,
       include: {
         capabilityVersion: { include: { capability: { select: { slug: true, name: true } } } },
       },
     });
+    const page = jobs.slice(0, limit);
+    const nextCursor =
+      jobs.length > limit ? page[page.length - 1]?.createdAt.toISOString() ?? null : null;
     return c.json({
-      jobs: jobs.map((job) => ({
+      jobs: page.map((job) => ({
         id: job.id,
         status: job.status,
         capabilityId: job.capabilityId,
@@ -192,6 +216,99 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
         createdAt: job.createdAt.toISOString(),
         completedAt: job.completedAt?.toISOString() ?? null,
       })),
+      nextCursor,
+    });
+  });
+
+  app.post("/jobs/:id/cancel", requireBuyerApiKey("jobs:create"), async (c) => {
+    const user = c.get("user");
+    const jobId = c.req.param("id") ?? "";
+    if (!jobId) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    let body: { reason?: string } = {};
+    try {
+      body = await c.req.json();
+    } catch {
+      body = {};
+    }
+    const result = await buyerCancelScheduledOrQueuedJob(getPrismaClient(), {
+      jobId,
+      buyerId: user.id,
+      reason: body.reason,
+    });
+    if ("error" in result) {
+      return c.json({ error: result.error }, result.error === "NOT_FOUND" ? 404 : 409);
+    }
+    const { reconcileJobPaymentAfterTerminal } = await import("@kivro/billing");
+    await reconcileJobPaymentAfterTerminal(getPrismaClient(), jobId);
+    await emitBuyerJobWebhookForCurrentStatus(getPrismaClient(), jobId);
+    return c.json(result);
+  });
+
+  app.post("/assets/upload-intents", requireBuyerApiKey("assets:create"), async (c) => {
+    const user = c.get("user");
+    const body = await c.req.json<{ contentHash?: string; mimeType?: string; maxBytes?: number }>();
+    if (!body.contentHash?.startsWith("sha256:")) {
+      return c.json({ error: "INVALID_INPUT", message: "contentHash must be sha256:…" }, 400);
+    }
+    try {
+      const result = await createBuyerUploadSlot(getPrismaClient(), {
+        buyerId: user.id,
+        contentHash: body.contentHash,
+        mimeType: body.mimeType,
+        maxBytes: body.maxBytes,
+      });
+      return c.json(
+        {
+          assetId: result.asset.id,
+          uploadUrl: result.uploadUrl,
+          expiresInSeconds: result.expiresInSeconds,
+        },
+        201,
+      );
+    } catch (err) {
+      if (err instanceof Error && err.message === "OBJECT_STORAGE_NOT_CONFIGURED") {
+        return c.json({ error: "OBJECT_STORAGE_NOT_CONFIGURED" }, 503);
+      }
+      throw err;
+    }
+  });
+
+  app.post("/assets/:id/finalize", requireBuyerApiKey("assets:create"), async (c) => {
+    const user = c.get("user");
+    try {
+      const result = await confirmBuyerStoredAssetUpload(
+        getPrismaClient(),
+        user.id,
+        c.req.param("id") ?? "",
+      );
+      return c.json(result);
+    } catch (err) {
+      if (err instanceof Error && err.message === "NOT_FOUND") {
+        return c.json({ error: "NOT_FOUND" }, 404);
+      }
+      throw err;
+    }
+  });
+
+  app.get("/assets/:id", requireBuyerApiKey("assets:read"), async (c) => {
+    const user = c.get("user");
+    const asset = await getPrismaClient().storedAsset.findFirst({
+      where: { id: c.req.param("id") ?? "", buyerId: user.id },
+    });
+    if (!asset) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    return c.json({
+      asset: {
+        id: asset.id,
+        purpose: asset.purpose,
+        contentHash: asset.contentHash,
+        mimeType: asset.mimeType,
+        sizeBytes: asset.sizeBytes.toString(),
+        uploadConfirmedAt: asset.uploadConfirmedAt?.toISOString() ?? null,
+      },
     });
   });
 

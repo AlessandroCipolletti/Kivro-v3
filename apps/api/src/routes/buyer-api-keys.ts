@@ -1,4 +1,11 @@
-import { createBuyerApiKey, revokeBuyerApiKey } from "@kivro/buyer-api";
+import {
+  BUYER_API_SCOPES,
+  createBuyerApiKey,
+  listBuyerApiKeyAudit,
+  parseScopes,
+  revokeBuyerApiKey,
+  type BuyerApiScope,
+} from "@kivro/buyer-api";
 import { getPrismaClient } from "@kivro/database";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
@@ -30,14 +37,35 @@ export function buyerApiKeyRoutes(): Hono<AppEnv> {
 
   app.post("/api-keys", async (c) => {
     const user = c.get("user");
-    const body = await c.req.json<{ name?: string }>();
+    const body = await c.req.json<{ name?: string; scopes?: string[]; expiresAt?: string }>();
     if (!body.name?.trim()) {
       return c.json({ error: "NAME_REQUIRED" }, 400);
     }
-    const created = await createBuyerApiKey(getPrismaClient(), {
-      userId: user.id,
-      name: body.name,
-    });
+    let scopes: BuyerApiScope[] | undefined;
+    if (body.scopes) {
+      scopes = parseScopes(body.scopes);
+    }
+    let expiresAt: Date | undefined;
+    if (body.expiresAt) {
+      expiresAt = new Date(body.expiresAt);
+      if (Number.isNaN(expiresAt.getTime())) {
+        return c.json({ error: "INVALID_EXPIRES_AT" }, 400);
+      }
+    }
+    let created;
+    try {
+      created = await createBuyerApiKey(getPrismaClient(), {
+        userId: user.id,
+        name: body.name,
+        scopes,
+        expiresAt,
+      });
+    } catch (err) {
+      if (err instanceof Error && err.message === "INVALID_SCOPES") {
+        return c.json({ error: "INVALID_SCOPES", allowed: [...BUYER_API_SCOPES] }, 400);
+      }
+      throw err;
+    }
     return c.json(
       {
         ...created,
@@ -45,6 +73,18 @@ export function buyerApiKeyRoutes(): Hono<AppEnv> {
       },
       201,
     );
+  });
+
+  app.get("/api-keys/:id/audit", async (c) => {
+    const user = c.get("user");
+    const result = await listBuyerApiKeyAudit(getPrismaClient(), {
+      userId: user.id,
+      keyId: c.req.param("id"),
+    });
+    if ("error" in result) {
+      return c.json(result, 404);
+    }
+    return c.json(result);
   });
 
   app.post("/api-keys/:id/revoke", async (c) => {

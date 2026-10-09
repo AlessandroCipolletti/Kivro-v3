@@ -1,5 +1,11 @@
 import type { PrismaClient } from "@kivro/database";
-import { deliverBuyerWebhookEvent, type WebhookEventType } from "@kivro/buyer-webhooks";
+import {
+  deliverBuyerWebhookEvent,
+  webhookEventForJobStatus,
+  type WebhookEventType,
+} from "@kivro/buyer-webhooks";
+
+export { webhookEventForJobStatus } from "@kivro/buyer-webhooks";
 
 export async function emitBuyerJobWebhook(
   prisma: PrismaClient,
@@ -23,4 +29,20 @@ export async function emitBuyerJobWebhook(
       status: job.status,
     },
   });
+}
+
+/** Emit webhook matching current job status (§328). */
+export async function emitBuyerJobWebhookForCurrentStatus(
+  prisma: PrismaClient,
+  jobId: string,
+): Promise<void> {
+  const job = await prisma.job.findUnique({ where: { id: jobId } });
+  if (!job) {
+    return;
+  }
+  const eventType = webhookEventForJobStatus(job.status);
+  if (!eventType) {
+    return;
+  }
+  await emitBuyerJobWebhook(prisma, jobId, eventType);
 }
