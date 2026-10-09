@@ -1,4 +1,7 @@
 import type { WorkerManifest } from "@kivro/contracts";
+import { validateExecutionPreflight } from "@kivro/policy-engine";
+import { validateSandboxForManifest } from "@kivro/sandbox";
+import { writeMarketplaceWorkerEnvironment } from "./worker-environment.js";
 import type {
   AgentRuntimeAdapter,
   CompatibilityReport,
@@ -28,16 +31,41 @@ export class OpenClawAdapterStub implements AgentRuntimeAdapter {
     return Promise.resolve({ compatible: false, reasons: ["OpenClaw not detected"] });
   }
 
-  buildWorkerEnvironment(_manifest: WorkerManifest): Promise<WorkerEnvironment> {
-    return Promise.reject(new Error("OpenClawAdapterStub: buildWorkerEnvironment not implemented"));
+  buildWorkerEnvironment(manifest: WorkerManifest): Promise<WorkerEnvironment> {
+    const root = process.env.KIVRO_RUNTIME_ROOT ?? "/tmp/kivro-stub-runtime";
+    return Promise.resolve(writeMarketplaceWorkerEnvironment(root, manifest));
   }
 
-  validateWorkerEnvironment(_env: WorkerEnvironment): Promise<WorkerValidationReport> {
-    return Promise.resolve({ ok: false, sandboxMode: "unknown", issues: ["stub adapter"] });
+  validateWorkerEnvironment(env: WorkerEnvironment): Promise<WorkerValidationReport> {
+    return Promise.resolve({
+      ok: Boolean(env.configPath),
+      sandboxMode: env.configPath ? "all" : "unknown",
+      issues: env.configPath ? [] : ["missing config path"],
+    });
   }
 
-  execute(_context: JobExecutionContext): Promise<JobExecutionResult> {
-    return Promise.reject(new Error("OpenClawAdapterStub: execute not implemented"));
+  execute(context: JobExecutionContext): Promise<JobExecutionResult> {
+    const sandbox = validateSandboxForManifest(context.manifest);
+    if (!sandbox.ok) {
+      return Promise.resolve({
+        exitCode: 1,
+        timedOut: false,
+        metadata: { error: sandbox.issues.join("; ") },
+      });
+    }
+    const preflight = validateExecutionPreflight(context.manifest);
+    if (!preflight.ok) {
+      return Promise.resolve({
+        exitCode: 1,
+        timedOut: false,
+        metadata: { error: preflight.issues.join("; ") },
+      });
+    }
+    return Promise.resolve({
+      exitCode: 0,
+      timedOut: false,
+      metadata: { mode: "stub-preflight" },
+    });
   }
 
   cancel(_jobAttemptId: string): Promise<void> {

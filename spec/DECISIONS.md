@@ -431,6 +431,18 @@ payout identity.
 Core schema/contracts support explicit Worker identity/assignment from
 greenfield.
 
+## DEC-M04-001 — IMPLEMENTATION-PLAN §278–§282 are payment scope
+
+**Context:** M04 plan lists Master Spec §278–§282 alongside sandbox sections; in `MASTER-SPEC.md` those sections describe USD price tiers and earnings display (M08 payments).
+
+**Decision:** M04 implementation does not include payment tier logic. `COVERAGE.md` rows for §278–§282 remain `DEFERRED` to M08 with an explicit note.
+
+## DEC-M04-002 — OpenClaw agent exec remains preflight until M06
+
+**Context:** §70 supervision requires spawning OpenClaw child processes; job dispatch and offers land in M06/M07.
+
+**Decision:** M04 delivers policy/sandbox/broker/proxy/supervisor interfaces, Docker spec generation, and preflight execution (`KIVRO_SANDBOX_DRY_RUN`). Full paid execution wiring is not started in M04.
+
 ## DEC-M00-001 — Manual milestone validation (2026-03-26)
 
 **Context:** Product owner requested milestone-by-milestone delivery with human validation gates.

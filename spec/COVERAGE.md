@@ -216,77 +216,77 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0042`    P1         §15      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `SEC-0016`    P1         §16      `TODO`   ---              ---        ---
+  `SEC-0016`    P1         §16      `TESTED`   packages/policy-engine, packages/sandbox   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0017`    P0         §16      `TODO`   ---              ---        ---
+  `SEC-0017`    P0         §16      `TESTED`   packages/sandbox, packages/openclaw-adapter   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0018`    P0         §16      `TODO`   ---              ---        ---
+  `SEC-0018`    P0         §16      `TESTED`   packages/sandbox/src/baseline.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0019`    P0         §16      `TODO`   ---              ---        ---
+  `SEC-0019`    P0         §16      `TESTED`   packages/policy-engine, packages/sandbox   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0020`    P0         §16      `TODO`   ---              ---        ---
+  `SEC-0020`    P0         §16      `TESTED`   packages/policy-engine/src/network.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0021`    P0         §16      `TODO`   ---              ---        ---
+  `SEC-0021`    P0         §16      `TESTED`   packages/policy-engine, packages/openclaw-adapter   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0022`    P1         §17      `TODO`   ---              ---        ---
+  `SEC-0022`    P1         §17      `TESTED`   packages/policy-engine/src/browser.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0023`    P0         §17      `TODO`   ---              ---        ---
+  `SEC-0023`    P0         §17      `TESTED`   packages/policy-engine, packages/sandbox   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0024`    P0         §17      `TODO`   ---              ---        ---
+  `SEC-0024`    P0         §17      `DEFERRED`   ---              ---        post-MVP cloud browser architecture (Master Spec §17)
 
-  `SEC-0025`    P0         §17      `TODO`   ---              ---        ---
+  `SEC-0025`    P0         §17      `DEFERRED`   ---              ---        post-MVP cloud browser controls (Master Spec §17)
 
-  `PRD-0031`    P1         §18      `TODO`   ---              ---        ---
+  `PRD-0031`    P1         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0032`    P2         §18      `TODO`   ---              ---        ---
+  `PRD-0032`    P2         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0033`    P2         §18      `TODO`   ---              ---        ---
+  `PRD-0033`    P2         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0034`    P2         §18      `TODO`   ---              ---        ---
+  `PRD-0034`    P2         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0035`    P2         §18      `TODO`   ---              ---        ---
+  `PRD-0035`    P2         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0036`    P2         §18      `TODO`   ---              ---        ---
+  `PRD-0036`    P2         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0037`    P2         §18      `TODO`   ---              ---        ---
+  `PRD-0037`    P2         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0038`    P2         §18      `TODO`   ---              ---        ---
+  `PRD-0038`    P2         §18      `TESTED`   security/THREAT_MODEL.md, security/tests   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0008`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0008`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0009`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0009`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0010`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0010`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0011`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0011`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0012`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0012`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0013`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0013`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0014`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0014`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0015`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0015`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0016`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0016`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0017`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0017`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0018`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0018`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0019`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0019`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0020`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0020`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0021`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0021`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0022`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0022`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0023`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0023`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0024`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0024`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0025`    P1         §19      `TODO`   ---              ---        ---
+  `JOB-0025`    P1         §19      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
   `SEC-0026`    P1         §20      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
@@ -770,85 +770,85 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0043`    P1         §69      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
-  `JOB-0044`    P1         §70      `TODO`   ---              ---        ---
+  `JOB-0044`    P1         §70      `TESTED`   packages/sandbox/src/timeouts.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0045`    P1         §70      `TODO`   ---              ---        ---
+  `JOB-0045`    P1         §70      `TESTED`   packages/sandbox/src/timeouts.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0046`    P1         §70      `TODO`   ---              ---        ---
+  `JOB-0046`    P1         §70      `PARTIAL`   packages/openclaw-adapter   vitest   preflight-only until M06 dispatch M04
 
-  `JOB-0047`    P1         §70      `TODO`   ---              ---        ---
+  `JOB-0047`    P1         §70      `PARTIAL`   packages/openclaw-adapter   vitest   preflight-only until M06 dispatch M04
 
-  `SEC-0055`    P1         §71      `TODO`   ---              ---        ---
+  `SEC-0055`    P1         §71      `TESTED`   packages/resource-broker   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0056`    P0         §71      `TODO`   ---              ---        ---
+  `SEC-0056`    P0         §71      `TESTED`   packages/resource-broker   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0057`    P1         §72      `TODO`   ---              ---        ---
+  `SEC-0057`    P1         §72      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0058`    P0         §72      `TODO`   ---              ---        ---
+  `SEC-0058`    P0         §72      `TESTED`   packages/policy-engine/src/resources.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0059`    P0         §72      `TODO`   ---              ---        ---
+  `SEC-0059`    P0         §72      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0060`    P0         §72      `TODO`   ---              ---        ---
+  `SEC-0060`    P0         §72      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0061`    P0         §72      `TODO`   ---              ---        ---
+  `SEC-0061`    P0         §72      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `API-0001`    P1         §73      `TODO`   ---              ---        ---
+  `API-0001`    P1         §73      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `API-0002`    P1         §73      `TODO`   ---              ---        ---
+  `API-0002`    P1         §73      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `API-0003`    P1         §73      `TODO`   ---              ---        ---
+  `API-0003`    P1         §73      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `API-0004`    P1         §73      `TODO`   ---              ---        ---
+  `API-0004`    P1         §73      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `CAP-0014`    P1         §74      `TODO`   ---              ---        ---
+  `CAP-0014`    P1         §74      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `CAP-0015`    P1         §74      `TODO`   ---              ---        ---
+  `CAP-0015`    P1         §74      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0062`    P1         §75      `TODO`   ---              ---        ---
+  `SEC-0062`    P1         §75      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0063`    P1         §76      `TODO`   ---              ---        ---
+  `PRD-0063`    P1         §76      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0064`    P2         §76      `TODO`   ---              ---        ---
+  `PRD-0064`    P2         §76      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0065`    P2         §76      `TODO`   ---              ---        ---
+  `PRD-0065`    P2         §76      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `CAP-0016`    P1         §77      `TODO`   ---              ---        ---
+  `CAP-0016`    P1         §77      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `CAP-0017`    P1         §77      `TODO`   ---              ---        ---
+  `CAP-0017`    P1         §77      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0048`    P1         §78      `TODO`   ---              ---        ---
+  `JOB-0048`    P1         §78      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `JOB-0049`    P1         §78      `TODO`   ---              ---        ---
+  `JOB-0049`    P1         §78      `TESTED`   packages/policy-engine, packages/sandbox, packages/egress-proxy, packages/resource-broker, packages/provider-broker, packages/platform-policy   vitest; scripts/verify-m04-flow.mjs   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0063`    P1         §79      `TODO`   ---              ---        ---
+  `SEC-0063`    P1         §79      `TESTED`   docs/INCIDENT_RESPONSE.md   manual   docs/milestones/M04-manual-validation.md M04
 
-  `SEC-0064`    P0         §79      `TODO`   ---              ---        ---
+  `SEC-0064`    P0         §79      `TESTED`   docs/INCIDENT_RESPONSE.md   manual   docs/milestones/M04-manual-validation.md M04
 
-  `TST-0001`    P1         §80      `TODO`   ---              ---        ---
+  `TST-0001`    P1         §80      `TESTED`   .github/workflows/ci.yml   pnpm test; pnpm verify:m04   docs/milestones/M04-manual-validation.md M04
 
-  `TST-0002`    P2         §80      `TODO`   ---              ---        ---
+  `TST-0002`    P2         §80      `TESTED`   .github/workflows/ci.yml   pnpm test; pnpm verify:m04   docs/milestones/M04-manual-validation.md M04
 
-  `TST-0003`    P2         §80      `TODO`   ---              ---        ---
+  `TST-0003`    P2         §80      `TESTED`   .github/workflows/ci.yml   pnpm test; pnpm verify:m04   docs/milestones/M04-manual-validation.md M04
 
-  `TST-0004`    P2         §80      `TODO`   ---              ---        ---
+  `TST-0004`    P2         §80      `TESTED`   .github/workflows/ci.yml   pnpm test; pnpm verify:m04   docs/milestones/M04-manual-validation.md M04
 
-  `TST-0005`    P2         §80      `TODO`   ---              ---        ---
+  `TST-0005`    P2         §80      `TESTED`   .github/workflows/ci.yml   pnpm test; pnpm verify:m04   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0066`    P1         §81      `TODO`   ---              ---        ---
+  `PRD-0066`    P1         §81      `TESTED`   .env.example, apps/worker doctor   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `PRD-0067`    P2         §81      `TODO`   ---              ---        ---
+  `PRD-0067`    P2         §81      `TESTED`   .env.example, apps/worker doctor   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `OPS-0001`    P1         §82      `TODO`   ---              ---        ---
+  `OPS-0001`    P1         §82      `TESTED`   packages/database/prisma/migrations   manual   docs/milestones/M04-manual-validation.md M04
 
-  `OPS-0002`    P2         §82      `TODO`   ---              ---        ---
+  `OPS-0002`    P2         §82      `TESTED`   packages/database/prisma/migrations   manual   docs/milestones/M04-manual-validation.md M04
 
-  `WRK-0093`    P1         §83      `TODO`   ---              ---        ---
+  `WRK-0093`    P1         §83      `TESTED`   packages/observability, apps/api/server.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `WRK-0094`    P1         §83      `TODO`   ---              ---        ---
+  `WRK-0094`    P1         §83      `TESTED`   packages/observability, apps/api/server.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `WRK-0095`    P1         §83      `TODO`   ---              ---        ---
+  `WRK-0095`    P1         §83      `TESTED`   packages/observability, apps/api/server.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
-  `WRK-0096`    P1         §83      `TODO`   ---              ---        ---
+  `WRK-0096`    P1         §83      `TESTED`   packages/observability, apps/api/server.ts   vitest   docs/milestones/M04-manual-validation.md M04
 
   `OBS-0005`    P1         §84      `TESTED`   apps/api health routes vitest; docs/milestones/M00-manual-validation.md M00
 
@@ -1950,37 +1950,37 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0091`    P0         §277     `TODO`   ---              ---        ---
 
-  `PRD-0277`    P1         §278     `TODO`   ---              ---        ---
+  `PRD-0277`    P1         §278     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0278`    P2         §278     `TODO`   ---              ---        ---
+  `PRD-0278`    P2         §278     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0279`    P2         §278     `TODO`   ---              ---        ---
+  `PRD-0279`    P2         §278     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0280`    P1         §279     `TODO`   ---              ---        ---
+  `PRD-0280`    P1         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0281`    P2         §279     `TODO`   ---              ---        ---
+  `PRD-0281`    P2         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0282`    P2         §279     `TODO`   ---              ---        ---
+  `PRD-0282`    P2         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0283`    P2         §279     `TODO`   ---              ---        ---
+  `PRD-0283`    P2         §279     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0284`    P1         §280     `TODO`   ---              ---        ---
+  `PRD-0284`    P1         §280     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0285`    P2         §280     `TODO`   ---              ---        ---
+  `PRD-0285`    P2         §280     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0286`    P2         §280     `TODO`   ---              ---        ---
+  `PRD-0286`    P2         §280     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0287`    P1         §281     `TODO`   ---              ---        ---
+  `PRD-0287`    P1         §281     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0288`    P2         §281     `TODO`   ---              ---        ---
+  `PRD-0288`    P2         §281     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PRD-0289`    P2         §281     `TODO`   ---              ---        ---
+  `PRD-0289`    P2         §281     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PAY-0081`    P1         §282     `TODO`   ---              ---        ---
+  `PAY-0081`    P1         §282     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PAY-0082`    P0         §282     `TODO`   ---              ---        ---
+  `PAY-0082`    P0         §282     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
-  `PAY-0083`    P0         §282     `TODO`   ---              ---        ---
+  `PAY-0083`    P0         §282     `DEFERRED`   ---              ---        payment tiers M08; mis-grouped in M04 plan
 
   `PRD-0290`    P1         §283     `TODO`   ---              ---        ---
 

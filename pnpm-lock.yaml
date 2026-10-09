@@ -53,6 +53,9 @@ importers:
       '@kivro/observability':
         specifier: workspace:*
         version: link:../../packages/observability
+      '@kivro/platform-policy':
+        specifier: workspace:*
+        version: link:../../packages/platform-policy
       hono:
         specifier: ^4.6.14
         version: 4.13.13
@@ -68,6 +71,9 @@ importers:
       '@kivro/capability-publish':
         specifier: workspace:*
         version: link:../../packages/capability-publish
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@kivro/crypto':
         specifier: workspace:*
         version: link:../../packages/crypto
@@ -77,6 +83,15 @@ importers:
       '@kivro/openclaw-adapter':
         specifier: workspace:*
         version: link:../../packages/openclaw-adapter
+      '@kivro/platform-policy':
+        specifier: workspace:*
+        version: link:../../packages/platform-policy
+      '@kivro/policy-engine':
+        specifier: workspace:*
+        version: link:../../packages/policy-engine
+      '@kivro/sandbox':
+        specifier: workspace:*
+        version: link:../../packages/sandbox
       '@kivro/worker-store':
         specifier: workspace:*
         version: link:../../packages/worker-store
@@ -106,6 +121,12 @@ importers:
       '@kivro/openclaw-adapter':
         specifier: workspace:*
         version: link:../openclaw-adapter
+      '@kivro/policy-engine':
+        specifier: workspace:*
+        version: link:../policy-engine
+      '@kivro/sandbox':
+        specifier: workspace:*
+        version: link:../sandbox
       '@kivro/storage':
         specifier: workspace:*
         version: link:../storage
@@ -149,6 +170,15 @@ importers:
         specifier: workspace:*
         version: link:../contracts
 
+  packages/egress-proxy:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/policy-engine':
+        specifier: workspace:*
+        version: link:../policy-engine
+
   packages/job-protocol:
     dependencies:
       '@kivro/contracts':
@@ -162,8 +192,40 @@ importers:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@kivro/policy-engine':
+        specifier: workspace:*
+        version: link:../policy-engine
+      '@kivro/sandbox':
+        specifier: workspace:*
+        version: link:../sandbox
+
+  packages/platform-policy: {}
 
   packages/policy-engine:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/sandbox':
+        specifier: workspace:*
+        version: link:../sandbox
+
+  packages/provider-broker:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+
+  packages/resource-broker:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/policy-engine':
+        specifier: workspace:*
+        version: link:../policy-engine
+
+  packages/sandbox:
     dependencies:
       '@kivro/contracts':
         specifier: workspace:*

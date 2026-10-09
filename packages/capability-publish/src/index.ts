@@ -26,3 +26,10 @@ export { pauseCapability } from "./pause.js";
 export { rollbackCapabilityVersion } from "./rollback.js";
 export { buildCapabilityPackageFromVersion } from "./package-export.js";
 export { summarizeVersionDiff } from "./version-diff.js";
+export { validatePublishSecurity } from "./security-publish-gate.js";
+export {
+  diffWorkerManifestPermissions,
+  hasPermissionExpansion,
+  type PermissionDiffLine,
+} from "./permission-diff.js";
+export { buildBuyerTrustSummary, type BuyerTrustSummary } from "./buyer-trust.js";

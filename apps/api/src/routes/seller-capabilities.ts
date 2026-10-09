@@ -187,6 +187,7 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
       workerManifest?: unknown;
       inferenceDependency?: unknown;
       executionModelAcknowledged?: boolean;
+      permissionExpansionAcknowledged?: boolean;
       packageAssetIds?: string[];
       dependencyGraph?: unknown;
       discovery?: unknown;
@@ -235,6 +236,7 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         workerManifest: body.workerManifest,
         inferenceDependency: body.inferenceDependency,
         executionModelAcknowledged: true,
+        permissionExpansionAcknowledged: body.permissionExpansionAcknowledged === true,
         packageAssetIds: body.packageAssetIds,
         dependencyGraph,
       });
@@ -258,6 +260,15 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         }
         if (err.message.startsWith("PUBLISH_BLOCKED:")) {
           return c.json({ error: err.message.replace("PUBLISH_BLOCKED:", "") }, 409);
+        }
+        if (err.message.startsWith("SECURITY_PREFLIGHT_FAILED:")) {
+          return c.json(
+            { error: err.message.replace("SECURITY_PREFLIGHT_FAILED:", "") },
+            400,
+          );
+        }
+        if (err.message === "PERMISSION_EXPANSION_REQUIRES_ACK") {
+          return c.json({ error: err.message }, 400);
         }
       }
       throw err;

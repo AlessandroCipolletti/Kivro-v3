@@ -3,6 +3,7 @@ import {
   parseDependencyGraph,
   parseInferenceDependency,
   parsePublicPermissionManifest,
+  type WorkerManifest,
 } from "@kivro/contracts";
 import { permissionConsentRows } from "./consent-records.js";
 import { checkContractDependencyCompatibility } from "./contract-compatibility.js";
@@ -16,6 +17,8 @@ import type {
   SellerProfile,
 } from "@kivro/database";
 import { hashPermissionManifest } from "./manifest-hash.js";
+import { diffWorkerManifestPermissions, hasPermissionExpansion } from "./permission-diff.js";
+import { validatePublishSecurity } from "./security-publish-gate.js";
 import { finalizeWorkerManifest, verifyWorkerManifestPayload } from "./worker-manifest-verify.js";
 import { randomUUID } from "node:crypto";
 
@@ -80,6 +83,7 @@ export interface PublishInput {
   workerManifest: unknown;
   inferenceDependency: unknown;
   executionModelAcknowledged: boolean;
+  permissionExpansionAcknowledged?: boolean;
   packageAssetIds?: string[];
   dependencyGraph: unknown;
 }
@@ -122,6 +126,25 @@ export async function publishCapability(
     throw new Error("SKILL_HASH_MISMATCH");
   }
 
+  const security = validatePublishSecurity(workerManifest);
+  if (!security.ok) {
+    throw new Error(`SECURITY_PREFLIGHT_FAILED:${security.issues[0] ?? "unknown"}`);
+  }
+
+  const latest = await db.capabilityVersion.findFirst({
+    where: { capabilityId: capability.id },
+    orderBy: { versionNumber: "desc" },
+  });
+  const previousManifest = latest?.workerManifest as WorkerManifest | undefined;
+  const permissionDiff = diffWorkerManifestPermissions(previousManifest ?? null, workerManifest);
+  if (
+    previousManifest &&
+    hasPermissionExpansion(permissionDiff) &&
+    !input.permissionExpansionAcknowledged
+  ) {
+    throw new Error("PERMISSION_EXPANSION_REQUIRES_ACK");
+  }
+
   const dependencyGraph = parseDependencyGraph(input.dependencyGraph);
   const blockers = findPublishBlockers(dependencyGraph);
   if (blockers.length > 0) {
@@ -133,10 +156,6 @@ export async function publishCapability(
   );
 
   const manifestHash = hashPermissionManifest(permissionManifest);
-  const latest = await db.capabilityVersion.findFirst({
-    where: { capabilityId: capability.id },
-    orderBy: { versionNumber: "desc" },
-  });
   const versionNumber = (latest?.versionNumber ?? 0) + 1;
 
   const supplyChainSnapshot = {

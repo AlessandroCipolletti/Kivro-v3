@@ -16,6 +16,10 @@
     "@kivro/crypto": "workspace:*",
     "@kivro/job-protocol": "workspace:*",
     "@kivro/openclaw-adapter": "workspace:*",
+    "@kivro/policy-engine": "workspace:*",
+    "@kivro/sandbox": "workspace:*",
+    "@kivro/platform-policy": "workspace:*",
+    "@kivro/contracts": "workspace:*",
     "@kivro/worker-store": "workspace:*",
     "commander": "^12.1.0"
   }

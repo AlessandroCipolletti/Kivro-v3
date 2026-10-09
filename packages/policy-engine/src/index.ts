@@ -1,20 +1,26 @@
-import type { WorkerManifest } from "@kivro/contracts";
-
-export interface PolicyDecision {
-  allowed: boolean;
-  reason?: string;
-}
-
-/** Deny-by-default placeholder — expanded in M04. */
-export function evaluateNetworkAccess(
-  manifest: WorkerManifest,
-  host: string,
-): PolicyDecision {
-  if (manifest.network.default === "deny") {
-    if (manifest.network.allow.includes(host)) {
-      return { allowed: true };
-    }
-    return { allowed: false, reason: "host not in manifest allow list" };
-  }
-  return { allowed: false, reason: "non-deny default not supported in MVP bootstrap" };
-}
+export type { PolicyDecision } from "./types.js";
+export { isBlockedEgressHost } from "./blocked-hosts.js";
+export {
+  evaluateNetworkAccess,
+  evaluateEgressRequest,
+  normalizeNetworkHost,
+} from "./network.js";
+export {
+  normalizeNetworkAllowList,
+  findNetworkAllowRule,
+  type NormalizedNetworkAllow,
+} from "./network-allow.js";
+export {
+  runSecurityInvariantChecks,
+  allInvariantsPass,
+  type SecurityInvariantContext,
+  type InvariantCheckResult,
+} from "./invariants.js";
+export { evaluateToolAccess } from "./tools.js";
+export { evaluateResourceAccess } from "./resources.js";
+export { evaluateBrowserJobRequest } from "./browser.js";
+export {
+  validateExecutionPreflight,
+  assertPolicyAllowed,
+  type ExecutionPreflightResult,
+} from "./preflight.js";

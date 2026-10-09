@@ -10,6 +10,8 @@ compromise/revocation.
 
 Security claims without test/review evidence remain incomplete.
 
+Live M04 threat/control/test rows: `security/SECURITY-EVIDENCE-MATRIX.md`.
+
 ## Durable result security evidence
 
 Evidence must cover cross-buyer and cross-seller denial, anonymous

@@ -1,6 +1,8 @@
 export { PROTOCOL_VERSION, parseJobOffer, JobOfferSchema } from "./job-offer.js";
 export {
   WorkerManifestSchema,
+  NetworkAllowEntrySchema,
+  type NetworkAllowEntry,
   type WorkerManifest,
   hashWorkerManifest,
   parseWorkerManifest,

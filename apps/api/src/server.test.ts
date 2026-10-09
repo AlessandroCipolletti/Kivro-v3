@@ -14,3 +14,11 @@ describe("health endpoints", () => {
     expect([200, 503]).toContain(ready.status);
   });
 });
+
+describe("platform admin", () => {
+  it("rejects dispatch toggle without admin token", async () => {
+    const app = createApp();
+    const res = await app.request("/platform/admin/dispatch", { method: "POST" });
+    expect([401, 503]).toContain(res.status);
+  });
+});

@@ -1,0 +1,61 @@
+import { getPrismaClient } from "@kivro/database";
+import {
+  assertAdminToken,
+  isGlobalDispatchEnabled,
+  setGlobalDispatchEnabled,
+} from "@kivro/platform-policy";
+import { Hono } from "hono";
+
+export function platformAdminRoutes(): Hono {
+  const app = new Hono();
+
+  app.get("/dispatch", (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    return c.json({ dispatchEnabled: isGlobalDispatchEnabled() });
+  });
+
+  app.post("/dispatch", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const body = await c.req.json<{ enabled?: boolean }>();
+    if (typeof body.enabled !== "boolean") {
+      return c.json({ error: "INVALID_INPUT" }, 400);
+    }
+    try {
+      setGlobalDispatchEnabled(body.enabled);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "DISPATCH_TOGGLE_FAILED";
+      return c.json({ error: message }, 403);
+    }
+    return c.json({ dispatchEnabled: isGlobalDispatchEnabled() });
+  });
+
+  app.post("/worker-devices/:id/revoke", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const id = c.req.param("id");
+    const updated = await getPrismaClient().workerDevice.updateMany({
+      where: { id },
+      data: { status: "REVOKED", revokedAt: new Date() },
+    });
+    if (updated.count === 0) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    return c.json({ revoked: true, workerDeviceId: id });
+  });
+
+  return app;
+}

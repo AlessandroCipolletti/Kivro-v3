@@ -1,3 +1,5 @@
+import { buildBuyerTrustSummary } from "@kivro/capability-publish";
+import { parseWorkerManifest } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
 import { Hono } from "hono";
 
@@ -41,7 +43,17 @@ export function marketplaceCapabilityRoutes(): Hono {
     if (!row) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
-    return c.json({ capability: row });
+    const version = row.currentVersion;
+    let buyerTrust = null;
+    if (version?.workerManifest) {
+      try {
+        const manifest = parseWorkerManifest(version.workerManifest);
+        buyerTrust = buildBuyerTrustSummary(manifest);
+      } catch {
+        buyerTrust = null;
+      }
+    }
+    return c.json({ capability: row, buyerTrust });
   });
 
   return app;

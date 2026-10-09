@@ -2,6 +2,17 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import { parseWithSchema } from "./validate.js";
 
+export const NetworkAllowEntrySchema = z.union([
+  z.string().min(1),
+  z.object({
+    host: z.string().min(1),
+    ports: z.array(z.number().int().min(1).max(65535)).min(1),
+    purpose: z.string().min(1),
+  }),
+]);
+
+export type NetworkAllowEntry = z.infer<typeof NetworkAllowEntrySchema>;
+
 export const WorkerManifestSchema = z.object({
   manifestVersion: z.literal(1),
   workerId: z.string().uuid(),
@@ -29,7 +40,7 @@ export const WorkerManifestSchema = z.object({
   ),
   network: z.object({
     default: z.enum(["deny", "allow"]),
-    allow: z.array(z.string()),
+    allow: z.array(NetworkAllowEntrySchema),
   }),
   limits: z.object({
     timeoutSeconds: z.number().int().positive(),

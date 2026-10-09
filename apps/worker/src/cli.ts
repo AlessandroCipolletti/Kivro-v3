@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { parseWorkerManifest } from "@kivro/contracts";
 import { buildWorkerManifestTemplate } from "@kivro/capability-publish";
+import { validateExecutionPreflight } from "@kivro/policy-engine";
+import { buildDockerSandboxSpec } from "@kivro/sandbox";
+import { isGlobalDispatchEnabled } from "@kivro/platform-policy";
 import { generateDeviceKeyPair } from "@kivro/crypto";
 import { verifyWorkerManifestSkillHashes } from "@kivro/capability-publish";
 import { hashOpenClawSkill } from "@kivro/openclaw-adapter";
@@ -16,7 +20,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const WORKER_VERSION = "0.0.0-m03";
+const WORKER_VERSION = "0.0.0-m04";
 
 function runtimeRoot(): string {
   const configured = process.env.KIVRO_RUNTIME_ROOT ?? "~/.kivro/runtime";
@@ -51,12 +55,33 @@ program
               compatibility,
             },
             { name: "docker_socket", status: dockerOk ? "PASS" : "WARN" },
+            {
+              name: "global_dispatch",
+              status: isGlobalDispatchEnabled() ? "PASS" : "WARN",
+              enabled: isGlobalDispatchEnabled(),
+            },
+            {
+              name: "cloud_environment",
+              status: "PASS",
+              cloudUrl: process.env.KIVRO_CLOUD_URL ?? "http://localhost:3001",
+              nodeEnv: process.env.NODE_ENV ?? "development",
+            },
           ],
         },
         null,
         2,
       ),
     );
+  });
+
+program
+  .command("sandbox-spec")
+  .description("Print Docker sandbox spec for a manifest (§16/§21)")
+  .requiredOption("--file <path>", "Path to worker manifest JSON file")
+  .action((opts: { file: string }) => {
+    const raw = fs.readFileSync(opts.file, "utf8");
+    const manifest = parseWorkerManifest(JSON.parse(raw));
+    console.log(JSON.stringify(buildDockerSandboxSpec(manifest), null, 2));
   });
 
 program
@@ -84,6 +109,35 @@ program
       })),
     });
     console.log(JSON.stringify(manifest, null, 2));
+  });
+
+program
+  .command("policy-check")
+  .description("Validate manifest sandbox/network/tool policy (§16–§21)")
+  .requiredOption("--file <path>", "Path to worker manifest JSON file")
+  .action(async (opts: { file: string }) => {
+    const raw = fs.readFileSync(opts.file, "utf8");
+    const manifest = parseWorkerManifest(JSON.parse(raw));
+    const preflight = validateExecutionPreflight(manifest);
+    const adapter = await createOpenClawAdapter();
+    const env = await adapter.buildWorkerEnvironment(manifest);
+    const envReport = await adapter.validateWorkerEnvironment(env);
+    const ok = preflight.ok && envReport.ok;
+    console.log(
+      JSON.stringify(
+        {
+          ok,
+          preflight,
+          environment: envReport,
+          configPath: env.configPath,
+        },
+        null,
+        2,
+      ),
+    );
+    if (!ok) {
+      process.exit(1);
+    }
   });
 
 program
