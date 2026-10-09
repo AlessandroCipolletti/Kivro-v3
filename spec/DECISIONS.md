@@ -542,3 +542,15 @@ greenfield.
 **Context:** M12 maps 218 requirements across Worker health, metrics, security warnings, and emergency controls; much of §369–§372 was partially covered by M02 `doctor`/`scan`.
 
 **Decision:** M12 adds `@kivro/seller-health` (deterministic warnings, job metrics, heartbeat ingestion), seller web `/seller/dashboard`, `POST /worker/heartbeat`, web emergency pause with capability manual pause + `SellerProfile.marketplaceEmergencyPause`, and Worker CLI `health` / `pause --all` / `resume --all` with persisted local pause in `@kivro/worker-store`. Acceptance gates via `pnpm verify:m12`. Rich capability-level dependency health, full health-history retention policy, and signed Worker request auth remain follow-up.
+
+## DEC-M12-002 — M12 hardening pass (pause propagation + dashboard depth)
+
+**Context:** Initial M12 MVP left `summarizeMarketplaceAvailability` without emergency/security gates; cloud/local pause races and §376–§392 rows were largely open.
+
+**Decision:** Hardening wires `evaluateCapabilityAvailability` into marketplace/agent availability, adds cloud↔local pause sync (`marketplaceControl`, `GLOBAL_MARKETPLACE_PAUSE`, Worker local store sync), capability-level dashboard health + per-capability pause, resume blocked on critical security warnings, bounded health-event retention, orchestration planner excludes non-accepting capabilities. **§393 signed Worker auth** remains with DEC-M07-002 follow-up (not M13+ product scope).
+
+## DEC-M12-003 — Platform security pause (§393)
+
+**Context:** Master Spec §393 requires automatic PLATFORM_SECURITY pause that sellers cannot clear with a simple resume while the blocking condition persists.
+
+**Decision:** `SellerProfile.platformSecurityPause*` is set from critical Worker telemetry via heartbeat (`activatePlatformSecurityPause`), clears automatically when telemetry recovers (`tryClearPlatformSecurityPause`). Emergency/capability resume returns `409 PLATFORM_SECURITY_PAUSE`. Worker request signing remains DEC-M07-002 follow-up.

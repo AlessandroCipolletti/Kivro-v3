@@ -34,6 +34,7 @@ export {
   type BuyerSchedulingPhase,
 } from "./buyer-job-scheduling-view.js";
 export { expireOverdueScheduledJobs, runSchedulingSweeps } from "./scheduled-sweeps.js";
+export { expireQueuedJobsWhileAcceptanceBlocked } from "./queue-pause-expiry.js";
 export {
   computeScheduleWaitDeadline,
   maxScheduledReservationsPerWindow,

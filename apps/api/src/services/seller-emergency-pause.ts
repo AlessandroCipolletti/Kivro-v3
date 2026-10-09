@@ -52,7 +52,12 @@ export async function activateSellerEmergencyPause(
         eventType: "EMERGENCY_PAUSE",
         severity: "WARNING",
         summary: "Seller activated emergency pause — new jobs disabled",
-        payload: { source: input.source, capabilityIds: pausedCapabilityIds },
+        payload: {
+          scope: "ALL",
+          source: input.source,
+          actorUserId: input.actorUserId,
+          capabilityIds: pausedCapabilityIds,
+        },
       },
     });
   }
@@ -69,6 +74,9 @@ export async function resumeSellerEmergencyPause(
   });
   if (!profile) {
     return { error: "NOT_FOUND" };
+  }
+  if (profile.platformSecurityPause) {
+    return { error: "PLATFORM_SECURITY_PAUSE" };
   }
   if (!profile.marketplaceEmergencyPause) {
     return { ok: true, resumedCapabilityIds: [] };

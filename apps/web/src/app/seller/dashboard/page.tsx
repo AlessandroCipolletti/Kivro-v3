@@ -4,25 +4,39 @@ import { API_BASE } from "@/lib/kivro-api";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
+type CapabilityRow = {
+  id: string;
+  slug: string;
+  name: string;
+  healthLabel: string;
+  detail: string | null;
+  accepting: boolean;
+  globalPauseBlocksResume: boolean;
+};
+
 type Dashboard = {
   displayName: string;
+  runningJobsCount: number;
   emergencyPause: { active: boolean; pausedAt: string | null; source: string | null };
+  platformSecurityPause: { active: boolean; reason: string | null; pausedAt: string | null };
+  workerVersionPolicy: { minimumSecurityVersion: string; latestSupportedVersion: string };
   workers: Array<{
     id: string;
     name: string;
     healthLabel: string;
     workerVersion: string;
-    lastSeenAt: string | null;
+    dockerOk: boolean | null;
+    sandboxOk: boolean | null;
     warnings: Array<{ severity: string; title: string; blocking: boolean }>;
   }>;
-  capabilities: Array<{ slug: string; name: string; scheduleMode: string; workerOnline: boolean }>;
+  capabilities: CapabilityRow[];
   jobMetrics: {
     runningCount: number;
     queuedCount: number;
     failureRate: number | null;
     lastSuccessAt: string | null;
   };
-  healthTimeline: Array<{ summary: string; severity: string; createdAt: string }>;
+  healthTimeline: Array<{ summary: string; severity: string; createdAt: string; eventType: string }>;
 };
 
 export default function SellerDashboardPage() {
@@ -53,6 +67,16 @@ export default function SellerDashboardPage() {
     if (!data) {
       return;
     }
+    if (data.platformSecurityPause.active) {
+      setError("Platform security pause is active — fix the reported issue before changing pause state.");
+      return;
+    }
+    if (
+      !data.emergencyPause.active &&
+      !window.confirm("Pause all new marketplace jobs?\n\nRunning jobs will continue.")
+    ) {
+      return;
+    }
     setBusy(true);
     const path = data.emergencyPause.active
       ? "/seller/emergency-pause/resume"
@@ -62,8 +86,36 @@ export default function SellerDashboardPage() {
       credentials: "include",
     });
     setBusy(false);
+    if (res.status === 409) {
+      const body = (await res.json().catch(() => ({}))) as { warnings?: string[] };
+      setError(
+        body.warnings?.length
+          ? `Resume blocked: ${body.warnings.join("; ")}`
+          : "Resume blocked by security policy.",
+      );
+      return;
+    }
     if (!res.ok) {
       setError("Emergency pause action failed.");
+      return;
+    }
+    await load();
+  }
+
+  async function toggleCapabilityPause(cap: CapabilityRow) {
+    if (data?.emergencyPause.active) {
+      setError("Remove global emergency pause before resuming individual capabilities.");
+      return;
+    }
+    setBusy(true);
+    const pause = cap.accepting;
+    const path = pause
+      ? `/seller/capabilities/${cap.id}/schedule/pause`
+      : `/seller/capabilities/${cap.id}/schedule/resume`;
+    const res = await fetch(`${API_BASE}${path}`, { method: "POST", credentials: "include" });
+    setBusy(false);
+    if (!res.ok) {
+      setError("Capability pause action failed.");
       return;
     }
     await load();
@@ -83,23 +135,38 @@ export default function SellerDashboardPage() {
 
       {data && (
         <>
+          {data.platformSecurityPause.active && (
+            <section className="detail-panel form-error">
+              <h2>Platform security pause</h2>
+              <p>
+                Kivro blocked new jobs until this is resolved:{" "}
+                <strong>{data.platformSecurityPause.reason ?? "SECURITY"}</strong>
+              </p>
+              <p className="muted">Resume and emergency unpause are disabled until health recovers.</p>
+            </section>
+          )}
+
           <section className="detail-panel">
             <h2>{data.displayName}</h2>
             <p>
               Emergency pause:{" "}
               <strong>{data.emergencyPause.active ? "Active" : "Off"}</strong>
+              {data.emergencyPause.source && (
+                <span className="muted"> ({data.emergencyPause.source})</span>
+              )}
+            </p>
+            <p className="muted">
+              {data.runningJobsCount} job(s) currently running — emergency pause stops{" "}
+              <em>new</em> jobs only (§388).
             </p>
             <button
               type="button"
               className={data.emergencyPause.active ? "btn-secondary" : "btn-danger"}
-              disabled={busy}
+              disabled={busy || data.platformSecurityPause.active}
               onClick={() => void toggleEmergencyPause()}
             >
               {data.emergencyPause.active ? "Resume new jobs" : "Pause all new jobs"}
             </button>
-            <p className="muted">
-              Running jobs continue. Local CLI: <code>kivro-worker pause --all</code>
-            </p>
           </section>
 
           <section className="detail-panel">
@@ -108,7 +175,18 @@ export default function SellerDashboardPage() {
             <ul className="stack-list">
               {data.workers.map((w) => (
                 <li key={w.id}>
-                  <strong>{w.name}</strong> — {w.healthLabel} (v{w.workerVersion})
+                  <strong>{w.name}</strong> — {w.healthLabel} (v{w.workerVersion}
+                  {data.workerVersionPolicy && (
+                    <span className="muted">
+                      {" "}
+                      · min {data.workerVersionPolicy.minimumSecurityVersion} · latest{" "}
+                      {data.workerVersionPolicy.latestSupportedVersion}
+                    </span>
+                  )}
+                  )
+                  <div className="muted">
+                    Docker {w.dockerOk ? "OK" : "—"} · Sandbox {w.sandboxOk ? "OK" : "—"}
+                  </div>
                   {w.warnings.length > 0 && (
                     <ul>
                       {w.warnings.map((warn, i) => (
@@ -118,6 +196,28 @@ export default function SellerDashboardPage() {
                       ))}
                     </ul>
                   )}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="detail-panel">
+            <h2>Capabilities</h2>
+            <ul className="stack-list">
+              {data.capabilities.map((c) => (
+                <li key={c.id}>
+                  <strong>{c.name}</strong> — {c.healthLabel}
+                  {c.detail && <span className="muted"> · {c.detail}</span>}
+                  <div>
+                    <button
+                      type="button"
+                      className="btn-secondary"
+                      disabled={busy || (c.globalPauseBlocksResume && !c.accepting)}
+                      onClick={() => void toggleCapabilityPause(c)}
+                    >
+                      {c.accepting ? "Pause capability" : "Resume capability"}
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -134,37 +234,20 @@ export default function SellerDashboardPage() {
                 ? `${Math.round(data.jobMetrics.failureRate * 100)}%`
                 : "—"}
             </p>
-            <p className="muted">
-              Last success: {data.jobMetrics.lastSuccessAt ?? "—"}
-            </p>
-          </section>
-
-          <section className="detail-panel">
-            <h2>Capabilities</h2>
-            <ul className="stack-list">
-              {data.capabilities.map((c) => (
-                <li key={c.slug}>
-                  {c.name} — schedule {c.scheduleMode}
-                  {c.workerOnline ? " · worker online" : " · worker offline"}
-                </li>
-              ))}
-            </ul>
+            <p className="muted">Last success: {data.jobMetrics.lastSuccessAt ?? "—"}</p>
           </section>
 
           <section className="detail-panel">
             <h2>Health timeline</h2>
             <ul className="stack-list">
-              {data.healthTimeline.map((e, i) => (
-                <li key={i}>
-                  <span className="muted">{e.createdAt}</span> [{e.severity}] {e.summary}
+              {data.healthTimeline.map((e) => (
+                <li key={`${e.createdAt}-${e.summary}`}>
+                  <span className="muted">{e.createdAt}</span> [{e.eventType}/{e.severity}]{" "}
+                  {e.summary}
                 </li>
               ))}
             </ul>
           </section>
-
-          <p className="muted">
-            Running-job pause controls: seller API <code>/seller/jobs/control-ui</code>
-          </p>
         </>
       )}
     </main>

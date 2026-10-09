@@ -1,5 +1,6 @@
 import type { PrismaClient } from "@kivro/database";
 import { assertJobTransition } from "@kivro/domain";
+import { expireQueuedJobsWhileAcceptanceBlocked } from "./queue-pause-expiry.js";
 import { promoteDueScheduledJobs } from "./scheduled-jobs.js";
 
 export async function expireOverdueScheduledJobs(
@@ -42,13 +43,18 @@ export async function runSchedulingSweeps(
   promotedScanned: number;
   expired: number;
   expiredScanned: number;
+  queueCancelled: number;
+  queueCancelledJobIds: string[];
 }> {
   const promoted = await promoteDueScheduledJobs(prisma);
   const expired = await expireOverdueScheduledJobs(prisma);
+  const queueExpiry = await expireQueuedJobsWhileAcceptanceBlocked(prisma);
   return {
     promoted: promoted.promoted,
     promotedScanned: promoted.scanned,
     expired: expired.expired,
     expiredScanned: expired.scanned,
+    queueCancelled: queueExpiry.cancelledJobIds.length,
+    queueCancelledJobIds: queueExpiry.cancelledJobIds,
   };
 }

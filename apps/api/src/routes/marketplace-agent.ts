@@ -379,5 +379,6 @@ async function loadOrchestrationListings(): Promise<OrchestrationListingRow[]> {
       }
       return { ...row, currentVersionId: vid };
     })
-    .filter((r): r is OrchestrationListingRow => r != null);
+    .filter((r): r is OrchestrationListingRow => r != null)
+    .filter((row) => row.accepting !== false);
 }

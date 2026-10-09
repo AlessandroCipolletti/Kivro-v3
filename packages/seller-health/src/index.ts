@@ -13,4 +13,14 @@ export {
   type SecurityWarning,
 } from "./security-warnings.js";
 export { deriveWorkerHealthLabel, type WorkerHealthLabel } from "./worker-summary.js";
+export { describeCapabilityHealth, type CapabilityHealthLabel } from "./capability-health.js";
+export {
+  deriveMarketplaceControlState,
+  type MarketplaceControlState,
+} from "./marketplace-control.js";
+export { MAX_HEALTH_EVENTS_PER_DEVICE, shouldRecordSecurityEvent } from "./health-history.js";
+export {
+  pickPlatformSecurityPauseTrigger,
+  platformSecurityPauseCanClear,
+} from "./platform-security.js";
 export { computeJobMetrics, type JobMetricsWindow } from "./job-metrics.js";

@@ -17,6 +17,9 @@ run("pnpm", [
   "run",
   "packages/seller-health/src/security-warnings.test.ts",
   "packages/seller-health/src/job-metrics.test.ts",
+  "packages/seller-health/src/capability-health.test.ts",
+  "packages/seller-health/src/marketplace-control.test.ts",
+  "packages/seller-health/src/platform-security.test.ts",
   "security/tests/acceptance-m12.test.ts",
 ]);
 

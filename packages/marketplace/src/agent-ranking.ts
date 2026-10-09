@@ -84,7 +84,9 @@ function scoreRow(
     why.push(`Listed at ${(price / 100).toFixed(2)} USD`);
   }
   let limitation: string | undefined;
-  if (row.availabilityStatus !== "ONLINE" || !row.accepting) {
+  if (row.availabilityStatus === "PAUSED" || !row.accepting) {
+    limitation = "Seller paused or blocked new marketplace jobs";
+  } else if (row.availabilityStatus !== "ONLINE") {
     limitation = "Not accepting immediate runs; schedule or try later";
   }
   if (why.length === 0) {

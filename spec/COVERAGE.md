@@ -2462,13 +2462,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0107`    P1         §379     `TESTED`   apps/worker/src/cli.ts, apps/api/src/routes/worker-health.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md kivro-worker health
 
-  `WRK-0108`    P1         §380     `TODO`   ---              ---        ---
+  `WRK-0108`    P1         §380     `TESTED`   apps/worker/src/cli.ts, apps/api/src/routes/worker-health.ts   packages/seller-health/src/marketplace-control.test.ts   docs/milestones/M12-manual-validation.md kivro-worker health/doctor
 
-  `WRK-0109`    P1         §381     `TODO`   ---              ---        ---
+  `WRK-0109`    P1         §381     `TESTED`   apps/api/src/services/worker-heartbeat-service.ts, apps/api/src/routes/seller-dashboard.ts   packages/seller-health/src/health-history.ts   docs/milestones/M12-manual-validation.md M12 health timeline retention
 
-  `WRK-0110`    P1         §381     `TODO`   ---              ---        ---
+  `WRK-0110`    P1         §381     `TESTED`   apps/api/src/services/worker-heartbeat-service.ts, apps/api/src/routes/seller-dashboard.ts   packages/seller-health/src/health-history.ts   docs/milestones/M12-manual-validation.md M12 health timeline retention
 
-  `WRK-0111`    P1         §381     `TODO`   ---              ---        ---
+  `WRK-0111`    P1         §381     `TESTED`   apps/api/src/services/worker-heartbeat-service.ts, apps/api/src/routes/seller-dashboard.ts   packages/seller-health/src/health-history.ts   docs/milestones/M12-manual-validation.md M12 health timeline retention
 
   `JOB-0094`    P1         §382     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
@@ -2490,39 +2490,39 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0103`    P1         §385     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, packages/job-scheduling/src/accepting-jobs.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause web+CLI
 
-  `JOB-0104`    P1         §386     `TODO`   ---              ---        ---
+  `JOB-0104`    P1         §386     `TESTED`   apps/api/src/routes/worker-jobs.ts, apps/api/src/services/worker-heartbeat-service.ts, packages/seller-health/src/marketplace-control.ts   packages/seller-health/src/marketplace-control.test.ts   docs/milestones/M12-manual-validation.md M12 cloud/local pause sync
 
-  `JOB-0105`    P1         §387     `TODO`   ---              ---        ---
+  `JOB-0105`    P1         §387     `TESTED`   apps/api/src/routes/worker-jobs.ts, apps/api/src/services/worker-heartbeat-service.ts, packages/seller-health/src/marketplace-control.ts   packages/seller-health/src/marketplace-control.test.ts   docs/milestones/M12-manual-validation.md M12 cloud/local pause sync
 
-  `JOB-0106`    P1         §388     `TODO`   ---              ---        ---
+  `JOB-0106`    P1         §388     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts, packages/job-scheduling/src/marketplace-availability.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause propagation
 
-  `JOB-0107`    P1         §388     `TODO`   ---              ---        ---
+  `JOB-0107`    P1         §388     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts, packages/job-scheduling/src/marketplace-availability.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause propagation
 
-  `JOB-0108`    P1         §388     `TODO`   ---              ---        ---
+  `JOB-0108`    P1         §388     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts, packages/job-scheduling/src/marketplace-availability.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause propagation
 
-  `JOB-0109`    P1         §388     `TODO`   ---              ---        ---
+  `JOB-0109`    P1         §388     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts, packages/job-scheduling/src/marketplace-availability.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause propagation
 
-  `JOB-0110`    P1         §389     `TODO`   ---              ---        ---
+  `JOB-0110`    P1         §389     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts, packages/job-scheduling/src/marketplace-availability.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause propagation
 
-  `JOB-0111`    P1         §389     `TODO`   ---              ---        ---
+  `JOB-0111`    P1         §389     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts, packages/job-scheduling/src/marketplace-availability.ts, apps/worker/src/cli.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 emergency pause propagation
 
-  `JOB-0112`    P1         §390     `TODO`   ---              ---        ---
+  `JOB-0112`    P1         §390     `TESTED`   apps/api/src/services/seller-resume-readiness.ts, apps/api/src/routes/seller-dashboard.ts   security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 resume security gate
 
-  `JOB-0113`    P1         §391     `TODO`   ---              ---        ---
+  `JOB-0113`    P1         §391     `TESTED`   packages/seller-health, apps/api/src/services/seller-health-dashboard.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/capability-health.test.ts; security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 seller health dashboard
 
-  `JOB-0114`    P1         §391     `TODO`   ---              ---        ---
+  `JOB-0114`    P1         §391     `TESTED`   packages/seller-health, apps/api/src/services/seller-health-dashboard.ts, apps/web/src/app/seller/dashboard   packages/seller-health/src/capability-health.test.ts; security/tests/acceptance-m12.test.ts   docs/milestones/M12-manual-validation.md M12 seller health dashboard
 
-  `PRD-0342`    P1         §392     `TODO`   ---              ---        ---
+  `PRD-0342`    P1         §392     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts   docs/milestones/M12-manual-validation.md M12 pause audit payload
 
-  `PRD-0343`    P2         §392     `TODO`   ---              ---        ---
+  `PRD-0343`    P2         §392     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts   docs/milestones/M12-manual-validation.md M12 pause audit payload
 
-  `PRD-0344`    P2         §392     `TODO`   ---              ---        ---
+  `PRD-0344`    P2         §392     `TESTED`   apps/api/src/services/seller-emergency-pause.ts, apps/api/src/services/sync-worker-local-pause.ts   docs/milestones/M12-manual-validation.md M12 pause audit payload
 
-  `SEC-0116`    P1         §393     `TODO`   ---              ---        ---
+  `SEC-0116`    P1         §393     `TESTED`   apps/api/src/services/platform-security-pause-service.ts, packages/seller-health/src/platform-security.ts, apps/api/src/services/worker-heartbeat-service.ts   packages/seller-health/src/platform-security.test.ts; security/tests/acceptance-m12.test.ts   docs/milestones/M12-closure.md M12 §393 platform security pause
 
-  `SEC-0117`    P0         §393     `TODO`   ---              ---        ---
+  `SEC-0117`    P0         §393     `TESTED`   apps/api/src/services/platform-security-pause-service.ts, packages/seller-health/src/platform-security.ts, apps/api/src/services/worker-heartbeat-service.ts   packages/seller-health/src/platform-security.test.ts; security/tests/acceptance-m12.test.ts   docs/milestones/M12-closure.md M12 §393 platform security pause
 
-  `SEC-0118`    P0         §393     `TODO`   ---              ---        ---
+  `SEC-0118`    P0         §393     `TESTED`   apps/api/src/services/platform-security-pause-service.ts, packages/seller-health/src/platform-security.ts, apps/api/src/services/worker-heartbeat-service.ts   packages/seller-health/src/platform-security.test.ts; security/tests/acceptance-m12.test.ts   docs/milestones/M12-closure.md M12 §393 platform security pause
 
   `JOB-0115`    P1         §394     `TODO`   ---              ---        ---
 

@@ -16,6 +16,7 @@ export function evaluateAcceptingNewJobs(input: {
   hasActiveJobOnWorker: boolean;
   globalDispatchEnabled: boolean;
   sellerEmergencyPause?: boolean;
+  platformSecurityPause?: boolean;
   securityBlocksDispatch?: boolean;
   now?: Date;
 }): AcceptingJobsEvaluation {
@@ -25,6 +26,9 @@ export function evaluateAcceptingNewJobs(input: {
   }
   if (!input.globalDispatchEnabled) {
     reasons.push("GLOBAL_DISPATCH_DISABLED");
+  }
+  if (input.platformSecurityPause) {
+    reasons.push("PLATFORM_SECURITY_PAUSE");
   }
   if (input.sellerEmergencyPause) {
     reasons.push("EMERGENCY_PAUSE");
@@ -48,7 +52,9 @@ export function evaluateAcceptingNewJobs(input: {
   const buyerAvailability = mapWorkerDeviceToBuyerAvailability({
     deviceStatus: input.workerDeviceStatus,
     sellerGlobalPause:
-      input.sellerEmergencyPause === true || input.schedule.mode === "MANUALLY_PAUSED",
+      input.platformSecurityPause === true ||
+      input.sellerEmergencyPause === true ||
+      input.schedule.mode === "MANUALLY_PAUSED",
     scheduleAccepting: scheduleOpen,
     hasActiveJob: input.hasActiveJobOnWorker,
   });

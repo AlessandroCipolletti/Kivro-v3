@@ -38,7 +38,13 @@ export async function evaluateCapabilityAvailability(
   const capability = await prisma.capability.findUnique({
     where: { id: capabilityId },
     include: {
-      sellerProfile: { select: { marketplaceEmergencyPause: true } },
+      sellerProfile: {
+        select: {
+          marketplaceEmergencyPause: true,
+          platformSecurityPause: true,
+          platformSecurityPauseReason: true,
+        },
+      },
       currentVersion: {
         include: {
           bindings: { include: { workerDevice: true } },
@@ -67,6 +73,8 @@ export async function evaluateCapabilityAvailability(
     report: healthReport,
     deviceStatus: device?.status ?? "OFFLINE",
     sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
+    platformSecurityPause: capability.sellerProfile.platformSecurityPause,
+    platformSecurityReason: capability.sellerProfile.platformSecurityPauseReason,
   });
   const evaluation = evaluateAcceptingNewJobs({
     capabilityPublished: capability.status === "PUBLISHED",
@@ -75,6 +83,7 @@ export async function evaluateCapabilityAvailability(
     hasActiveJobOnWorker: hasActiveJob,
     globalDispatchEnabled: isGlobalDispatchEnabled(),
     sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
+    platformSecurityPause: capability.sellerProfile.platformSecurityPause,
     securityBlocksDispatch: hasBlockingSecurityWarning(securityWarnings),
   });
   const nextAvailableAt = computeNextAvailableAt(schedule);

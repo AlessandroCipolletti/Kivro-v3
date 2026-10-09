@@ -24,7 +24,11 @@ Expect local Docker/OpenClaw checks and cloud heartbeat when paired.
 - **Pause all new jobs** → capabilities stop accepting; buyer run flow shows not accepting
 - **Resume new jobs** clears web emergency pause
 
-## 3. Local emergency pause (§382–§384)
+## 3. Agent / marketplace respect pause
+
+- With emergency pause on, marketplace search and `/marketplace/agent/discover` should show capabilities as not accepting (or exclude from orchestration plans).
+
+## 4. Local emergency pause (§382–§384)
 
 ```bash
 kivro-worker pause --all
@@ -32,6 +36,10 @@ kivro-worker health
 ```
 
 Poll should return no new offers while pause active. `kivro-worker resume --all` clears local pause.
+
+## 5. Cloud pause while Worker offline (§386)
+
+- Web **Pause all new jobs** while Worker is offline → buyer cannot submit; when Worker runs `health` or poll, local pause syncs if needed.
 
 ## Automated gate
 

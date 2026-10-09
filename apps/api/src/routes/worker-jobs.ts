@@ -19,6 +19,7 @@ import {
   workerAcknowledgeJobPaused,
   workerAcknowledgeJobResumed,
 } from "@kivro/job-control";
+import { deriveMarketplaceControlState, parseWorkerHealthReport } from "@kivro/seller-health";
 import { Hono } from "hono";
 import type { AppEnv } from "../types.js";
 import { randomUUID } from "node:crypto";
@@ -38,21 +39,29 @@ export function workerJobRoutes(): Hono<AppEnv> {
     const prisma = getPrismaClient();
     const device = await prisma.workerDevice.findUnique({
       where: { id: workerDeviceId },
-      include: { sellerProfile: { select: { marketplaceEmergencyPause: true } } },
+      include: {
+        sellerProfile: {
+          select: { marketplaceEmergencyPause: true, platformSecurityPause: true },
+        },
+      },
     });
     if (!device || device.status === "REVOKED") {
       return c.json({ error: "FORBIDDEN" }, 403);
     }
+    const report = parseWorkerHealthReport(device.lastHealthReport);
+    const marketplaceControl = deriveMarketplaceControlState({
+      cloudEmergencyPause: device.sellerProfile.marketplaceEmergencyPause,
+      localPauseReported: report?.globalPauseActive === true,
+      platformSecurityPause: device.sellerProfile.platformSecurityPause,
+    });
     await prisma.workerDevice.update({
       where: { id: device.id },
-      data: { status: "ONLINE", lastSeenAt: new Date() },
+      data: {
+        status: marketplaceControl.dispatchBlocked ? "OFFLINE" : "ONLINE",
+        lastSeenAt: new Date(),
+      },
     });
-    const pauseBlocksOffers =
-      device.sellerProfile.marketplaceEmergencyPause ||
-      (device.lastHealthReport &&
-        typeof device.lastHealthReport === "object" &&
-        (device.lastHealthReport as { globalPauseActive?: boolean }).globalPauseActive === true);
-    const offers = pauseBlocksOffers
+    const offers = marketplaceControl.dispatchBlocked
       ? []
       : await prisma.job.findMany({
           where: { workerDeviceId, status: "DISPATCHED" },
@@ -66,6 +75,15 @@ export function workerJobRoutes(): Hono<AppEnv> {
       take: 10,
     });
     const commands: unknown[] = [];
+    if (marketplaceControl.requiresLocalPauseSync) {
+      commands.push({
+        type: "GLOBAL_MARKETPLACE_PAUSE",
+        protocolVersion: 1,
+        source: "WEB",
+        cloudEmergencyPause: marketplaceControl.cloudEmergencyPause,
+        requestedAt: new Date().toISOString(),
+      });
+    }
     for (const job of controlJobs) {
       if (job.status === "PAUSE_REQUESTED" && job.activeControlCommandId) {
         commands.push({
@@ -101,6 +119,7 @@ export function workerJobRoutes(): Hono<AppEnv> {
         paymentSecured: true as const,
       })),
       commands,
+      marketplaceControl,
     });
   });
 

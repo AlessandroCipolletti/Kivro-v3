@@ -1,11 +1,26 @@
 import type { PrismaClient } from "@kivro/database";
-import { parseScheduleConfig } from "@kivro/job-scheduling";
+import { evaluateCapabilityAvailability } from "@kivro/job-scheduling";
 import {
   buildSecurityWarnings,
   computeJobMetrics,
+  describeCapabilityHealth,
   deriveWorkerHealthLabel,
+  LATEST_SUPPORTED_WORKER_VERSION,
+  MIN_SECURITY_WORKER_VERSION,
   parseWorkerHealthReport,
 } from "@kivro/seller-health";
+
+const ACTIVE_JOB_STATUSES = [
+  "DISPATCHED",
+  "ACCEPTED",
+  "STARTING",
+  "RUNNING",
+  "PAUSE_REQUESTED",
+  "PAUSED",
+  "RESUME_REQUESTED",
+  "SECURITY_PAUSED",
+  "UPLOADING_RESULT",
+] as const;
 
 export async function buildSellerHealthDashboard(
   prisma: PrismaClient,
@@ -17,13 +32,6 @@ export async function buildSellerHealthDashboard(
       workerDevices: true,
       capabilities: {
         where: { status: { in: ["PUBLISHED", "PAUSED"] } },
-        include: {
-          currentVersion: {
-            include: {
-              bindings: { include: { workerDevice: true } },
-            },
-          },
-        },
       },
     },
   });
@@ -37,6 +45,8 @@ export async function buildSellerHealthDashboard(
       report,
       deviceStatus: device.status,
       sellerEmergencyPause: profile.marketplaceEmergencyPause,
+      platformSecurityPause: profile.platformSecurityPause,
+      platformSecurityReason: profile.platformSecurityPauseReason,
     });
     const label = deriveWorkerHealthLabel({
       deviceStatus: device.status,
@@ -55,25 +65,38 @@ export async function buildSellerHealthDashboard(
       lastSeenAt: device.lastSeenAt?.toISOString() ?? null,
       healthLabel: label,
       lastHeartbeatAt: report?.reportedAt ?? null,
-      report,
+      dockerOk: report?.dockerOk ?? null,
+      sandboxOk: report?.sandboxOk ?? null,
       warnings,
     };
   });
 
-  const capabilityHealth = profile.capabilities.map((cap) => {
-    const binding = cap.currentVersion?.bindings[0];
-    const device = binding?.workerDevice;
-    const schedule = parseScheduleConfig(cap);
-    return {
+  const capabilityHealth = [];
+  for (const cap of profile.capabilities) {
+    const availability = await evaluateCapabilityAvailability(prisma, cap.id);
+    if ("error" in availability) {
+      continue;
+    }
+    const described = describeCapabilityHealth({
+      buyerAvailability: availability.buyerAvailability,
+      accepting: availability.accepting,
+      reasons: availability.reasons,
+    });
+    capabilityHealth.push({
       id: cap.id,
       slug: cap.slug,
       name: cap.name,
       status: cap.status,
-      scheduleMode: schedule.mode,
-      workerDeviceId: device?.id ?? null,
-      workerOnline: device?.status === "ONLINE",
-    };
-  });
+      healthLabel: described.healthLabel,
+      detail: described.detail,
+      accepting: availability.accepting,
+      buyerAvailability: availability.buyerAvailability,
+      reasons: availability.reasons,
+      nextAvailableAt: availability.nextAvailableAt ?? null,
+      globalPauseBlocksResume:
+        profile.marketplaceEmergencyPause || profile.platformSecurityPause,
+    });
+  }
 
   const jobs = await prisma.job.findMany({
     where: {
@@ -90,16 +113,23 @@ export async function buildSellerHealthDashboard(
   });
 
   const metrics = computeJobMetrics(jobs);
+  const runningJobsCount = await prisma.job.count({
+    where: {
+      capabilityVersion: { capability: { sellerProfileId } },
+      status: { in: [...ACTIVE_JOB_STATUSES] },
+    },
+  });
 
   const events = await prisma.workerHealthEvent.findMany({
     where: { workerDevice: { sellerProfileId } },
     orderBy: { createdAt: "desc" },
-    take: 40,
+    take: 50,
     select: {
       id: true,
       eventType: true,
       severity: true,
       summary: true,
+      payload: true,
       createdAt: true,
       workerDeviceId: true,
     },
@@ -114,6 +144,16 @@ export async function buildSellerHealthDashboard(
         pausedAt: profile.marketplaceEmergencyPausedAt?.toISOString() ?? null,
         source: profile.marketplaceEmergencyPauseSource,
       },
+      platformSecurityPause: {
+        active: profile.platformSecurityPause,
+        reason: profile.platformSecurityPauseReason,
+        pausedAt: profile.platformSecurityPausedAt?.toISOString() ?? null,
+      },
+      workerVersionPolicy: {
+        minimumSecurityVersion: MIN_SECURITY_WORKER_VERSION,
+        latestSupportedVersion: LATEST_SUPPORTED_WORKER_VERSION,
+      },
+      runningJobsCount,
       workers: deviceSummaries,
       capabilities: capabilityHealth,
       jobMetrics: metrics,

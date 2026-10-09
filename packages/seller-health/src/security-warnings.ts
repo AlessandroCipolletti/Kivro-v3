@@ -47,11 +47,27 @@ export function buildSecurityWarnings(input: {
   report: WorkerHealthReport | null;
   deviceStatus: string;
   sellerEmergencyPause: boolean;
+  platformSecurityPause?: boolean;
+  platformSecurityReason?: string | null;
   now?: Date;
 }): SecurityWarning[] {
   const now = (input.now ?? new Date()).toISOString();
   const warnings: SecurityWarning[] = [];
   const report = input.report;
+
+  if (input.platformSecurityPause) {
+    warnings.push({
+      severity: "CRITICAL",
+      code: "PLATFORM_SECURITY_PAUSE",
+      title: "Platform security pause active",
+      description:
+        input.platformSecurityReason ??
+        "Kivro blocked new jobs until the reported security condition is resolved.",
+      blocking: true,
+      requiredAction: "Fix the security issue reported on the dashboard; manual resume is blocked.",
+      detectedAt: now,
+    });
+  }
 
   if (input.sellerEmergencyPause) {
     warnings.push({

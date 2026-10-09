@@ -88,6 +88,12 @@ export function platformAdminRoutes(): Hono {
         paymentsReleased += 1;
       }
     }
+    for (const jobId of result.queueCancelledJobIds) {
+      const reconciled = await reconcileJobPaymentAfterTerminal(prisma, jobId);
+      if (reconciled.released) {
+        paymentsReleased += 1;
+      }
+    }
     return c.json({ ...result, paymentsReleased });
   });
 

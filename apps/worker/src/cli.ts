@@ -54,25 +54,28 @@ program
   .command("doctor")
   .description("Environment and security prerequisite checks (§57)")
   .action(async () => {
-    const adapter = await createOpenClawAdapter();
-    const detection = await adapter.detect();
-    const compatibility = await adapter.validateCompatibility();
-    const dockerOk = fs.existsSync("/var/run/docker.sock");
+    const snapshot = await collectLocalHealthSnapshot();
     console.log(
       JSON.stringify(
         {
           checks: [
             {
-              name: "openclaw",
-              status: detection.installed ? "PASS" : "WARN",
-              detection,
+              name: "marketplace_pause",
+              status: snapshot.globalPauseActive ? "WARN" : "PASS",
+              globalPauseActive: snapshot.globalPauseActive,
             },
             {
-              name: "openclaw_compatibility",
-              status: compatibility.compatible ? "PASS" : "FAIL",
-              compatibility,
+              name: "docker_sandbox",
+              status: snapshot.dockerOk && snapshot.sandboxOk ? "PASS" : "FAIL",
+              dockerOk: snapshot.dockerOk,
+              sandboxOk: snapshot.sandboxOk,
             },
-            { name: "docker_socket", status: dockerOk ? "PASS" : "WARN" },
+            {
+              name: "openclaw",
+              status: snapshot.openClawInstalled ? "PASS" : "WARN",
+              version: snapshot.openClawVersion,
+              compatible: snapshot.openClawCompatible,
+            },
             {
               name: "global_dispatch",
               status: isGlobalDispatchEnabled() ? "PASS" : "WARN",
@@ -85,6 +88,7 @@ program
               nodeEnv: process.env.NODE_ENV ?? "development",
             },
           ],
+          workerVersion: snapshot.workerVersion,
         },
         null,
         2,
@@ -410,6 +414,22 @@ jobCmd
     console.log(JSON.stringify({ jobId, resume: resumeResult }));
   });
 
+function applyCloudMarketplaceSync(store: ReturnType<typeof openWorkerStore>, cloud: unknown): void {
+  if (!cloud || typeof cloud !== "object") {
+    return;
+  }
+  const control = (cloud as { marketplaceControl?: { requiresLocalPauseSync?: boolean } })
+    .marketplaceControl;
+  if (control?.requiresLocalPauseSync) {
+    setWorkerGlobalPause(store, {
+      active: true,
+      pausedAt: new Date().toISOString(),
+      source: "WEB_SYNC",
+      reason: "cloud_emergency_pause",
+    });
+  }
+}
+
 async function collectLocalHealthSnapshot(): Promise<{
   workerVersion: string;
   openClawVersion: string | null;
@@ -455,6 +475,7 @@ program
         body: JSON.stringify(snapshot),
       });
       cloud = await res.json().catch(() => ({ error: "INVALID_JSON" }));
+      applyCloudMarketplaceSync(store, cloud);
     }
     console.log(
       JSON.stringify(
@@ -497,7 +518,16 @@ program
         body: JSON.stringify(snapshot),
       }).catch(() => undefined);
     }
-    console.log(JSON.stringify({ globalPause: true }));
+    const runningLocally = listLocalJobExecutionStates(store).filter((s) =>
+      ["RUNNING", "PAUSE_REQUESTED", "PAUSED", "RESUME_REQUESTED"].includes(s.status),
+    ).length;
+    console.log(
+      JSON.stringify({
+        globalPause: true,
+        runningJobsLocally: runningLocally,
+        note: "Paused new jobs; running jobs continue unless explicitly stopped (§388).",
+      }),
+    );
   });
 
 program
@@ -524,6 +554,39 @@ program
       }).catch(() => undefined);
     }
     console.log(JSON.stringify({ globalPause: false }));
+  });
+
+program
+  .command("stop")
+  .description("Destructive: stop all local job execution attempts (§388)")
+  .option("--all", "Stop every locally tracked running job")
+  .option("--confirm", "Required acknowledgement for destructive stop")
+  .action(async (opts: { all?: boolean; confirm?: boolean }) => {
+    if (!opts.all || !opts.confirm) {
+      console.error("Use: kivro-worker stop --all --confirm");
+      console.error("This does not replace cloud billing/settlement; cancel jobs in seller UI when needed.");
+      process.exit(1);
+    }
+    const store = openWorkerStore(runtimeRoot());
+    const adapter = await createOpenClawAdapter();
+    const active = listLocalJobExecutionStates(store).filter((s) =>
+      ["RUNNING", "PAUSE_REQUESTED", "PAUSED", "RESUME_REQUESTED"].includes(s.status),
+    );
+    for (const state of active) {
+      await adapter.cancel(state.attemptId);
+      setLocalJobExecutionState(store, {
+        ...state,
+        status: "CANCELLED",
+        updatedAt: new Date().toISOString(),
+        cloudSyncPending: true,
+      });
+    }
+    console.log(
+      JSON.stringify({
+        stoppedLocally: active.length,
+        note: "Running jobs default policy is pause-only; stop --all is destructive.",
+      }),
+    );
   });
 
 program.command("version").action(() => console.log(WORKER_VERSION));

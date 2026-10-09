@@ -36,6 +36,8 @@ export function workerHealthRoutes(): Hono<AppEnv> {
       healthLabel: result.healthLabel,
       blocking: result.blocking,
       warnings: result.warnings,
+      marketplaceControl: result.marketplaceControl,
+      platformSecurityPause: result.platformSecurityPause,
     });
   });
 
