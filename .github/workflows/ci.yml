@@ -26,3 +26,4 @@ jobs:
       - run: pnpm verify:m07
       - run: pnpm db:up && pnpm db:wait && pnpm db:migrate
       - run: pnpm verify:m08
+      - run: pnpm verify:m09

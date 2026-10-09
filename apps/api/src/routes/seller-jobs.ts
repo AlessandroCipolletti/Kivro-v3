@@ -14,6 +14,10 @@ import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
 import type { AppEnv } from "../types.js";
 import { reconcileJobPaymentAfterTerminal } from "@kivro/billing";
+import {
+  buyerCancelScheduledOrQueuedJob,
+  resolveBuyerSchedulingPhase,
+} from "@kivro/job-scheduling";
 import { randomUUID } from "node:crypto";
 
 export function sellerJobRoutes(): Hono<AppEnv> {
@@ -193,13 +197,46 @@ export function buyerJobRoutes(): Hono<AppEnv> {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
     const status: JobStatus = job.status;
-    const visible = buyerVisibleJobStatus(status);
+    const visible = buyerVisibleJobStatus(status, {
+      scheduledRunAt: job.scheduledRunAt,
+      scheduleWaitDeadlineAt: job.scheduleWaitDeadlineAt,
+      scheduleAdjustedAt: job.scheduleAdjustedAt,
+    });
+    const schedulingPhase = resolveBuyerSchedulingPhase({
+      status: job.status,
+      scheduledRunAt: job.scheduledRunAt,
+    });
     return c.json({
       jobId: job.id,
       status: job.status,
       buyerVisible: visible,
+      schedulingPhase,
+      scheduledRunAt: job.scheduledRunAt?.toISOString() ?? null,
+      scheduleWaitDeadlineAt: job.scheduleWaitDeadlineAt?.toISOString() ?? null,
+      scheduleAdjustedAt: job.scheduleAdjustedAt?.toISOString() ?? null,
       pausable: isPausableExecutionStatus(status),
     });
+  });
+
+  app.post("/jobs/:jobId/cancel", async (c) => {
+    const user = c.get("user");
+    let body: { reason?: string } = {};
+    try {
+      body = await c.req.json();
+    } catch {
+      body = {};
+    }
+    const result = await buyerCancelScheduledOrQueuedJob(getPrismaClient(), {
+      jobId: c.req.param("jobId"),
+      buyerId: user.id,
+      reason: body.reason,
+    });
+    if ("error" in result) {
+      const status = result.error === "NOT_FOUND" ? 404 : 409;
+      return c.json({ error: result.error }, status);
+    }
+    await reconcileJobPaymentAfterTerminal(getPrismaClient(), c.req.param("jobId"));
+    return c.json(result);
   });
 
   return app;

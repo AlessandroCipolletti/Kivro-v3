@@ -2,10 +2,41 @@ import type Stripe from "stripe";
 import type { Prisma, PrismaClient } from "@kivro/database";
 import { assertJobTransition, type JobStatus } from "@kivro/domain";
 import { createStripeClient, ensureStripeCustomer } from "./stripe-provider.js";
+import {
+  assertImmediateSubmissionBeforePayment,
+  queueJobAfterPayment,
+} from "@kivro/job-scheduling";
 import { requireEnabledPriceTier } from "./tier-validation.js";
 
 function toJsonValue(value: unknown): Prisma.InputJsonValue {
   return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
+}
+
+async function abortCardJobQueueFailure(prisma: PrismaClient, jobId: string): Promise<void> {
+  const job = await prisma.job.findUnique({ where: { id: jobId } });
+  if (!job || job.status !== "PAYMENT_RESERVED") {
+    return;
+  }
+  assertJobTransition("PAYMENT_RESERVED", "CANCELLED");
+  await prisma.job.update({
+    where: { id: jobId },
+    data: { status: "CANCELLED", failureCode: "QUEUE_COMMIT_FAILED" },
+  });
+  await prisma.jobStateTransition.create({
+    data: {
+      jobId,
+      fromStatus: "PAYMENT_RESERVED",
+      toStatus: "CANCELLED",
+      actor: "SYSTEM",
+      reason: "QUEUE_COMMIT_FAILED",
+    },
+  });
+  if (job.stripePaymentIntentId) {
+    const stripe = createStripeClient();
+    if (stripe) {
+      await cancelCardAuthorization(stripe, job.stripePaymentIntentId);
+    }
+  }
 }
 
 export async function createCardAuthorizedJob(
@@ -17,6 +48,7 @@ export async function createCardAuthorizedJob(
     capabilityId: string;
     structuredInput: Record<string, unknown>;
     assetManifest?: Record<string, unknown>;
+    scheduledRunAt?: Date;
   },
 ): Promise<
   | { jobId: string; clientSecret: string; paymentIntentId: string; status: JobStatus }
@@ -28,6 +60,12 @@ export async function createCardAuthorizedJob(
   });
   if (!capability?.currentVersion || capability.status !== "PUBLISHED") {
     return { error: "CAPABILITY_NOT_AVAILABLE" };
+  }
+  if (!input.scheduledRunAt) {
+    const pre = await assertImmediateSubmissionBeforePayment(prisma, input.capabilityId);
+    if (!("ok" in pre)) {
+      return pre;
+    }
   }
   const version = capability.currentVersion;
   const tier = requireEnabledPriceTier({
@@ -53,6 +91,7 @@ export async function createCardAuthorizedJob(
         currency: tier.currency,
         status: "CREATED",
         paymentFunding: "CARD_AUTHORIZATION",
+        scheduledRunAt: input.scheduledRunAt,
       },
     });
     await tx.jobInput.create({
@@ -107,8 +146,8 @@ export async function secureCardAuthorizedJob(
   if (job.paymentFunding !== "CARD_AUTHORIZATION") {
     return { error: "NOT_CARD_FUNDED" };
   }
-  if (job.status === "QUEUED") {
-    return { status: "QUEUED" };
+  if (job.status === "QUEUED" || job.status === "SCHEDULED") {
+    return { status: job.status };
   }
   if (job.status !== "CREATED") {
     return { error: "INVALID_STATE" };
@@ -138,18 +177,17 @@ export async function secureCardAuthorizedJob(
         actor: "SYSTEM",
       },
     });
-    assertJobTransition("PAYMENT_RESERVED", "QUEUED");
-    await tx.job.update({ where: { id: jobId }, data: { status: "QUEUED" } });
-    await tx.jobStateTransition.create({
-      data: {
-        jobId,
-        fromStatus: "PAYMENT_RESERVED",
-        toStatus: "QUEUED",
-        actor: "SYSTEM",
-      },
-    });
   });
-  return { status: "QUEUED" };
+  const immediate = !job.scheduledRunAt;
+  const queued = await queueJobAfterPayment(prisma, jobId, {
+    immediate,
+    scheduledRunAt: job.scheduledRunAt ?? undefined,
+  });
+  if ("error" in queued) {
+    await abortCardJobQueueFailure(prisma, jobId);
+    return queued;
+  }
+  return { status: queued.status };
 }
 
 export async function captureCardAuthorization(

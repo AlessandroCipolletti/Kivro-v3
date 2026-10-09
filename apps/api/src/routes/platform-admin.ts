@@ -1,9 +1,11 @@
 import {
+  reconcileJobPaymentAfterTerminal,
   sweepPendingSellerTransfers,
   sweepStaleJobPaymentReservations,
 } from "@kivro/billing";
 import { getPrismaClient } from "@kivro/database";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
+import { runSchedulingSweeps } from "@kivro/job-scheduling";
 import {
   assertAdminToken,
   isGlobalDispatchEnabled,
@@ -64,6 +66,29 @@ export function platformAdminRoutes(): Hono {
     }
     const result = await sweepPendingSellerTransfers(getPrismaClient());
     return c.json(result);
+  });
+
+  app.post("/jobs/promote-scheduled", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const prisma = getPrismaClient();
+    const result = await runSchedulingSweeps(prisma);
+    const expiredJobs = await prisma.job.findMany({
+      where: { status: "EXPIRED", reservedAmountCents: { gt: 0 } },
+      take: 50,
+    });
+    let paymentsReleased = 0;
+    for (const job of expiredJobs) {
+      const reconciled = await reconcileJobPaymentAfterTerminal(prisma, job.id);
+      if (reconciled.released) {
+        paymentsReleased += 1;
+      }
+    }
+    return c.json({ ...result, paymentsReleased });
   });
 
   app.post("/jobs/sweep-pause-timeouts", async (c) => {

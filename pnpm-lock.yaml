@@ -65,6 +65,9 @@ importers:
       '@kivro/job-io':
         specifier: workspace:*
         version: link:../../packages/job-io
+      '@kivro/job-scheduling':
+        specifier: workspace:*
+        version: link:../../packages/job-scheduling
       '@kivro/observability':
         specifier: workspace:*
         version: link:../../packages/observability
@@ -143,6 +146,9 @@ importers:
       '@kivro/job-control':
         specifier: workspace:*
         version: link:../job-control
+      '@kivro/job-scheduling':
+        specifier: workspace:*
+        version: link:../job-scheduling
       stripe:
         specifier: ^17.7.0
         version: 17.7.0
@@ -251,6 +257,9 @@ importers:
       '@kivro/domain':
         specifier: workspace:*
         version: link:../domain
+      '@kivro/job-scheduling':
+        specifier: workspace:*
+        version: link:../job-scheduling
       '@kivro/platform-policy':
         specifier: workspace:*
         version: link:../platform-policy
@@ -269,6 +278,18 @@ importers:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+
+  packages/job-scheduling:
+    dependencies:
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@kivro/platform-policy':
+        specifier: workspace:*
+        version: link:../platform-policy
 
   packages/observability: {}
 

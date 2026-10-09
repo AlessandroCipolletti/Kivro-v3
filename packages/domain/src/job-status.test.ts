@@ -11,6 +11,8 @@ describe("job lifecycle", () => {
   it("allows happy path", () => {
     assertJobTransition("CREATED", "PAYMENT_RESERVED");
     assertJobTransition("PAYMENT_RESERVED", "QUEUED");
+    assertJobTransition("PAYMENT_RESERVED", "SCHEDULED");
+    assertJobTransition("SCHEDULED", "QUEUED");
     assertJobTransition("RUNNING", "UPLOADING_RESULT");
     assertJobTransition("UPLOADING_RESULT", "COMPLETED");
   });

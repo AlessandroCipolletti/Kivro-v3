@@ -52,27 +52,52 @@ export async function sweepStaleJobPaymentReservations(
   prisma: PrismaClient,
   limit = 50,
 ): Promise<{ scanned: number; reconciled: number }> {
+  const staleCutoff = new Date(Date.now() - 15 * 60_000);
   const jobs = await prisma.job.findMany({
     where: {
       reservedAmountCents: { gt: 0 },
-      status: {
-        in: [
-          "CANCELLED",
-          "REJECTED",
-          "EXPIRED",
-          "FAILED_STARTUP",
-          "FAILED_POLICY",
-          "FAILED_EXECUTION",
-          "TIMED_OUT",
-          "RESULT_REJECTED",
-          "WORKER_OFFLINE",
-        ],
-      },
+      OR: [
+        {
+          status: {
+            in: [
+              "CANCELLED",
+              "REJECTED",
+              "EXPIRED",
+              "FAILED_STARTUP",
+              "FAILED_POLICY",
+              "FAILED_EXECUTION",
+              "TIMED_OUT",
+              "RESULT_REJECTED",
+              "WORKER_OFFLINE",
+            ],
+          },
+        },
+        {
+          status: "PAYMENT_RESERVED",
+          updatedAt: { lt: staleCutoff },
+        },
+      ],
     },
     take: limit,
   });
   let reconciled = 0;
   for (const job of jobs) {
+    if (job.status === "PAYMENT_RESERVED") {
+      assertJobTransition("PAYMENT_RESERVED", "CANCELLED");
+      await prisma.job.update({
+        where: { id: job.id },
+        data: { status: "CANCELLED", failureCode: "STALE_PAYMENT_RESERVATION" },
+      });
+      await prisma.jobStateTransition.create({
+        data: {
+          jobId: job.id,
+          fromStatus: "PAYMENT_RESERVED",
+          toStatus: "CANCELLED",
+          actor: "SYSTEM",
+          reason: "STALE_PAYMENT_RESERVATION",
+        },
+      });
+    }
     const result = await reconcileJobPaymentAfterTerminal(prisma, job.id);
     if (result.released) {
       reconciled += 1;

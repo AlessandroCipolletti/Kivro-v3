@@ -8,6 +8,7 @@ import {
   findPublishBlockers,
   ImportConsentSchema,
   pauseCapability,
+  resumeCapability,
   publishCapability,
   rollbackCapabilityVersion,
   suggestInputContractFromDiscovery,
@@ -66,6 +67,24 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
     } catch (err) {
       if (err instanceof Error && err.message === "INVALID_SLUG") {
         return c.json({ error: "INVALID_SLUG" }, 400);
+      }
+      throw err;
+    }
+  });
+
+  app.post("/capabilities/:id/resume", async (c) => {
+    const user = c.get("user");
+    const profile = await ensureSellerProfile(getPrismaClient(), user.id, user.email);
+    try {
+      const capability = await resumeCapability(
+        getPrismaClient(),
+        profile.id,
+        c.req.param("id"),
+      );
+      return c.json({ capability });
+    } catch (err) {
+      if (err instanceof Error && err.message === "NOT_FOUND") {
+        return c.json({ error: "NOT_FOUND" }, 404);
       }
       throw err;
     }

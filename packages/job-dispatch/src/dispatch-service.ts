@@ -2,6 +2,10 @@ import { PROTOCOL_VERSION, type JobOffer } from "@kivro/contracts";
 import type { PrismaClient } from "@kivro/database";
 import { assertJobTransition, type JobStatus } from "@kivro/domain";
 import { isGlobalDispatchEnabled } from "@kivro/platform-policy";
+import {
+  assertImmediateJobSubmissionAllowed,
+  assertQueuedJobDispatchAllowed,
+} from "@kivro/job-scheduling";
 
 async function transition(
   prisma: PrismaClient,
@@ -45,6 +49,14 @@ export async function dispatchJobToWorker(
   }
   if (job.reservedAmountCents == null || job.reservedAmountCents <= 0) {
     return { error: "PAYMENT_NOT_SECURED" };
+  }
+  const windowGate = await assertQueuedJobDispatchAllowed(prisma, job.id);
+  if ("error" in windowGate) {
+    return windowGate;
+  }
+  const acceptGate = await assertImmediateJobSubmissionAllowed(prisma, job.capabilityId);
+  if ("error" in acceptGate) {
+    return { error: acceptGate.error };
   }
   await transition(prisma, job.id, "QUEUED", "DISPATCHED", {
     workerDeviceId: input.workerDeviceId,

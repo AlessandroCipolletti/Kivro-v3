@@ -12,6 +12,10 @@ import { requireEnabledPriceTier } from "./tier-validation.js";
 import { cancelCardAuthorization, captureCardAuthorization } from "./job-card-payment.js";
 import { createStripeClient } from "./stripe-provider.js";
 import { executeSellerStripeTransfer } from "./stripe-seller-transfer.js";
+import {
+  assertImmediateSubmissionBeforePayment,
+  queueJobAfterPayment,
+} from "@kivro/job-scheduling";
 
 function toJsonValue(value: unknown): Prisma.InputJsonValue {
   return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
@@ -31,6 +35,7 @@ export async function releaseJobPayment(
   const releasable: JobStatus[] = [
     "CREATED",
     "PAYMENT_RESERVED",
+    "SCHEDULED",
     "QUEUED",
     "DISPATCHED",
     "ACCEPTED",
@@ -165,18 +170,70 @@ export async function captureAndSettleJobPayment(
   return { settled: true };
 }
 
+export async function abortJobAfterQueueFailure(
+  prisma: PrismaClient,
+  jobId: string,
+): Promise<void> {
+  const job = await prisma.job.findUnique({ where: { id: jobId } });
+  if (!job || job.status !== "PAYMENT_RESERVED") {
+    return;
+  }
+  assertJobTransition("PAYMENT_RESERVED", "CANCELLED");
+  await prisma.job.update({
+    where: { id: jobId },
+    data: { status: "CANCELLED", failureCode: "QUEUE_COMMIT_FAILED" },
+  });
+  await prisma.jobStateTransition.create({
+    data: {
+      jobId,
+      fromStatus: "PAYMENT_RESERVED",
+      toStatus: "CANCELLED",
+      actor: "SYSTEM",
+      reason: "QUEUE_COMMIT_FAILED",
+    },
+  });
+  await releaseJobPayment(prisma, jobId);
+  try {
+    assertJobTransition("CANCELLED", "REFUNDED");
+    await prisma.job.update({ where: { id: jobId }, data: { status: "REFUNDED" } });
+    await prisma.jobStateTransition.create({
+      data: {
+        jobId,
+        fromStatus: "CANCELLED",
+        toStatus: "REFUNDED",
+        actor: "SYSTEM",
+        reason: "QUEUE_COMMIT_FAILED",
+      },
+    });
+  } catch {
+    // release only
+  }
+}
+
 export interface SubmitPaidJobInput {
   buyerId: string;
   capabilityId: string;
   structuredInput: Record<string, unknown>;
   assetManifest?: Record<string, unknown>;
+  /** When set, job stays SCHEDULED until promotion sweep (§462). */
+  scheduledRunAt?: Date;
 }
 
 /** Reserve prepaid credits and queue job for dispatch (§24.4). */
 export async function submitPaidJob(
   prisma: PrismaClient,
   input: SubmitPaidJobInput,
-): Promise<{ jobId: string; status: JobStatus } | { error: string }> {
+): Promise<
+  | { jobId: string; status: JobStatus }
+  | { error: string; reasons?: string[]; nextAvailableAt?: string }
+> {
+  const immediate = !input.scheduledRunAt;
+  if (immediate) {
+    const pre = await assertImmediateSubmissionBeforePayment(prisma, input.capabilityId);
+    if (!("ok" in pre)) {
+      return pre;
+    }
+  }
   const capability = await prisma.capability.findUnique({
     where: { id: input.capabilityId },
     include: {
@@ -248,23 +305,24 @@ export async function submitPaidJob(
         actor: "SYSTEM",
       },
     });
-    assertJobTransition("PAYMENT_RESERVED", "QUEUED");
-    await tx.job.update({
-      where: { id: created.id },
-      data: { status: "QUEUED" },
-    });
-    await tx.jobStateTransition.create({
-      data: {
-        jobId: created.id,
-        fromStatus: "PAYMENT_RESERVED",
-        toStatus: "QUEUED",
-        actor: "SYSTEM",
-      },
-    });
+    if (input.scheduledRunAt) {
+      await tx.job.update({
+        where: { id: created.id },
+        data: { scheduledRunAt: input.scheduledRunAt },
+      });
+    }
     return created;
   });
 
-  return { jobId: job.id, status: "QUEUED" };
+  const queued = await queueJobAfterPayment(prisma, job.id, {
+    immediate,
+    scheduledRunAt: input.scheduledRunAt,
+  });
+  if ("error" in queued) {
+    await abortJobAfterQueueFailure(prisma, job.id);
+    return queued;
+  }
+  return { jobId: job.id, status: queued.status };
 }
 
 export async function grantBuyerCredits(

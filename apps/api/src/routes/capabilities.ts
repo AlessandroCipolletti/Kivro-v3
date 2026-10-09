@@ -9,6 +9,10 @@ import {
   type JobAssetRef,
 } from "@kivro/job-io";
 import { buildInternetPermissionSummary } from "@kivro/research-broker";
+import {
+  evaluateCapabilityAvailability,
+  summarizeMarketplaceAvailability,
+} from "@kivro/job-scheduling";
 import { Hono } from "hono";
 
 export function marketplaceCapabilityRoutes(): Hono {
@@ -39,7 +43,21 @@ export function marketplaceCapabilityRoutes(): Hono {
         },
       },
     });
-    return c.json({ capabilities: rows });
+    const includeAvailability = c.req.query("includeAvailability") === "true";
+    if (!includeAvailability) {
+      return c.json({ capabilities: rows });
+    }
+    const summaries = await summarizeMarketplaceAvailability(
+      getPrismaClient(),
+      rows.map((r) => r.id),
+    );
+    const byId = new Map(summaries.map((s) => [s.capabilityId, s]));
+    return c.json({
+      capabilities: rows.map((row) => ({
+        ...row,
+        availability: byId.get(row.id) ?? null,
+      })),
+    });
   });
 
   app.get("/capabilities/:slug", async (c) => {
@@ -75,7 +93,22 @@ export function marketplaceCapabilityRoutes(): Hono {
         output: row.currentVersion.outputSchema,
       });
     const buyerForm = contract ? buildBuyerFormSchema(contract) : null;
-    return c.json({ capability: row, buyerTrust, buyerForm, internetDisclosure });
+    const availability = await evaluateCapabilityAvailability(getPrismaClient(), row.id);
+    const scheduleAwareness =
+      "error" in availability
+        ? null
+        : {
+            status: availability.buyerAvailability,
+            accepting: availability.accepting,
+            nextAvailableAt: availability.nextAvailableAt ?? null,
+          };
+    return c.json({
+      capability: row,
+      buyerTrust,
+      buyerForm,
+      internetDisclosure,
+      availability: scheduleAwareness,
+    });
   });
 
   app.post("/capabilities/:slug/prepare-agent-input", async (c) => {
@@ -105,7 +138,17 @@ export function marketplaceCapabilityRoutes(): Hono {
       output: row.currentVersion.outputSchema,
     });
     const prepared = prepareAgentJobSubmission(contract, body);
-    return c.json(prepared);
+    const availability = await evaluateCapabilityAvailability(getPrismaClient(), row.id);
+    return c.json({
+      ...prepared,
+      capabilityAvailability:
+        "error" in availability
+          ? null
+          : {
+              status: availability.buyerAvailability,
+              nextAvailableAt: availability.nextAvailableAt ?? null,
+            },
+    });
   });
 
   app.post("/capabilities/:slug/validate-input", async (c) => {

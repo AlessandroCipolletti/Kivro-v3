@@ -1,10 +1,34 @@
 import type { JobStatus } from "@kivro/domain";
 
-/** Master Spec §437 — buyer-visible operational status (sanitized). */
-export function buyerVisibleJobStatus(status: JobStatus): {
+/** Master Spec §437, §465 — buyer-visible operational status (sanitized). */
+export function buyerVisibleJobStatus(
+  status: JobStatus,
+  context?: {
+    scheduledRunAt?: Date | null;
+    scheduleWaitDeadlineAt?: Date | null;
+    scheduleAdjustedAt?: Date | null;
+  },
+): {
   label: string;
   detail?: string;
 } {
+  if (status === "SCHEDULED" && context?.scheduledRunAt) {
+    const now = Date.now();
+    if (context.scheduledRunAt.getTime() > now) {
+      const adjusted =
+        context.scheduleAdjustedAt != null
+          ? " Provider availability changed; your earliest run time was updated."
+          : "";
+      return {
+        label: "Scheduled",
+        detail: `Earliest execution ${context.scheduledRunAt.toISOString()}.${adjusted}`,
+      };
+    }
+    return {
+      label: "Waiting for provider availability",
+      detail: "Your job is reserved and will queue when the provider becomes available.",
+    };
+  }
   switch (status) {
     case "PAUSE_REQUESTED":
     case "PAUSED":

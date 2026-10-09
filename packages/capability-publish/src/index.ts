@@ -23,6 +23,7 @@ export {
 export { checkContractDependencyCompatibility } from "./contract-compatibility.js";
 export { verifyWorkerManifestSkillHashes } from "./skill-hash-verify.js";
 export { pauseCapability } from "./pause.js";
+export { resumeCapability } from "./resume.js";
 export { rollbackCapabilityVersion } from "./rollback.js";
 export { buildCapabilityPackageFromVersion } from "./package-export.js";
 export { summarizeVersionDiff } from "./version-diff.js";

@@ -19,6 +19,7 @@ export default defineConfig({
       "@kivro/job-control": path.resolve("packages/job-control/src/index.ts"),
       "@kivro/job-dispatch": path.resolve("packages/job-dispatch/src/index.ts"),
       "@kivro/billing": path.resolve("packages/billing/src/index.ts"),
+      "@kivro/job-scheduling": path.resolve("packages/job-scheduling/src/index.ts"),
       "@kivro/database": path.resolve("packages/database/src/index.ts"),
     },
   },

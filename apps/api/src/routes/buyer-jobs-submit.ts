@@ -22,6 +22,7 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
       inputs?: Record<string, unknown>;
       assets?: Record<string, unknown>;
       paymentMode?: "credits" | "card";
+      scheduledRunAt?: string;
     };
     try {
       body = await c.req.json();
@@ -56,6 +57,13 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
       return c.json({ error: "VALIDATION_FAILED", issues: validation.issues }, 400);
     }
     const paymentMode = body.paymentMode ?? "credits";
+    let scheduledRunAt: Date | undefined;
+    if (body.scheduledRunAt) {
+      scheduledRunAt = new Date(body.scheduledRunAt);
+      if (Number.isNaN(scheduledRunAt.getTime())) {
+        return c.json({ error: "INVALID_SCHEDULE_TIME" }, 400);
+      }
+    }
     const prisma = getPrismaClient();
     const result =
       paymentMode === "card"
@@ -70,6 +78,7 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
               capabilityId: body.capabilityId!,
               structuredInput: body.inputs ?? {},
               assetManifest: body.assets,
+              scheduledRunAt,
             });
           })()
         : await submitPaidJob(prisma, {
@@ -77,6 +86,7 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
             capabilityId: body.capabilityId,
             structuredInput: body.inputs ?? {},
             assetManifest: body.assets,
+            scheduledRunAt,
           });
     if ("error" in result) {
       const status =
@@ -84,6 +94,9 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
           ? 402
           : result.error === "CAPABILITY_NOT_AVAILABLE"
             ? 404
+            : result.error === "CAPABILITY_NOT_ACCEPTING" ||
+              result.error === "CAPABILITY_SCHEDULED_OFFLINE"
+            ? 409
             : 409;
       return c.json(result, status);
     }

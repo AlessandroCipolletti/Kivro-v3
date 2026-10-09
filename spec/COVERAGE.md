@@ -466,9 +466,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0042`    P2         §25      `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts   vitest; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
-  `AVL-0001`    P1         §26      `TODO`   ---              ---        ---
+  `AVL-0001`    P1         §26      `TESTED`   packages/job-scheduling/src/availability-status.ts, packages/job-scheduling/src/availability-service.ts, packages/job-scheduling/src/submission-gate.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0002`    P1         §26      `TODO`   ---              ---        ---
+  `AVL-0002`    P1         §26      `TESTED`   packages/job-scheduling/src/availability-status.ts, packages/job-scheduling/src/availability-service.ts, packages/job-scheduling/src/submission-gate.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
   `WRK-0048`    P1         §27      `TODO`   ---              ---        ---
 
@@ -2538,119 +2538,119 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0348`    P2         §395     `TODO`   ---              ---        ---
 
-  `PRD-0349`    P1         §396     `TODO`   ---              ---        ---
+  `PRD-0349`    P1         §396     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0350`    P2         §396     `TODO`   ---              ---        ---
+  `PRD-0350`    P2         §396     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0021`    P1         §397     `TODO`   ---              ---        ---
+  `AVL-0021`    P1         §397     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0022`    P1         §398     `TODO`   ---              ---        ---
+  `AVL-0022`    P1         §398     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0023`    P1         §398     `TODO`   ---              ---        ---
+  `AVL-0023`    P1         §398     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0024`    P1         §399     `TODO`   ---              ---        ---
+  `AVL-0024`    P1         §399     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0025`    P1         §399     `TODO`   ---              ---        ---
+  `AVL-0025`    P1         §399     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0026`    P1         §399     `TODO`   ---              ---        ---
+  `AVL-0026`    P1         §399     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `UI-0026`     P1         §400     `TODO`   ---              ---        ---
+  `UI-0026`     P1         §400     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
 
-  `UI-0027`     P2         §400     `TODO`   ---              ---        ---
+  `UI-0027`     P2         §400     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
 
-  `AVL-0027`    P1         §401     `TODO`   ---              ---        ---
+  `AVL-0027`    P1         §401     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0028`    P1         §401     `TODO`   ---              ---        ---
+  `AVL-0028`    P1         §401     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0029`    P1         §402     `TODO`   ---              ---        ---
+  `AVL-0029`    P1         §402     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0030`    P1         §402     `TODO`   ---              ---        ---
+  `AVL-0030`    P1         §402     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0031`    P1         §402     `TODO`   ---              ---        ---
+  `AVL-0031`    P1         §402     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0032`    P1         §403     `TODO`   ---              ---        ---
+  `AVL-0032`    P1         §403     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0033`    P1         §404     `TODO`   ---              ---        ---
+  `AVL-0033`    P1         §404     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0034`    P1         §404     `TODO`   ---              ---        ---
+  `AVL-0034`    P1         §404     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0035`    P1         §405     `TODO`   ---              ---        ---
+  `AVL-0035`    P1         §405     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
 
-  `AVL-0036`    P1         §405     `TODO`   ---              ---        ---
+  `AVL-0036`    P1         §405     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
 
-  `AVL-0037`    P1         §406     `TODO`   ---              ---        ---
+  `AVL-0037`    P1         §406     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0038`    P1         §406     `TODO`   ---              ---        ---
+  `AVL-0038`    P1         §406     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0118`    P1         §407     `TODO`   ---              ---        ---
+  `JOB-0118`    P1         §407     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
 
-  `JOB-0119`    P1         §407     `TODO`   ---              ---        ---
+  `JOB-0119`    P1         §407     `PARTIAL`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09   product UI deferred M10+; core API/semantics implemented
 
-  `JOB-0120`    P1         §408     `TODO`   ---              ---        ---
+  `JOB-0120`    P1         §408     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0121`    P1         §408     `TODO`   ---              ---        ---
+  `JOB-0121`    P1         §408     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0122`    P1         §408     `TODO`   ---              ---        ---
+  `JOB-0122`    P1         §408     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0123`    P1         §408     `TODO`   ---              ---        ---
+  `JOB-0123`    P1         §408     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0124`    P1         §408     `TODO`   ---              ---        ---
+  `JOB-0124`    P1         §408     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0125`    P1         §408     `TODO`   ---              ---        ---
+  `JOB-0125`    P1         §408     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0126`    P1         §409     `TODO`   ---              ---        ---
+  `JOB-0126`    P1         §409     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0127`    P1         §409     `TODO`   ---              ---        ---
+  `JOB-0127`    P1         §409     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0128`    P1         §409     `TODO`   ---              ---        ---
+  `JOB-0128`    P1         §409     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0039`    P1         §410     `TODO`   ---              ---        ---
+  `AVL-0039`    P1         §410     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0040`    P1         §410     `TODO`   ---              ---        ---
+  `AVL-0040`    P1         §410     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0041`    P1         §410     `TODO`   ---              ---        ---
+  `AVL-0041`    P1         §410     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0129`    P1         §411     `TODO`   ---              ---        ---
+  `JOB-0129`    P1         §411     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0130`    P1         §411     `TODO`   ---              ---        ---
+  `JOB-0130`    P1         §411     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0131`    P1         §412     `TODO`   ---              ---        ---
+  `JOB-0131`    P1         §412     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0132`    P1         §412     `TODO`   ---              ---        ---
+  `JOB-0132`    P1         §412     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0042`    P1         §413     `TODO`   ---              ---        ---
+  `AVL-0042`    P1         §413     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0043`    P1         §413     `TODO`   ---              ---        ---
+  `AVL-0043`    P1         §413     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0044`    P1         §413     `TODO`   ---              ---        ---
+  `AVL-0044`    P1         §413     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0351`    P1         §414     `TODO`   ---              ---        ---
+  `PRD-0351`    P1         §414     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0352`    P2         §414     `TODO`   ---              ---        ---
+  `PRD-0352`    P2         §414     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0045`    P1         §415     `TODO`   ---              ---        ---
+  `AVL-0045`    P1         §415     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0046`    P1         §415     `TODO`   ---              ---        ---
+  `AVL-0046`    P1         §415     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0047`    P1         §415     `TODO`   ---              ---        ---
+  `AVL-0047`    P1         §415     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0353`    P1         §416     `TODO`   ---              ---        ---
+  `PRD-0353`    P1         §416     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0354`    P2         §416     `TODO`   ---              ---        ---
+  `PRD-0354`    P2         §416     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0355`    P2         §416     `TODO`   ---              ---        ---
+  `PRD-0355`    P2         §416     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0048`    P1         §417     `TODO`   ---              ---        ---
+  `AVL-0048`    P1         §417     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0049`    P1         §418     `TODO`   ---              ---        ---
+  `AVL-0049`    P1         §418     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0050`    P1         §418     `TODO`   ---              ---        ---
+  `AVL-0050`    P1         §418     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0356`    P1         §419     `TODO`   ---              ---        ---
+  `PRD-0356`    P1         §419     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0357`    P2         §419     `TODO`   ---              ---        ---
+  `PRD-0357`    P2         §419     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0358`    P2         §419     `TODO`   ---              ---        ---
+  `PRD-0358`    P2         §419     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
   `AVL-0051`    P1         §420     `TODO`   ---              ---        ---
 
@@ -2888,49 +2888,49 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `UI-0031`     P2         §461     `TODO`   ---              ---        ---
 
-  `PRD-0368`    P1         §462     `TODO`   ---              ---        ---
+  `PRD-0368`    P1         §462     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0369`    P2         §462     `TODO`   ---              ---        ---
+  `PRD-0369`    P2         §462     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0064`    P1         §463     `TODO`   ---              ---        ---
+  `AVL-0064`    P1         §463     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0065`    P1         §463     `TODO`   ---              ---        ---
+  `AVL-0065`    P1         §463     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0223`    P1         §464     `TODO`   ---              ---        ---
+  `JOB-0223`    P1         §464     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0224`    P1         §464     `TODO`   ---              ---        ---
+  `JOB-0224`    P1         §464     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0225`    P1         §465     `TODO`   ---              ---        ---
+  `JOB-0225`    P1         §465     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0226`    P1         §466     `TODO`   ---              ---        ---
+  `JOB-0226`    P1         §466     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0227`    P1         §466     `TODO`   ---              ---        ---
+  `JOB-0227`    P1         §466     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0370`    P1         §467     `TODO`   ---              ---        ---
+  `PRD-0370`    P1         §467     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0371`    P2         §467     `TODO`   ---              ---        ---
+  `PRD-0371`    P2         §467     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0372`    P1         §468     `TODO`   ---              ---        ---
+  `PRD-0372`    P1         §468     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0373`    P2         §468     `TODO`   ---              ---        ---
+  `PRD-0373`    P2         §468     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0066`    P1         §469     `TODO`   ---              ---        ---
+  `AVL-0066`    P1         §469     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0374`    P1         §470     `TODO`   ---              ---        ---
+  `PRD-0374`    P1         §470     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `PRD-0375`    P2         §470     `TODO`   ---              ---        ---
+  `PRD-0375`    P2         §470     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0228`    P1         §471     `TODO`   ---              ---        ---
+  `JOB-0228`    P1         §471     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0229`    P1         §471     `TODO`   ---              ---        ---
+  `JOB-0229`    P1         §471     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0230`    P1         §471     `TODO`   ---              ---        ---
+  `JOB-0230`    P1         §471     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0067`    P1         §472     `TODO`   ---              ---        ---
+  `AVL-0067`    P1         §472     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0068`    P1         §472     `TODO`   ---              ---        ---
+  `AVL-0068`    P1         §472     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0069`    P1         §472     `TODO`   ---              ---        ---
+  `AVL-0069`    P1         §472     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
   `JOB-0231`    P1         §473     `TODO`   ---              ---        ---
 

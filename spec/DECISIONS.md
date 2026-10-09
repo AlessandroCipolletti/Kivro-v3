@@ -488,3 +488,21 @@ greenfield.
 **Context:** `COVERAGE.md` briefly mis-tagged §298 as scheduled-job payment; Master Spec §298 defines buyer/seller pricing clarity.
 
 **Decision:** M08 satisfies §298 via canonical tiers, public buyer tier list, seller pricing preview, and `pricingProductPrincipleCopy` tests. Scheduled-job state machine remains M09 (Master Spec §462+).
+
+## DEC-M09-001 — Consolidated scheduled wait states (MVP)
+
+**Context:** Master Spec §463–§464 distinguishes `SCHEDULED`, `WAITING_FOR_AVAILABILITY`, and execution queue wait.
+
+**Decision:** M09 uses durable `JobStatus.SCHEDULED` plus buyer-visible `schedulingPhase` (`SCHEDULED_FUTURE` vs `WAITING_FOR_AVAILABILITY`) instead of additional enum values. Promotion to `QUEUED` requires schedule acceptance and execution-window policy (§408).
+
+## DEC-M09-002 — Immediate submit blocked before payment
+
+**Context:** §406 requires no charge/reserve when immediate execution cannot be accepted.
+
+**Decision:** Credits and card flows call `assertImmediateSubmissionBeforePayment` before job creation (card) or before reserve (credits). Failed queue commit after reserve rolls back to `CANCELLED`/`REFUNDED` or cancels card authorization.
+
+## DEC-M09-003 — Schedule edits without new capability version
+
+**Context:** §410 — schedule is operational, not contract/versioned behavior.
+
+**Decision:** Seller `PUT /seller/capabilities/:id/schedule` updates capability columns and appends `CapabilityScheduleChange` audit rows; published version snapshots remain immutable.

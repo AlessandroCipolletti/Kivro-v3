@@ -28,6 +28,12 @@ enum CapabilityStatus {
   ARCHIVED
 }
 
+enum CapabilityScheduleMode {
+  ALWAYS_AVAILABLE
+  CUSTOM_SCHEDULE
+  MANUALLY_PAUSED
+}
+
 enum LocalWorkerBindingStatus {
   ACTIVE
   INACTIVE
@@ -41,6 +47,7 @@ enum JobPaymentFunding {
 enum JobStatus {
   CREATED
   PAYMENT_RESERVED
+  SCHEDULED
   QUEUED
   DISPATCHED
   ACCEPTED
@@ -239,14 +246,33 @@ model Capability {
   estimatedDuration Int?
   rating            Float?
   jobCount          Int              @default(0)
+  scheduleMode      CapabilityScheduleMode @default(ALWAYS_AVAILABLE)
+  scheduleTimezone  String           @default("UTC")
+  scheduleWindows   Json             @default("[]")
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
 
   sellerProfile   SellerProfile       @relation(fields: [sellerProfileId], references: [id], onDelete: Cascade)
   versions        CapabilityVersion[] @relation("CapabilityVersions")
   currentVersion  CapabilityVersion?  @relation("CurrentCapabilityVersion", fields: [currentVersionId], references: [id])
+  scheduleChanges CapabilityScheduleChange[]
 
   @@unique([sellerProfileId, slug])
+  @@index([sellerProfileId])
+}
+
+model CapabilityScheduleChange {
+  id               String   @id @default(uuid())
+  capabilityId     String
+  sellerProfileId  String
+  previousSchedule Json
+  newSchedule      Json
+  changedByUserId  String?
+  createdAt        DateTime @default(now())
+
+  capability Capability @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+
+  @@index([capabilityId])
   @@index([sellerProfileId])
 }
 
@@ -381,6 +407,9 @@ model Job {
   securityPauseReason        String?
   dispatchExpiresAt            DateTime?
   sellerGlobalPauseAtSubmit  Boolean   @default(false)
+  scheduledRunAt             DateTime?
+  scheduleWaitDeadlineAt     DateTime?
+  scheduleAdjustedAt         DateTime?
   createdAt                  DateTime  @default(now())
   startedAt                  DateTime?
   completedAt                DateTime?
@@ -401,6 +430,7 @@ model Job {
   @@index([buyerId])
   @@index([capabilityVersionId])
   @@index([status])
+  @@index([status, scheduledRunAt])
 }
 
 model JobAttempt {
