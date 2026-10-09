@@ -596,3 +596,9 @@ greenfield.
 **Context:** M17 maps all 1672 requirements. The product is mid-greenfield (M16 complete); most remaining work is scheduled in M18–M34.
 
 **Decision:** Deliver automated audit (`audit-m17-compliance.mjs`), section→milestone index, schedule notes on every open COVERAGE row, M00–M16 closure check (no TODO in sections owned by completed milestones), evidence path validation for TESTED rows, and published audit reports. M17 does **not** claim full MASTER-SPEC implementation; terminal proof remains M23/M28. Gate: `pnpm verify:m17`.
+
+## DEC-M18-001 — Local development environment & local E2E (§551–§573)
+
+**Context:** M18 maps `DEV-LOCAL-001`–`029`: Compose infra, dev scripts, fake payment adapter, health/readiness, local paid path, and §573 checklist evidence.
+
+**Decision:** Ship Redis+MinIO+Postgres compose, `dev:setup`/`dev:demo`/`worker:dev`, deterministic seed, fake payment adapter with production fail-closed guards, `run-local-e2e.mjs` + failure matrix acceptance tests, and `pnpm verify:m18` (includes `verify:m17`). Automated CI path uses **synthetic** worker completion when API is not running; full OpenClaw + `KIVRO_SANDBOX_DRY_RUN=false` remains manual sign-off (`M18-manual-validation.md`). Gate: `pnpm verify:m18`; `pnpm test:e2e:local` adds optional live HTTP E2E.

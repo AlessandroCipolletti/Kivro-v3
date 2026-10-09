@@ -37,6 +37,12 @@ export {
 } from "./job-payment.js";
 export { isDevPaymentShortcutsEnabled, assertDevPaymentShortcutsAllowed } from "./dev-payment.js";
 export {
+  isFakePaymentAdapterEnabled,
+  assertFakePaymentAdapterAllowed,
+  resolveFakePaymentOutcome,
+  type FakePaymentOutcome,
+} from "./fake-payment-adapter.js";
+export {
   createStripeClient,
   verifyStripeWebhook,
   ensureStripeCustomer,

@@ -589,6 +589,14 @@ program
     );
   });
 
+program
+  .command("start")
+  .description("Run outbound poll loop (local dev daemon — §556)")
+  .action(async () => {
+    const { runWorkerPollDaemon } = await import("./start-daemon.js");
+    await runWorkerPollDaemon();
+  });
+
 program.command("version").action(() => console.log(WORKER_VERSION));
 
 program.command("commands").action(() => console.log(WORKER_COMMANDS.join("\n")));

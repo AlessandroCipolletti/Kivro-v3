@@ -1,6 +1,6 @@
 # Implementation status
 
-Last aligned: **M17** (compliance audit gate). Authoritative traceability: `spec/COVERAGE.md` + `docs/audits/M17-compliance-report.json`.
+Last aligned: **M18** (local dev & local E2E). Authoritative traceability: `spec/COVERAGE.md` + `docs/audits/M17-compliance-report.json`.
 
 | Milestone | Status | Gate |
 |-----------|--------|------|
@@ -22,7 +22,8 @@ Last aligned: **M17** (compliance audit gate). Authoritative traceability: `spec
 | M15 observability & abuse | Done (bounded) | `pnpm verify:m15` |
 | M16 testing & release gates | Done | `pnpm verify:m16` |
 | M17 compliance audit | Done | `pnpm verify:m17` |
-| M18+ local E2E, deploy, UX extensions | **Scheduled** | see `docs/audits/M17-P0-P1-by-section.md` |
+| M18 local dev & E2E | Done (bounded) | `pnpm verify:m18` |
+| M19+ unified backend, deploy, UX extensions | **Scheduled** | see `docs/audits/M17-P0-P1-by-section.md` |
 
 ## Spec compliance snapshot (M17)
 
@@ -33,7 +34,7 @@ Last aligned: **M17** (compliance audit gate). Authoritative traceability: `spec
 
 ## Known bounded / deferred areas (unchanged)
 
-- Full §573 paid two-user OpenClaw E2E → **M18**
+- Full §573 OpenClaw + real sandbox on every CI run → **manual** (`docs/milestones/M18-manual-validation.md`)
 - Unified Netsons/AWS backend + conformance → **M19–M23**
 - Cloud browser research (§264) → post-MVP
 - External pen test execution → manual checklist (M15/M16)

@@ -32,18 +32,27 @@ if (!fs.existsSync(envPath)) {
   process.exit(1);
 }
 
-console.log("Starting Docker services (postgres, minio)…");
-run("docker", ["compose", "up", "-d", "postgres", "minio"]);
+console.log("Starting Docker services (postgres, redis, minio)…");
+run("docker", ["compose", "up", "-d", "postgres", "redis", "minio"]);
 
 console.log("Waiting for PostgreSQL…");
 run("node", ["scripts/wait-for-postgres.mjs"]);
+
+console.log("Waiting for Redis…");
+run("node", ["scripts/wait-for-redis.mjs"]);
+
+console.log("Waiting for MinIO…");
+run("node", ["scripts/wait-for-minio.mjs"]);
 
 console.log("Applying migrations…");
 run("pnpm", ["db:migrate"]);
 
 console.log("Ensuring MinIO bucket…");
-if (!runOptional("node", ["scripts/run-with-env.mjs", "node", "scripts/init-minio-bucket.mjs"])) {
-  console.warn("MinIO init skipped or failed — uploads/downloads may fail until `pnpm storage:setup`.");
+run("node", ["scripts/run-with-env.mjs", "node", "scripts/init-minio-bucket.mjs"]);
+
+if (process.env.KIVRO_DEV_SEED_ON_SETUP === "true") {
+  console.log("Running dev seed…");
+  run("node", ["scripts/run-with-env.mjs", "node", "scripts/dev-seed.mjs"]);
 }
 
 console.log("dev:setup complete.");

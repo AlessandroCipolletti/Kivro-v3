@@ -72,9 +72,42 @@ export function createApp(): Hono<AppEnv> {
     } catch {
       db = false;
     }
-    const ready = db;
+    let objectStorage = false;
+    const s3Endpoint = process.env.S3_ENDPOINT;
+    if (s3Endpoint) {
+      try {
+        const res = await fetch(`${s3Endpoint.replace(/\/$/, "")}/minio/health/live`);
+        objectStorage = res.ok;
+      } catch {
+        objectStorage = false;
+      }
+    }
+    let redis = false;
+    const redisUrl = process.env.REDIS_URL;
+    if (redisUrl) {
+      try {
+        const { hostname, port } = new URL(redisUrl);
+        const net = await import("node:net");
+        redis = await new Promise((resolve) => {
+          const s = net.createConnection(
+            { host: hostname === "localhost" ? "127.0.0.1" : hostname, port: Number(port || 6379) },
+            () => {
+              s.end();
+              resolve(true);
+            },
+          );
+          s.on("error", () => resolve(false));
+        });
+      } catch {
+        redis = false;
+      }
+    }
+    const ready = db && (!s3Endpoint || objectStorage);
     return c.json(
-      { status: ready ? "ready" : "degraded", checks: { database: db } },
+      {
+        status: ready ? "ready" : "degraded",
+        checks: { database: db, objectStorage, redis: redisUrl ? redis : null },
+      },
       ready ? 200 : 503,
     );
   });

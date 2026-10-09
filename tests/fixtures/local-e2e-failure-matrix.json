@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "requirement": "DEV-LOCAL-024",
+  "scenarios": [
+    {
+      "id": "worker-offline",
+      "description": "Dispatched job returns to queue when worker rejects or goes offline",
+      "automatedTest": "packages/job-dispatch/src/dispatch-service.ts (rejectJobOffer / recoverWorkerOfflineJob)",
+      "acceptance": "security/tests/acceptance-m18-local-failures.test.ts"
+    },
+    {
+      "id": "sandbox-unavailable",
+      "description": "Sandbox init failure must fail closed (no host execution)",
+      "automatedTest": "packages/job-failure/src/invariants.test.ts",
+      "acceptance": "security/tests/acceptance-m18-local-failures.test.ts"
+    },
+    {
+      "id": "payment-failure",
+      "description": "Insufficient credits / fake adapter decline paths",
+      "automatedTest": "packages/billing/src/fake-payment-adapter.test.ts",
+      "acceptance": "security/tests/acceptance-m18-local-failures.test.ts"
+    },
+    {
+      "id": "buyer-cancellation",
+      "description": "Terminal cancel/refund states visible to buyer",
+      "automatedTest": "apps/api/src/routes/buyer-jobs-list.ts (status mapping)",
+      "acceptance": "security/tests/acceptance-m18-local-failures.test.ts"
+    },
+    {
+      "id": "invalid-output",
+      "description": "Worker result manifest validation rejects invalid deliverables",
+      "automatedTest": "packages/job-io (validateWorkerResultManifest)",
+      "acceptance": "security/tests/acceptance-m18-local-failures.test.ts"
+    },
+    {
+      "id": "timeout-lost-worker",
+      "description": "Lost worker grace and failure ops sweeps",
+      "automatedTest": "packages/job-failure, KIVRO_WORKER_LOST_GRACE_MS",
+      "acceptance": "security/tests/acceptance-m18-local-failures.test.ts"
+    }
+  ]
+}

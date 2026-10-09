@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
  * Local E2E entrypoint (Master Spec §573 / DEV-LOCAL-023).
- * M16: release-gate composition. Full two-user paid path ships in M18.
  */
 import { spawnSync } from "node:child_process";
 import path from "node:path";
@@ -15,5 +14,6 @@ function run(cmd, args) {
   }
 }
 
-console.log("test:e2e:local — M16 release gate smoke (see docs/MVP-SUCCESS-CHECKLIST.md)");
-run("node", ["scripts/verify-m16-flow.mjs"]);
+console.log("test:e2e:local — M18 local dev gate + optional live API path");
+run("node", ["scripts/verify-m18-flow.mjs"]);
+run("node", ["scripts/run-with-env.mjs", "node", "scripts/run-local-e2e.mjs"]);

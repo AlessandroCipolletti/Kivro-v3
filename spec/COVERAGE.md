@@ -3365,35 +3365,35 @@ feature post-MVP or the user explicitly approves the deferral.
 
   Requirement     Priority   Status   Implementation   Tests   Notes
   --------------- ---------- -------- ---------------- ------- -------
-  DEV-LOCAL-001   P1         TODO     ---              ---     §551 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-002   P1         TODO     ---              ---     §552 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-003   P1         TODO     ---              ---     §553 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-004   P1         TODO     ---              ---     §555 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-005   P1         TODO     ---              ---     §556 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-006   P1         TODO     ---              ---     §557 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-007   P0         TODO     ---              ---     §558 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-008   P0         TODO     ---              ---     §558 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-009   P1         TODO     ---              ---     §559 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-010   P1         TODO     ---              ---     §560 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-011   P1         TODO     ---              ---     §561 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-012   P0         TODO     ---              ---     §561 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-013   P1         TODO     ---              ---     §562 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-014   P1         TODO     ---              ---     §563 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-015   P1         TODO     ---              ---     §564 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-016   P0         TODO     ---              ---     §564 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-017   P1         TODO     ---              ---     §565 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-018   P1         TODO     ---              ---     §566 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-019   P0         TODO     ---              ---     §566 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-020   P1         TODO     ---              ---     §567 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-021   P2         TODO     ---              ---     §568 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-022   P1         TODO     ---              ---     §569 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-023   P1         TODO     ---              ---     §570 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-024   P1         TODO     ---              ---     §570 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-025   P1         TODO     ---              ---     §571 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-026   P1         TODO     ---              ---     §571 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-027   P0         TODO     ---              ---     §572 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-028   P0         TODO     ---              ---     §572 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
-  DEV-LOCAL-029   P1         TODO     ---              ---     §573 scheduled:M18 per IMPLEMENTATION-PLAN; M17 audit accounted
+  DEV-LOCAL-001   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-002   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-003   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-004   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-005   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-006   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-007   P0         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-008   P0         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-009   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-010   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-011   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-012   P0         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-013   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-014   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-015   P1         TESTED   packages/billing/src/fake-payment-adapter.ts, .env.example   packages/billing/src/fake-payment-adapter.test.ts; apps/api/src/startup-guards.ts   docs/DEV-LOCAL.md M18 §564
+  DEV-LOCAL-016   P0         TESTED   packages/billing/src/fake-payment-adapter.ts, .env.example   packages/billing/src/fake-payment-adapter.test.ts; apps/api/src/startup-guards.ts   docs/DEV-LOCAL.md M18 §564
+  DEV-LOCAL-017   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-018   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-019   P0         TESTED   packages/billing/src/fake-payment-adapter.ts, .env.example   packages/billing/src/fake-payment-adapter.test.ts; apps/api/src/startup-guards.ts   docs/DEV-LOCAL.md M18 §564
+  DEV-LOCAL-020   P1         TESTED   apps/api/src/server.ts, scripts/local-dev-doctor.mjs   scripts/verify-m18-flow.mjs   docs/testing/LOCAL-DEV-E2E-CHECKLIST.md M18 §567
+  DEV-LOCAL-021   P2         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-022   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-023   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-024   P1         TESTED   tests/fixtures/local-e2e-failure-matrix.json, security/tests   security/tests/acceptance-m18-local-failures.test.ts   docs/DEV-LOCAL.md M18 §570
+  DEV-LOCAL-025   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-026   P1         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-027   P0         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-028   P0         TESTED   docker-compose.yml, scripts/dev-setup.mjs, scripts/run-local-e2e.mjs   scripts/verify-m18-flow.mjs; security/tests/acceptance-m18.test.ts   docs/milestones/M18-closure.md M18
+  DEV-LOCAL-029   P1         TESTED   docs/testing/LOCAL-DEV-E2E-CHECKLIST.md, docs/DEV-LOCAL.md   scripts/run-local-e2e.mjs; pnpm test:e2e:local   docs/milestones/M18-manual-validation.md M18 §573
 
 ## Authentication
 

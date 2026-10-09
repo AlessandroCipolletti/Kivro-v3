@@ -38,6 +38,9 @@
     "verify:m15": "node scripts/run-with-env.mjs node scripts/verify-m15-flow.mjs",
     "verify:m16": "node scripts/run-with-env.mjs node scripts/verify-m16-flow.mjs",
     "verify:m17": "node scripts/run-with-env.mjs node scripts/verify-m17-flow.mjs",
+    "verify:m18": "node scripts/run-with-env.mjs node scripts/verify-m18-flow.mjs",
+    "worker:dev": "node scripts/run-with-env.mjs node scripts/worker-dev.mjs",
+    "dev:demo": "node scripts/run-with-env.mjs node scripts/dev-demo.mjs",
     "test:e2e:local": "node scripts/run-with-env.mjs node scripts/test-e2e-local.mjs"
   },
   "devDependencies": {

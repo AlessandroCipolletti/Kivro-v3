@@ -1,6 +1,18 @@
-# Local dev infrastructure (expanded in M18). Postgres uses host port 5433
+# Local dev infrastructure (M18). Postgres uses host port 5433
 # to avoid clashing with other PostgreSQL instances on 5432.
 services:
+  redis:
+    image: redis:7-alpine
+    container_name: kivro-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+
   minio:
     image: minio/minio:latest
     container_name: kivro-minio
