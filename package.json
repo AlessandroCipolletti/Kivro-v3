@@ -35,7 +35,9 @@
     "verify:m12": "node scripts/run-with-env.mjs node scripts/verify-m12-flow.mjs",
     "verify:m13": "node scripts/run-with-env.mjs node scripts/verify-m13-flow.mjs",
     "verify:m14": "node scripts/run-with-env.mjs node scripts/verify-m14-flow.mjs",
-    "verify:m15": "node scripts/run-with-env.mjs node scripts/verify-m15-flow.mjs"
+    "verify:m15": "node scripts/run-with-env.mjs node scripts/verify-m15-flow.mjs",
+    "verify:m16": "node scripts/run-with-env.mjs node scripts/verify-m16-flow.mjs",
+    "test:e2e:local": "node scripts/run-with-env.mjs node scripts/test-e2e-local.mjs"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.750.0",

@@ -1,0 +1,30 @@
+{
+  "catalogVersion": 1,
+  "description": "Canonical test/dev fixtures for M16 release gates (Master Spec §34, §88–§90).",
+  "entries": [
+    {
+      "id": "adversarial-document-analyzer",
+      "path": "security/adversarial-fixtures/document-analyzer.capability.json",
+      "kind": "capability",
+      "milestones": ["M04", "M06"]
+    },
+    {
+      "id": "verify-m03-openclaw-skill",
+      "path": "scripts/verify-m03-flow.mjs",
+      "kind": "integration-script",
+      "milestones": ["M03"]
+    },
+    {
+      "id": "security-invariants",
+      "path": "security/SECURITY_INVARIANTS.md",
+      "kind": "security-doc",
+      "milestones": ["M04", "M16"]
+    },
+    {
+      "id": "threat-model",
+      "path": "security/THREAT_MODEL.md",
+      "kind": "security-doc",
+      "milestones": ["M04", "M16"]
+    }
+  ]
+}

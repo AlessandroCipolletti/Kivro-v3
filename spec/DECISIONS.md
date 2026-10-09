@@ -584,3 +584,9 @@ greenfield.
 **Context:** Bounded M15 gate left UI/ops gaps (manual sweeps, no terms gate, thin §29/§31 evidence).
 
 **Decision:** Add buyer/seller-facing report UI, marketplace terms acceptance on paid submit, auto-pause after report threshold, user suspend + report resolve admin APIs, worker fleet metrics, lost-worker sweep wired into `POST /platform/admin/jobs/promote-scheduled`, `buildJobAuditSummary` on job detail, `job-io` result-safety helpers, red-team checklist doc, and extended verify tests (including optional DB triage test). ML anomaly and external pen test execution remain post-MVP. Gate unchanged: `pnpm verify:m15`.
+
+## DEC-M16-001 — Testing, fixtures & release gates (§39–§46)
+
+**Context:** M16 maps 51 requirements spanning roadmap docs, API sketch parity, fixture catalog, experiments traceability, MVP/product checklists, and CI release gates.
+
+**Decision:** Ship `tests/fixtures/catalog.json` with integrity verification, MVP API contract doc + route smoke script, architecture/roadmap and OpenClaw study indexes, experiment→test mapping, MVP/product validation markdown, `docs/RELEASE-GATES.md`, `pnpm verify:m16`, and `pnpm test:e2e:local` as composed gate smoke. Full §573 paid two-user Docker E2E remains **M18**. Gate: `pnpm verify:m16`.

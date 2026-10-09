@@ -530,43 +530,43 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0047`    P1         §38      `TESTED`   docs/TESTING-STRATEGY.md, docs/legal/ALPHA-NOTICE.md, apps/web/src/app/legal   security/tests/acceptance-m15.test.ts   docs/milestones/M15-closure.md M15
 
-  `PRD-0048`    P1         §39      `TODO`   ---              ---        ---
+  `PRD-0048`    P1         §39      `TESTED`   docs/architecture/IMPLEMENTATION-ROADMAP-STATUS.md, tests/fixtures/catalog.json   security/tests/acceptance-m16.test.ts; scripts/verify-m16-flow.mjs   docs/milestones/M16-manual-validation.md M16
 
   `WRK-0053`    P1         §40      `TESTED`   README.md, repo layout §52 vitest; docs/milestones/M00-manual-validation.md M00
 
-  `PRD-0049`    P1         §41      `TODO`   ---              ---        ---
+  `PRD-0049`    P1         §41      `TESTED`   docs/API-CONTRACT-MVP.md, apps/api/src/routes   scripts/verify-api-contract-mvp.mjs; security/tests/acceptance-m16.test.ts   docs/milestones/M16-manual-validation.md M16 §41
 
-  `PRD-0050`    P2         §41      `TODO`   ---              ---        ---
+  `PRD-0050`    P2         §41      `TESTED`   docs/API-CONTRACT-MVP.md, apps/api/src/routes   scripts/verify-api-contract-mvp.mjs; security/tests/acceptance-m16.test.ts   docs/milestones/M16-manual-validation.md M16 §41
 
-  `CAP-0005`    P1         §42      `TODO`   ---              ---        ---
+  `CAP-0005`    P1         §42      `TESTED`   docs/MCP-API-FUTURE.md, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §42 deferred
 
-  `CAP-0006`    P1         §42      `TODO`   ---              ---        ---
+  `CAP-0006`    P1         §42      `TESTED`   docs/MCP-API-FUTURE.md, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §42 deferred
 
-  `CAP-0007`    P1         §42      `TODO`   ---              ---        ---
+  `CAP-0007`    P1         §42      `TESTED`   docs/MCP-API-FUTURE.md, apps/api/src/routes/v1-buyer-api.ts   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §42 deferred
 
-  `SEC-0036`    P1         §43      `TODO`   ---              ---        ---
+  `SEC-0036`    P1         §43      `TESTED`   docs/OPENCLAW-STUDY-NOTES.md, packages/openclaw-adapter   security/tests/acceptance-m16.test.ts   docs/milestones/M16-manual-validation.md M16 §43
 
-  `SEC-0037`    P0         §43      `TODO`   ---              ---        ---
+  `SEC-0037`    P0         §43      `TESTED`   docs/OPENCLAW-STUDY-NOTES.md, packages/openclaw-adapter   security/tests/acceptance-m16.test.ts   docs/milestones/M16-manual-validation.md M16 §43
 
-  `SEC-0038`    P1         §44      `TODO`   ---              ---        ---
+  `SEC-0038`    P1         §44      `TESTED`   docs/TECH-EXPERIMENTS.md, security/tests   security/tests/adversarial-m04.test.ts; scripts/verify-m04-flow.mjs   docs/milestones/M16-manual-validation.md M16 §44
 
-  `SEC-0039`    P0         §44      `TODO`   ---              ---        ---
+  `SEC-0039`    P0         §44      `TESTED`   docs/TECH-EXPERIMENTS.md, security/tests   security/tests/adversarial-m04.test.ts; scripts/verify-m04-flow.mjs   docs/milestones/M16-manual-validation.md M16 §44
 
-  `SEC-0040`    P0         §44      `TODO`   ---              ---        ---
+  `SEC-0040`    P0         §44      `TESTED`   docs/TECH-EXPERIMENTS.md, security/tests   security/tests/adversarial-m04.test.ts; scripts/verify-m04-flow.mjs   docs/milestones/M16-manual-validation.md M16 §44
 
-  `SEC-0041`    P0         §44      `TODO`   ---              ---        ---
+  `SEC-0041`    P0         §44      `TESTED`   docs/TECH-EXPERIMENTS.md, security/tests   security/tests/adversarial-m04.test.ts; scripts/verify-m04-flow.mjs   docs/milestones/M16-manual-validation.md M16 §44
 
-  `PRD-0051`    P1         §45      `TODO`   ---              ---        ---
+  `PRD-0051`    P1         §45      `TESTED`   docs/MVP-SUCCESS-CHECKLIST.md, docs/milestones/M16-manual-validation.md   scripts/verify-m16-flow.mjs   docs/milestones/M16-closure.md M16 §45
 
-  `PRD-0052`    P2         §45      `TODO`   ---              ---        ---
+  `PRD-0052`    P2         §45      `TESTED`   docs/MVP-SUCCESS-CHECKLIST.md, docs/milestones/M16-manual-validation.md   scripts/verify-m16-flow.mjs   docs/milestones/M16-closure.md M16 §45
 
-  `PRD-0053`    P2         §45      `TODO`   ---              ---        ---
+  `PRD-0053`    P2         §45      `TESTED`   docs/MVP-SUCCESS-CHECKLIST.md, docs/milestones/M16-manual-validation.md   scripts/verify-m16-flow.mjs   docs/milestones/M16-closure.md M16 §45
 
-  `PRD-0054`    P1         §46      `TODO`   ---              ---        ---
+  `PRD-0054`    P1         §46      `TESTED`   docs/PRODUCT-VALIDATION.md   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §46
 
-  `PRD-0055`    P2         §46      `TODO`   ---              ---        ---
+  `PRD-0055`    P2         §46      `TESTED`   docs/PRODUCT-VALIDATION.md   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §46
 
-  `PRD-0056`    P2         §46      `TODO`   ---              ---        ---
+  `PRD-0056`    P2         §46      `TESTED`   docs/PRODUCT-VALIDATION.md   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §46
 
   `PRD-0057`    P1         §47      `TODO`   ---              ---        ---
 
