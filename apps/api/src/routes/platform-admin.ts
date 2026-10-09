@@ -17,10 +17,32 @@ import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
 import { suspendBuyerAccount } from "@kivro/abuse-controls";
 import { randomUUID } from "node:crypto";
 import { Hono } from "hono";
+import { readControlPlaneRegistry, resolveActiveControlPlaneIdForNewExecutions } from "@kivro/cloud-core";
 import { getActiveCloudComposition } from "../cloud-composition.js";
 
 export function platformAdminRoutes(): Hono {
   const app = new Hono();
+
+  app.get("/control-planes", (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const composition = getActiveCloudComposition();
+    let activeForNewExecutions: string | null = null;
+    try {
+      activeForNewExecutions = resolveActiveControlPlaneIdForNewExecutions(process.env);
+    } catch {
+      activeForNewExecutions = null;
+    }
+    return c.json({
+      cloudProfile: composition.profile,
+      controlPlanes: readControlPlaneRegistry(process.env),
+      activeForNewExecutions,
+    });
+  });
 
   app.get("/dispatch", (c) => {
     try {

@@ -17,6 +17,16 @@ export {
   type ProcessDurableWorkResult,
 } from "./postgres-durable-work.js";
 export { runCloudMaintenanceSweeps } from "./cloud-maintenance-sweeps.js";
+export {
+  assertExecutionControlPlaneMatch,
+  controlPlaneMayAcceptNewExecutions,
+  defaultControlPlaneIdForProfile,
+  isDualControlPlaneDiscoveryEnabled,
+  jobVisibleOnControlPlane,
+  readControlPlaneRegistry,
+  resolveActiveControlPlaneIdForNewExecutions,
+  type ControlPlaneRegistryEntry,
+} from "./control-plane-policy.js";
 export type {
   WorkerPollResult,
   WorkerProtocolEnvelope,

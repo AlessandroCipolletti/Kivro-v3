@@ -3,6 +3,7 @@ import { buildWorkerHealthReport } from "@kivro/seller-health";
 import type { WorkerTransportPort } from "@kivro/cloud-core";
 import { applyWorkerHeartbeat } from "./worker-heartbeat-service.js";
 import { executeWorkerPoll } from "./worker-poll-service.js";
+import { resolveWorkerRequestControlPlane } from "./worker-control-plane-context.js";
 
 export type WorkerTransportFrameResult =
   | { status: number; json: unknown }
@@ -45,7 +46,8 @@ export async function handleWorkerTransportFrame(
   }
 
   if (envelope.operation === "poll") {
-    const poll = await executeWorkerPoll(prisma, workerDeviceId);
+    const cp = resolveWorkerRequestControlPlane(envelope.controlPlaneId);
+    const poll = await executeWorkerPoll(prisma, workerDeviceId, cp);
     if ("error" in poll) {
       return { status: 403, json: { error: poll.error } };
     }

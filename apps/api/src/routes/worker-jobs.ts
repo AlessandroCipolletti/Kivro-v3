@@ -19,6 +19,7 @@ import {
   workerAcknowledgeJobResumed,
 } from "@kivro/job-control";
 import { executeWorkerPoll } from "../services/worker-poll-service.js";
+import { resolveWorkerRequestControlPlane } from "../services/worker-control-plane-context.js";
 import { dispatchJobToWorkerWithProfileSignal } from "../services/cloud-dispatch-hook.js";
 import { sanitizeAuditPayload } from "@kivro/observability";
 import type { Prisma } from "@kivro/database";
@@ -38,7 +39,8 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
-    const poll = await executeWorkerPoll(getPrismaClient(), workerDeviceId);
+    const cp = resolveWorkerRequestControlPlane(c.req.header("x-kivro-control-plane-id"));
+    const poll = await executeWorkerPoll(getPrismaClient(), workerDeviceId, cp);
     if ("error" in poll) {
       return c.json({ error: poll.error }, 403);
     }
@@ -85,9 +87,12 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (accepted.workerDeviceId !== workerDeviceId) {
       return c.json({ error: "FORBIDDEN" }, 403);
     }
+    const cp = resolveWorkerRequestControlPlane(c.req.header("x-kivro-control-plane-id"));
     const result = await acceptJobOffer(getPrismaClient(), {
       jobId: accepted.jobId,
       workerDeviceId,
+      controlPlaneId: cp.controlPlaneId,
+      fallbackControlPlaneId: cp.fallbackControlPlaneId,
     });
     if ("error" in result) {
       return c.json(result, 409);

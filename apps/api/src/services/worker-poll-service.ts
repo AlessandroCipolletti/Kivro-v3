@@ -1,7 +1,12 @@
 import type { PrismaClient } from "@kivro/database";
+import { jobVisibleOnControlPlane } from "@kivro/cloud-core";
 import { deriveMarketplaceControlState, parseWorkerHealthReport } from "@kivro/seller-health";
 
-export async function executeWorkerPoll(prisma: PrismaClient, workerDeviceId: string) {
+export async function executeWorkerPoll(
+  prisma: PrismaClient,
+  workerDeviceId: string,
+  input: { controlPlaneId: string; fallbackControlPlaneId: string },
+) {
   const device = await prisma.workerDevice.findUnique({
     where: { id: workerDeviceId },
     include: {
@@ -26,19 +31,35 @@ export async function executeWorkerPoll(prisma: PrismaClient, workerDeviceId: st
       lastSeenAt: new Date(),
     },
   });
-  const offers = marketplaceControl.dispatchBlocked
+  const rawOffers = marketplaceControl.dispatchBlocked
     ? []
     : await prisma.job.findMany({
         where: { workerDeviceId, status: "DISPATCHED" },
-        take: 5,
+        take: 20,
       });
-  const controlJobs = await prisma.job.findMany({
+  const offers = rawOffers
+    .filter((job) =>
+      jobVisibleOnControlPlane({
+        jobExecutionControlPlaneId: job.executionControlPlaneId,
+        requestControlPlaneId: input.controlPlaneId,
+        fallbackControlPlaneId: input.fallbackControlPlaneId,
+      }),
+    )
+    .slice(0, 5);
+  const rawControlJobs = await prisma.job.findMany({
     where: {
       workerDeviceId,
       status: { in: ["PAUSE_REQUESTED", "RESUME_REQUESTED"] },
     },
-    take: 10,
+    take: 20,
   });
+  const controlJobs = rawControlJobs.filter((job) =>
+    jobVisibleOnControlPlane({
+      jobExecutionControlPlaneId: job.executionControlPlaneId,
+      requestControlPlaneId: input.controlPlaneId,
+      fallbackControlPlaneId: input.fallbackControlPlaneId,
+    }),
+  );
   const commands: unknown[] = [];
   if (marketplaceControl.requiresLocalPauseSync) {
     commands.push({

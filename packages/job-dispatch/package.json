@@ -16,6 +16,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@kivro/cloud-core": "workspace:*",
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
     "@kivro/domain": "workspace:*",

@@ -6,6 +6,7 @@ import {
   assertImmediateJobSubmissionAllowed,
   assertQueuedJobDispatchAllowed,
 } from "@kivro/job-scheduling";
+import { assertWorkerJobOnControlPlane } from "./control-plane-guard.js";
 
 async function transition(
   prisma: PrismaClient,
@@ -32,7 +33,12 @@ async function transition(
 /** §11 — queue and offer a reserved job to a bound worker device. */
 export async function dispatchJobToWorker(
   prisma: PrismaClient,
-  input: { jobId: string; workerDeviceId: string; offerExpiresAt: Date },
+  input: {
+    jobId: string;
+    workerDeviceId: string;
+    offerExpiresAt: Date;
+    executionControlPlaneId: string;
+  },
 ): Promise<{ offer: JobOffer } | { error: string }> {
   if (!isGlobalDispatchEnabled()) {
     return { error: "GLOBAL_DISPATCH_DISABLED" };
@@ -61,6 +67,7 @@ export async function dispatchJobToWorker(
   await transition(prisma, job.id, "QUEUED", "DISPATCHED", {
     workerDeviceId: input.workerDeviceId,
     dispatchExpiresAt: input.offerExpiresAt,
+    executionControlPlaneId: input.executionControlPlaneId,
   });
   const offer: JobOffer = {
     protocolVersion: PROTOCOL_VERSION,
@@ -76,11 +83,21 @@ export async function dispatchJobToWorker(
 
 export async function acceptJobOffer(
   prisma: PrismaClient,
-  input: { jobId: string; workerDeviceId: string },
+  input: { jobId: string; workerDeviceId: string; controlPlaneId?: string; fallbackControlPlaneId?: string },
 ): Promise<{ status: JobStatus } | { error: string }> {
   const job = await prisma.job.findUnique({ where: { id: input.jobId } });
   if (!job || job.workerDeviceId !== input.workerDeviceId) {
     return { error: "FORBIDDEN" };
+  }
+  if (input.controlPlaneId && input.fallbackControlPlaneId) {
+    const gate = assertWorkerJobOnControlPlane({
+      jobExecutionControlPlaneId: job.executionControlPlaneId,
+      requestControlPlaneId: input.controlPlaneId,
+      fallbackControlPlaneId: input.fallbackControlPlaneId,
+    });
+    if ("error" in gate) {
+      return { error: gate.error };
+    }
   }
   if (job.status === "ACCEPTED") {
     return { status: "ACCEPTED" };

@@ -469,6 +469,9 @@ importers:
 
   packages/job-dispatch:
     dependencies:
+      '@kivro/cloud-core':
+        specifier: workspace:*
+        version: link:../cloud-core
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts

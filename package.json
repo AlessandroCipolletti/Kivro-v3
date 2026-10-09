@@ -44,6 +44,7 @@
     "verify:m19": "node scripts/run-with-env.mjs node scripts/verify-m19-flow.mjs",
     "verify:m20": "node scripts/run-with-env.mjs node scripts/verify-m20-flow.mjs",
     "verify:m21": "node scripts/run-with-env.mjs node scripts/verify-m21-flow.mjs",
+    "verify:m22": "node scripts/run-with-env.mjs node scripts/verify-m22-flow.mjs",
     "dev:doctor": "node scripts/run-with-env.mjs node scripts/local-dev-doctor.mjs",
     "test:m18:preflight": "node scripts/run-with-env.mjs node scripts/run-m18-local-preflight.mjs",
     "worker:dev": "node scripts/run-with-env.mjs node scripts/worker-dev.mjs",

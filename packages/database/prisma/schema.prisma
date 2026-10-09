@@ -570,6 +570,7 @@ model Job {
   paymentFunding             JobPaymentFunding @default(PREPAID_CREDITS)
   stripePaymentIntentId      String?           @unique
   workerDeviceId             String?
+  executionControlPlaneId    String?
   correlationId              String?
   failureCode                String?
   activeControlCommandId     String?
@@ -608,6 +609,7 @@ model Job {
   @@index([buyerId])
   @@index([capabilityVersionId])
   @@index([status])
+  @@index([executionControlPlaneId])
   @@index([status, scheduledRunAt])
   @@index([orchestrationStepId])
 }
