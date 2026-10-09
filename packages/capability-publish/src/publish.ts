@@ -20,6 +20,7 @@ import { hashPermissionManifest } from "./manifest-hash.js";
 import { diffWorkerManifestPermissions, hasPermissionExpansion } from "./permission-diff.js";
 import { validatePublishSecurity } from "./security-publish-gate.js";
 import { finalizeWorkerManifest, verifyWorkerManifestPayload } from "./worker-manifest-verify.js";
+import { validateAndNormalizeCapabilityContract } from "@kivro/job-io";
 import { randomUUID } from "node:crypto";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -104,7 +105,14 @@ export async function publishCapability(
     throw new Error("EXECUTION_MODEL_NOT_ACKNOWLEDGED");
   }
 
-  const contract = parseCapabilityContract(input.contract);
+  let contract = parseCapabilityContract(input.contract);
+  const contractGate = validateAndNormalizeCapabilityContract(contract);
+  if (!contractGate.ok) {
+    throw new Error(`CONTRACT_INVALID:${contractGate.issues[0] ?? "unknown"}`);
+  }
+  if (contractGate.normalized) {
+    contract = contractGate.normalized;
+  }
   const permissionManifest = parsePublicPermissionManifest(input.permissionManifest);
   const inferenceDependency = parseInferenceDependency(input.inferenceDependency);
   const { manifest: workerManifestTemplate } = verifyWorkerManifestPayload(input.workerManifest);

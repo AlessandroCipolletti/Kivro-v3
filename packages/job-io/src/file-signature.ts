@@ -15,6 +15,9 @@ export function sniffMime(buffer: Uint8Array): string | undefined {
   if (buffer.length >= 12 && buffer[4] === 0x66 && buffer[5] === 0x74 && buffer[6] === 0x79 && buffer[7] === 0x70) {
     return "video/mp4";
   }
+  if (buffer.length >= 2 && buffer[0] === 0x4d && buffer[1] === 0x5a) {
+    return "application/x-msdownload";
+  }
   return undefined;
 }
 

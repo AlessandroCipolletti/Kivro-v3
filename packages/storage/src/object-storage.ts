@@ -1,4 +1,5 @@
 import {
+  GetObjectCommand,
   HeadObjectCommand,
   PutObjectCommand,
   S3Client,
@@ -71,4 +72,27 @@ export async function verifyUploadedObject(input: {
     throw new Error("UPLOAD_HASH_MISMATCH");
   }
   return { sizeBytes, contentHash: input.expectedHash };
+}
+
+/** §216 — read leading bytes for content sniffing (bounded). */
+export async function readObjectPrefix(input: {
+  bucket: string;
+  objectKey: string;
+  maxBytes?: number;
+}): Promise<Uint8Array> {
+  const { client } = requireObjectStorage();
+  const maxBytes = input.maxBytes ?? 512;
+  const res = await client.send(
+    new GetObjectCommand({
+      Bucket: input.bucket,
+      Key: input.objectKey,
+      Range: `bytes=0-${maxBytes - 1}`,
+    }),
+  );
+  const body = res.Body;
+  if (!body) {
+    return new Uint8Array();
+  }
+  const bytes = await body.transformToByteArray();
+  return bytes.slice(0, maxBytes);
 }

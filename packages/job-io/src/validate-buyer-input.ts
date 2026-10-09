@@ -1,4 +1,5 @@
 import type { CapabilityContract, CapabilityInputField } from "@kivro/contracts";
+import { applyScalarDefaults } from "./apply-defaults.js";
 import { activeInputFields } from "./conditionals.js";
 import { extensionOfFilename } from "./file-signature.js";
 import { isFileInputField, normalizeInputFieldType } from "./normalize-field-type.js";
@@ -32,12 +33,13 @@ export interface ValidateBuyerInputResult {
 /** §207 — validate programmatic job submission against immutable contract. */
 export function validateBuyerInput(request: ValidateBuyerInputRequest): ValidateBuyerInputResult {
   const issues: ValidationIssue[] = [];
-  const fields = activeInputFields(request.contract.inputs.fields, request.inputs);
+  const inputs = applyScalarDefaults(request.contract, request.inputs);
+  const fields = activeInputFields(request.contract.inputs.fields, inputs);
   for (const field of fields) {
-    validateField(field, request, issues);
+    validateField(field, { ...request, inputs }, issues);
   }
   for (const field of request.contract.inputs.fields) {
-    if (!isFieldActiveSimple(field, request.inputs) && request.inputs[field.key] !== undefined) {
+    if (!isFieldActiveSimple(field, inputs) && inputs[field.key] !== undefined) {
       issues.push({
         fieldKey: field.key,
         code: "INACTIVE_FIELD_PROVIDED",
@@ -203,12 +205,33 @@ function validateFileAllowlist(
       message: `Extension ${ext} not allowed`,
     });
   }
+  if (
+    asset.declaredMimeType &&
+    asset.sniffedMimeType &&
+    asset.declaredMimeType !== asset.sniffedMimeType
+  ) {
+    issues.push({
+      fieldKey,
+      code: "MIME_MISMATCH",
+      message: "Declared MIME type does not match file signature",
+    });
+  }
   const mime = asset.sniffedMimeType ?? asset.declaredMimeType;
   if (constraints.allowedMimeTypes.length > 0 && mime && !constraints.allowedMimeTypes.includes(mime)) {
     issues.push({
       fieldKey,
       code: "MIME",
       message: `MIME ${mime} not allowed`,
+    });
+  }
+  if (
+    asset.sniffedMimeType === "application/x-msdownload" &&
+    [".jpg", ".jpeg", ".png", ".gif", ".webp"].includes(ext)
+  ) {
+    issues.push({
+      fieldKey,
+      code: "SUSPICIOUS_FILE",
+      message: "File signature does not match declared image extension",
     });
   }
 }

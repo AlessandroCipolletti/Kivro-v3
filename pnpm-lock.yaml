@@ -80,6 +80,9 @@ importers:
       '@kivro/crypto':
         specifier: workspace:*
         version: link:../../packages/crypto
+      '@kivro/job-io':
+        specifier: workspace:*
+        version: link:../../packages/job-io
       '@kivro/job-protocol':
         specifier: workspace:*
         version: link:../../packages/job-protocol

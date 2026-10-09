@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { parseWorkerManifest } from "@kivro/contracts";
+import { parseCapabilityContract, parseWorkerManifest } from "@kivro/contracts";
+import {
+  buildInternalJobInstructions,
+  validateBuyerInput,
+  validateWorkerResultManifest,
+  type WorkerResultManifest,
+} from "@kivro/job-io";
 import { buildWorkerManifestTemplate } from "@kivro/capability-publish";
 import { validateExecutionPreflight } from "@kivro/policy-engine";
 import { buildDockerSandboxSpec } from "@kivro/sandbox";
@@ -20,7 +26,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const WORKER_VERSION = "0.0.0-m04";
+const WORKER_VERSION = "0.0.0-m05";
 
 function runtimeRoot(): string {
   const configured = process.env.KIVRO_RUNTIME_ROOT ?? "~/.kivro/runtime";
@@ -138,6 +144,53 @@ program
     if (!ok) {
       process.exit(1);
     }
+  });
+
+program
+  .command("validate-input")
+  .description("Validate buyer payload JSON against a capability contract file")
+  .requiredOption("--contract <path>", "Capability contract JSON")
+  .requiredOption("--payload <path>", "Payload JSON with inputs and assets")
+  .action((opts: { contract: string; payload: string }) => {
+    const contract = parseCapabilityContract(JSON.parse(fs.readFileSync(opts.contract, "utf8")));
+    const payload = JSON.parse(fs.readFileSync(opts.payload, "utf8")) as {
+      inputs?: Record<string, unknown>;
+      assets?: Record<string, import("@kivro/job-io").JobAssetRef[]>;
+    };
+    const result = validateBuyerInput({
+      contract,
+      inputs: payload.inputs ?? {},
+      assets: payload.assets ?? {},
+    });
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.ok) {
+      process.exit(1);
+    }
+  });
+
+program
+  .command("validate-output")
+  .description("Validate Worker result.json against output contract")
+  .requiredOption("--contract <path>", "Capability contract JSON")
+  .requiredOption("--result <path>", "result.json path")
+  .option("--output-root <path>", "Job output root directory", "/job/output")
+  .action((opts: { contract: string; result: string; outputRoot: string }) => {
+    const contract = parseCapabilityContract(JSON.parse(fs.readFileSync(opts.contract, "utf8")));
+    const manifest = JSON.parse(fs.readFileSync(opts.result, "utf8")) as WorkerResultManifest;
+    const result = validateWorkerResultManifest(contract.output, manifest, opts.outputRoot);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.ok) {
+      process.exit(1);
+    }
+  });
+
+program
+  .command("job-instructions")
+  .description("Print platform-controlled internal job instructions (§213)")
+  .requiredOption("--contract <path>", "Capability contract JSON")
+  .action((opts: { contract: string }) => {
+    const contract = parseCapabilityContract(JSON.parse(fs.readFileSync(opts.contract, "utf8")));
+    console.log(buildInternalJobInstructions(contract));
   });
 
 program

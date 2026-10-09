@@ -1570,23 +1570,23 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0078`     P1         §203     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `UI-0022`     P1         §204     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `UI-0022`     P1         §204     `TESTED`   packages/job-io, apps/api/src/routes/seller-capabilities.ts   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0079`     P1         §205     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `IO-0079`     P1         §205     `TESTED`   packages/capability-publish/suggest-input-contract.ts   vitest   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0080`     P1         §205     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `IO-0080`     P1         §205     `TESTED`   packages/capability-publish/suggest-input-contract.ts   vitest   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0081`     P1         §205     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `IO-0081`     P1         §205     `TESTED`   packages/capability-publish/suggest-input-contract.ts   vitest   docs/milestones/M05-manual-validation.md M05
 
-  `PRD-0186`    P1         §206     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `PRD-0186`    P1         §206     `TESTED`   packages/job-io/buyer-form-schema.ts, GET /capabilities/:slug   vitest   docs/milestones/M05-manual-validation.md M05
 
   `CAP-0056`    P1         §207     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `PRD-0187`    P1         §208     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `PRD-0187`    P1         §208     `TESTED`   packages/job-io/agent-input-mapper.ts, POST /capabilities/:slug/prepare-agent-input   vitest   docs/milestones/M05-manual-validation.md M05
 
-  `PRD-0188`    P2         §208     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `PRD-0188`    P2         §208     `TESTED`   packages/job-io/agent-input-mapper.ts   vitest   docs/milestones/M05-manual-validation.md M05
 
-  `PRD-0189`    P2         §208     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
+  `PRD-0189`    P2         §208     `TESTED`   packages/job-io/agent-input-mapper.ts   vitest   docs/milestones/M05-manual-validation.md M05
 
   `IO-0082`     P1         §209     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 

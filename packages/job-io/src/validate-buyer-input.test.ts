@@ -80,6 +80,29 @@ describe("validateBuyerInput", () => {
     });
     expect(result.ok).toBe(false);
   });
+  it("rejects MIME/signature mismatches per §216", () => {
+    const result = validateBuyerInput({
+      contract,
+      inputs: {
+        instructions: "long enough text here",
+        resolution: "1080p",
+      },
+      assets: {
+        scene: [
+          {
+            assetId: "a1",
+            filename: "photo.jpg",
+            sizeBytes: 1024,
+            declaredMimeType: "image/jpeg",
+            sniffedMimeType: "application/pdf",
+          },
+        ],
+      },
+    });
+    expect(result.ok).toBe(false);
+    expect(result.issues.some((i) => i.code === "MIME_MISMATCH")).toBe(true);
+  });
+
   it("enforces conditional field visibility", () => {
     const result = validateBuyerInput({
       contract,

@@ -1,5 +1,6 @@
 import type { PrismaClient, StoredAsset } from "@kivro/database";
-import { createPresignedUpload, verifyUploadedObject } from "@kivro/storage";
+import { sniffMime } from "@kivro/job-io";
+import { createPresignedUpload, readObjectPrefix, verifyUploadedObject } from "@kivro/storage";
 
 const DEFAULT_MAX_BYTES = 104_857_600;
 
@@ -39,7 +40,7 @@ export async function confirmBuyerStoredAssetUpload(
   db: PrismaClient,
   buyerId: string,
   assetId: string,
-): Promise<StoredAsset> {
+): Promise<{ asset: StoredAsset; sniffedMime?: string }> {
   const asset = await db.storedAsset.findFirst({
     where: { id: assetId, buyerId, purpose: "BUYER_JOB_INPUT" },
   });
@@ -47,7 +48,7 @@ export async function confirmBuyerStoredAssetUpload(
     throw new Error("NOT_FOUND");
   }
   if (asset.uploadConfirmedAt) {
-    return asset;
+    return { asset };
   }
   const verified = await verifyUploadedObject({
     bucket: asset.bucket,
@@ -55,11 +56,23 @@ export async function confirmBuyerStoredAssetUpload(
     expectedHash: asset.contentHash,
     maxBytes: DEFAULT_MAX_BYTES,
   });
-  return db.storedAsset.update({
+  let sniffedMime: string | undefined;
+  try {
+    const prefix = await readObjectPrefix({
+      bucket: asset.bucket,
+      objectKey: asset.objectKey,
+    });
+    sniffedMime = sniffMime(prefix);
+  } catch {
+    sniffedMime = undefined;
+  }
+  const updated = await db.storedAsset.update({
     where: { id: asset.id },
     data: {
       sizeBytes: verified.sizeBytes,
       uploadConfirmedAt: new Date(),
+      ...(sniffedMime ? { mimeType: sniffedMime } : {}),
     },
   });
+  return { asset: updated, sniffedMime };
 }

@@ -17,3 +17,18 @@ export {
 } from "./validate-output-manifest.js";
 export { buildInternalJobInstructions } from "./job-instructions.js";
 export { buildJobInputManifest, type JobInputManifest } from "./input-manifest.js";
+export {
+  applyScalarDefaults,
+  assertNoFileDefaults,
+  assertScalarDefaultsSafe,
+} from "./apply-defaults.js";
+export {
+  validateAndNormalizeCapabilityContract,
+  type ContractValidationResult,
+} from "./validate-capability-contract.js";
+export { buildBuyerFormSchema, type BuyerFormField } from "./buyer-form-schema.js";
+export {
+  prepareAgentJobSubmission,
+  type AgentInputDraft,
+  type AgentPrepareResult,
+} from "./agent-input-mapper.js";

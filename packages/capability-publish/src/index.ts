@@ -37,3 +37,4 @@ export {
   createBuyerUploadSlot,
   confirmBuyerStoredAssetUpload,
 } from "./buyer-stored-asset.js";
+export { suggestInputContractFromDiscovery } from "./suggest-input-contract.js";

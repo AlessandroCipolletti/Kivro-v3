@@ -40,12 +40,12 @@ export function buyerAssetRoutes(): Hono<AppEnv> {
   app.post("/assets/:id/confirm", async (c) => {
     const user = c.get("user");
     try {
-      const asset = await confirmBuyerStoredAssetUpload(
+      const result = await confirmBuyerStoredAssetUpload(
         getPrismaClient(),
         user.id,
         c.req.param("id"),
       );
-      return c.json({ asset });
+      return c.json(result);
     } catch (err) {
       if (err instanceof Error && err.message === "NOT_FOUND") {
         return c.json({ error: "NOT_FOUND" }, 404);

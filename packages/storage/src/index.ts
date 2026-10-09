@@ -4,4 +4,5 @@ export {
   createPresignedUpload,
   requireObjectStorage,
   verifyUploadedObject,
+  readObjectPrefix,
 } from "./object-storage.js";

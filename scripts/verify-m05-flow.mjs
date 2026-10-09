@@ -21,6 +21,10 @@ run("pnpm", [
   "packages/job-io/src/validate-output-manifest.test.ts",
   "packages/capability-publish/src/contract-compatibility.test.ts",
   "packages/capability-publish/src/permission-diff.test.ts",
+  "packages/capability-publish/src/suggest-input-contract.test.ts",
+  "packages/job-io/src/validate-capability-contract.test.ts",
+  "packages/job-io/src/agent-input-mapper.test.ts",
+  "packages/job-io/src/job-instructions.test.ts",
 ]);
 
 console.log("M05 verify flow passed");

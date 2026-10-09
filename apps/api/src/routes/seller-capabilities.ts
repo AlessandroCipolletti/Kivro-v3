@@ -10,11 +10,16 @@ import {
   pauseCapability,
   publishCapability,
   rollbackCapabilityVersion,
+  suggestInputContractFromDiscovery,
   summarizeVersionDiff,
   validateImportConsent,
 } from "@kivro/capability-publish";
 import { parseCapabilityContract } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
+import {
+  buildBuyerFormSchema,
+  validateAndNormalizeCapabilityContract,
+} from "@kivro/job-io";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
 import type { AppEnv } from "../types.js";
@@ -270,9 +275,41 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         if (err.message === "PERMISSION_EXPANSION_REQUIRES_ACK") {
           return c.json({ error: err.message }, 400);
         }
+        if (err.message.startsWith("CONTRACT_INVALID:")) {
+          return c.json(
+            { error: err.message.replace("CONTRACT_INVALID:", "") },
+            400,
+          );
+        }
       }
       throw err;
     }
+  });
+
+  app.post("/contract/validate", async (c) => {
+    const body = await c.req.json<{ contract?: unknown }>();
+    if (body.contract === undefined) {
+      return c.json({ error: "INVALID_INPUT" }, 400);
+    }
+    try {
+      const contract = parseCapabilityContract(body.contract);
+      const result = validateAndNormalizeCapabilityContract(contract);
+      const buyerForm = result.normalized
+        ? buildBuyerFormSchema(result.normalized)
+        : undefined;
+      return c.json({ ...result, buyerForm });
+    } catch {
+      return c.json({ error: "INVALID_CONTRACT" }, 400);
+    }
+  });
+
+  app.post("/import/suggest-input-contract", async (c) => {
+    const body = await c.req.json<{ discovery?: unknown }>();
+    const discovery = DiscoverySnapshotSchema.safeParse(body.discovery);
+    if (!discovery.success) {
+      return c.json({ error: "INVALID_INPUT" }, 400);
+    }
+    return c.json(suggestInputContractFromDiscovery(discovery.data));
   });
 
   app.post("/import/analyze-dependencies", async (c) => {

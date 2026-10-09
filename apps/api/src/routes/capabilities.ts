@@ -1,7 +1,13 @@
 import { buildBuyerTrustSummary } from "@kivro/capability-publish";
 import { parseCapabilityContract, parseWorkerManifest } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
-import { buildJobInputManifest, validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
+import {
+  buildBuyerFormSchema,
+  buildJobInputManifest,
+  prepareAgentJobSubmission,
+  validateBuyerInput,
+  type JobAssetRef,
+} from "@kivro/job-io";
 import { Hono } from "hono";
 
 export function marketplaceCapabilityRoutes(): Hono {
@@ -54,7 +60,48 @@ export function marketplaceCapabilityRoutes(): Hono {
         buyerTrust = null;
       }
     }
-    return c.json({ capability: row, buyerTrust });
+    const contract =
+      row.currentVersion &&
+      parseCapabilityContract({
+        name: row.name,
+        description: row.description,
+        currency: row.currentVersion.currency,
+        priceTierCents: row.currentVersion.priceSnapshotCents,
+        inputs: row.currentVersion.inputSchema,
+        output: row.currentVersion.outputSchema,
+      });
+    const buyerForm = contract ? buildBuyerFormSchema(contract) : null;
+    return c.json({ capability: row, buyerTrust, buyerForm });
+  });
+
+  app.post("/capabilities/:slug/prepare-agent-input", async (c) => {
+    const slug = c.req.param("slug");
+    const row = await getPrismaClient().capability.findFirst({
+      where: { slug, status: "PUBLISHED", currentVersionId: { not: null } },
+      include: { currentVersion: true },
+    });
+    if (!row?.currentVersion) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    const body = await c.req.json<{
+      instructions?: string;
+      attachments?: Array<{
+        filename: string;
+        assetId: string;
+        sizeBytes: number;
+        sniffedMimeType?: string;
+      }>;
+    }>();
+    const contract = parseCapabilityContract({
+      name: row.name,
+      description: row.description,
+      currency: row.currentVersion.currency,
+      priceTierCents: row.currentVersion.priceSnapshotCents,
+      inputs: row.currentVersion.inputSchema,
+      output: row.currentVersion.outputSchema,
+    });
+    const prepared = prepareAgentJobSubmission(contract, body);
+    return c.json(prepared);
   });
 
   app.post("/capabilities/:slug/validate-input", async (c) => {
