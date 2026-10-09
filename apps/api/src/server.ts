@@ -6,6 +6,7 @@ import { authRoutes } from "./routes/auth.js";
 import { marketplaceCapabilityRoutes } from "./routes/capabilities.js";
 import { sellerAssetRoutes } from "./routes/seller-assets.js";
 import { sellerCapabilityRoutes } from "./routes/seller-capabilities.js";
+import { buyerAssetRoutes } from "./routes/buyer-assets.js";
 import { platformAdminRoutes } from "./routes/platform-admin.js";
 import { workerDeviceRoutes } from "./routes/worker-devices.js";
 import type { AppEnv } from "./types.js";
@@ -43,7 +44,7 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M04" });
+    return c.json({ name: "kivro-api", phase: "M05" });
   });
 
   app.route("/auth", authRoutes());
@@ -52,6 +53,7 @@ export function createApp(): Hono<AppEnv> {
   app.route("/seller", sellerAssetRoutes());
   app.route("/worker-devices", workerDeviceRoutes());
   app.route("/platform/admin", platformAdminRoutes());
+  app.route("/buyer", buyerAssetRoutes());
 
   return app;
 }

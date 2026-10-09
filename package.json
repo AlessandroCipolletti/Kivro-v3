@@ -22,7 +22,8 @@
     "storage:init": "node scripts/run-with-env.mjs node scripts/init-minio-bucket.mjs",
     "storage:setup": "pnpm storage:up && sleep 2 && pnpm storage:init",
     "verify:m03": "node scripts/run-with-env.mjs node scripts/verify-m03-flow.mjs",
-    "verify:m04": "node scripts/run-with-env.mjs node scripts/verify-m04-flow.mjs"
+    "verify:m04": "node scripts/run-with-env.mjs node scripts/verify-m04-flow.mjs",
+    "verify:m05": "node scripts/run-with-env.mjs node scripts/verify-m05-flow.mjs"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.750.0",

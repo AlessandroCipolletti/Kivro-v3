@@ -1,6 +1,7 @@
 import { buildBuyerTrustSummary } from "@kivro/capability-publish";
-import { parseWorkerManifest } from "@kivro/contracts";
+import { parseCapabilityContract, parseWorkerManifest } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
+import { buildJobInputManifest, validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
 import { Hono } from "hono";
 
 export function marketplaceCapabilityRoutes(): Hono {
@@ -54,6 +55,46 @@ export function marketplaceCapabilityRoutes(): Hono {
       }
     }
     return c.json({ capability: row, buyerTrust });
+  });
+
+  app.post("/capabilities/:slug/validate-input", async (c) => {
+    const slug = c.req.param("slug");
+    const row = await getPrismaClient().capability.findFirst({
+      where: { slug, status: "PUBLISHED", currentVersionId: { not: null } },
+      include: { currentVersion: true },
+    });
+    if (!row?.currentVersion) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    const body = await c.req.json<{
+      inputs?: Record<string, unknown>;
+      assets?: Record<string, JobAssetRef[]>;
+    }>();
+    const contract = parseCapabilityContract({
+      name: row.name,
+      description: row.description,
+      currency: row.currentVersion.currency,
+      priceTierCents: row.currentVersion.priceSnapshotCents,
+      inputs: row.currentVersion.inputSchema,
+      output: row.currentVersion.outputSchema,
+    });
+    const validation = validateBuyerInput({
+      contract,
+      inputs: body.inputs ?? {},
+      assets: body.assets ?? {},
+    });
+    const manifest = validation.ok
+      ? buildJobInputManifest(contract, {
+          inputs: body.inputs ?? {},
+          assets: Object.fromEntries(
+            Object.entries(body.assets ?? {}).map(([key, refs]) => [
+              key,
+              refs.map((r) => ({ assetId: r.assetId, filename: r.filename })),
+            ]),
+          ),
+        })
+      : undefined;
+    return c.json({ validation, manifest });
   });
 
   return app;

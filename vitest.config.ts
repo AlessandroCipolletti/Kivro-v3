@@ -11,6 +11,7 @@ export default defineConfig({
       "@kivro/egress-proxy": path.resolve("packages/egress-proxy/src/index.ts"),
       "@kivro/platform-policy": path.resolve("packages/platform-policy/src/index.ts"),
       "@kivro/provider-broker": path.resolve("packages/provider-broker/src/index.ts"),
+      "@kivro/job-io": path.resolve("packages/job-io/src/index.ts"),
       "@kivro/observability": path.resolve("packages/observability/src/index.ts"),
       "@kivro/domain": path.resolve("packages/domain/src/index.ts"),
     },

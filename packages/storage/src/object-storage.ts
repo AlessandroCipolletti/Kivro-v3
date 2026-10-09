@@ -29,14 +29,15 @@ export function requireObjectStorage(): { client: S3Client; config: ObjectStorag
 }
 
 export async function createPresignedUpload(input: {
-  sellerProfileId: string;
+  namespace: "sellers" | "buyers";
+  ownerId: string;
   purpose: string;
   contentHash: string;
   mimeType?: string;
   maxBytes: number;
 }): Promise<{ bucket: string; objectKey: string; uploadUrl: string; expiresInSeconds: number }> {
   const { client, config } = requireObjectStorage();
-  const objectKey = `sellers/${input.sellerProfileId}/${input.purpose}/${randomUUID()}`;
+  const objectKey = `${input.namespace}/${input.ownerId}/${input.purpose}/${randomUUID()}`;
   const command = new PutObjectCommand({
     Bucket: config.bucket,
     Key: objectKey,

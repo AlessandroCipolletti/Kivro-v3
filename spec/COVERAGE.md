@@ -1526,105 +1526,105 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0060`    P1         §192      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `IO-0061`     P1         §193     `TODO`   ---              ---        ---
+  `IO-0061`     P1         §193     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0062`     P1         §193     `TODO`   ---              ---        ---
+  `IO-0062`     P1         §193     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
   `IO-0063`    P1         §194      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
   `IO-0064`    P1         §194      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0065`     P1         §195     `TODO`   ---              ---        ---
+  `IO-0065`     P1         §195     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0066`     P1         §195     `TODO`   ---              ---        ---
+  `IO-0066`     P1         §195     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0067`     P1         §195     `TODO`   ---              ---        ---
+  `IO-0067`     P1         §195     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `UI-0019`     P1         §196     `TODO`   ---              ---        ---
+  `UI-0019`     P1         §196     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0068`     P1         §197     `TODO`   ---              ---        ---
+  `IO-0068`     P1         §197     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0069`     P1         §197     `TODO`   ---              ---        ---
+  `IO-0069`     P1         §197     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0070`     P1         §197     `TODO`   ---              ---        ---
+  `IO-0070`     P1         §197     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `UI-0020`     P1         §198     `TODO`   ---              ---        ---
+  `UI-0020`     P1         §198     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `UI-0021`     P2         §198     `TODO`   ---              ---        ---
+  `UI-0021`     P2         §198     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0071`     P1         §199     `TODO`   ---              ---        ---
+  `IO-0071`     P1         §199     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `PRD-0185`    P1         §200     `TODO`   ---              ---        ---
+  `PRD-0185`    P1         §200     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0072`     P1         §201     `TODO`   ---              ---        ---
+  `IO-0072`     P1         §201     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0073`     P1         §201     `TODO`   ---              ---        ---
+  `IO-0073`     P1         §201     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0074`     P1         §202     `TODO`   ---              ---        ---
+  `IO-0074`     P1         §202     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0075`     P1         §202     `TODO`   ---              ---        ---
+  `IO-0075`     P1         §202     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0076`     P1         §202     `TODO`   ---              ---        ---
+  `IO-0076`     P1         §202     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0077`     P1         §203     `TODO`   ---              ---        ---
+  `IO-0077`     P1         §203     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0078`     P1         §203     `TODO`   ---              ---        ---
+  `IO-0078`     P1         §203     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `UI-0022`     P1         §204     `TODO`   ---              ---        ---
+  `UI-0022`     P1         §204     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `IO-0079`     P1         §205     `TODO`   ---              ---        ---
+  `IO-0079`     P1         §205     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `IO-0080`     P1         §205     `TODO`   ---              ---        ---
+  `IO-0080`     P1         §205     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `IO-0081`     P1         §205     `TODO`   ---              ---        ---
+  `IO-0081`     P1         §205     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `PRD-0186`    P1         §206     `TODO`   ---              ---        ---
+  `PRD-0186`    P1         §206     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `CAP-0056`    P1         §207     `TODO`   ---              ---        ---
+  `CAP-0056`    P1         §207     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `PRD-0187`    P1         §208     `TODO`   ---              ---        ---
+  `PRD-0187`    P1         §208     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `PRD-0188`    P2         §208     `TODO`   ---              ---        ---
+  `PRD-0188`    P2         §208     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `PRD-0189`    P2         §208     `TODO`   ---              ---        ---
+  `PRD-0189`    P2         §208     `PARTIAL`   packages/job-io, apps/api   vitest   API validation; seller UI builder post-M05 M05
 
-  `IO-0082`     P1         §209     `TODO`   ---              ---        ---
+  `IO-0082`     P1         §209     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0083`     P1         §209     `TODO`   ---              ---        ---
+  `IO-0083`     P1         §209     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `CAP-0057`    P1         §210     `TODO`   ---              ---        ---
+  `CAP-0057`    P1         §210     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `CAP-0058`    P1         §210     `TODO`   ---              ---        ---
+  `CAP-0058`    P1         §210     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `CAP-0059`    P1         §210     `TODO`   ---              ---        ---
+  `CAP-0059`    P1         §210     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0084`     P1         §211     `TODO`   ---              ---        ---
+  `IO-0084`     P1         §211     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0085`     P1         §211     `TODO`   ---              ---        ---
+  `IO-0085`     P1         §211     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0086`     P1         §211     `TODO`   ---              ---        ---
+  `IO-0086`     P1         §211     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0087`     P1         §211     `TODO`   ---              ---        ---
+  `IO-0087`     P1         §211     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0088`     P1         §212     `TODO`   ---              ---        ---
+  `IO-0088`     P1         §212     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0089`     P1         §212     `TODO`   ---              ---        ---
+  `IO-0089`     P1         §212     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0090`     P1         §212     `TODO`   ---              ---        ---
+  `IO-0090`     P1         §212     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0091`     P1         §213     `TODO`   ---              ---        ---
+  `IO-0091`     P1         §213     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0092`     P1         §213     `TODO`   ---              ---        ---
+  `IO-0092`     P1         §213     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0093`     P1         §213     `TODO`   ---              ---        ---
+  `IO-0093`     P1         §213     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0094`     P1         §213     `TODO`   ---              ---        ---
+  `IO-0094`     P1         §213     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0095`     P1         §214     `TODO`   ---              ---        ---
+  `IO-0095`     P1         §214     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0096`     P1         §214     `TODO`   ---              ---        ---
+  `IO-0096`     P1         §214     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0097`     P1         §214     `TODO`   ---              ---        ---
+  `IO-0097`     P1         §214     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
   `IO-0098`    P1         §215      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
@@ -1634,9 +1634,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0101`    P1         §215      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `IO-0102`     P1         §216     `TODO`   ---              ---        ---
+  `IO-0102`     P1         §216     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0103`     P1         §216     `TODO`   ---              ---        ---
+  `IO-0103`     P1         §216     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
   `IO-0104`     P1         §217     `TODO`   ---              ---        ---
 

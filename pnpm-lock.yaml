@@ -50,6 +50,9 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@kivro/job-io':
+        specifier: workspace:*
+        version: link:../../packages/job-io
       '@kivro/observability':
         specifier: workspace:*
         version: link:../../packages/observability
@@ -118,6 +121,9 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
+      '@kivro/job-io':
+        specifier: workspace:*
+        version: link:../job-io
       '@kivro/openclaw-adapter':
         specifier: workspace:*
         version: link:../openclaw-adapter
@@ -178,6 +184,15 @@ importers:
       '@kivro/policy-engine':
         specifier: workspace:*
         version: link:../policy-engine
+
+  packages/job-io:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/sandbox':
+        specifier: workspace:*
+        version: link:../sandbox
 
   packages/job-protocol:
     dependencies:

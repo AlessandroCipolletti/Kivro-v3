@@ -11,8 +11,16 @@ export {
   CapabilityContractSchema,
   CapabilityInputContractSchema,
   CapabilityOutputContractSchema,
+  CapabilityInputFieldSchema,
+  CapabilityOutputFieldSchema,
+  SpecInputFieldTypeSchema,
+  SpecOutputFieldTypeSchema,
+  FileConstraintsSchema,
   parseCapabilityContract,
   type CapabilityContract,
+  type CapabilityInputField,
+  type CapabilityOutputField,
+  type CapabilityOutputContract,
 } from "./capability-io.js";
 export {
   PublicPermissionManifestSchema,

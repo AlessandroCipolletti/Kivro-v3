@@ -33,3 +33,7 @@ export {
   type PermissionDiffLine,
 } from "./permission-diff.js";
 export { buildBuyerTrustSummary, type BuyerTrustSummary } from "./buyer-trust.js";
+export {
+  createBuyerUploadSlot,
+  confirmBuyerStoredAssetUpload,
+} from "./buyer-stored-asset.js";

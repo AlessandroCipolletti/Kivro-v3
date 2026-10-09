@@ -16,6 +16,7 @@
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
     "@kivro/observability": "workspace:*",
+    "@kivro/job-io": "workspace:*",
     "@kivro/platform-policy": "workspace:*",
     "@hono/node-server": "^1.13.7",
     "hono": "^4.6.14"

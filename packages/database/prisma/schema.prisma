@@ -78,6 +78,8 @@ enum StoredAssetPurpose {
   CAPABILITY_PACKAGE
   SKILL_BUNDLE
   EXAMPLE_INPUT
+  BUYER_JOB_INPUT
+  JOB_DELIVERABLE
 }
 
 model User {
@@ -101,6 +103,7 @@ model User {
   emailVerificationTokens EmailVerificationToken[]
   passwordResetTokens     PasswordResetToken[]
   workerPairingCodes      WorkerPairingCode[]
+  buyerStoredAssets       StoredAsset[]
 }
 
 model OAuthAccount {
@@ -270,7 +273,8 @@ model CapabilityVersion {
 
 model StoredAsset {
   id                String             @id @default(uuid())
-  sellerProfileId   String
+  sellerProfileId   String?
+  buyerId           String?
   purpose           StoredAssetPurpose
   bucket            String
   objectKey         String
@@ -280,11 +284,13 @@ model StoredAsset {
   uploadConfirmedAt DateTime?
   createdAt         DateTime           @default(now())
 
-  sellerProfile SellerProfile @relation(fields: [sellerProfileId], references: [id], onDelete: Cascade)
+  sellerProfile SellerProfile? @relation(fields: [sellerProfileId], references: [id], onDelete: Cascade)
+  buyer         User?          @relation(fields: [buyerId], references: [id], onDelete: Cascade)
   versionLinks  CapabilityVersionAsset[]
 
   @@unique([bucket, objectKey])
   @@index([sellerProfileId])
+  @@index([buyerId])
 }
 
 model CapabilityVersionAsset {

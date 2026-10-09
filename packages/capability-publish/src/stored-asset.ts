@@ -15,7 +15,8 @@ export async function createUploadSlot(
 ): Promise<{ asset: StoredAsset; uploadUrl: string; expiresInSeconds: number }> {
   const maxBytes = input.maxBytes ?? DEFAULT_MAX_BYTES;
   const slot = await createPresignedUpload({
-    sellerProfileId: input.sellerProfileId,
+    namespace: "sellers",
+    ownerId: input.sellerProfileId,
     purpose: input.purpose,
     contentHash: input.contentHash,
     mimeType: input.mimeType,
