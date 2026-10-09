@@ -3487,18 +3487,18 @@ feature post-MVP or the user explicitly approves the deferral.
 
   Requirement   Priority   Status   Implementation   Tests
   ------------- ---------- -------- ---------------- -------
-  PORT-019      P0         TODO     ---              ---
-  PORT-020      P0         TODO     ---              ---
-  PORT-021      P0         TODO     ---              ---
-  PORT-022      P0         TODO     ---              ---
-  PORT-023      P0         TODO     ---              ---
-  PORT-024      P0         TODO     ---              ---
-  PORT-025      P0         TODO     ---              ---
-  PORT-026      P0         TODO     ---              ---
-  PORT-027      P1         TODO     ---              ---
-  PORT-028      P0         TODO     ---              ---
-  PORT-029      P0         TODO     ---              ---
-  PORT-030      P1         TODO     ---              ---
+  PORT-019   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-020   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-021   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-022   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-023   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-024   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-025   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-026   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-027   P1         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-028   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-029   P0         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
+  PORT-030   P1         TESTED   packages/worker-transport, packages/cloud-netsons, packages/cloud-aws   packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19 PORT
 
 ## Unified monorepo / dual deployment profile coverage
 
@@ -3506,53 +3506,53 @@ feature post-MVP or the user explicitly approves the deferral.
   Requirement    Priority    Status      Implementation   Test evidence
                                          evidence         
   -------------- ----------- ----------- ---------------- ---------------
-  ARCH-UNI-001   P0          TODO        ---              ---
+  ARCH-UNI-001   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-002   P0          TODO        ---              ---
+  ARCH-UNI-002   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-003   P0          TODO        ---              ---
+  ARCH-UNI-003   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-004   P0          TODO        ---              ---
+  ARCH-UNI-004   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-005   P0          TODO        ---              ---
+  ARCH-UNI-005   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-006   P0          TODO        ---              ---
+  ARCH-UNI-006   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-007   P0          TODO        ---              ---
+  ARCH-UNI-007   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-008   P0          TODO        ---              ---
+  ARCH-UNI-008   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-009   P0          TODO        ---              ---
+  ARCH-UNI-009   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-010   P0          TODO        ---              ---
+  ARCH-UNI-010   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-011   P0          TODO        ---              ---
+  ARCH-UNI-011   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-012   P0          TODO        ---              ---
+  ARCH-UNI-012   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-013   P0          TODO        ---              ---
+  ARCH-UNI-013   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-014   P0          TODO        ---              ---
+  ARCH-UNI-014   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-015   P0          TODO        ---              ---
+  ARCH-UNI-015   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-016   P1          TODO        ---              ---
+  ARCH-UNI-016   P1         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-017   P0          TODO        ---              ---
+  ARCH-UNI-017   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-018   P0          TODO        ---              ---
+  ARCH-UNI-018   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-019   P0          TODO        ---              ---
+  ARCH-UNI-019   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-020   P0          TODO        ---              ---
+  ARCH-UNI-020   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-021   P0          TODO        ---              ---
+  ARCH-UNI-021   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-022   P0          TODO        ---              ---
+  ARCH-UNI-022   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-023   P0          TODO        ---              ---
+  ARCH-UNI-023   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
 
-  ARCH-UNI-024   P0          TODO        ---              ---
+  ARCH-UNI-024   P0         TESTED   packages/cloud-core, apps/api/src/cloud-composition.ts   security/tests/acceptance-m19.test.ts; packages/worker-transport/src/conformance.test.ts   docs/milestones/M19-closure.md M19
   -----------------------------------------------------------------------
 
 ## Engineering hardening coverage

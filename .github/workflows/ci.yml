@@ -36,3 +36,4 @@ jobs:
       - run: pnpm verify:m16
       - run: pnpm verify:m17
       - run: pnpm verify:m18
+      - run: pnpm verify:m19

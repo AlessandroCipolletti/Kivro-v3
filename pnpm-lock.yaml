@@ -65,6 +65,15 @@ importers:
       '@kivro/capability-publish':
         specifier: workspace:*
         version: link:../../packages/capability-publish
+      '@kivro/cloud-aws':
+        specifier: workspace:*
+        version: link:../../packages/cloud-aws
+      '@kivro/cloud-core':
+        specifier: workspace:*
+        version: link:../../packages/cloud-core
+      '@kivro/cloud-netsons':
+        specifier: workspace:*
+        version: link:../../packages/cloud-netsons
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -113,6 +122,9 @@ importers:
       '@kivro/storage':
         specifier: workspace:*
         version: link:../../packages/storage
+      '@kivro/worker-transport':
+        specifier: workspace:*
+        version: link:../../packages/worker-transport
       hono:
         specifier: ^4.6.14
         version: 4.13.13
@@ -279,15 +291,33 @@ importers:
 
   packages/cloud-aws:
     dependencies:
+      '@kivro/cloud-core':
+        specifier: workspace:*
+        version: link:../cloud-core
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/worker-transport':
+        specifier: workspace:*
+        version: link:../worker-transport
+
+  packages/cloud-core:
+    dependencies:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
 
   packages/cloud-netsons:
     dependencies:
+      '@kivro/cloud-core':
+        specifier: workspace:*
+        version: link:../cloud-core
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@kivro/worker-transport':
+        specifier: workspace:*
+        version: link:../worker-transport
 
   packages/contracts:
     dependencies:
@@ -518,6 +548,15 @@ importers:
   packages/ui: {}
 
   packages/worker-store: {}
+
+  packages/worker-transport:
+    dependencies:
+      '@kivro/cloud-core':
+        specifier: workspace:*
+        version: link:../cloud-core
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
 
 packages:
 

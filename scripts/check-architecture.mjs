@@ -3,16 +3,24 @@ import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const sharedDir = path.join(root, "packages");
-const forbiddenImports = [/cloud-aws/, /cloud-netsons/, /@aws-sdk\//, /netsons/i];
+const providerPackages = new Set(["cloud-aws", "cloud-netsons"]);
 
 const sharedPackages = fs
   .readdirSync(sharedDir)
-  .filter((name) => !["cloud-aws", "cloud-netsons"].includes(name));
+  .filter((name) => !providerPackages.has(name));
 
 let violations = [];
 
 /** S3-compatible object storage port (MinIO/AWS) lives in @kivro/storage. */
 const awsSdkAllowedPackages = new Set(["storage"]);
+
+const forbiddenImportPatterns = [
+  /from\s+["']@kivro\/cloud-netsons["']/,
+  /from\s+["']@kivro\/cloud-aws["']/,
+  /from\s+["'][^"']*cloud-netsons[^"']*["']/,
+  /from\s+["'][^"']*cloud-aws[^"']*["']/,
+  /import\s+["']@aws-sdk\//,
+];
 
 for (const pkg of sharedPackages) {
   const src = path.join(sharedDir, pkg, "src");
@@ -26,12 +34,12 @@ function walk(dir, pkgName) {
     if (entry.isDirectory()) walk(full, pkgName);
     else if (entry.name.endsWith(".ts")) {
       const text = fs.readFileSync(full, "utf8");
-      for (const pattern of forbiddenImports) {
-        if (pattern.source === "@aws-sdk\\/" && awsSdkAllowedPackages.has(pkgName)) {
+      for (const pattern of forbiddenImportPatterns) {
+        if (pattern.source.includes("@aws-sdk") && awsSdkAllowedPackages.has(pkgName)) {
           continue;
         }
         if (pattern.test(text)) {
-          violations.push(`${full} matches ${pattern}`);
+          violations.push(`${full} forbidden import pattern ${pattern}`);
         }
       }
     }

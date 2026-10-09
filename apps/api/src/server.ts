@@ -1,6 +1,7 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { createCorrelationId, logInfo } from "@kivro/observability";
+import { getActiveCloudComposition, resolveCloudComposition } from "./cloud-composition.js";
 import { getPrismaClient } from "@kivro/database";
 import { authRoutes, googleOAuthRoutes } from "./routes/auth.js";
 import { marketplaceCapabilityRoutes } from "./routes/capabilities.js";
@@ -103,10 +104,14 @@ export function createApp(): Hono<AppEnv> {
       }
     }
     const ready = db && (!s3Endpoint || objectStorage);
+    const composition = getActiveCloudComposition();
     return c.json(
       {
         status: ready ? "ready" : "degraded",
         checks: { database: db, objectStorage, redis: redisUrl ? redis : null },
+        cloudProfile: composition.profile,
+        workerTransport: composition.workerTransport.kind,
+        apiContractVersion: composition.apiContractVersion,
       },
       ready ? 200 : 503,
     );
@@ -118,7 +123,13 @@ export function createApp(): Hono<AppEnv> {
       correlationId,
       message: "Kivro API",
     });
-    return c.json({ name: "kivro-api", phase: "M16" });
+    const composition = getActiveCloudComposition();
+    return c.json({
+      name: "kivro-api",
+      cloudProfile: composition.profile,
+      apiContractVersion: composition.apiContractVersion,
+      workerTransport: composition.workerTransport.kind,
+    });
   });
 
   app.route("/auth", authRoutes());
@@ -158,6 +169,13 @@ export function createApp(): Hono<AppEnv> {
 }
 
 export function startServer(port = Number(process.env.PORT ?? 3001)): void {
+  const composition = resolveCloudComposition(process.env.KIVRO_CLOUD_PROFILE);
   serve({ fetch: createApp().fetch, port });
-  logInfo({ correlationId: createCorrelationId(), message: "API listening", port });
+  logInfo({
+    correlationId: createCorrelationId(),
+    message: "API listening",
+    port,
+    cloudProfile: composition.profile,
+    workerTransport: composition.workerTransport.kind,
+  });
 }
