@@ -3601,17 +3601,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-020   P1         TESTED   packages/release-ops, packages/cloud-core/src/postgres-durable-work.ts, docs/audits/M27-performance-envelope.json   packages/release-ops/src/*.test.ts; security/tests/release-activation-m27.test.ts; security/tests/release-activation-rejection-m27.test.ts; security/tests/performance-envelope-m27.test.ts; scripts/check-bounded-runtime-vs-envelope.mjs; scripts/verify-m27-flow.mjs   docs/audits/M27-exit-criteria.json; docs/audits/M27-fitness-report.json; docs/milestones/M27-closure.md M27
 
-  HARD-021      P0           TODO         ---              ---
+  HARD-021   P0         TESTED   scripts/generate-unified-release-manifest.mjs, packages/compatibility/src/release-manifest.ts, scripts/verify-unified-release-evidence.mjs   security/tests/conformance-golden-m25.test.ts; security/tests/release-activation-m27.test.ts; scripts/verify-m27-flow.mjs   docs/audits/unified-release-manifest.json; docs/milestones/M27-closure.md M27/M28
 
-  HARD-022      P0           TODO         ---              ---
+  HARD-022   P0         TESTED   scripts/generate-provider-parity-report.mjs, scripts/verify-release-activation-gate.mjs   security/tests/conformance-golden-m24.test.ts; security/tests/release-activation-m27.test.ts; scripts/verify-m28-flow.mjs   docs/audits/M24-provider-parity-report.json M24/M28
 
-  HARD-023      P0           TODO         ---              ---
+  HARD-023   P0         TESTED   scripts/run-backend-conformance.mjs, scripts/lib/m23-mandatory-runs.mjs, scripts/lib/m28-mandatory-runs.mjs   security/tests/conformance-both-roots-m19.test.ts; security/tests/conformance-unified-audit-m28.test.ts; scripts/verify-m28-flow.mjs   docs/audits/M28-compliance-report.json M28
 
-  HARD-024      P0           TODO         ---              ---
+  HARD-024   P0         TESTED   scripts/audit-m28-exit-criteria.mjs, spec/IMPLEMENTATION-PLAN.md milestone contract   security/tests/conformance-unified-audit-m28.test.ts; scripts/verify-m28-flow.mjs   docs/milestones/M28-closure.md M28
 
-  HARD-025      P0           TODO         ---              ---
+  HARD-025   P0         TESTED   scripts/verify-golden-registry.mjs, security/tests/conformance-divergence-rejection-m24.test.ts   security/tests/conformance-golden-m24.test.ts; scripts/verify-m24-flow.mjs   docs/milestones/M24-closure.md M24/M28
 
-  HARD-026      P0           TODO         ---              ---
+  HARD-026   P0         TESTED   packages/cloud-core control-plane policy, packages/worker-transport multi-transport   security/tests/conformance-dual-control-plane-restart-m25.test.ts; security/tests/fault-injection-control-plane-m26.test.ts   docs/milestones/M25-closure.md M25/M28
 
   HARD-027   P0         TESTED   packages/release-ops, packages/cloud-core/src/postgres-durable-work.ts, docs/audits/M27-performance-envelope.json   packages/release-ops/src/*.test.ts; security/tests/release-activation-m27.test.ts; security/tests/release-activation-rejection-m27.test.ts; security/tests/performance-envelope-m27.test.ts; scripts/check-bounded-runtime-vs-envelope.mjs; scripts/verify-m27-flow.mjs   docs/audits/M27-exit-criteria.json; docs/audits/M27-fitness-report.json; docs/milestones/M27-closure.md M27
 

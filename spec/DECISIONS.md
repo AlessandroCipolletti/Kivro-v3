@@ -632,6 +632,14 @@ greenfield.
 
 **Decision:** `DEFAULT_MAX_FILE_SIZE_BYTES_PER_JOB`, `BUYER_WEBHOOK_MAX_TOTAL_ATTEMPTS`, and polling retry policy must stay within `M27-performance-envelope.json`; `check-envelope-product-limits.mjs` enforces alignment at `verify:m27`. Release activation also requires M25+M26 harness completion and matching `apiContractVersion` across manifest, parity, and conformance evidence.
 
+## DEC-M28-001 — M28 terminal audit vs product completion
+
+**Decision:** M28 is **DONE** when `M28-exit-criteria.json` reports `m28HarnessComplete: true` after `verify:m28` (includes `verify:m27`). That executes the lossless audit machinery: M00–M27 closed-section traceability, expanded P0 TESTED sampling, HARD M24–M27 family checks, and mandatory golden/fault/release/conformance runs. **`productMasterSpecComplete` is true only when P0/P1/P2 TODO counts are all zero** (expected false until M29+). Gate: `pnpm verify:m28`.
+
+## DEC-M28-002 — Terminal audit includes portability families and open catalog
+
+**Decision:** M28 family audit requires ARCH-UNI/PORT/HOST-NET **P0** rows to be TESTED (M00–M27 scope) and every open family P0/P1 row to carry an explicit schedule note. `M28-open-requirements-catalog.json` documents remaining catalog work; successful M28 run updates M23 `terminal-lossless-audit` to `EXECUTED_M28`.
+
 ## DEC-M25-002 — Production may require Worker protocol headers
 
 **Decision:** When `KIVRO_REQUIRE_WORKER_PROTOCOL_HEADER=1`, poll/heartbeat fail closed without `x-kivro-protocol-version` or body `protocolVersion`. Default off in development; operators enable for strict release gates.

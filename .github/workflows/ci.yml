@@ -38,7 +38,7 @@ jobs:
       - run: pnpm verify:m18
       - run: pnpm verify:m19
       - run: pnpm db:up && pnpm db:wait && pnpm db:migrate
-      - run: pnpm verify:m27
+      - run: pnpm verify:m28
   verify-m19-profiles:
     runs-on: ubuntu-latest
     strategy:

@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-10-10T07:51:05.513Z",
+  "milestone": "M28",
+  "exitCriteria": {
+    "generatedAt": "2026-10-10T07:51:05.486Z",
+    "m28HarnessComplete": true,
+    "productMasterSpecComplete": false,
+    "terminalAuditExecuted": true,
+    "criteria": [
+      {
+        "id": "m27-regression-gate",
+        "status": "PASS",
+        "detail": "verify:m27 chain / M27-exit-criteria.json"
+      },
+      {
+        "id": "terminal-compliance-audit",
+        "status": "PASS",
+        "detail": "unexplained=0 closedTodo=0"
+      },
+      {
+        "id": "requirement-families-hard",
+        "status": "PASS",
+        "detail": "HARD M24–M27 harness rows TESTED"
+      },
+      {
+        "id": "master-spec-sampling",
+        "status": "PASS",
+        "detail": "60 P0 TESTED sampled"
+      },
+      {
+        "id": "mandatory-terminal-runs",
+        "status": "PASS",
+        "detail": "0 failed"
+      },
+      {
+        "id": "lossless-audit-executed",
+        "status": "PASS",
+        "detail": "M28 unified audit + families + sampling artifacts generated"
+      },
+      {
+        "id": "open-requirements-catalog",
+        "status": "PASS",
+        "detail": "all open P0/P1 rows have explicit schedule notes"
+      },
+      {
+        "id": "portability-families-p0",
+        "status": "PASS",
+        "detail": "ARCH-UNI/PORT/HOST-NET P0 TESTED through M27"
+      },
+      {
+        "id": "all-p0-p1-p2-complete",
+        "status": "OPEN",
+        "detail": "P0 TODO 102, P1 TODO 329, P2 TODO 97"
+      },
+      {
+        "id": "staging-paid-e2e",
+        "status": "ENV_OPTIONAL",
+        "detail": "scripts/verify-m23-staging-bundle.mjs"
+      }
+    ]
+  },
+  "complianceSummary": {
+    "TESTED": 1404,
+    "TODO": 528,
+    "PARTIAL": 15,
+    "BLOCKED": 0,
+    "DEFERRED": 4,
+    "IMPLEMENTED": 0
+  },
+  "masterSpecCompletion": {
+    "p0": {
+      "tested": 279,
+      "todo": 102
+    },
+    "p1": {
+      "tested": 873,
+      "todo": 329
+    },
+    "p2": {
+      "tested": 252,
+      "todo": 97
+    },
+    "productMasterSpecComplete": false,
+    "note": "M28 terminal audit executed; remaining P0/P1/P2 TODO rows are scheduled M29+ unless counts are zero."
+  },
+  "harnessScripts": [
+    "scripts/audit-m28-unified.mjs",
+    "scripts/audit-m28-requirement-families.mjs",
+    "scripts/audit-m28-master-spec-sampling.mjs",
+    "scripts/lib/m28-mandatory-runs.mjs"
+  ]
+}

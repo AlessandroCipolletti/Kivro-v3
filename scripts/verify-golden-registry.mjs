@@ -47,6 +47,9 @@ const testCorpus = [
   "security/tests/conformance-golden-m27.test.ts",
   "packages/release-ops/src/bounded-runtime.test.ts",
   "packages/release-ops/src/envelope-product-limits.test.ts",
+  "security/tests/conformance-unified-audit-m28.test.ts",
+  "security/tests/acceptance-m28-exit.test.ts",
+  "security/tests/conformance-golden-m28.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");

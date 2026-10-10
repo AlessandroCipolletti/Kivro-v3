@@ -221,6 +221,36 @@
       "id": "M27-GOLD-009",
       "name": "queue depth ceiling load",
       "assert": "synthetic load at max queue depth stays bounded"
+    },
+    {
+      "id": "M28-GOLD-001",
+      "name": "terminal compliance audit",
+      "assert": "M28 report zero unexplained/closed-scope/evidence gaps"
+    },
+    {
+      "id": "M28-GOLD-002",
+      "name": "requirement families",
+      "assert": "HARD M24-M27 harness rows TESTED"
+    },
+    {
+      "id": "M28-GOLD-003",
+      "name": "terminal exit honesty",
+      "assert": "m28HarnessComplete true; productMasterSpecComplete explicit"
+    },
+    {
+      "id": "M28-GOLD-004",
+      "name": "M28 exit artifact",
+      "assert": "M28-exit-criteria.json harness complete"
+    },
+    {
+      "id": "M28-GOLD-005",
+      "name": "expanded P0 sampling",
+      "assert": "M28 master spec sample audit passes"
+    },
+    {
+      "id": "M28-GOLD-006",
+      "name": "portability families P0 closed",
+      "assert": "ARCH-UNI PORT HOST-NET P0 requirements TESTED through M27"
     }
   ]
 }

@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-10-10T07:54:11.539Z",
+  "families": {
+    "ARCH-UNI": {
+      "TESTED": 24,
+      "TODO": 0,
+      "PARTIAL": 0,
+      "other": 0,
+      "p0Open": 0
+    },
+    "PORT": {
+      "TESTED": 27,
+      "TODO": 0,
+      "PARTIAL": 0,
+      "other": 0,
+      "p0Open": 0
+    },
+    "HOST-NET": {
+      "TESTED": 31,
+      "TODO": 0,
+      "PARTIAL": 0,
+      "other": 0,
+      "p0Open": 0
+    },
+    "HARD": {
+      "TESTED": 28,
+      "TODO": 0,
+      "PARTIAL": 0,
+      "other": 0,
+      "p0Open": 0
+    }
+  },
+  "hardM24M27NonTested": [],
+  "portabilityP0NonTested": [],
+  "familyOpenUnexplained": [],
+  "pass": true
+}

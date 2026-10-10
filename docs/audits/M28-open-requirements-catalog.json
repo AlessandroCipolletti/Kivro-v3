@@ -1,0 +1,163 @@
+{
+  "generatedAt": "2026-10-10T07:54:11.509Z",
+  "milestone": "M28",
+  "openP0Count": 102,
+  "openP1Count": 338,
+  "openP2Count": 103,
+  "openByScheduledTarget": {
+    "M28": {
+      "P0": 8,
+      "P1": 306,
+      "P2": 94
+    },
+    "UNSPECIFIED": {
+      "P0": 0,
+      "P1": 10,
+      "P2": 9
+    },
+    "M29": {
+      "P0": 28,
+      "P1": 2,
+      "P2": 0
+    },
+    "M30": {
+      "P0": 34,
+      "P1": 11,
+      "P2": 0
+    },
+    "M32": {
+      "P0": 32,
+      "P1": 9,
+      "P2": 0
+    }
+  },
+  "unexplainedOpenCount": 0,
+  "pass": true,
+  "sampleOpenP0": [
+    {
+      "id": "SEC-0043",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "SEC-0067",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "SEC-0068",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "SEC-0069",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "PAY-0079",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "PAY-0080",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "SEC-0091",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "PAY-0110",
+      "status": "TODO",
+      "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
+    },
+    {
+      "id": "ASYNC-001",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-002",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-003",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-004",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-005",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-006",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-007",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-008",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-009",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-010",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-011",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-012",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-013",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-014",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-015",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-016",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "ASYNC-017",
+      "status": "TODO",
+      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    }
+  ]
+}
