@@ -1,6 +1,6 @@
 # M25 compatibility & Worker update fitness report
 
-Generated: 2026-10-10T09:05:10.249Z
+Generated: 2026-10-10T09:17:06.065Z
 
 - Matrix version: **1**
 - API contract: `v1-mvp`

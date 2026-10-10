@@ -51,11 +51,20 @@ export function sellerOnboardingRoutes(): Hono<AppEnv> {
     const user = c.get("user");
     const profile = await ensureSellerProfile(getPrismaClient(), user.id, user.email);
     const status = await buildSellerOnboardingStatus(getPrismaClient(), profile.id);
-    const device = await getPrismaClient().workerDevice.findFirst({
+    const devices = await getPrismaClient().workerDevice.findMany({
       where: { sellerProfileId: profile.id, status: { not: "REVOKED" } },
     });
-    const report = device ? parseWorkerHealthReport(device.lastHealthReport) : null;
-    const credentialRefs = buildCloudCredentialRefs({ refs: report?.credentialRefs ?? [] });
+    const seenRefs = new Set<string>();
+    const credentialRefs = devices.flatMap((device) => {
+      const report = parseWorkerHealthReport(device.lastHealthReport);
+      return buildCloudCredentialRefs({ refs: report?.credentialRefs ?? [] }).filter((ref) => {
+        if (seenRefs.has(ref.refId)) {
+          return false;
+        }
+        seenRefs.add(ref.refId);
+        return true;
+      });
+    });
     return c.json({
       profileId: profile.id,
       firstPublishedAt: profile.firstPublishedAt?.toISOString() ?? null,

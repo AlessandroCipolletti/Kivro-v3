@@ -355,6 +355,9 @@ importers:
       '@kivro/job-io':
         specifier: workspace:*
         version: link:../job-io
+      '@kivro/job-scheduling':
+        specifier: workspace:*
+        version: link:../job-scheduling
       '@kivro/openclaw-adapter':
         specifier: workspace:*
         version: link:../openclaw-adapter

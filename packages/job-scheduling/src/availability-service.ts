@@ -8,6 +8,7 @@ import {
   parseWorkerHealthReport,
 } from "@kivro/seller-health";
 import { evaluateAcceptingNewJobs } from "./accepting-jobs.js";
+import { summarizeAssignedWorkerPool, type AssignedWorkerCandidate } from "./worker-routing.js";
 import { parseScheduleConfig } from "./capability-schedule.js";
 import { computeNextAvailableAt } from "./next-available.js";
 
@@ -57,39 +58,56 @@ export async function evaluateCapabilityAvailability(
   if (!capability?.currentVersion) {
     return { error: "NOT_FOUND" };
   }
-  const binding = capability.currentVersion.bindings[0];
-  const device = binding?.workerDevice;
   const schedule = parseScheduleConfig(capability);
-  let activeJobCount = 0;
-  if (device) {
-    activeJobCount = await prisma.job.count({
-      where: {
-        workerDeviceId: device.id,
-        status: { in: [...ACTIVE_JOB_STATUSES] },
-      },
-    });
+  const bindings = capability.currentVersion.bindings;
+  const deviceIds = bindings.map((binding) => binding.workerDeviceId);
+  const activeJobs = deviceIds.length
+    ? await prisma.job.findMany({
+        where: {
+          workerDeviceId: { in: deviceIds },
+          status: { in: [...ACTIVE_JOB_STATUSES] },
+        },
+        select: { workerDeviceId: true },
+      })
+    : [];
+  const activeByDevice = new Map<string, number>();
+  for (const job of activeJobs) {
+    if (!job.workerDeviceId) {
+      continue;
+    }
+    activeByDevice.set(job.workerDeviceId, (activeByDevice.get(job.workerDeviceId) ?? 0) + 1);
   }
   const maxConcurrent =
     capability.maxConcurrentJobs ?? capability.sellerProfile.maxConcurrentJobs ?? 1;
-  const healthReport = device ? parseWorkerHealthReport(device.lastHealthReport) : null;
-  const securityWarnings = buildSecurityWarnings({
-    report: healthReport,
-    deviceStatus: device?.status ?? "OFFLINE",
-    sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
-    platformSecurityPause: capability.sellerProfile.platformSecurityPause,
-    platformSecurityReason: capability.sellerProfile.platformSecurityPauseReason,
+  const candidates: AssignedWorkerCandidate[] = bindings.map((binding) => {
+    const device = binding.workerDevice;
+    const warnings = buildSecurityWarnings({
+      report: parseWorkerHealthReport(device.lastHealthReport),
+      deviceStatus: device.status,
+      sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
+      platformSecurityPause: capability.sellerProfile.platformSecurityPause,
+      platformSecurityReason: capability.sellerProfile.platformSecurityPauseReason,
+    });
+    return {
+      workerDeviceId: device.id,
+      deviceStatus: device.status,
+      bindingStatus: binding.status,
+      activeJobCount: activeByDevice.get(device.id) ?? 0,
+      securityBlocksDispatch: hasBlockingSecurityWarning(warnings),
+    };
   });
+  const pool = summarizeAssignedWorkerPool({ candidates, maxConcurrentJobs: maxConcurrent });
   const evaluation = evaluateAcceptingNewJobs({
     capabilityPublished: capability.status === "PUBLISHED",
     schedule,
-    workerDeviceStatus: device?.status ?? "OFFLINE",
-    hasActiveJobOnWorker: activeJobCount > 0,
-    activeJobCountOnWorker: activeJobCount,
+    workerDeviceStatus: pool.workerDeviceStatus,
+    hasActiveJobOnWorker: pool.hasActiveJob,
+    activeJobCountOnWorker: pool.activeJobCount,
     maxConcurrentJobs: maxConcurrent,
     globalDispatchEnabled: isGlobalDispatchEnabled(),
     sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
     platformSecurityPause: capability.sellerProfile.platformSecurityPause,
-    securityBlocksDispatch: hasBlockingSecurityWarning(securityWarnings),
+    securityBlocksDispatch: pool.securityBlocksDispatch,
     sellerMaintenanceMode: capability.sellerProfile.maintenanceMode,
   });
   const nextAvailableAt = computeNextAvailableAt(schedule);

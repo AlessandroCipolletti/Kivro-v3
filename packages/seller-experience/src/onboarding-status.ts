@@ -19,6 +19,29 @@ export type OnboardingStep = {
   detail: string;
 };
 
+/** SELLERUX-036 — pairing is satisfied by any non-revoked Worker, not devices[0]. */
+export function summarizePairedWorkers(input: {
+  devices: Array<{ name: string; ready: boolean }>;
+}): { paired: boolean; workerReady: boolean; detail: string } {
+  if (input.devices.length === 0) {
+    return {
+      paired: false,
+      workerReady: false,
+      detail: "Generate a pairing code in the browser and run kivro-worker pair.",
+    };
+  }
+  const readyCount = input.devices.filter((device) => device.ready).length;
+  const noun = input.devices.length === 1 ? "Worker" : "Workers";
+  return {
+    paired: true,
+    workerReady: readyCount > 0,
+    detail:
+      readyCount > 0
+        ? `${input.devices.length} ${noun} paired. ${readyCount} ready to publish.`
+        : `${input.devices.length} ${noun} paired. None are ready yet.`,
+  };
+}
+
 /** SELLERUX-001..003 — guided path to first safe publication. */
 export async function buildSellerOnboardingStatus(
   prisma: PrismaClient,
@@ -35,33 +58,33 @@ export async function buildSellerOnboardingStatus(
     return { steps: [], nextAction: null };
   }
 
-  const device = profile.workerDevices[0] ?? null;
-  const report = device ? parseWorkerHealthReport(device.lastHealthReport) : null;
-  const warnings = device
-    ? buildSecurityWarnings({
-        report,
-        deviceStatus: device.status,
-        sellerEmergencyPause: profile.marketplaceEmergencyPause,
-        platformSecurityPause: profile.platformSecurityPause,
-        platformSecurityReason: profile.platformSecurityPauseReason,
-      })
-    : [];
-  const healthLabel = device
-    ? deriveWorkerHealthLabel({
-        deviceStatus: device.status,
-        lastSeenAt: device.lastSeenAt,
-        report,
-        sellerEmergencyPause: profile.marketplaceEmergencyPause,
-        warnings,
-      })
-    : "NONE";
-
-  const paired = Boolean(device);
-  const workerReady =
-    paired &&
-    healthLabel !== "OFFLINE" &&
-    healthLabel !== "NOT_READY" &&
-    healthLabel !== "SECURITY_WARNING";
+  const deviceRows = profile.workerDevices.map((device) => {
+    const report = parseWorkerHealthReport(device.lastHealthReport);
+    const warnings = buildSecurityWarnings({
+      report,
+      deviceStatus: device.status,
+      sellerEmergencyPause: profile.marketplaceEmergencyPause,
+      platformSecurityPause: profile.platformSecurityPause,
+      platformSecurityReason: profile.platformSecurityPauseReason,
+    });
+    const healthLabel = deriveWorkerHealthLabel({
+      deviceStatus: device.status,
+      lastSeenAt: device.lastSeenAt,
+      report,
+      sellerEmergencyPause: profile.marketplaceEmergencyPause,
+      warnings,
+    });
+    return {
+      name: device.name,
+      ready:
+        healthLabel !== "OFFLINE" &&
+        healthLabel !== "NOT_READY" &&
+        healthLabel !== "SECURITY_WARNING",
+    };
+  });
+  const pool = summarizePairedWorkers({ devices: deviceRows });
+  const paired = pool.paired;
+  const workerReady = pool.workerReady;
 
   const hasDraft = profile.capabilities.some((c) => c.status === "DRAFT");
   const hasPublished = profile.capabilities.some((c) => c.status === "PUBLISHED");
@@ -71,9 +94,7 @@ export async function buildSellerOnboardingStatus(
       id: "pair_worker",
       status: paired ? "complete" : "action_required",
       title: "Pair your Worker",
-      detail: paired
-        ? `Worker “${device!.name}” is paired.`
-        : "Generate a pairing code in the browser and run kivro-worker pair.",
+      detail: pool.detail,
     },
     {
       id: "worker_ready",

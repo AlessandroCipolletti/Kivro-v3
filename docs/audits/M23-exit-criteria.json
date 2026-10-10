@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T09:05:22.663Z",
+  "generatedAt": "2026-10-10T09:17:18.432Z",
   "m23HarnessComplete": true,
   "productMasterSpecComplete": false,
   "terminalGate": "M28",
@@ -32,7 +32,7 @@
       "id": "all-p0-p1-p2-complete",
       "planItem": "All P0/P1/P2 requirements complete",
       "status": "DEFERRED_M28",
-      "detail": "P0 TODO 23, P1 TODO 313, P2 TODO 97"
+      "detail": "P0 TODO 10, P1 TODO 307, P2 TODO 97"
     },
     {
       "id": "product-security-sandbox-satisfied",
@@ -59,5 +59,5 @@
       "detail": "M28 terminal harness executed; productMasterSpecComplete=false"
     }
   ],
-  "terminalGateExecutedAt": "2026-10-10T09:06:21.093Z"
+  "terminalGateExecutedAt": "2026-10-10T09:18:15.740Z"
 }

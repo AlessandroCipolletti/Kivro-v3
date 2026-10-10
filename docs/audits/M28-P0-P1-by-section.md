@@ -4,7 +4,6 @@ Open = TODO/PARTIAL/BLOCKED with explicit schedule note (post-closure milestones
 
 | Section | Target milestone | TODO | PARTIAL | BLOCKED |
 |---------|------------------|------|---------|---------|
-| §0 | ? | 21 | 0 | 0 |
 | §2 | ? | 9 | 0 | 0 |
 | §516 | ? | 7 | 0 | 0 |
 | §165 | ? | 6 | 0 | 0 |
@@ -87,6 +86,7 @@ Open = TODO/PARTIAL/BLOCKED with explicit schedule note (post-closure milestones
 | §508 | ? | 2 | 0 | 0 |
 | §509 | ? | 2 | 0 | 0 |
 | §512 | ? | 2 | 0 | 0 |
+| §0 | ? | 2 | 0 | 0 |
 | §1 | ? | 1 | 0 | 0 |
 | §3 | ? | 1 | 0 | 0 |
 | §47 | ? | 1 | 0 | 0 |

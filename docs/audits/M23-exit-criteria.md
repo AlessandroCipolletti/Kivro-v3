@@ -1,6 +1,6 @@
 # M23 exit criteria
 
-Generated: 2026-10-10T09:05:22.663Z
+Generated: 2026-10-10T09:17:18.432Z
 
 - **M23 harness complete (repo milestone):** **YES**
 - **Full Master Spec / all P0–P2 (plan literal):** **NO** — deferred to **M28**

@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-10-10T09:18:52.721Z",
+  "milestone": "M34",
+  "focus": "Multi-Worker ownership, assignment, and routing",
+  "m34HarnessComplete": true,
+  "packages": [
+    "@kivro/job-scheduling",
+    "@kivro/job-dispatch"
+  ],
+  "golden": [
+    "SELLERUX-GOLD-019"
+  ]
+}

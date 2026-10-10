@@ -10,6 +10,13 @@ export {
   type WeeklyWindow,
 } from "./weekly-schedule.js";
 export { evaluateAcceptingNewJobs, type AcceptingJobsEvaluation } from "./accepting-jobs.js";
+export {
+  assignmentsToCarryForward,
+  selectEligibleAssignedWorker,
+  summarizeAssignedWorkerPool,
+  type AssignedWorkerCandidate,
+} from "./worker-routing.js";
+export { assertWorkerAssignedToVersion } from "./worker-assignment.js";
 export { parseScheduleConfig, updateCapabilitySchedule } from "./capability-schedule.js";
 export {
   assertImmediateJobSubmissionAllowed,

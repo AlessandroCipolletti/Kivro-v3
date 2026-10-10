@@ -5,6 +5,7 @@ import { isGlobalDispatchEnabled } from "@kivro/platform-policy";
 import {
   assertImmediateJobSubmissionAllowed,
   assertQueuedJobDispatchAllowed,
+  assertWorkerAssignedToVersion,
   reserveWorkerDispatchSlot,
 } from "@kivro/job-scheduling";
 import { gateWorkerJobOnControlPlane, type WorkerControlPlaneContext } from "./control-plane-guard.js";
@@ -65,10 +66,24 @@ export async function dispatchJobToWorker(
   if ("error" in acceptGate) {
     return { error: acceptGate.error };
   }
+  const assignment = await assertWorkerAssignedToVersion(prisma, {
+    workerDeviceId: input.workerDeviceId,
+    capabilityVersionId: job.capabilityVersionId,
+  });
+  if ("error" in assignment) {
+    return assignment;
+  }
   const executionControlPlaneId =
     job.executionControlPlaneId ?? input.executionControlPlaneId;
   try {
     await prisma.$transaction(async (tx) => {
+      const stillAssigned = await assertWorkerAssignedToVersion(tx, {
+        workerDeviceId: input.workerDeviceId,
+        capabilityVersionId: job.capabilityVersionId,
+      });
+      if ("error" in stillAssigned) {
+        throw new Error(stillAssigned.error);
+      }
       const slot = await reserveWorkerDispatchSlot(tx, {
         workerDeviceId: input.workerDeviceId,
         capabilityId: job.capabilityId,
@@ -76,14 +91,35 @@ export async function dispatchJobToWorker(
       if ("error" in slot) {
         throw new Error(slot.error);
       }
-      await transition(tx, job.id, "QUEUED", "DISPATCHED", {
-        workerDeviceId: input.workerDeviceId,
-        dispatchExpiresAt: input.offerExpiresAt,
-        executionControlPlaneId,
+      const claimed = await tx.job.updateMany({
+        where: { id: job.id, status: "QUEUED" },
+        data: {
+          status: "DISPATCHED",
+          workerDeviceId: input.workerDeviceId,
+          dispatchExpiresAt: input.offerExpiresAt,
+          executionControlPlaneId,
+        },
+      });
+      if (claimed.count !== 1) {
+        throw new Error("JOB_NOT_DISPATCHABLE");
+      }
+      await tx.jobStateTransition.create({
+        data: {
+          jobId: job.id,
+          fromStatus: "QUEUED",
+          toStatus: "DISPATCHED",
+          actor: "SYSTEM",
+        },
       });
     });
   } catch (err) {
-    if (err instanceof Error && (err.message === "CONCURRENCY_LIMIT" || err.message === "NOT_FOUND")) {
+    if (
+      err instanceof Error &&
+      (err.message === "CONCURRENCY_LIMIT" ||
+        err.message === "NOT_FOUND" ||
+        err.message === "WORKER_NOT_ASSIGNED" ||
+        err.message === "JOB_NOT_DISPATCHABLE")
+    ) {
       return { error: err.message };
     }
     throw err;

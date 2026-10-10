@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-10T09:06:17.477Z",
+  "generatedAt": "2026-10-10T09:18:12.122Z",
   "milestone": "M28",
-  "openP0Count": 23,
-  "openP1Count": 322,
+  "openP0Count": 10,
+  "openP1Count": 316,
   "openP2Count": 103,
   "openByScheduledTarget": {
     "M28": {
@@ -16,8 +16,8 @@
       "P2": 9
     },
     "M32": {
-      "P0": 15,
-      "P1": 6,
+      "P0": 2,
+      "P1": 0,
       "P2": 0
     }
   },
@@ -65,77 +65,12 @@
       "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
     },
     {
-      "id": "SELLERUX-013",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-014",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-016",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-017",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-018",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-020",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-024",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-025",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-026",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-027",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-029",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-030",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
       "id": "SELLERUX-036",
       "status": "TODO",
       "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
       "id": "SELLERUX-037",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-041",
       "status": "TODO",
       "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
     }

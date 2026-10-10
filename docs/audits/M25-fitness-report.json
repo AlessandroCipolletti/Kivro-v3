@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-10-10T09:05:10.249Z",
+  "generatedAt": "2026-10-10T09:17:06.065Z",
   "milestone": "M25",
   "compatibilityMatrixVersion": 1,
   "unifiedReleaseManifest": {
-    "generatedAt": "2026-10-10T09:05:08.549Z",
-    "gitCommit": "b85bb01e62cd988e1c5189b352fa968e7d11ed36",
+    "generatedAt": "2026-10-10T09:17:04.363Z",
+    "gitCommit": "bd2ee65bf08b7bcb54796b7e4cf2a55dfeb74e09",
     "cloudReleaseChannel": "mvp",
     "apiContractVersion": "v1-mvp",
     "workerProtocolMin": 1,
     "workerProtocolMax": 1,
     "capabilityManifestSchemaVersion": 1,
-    "databaseSchemaRevision": "20260410200000",
+    "databaseSchemaRevision": "20260410220000",
     "schemaRolloutPhase": "contract",
     "workerReleaseChannel": "stable",
     "workerMinSupportedVersion": "0.0.0-m07",
@@ -25,12 +25,12 @@
     },
     "parityReportPath": "docs/audits/M24-provider-parity-report.json",
     "conformanceManifestPath": "tests/fixtures/backend-conformance-manifest.json",
-    "exactReleaseId": "kivro@b85bb01e62cd",
+    "exactReleaseId": "kivro@bd2ee65bf08b",
     "performanceEnvelopePath": "docs/audits/M27-performance-envelope.json",
     "operationalAlarmsPath": "docs/audits/M27-operational-alarms.json"
   },
   "exitCriteria": {
-    "generatedAt": "2026-10-10T09:04:32.159Z",
+    "generatedAt": "2026-10-10T09:14:41.009Z",
     "m25HarnessComplete": true,
     "criteria": [
       {

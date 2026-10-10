@@ -39,6 +39,10 @@ enum LocalWorkerBindingStatus {
   INACTIVE
 }
 
+enum WorkerRoutingPolicy {
+  ANY_ASSIGNED_ELIGIBLE
+}
+
 enum JobPaymentFunding {
   PREPAID_CREDITS
   CARD_AUTHORIZATION
@@ -441,6 +445,7 @@ model Capability {
   scheduleTimezone  String           @default("UTC")
   scheduleWindows   Json             @default("[]")
   maxConcurrentJobs Int?
+  workerRoutingPolicy WorkerRoutingPolicy @default(ANY_ASSIGNED_ELIGIBLE)
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
 

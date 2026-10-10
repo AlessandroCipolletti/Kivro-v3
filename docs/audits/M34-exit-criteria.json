@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-10-10T09:18:52.691Z",
+  "m34HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "m33-regression-gate",
+      "status": "PASS",
+      "detail": "verify:m33 / M33-exit-criteria.json"
+    },
+    {
+      "id": "sellerux-m34-tested",
+      "status": "PASS",
+      "detail": "2/2 M34 SELLERUX rows TESTED"
+    },
+    {
+      "id": "sellerux-gold-019",
+      "status": "PASS",
+      "detail": "two-worker golden scenario"
+    },
+    {
+      "id": "m34-migration",
+      "status": "PASS",
+      "detail": "explicit worker routing policy"
+    },
+    {
+      "id": "seller-worker-routes",
+      "status": "PASS",
+      "detail": "list and assign Workers without singleton assumption"
+    },
+    {
+      "id": "verify-m34-script",
+      "status": "PASS",
+      "detail": "pnpm verify:m34 gate registered"
+    },
+    {
+      "id": "sellerux-spotcheck",
+      "status": "PASS",
+      "detail": "M34 coverage evidence"
+    }
+  ]
+}

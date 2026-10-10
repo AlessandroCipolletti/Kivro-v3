@@ -63,6 +63,11 @@
       "folder": "20260410210000_m33_seller_notification_events",
       "phase": "expand",
       "notes": "Seller notification event preferences — M33"
+    },
+    {
+      "folder": "20260410220000_m34_worker_routing",
+      "phase": "expand",
+      "notes": "Explicit multi-Worker routing policy — M34"
     }
   ]
 }

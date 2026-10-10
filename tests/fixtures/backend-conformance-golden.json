@@ -481,6 +481,11 @@
       "id": "SELLERUX-GOLD-018",
       "name": "marketplace identity",
       "assert": "public brand differs from private KYC; no API leak"
+    },
+    {
+      "id": "SELLERUX-GOLD-019",
+      "name": "multi-worker model",
+      "assert": "two Worker identities route by explicit assignment, not a seller singleton"
     }
   ]
 }

@@ -1,6 +1,6 @@
 # M28 terminal audit readiness checklist
 
-_Generated: 2026-10-10T09:06:21.064Z_
+_Generated: 2026-10-10T09:18:15.714Z_
 
 - [x] `pnpm verify:m27` green (M27-exit-criteria.json)
 - [x] `spec/MASTER-SPEC.md` present as authority

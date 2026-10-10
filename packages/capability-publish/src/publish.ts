@@ -26,6 +26,7 @@ import { validateInternetPolicyForPublish } from "./internet-publish-gate.js";
 import { randomUUID } from "node:crypto";
 import { requireEnabledPriceTier } from "@kivro/billing";
 import { assertPublishPaymentReady } from "./publish-payment-gate.js";
+import { assignmentsToCarryForward } from "@kivro/job-scheduling";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -272,6 +273,41 @@ export async function publishCapability(
         localWorkerId: input.localWorkerId,
       },
     });
+
+    if (capability.currentVersionId) {
+      const prior = await tx.localWorkerBinding.findMany({
+        where: {
+          capabilityVersionId: capability.currentVersionId,
+          status: "ACTIVE",
+          workerDevice: { sellerProfileId, status: { not: "REVOKED" } },
+        },
+        select: {
+          workerDeviceId: true,
+          localWorkerId: true,
+          workerDevice: { select: { sellerProfileId: true, status: true } },
+        },
+      });
+      const carried = assignmentsToCarryForward({
+        prior: prior.map((row) => ({
+          workerDeviceId: row.workerDeviceId,
+          localWorkerId: row.localWorkerId,
+          sellerProfileId: row.workerDevice.sellerProfileId,
+          deviceStatus: row.workerDevice.status,
+        })),
+        publishingWorkerDeviceId: device.id,
+        sellerProfileId,
+      });
+      if (carried.length > 0) {
+        await tx.localWorkerBinding.createMany({
+          data: carried.map((row) => ({
+            capabilityVersionId: version.id,
+            workerDeviceId: row.workerDeviceId,
+            localWorkerId: row.localWorkerId,
+            status: "ACTIVE" as const,
+          })),
+        });
+      }
+    }
 
     const updated = await tx.capability.update({
       where: { id: capability.id },

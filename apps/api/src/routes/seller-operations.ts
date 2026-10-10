@@ -150,19 +150,18 @@ export function sellerOperationsRoutes(): Hono<AppEnv> {
   app.get("/auto-pause", async (c) => {
     const user = c.get("user");
     const profile = await ensureSellerProfile(getPrismaClient(), user.id, user.email);
-    const device = await getPrismaClient().workerDevice.findFirst({
+    const devices = await getPrismaClient().workerDevice.findMany({
       where: { sellerProfileId: profile.id, status: { not: "REVOKED" } },
     });
-    const report = device ? parseWorkerHealthReport(device.lastHealthReport) : null;
-    const warnings = device
-      ? buildSecurityWarnings({
-          report,
-          deviceStatus: device.status,
-          sellerEmergencyPause: profile.marketplaceEmergencyPause,
-          platformSecurityPause: profile.platformSecurityPause,
-          platformSecurityReason: profile.platformSecurityPauseReason,
-        })
-      : [];
+    const warnings = devices.flatMap((device) =>
+      buildSecurityWarnings({
+        report: parseWorkerHealthReport(device.lastHealthReport),
+        deviceStatus: device.status,
+        sellerEmergencyPause: profile.marketplaceEmergencyPause,
+        platformSecurityPause: profile.platformSecurityPause,
+        platformSecurityReason: profile.platformSecurityPauseReason,
+      }).map((warning) => ({ ...warning, title: `${device.name}: ${warning.title}` })),
+    );
     return c.json(
       buildAutoPauseExplanation({
         platformSecurityPause: profile.platformSecurityPause,

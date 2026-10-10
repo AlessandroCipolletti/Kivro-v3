@@ -148,6 +148,8 @@ export default function SellerDashboardPage() {
         <Link href="/seller/operations">Operations</Link>
         {" · "}
         <Link href="/seller/economics">Economics</Link>
+        {" · "}
+        <Link href="/seller/workers">Workers</Link>
       </p>
 
       {error && <Alert tone="danger">{error}</Alert>}

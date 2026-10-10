@@ -2,7 +2,11 @@ export { buildAiAssistedDraftProposal, type AiAssistedDraftProposal } from "./ai
 export { buildEffectivePermissionSummary, type EffectivePermissionRow } from "./effective-permissions.js";
 export { buildDraftBuyerPreviewView } from "./draft-buyer-preview.js";
 export { buildPublishReadinessReport, type ReadinessItem } from "./publish-readiness.js";
-export { buildSellerOnboardingStatus, type OnboardingStep } from "./onboarding-status.js";
+export {
+  buildSellerOnboardingStatus,
+  summarizePairedWorkers,
+  type OnboardingStep,
+} from "./onboarding-status.js";
 export { buildSellerSecurityDisclosure } from "./seller-security-disclosure.js";
 export {
   buildPublicSellerIdentity,
