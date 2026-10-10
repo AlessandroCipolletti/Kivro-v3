@@ -6,7 +6,11 @@ import {
 } from "@kivro/billing";
 import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
-import { expireJobsPastHardDeadline, processDueScheduledJobReminders } from "@kivro/buyer-experience";
+import {
+  expireJobsPastHardDeadline,
+  processDueResultRetentionReminders,
+  processDueScheduledJobReminders,
+} from "@kivro/buyer-experience";
 import {
   processPendingJobTerminalEmailNotifications,
   purgeExpiredJobDeliverables,
@@ -28,6 +32,7 @@ export async function runCloudMaintenanceSweeps(
     retentionCleanup: Awaited<ReturnType<typeof purgeExpiredJobDeliverables>>;
     integritySample: Awaited<ReturnType<typeof sampleCompletedJobIntegrity>>;
     scheduledReminders: Awaited<ReturnType<typeof processDueScheduledJobReminders>>;
+    retentionReminders: Awaited<ReturnType<typeof processDueResultRetentionReminders>>;
   };
 }> {
   const staleReservations = await sweepStaleJobPaymentReservations(prisma);
@@ -63,6 +68,7 @@ export async function runCloudMaintenanceSweeps(
   }
 
   const scheduledReminders = await processDueScheduledJobReminders(prisma);
+  const retentionReminders = await processDueResultRetentionReminders(prisma);
   const terminalEmail = await processPendingJobTerminalEmailNotifications(prisma);
   const retentionCleanup = await purgeExpiredJobDeliverables(prisma);
   const integritySample = await sampleCompletedJobIntegrity(prisma, 5);
@@ -73,6 +79,12 @@ export async function runCloudMaintenanceSweeps(
     pauseTimeouts,
     failureOps,
     paymentsReleased,
-    asyncDelivery: { terminalEmail, retentionCleanup, integritySample, scheduledReminders },
+    asyncDelivery: {
+      terminalEmail,
+      retentionCleanup,
+      integritySample,
+      scheduledReminders,
+      retentionReminders,
+    },
   };
 }

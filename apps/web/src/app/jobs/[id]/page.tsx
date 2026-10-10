@@ -1,6 +1,9 @@
 "use client";
 
 import { AbuseReportForm } from "@/components/AbuseReportForm";
+import { JobDeliveryFeedback } from "@/components/JobDeliveryFeedback";
+import { SemanticResultPanel } from "@/components/SemanticResultPanel";
+import { Alert } from "@/components/ui/Alert";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
@@ -36,10 +39,26 @@ type JobDetail = {
     hasAssets: boolean;
     assets?: Array<{ id: string; filename: string }>;
     retentionExpired?: boolean;
+    downloadAllowed?: boolean;
+    downloadAllAllowed?: boolean;
   } | null;
   inputSummary: string;
+  inputSnapshot?: { fields: Array<{ key: string; label: string; displayValue: string }> };
+  purchaseSnapshot?: {
+    versionNumber: number;
+    priceSnapshotCents: number;
+    currency: string;
+    immutableNote: string;
+  };
+  retentionUx?: { headline: string; downloadAllowed: boolean };
+  semanticResult?: { fields: Array<{ key: string; label: string; presentation: string; displayText?: string; url?: string; assetRefs?: Array<{ id: string; filename: string }>; previewMode: "inline" | "download_only" }> } | null;
+  resultAcknowledged?: boolean;
+  canAcknowledgeResult?: boolean;
+  canReportResultProblem?: boolean;
+  canReuse?: boolean;
   priceSnapshotCents: number;
   currency: string;
+  versionNumber?: number;
 };
 
 type TimelineEntry = { at: string; label: string; detail?: string };
@@ -54,6 +73,7 @@ export default function JobDetailPage() {
   const [body, setBody] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [auditSummary, setAuditSummary] = useState<AuditSummary | null>(null);
+  const [bundleError, setBundleError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch(`${API_BASE}/buyer/jobs/${params.id}`, { credentials: "include" })
@@ -122,6 +142,19 @@ export default function JobDetailPage() {
     return <p className="meta">Job not found.</p>;
   }
 
+  async function downloadAsset(assetId: string) {
+    const res = await fetch(`${API_BASE}/buyer/jobs/${params.id}/assets/${assetId}/download`, {
+      credentials: "include",
+    });
+    if (!res.ok) {
+      return;
+    }
+    const body = (await res.json()) as { downloadUrl?: string };
+    if (body.downloadUrl) {
+      window.open(body.downloadUrl, "_blank", "noopener,noreferrer");
+    }
+  }
+
   return (
     <>
       <p className="meta">
@@ -183,60 +216,98 @@ export default function JobDetailPage() {
           </ul>
         </div>
       )}
-      {job.inputSummary && (
+      {job.purchaseSnapshot && (
         <div className="detail-panel">
-          <strong>Inputs</strong>
-          <p className="meta">{job.inputSummary}</p>
+          <strong>Purchase snapshot</strong>
+          <p className="meta">
+            Version {job.purchaseSnapshot.versionNumber} —{" "}
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: job.purchaseSnapshot.currency,
+            }).format(job.purchaseSnapshot.priceSnapshotCents / 100)}
+          </p>
+          <p className="meta">{job.purchaseSnapshot.immutableNote}</p>
         </div>
       )}
-      {job.resultRetentionExpiresAt && (
-        <p className="meta">
-          Result files available until{" "}
-          {new Date(job.resultRetentionExpiresAt).toLocaleString()}
-          {job.resultRetentionExpired ? " (expired)" : ""}
-        </p>
+      {job.inputSnapshot && job.inputSnapshot.fields.length > 0 && (
+        <div className="detail-panel">
+          <strong>Submitted inputs (historical)</strong>
+          <ul className="meta">
+            {job.inputSnapshot.fields.map((f) => (
+              <li key={f.key}>
+                {f.label}: {f.displayValue}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
+      {job.retentionUx && <p className="meta">{job.retentionUx.headline}</p>}
       {job.result && (
         <div className="detail-panel">
           <strong>Result</strong>
           {job.result.retentionExpired && (
             <p className="meta">Downloads expired — contact support if you need a copy.</p>
           )}
-          {job.result.structuredOutput != null && (
-            <pre className="pre-block font-mono">
-              {typeof job.result.structuredOutput === "string"
-                ? job.result.structuredOutput
-                : JSON.stringify(job.result.structuredOutput, null, 2)}
-            </pre>
+          {job.semanticResult?.fields?.length ? (
+            <SemanticResultPanel
+              fields={job.semanticResult.fields}
+              jobId={params.id}
+              downloadAllowed={Boolean(job.result.downloadAllowed)}
+              onDownloadAsset={(id) => void downloadAsset(id)}
+            />
+          ) : (
+            job.result.structuredOutput != null && (
+              <pre className="pre-block font-mono">
+                {typeof job.result.structuredOutput === "string"
+                  ? job.result.structuredOutput
+                  : JSON.stringify(job.result.structuredOutput, null, 2)}
+              </pre>
+            )
           )}
-          {job.result.assets?.map((asset) => (
-            <p key={asset.id} style={{ marginTop: "0.5rem" }}>
+          {bundleError && (
+            <Alert tone="warning">
+              {bundleError} Individual file downloads remain available below.
+            </Alert>
+          )}
+          {job.result.downloadAllAllowed && (
+            <p style={{ marginTop: "0.75rem" }}>
               <button
                 type="button"
                 className="button secondary"
                 onClick={() => {
-                  void fetch(
-                    `${API_BASE}/buyer/jobs/${params.id}/assets/${asset.id}/download`,
-                    { credentials: "include" },
-                  )
+                  setBundleError(null);
+                  void fetch(`${API_BASE}/buyer/jobs/${params.id}/assets/download-all`, {
+                    credentials: "include",
+                  })
                     .then(async (res) => {
                       if (!res.ok) {
+                        const body = (await res.json().catch(() => ({}))) as { error?: string };
+                        setBundleError(body.error ?? "Bundle download failed");
                         return;
                       }
-                      const body = (await res.json()) as { downloadUrl?: string };
-                      if (body.downloadUrl) {
-                        window.open(body.downloadUrl, "_blank", "noopener,noreferrer");
-                      }
+                      const blob = await res.blob();
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = `job-${params.id.slice(0, 8)}-deliverables.zip`;
+                      a.click();
+                      URL.revokeObjectURL(url);
                     })
                     .catch(() => undefined);
                 }}
               >
-                Download {asset.filename}
+                Download all files
               </button>
             </p>
-          ))}
+          )}
         </div>
       )}
+      <JobDeliveryFeedback
+        jobId={params.id}
+        canAcknowledge={Boolean(job.canAcknowledgeResult)}
+        canReport={Boolean(job.canReportResultProblem)}
+        acknowledged={Boolean(job.resultAcknowledged)}
+      />
       {auditSummary && auditSummary.lines.length > 0 && (
         <div className="detail-panel">
           <strong>Audit summary</strong>
@@ -294,18 +365,29 @@ export default function JobDetailPage() {
           )}
         </form>
       )}
-      {job.capabilityId && (
+      {job.capabilityId && !job.canReportResultProblem && (
         <AbuseReportForm
           targetType="CAPABILITY"
           targetId={job.capabilityId}
           capabilityId={job.capabilityId}
         />
       )}
-      <p style={{ marginTop: "1rem" }}>
-        <Link className="button secondary" href={`/capabilities/${job.capabilitySlug}/run`}>
-          Run again
-        </Link>
-      </p>
+      {job.canReuse && (
+        <p style={{ marginTop: "1rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+          <Link
+            className="button secondary"
+            href={`/capabilities/${job.capabilitySlug}/run?fromJob=${params.id}&mode=run_again`}
+          >
+            Run again
+          </Link>
+          <Link
+            className="button secondary"
+            href={`/capabilities/${job.capabilitySlug}/run?fromJob=${params.id}&mode=duplicate_edit`}
+          >
+            Duplicate &amp; edit
+          </Link>
+        </p>
+      )}
     </>
   );
 }

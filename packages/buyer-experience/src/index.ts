@@ -29,3 +29,16 @@ export { expireJobsPastHardDeadline } from "./hard-deadline-sweep.js";
 export { assessOrchestrationPlanHardDeadline } from "./plan-deadline.js";
 export { processDueScheduledJobReminders } from "./scheduled-reminders.js";
 export { enrichBuyerJobListRow } from "./buyer-list-enrichment.js";
+export { buildJobReuseSeed, type JobReuseSeed, type JobReuseMode } from "./job-reuse.js";
+export { validateBuyerSubmissionAssets, type SubmissionAssetRef } from "./buyer-asset-validation.js";
+export { buildSemanticResultView, type SemanticResultView, type SemanticResultFieldView } from "./semantic-result.js";
+export { buildSanitizedInputSnapshotView } from "./input-snapshot.js";
+export { buildPurchaseSnapshotView } from "./purchase-snapshot-view.js";
+export { describeResultRetentionUx } from "./retention-ux.js";
+export { processDueResultRetentionReminders } from "./result-retention-reminders.js";
+export { planSafeDownloadBundleEntries } from "./download-bundle-plan.js";
+export {
+  createJobDeliveryProblemReport,
+  acknowledgeJobResultLooksGood,
+  JOB_PROBLEM_REASONS,
+} from "./job-problem-report.js";

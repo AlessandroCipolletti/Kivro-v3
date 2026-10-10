@@ -14,5 +14,5 @@
 | open-requirements-catalog | PASS | all open P0/P1/P2 rows have explicit schedule notes |
 | m23-terminal-lossless-sync | PASS | M23 terminal-lossless-audit → EXECUTED_M28 after harness |
 | portability-families-p0 | PASS | ARCH-UNI/PORT/HOST-NET P0 TESTED through M27 |
-| all-p0-p1-p2-complete | OPEN | P0 TODO 47, P1 TODO 322, P2 TODO 97 |
+| all-p0-p1-p2-complete | OPEN | P0 TODO 40, P1 TODO 316, P2 TODO 97 |
 | staging-paid-e2e | ENV_OPTIONAL | scripts/verify-m23-staging-bundle.mjs |

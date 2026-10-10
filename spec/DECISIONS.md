@@ -644,6 +644,10 @@ greenfield.
 
 **Decision:** Buyer preflight, execution quote, deadline feasibility, ETA/progress honesty, legal actions, reliability aggregation, privacy disclosure, minimized worker payload, and dashboard summaries live in `@kivro/buyer-experience` and `@kivro/marketplace` read models — not provider adapters or UI-only logic. Purchase must revalidate `BuyerExecutionQuote` when `executionQuoteId` is supplied. Gate: `pnpm verify:m30` (includes `verify:m29`).
 
+## DEC-M31-001 --- Buyer history and results are Core semantics
+
+**Decision:** Run again / duplicate, semantic result rendering, safe previews, download-all bundling, immutable input/purchase snapshots, retention UX, and acknowledgement/problem reporting are implemented in shared packages (`@kivro/buyer-experience`, `@kivro/job-delivery`, `@kivro/marketplace`) with session + v1 download parity where applicable. Gate: `pnpm verify:m31` (includes `verify:m30`).
+
 ## DEC-M30-002 — Orchestration and v1 honor hard deadlines
 
 **Decision:** Marketplace agent plan approval calls `authorizePlanApproval` with per-step `estimatedDuration` and rejects `DEADLINE_INFEASIBLE` when `BuyerConstraints.hardDeliveryDeadlineAt` cannot fit the plan. REST v1 exposes the same preflight/quote/create semantics as session checkout. Gate: `verify-m30-evidence.mjs`.

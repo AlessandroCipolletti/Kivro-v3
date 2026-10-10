@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export default function NotificationSettingsPage() {
   const [emailTerminal, setEmailTerminal] = useState(true);
   const [emailScheduled, setEmailScheduled] = useState(true);
+  const [emailRetention, setEmailRetention] = useState(true);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,10 +19,15 @@ export default function NotificationSettingsPage() {
           throw new Error("load");
         }
         const body = (await res.json()) as {
-          preferences: { emailTerminalJobComplete: boolean; emailScheduledReminder: boolean };
+          preferences: {
+            emailTerminalJobComplete: boolean;
+            emailScheduledReminder: boolean;
+            emailResultRetentionReminder: boolean;
+          };
         };
         setEmailTerminal(body.preferences.emailTerminalJobComplete);
         setEmailScheduled(body.preferences.emailScheduledReminder);
+        setEmailRetention(body.preferences.emailResultRetentionReminder);
       })
       .catch(() => setError("Could not load preferences"));
   }, []);
@@ -36,6 +42,7 @@ export default function NotificationSettingsPage() {
       body: JSON.stringify({
         emailTerminalJobComplete: emailTerminal,
         emailScheduledReminder: emailScheduled,
+        emailResultRetentionReminder: emailRetention,
       }),
     });
     if (!res.ok) {
@@ -69,6 +76,14 @@ export default function NotificationSettingsPage() {
             onChange={(e) => setEmailScheduled(e.target.checked)}
           />{" "}
           Scheduled job reminders
+        </label>
+        <label className="field-label">
+          <input
+            type="checkbox"
+            checked={emailRetention}
+            onChange={(e) => setEmailRetention(e.target.checked)}
+          />{" "}
+          Result retention reminders before files expire
         </label>
         <button type="button" className="button" onClick={() => void save()}>
           Save

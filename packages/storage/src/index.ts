@@ -11,3 +11,4 @@ export {
   deleteObject,
   objectExists,
 } from "./object-storage.js";
+export { readObjectBytes } from "./read-object-bytes.js";

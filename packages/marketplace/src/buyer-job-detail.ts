@@ -1,6 +1,10 @@
 import type { PrismaClient } from "@kivro/database";
 import {
+  buildPurchaseSnapshotView,
+  buildSanitizedInputSnapshotView,
+  buildSemanticResultView,
   describeMissedWindow,
+  describeResultRetentionUx,
   estimateBuyerJobTiming,
   resolveBuyerLegalActions,
   sanitizeBuyerProgressCheckpoints,
@@ -35,6 +39,7 @@ export async function getBuyerJobDetail(
       result: true,
       transitions: { orderBy: { createdAt: "asc" } },
       review: true,
+      resultAcknowledgement: true,
       auditEvents: { orderBy: { createdAt: "asc" } },
       checkpoints: { orderBy: { recordedAt: "asc" } },
     },
@@ -92,6 +97,23 @@ export async function getBuyerJobDetail(
     resultAvailable: Boolean(job.result && !isResultRetentionExpired(job.resultRetentionExpiresAt)),
   });
   const progress = sanitizeBuyerProgressCheckpoints(job.checkpoints);
+  const inputSnapshot = buildSanitizedInputSnapshotView({
+    inputContractSnapshot: job.inputContractSnapshot,
+    structuredInput: job.input?.structuredInput,
+    assetManifest: job.input?.assetManifest,
+  });
+  const purchaseSnapshot = buildPurchaseSnapshotView(job);
+  const retentionUx = describeResultRetentionUx({
+    resultRetentionExpiresAt: job.resultRetentionExpiresAt,
+  });
+  const semanticResult =
+    job.result && job.status === "COMPLETED"
+      ? buildSemanticResultView({
+          outputContract: job.outputContractSnapshot,
+          structuredOutput: job.result.structuredOutput,
+          assets: outputAssets,
+        })
+      : null;
   return {
     job: {
       id: job.id,
@@ -116,13 +138,26 @@ export async function getBuyerJobDetail(
       completedAt: job.completedAt?.toISOString() ?? null,
       resultRetentionExpiresAt: job.resultRetentionExpiresAt?.toISOString() ?? null,
       resultRetentionExpired: isResultRetentionExpired(job.resultRetentionExpiresAt),
-      inputSummary: summarizeInput(job.input?.structuredInput),
+      inputSummary: inputSnapshot.summary,
+      inputSnapshot,
+      purchaseSnapshot,
+      retentionUx,
+      semanticResult,
+      resultAcknowledged: Boolean(job.resultAcknowledgement),
+      canAcknowledgeResult: job.status === "COMPLETED" && !job.resultAcknowledgement,
+      canReportResultProblem: job.status === "COMPLETED",
+      canReuse: ["COMPLETED", "CANCELLED", "REFUNDED", "FAILED_EXECUTION", "TIMED_OUT", "EXPIRED"].includes(
+        job.status,
+      ),
       result: job.result
         ? {
             structuredOutput: job.result.structuredOutput,
             hasAssets: outputAssets.length > 0,
             assets: outputAssets,
             retentionExpired: isResultRetentionExpired(job.resultRetentionExpiresAt),
+            downloadAllowed: retentionUx.downloadAllowed && outputAssets.length > 0,
+            downloadAllAllowed:
+              retentionUx.downloadAllowed && outputAssets.length > 1 && job.status === "COMPLETED",
           }
         : null,
       review: job.review
@@ -135,10 +170,3 @@ export async function getBuyerJobDetail(
   };
 }
 
-function summarizeInput(raw: unknown): string {
-  if (!raw || typeof raw !== "object") {
-    return "";
-  }
-  const entries = Object.entries(raw as Record<string, unknown>).slice(0, 6);
-  return entries.map(([k, v]) => `${k}: ${String(v).slice(0, 80)}`).join("; ");
-}

@@ -333,6 +333,26 @@
       "assert": "unknown confidence when history insufficient"
     },
     {
+      "id": "BUYERUX-GOLD-007",
+      "name": "rerun duplicate",
+      "assert": "historical job immutable; new job current version price"
+    },
+    {
+      "id": "BUYERUX-GOLD-008",
+      "name": "rich result",
+      "assert": "semantic manifest renders named outputs safely"
+    },
+    {
+      "id": "BUYERUX-GOLD-009",
+      "name": "download all",
+      "assert": "authorized zip resists traversal; per-file fallback"
+    },
+    {
+      "id": "BUYERUX-GOLD-010",
+      "name": "snapshots",
+      "assert": "historical purchase input snapshots immutable"
+    },
+    {
       "id": "BUYERUX-GOLD-011",
       "name": "missed window",
       "assert": "seller never appears; buyer legal choices"
@@ -346,6 +366,16 @@
       "id": "BUYERUX-GOLD-013",
       "name": "reliability metrics",
       "assert": "authoritative eligible sample thresholds"
+    },
+    {
+      "id": "BUYERUX-GOLD-014",
+      "name": "retention UX",
+      "assert": "expiry visible; expired hides download"
+    },
+    {
+      "id": "BUYERUX-GOLD-015",
+      "name": "problem report",
+      "assert": "durable report links immutable evidence"
     },
     {
       "id": "BUYERUX-GOLD-016",

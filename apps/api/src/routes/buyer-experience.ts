@@ -5,6 +5,7 @@ import {
   getBuyerNotificationPreferences,
   runBuyerExecutionPreflight,
   updateBuyerNotificationPreferences,
+  validateBuyerSubmissionAssets,
 } from "@kivro/buyer-experience";
 import { getPrismaClient } from "@kivro/database";
 import { Hono } from "hono";
@@ -55,11 +56,21 @@ export function buyerExperienceRoutes(): Hono<AppEnv> {
     if (!body.capabilityId) {
       return c.json({ error: "CAPABILITY_ID_REQUIRED" }, 400);
     }
+    const assetCheck = await validateBuyerSubmissionAssets(getPrismaClient(), {
+      buyerId: user.id,
+      assets: body.assets,
+    });
+    if (!assetCheck.ok) {
+      return c.json(
+        { error: assetCheck.error, fieldKey: assetCheck.fieldKey, assetId: assetCheck.assetId },
+        400,
+      );
+    }
     const quote = await createBuyerExecutionQuote(getPrismaClient(), {
       buyerId: user.id,
       capabilityId: body.capabilityId,
       structuredInput: body.inputs ?? {},
-      assetManifest: body.assets,
+      assetManifest: assetCheck.normalized,
       scheduledRunAt: body.scheduledRunAt ? new Date(body.scheduledRunAt) : undefined,
       hardDeliveryDeadlineAt: body.hardDeliveryDeadlineAt
         ? new Date(body.hardDeliveryDeadlineAt)
@@ -88,6 +99,7 @@ export function buyerExperienceRoutes(): Hono<AppEnv> {
     const body = await c.req.json<{
       emailTerminalJobComplete?: boolean;
       emailScheduledReminder?: boolean;
+      emailResultRetentionReminder?: boolean;
     }>();
     const prefs = await updateBuyerNotificationPreferences(getPrismaClient(), user.id, body);
     return c.json({ preferences: prefs });

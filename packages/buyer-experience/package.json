@@ -20,6 +20,7 @@
     "@kivro/database": "workspace:*",
     "@kivro/domain": "workspace:*",
     "@kivro/job-control": "workspace:*",
-    "@kivro/job-scheduling": "workspace:*"
+    "@kivro/job-scheduling": "workspace:*",
+    "@kivro/job-io": "workspace:*"
   }
 }

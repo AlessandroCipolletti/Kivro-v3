@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T08:21:55.266Z",
+  "generatedAt": "2026-10-10T08:50:22.561Z",
   "milestone": "M27",
   "performanceEnvelope": {
     "milestone": "M27",
@@ -60,7 +60,7 @@
     ]
   },
   "exitCriteria": {
-    "generatedAt": "2026-10-10T08:17:42.095Z",
+    "generatedAt": "2026-10-10T08:47:53.801Z",
     "m27HarnessComplete": true,
     "criteria": [
       {

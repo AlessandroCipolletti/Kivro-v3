@@ -10,8 +10,12 @@ import {
   storeIdempotentResponse,
 } from "@kivro/buyer-api";
 import {
+  acknowledgeJobResultLooksGood,
+  buildJobReuseSeed,
   createBuyerExecutionQuote,
+  createJobDeliveryProblemReport,
   runBuyerExecutionPreflight,
+  validateBuyerSubmissionAssets,
 } from "@kivro/buyer-experience";
 import { buyerCancelScheduledOrQueuedJob, summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import { getBuyerJobDetail } from "@kivro/marketplace";
@@ -22,6 +26,7 @@ import { emitBuyerJobWebhookForCurrentStatus } from "../services/buyer-webhook-e
 import { createBuyerJobFromApi } from "../services/create-buyer-job.js";
 import { formatV1JobCreateSuccess } from "../services/v1-buyer-response.js";
 import { createBuyerJobAssetDownload } from "../services/buyer-job-download.js";
+import { createBuyerJobBundleDownload } from "../services/buyer-job-bundle-download.js";
 import type { AppEnv } from "../types.js";
 
 /** §322–§325 — buyer REST API v1 (Bearer API key). */
@@ -110,11 +115,21 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
     } catch {
       return c.json({ error: "INVALID_JSON" }, 400);
     }
+    const assetCheck = await validateBuyerSubmissionAssets(getPrismaClient(), {
+      buyerId: user.id,
+      assets: body.assets,
+    });
+    if (!assetCheck.ok) {
+      return c.json(
+        { error: assetCheck.error, fieldKey: assetCheck.fieldKey, assetId: assetCheck.assetId },
+        400,
+      );
+    }
     const quote = await createBuyerExecutionQuote(getPrismaClient(), {
       buyerId: user.id,
       capabilityId,
       structuredInput: body.inputs ?? {},
-      assetManifest: body.assets,
+      assetManifest: assetCheck.normalized,
       scheduledRunAt: body.scheduledRunAt ? new Date(body.scheduledRunAt) : undefined,
       hardDeliveryDeadlineAt: body.hardDeliveryDeadlineAt
         ? new Date(body.hardDeliveryDeadlineAt)
@@ -223,7 +238,9 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
       "error" in result
         ? result.error === "INSUFFICIENT_CREDITS"
           ? 402
-          : result.error === "VALIDATION_FAILED"
+          : result.error === "VALIDATION_FAILED" ||
+              result.error === "INPUT_ASSET_EXPIRED" ||
+              result.error === "INPUT_ASSET_INVALID"
             ? 400
             : result.error === "NOT_FOUND"
               ? 404
@@ -246,6 +263,76 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
     }
 
     return c.json(responseBody, statusCode);
+  });
+
+  app.get("/jobs/:jobId/reuse", requireBuyerApiKey("jobs:read"), async (c) => {
+    const user = c.get("user");
+    const mode = c.req.query("mode") === "duplicate_edit" ? "duplicate_edit" : "run_again";
+    const seed = await buildJobReuseSeed(getPrismaClient(), {
+      jobId: c.req.param("jobId") ?? "",
+      buyerId: user.id,
+      mode,
+    });
+    if ("error" in seed) {
+      return c.json({ error: seed.error }, seed.error === "NOT_FOUND" ? 404 : 409);
+    }
+    return c.json({ reuse: seed });
+  });
+
+  app.post("/jobs/:jobId/acknowledge", requireBuyerApiKey("jobs:read"), async (c) => {
+    const user = c.get("user");
+    const result = await acknowledgeJobResultLooksGood(getPrismaClient(), {
+      jobId: c.req.param("jobId") ?? "",
+      buyerId: user.id,
+    });
+    if ("error" in result) {
+      return c.json({ error: result.error }, result.error === "NOT_FOUND" ? 404 : 409);
+    }
+    return c.json({ ok: true });
+  });
+
+  app.post("/jobs/:jobId/problem-report", requireBuyerApiKey("jobs:read"), async (c) => {
+    const user = c.get("user");
+    let body: { reason?: string; details?: string } = {};
+    try {
+      body = await c.req.json();
+    } catch {
+      return c.json({ error: "INVALID_JSON" }, 400);
+    }
+    if (!body.reason) {
+      return c.json({ error: "REASON_REQUIRED" }, 400);
+    }
+    const result = await createJobDeliveryProblemReport(getPrismaClient(), {
+      jobId: c.req.param("jobId") ?? "",
+      reporterUserId: user.id,
+      reason: body.reason,
+      details: body.details,
+    });
+    if ("error" in result) {
+      const status =
+        result.error === "NOT_FOUND" ? 404 : result.error === "INVALID_REASON" ? 400 : 409;
+      return c.json({ error: result.error }, status);
+    }
+    return c.json(result, 201);
+  });
+
+  app.get("/jobs/:jobId/assets/download-all", requireBuyerApiKey("jobs:read"), async (c) => {
+    const user = c.get("user");
+    const bundle = await createBuyerJobBundleDownload(getPrismaClient(), {
+      jobId: c.req.param("jobId") ?? "",
+      buyerId: user.id,
+    });
+    if ("error" in bundle) {
+      return c.json({ error: bundle.error }, bundle.httpStatus);
+    }
+    return new Response(bundle.buffer, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/zip",
+        "Content-Disposition": `attachment; filename="${bundle.filename.replace(/"/g, "")}"`,
+        "Cache-Control": "private, no-store",
+      },
+    });
   });
 
   app.get("/jobs/:jobId/assets/:assetRef/download", requireBuyerApiKey("jobs:read"), async (c) => {

@@ -21,3 +21,4 @@ export {
 } from "./terminal-notifications.js";
 export { purgeExpiredJobDeliverables } from "./retention-cleanup.js";
 export { sampleCompletedJobIntegrity } from "./completed-integrity-sample.js";
+export { buildResultZipBuffer, type ResultBundleEntry } from "./result-bundle.js";

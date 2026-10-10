@@ -15,20 +15,22 @@ export function BuyerInputForm({
   fields,
   onSubmit,
   loading,
+  initialValues,
 }: {
   fields: BuyerFormField[];
   onSubmit: (inputs: Record<string, unknown>) => void | Promise<void>;
   loading?: boolean;
+  initialValues?: Record<string, unknown>;
 }) {
   const initial = useMemo(() => {
-    const o: Record<string, unknown> = {};
+    const o: Record<string, unknown> = { ...(initialValues ?? {}) };
     for (const f of fields) {
-      if (f.widget === "checkbox") {
+      if (f.widget === "checkbox" && o[f.key] === undefined) {
         o[f.key] = false;
       }
     }
     return o;
-  }, [fields]);
+  }, [fields, initialValues]);
   const [values, setValues] = useState<Record<string, unknown>>(initial);
 
   function setField(key: string, value: unknown) {

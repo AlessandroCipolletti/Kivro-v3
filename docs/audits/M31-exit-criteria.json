@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-10-10T08:52:21.911Z",
+  "m31HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "m30-regression-gate",
+      "status": "PASS",
+      "detail": "verify:m30 / M30-exit-criteria.json"
+    },
+    {
+      "id": "buyerux-m31-tested",
+      "status": "PASS",
+      "detail": "13/13 M31-scope BUYERUX rows TESTED"
+    },
+    {
+      "id": "buyerux-gold-m31",
+      "status": "PASS",
+      "detail": "M31 exit BUYERUX-GOLD scenarios in golden registry"
+    },
+    {
+      "id": "m31-migration",
+      "status": "PASS",
+      "detail": "acknowledgement, problem reports, retention reminder schema"
+    },
+    {
+      "id": "buyer-job-history-routes",
+      "status": "PASS",
+      "detail": "reuse, acknowledge, problem-report, download-all API"
+    },
+    {
+      "id": "v1-m31-parity",
+      "status": "PASS",
+      "detail": "v1 reuse/download-all/ack/problem-report parity"
+    },
+    {
+      "id": "plan-through-m31",
+      "status": "PASS",
+      "detail": "IMPLEMENTATION-PLAN verify M03–M31 + M29–M31 harness snapshot"
+    },
+    {
+      "id": "buyerux-spotcheck",
+      "status": "PASS",
+      "detail": "M31-scope BUYERUX COVERAGE rows with evidence paths"
+    }
+  ]
+}

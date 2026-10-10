@@ -9,12 +9,18 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
 import { marketplaceAvailabilityUi } from "@/lib/status-ui";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function RunCapabilityPage() {
   const params = useParams<{ slug: string }>();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const fromJobId = searchParams.get("fromJob");
+  const reuseMode = searchParams.get("mode") === "duplicate_edit" ? "duplicate_edit" : "run_again";
+  const [reuseNote, setReuseNote] = useState<string | null>(null);
+  const [prefillInputs, setPrefillInputs] = useState<Record<string, unknown> | null>(null);
+  const [prefillAssets, setPrefillAssets] = useState<Record<string, unknown> | null>(null);
   const [fields, setFields] = useState<BuyerFormField[] | null>(null);
   const [capabilityId, setCapabilityId] = useState<string | null>(null);
   const [priceLabel, setPriceLabel] = useState<string | null>(null);
@@ -74,12 +80,59 @@ export default function RunCapabilityPage() {
       .catch(() => setError("Could not load capability form"));
   }, [params.slug]);
 
+  useEffect(() => {
+    if (!fromJobId) {
+      return;
+    }
+    fetch(`${API_BASE}/buyer/jobs/${fromJobId}/reuse?mode=${reuseMode}`, {
+      credentials: "include",
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          return null;
+        }
+        return (await res.json()) as {
+          reuse: {
+            disclaimer: string;
+            prefilledInputs: Record<string, unknown>;
+            prefilledAssets: Record<string, unknown>;
+            requiresAssetReplacement: boolean;
+            current: { priceChanged: boolean; versionChanged: boolean; priceSnapshotCents: number; currency: string };
+          };
+        };
+      })
+      .then((data) => {
+        if (!data?.reuse) {
+          return;
+        }
+        setPrefillInputs(data.reuse.prefilledInputs);
+        setPrefillAssets(data.reuse.prefilledAssets);
+        setInputsJson(JSON.stringify(data.reuse.prefilledInputs, null, 2));
+        const parts = [data.reuse.disclaimer];
+        if (data.reuse.requiresAssetReplacement) {
+          parts.push("Some previous upload files expired or are unavailable — re-upload files before paying.");
+        }
+        if (data.reuse.current.versionChanged || data.reuse.current.priceChanged) {
+          parts.push(
+            `Current listing: ${new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: data.reuse.current.currency,
+            }).format(data.reuse.current.priceSnapshotCents / 100)} (new quote required at submit).`,
+          );
+        }
+        setReuseNote(parts.join(" "));
+      })
+      .catch(() => undefined);
+  }, [fromJobId, reuseMode]);
+
   async function submitInputs(inputs: Record<string, unknown>) {
     if (!capabilityId) {
       return;
     }
     setError(null);
     setLoading(true);
+    const assetsPayload =
+      prefillAssets && Object.keys(prefillAssets).length > 0 ? prefillAssets : undefined;
     try {
       const quoteRes = await fetch(`${API_BASE}/buyer/experience/quote`, {
         method: "POST",
@@ -88,6 +141,7 @@ export default function RunCapabilityPage() {
         body: JSON.stringify({
           capabilityId,
           inputs,
+          assets: assetsPayload,
           scheduledRunAt: !accepting && scheduledRunAt ? new Date(scheduledRunAt).toISOString() : undefined,
           hardDeliveryDeadlineAt: hardDeadline ? new Date(hardDeadline).toISOString() : undefined,
         }),
@@ -106,6 +160,7 @@ export default function RunCapabilityPage() {
       const payload: Record<string, unknown> = {
         capabilityId,
         inputs,
+        assets: assetsPayload,
         paymentMode: "credits",
         executionQuoteId: quoteBody.quoteId,
       };
@@ -214,10 +269,17 @@ export default function RunCapabilityPage() {
           </div>
         </div>
       )}
+      {reuseNote && <Alert tone="info">{reuseNote}</Alert>}
       {error && <Alert tone="danger">{error}</Alert>}
       {fields && !useJson && (
         <div className="detail-panel">
-          <BuyerInputForm fields={fields} loading={loading} onSubmit={submitInputs} />
+          <BuyerInputForm
+            key={fromJobId ? `reuse-${fromJobId}-${reuseMode}` : "fresh"}
+            fields={fields}
+            loading={loading}
+            initialValues={prefillInputs ?? undefined}
+            onSubmit={submitInputs}
+          />
           <p className="meta" style={{ marginTop: "1rem" }}>
             <button className="button secondary" type="button" onClick={() => setUseJson(true)}>
               Use JSON instead

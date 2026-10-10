@@ -84,6 +84,38 @@ export const v1BuyerOpenApiSpec = {
         responses: { "200": { description: "OK" }, "404": { description: "NOT_FOUND" } },
       },
     },
+    "/jobs/{jobId}/reuse": {
+      get: {
+        summary: "Reuse seed for run again / duplicate (M31)",
+        parameters: [
+          { name: "jobId", in: "path", required: true, schema: { type: "string" } },
+          { name: "mode", in: "query", schema: { type: "string", enum: ["run_again", "duplicate_edit"] } },
+        ],
+        responses: { "200": { description: "Reuse seed" }, "404": { description: "NOT_FOUND" } },
+      },
+    },
+    "/jobs/{jobId}/assets/download-all": {
+      get: {
+        summary: "Download all deliverables as zip (M31)",
+        parameters: [{ name: "jobId", in: "path", required: true, schema: { type: "string" } }],
+        responses: {
+          "200": { description: "application/zip" },
+          "410": { description: "RESULT_EXPIRED" },
+        },
+      },
+    },
+    "/jobs/{jobId}/acknowledge": {
+      post: {
+        summary: "Acknowledge completed result (M31)",
+        responses: { "200": { description: "OK" } },
+      },
+    },
+    "/jobs/{jobId}/problem-report": {
+      post: {
+        summary: "Report delivery problem with immutable evidence (M31)",
+        responses: { "201": { description: "Created" } },
+      },
+    },
     "/jobs/{jobId}/assets/{assetRef}/download": {
       get: {
         summary: "Presigned download for completed job deliverable (ASYNC-029)",

@@ -43,6 +43,11 @@
       "folder": "20260410170000_m30_scheduled_reminder",
       "phase": "expand",
       "notes": "Job.scheduledReminderSentAt — M30 scheduled reminders"
+    },
+    {
+      "folder": "20260410180000_m31_buyer_history",
+      "phase": "expand",
+      "notes": "Job reuse feedback, retention reminders — M31"
     }
   ]
 }

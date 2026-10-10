@@ -53,6 +53,7 @@
     "verify:m28": "node scripts/run-with-env.mjs node scripts/verify-m28-flow.mjs",
     "verify:m29": "node scripts/run-with-env.mjs node scripts/verify-m29-flow.mjs",
     "verify:m30": "node scripts/run-with-env.mjs node scripts/verify-m30-flow.mjs",
+    "verify:m31": "node scripts/run-with-env.mjs node scripts/verify-m31-flow.mjs",
     "dev:doctor": "node scripts/run-with-env.mjs node scripts/local-dev-doctor.mjs",
     "test:m18:preflight": "node scripts/run-with-env.mjs node scripts/run-m18-local-preflight.mjs",
     "worker:dev": "node scripts/run-with-env.mjs node scripts/worker-dev.mjs",

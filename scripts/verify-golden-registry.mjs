@@ -55,6 +55,7 @@ const testCorpus = [
   "security/tests/buyer-result-auth-m29.test.ts",
   "packages/billing/src/job-completion-barrier-m29.test.ts",
   "security/tests/conformance-buyerux-gold-m30.test.ts",
+  "security/tests/conformance-buyerux-gold-m31.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");

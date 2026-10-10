@@ -19,6 +19,7 @@
     "@kivro/database": "workspace:*",
     "@kivro/domain": "workspace:*",
     "@kivro/job-io": "workspace:*",
-    "@kivro/storage": "workspace:*"
+    "@kivro/storage": "workspace:*",
+    "fflate": "^0.8.2"
   }
 }

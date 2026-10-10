@@ -1,6 +1,7 @@
 export type JobOutputAssetRef = {
   id: string;
   filename: string;
+  outputKey?: string;
   bucket?: string;
   objectKey?: string;
   mimeType?: string;
@@ -47,6 +48,12 @@ function refFromEntry(item: unknown, index: number): JobOutputAssetRef | null {
   return {
     id,
     filename,
+    outputKey:
+      typeof o.outputKey === "string"
+        ? o.outputKey
+        : typeof o.fieldKey === "string"
+          ? o.fieldKey
+          : undefined,
     bucket: typeof o.bucket === "string" ? o.bucket : undefined,
     objectKey: typeof o.objectKey === "string" ? o.objectKey : undefined,
     mimeType: typeof o.mimeType === "string" ? o.mimeType : undefined,

@@ -1,7 +1,8 @@
 import { submitPaidJob } from "@kivro/billing";
 import type { PrismaClient } from "@kivro/database";
 import type { CapabilityContract } from "@kivro/contracts";
-import { validateBuyerInput } from "@kivro/job-io";
+import { validateBuyerSubmissionAssets } from "@kivro/buyer-experience";
+import { validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
 
 export async function createBuyerJobFromApi(
   prisma: PrismaClient,
@@ -47,10 +48,17 @@ export async function createBuyerJobFromApi(
     inputs: version.inputSchema,
     output: version.outputSchema,
   } as CapabilityContract;
+  const assetCheck = await validateBuyerSubmissionAssets(prisma, {
+    buyerId: input.buyerId,
+    assets: input.assets,
+  });
+  if (!assetCheck.ok) {
+    return { error: assetCheck.error };
+  }
   const validation = validateBuyerInput({
     contract,
     inputs: input.inputs ?? {},
-    assets: (input.assets as Record<string, never>) ?? {},
+    assets: assetCheck.normalized as Record<string, JobAssetRef[]>,
   });
   if (!validation.ok) {
     return { error: "VALIDATION_FAILED" };
@@ -60,7 +68,7 @@ export async function createBuyerJobFromApi(
     buyerId: input.buyerId,
     capabilityId: input.capabilityId,
     structuredInput: input.inputs ?? {},
-    assetManifest: input.assets,
+    assetManifest: assetCheck.normalized,
     scheduledRunAt: input.scheduledRunAt,
     executionQuoteId: input.executionQuoteId,
     buyerHardDeadlineAt: input.buyerHardDeadlineAt,

@@ -131,8 +131,11 @@ model User {
   abuseReports            AbuseReport[]
   buyerSubmissionRateBuckets BuyerSubmissionRateBucket[]
   buyerExecutionQuotes      BuyerExecutionQuote[]
-  buyerNotifyTerminalEmail    Boolean @default(true)
-  buyerNotifyScheduledReminder Boolean @default(true)
+  buyerNotifyTerminalEmail       Boolean @default(true)
+  buyerNotifyScheduledReminder   Boolean @default(true)
+  buyerNotifyRetentionReminder   Boolean @default(true)
+  jobResultAcknowledgements      JobResultAcknowledgement[]
+  jobDeliveryProblemReports      JobDeliveryProblemReport[]
 }
 
 enum MarketplaceMessageRole {
@@ -596,9 +599,10 @@ model Job {
   completedAt                DateTime?
   resultRetentionExpiresAt   DateTime?
   buyerHardDeadlineAt        DateTime?
-  scheduledReminderSentAt    DateTime?
-  executionQuoteId           String?   @unique
-  updatedAt                  DateTime  @updatedAt
+  scheduledReminderSentAt         DateTime?
+  resultRetentionReminderSentAt   DateTime?
+  executionQuoteId                String?   @unique
+  updatedAt                       DateTime  @updatedAt
 
   buyer             User              @relation("BuyerJobs", fields: [buyerId], references: [id])
   executionQuote    BuyerExecutionQuote? @relation(fields: [executionQuoteId], references: [id])
@@ -614,7 +618,9 @@ model Job {
   auditEvents       AuditEvent[]
   sellerTransfer    SellerTransferRecord?
   review            CapabilityReview?
-  terminalNotification JobTerminalNotification?
+  terminalNotification   JobTerminalNotification?
+  resultAcknowledgement  JobResultAcknowledgement?
+  deliveryProblemReports JobDeliveryProblemReport[]
 
   @@index([buyerId])
   @@index([capabilityVersionId])
@@ -646,6 +652,36 @@ model BuyerExecutionQuote {
   @@index([buyerId])
   @@index([capabilityId])
   @@index([expiresAt])
+}
+
+model JobResultAcknowledgement {
+  id        String   @id @default(uuid())
+  jobId     String   @unique
+  buyerId   String
+  kind      String   @default("LOOKS_GOOD")
+  createdAt DateTime @default(now())
+
+  job   Job  @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  buyer User @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+
+  @@index([buyerId])
+}
+
+model JobDeliveryProblemReport {
+  id               String   @id @default(uuid())
+  jobId            String
+  reporterUserId   String
+  reason           String
+  details          String?
+  evidenceSnapshot Json
+  status           String   @default("OPEN")
+  createdAt        DateTime @default(now())
+
+  job      Job  @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  reporter User @relation(fields: [reporterUserId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+  @@index([status, createdAt(sort: Desc)])
 }
 
 model JobTerminalNotification {

@@ -5,7 +5,8 @@ import {
   submitPaidJob,
 } from "@kivro/billing";
 import { getPrismaClient } from "@kivro/database";
-import { validateBuyerInput } from "@kivro/job-io";
+import { validateBuyerSubmissionAssets } from "@kivro/buyer-experience";
+import { validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
 import type { CapabilityContract } from "@kivro/contracts";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
@@ -53,10 +54,25 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
       inputs: version.inputSchema,
       output: version.outputSchema,
     } as CapabilityContract;
+    const prisma = getPrismaClient();
+    const assetCheck = await validateBuyerSubmissionAssets(prisma, {
+      buyerId: user.id,
+      assets: body.assets,
+    });
+    if (!assetCheck.ok) {
+      return c.json(
+        {
+          error: assetCheck.error,
+          fieldKey: assetCheck.fieldKey,
+          assetId: assetCheck.assetId,
+        },
+        400,
+      );
+    }
     const validation = validateBuyerInput({
       contract,
       inputs: body.inputs ?? {},
-      assets: (body.assets as Record<string, never>) ?? {},
+      assets: assetCheck.normalized as Record<string, JobAssetRef[]>,
     });
     if (!validation.ok) {
       return c.json({ error: "VALIDATION_FAILED", issues: validation.issues }, 400);
@@ -76,7 +92,6 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
         return c.json({ error: "INVALID_DEADLINE" }, 400);
       }
     }
-    const prisma = getPrismaClient();
     const result =
       paymentMode === "card"
         ? await (async () => {
@@ -89,7 +104,7 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
               buyerEmail: user.email,
               capabilityId: body.capabilityId!,
               structuredInput: body.inputs ?? {},
-              assetManifest: body.assets,
+              assetManifest: assetCheck.normalized,
               scheduledRunAt,
               executionQuoteId: body.executionQuoteId,
               buyerHardDeadlineAt,
@@ -99,7 +114,7 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
             buyerId: user.id,
             capabilityId: body.capabilityId,
             structuredInput: body.inputs ?? {},
-            assetManifest: body.assets,
+            assetManifest: assetCheck.normalized,
             scheduledRunAt,
             executionQuoteId: body.executionQuoteId,
             buyerHardDeadlineAt,
@@ -111,9 +126,9 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
           : result.error === "CAPABILITY_NOT_AVAILABLE"
             ? 404
             : result.error === "CAPABILITY_NOT_ACCEPTING" ||
-              result.error === "CAPABILITY_SCHEDULED_OFFLINE"
-            ? 409
-            : 409;
+                result.error === "CAPABILITY_SCHEDULED_OFFLINE"
+              ? 409
+              : 409;
       return c.json(result, status);
     }
     return c.json(result, paymentMode === "card" ? 201 : 201);
