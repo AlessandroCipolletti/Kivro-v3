@@ -67,6 +67,13 @@ export {
   scheduledMaxWaitMs,
 } from "./wait-policy.js";
 export { validateScheduledRunAt } from "./scheduled-run-validation.js";
+export {
+  applyEligibleTimeChange,
+  buyerScheduleNotice,
+  scheduleChangeIsMaterial,
+  scheduledJobTimingRecord,
+  type ScheduledTimingRecord,
+} from "./scheduled-timing-record.js";
 export { recheckScheduledJobsAfterScheduleChange } from "./schedule-change-impact.js";
 export {
   clearCapabilityManualPause,

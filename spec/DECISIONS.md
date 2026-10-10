@@ -706,6 +706,10 @@ greenfield.
 
 **Decision:** `IMMEDIATE_ONLY` fails before payment when the capability is not accepting. `EARLIEST_AVAILABLE` reserves a job for the authoritative next window. Buyer inputs cannot change schedule, pause, or concurrency. Public availability shows the next window, not the seller's weekly timetable. A future purchase is labeled "Schedule for earliest availability" and the buyer is told the job is reserved now and starts later. Scheduled delivery is measured from the scheduled run, not the reservation. The agent skips an unavailable candidate and will not spend more or drop a permission to buy something available now. A new required input, or an optional output that becomes required, is a breaking contract change.
 
+## DEC-SCH-006 — Schedule history, hard constraints, and plan repair
+
+**Decision:** When a seller schedule change moves a reserved job, the new eligible time is stored for execution and the previous time is kept on an audit event. The buyer sees an in-app notice for that change, for reservation, start, completion, and expiry. A minute tick does not send a notice. A later capability is described as not available now, with runtime counted after it becomes eligible. One unavailable parallel branch is replaced on its own. A step that is no longer available is not purchased from the old plan. A service that needs the internet is rejected when the buyer forbade internet, even if it can run immediately.
+
 ## DEC-SCH-005 — Humans compare later services; agents buy what can run now
 
 **Decision:** Marketplace search keeps a scheduled capability visible in an "Available later" group. A recommendation question may include that capability and label its timing. An execution request excludes it unless the buyer explicitly allowed a wait. A proposed plan shows price, availability, and runtime before approval. Availability wait and expected runtime are separate sentences. If the eligible window moves by more than fifteen minutes after a quote, the purchase stops for a new confirmation. The seller preview shows the buyer form and a disabled run action. Running that preview on the seller's Worker is still a separate step.

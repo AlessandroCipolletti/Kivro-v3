@@ -1,4 +1,5 @@
 import { agentTimingSnapshot, capabilityFitsAgentTiming } from "./agent-timing.js";
+import { scheduledCapabilityDisclosure } from "./scheduled-disclosure.js";
 import type { AgentTimingSnapshot } from "./agent-timing.js";
 import type { CapabilityListingRow } from "./capability-listing.js";
 import type { BuyerConstraints } from "./buyer-constraints.js";
@@ -108,10 +109,23 @@ function scoreRow(
     why.push(`Listed at ${(price / 100).toFixed(2)} USD`);
   }
   let limitation: string | undefined;
-  if (row.availabilityStatus === "PAUSED" || !row.accepting) {
-    limitation = "Seller paused or blocked new marketplace jobs";
-  } else if (row.availabilityStatus !== "ONLINE") {
-    limitation = "Not accepting immediate runs; schedule or try later";
+  if (row.availabilityStatus === "SCHEDULED_OFFLINE" && row.nextAvailableAt) {
+    const minutes =
+      row.estimatedDuration != null && row.estimatedDuration > 0
+        ? Math.max(1, Math.round(row.estimatedDuration / 60))
+        : null;
+    limitation = scheduledCapabilityDisclosure({
+      nextEligibleAt: row.nextAvailableAt,
+      durationMinutes: minutes,
+    });
+  } else if (
+    row.availabilityStatus === "PAUSED" ||
+    row.availabilityStatus === "OFFLINE" ||
+    row.availabilityStatus === "SECURITY_BLOCKED"
+  ) {
+    limitation = "Unavailable";
+  } else if (!row.accepting) {
+    limitation = "Not accepting immediate runs";
   }
   if (why.length === 0) {
     why.push("Published capability matching marketplace filters");

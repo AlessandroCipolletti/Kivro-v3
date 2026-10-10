@@ -1,6 +1,7 @@
 export { getPlatformInference, type PlatformInferencePort, type PlatformIntent } from "./platform-inference.js";
 export { estimatePlanCompletionMinutes, type PlanCompletionStep } from "./plan-completion.js";
 export { formatPlanTiming, type PlanTimingStep } from "./plan-timing-view.js";
+export { purchaseDecisionForStaleStep, repairParallelBranches, type ParallelBranch } from "./plan-repair.js";
 export { agentStepProgressLabel, type AgentStepProgress } from "./agent-progress.js";
 export { readPlatformInferenceHealth } from "./platform-inference-policy.js";
 export {

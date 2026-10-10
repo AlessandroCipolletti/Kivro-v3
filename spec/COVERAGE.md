@@ -2864,7 +2864,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0216`    P1         §455     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0217`    P1         §456     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0217`    P1         §456     `TESTED`   packages/job-scheduling/src/scheduled-timing-record.ts  scheduled-timing-record.test.ts  the first window is kept when eligibility moves
 
   `JOB-0218`    P1         §457     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  checkout quotes earliest eligibility, not a guaranteed start
 
@@ -2946,9 +2946,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0073`    P1         §478     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  run, queue, schedule, and unavailable stay distinct
 
-  `PRD-0377`    P1         §479     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0377`    P1         §479     `TESTED`   packages/marketplace/src/scheduled-disclosure.ts  contract-rank.test.ts  a later service discloses eligibility and runtime
 
-  `PRD-0378`    P2         §479     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0378`    P2         §479     `TESTED`   packages/marketplace/src/scheduled-disclosure.ts  scheduled-disclosure.test.ts  the disclosure says the service is not available now
 
   `AGT-0098`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2970,7 +2970,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0237`    P1         §483     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0238`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0238`    P1         §483     `TESTED`   packages/job-scheduling/src/scheduled-timing-record.ts  scheduled-timing-record.test.ts  in-app notices skip minute ticks
 
   `JOB-0239`    P1         §483     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
@@ -3036,11 +3036,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0393`    P2         §494     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  autonomous mode excludes future services
 
-  `AVL-0079`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0079`    P1         §495     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-discovery.test.ts  immediate ranking drops future-only services
 
   `AVL-0080`    P1         §495     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  future-only excluded from immediate mode
 
-  `AVL-0081`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0081`    P1         §495     `TESTED`   packages/marketplace/src/agent-availability.ts  agent-availability.test.ts  a later higher rating does not beat a service that can run now
 
   `AVL-0082`    P1         §496     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  immediate use is online now or a short queue
 
@@ -3066,13 +3066,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `UI-0039`     P2         §499     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `AVL-0084`    P1         §500     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0084`    P1         §500     `TESTED`   packages/marketplace-agent/src/plan-repair.ts  plan-repair.test.ts  one parallel branch is repaired without dropping the others
 
   `AVL-0085`    P1         §500     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  each step is judged on its own
 
   `AVL-0086`    P1         §500     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  repair one step or pause
 
-  `PRD-0394`    P1         §501     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0394`    P1         §501     `TESTED`   packages/marketplace-agent/src/plan-repair.ts  plan-repair.test.ts  a stale step is not purchased
 
   `PRD-0395`    P2         §501     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  do not schedule when budget or permissions fail
 
@@ -3114,9 +3114,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0098`    P1         §508     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  immediate mode does not schedule future jobs
 
-  `CAP-0119`    P1         §509     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0119`    P1         §509     `TESTED`   packages/marketplace/src/scheduled-disclosure.ts  scheduled-disclosure.test.ts  availability cannot override a hard constraint
 
-  `CAP-0120`    P1         §509     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0120`    P1         §509     `TESTED`   packages/marketplace/src/scheduled-disclosure.ts  scheduled-disclosure.test.ts  an available service is rejected when it needs forbidden internet
 
   `AVL-0099`    P1         §510     `TESTED`   packages/marketplace-agent/src/agent-continuation.ts  agent-continuation.test.ts  immediacy cannot break budget or permissions
 

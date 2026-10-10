@@ -1,6 +1,7 @@
 import type { PrismaClient } from "@kivro/database";
 import type { CapabilityScheduleConfig } from "./weekly-schedule.js";
 import { computeNextAvailableAt } from "./next-available.js";
+import { buyerScheduleNotice, scheduleChangeIsMaterial } from "./scheduled-timing-record.js";
 import { isScheduleOpen } from "./weekly-schedule.js";
 
 /** §467 — recalculate eligibility when seller changes schedule (no silent strand). */
@@ -25,6 +26,7 @@ export async function recheckScheduledJobsAfterScheduleChange(
     if (!next) {
       continue;
     }
+    const previous = job.scheduledRunAt;
     await prisma.job.update({
       where: { id: job.id },
       data: {
@@ -41,6 +43,23 @@ export async function recheckScheduledJobsAfterScheduleChange(
         reason: "SCHEDULE_REVISION_RECALCULATED",
       },
     });
+    if (scheduleChangeIsMaterial(previous, next)) {
+      const notice = buyerScheduleNotice("MATERIAL_CHANGE");
+      if (notice) {
+        await prisma.auditEvent.create({
+          data: {
+            jobId: job.id,
+            type: "JOB_SCHEDULE_CHANGED",
+            actor: "SYSTEM",
+            sanitizedPayload: {
+              message: notice.message,
+              previousEligibleAt: previous.toISOString(),
+              nextEligibleAt: next.toISOString(),
+            },
+          },
+        });
+      }
+    }
     adjusted += 1;
   }
   return { adjusted, scanned: jobs.length };

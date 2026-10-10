@@ -66,4 +66,31 @@ describe("contract filter before ranking", () => {
     );
     expect(ranked[0]?.whySelected.join(" ")).toContain("Description");
   });
+
+  it("discloses a later window instead of calling the seller paused", () => {
+    const ranked = rankAgentCandidates(
+      [
+        {
+          id: "later",
+          slug: "later",
+          name: "Later research",
+          description: "funding research",
+          category: "Research",
+          priceTierCents: 100,
+          currency: "USD",
+          rating: 4,
+          jobCount: 1,
+          estimatedDuration: 20 * 60,
+          sellerDisplayName: "Ada",
+          availabilityStatus: "SCHEDULED_OFFLINE",
+          accepting: false,
+          nextAvailableAt: "2026-10-10T20:00:00.000Z",
+        },
+      ],
+      { query: "funding", constraints: { timingMode: "EARLIEST_AVAILABLE_ALLOWED" } },
+    );
+    expect(ranked[0]?.limitation).toContain("not available now");
+    expect(ranked[0]?.limitation).toContain("~20 minutes");
+    expect(ranked[0]?.limitation).not.toContain("paused");
+  });
 });
