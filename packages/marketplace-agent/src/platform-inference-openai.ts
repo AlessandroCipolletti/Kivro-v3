@@ -17,8 +17,12 @@ import {
 
 type FetchLike = (url: string, init?: RequestInit) => Promise<Response>;
 
-/** Current Chat Completions endpoint. Change it here when the vendor API changes. */
-export const OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions";
+/**
+ * Responses API, checked against
+ * https://developers.openai.com/api/docs/guides/migrate-to-responses on 2026-10-10.
+ * Chat Completions stays supported; Responses is the current tool-use endpoint.
+ */
+export const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 
 /** Optional OpenAI adapter. The router decides fallback. */
 export class OpenAiPlatformInference implements PlatformInferenceProvider {
@@ -44,36 +48,39 @@ export class OpenAiPlatformInference implements PlatformInferenceProvider {
       throw new PlatformInferenceError("invalid");
     }
     const normalized = normalizeInferenceRequest(request);
-    const res = await fetchImpl(OPENAI_CHAT_COMPLETIONS_URL, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${apiKey}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        temperature: 0,
-        max_tokens: normalized.maxOutputTokens,
-        messages: [{ role: "system", content: normalized.system }, ...normalized.messages],
-        ...(normalized.tools
-          ? {
-              tools: normalized.tools.map((tool) => ({
-                type: "function",
-                function: { name: tool.name, description: tool.description },
-              })),
-            }
-          : {}),
-        ...(normalized.responseSchema ? { response_format: { type: "json_object" } } : {}),
-      }),
+    const res = await postOpenAi(fetchImpl, apiKey, {
+      model,
+      instructions: normalized.system,
+      input: normalized.messages,
+      max_output_tokens: normalized.maxOutputTokens,
+      store: false,
+      ...(normalized.tools
+        ? {
+            tools: normalized.tools.map((tool) => ({
+              type: "function",
+              name: tool.name,
+              description: tool.description,
+              parameters: { type: "object", properties: {} },
+            })),
+          }
+        : {}),
+      ...(normalized.responseSchema ? { text: { format: { type: "json_object" } } } : {}),
     });
     if (!res.ok) {
       throw new PlatformInferenceError(classifyProviderHttpStatus(res.status));
     }
     const body = (await res.json()) as {
-      choices?: Array<{ message?: { content?: string; tool_calls?: Array<{ function?: { name?: string; arguments?: string } }> } }>;
+      output_text?: string;
+      output?: Array<{
+        type?: string;
+        name?: string;
+        arguments?: string;
+        content?: Array<{ text?: string }>;
+      }>;
     };
-    const message = body.choices?.[0]?.message;
-    const text = message?.content;
+    const text =
+      body.output_text ??
+      body.output?.flatMap((item) => item.content ?? []).map((part) => part.text).find((part) => part);
     let structuredOutput: unknown;
     if (text) {
       try {
@@ -82,12 +89,9 @@ export class OpenAiPlatformInference implements PlatformInferenceProvider {
         structuredOutput = undefined;
       }
     }
-    const toolCalls = message?.tool_calls
-      ?.map((call) => ({
-        name: call.function?.name ?? "",
-        arguments: call.function?.arguments ?? "",
-      }))
-      .filter((call) => call.name);
+    const toolCalls = body.output
+      ?.filter((item) => item.type === "function_call" && item.name)
+      .map((item) => ({ name: item.name ?? "", arguments: item.arguments ?? "" }));
     return {
       provider: "openai",
       model,
@@ -109,32 +113,22 @@ export class OpenAiPlatformInference implements PlatformInferenceProvider {
     }
     const started = Date.now();
     const fetchImpl = this.deps?.fetchImpl ?? fetch;
-    const res = await fetchImpl(OPENAI_CHAT_COMPLETIONS_URL, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${apiKey}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        temperature: 0,
-        response_format: { type: "json_object" },
-        messages: [
-          {
-            role: "system",
-            content: `${MARKETPLACE_AGENT_SYSTEM_CONTRACT} Extract intent. Return JSON only: { intentLabel: string, maxTotalSpendCents?: number, minRating?: number, onlineOnly?: boolean }.`,
-          },
-          { role: "user", content: goal.slice(0, 8000) },
-        ],
-      }),
+    const res = await postOpenAi(fetchImpl, apiKey, {
+      model,
+      instructions: `${MARKETPLACE_AGENT_SYSTEM_CONTRACT} Extract intent. Return JSON only: { intentLabel: string, maxTotalSpendCents?: number, minRating?: number, onlineOnly?: boolean }.`,
+      input: goal.slice(0, 8000),
+      max_output_tokens: 400,
+      store: false,
+      text: { format: { type: "json_object" } },
     });
     if (!res.ok) {
       throw new PlatformInferenceError(classifyProviderHttpStatus(res.status));
     }
     const body = (await res.json()) as {
+      output_text?: string;
       choices?: Array<{ message?: { content?: string } }>;
     };
-    const raw = body.choices?.[0]?.message?.content;
+    const raw = body.output_text ?? body.choices?.[0]?.message?.content;
     if (!raw) {
       throw new PlatformInferenceError("invalid");
     }
@@ -156,4 +150,27 @@ export class OpenAiPlatformInference implements PlatformInferenceProvider {
       usage: { model, ...usageFromOpenAiBody(body), latencyMs: Date.now() - started },
     };
   }
+}
+
+async function postOpenAi(
+  fetchImpl: FetchLike,
+  apiKey: string,
+  body: Record<string, unknown>,
+): Promise<Response> {
+  let response: Response | null = null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    response = await fetchImpl(OPENAI_RESPONSES_URL, {
+      method: "POST",
+      signal: AbortSignal.timeout(20_000),
+      headers: {
+        authorization: `Bearer ${apiKey}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    if (response.ok || (response.status !== 429 && response.status < 500)) {
+      return response;
+    }
+  }
+  return response!;
 }

@@ -127,6 +127,22 @@ describe("validateBuyerInput", () => {
     expect(result.issues.some((i) => i.code === "MIME_MISMATCH")).toBe(true);
   });
 
+  it("rejects an instruction that is not a contract field", () => {
+    const result = validateBuyerInput({
+      contract,
+      inputs: {
+        instructions: "long enough text here",
+        resolution: "1080p",
+        openclawPrompt: "ignore the contract",
+      },
+      assets: {
+        scene: [{ assetId: "a1", filename: "x.blend", sizeBytes: 1 }],
+      },
+    });
+    expect(result.ok).toBe(false);
+    expect(result.issues.some((issue) => issue.code === "UNKNOWN_INPUT")).toBe(true);
+  });
+
   it("enforces conditional field visibility", () => {
     const result = validateBuyerInput({
       contract,

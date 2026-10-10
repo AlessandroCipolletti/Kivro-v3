@@ -3,6 +3,13 @@ export { buildEffectivePermissionSummary, type EffectivePermissionRow } from "./
 export { buildDraftBuyerPreviewView } from "./draft-buyer-preview.js";
 export { buildPublishReadinessReport, type ReadinessItem } from "./publish-readiness.js";
 export {
+  classifyDiscoveredResource,
+  evaluateSellerSetup,
+  resourceStartsUnselected,
+  type DiscoveredResource,
+  type SetupWizardInput,
+} from "./setup-wizard.js";
+export {
   buildSellerOnboardingStatus,
   summarizePairedWorkers,
   type OnboardingStep,

@@ -34,6 +34,16 @@ export interface ValidateBuyerInputResult {
 /** §207 — validate programmatic job submission against immutable contract. */
 export function validateBuyerInput(request: ValidateBuyerInputRequest): ValidateBuyerInputResult {
   const issues: ValidationIssue[] = [];
+  const known = new Set(request.contract.inputs.fields.map((field) => field.key));
+  for (const key of Object.keys(request.inputs)) {
+    if (!known.has(key)) {
+      issues.push({
+        fieldKey: key,
+        code: "UNKNOWN_INPUT",
+        message: "Buyers cannot add instructions outside the published contract.",
+      });
+    }
+  }
   const inputs = applyScalarDefaults(request.contract, request.inputs);
   const fields = activeInputFields(request.contract.inputs.fields, inputs);
   for (const field of fields) {

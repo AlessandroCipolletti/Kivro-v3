@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { normalizeInferenceRequest } from "./inference-request.js";
 import { DeterministicPlatformInference, RoutingPlatformInference } from "./platform-inference.js";
 import { ANTHROPIC_MESSAGES_URL, AnthropicPlatformInference } from "./platform-inference-anthropic.js";
-import { OPENAI_CHAT_COMPLETIONS_URL, OpenAiPlatformInference } from "./platform-inference-openai.js";
+import { OPENAI_RESPONSES_URL, OpenAiPlatformInference } from "./platform-inference-openai.js";
 import { resetInferenceBudgetForTests } from "./platform-inference-policy.js";
 
 const request = normalizeInferenceRequest({
@@ -23,18 +23,21 @@ describe("platform inference providers", () => {
         KIVRO_PLATFORM_OPENAI_MODEL: "configured-model",
       },
       fetchImpl: async (url, init) => {
-        expect(url).toBe(OPENAI_CHAT_COMPLETIONS_URL);
+        expect(url).toBe(OPENAI_RESPONSES_URL);
         const body = JSON.parse(String(init?.body)) as {
           model: string;
-          tools: Array<{ function: { name: string } }>;
-          response_format: { type: string };
+          instructions: string;
+          tools: Array<{ name: string }>;
+          text: { format: { type: string } };
         };
         expect(body.model).toBe("configured-model");
-        expect(body.tools[0]?.function.name).toBe("search_capabilities");
-        expect(body.response_format.type).toBe("json_object");
+        expect(body.instructions).toBe("Recommend a service.");
+        expect(body.tools[0]?.name).toBe("search_capabilities");
+        expect(body.text.format.type).toBe("json_object");
         return new Response(
           JSON.stringify({
-            choices: [{ message: { content: "{\"answer\":1}", tool_calls: [{ function: { name: "search_capabilities", arguments: "{}" } }] } }],
+            output_text: "{\"answer\":1}",
+            output: [{ type: "function_call", name: "search_capabilities", arguments: "{}" }],
           }),
           { status: 200 },
         );
@@ -112,5 +115,25 @@ describe("platform inference providers", () => {
     expect(response.provider).toBe("openai");
     expect(response.text).toBe("ranked");
     expect(Object.keys(request)).not.toContain("provider");
+  });
+
+  it("retries one transient OpenAI failure", async () => {
+    let calls = 0;
+    const openai = new OpenAiPlatformInference({
+      env: {
+        KIVRO_PLATFORM_OPENAI_API_KEY: "sk-openai-test",
+        KIVRO_PLATFORM_OPENAI_MODEL: "configured-model",
+      },
+      fetchImpl: async () => {
+        calls += 1;
+        if (calls === 1) {
+          return new Response("busy", { status: 500 });
+        }
+        return new Response(JSON.stringify({ output_text: "{\"answer\":1}" }), { status: 200 });
+      },
+    });
+    const response = await openai.generate(request);
+    expect(calls).toBe(2);
+    expect(response.text).toBe("{\"answer\":1}");
   });
 });

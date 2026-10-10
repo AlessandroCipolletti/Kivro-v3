@@ -706,6 +706,10 @@ greenfield.
 
 **Decision:** `IMMEDIATE_ONLY` fails before payment when the capability is not accepting. `EARLIEST_AVAILABLE` reserves a job for the authoritative next window. Buyer inputs cannot change schedule, pause, or concurrency. Public availability shows the next window, not the seller's weekly timetable. A future purchase is labeled "Schedule for earliest availability" and the buyer is told the job is reserved now and starts later. Scheduled delivery is measured from the scheduled run, not the reservation. The agent skips an unavailable candidate and will not spend more or drop a permission to buy something available now. A new required input, or an optional output that becomes required, is a breaking contract change.
 
+## DEC-SCH-014 — Companion, setup, and inference stay inside the published contract
+
+**Decision:** Discovery and configuration are read-only. A result contains declared output and approved metadata. Buyer input outside the contract is rejected. Publishing waits for the setup checks and for contract tests that meet the declared file, runtime, and cost limits. The company-research scenario runs against supplied listings; a live staging deployment is still a separate run. Platform inference calls the OpenAI Responses API. Production secrets stay in host-injected environment variables. Encryption at rest and IAM stay with that host store. When no provider key is set, local development still uses the deterministic parser, so the “agent unavailable” case stays open.
+
 ## DEC-SCH-013 — Platform inference goes through one provider interface
 
 **Decision:** OpenAI and Anthropic implement the same provider interface: generate, health check, and cost estimate. Cost stays unknown until a real rate exists. A request names the task, messages, optional tools, and optional response schema. It does not name the vendor. The router selects the configured provider, stops at the per-user budget, and falls back to the local parser.

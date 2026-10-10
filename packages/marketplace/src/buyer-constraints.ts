@@ -72,7 +72,8 @@ export function extractConstraintsFromText(text: string): BuyerConstraints {
 
   const budgetMatch =
     lower.match(/(?:under|less than|max(?:imum)?|at most|<=)\s*\$?\s*(\d+(?:\.\d{1,2})?)/) ??
-    lower.match(/\$(\d+(?:\.\d{1,2})?)\s*(?:budget|max|limit)/);
+    lower.match(/\$(\d+(?:\.\d{1,2})?)\s*(?:budget|max|limit)/) ??
+    lower.match(/maximum budget:\s*\$?\s*(\d+(?:\.\d{1,2})?)/);
   if (budgetMatch) {
     out.maxPerJobSpendCents = Math.round(Number.parseFloat(budgetMatch[1]!) * 100);
     out.maxTotalSpendCents = out.maxPerJobSpendCents;
@@ -80,7 +81,8 @@ export function extractConstraintsFromText(text: string): BuyerConstraints {
 
   const ratingMatch =
     lower.match(/(?:rated|rating)\s*(?:at least|>=|above|over)?\s*(\d+(?:\.\d)?)/) ??
-    lower.match(/(?:at least|>=)\s*(\d+(?:\.\d)?)\s*(?:stars?|rating)/);
+    lower.match(/(?:at least|>=)\s*(\d+(?:\.\d)?)\s*(?:stars?|rating)/) ??
+    lower.match(/minimum provider rating:\s*(\d+(?:\.\d)?)/);
   if (ratingMatch) {
     out.minRating = Number.parseFloat(ratingMatch[1]!);
   }

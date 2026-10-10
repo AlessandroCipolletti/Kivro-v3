@@ -70,4 +70,18 @@ describe("publish readiness SELLERUX-008", () => {
     expect(report.ready).toBe(true);
     expect(report.items.some((item) => item.id === "weak_supply")).toBe(true);
   });
+
+  it("blocks publishing when a contract test failed", () => {
+    const report = buildPublishReadinessReport({
+      dependencyGraph: { graphVersion: 1, rootCapabilityName: "x", nodes: [] },
+      workerPaired: true,
+      workerHealthLabel: "HEALTHY",
+      executionModelAcknowledged: true,
+      contractValid: true,
+      payoutReady: true,
+      failedContractTests: 1,
+    });
+    expect(report.ready).toBe(false);
+    expect(report.items.some((item) => item.id === "contract_tests")).toBe(true);
+  });
 });

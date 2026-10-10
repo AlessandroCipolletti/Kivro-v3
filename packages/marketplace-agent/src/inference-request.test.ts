@@ -33,7 +33,8 @@ describe("normalized inference request", () => {
     expect(router).not.toContain("api.openai.com");
     expect(router).not.toContain("api.anthropic.com");
     expect(policy).not.toContain("api.openai.com");
-    expect(openai).toContain("https://api.openai.com/v1/chat/completions");
+    expect(openai).toContain("https://api.openai.com/v1/responses");
+    expect(openai).toContain("https://developers.openai.com/api/docs/guides/migrate-to-responses");
     expect(anthropic).toContain("https://api.anthropic.com/v1/messages");
   });
 });

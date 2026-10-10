@@ -18,17 +18,17 @@ feature post-MVP or the user explicitly approves the deferral.
   ------------- ---------- -------- -------- ---------------- ---------- ---------
   `PRD-0001`    P1         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0002`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0002`    P2         §1       `TESTED`   packages/platform-policy/src/companion-worker.ts  companion-worker.test.ts  discovery reads a private database, selected files, or configuration
 
-  `PRD-0003`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0003`    P2         §1       `TESTED`   packages/platform-policy/src/companion-worker.ts  companion-worker.test.ts  configuration access stays read-only
 
-  `PRD-0004`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0004`    P2         §1       `TESTED`   packages/platform-policy/src/companion-worker.ts  companion-worker.test.ts  only resources the seller selects are included
 
-  `PRD-0005`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0005`    P2         §1       `TESTED`   packages/platform-policy/src/companion-worker.ts  companion-worker.test.ts  a result keeps declared output and approved metadata
 
-  `PRD-0006`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0006`    P2         §1       `TESTED`   packages/platform-policy/src/companion-worker.ts  companion-worker.test.ts  the buyer starts on the web marketplace
 
-  `PRD-0007`    P2         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0007`    P2         §1       `TESTED`   packages/job-io/src/validate-buyer-input.ts  validate-buyer-input.test.ts  an input outside the contract is rejected
 
   `WRK-0001`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -470,7 +470,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0002`    P1         §26      `TESTED`   packages/job-scheduling/src/availability-status.ts, packages/job-scheduling/src/availability-service.ts, packages/job-scheduling/src/submission-gate.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `WRK-0048`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0048`    P1         §27      `TESTED`   packages/seller-experience/src/setup-wizard.ts  setup-wizard.test.ts  publish waits for install, scan, source, contract, preview, self-test, and adversarial checks
 
   `WRK-0049`    P1         §27      `TESTED`   packages/seller-experience/src/seller-security-disclosure.ts  seller-security-disclosure.test.ts  a selected read-only credential is shown as allowed
 
@@ -1320,7 +1320,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0153`    P2         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0154`    P2         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0154`    P2         §160     `TESTED`   packages/marketplace-agent/src/staging-scenario.ts  staging-scenario.test.ts  fixture listings; one approval settles each provider once and releases the unused budget
 
   `PRD-0155`    P1         §161     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1358,7 +1358,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0066`    P1         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0067`    P0         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0067`    P0         §166     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  production reads host-injected env; the image does not embed a platform key
 
   `SEC-0068`    P0         §166     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  platform AI keys are visible only on the server
 
@@ -1462,13 +1462,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0085`    P1         §182     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  debug mode redacts secrets
 
-  `IO-0053`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0053`     P1         §183     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  provider-interface.test.ts  Responses request, tool schema, structured output, timeout, and one retry
 
-  `IO-0054`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0054`     P1         §183     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  provider-interface.test.ts  tool calls use POST /v1/responses
 
   `IO-0055`     P1         §183     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  inference-request.test.ts  the OpenAI URL lives in one adapter constant
 
-  `IO-0056`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0056`     P1         §183     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  inference-request.test.ts  checked the Responses migration guide on 2026-10-10
 
   `UI-0016`     P1         §184     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
@@ -1708,7 +1708,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0197`    P2         §229     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0128`     P1         §230     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0128`     P1         §230     `TESTED`   packages/marketplace/src/seller-test-run.ts  seller-test-run.test.ts  a failed output, file, runtime, or cost check blocks publishing
 
   `IO-0129`     P1         §230     `TESTED`   packages/marketplace/src/seller-test-case.ts  seller-test-case.test.ts  seller test cases, max 10
 

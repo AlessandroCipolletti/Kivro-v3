@@ -19,6 +19,7 @@ export {
   type OrchestrationListingRow,
 } from "./orchestration-planner.js";
 export { authorizePlanApproval, planStepEstimatedMinutes } from "./purchase-authorization.js";
+export { runCompanyResearchScenario, type StagingScenarioInput } from "./staging-scenario.js";
 export { toolSearchCapabilities, toolGetCapability } from "./agent-tools.js";
 export {
   buildStepAgentDraft,

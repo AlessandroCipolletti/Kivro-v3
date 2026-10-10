@@ -22,6 +22,7 @@ export function buildPublishReadinessReport(input: {
   permissionExpansionPending?: boolean;
   staleCredentialRefs?: number;
   supplyAdvantages?: string[];
+  failedContractTests?: number;
 }): { ready: boolean; items: ReadinessItem[] } {
   const items: ReadinessItem[] = [];
 
@@ -114,6 +115,15 @@ export function buildPublishReadinessReport(input: {
       severity: "recommended",
       title: "Refresh local credentials",
       detail: `${input.staleCredentialRefs} credential reference(s) look stale — re-verify on the Worker.`,
+    });
+  }
+
+  if ((input.failedContractTests ?? 0) > 0) {
+    items.push({
+      id: "contract_tests",
+      severity: "blocking",
+      title: "Contract tests failed",
+      detail: "Run the seller test cases and fix the failures before publishing this version.",
     });
   }
 

@@ -51,8 +51,8 @@ export function usageFromOpenAiBody(body: unknown): {
 } {
   const usage = (body as { usage?: Record<string, unknown> } | null)?.usage;
   return {
-    inputTokens: wholeTokens(usage?.prompt_tokens),
-    outputTokens: wholeTokens(usage?.completion_tokens),
+    inputTokens: wholeTokens(usage?.input_tokens ?? usage?.prompt_tokens),
+    outputTokens: wholeTokens(usage?.output_tokens ?? usage?.completion_tokens),
     cachedInputTokens: wholeTokens(
       (usage?.prompt_tokens_details as { cached_tokens?: unknown } | undefined)?.cached_tokens,
     ),

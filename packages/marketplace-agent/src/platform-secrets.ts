@@ -9,6 +9,17 @@ export function productionPlatformSecretSource(): "managed_env_injection" {
   return "managed_env_injection";
 }
 
+/** Encryption, IAM, and rotation belong to the host secret store. The app reads injected env. */
+export const HOST_SECRET_CONTROLS = [
+  "encryption_at_rest",
+  "least_privilege_iam",
+  "rotation_without_redeploy",
+] as const;
+
+export function sourceEmbedsPlatformSecret(source: string): boolean {
+  return /KIVRO_PLATFORM_(?:OPENAI|ANTHROPIC)_API_KEY\s*=\s*['"]?[A-Za-z0-9]/.test(source);
+}
+
 /** `.env.example` may name a secret. It may not carry a value. */
 export function exampleAssignsSecretValue(line: string): boolean {
   const match = line.match(/^\s*(?:export\s+)?([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);

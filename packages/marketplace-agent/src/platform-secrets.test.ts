@@ -3,8 +3,10 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   exampleAssignsSecretValue,
+  HOST_SECRET_CONTROLS,
   platformAiKeyVisibleTo,
   productionPlatformSecretSource,
+  sourceEmbedsPlatformSecret,
 } from "./platform-secrets.js";
 
 describe("platform AI secrets", () => {
@@ -17,5 +19,10 @@ describe("platform AI secrets", () => {
     const example = readFileSync(resolve(process.cwd(), ".env.example"), "utf8");
     const leaked = example.split("\n").filter((line) => exampleAssignsSecretValue(line));
     expect(leaked).toEqual([]);
+    expect(sourceEmbedsPlatformSecret("KIVRO_PLATFORM_OPENAI_API_KEY=")).toBe(false);
+    expect(sourceEmbedsPlatformSecret('KIVRO_PLATFORM_OPENAI_API_KEY="sk-live"')).toBe(true);
+    expect(HOST_SECRET_CONTROLS).toContain("encryption_at_rest");
+    const dockerfile = readFileSync(resolve(process.cwd(), "docs/deploy/aws/Dockerfile"), "utf8");
+    expect(sourceEmbedsPlatformSecret(dockerfile)).toBe(false);
   });
 });
