@@ -1,11 +1,11 @@
 # M23 compliance audit snapshot
 
-Generated: 2026-10-09T22:58:11.884Z
+Generated: 2026-10-10T07:12:59.421Z
 
 ## Totals
 
-- Requirements parsed: **1932**
-- TESTED: 1385 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
+- Requirements parsed: **1934**
+- TESTED: 1387 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
 
 ## M00–M22 closure check
 

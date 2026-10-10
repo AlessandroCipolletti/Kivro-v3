@@ -48,3 +48,13 @@ export function assertCompositionParity(
     throw new Error("Worker Protocol version drift between composition roots");
   }
 }
+
+/** M24 drift canary — non-conformant composition must fail parity checks. */
+export function createBrokenCompositionDriftProbe(
+  base: KivroCloudComposition,
+): KivroCloudComposition {
+  return {
+    ...base,
+    apiContractVersion: "v0-drift-probe" as typeof SHARED_API_CONTRACT_VERSION,
+  };
+}

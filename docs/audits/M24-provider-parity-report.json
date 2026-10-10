@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-10-10T07:12:55.908Z",
+  "apiContractVersion": "v1-mvp",
+  "workerProtocolVersion": 1,
+  "profiles": {
+    "netsons": {
+      "durableWorkProfile": "netsons-db-cron",
+      "objectStorageProfile": "s3-compatible",
+      "workerTransportKind": "polling"
+    },
+    "aws": {
+      "durableWorkProfile": "aws-managed-queue",
+      "objectStorageProfile": "aws-s3",
+      "workerTransportKind": "wss"
+    }
+  },
+  "parityAsserted": true
+}

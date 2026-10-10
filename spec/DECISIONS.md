@@ -606,6 +606,12 @@ greenfield.
 
 **Decision:** Extract shared `compliance-audit-core.mjs`; add `audit-m23-unified.mjs` with M00–M22 section closure, evidence validation, unified-backend readiness checklist, and M23 audit reports. Staging paid E2E and dual-CP transition E2E remain optional (env-gated) until M28. Gate: `pnpm verify:m23` (includes `verify:m22`).
 
+## DEC-M24-001 — Architecture fitness & golden conformance (M24)
+
+**Context:** IMPLEMENTATION-PLAN M24 requires dependency fitness, duplicate-semantic guard, golden registry, drift canary, and generated provider parity evidence.
+
+**Decision:** Ship `check-duplicate-semantic-ownership.mjs`, golden registry v2 with `verify-golden-registry.mjs`, `createBrokenCompositionDriftProbe`, `generate-provider-parity-report.mjs`, and `pnpm verify:m24` (includes `verify:m23`). Full fault-injection golden (HARD-005/006) remains M26. Gate: `pnpm verify:m24`.
+
 ## DEC-M23-002 — M23 milestone done vs Master Spec literal completion
 
 **Context:** IMPLEMENTATION-PLAN M23 lists “all P0/P1/P2 complete” and full staging E2E; M28 is the superseding terminal lossless audit.

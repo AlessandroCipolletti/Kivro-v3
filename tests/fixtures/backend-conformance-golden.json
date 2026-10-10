@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "M19 provider-neutral golden scenarios (CONFORMANCE.md registry seed)",
+  "version": 2,
+  "description": "Provider-neutral golden scenarios (M19 seed + M24 hardening). Executed unchanged against both composition roots.",
   "scenarios": [
     {
       "id": "M19-GOLD-001",
@@ -31,6 +31,31 @@
       "id": "M19-GOLD-006",
       "name": "protocol compatibility window",
       "assert": "WORKER_PROTOCOL_COMPATIBILITY_WINDOW covers advertised PROTOCOL_VERSION"
+    },
+    {
+      "id": "M24-GOLD-001",
+      "name": "composition drift canary",
+      "assert": "deliberately broken composition fails assertCompositionParity"
+    },
+    {
+      "id": "M24-GOLD-002",
+      "name": "transport drift canary",
+      "assert": "deliberately broken transport fails assertPollParsingParity"
+    },
+    {
+      "id": "M24-GOLD-003",
+      "name": "provider parity report",
+      "assert": "generated M24-provider-parity-report.json shows parityAsserted"
+    },
+    {
+      "id": "M24-GOLD-004",
+      "name": "duplicate semantic ownership",
+      "assert": "provider packages contain no job-dispatch/billing/prisma.job domain logic"
+    },
+    {
+      "id": "M22-GOLD-001",
+      "name": "dual control-plane routing",
+      "assert": "in-flight Netsons execution stays on Netsons while AWS is ACTIVE for new work"
     }
   ]
 }

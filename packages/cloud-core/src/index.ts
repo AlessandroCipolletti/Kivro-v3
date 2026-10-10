@@ -1,6 +1,7 @@
 export {
   SHARED_API_CONTRACT_VERSION,
   assertCompositionParity,
+  createBrokenCompositionDriftProbe,
   attachDurableWorkPort,
   createInMemoryDurableWorkStub,
   type CloudProfileId,
