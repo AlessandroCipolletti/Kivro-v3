@@ -20,6 +20,7 @@ import {
 import { isDomainAllowedForResearch } from "./domain-policy.js";
 import { isAllowedResearchMethod } from "./method-policy.js";
 import { safeResearchFetch, type FetchImpl } from "./safe-fetch.js";
+import { RESEARCH_BROKER_PLACEMENT } from "./placement.js";
 import type { SearchResult, WebSearchProvider } from "./search-provider.js";
 export interface ResearchBrokerContext {
   jobId?: string;
@@ -61,6 +62,8 @@ function resolvePolicy(ctx: ResearchBrokerContext): InternetResearchPolicy {
 }
 
 export class ResearchBroker {
+  readonly placement = RESEARCH_BROKER_PLACEMENT;
+
   constructor(
     private readonly searchProvider: WebSearchProvider,
     private readonly fetchImpl: FetchImpl,

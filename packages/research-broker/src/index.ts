@@ -18,4 +18,9 @@ export {
 } from "./merge-policy.js";
 export { sanitizeResearchText, type WebPageResult } from "./sanitize-content.js";
 export { ResearchProvenanceCollector } from "./provenance.js";
+export {
+  RESEARCH_BROKER_PLACEMENT,
+  researchBrokerServesLocalArchitecture,
+  sellerOriginatedEgressIsFinalDesign,
+} from "./placement.js";
 export { researchPolicyError, type ResearchPolicyError, type ResearchPolicyErrorCode } from "./research-errors.js";

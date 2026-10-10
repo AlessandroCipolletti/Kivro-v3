@@ -1364,7 +1364,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0069`    P0         §166     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  .env.example does not assign secret values
 
-  `AGT-0056`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0056`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  each inference task has its own model setting
 
   `AGT-0057`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  per-task model env overrides
 
@@ -1372,7 +1372,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0059`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  INTENT/RECOMMENDATION/ORCHESTRATION routing
 
-  `AGT-0060`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0060`    P1         §168     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  a task whose provider is missing is unhealthy
 
   `AGT-0061`    P1         §168     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  platform-inference-policy.test.ts  no source-code model default
 
@@ -1448,7 +1448,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0078`    P1         §180     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0079`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0079`    P1         §181     `TESTED`   apps/api/src/routes/platform-admin.ts  platform-inference-policy.test.ts  admin configuration is environment-based and omits keys
 
   `AGT-0080`    P1         §181     `TESTED`   apps/api/src/routes/platform-admin.ts  platform-inference-policy.test.ts  admin health omits provider keys
 
@@ -1506,7 +1506,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `TST-0018`    P2         §189     `TESTED`   packages/marketplace-agent/src/agent-safety.test.ts  agent-safety.test.ts  unknown capability is not ranked
 
-  `AGT-0094`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0094`    P1         §190     `TESTED`   packages/marketplace-agent/src/inference-acceptance.test.ts  inference-acceptance.test.ts  providers, tools, usage, budget, and classic search stay independent
 
   `AGT-0095`    P1         §190     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  works with only OpenAI configured
 
@@ -1658,7 +1658,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0062`    P1         §219     `TESTED`   packages/job-io/src/field-constraints.ts  field-constraints.test.ts  ceiling comes from configuration
 
-  `IO-0111`     P1         §220     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0111`     P1         §220     `TESTED`   packages/job-io/src/storage-telemetry.ts  storage-telemetry.test.ts  input, output, retention, and egress stay platform telemetry
 
   `IO-0112`     P1         §220     `TESTED`   packages/job-io/src/storage-telemetry.ts  storage-telemetry.test.ts  byte telemetry does not change buyer price
 
@@ -1712,7 +1712,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0129`     P1         §230     `TESTED`   packages/marketplace/src/seller-test-case.ts  seller-test-case.test.ts  seller test cases, max 10
 
-  `TST-0019`    P1         §231     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `TST-0019`    P1         §231     `TESTED`   packages/job-io/src/output-quality.ts  output-quality.test.ts  schema checks do not prove quality; reviews, ratings, and refunds do
 
   `PAY-0078`    P1         §232     `TESTED`   packages/billing/src/fixed-price.ts  fixed-price.test.ts  job price ignores image count and file size
 
@@ -1906,11 +1906,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0260`    P1         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
 
-  `PRD-0261`    P2         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
+  `PRD-0261`    P2         §269     `TESTED`   packages/research-broker/src/placement.ts  placement.test.ts  the broker serves the local architecture
 
   `PRD-0262`    P2         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
 
-  `PRD-0263`    P2         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
+  `PRD-0263`    P2         §269     `TESTED`   packages/research-broker/src/placement.ts  placement.test.ts  seller-originated public egress is not the final design
 
   `PRD-0264`    P1         §270     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 

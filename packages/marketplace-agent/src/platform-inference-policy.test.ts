@@ -6,7 +6,9 @@ import {
   readPlatformInferenceHealth,
   resetInferenceBudgetForTests,
   resolveTaskModel,
+  resolveConfiguredTaskModel,
   selectPrimaryProvider,
+  taskRoutingHealth,
 } from "./platform-inference-policy.js";
 
 describe("platform inference policy", () => {
@@ -26,6 +28,30 @@ describe("platform inference policy", () => {
     expect(consumeInferenceBudget({ userId: "buyer-1", nowMs: 1_100, maxPerMinute: 2 })).toBe("allow");
     expect(consumeInferenceBudget({ userId: "buyer-1", nowMs: 1_200, maxPerMinute: 2 })).toBe("deny");
     expect(consumeInferenceBudget({ userId: "buyer-2", nowMs: 1_200, maxPerMinute: 2 })).toBe("allow");
+  });
+
+  it("routes each configured task to its own model", () => {
+    expect(
+      resolveConfiguredTaskModel("discoveryRerank", "provider-default", {
+        KIVRO_PLATFORM_AI_MODEL_DISCOVERY: "rerank-model",
+      }),
+    ).toBe("rerank-model");
+    expect(
+      resolveConfiguredTaskModel("resultSynthesis", "provider-default", {
+        KIVRO_PLATFORM_AI_MODEL_SYNTHESIS: "synthesis-model",
+      }),
+    ).toBe("synthesis-model");
+  });
+
+  it("marks a task unhealthy when its provider is not configured", () => {
+    const health = taskRoutingHealth({
+      KIVRO_PLATFORM_OPENAI_API_KEY: "sk-openai",
+      KIVRO_PLATFORM_OPENAI_MODEL: "configured-model",
+      KIVRO_PLATFORM_AI_PROVIDER_ORCHESTRATION: "anthropic",
+      KIVRO_PLATFORM_AI_MODEL_ORCHESTRATION: "strong-model",
+    });
+    expect(health.find((task) => task.task === "intentExtraction")?.healthy).toBe(true);
+    expect(health.find((task) => task.task === "orchestrationPlanning")?.healthy).toBe(false);
   });
 
   it("reports configuration without secrets", () => {

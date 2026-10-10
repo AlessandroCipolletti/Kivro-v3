@@ -3,10 +3,12 @@ export function platformStorageTelemetry(input: {
   inputBytes: number;
   outputBytes: number;
   retentionDays: number;
+  egressBytes?: number;
 }): {
   inputBytes: number;
   outputBytes: number;
   storageByteDays: number;
+  egressBytes: number;
   buyerChargeCents: 0;
 } {
   const inputBytes = Math.max(0, Math.floor(input.inputBytes));
@@ -16,6 +18,7 @@ export function platformStorageTelemetry(input: {
     inputBytes,
     outputBytes,
     storageByteDays: (inputBytes + outputBytes) * days,
+    egressBytes: Math.max(0, Math.floor(input.egressBytes ?? 0)),
     buyerChargeCents: 0,
   };
 }
