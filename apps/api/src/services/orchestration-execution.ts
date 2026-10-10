@@ -4,6 +4,7 @@ import type { PrismaClient } from "@kivro/database";
 import { prepareAgentJobSubmission } from "@kivro/job-io";
 import {
   buildStepAgentDraft,
+  decideUnavailableStep,
   findRunnableSteps,
   stepCompletedOutputs,
   synthesizePlanSummary,
@@ -11,6 +12,23 @@ import {
   type OrchestrationStepRecord,
 } from "@kivro/marketplace-agent";
 import { parseJobOutputAssetManifest } from "@kivro/marketplace";
+import { evaluateCapabilityAvailability } from "@kivro/job-scheduling";
+
+async function pauseUnavailableStep(
+  db: PrismaClient,
+  _planId: string,
+  stepId: string,
+): Promise<{ error: "STEP_NEEDS_APPROVAL" }> {
+  const decision = decideUnavailableStep("APPROVE_PLAN");
+  if (decision.substitute) {
+    return { error: "STEP_NEEDS_APPROVAL" };
+  }
+  await db.orchestrationStep.update({
+    where: { id: stepId },
+    data: { status: "NEEDS_APPROVAL" },
+  });
+  return { error: "STEP_NEEDS_APPROVAL" };
+}
 
 export async function reserveOrchestrationBudget(
   db: PrismaClient,
@@ -45,7 +63,11 @@ export async function submitOrchestrationStepJob(
     include: { currentVersion: true },
   });
   if (!capability?.currentVersion) {
-    return { error: "CAPABILITY_NOT_AVAILABLE" };
+    return pauseUnavailableStep(db, input.planId, input.step.id);
+  }
+  const availability = await evaluateCapabilityAvailability(db, capability.id);
+  if ("error" in availability || !availability.accepting) {
+    return pauseUnavailableStep(db, input.planId, input.step.id);
   }
   const version = capability.currentVersion;
   const contract = parseCapabilityContract({

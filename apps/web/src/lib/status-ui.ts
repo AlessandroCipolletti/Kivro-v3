@@ -7,7 +7,13 @@ export function marketplaceAvailabilityUi(input: {
   accepting?: boolean;
 }): { label: string; variant: StatusVariant; dotLabel: string } {
   const status = input.status ?? "UNKNOWN";
-  if (input.accepting === false || status === "PAUSED") {
+  if (status === "OFFLINE") {
+    return { label: "Provider offline", variant: "neutral", dotLabel: "Offline" };
+  }
+  if (status === "PAUSED") {
+    return { label: "Temporarily paused", variant: "warning", dotLabel: "Paused" };
+  }
+  if (input.accepting === false) {
     return { label: "Not accepting", variant: "warning", dotLabel: "Paused" };
   }
   switch (status) {
@@ -16,9 +22,9 @@ export function marketplaceAvailabilityUi(input: {
     case "BUSY":
       return { label: "Busy", variant: "warning", dotLabel: "Busy" };
     case "SCHEDULED_OFFLINE":
-      return { label: "Scheduled offline", variant: "info", dotLabel: "Scheduled" };
+      return { label: "Schedulable", variant: "info", dotLabel: "Scheduled" };
     case "OFFLINE":
-      return { label: "Offline", variant: "neutral", dotLabel: "Offline" };
+      return { label: "Provider offline", variant: "neutral", dotLabel: "Offline" };
     default:
       return { label: "Unknown", variant: "neutral", dotLabel: "Unknown" };
   }

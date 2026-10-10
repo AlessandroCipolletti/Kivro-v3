@@ -28,6 +28,7 @@ import { formatV1JobCreateSuccess } from "../services/v1-buyer-response.js";
 import { createBuyerJobAssetDownload } from "../services/buyer-job-download.js";
 import { createBuyerJobBundleDownload } from "../services/buyer-job-bundle-download.js";
 import type { AppEnv } from "../types.js";
+import { findVisibleCapability, publicMarketplaceWhere } from "../services/capability-visibility.js";
 
 /** §322–§325 — buyer REST API v1 (Bearer API key). */
 export function v1BuyerApiRoutes(): Hono<AppEnv> {
@@ -37,7 +38,7 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
 
   app.get("/capabilities", requireBuyerApiKey("capabilities:read"), async (c) => {
     const rows = await getPrismaClient().capability.findMany({
-      where: { status: "PUBLISHED", currentVersionId: { not: null } },
+      where: publicMarketplaceWhere,
       include: {
         sellerProfile: { select: { displayName: true } },
         currentVersion: { select: { priceSnapshotCents: true } },
@@ -142,10 +143,15 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
   });
 
   app.get("/capabilities/:id", requireBuyerApiKey("capabilities:read"), async (c) => {
-    const row = await getPrismaClient().capability.findFirst({
-      where: { id: c.req.param("id"), status: "PUBLISHED" },
-      include: { currentVersion: true },
-    });
+    const user = c.get("user");
+    if (!user) {
+      return c.json({ error: "UNAUTHENTICATED" }, 401);
+    }
+    const id = c.req.param("id");
+    if (!id) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    const row = await findVisibleCapability(getPrismaClient(), { id }, user.id);
     if (!row?.currentVersion) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }

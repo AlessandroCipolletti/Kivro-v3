@@ -76,6 +76,7 @@ export function findRunnableSteps(steps: OrchestrationStepRecord[]): Orchestrati
       s.status !== "COMPLETED" &&
       s.status !== "FAILED" &&
       s.status !== "SKIPPED" &&
+      s.status !== "NEEDS_APPROVAL" &&
       dependenciesMet(s, byKey),
   );
 }
@@ -118,7 +119,20 @@ export function synthesizePlanSummary(steps: OrchestrationStepRecord[], planGoal
   if (done === total) {
     return `Completed orchestration for: ${planGoal}. All ${total} steps finished. Review deliverables in My jobs.`;
   }
+  const failed = steps.filter((s) => s.status === "FAILED" || s.status === "NEEDS_APPROVAL").length;
+  if (done > 0 && failed > 0) {
+    return `Workflow incomplete for: ${planGoal}. ${done} step(s) completed and stay charged. ${failed} step(s) did not finish. Remaining budget is released. Completed artifacts stay available.`;
+  }
   return `Orchestration in progress (${done}/${total} steps complete).`;
+}
+
+/** §143 — Approve-plan mode pauses instead of swapping a paid provider. */
+export function decideUnavailableStep(approvalMode: "APPROVE_PLAN" | "RECOMMEND_ONLY"): {
+  action: "PAUSE_FOR_APPROVAL";
+  substitute: false;
+} {
+  void approvalMode;
+  return { action: "PAUSE_FOR_APPROVAL", substitute: false };
 }
 
 export function parseStoredAssetRefs(raw: unknown): JobOutputAssetRef[] {

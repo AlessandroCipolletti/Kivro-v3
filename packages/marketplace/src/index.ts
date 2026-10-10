@@ -3,10 +3,23 @@ export {
   formatAvailabilityLabel,
   formatPrice,
   sortCapabilityListings,
+  type AvailabilityFilter,
   type CapabilityListingRow,
   type MarketplaceSearchFilters,
   type MarketplaceSort,
 } from "./capability-listing.js";
+export {
+  canPurchaseCapability,
+  canRecommendByDefault,
+  canViewCapability,
+  isCapabilityVisibility,
+  isPublicMarketplaceListing,
+  visibilityAfterPublish,
+  visibilityTransitionError,
+  CAPABILITY_VISIBILITIES,
+  MAX_PUBLISHED_EXAMPLES,
+  type CapabilityVisibility,
+} from "./visibility.js";
 export {
   listCapabilityReviews,
   recomputeCapabilityRating,
@@ -20,6 +33,19 @@ export {
   type BuyerConstraints,
 } from "./buyer-constraints.js";
 export { rankAgentCandidates, type RankedCapability } from "./agent-ranking.js";
+export {
+  agentTimingSnapshot,
+  capabilityFitsAgentTiming,
+  type AgentTimingMode,
+  type AgentTimingSnapshot,
+} from "./agent-timing.js";
+export {
+  MARKETPLACE_CATEGORIES,
+  isMarketplaceCategory,
+  mergeMarketplaceCategories,
+  type MarketplaceCategory,
+} from "./categories.js";
+export { MAX_SELLER_TEST_CASES, validateSellerTestCase } from "./seller-test-case.js";
 export { runAssistedDiscovery, type AgentDiscoveryResult } from "./agent-discovery.js";
 export { capabilityReviewDistribution } from "./review-distribution.js";
 export { buildBuyerJobTimeline } from "./buyer-audit-timeline.js";

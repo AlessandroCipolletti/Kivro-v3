@@ -68,6 +68,21 @@
       "folder": "20260410220000_m34_worker_routing",
       "phase": "expand",
       "notes": "Explicit multi-Worker routing policy — M34"
+    },
+    {
+      "folder": "20260410230000_capability_visibility",
+      "phase": "expand",
+      "notes": "Capability visibility, private grants, published examples — §§312–318, §§357–358"
+    },
+    {
+      "folder": "20260410240000_orchestration_needs_approval",
+      "phase": "expand",
+      "notes": "Pause orchestration step for approval when the capability is unavailable"
+    },
+    {
+      "folder": "20260410250000_capability_test_cases",
+      "phase": "expand",
+      "notes": "Seller-authored capability test cases"
     }
   ]
 }

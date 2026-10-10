@@ -3,6 +3,7 @@ import { applyScalarDefaults } from "./apply-defaults.js";
 import { activeInputFields } from "./conditionals.js";
 import { extensionOfFilename } from "./file-signature.js";
 import { isFileInputField, normalizeInputFieldType } from "./normalize-field-type.js";
+import { isArchiveExtension, isArchiveMime } from "./archive-inputs.js";
 import { resolvedFileConstraints, resolvedTextMaxLength } from "./field-constraints.js";
 
 export interface JobAssetRef {
@@ -217,6 +218,13 @@ function validateFileAllowlist(
     });
   }
   const mime = asset.sniffedMimeType ?? asset.declaredMimeType;
+  if ((mime && isArchiveMime(mime)) || isArchiveExtension(ext)) {
+    issues.push({
+      fieldKey,
+      code: "ARCHIVE",
+      message: "Archive formats are not accepted",
+    });
+  }
   if (constraints.allowedMimeTypes.length > 0 && mime && !constraints.allowedMimeTypes.includes(mime)) {
     issues.push({
       fieldKey,

@@ -10,6 +10,7 @@ import { validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
 import type { CapabilityContract } from "@kivro/contracts";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
+import { buyerMayPurchase } from "../services/capability-visibility.js";
 import type { AppEnv } from "../types.js";
 
 export function buyerJobSubmitRoutes(): Hono<AppEnv> {
@@ -43,6 +44,9 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
       include: { currentVersion: true },
     });
     if (!capability?.currentVersion) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    if (!(await buyerMayPurchase(getPrismaClient(), capability, user.id))) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
     const version = capability.currentVersion;

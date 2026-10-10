@@ -4,6 +4,7 @@ import { toolGetCapability, toolSearchCapabilities, sanitizeMarketplaceTextForAg
 import type { CapabilityListingRow } from "@kivro/marketplace";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
+import { findVisibleCapability, publicMarketplaceWhere } from "../services/capability-visibility.js";
 import type { AppEnv } from "../types.js";
 
 /** §149 — strict-schema agent tools over marketplace services. */
@@ -48,10 +49,11 @@ export function marketplaceAgentToolRoutes(): Hono<AppEnv> {
   });
 
   app.get("/marketplace/agent/tools/get_reviews_summary/:slug", async (c) => {
-    const row = await getPrismaClient().capability.findFirst({
-      where: { slug: c.req.param("slug"), status: "PUBLISHED" },
-      select: { rating: true, reviewCount: true, slug: true, name: true },
-    });
+    const row = await findVisibleCapability(
+      getPrismaClient(),
+      { slug: c.req.param("slug") },
+      c.get("user").id,
+    );
     if (!row) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
@@ -59,9 +61,11 @@ export function marketplaceAgentToolRoutes(): Hono<AppEnv> {
   });
 
   app.get("/marketplace/agent/tools/get_availability/:slug", async (c) => {
-    const row = await getPrismaClient().capability.findFirst({
-      where: { slug: c.req.param("slug"), status: "PUBLISHED" },
-    });
+    const row = await findVisibleCapability(
+      getPrismaClient(),
+      { slug: c.req.param("slug") },
+      c.get("user").id,
+    );
     if (!row) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
@@ -70,10 +74,11 @@ export function marketplaceAgentToolRoutes(): Hono<AppEnv> {
   });
 
   app.get("/marketplace/agent/tools/get_price_quote/:slug", async (c) => {
-    const row = await getPrismaClient().capability.findFirst({
-      where: { slug: c.req.param("slug"), status: "PUBLISHED" },
-      include: { currentVersion: { select: { priceSnapshotCents: true, currency: true } } },
-    });
+    const row = await findVisibleCapability(
+      getPrismaClient(),
+      { slug: c.req.param("slug") },
+      c.get("user").id,
+    );
     if (!row?.currentVersion) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
@@ -89,7 +94,7 @@ export function marketplaceAgentToolRoutes(): Hono<AppEnv> {
 
 async function loadListings(): Promise<CapabilityListingRow[]> {
   const rows = await getPrismaClient().capability.findMany({
-    where: { status: "PUBLISHED", currentVersionId: { not: null } },
+    where: publicMarketplaceWhere,
     include: {
       sellerProfile: { select: { id: true, displayName: true } },
       currentVersion: { select: { priceSnapshotCents: true } },

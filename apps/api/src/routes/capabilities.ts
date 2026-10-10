@@ -1,6 +1,7 @@
 import { buildBuyerTrustSummary } from "@kivro/capability-publish";
 import { parseCapabilityContract, parseWorkerManifest } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
+import { resolveSessionUser } from "@kivro/auth";
 import {
   buildBuyerFormSchema,
   buildJobInputManifest,
@@ -14,14 +15,23 @@ import {
   evaluateCapabilityAvailability,
   summarizeMarketplaceAvailability,
 } from "@kivro/job-scheduling";
+import { getCookie } from "hono/cookie";
 import { Hono } from "hono";
+import type { Context } from "hono";
+import { sessionCookieName } from "../env.js";
+import { findVisibleCapability, publicMarketplaceWhere } from "../services/capability-visibility.js";
+
+async function optionalViewerId(c: Context): Promise<string | null> {
+  const user = await resolveSessionUser(getPrismaClient(), getCookie(c, sessionCookieName()));
+  return user?.status === "ACTIVE" ? user.id : null;
+}
 
 export function marketplaceCapabilityRoutes(): Hono {
   const app = new Hono();
 
   app.get("/capabilities", async (c) => {
     const rows = await getPrismaClient().capability.findMany({
-      where: { status: "PUBLISHED", currentVersionId: { not: null } },
+      where: publicMarketplaceWhere,
       orderBy: { updatedAt: "desc" },
       select: {
         id: true,
@@ -63,13 +73,7 @@ export function marketplaceCapabilityRoutes(): Hono {
 
   app.get("/capabilities/:slug", async (c) => {
     const slug = c.req.param("slug");
-    const row = await getPrismaClient().capability.findFirst({
-      where: { slug, status: "PUBLISHED", currentVersionId: { not: null } },
-      include: {
-        currentVersion: true,
-        sellerProfile: { select: { id: true, displayName: true, verificationStatus: true } },
-      },
-    });
+    const row = await findVisibleCapability(getPrismaClient(), { slug }, await optionalViewerId(c));
     if (!row) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
@@ -118,12 +122,24 @@ export function marketplaceCapabilityRoutes(): Hono {
     const reliability = await computeSellerReliabilityForCapability(getPrismaClient(), row.id);
     return c.json({
       capability: row,
-      seller: row.sellerProfile,
+      seller: {
+        id: row.sellerProfile.id,
+        displayName: row.sellerProfile.displayName,
+        verificationStatus: row.sellerProfile.verificationStatus,
+      },
       buyerTrust,
       buyerForm,
       internetDisclosure,
       privacyDisclosure,
       examples: contract?.examples ?? [],
+      publishedExamples: row.publishedExamples.map((example) => ({
+        id: example.id,
+        title: example.title,
+        description: example.description,
+        inputValues: example.inputValues,
+        outputValues: example.outputValues,
+        source: example.source,
+      })),
       outputSummary: contract?.output,
       availability: scheduleAwareness,
       reviews: {
@@ -136,10 +152,7 @@ export function marketplaceCapabilityRoutes(): Hono {
 
   app.post("/capabilities/:slug/prepare-agent-input", async (c) => {
     const slug = c.req.param("slug");
-    const row = await getPrismaClient().capability.findFirst({
-      where: { slug, status: "PUBLISHED", currentVersionId: { not: null } },
-      include: { currentVersion: true },
-    });
+    const row = await findVisibleCapability(getPrismaClient(), { slug }, await optionalViewerId(c));
     if (!row?.currentVersion) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
@@ -176,10 +189,7 @@ export function marketplaceCapabilityRoutes(): Hono {
 
   app.post("/capabilities/:slug/validate-input", async (c) => {
     const slug = c.req.param("slug");
-    const row = await getPrismaClient().capability.findFirst({
-      where: { slug, status: "PUBLISHED", currentVersionId: { not: null } },
-      include: { currentVersion: true },
-    });
+    const row = await findVisibleCapability(getPrismaClient(), { slug }, await optionalViewerId(c));
     if (!row?.currentVersion) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }

@@ -3,6 +3,7 @@ import type { PrismaClient } from "@kivro/database";
 import type { CapabilityContract } from "@kivro/contracts";
 import { validateBuyerSubmissionAssets } from "@kivro/buyer-experience";
 import { validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
+import { buyerMayPurchase } from "./capability-visibility.js";
 
 export async function createBuyerJobFromApi(
   prisma: PrismaClient,
@@ -37,6 +38,9 @@ export async function createBuyerJobFromApi(
     include: { currentVersion: true },
   });
   if (!capability?.currentVersion) {
+    return { error: "NOT_FOUND" };
+  }
+  if (!(await buyerMayPurchase(prisma, capability, input.buyerId))) {
     return { error: "NOT_FOUND" };
   }
   const version = capability.currentVersion;

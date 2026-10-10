@@ -1,3 +1,5 @@
+import { agentTimingSnapshot, capabilityFitsAgentTiming } from "./agent-timing.js";
+import type { AgentTimingSnapshot } from "./agent-timing.js";
 import type { CapabilityListingRow } from "./capability-listing.js";
 import type { BuyerConstraints } from "./buyer-constraints.js";
 
@@ -5,6 +7,7 @@ export type RankedCapability = CapabilityListingRow & {
   score: number;
   whySelected: string[];
   limitation?: string;
+  timing: AgentTimingSnapshot;
 };
 
 /** §133 — deterministic candidate score; LLM may explain but not override hard constraints. */
@@ -34,6 +37,24 @@ export function rankAgentCandidates(
       }
     }
     if (input.constraints.onlineOnly && (row.availabilityStatus !== "ONLINE" || !row.accepting)) {
+      return false;
+    }
+    const mode =
+      input.constraints.timingMode ??
+      (input.constraints.hardDeliveryDeadlineAt ? "DEADLINE" : "IMMEDIATE");
+    const deadlineMs = input.constraints.hardDeliveryDeadlineAt
+      ? Date.parse(input.constraints.hardDeliveryDeadlineAt)
+      : undefined;
+    const hasTiming = row.availabilityStatus != null || row.accepting != null;
+    if (
+      hasTiming &&
+      !capabilityFitsAgentTiming(
+        row,
+        mode,
+        Date.now(),
+        Number.isFinite(deadlineMs) ? deadlineMs : undefined,
+      )
+    ) {
       return false;
     }
     return true;
@@ -92,5 +113,11 @@ function scoreRow(
   if (why.length === 0) {
     why.push("Published capability matching marketplace filters");
   }
-  return { ...row, score, whySelected: why.slice(0, 4), limitation };
+  return {
+    ...row,
+    score,
+    whySelected: why.slice(0, 4),
+    limitation,
+    timing: agentTimingSnapshot(row),
+  };
 }

@@ -7,6 +7,7 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
 import { marketplaceAvailabilityUi, sellerHealthUi } from "@/lib/status-ui";
 import Link from "next/link";
+import { SellerVisibilityPanel } from "@/components/SellerVisibilityPanel";
 import { useCallback, useEffect, useState } from "react";
 
 type CapabilityRow = {
@@ -278,6 +279,8 @@ export default function SellerDashboardPage() {
               ))}
             </ul>
           </section>
+
+          <SellerVisibilityPanel />
 
           <section className="detail-panel">
             <h2>Job metrics (24h)</h2>

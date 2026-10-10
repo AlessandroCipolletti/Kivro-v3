@@ -17,6 +17,7 @@ export {
   parseStoredAssetRefs,
   stepCompletedOutputs,
   synthesizePlanSummary,
+  decideUnavailableStep,
   toStepRecord,
   type OrchestrationStepRecord,
 } from "./orchestration-runner.js";

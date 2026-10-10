@@ -3,6 +3,7 @@ import {
   assertNoFileDefaults,
   assertScalarDefaultsSafe,
 } from "./apply-defaults.js";
+import { archiveInputIssue } from "./archive-inputs.js";
 import { isFileInputField } from "./normalize-field-type.js";
 
 export interface ContractValidationResult {
@@ -35,6 +36,17 @@ export function validateAndNormalizeCapabilityContract(
         (field.file?.mimeAllowList?.length ?? 0) > 0;
       if (field.required && !hasAllow) {
         issues.push(`field ${field.key}: file field must declare allowed types`);
+      }
+      const archiveIssue = archiveInputIssue(
+        field.key,
+        [
+          ...(field.constraints?.file?.allowedMimeTypes ?? []),
+          ...(field.file?.mimeAllowList ?? []),
+        ],
+        field.constraints?.file?.allowedExtensions ?? [],
+      );
+      if (archiveIssue) {
+        issues.push(archiveIssue);
       }
     }
   }

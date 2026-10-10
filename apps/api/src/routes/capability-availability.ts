@@ -1,29 +1,30 @@
 import { getPrismaClient } from "@kivro/database";
 import { evaluateCapabilityAvailability } from "@kivro/job-scheduling";
 import { buildBuyerMaintenanceCopy, buildMaintenanceState } from "@kivro/seller-experience";
+import { resolveSessionUser } from "@kivro/auth";
+import { getCookie } from "hono/cookie";
 import { Hono } from "hono";
+import { sessionCookieName } from "../env.js";
+import { findVisibleCapability } from "../services/capability-visibility.js";
 
 export function capabilityAvailabilityRoutes(): Hono {
   const app = new Hono();
 
   app.get("/capabilities/:slug/availability", async (c) => {
     const slug = c.req.param("slug");
-    const capability = await getPrismaClient().capability.findFirst({
-      where: { slug, status: "PUBLISHED", currentVersionId: { not: null } },
-      select: {
-        id: true,
-        sellerProfile: {
-          select: {
-            maintenanceMode: true,
-            maintenanceMessage: true,
-            maintenanceExpectedReturnAt: true,
-          },
-        },
-      },
-    });
-    if (!capability) {
+    const viewer = await resolveSessionUser(getPrismaClient(), getCookie(c, sessionCookieName()));
+    const visible = await findVisibleCapability(
+      getPrismaClient(),
+      { slug },
+      viewer?.status === "ACTIVE" ? viewer.id : null,
+    );
+    if (!visible) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
+    const capability = {
+      id: visible.id,
+      sellerProfile: visible.sellerProfile,
+    };
     const availability = await evaluateCapabilityAvailability(getPrismaClient(), capability.id);
     if ("error" in availability) {
       return c.json(availability, 404);

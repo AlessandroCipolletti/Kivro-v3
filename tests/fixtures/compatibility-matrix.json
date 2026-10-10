@@ -8,7 +8,7 @@
   "workerProtocolMax": 1,
   "database": {
     "schemaPackage": "@kivro/database",
-    "schemaRevision": "20260410220000",
+    "schemaRevision": "20260410250000",
     "migrationsRelativePath": "packages/database/prisma/migrations",
     "rolloutRegistryPath": "tests/fixtures/schema-rollout-registry.json"
   },

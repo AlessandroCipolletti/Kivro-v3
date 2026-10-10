@@ -687,3 +687,13 @@ greenfield.
 **Context:** M18 maps `DEV-LOCAL-001`–`029`: Compose infra, dev scripts, fake payment adapter, health/readiness, local paid path, and §573 checklist evidence.
 
 **Decision:** Ship Redis+MinIO+Postgres compose, `dev:setup`/`dev:demo`/`worker:dev`, deterministic seed, fake payment adapter with production fail-closed guards, `run-local-e2e.mjs` + failure matrix acceptance tests, and `pnpm verify:m18` (includes `verify:m17`). Automated CI path uses **synthetic** worker completion when API is not running; full OpenClaw + `KIVRO_SANDBOX_DRY_RUN=false` remains manual sign-off (`M18-manual-validation.md`). Gate: `pnpm verify:m18`; `pnpm test:e2e:local` adds optional live HTTP E2E.
+
+## DEC-VIS-001 — Visibility is separate from runtime status
+
+**Context:** Master Spec §§312–318 require DRAFT, PRIVATE, UNLISTED, and PUBLIC as a discovery/access state, distinct from DRAFT/PUBLISHED/PAUSED/ARCHIVED runtime status. §§357–358 require up to three published input/output examples. §490 requires human search filters for available now, today, and schedulable.
+
+**Decision:** `Capability.visibility` defaults to PUBLIC so existing published rows stay listed. New drafts are created as DRAFT visibility and become PUBLIC on publish unless the seller already chose PRIVATE or UNLISTED. Search, seller profiles, and Marketplace Agent recommendations include only PUBLIC capabilities. UNLISTED capabilities open by slug for anyone. PRIVATE capabilities require an explicit account grant. Published examples are seller-authored records, at most three published per capability. Historical jobs are not deleted when visibility changes.
+
+## DEC-AGT-001 — Agent timing, archives, and task models
+
+**Decision:** Marketplace Agent ranking defaults to IMMEDIATE when availability is known: only ONLINE and accepting capabilities are eligible. DEADLINE mode may include a future window only when start plus estimated duration finishes by the buyer's deadline. Ranked rows carry a structured timing snapshot; the model cannot override the filter. Archive MIME types and extensions are rejected because no safe extraction path exists. Inference model names come from provider or per-task environment variables (`KIVRO_PLATFORM_AI_MODEL_INTENT`, `RECOMMENDATION`, `ORCHESTRATION`). Sellers may store up to ten named test cases per capability; storing a case does not execute a job.

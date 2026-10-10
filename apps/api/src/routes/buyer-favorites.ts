@@ -1,8 +1,9 @@
 import { getPrismaClient } from "@kivro/database";
 import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import { formatPrice, formatAvailabilityLabel } from "@kivro/marketplace";
-import { Hono } from "hono";
+import { findVisibleCapability } from "../services/capability-visibility.js";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
+import { Hono } from "hono";
 import type { AppEnv } from "../types.js";
 
 export function buyerFavoritesRoutes(): Hono<AppEnv> {
@@ -52,9 +53,11 @@ export function buyerFavoritesRoutes(): Hono<AppEnv> {
     if (!body.capabilityId) {
       return c.json({ error: "CAPABILITY_ID_REQUIRED" }, 400);
     }
-    const capability = await getPrismaClient().capability.findFirst({
-      where: { id: body.capabilityId, status: "PUBLISHED" },
-    });
+    const capability = await findVisibleCapability(
+      getPrismaClient(),
+      { id: body.capabilityId },
+      user.id,
+    );
     if (!capability) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }

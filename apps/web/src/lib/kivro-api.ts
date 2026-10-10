@@ -66,6 +66,14 @@ export type CapabilityDetailResponse = {
   };
   reviews?: { average: number | null; count: number };
   examples?: Array<{ label?: string; values: Record<string, unknown> }>;
+  publishedExamples?: Array<{
+    id: string;
+    title: string;
+    description: string | null;
+    inputValues: unknown;
+    outputValues: unknown;
+    source: string;
+  }>;
   privacyDisclosure?: { executionModel: string; dataHandling: string; retention: string };
 };
 

@@ -11,7 +11,7 @@ export function marketplaceSellerRoutes(): Hono {
       where: { id: c.req.param("sellerProfileId") },
       include: {
         capabilities: {
-          where: { status: "PUBLISHED", currentVersionId: { not: null } },
+          where: { status: "PUBLISHED", visibility: "PUBLIC", currentVersionId: { not: null } },
           select: {
             id: true,
             slug: true,

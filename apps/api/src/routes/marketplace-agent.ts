@@ -2,6 +2,7 @@ import { parseCapabilityContract } from "@kivro/contracts";
 import { getPrismaClient, type Prisma } from "@kivro/database";
 import { prepareAgentJobSubmission } from "@kivro/job-io";
 import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
+import { publicMarketplaceWhere } from "../services/capability-visibility.js";
 import {
   authorizePlanApproval,
   planStepEstimatedMinutes,
@@ -68,7 +69,7 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
       return c.json({ error: "GOAL_REQUIRED" }, 400);
     }
     const inference = getPlatformInference();
-    const parsed = await inference.parseGoal(body.goal, body.constraints as never);
+    const parsed = await inference.parseGoal(body.goal, body.constraints as never, { userId: user.id });
     const listings = await loadListings();
     const result = runAssistedDiscovery(listings, {
       goal: body.goal,
@@ -337,7 +338,7 @@ async function appendConversationTurn(
 
 async function loadListings(): Promise<CapabilityListingRow[]> {
   const rows = await getPrismaClient().capability.findMany({
-    where: { status: "PUBLISHED", currentVersionId: { not: null } },
+    where: publicMarketplaceWhere,
     include: {
       sellerProfile: { select: { id: true, displayName: true } },
       currentVersion: { select: { priceSnapshotCents: true } },
@@ -372,7 +373,7 @@ async function loadListings(): Promise<CapabilityListingRow[]> {
 
 async function loadOrchestrationListings(): Promise<OrchestrationListingRow[]> {
   const rows = await getPrismaClient().capability.findMany({
-    where: { status: "PUBLISHED", currentVersionId: { not: null } },
+    where: publicMarketplaceWhere,
     include: {
       sellerProfile: { select: { id: true, displayName: true } },
       currentVersion: { select: { id: true, priceSnapshotCents: true } },

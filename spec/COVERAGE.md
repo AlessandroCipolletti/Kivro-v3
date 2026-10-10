@@ -1226,27 +1226,27 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PAY-0077`    P0         §142     `TESTED`   packages/marketplace-agent, packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   packages/marketplace-agent/src/orchestration-planner.test.ts; security/tests/acceptance-m11.test.ts; scripts/verify-m11-flow.mjs   docs/milestones/M11-manual-validation.md M11 orchestration Mode B foundation
 
-  `AGT-0040`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `AGT-0040`    P1         §143     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0041`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `AGT-0041`    P1         §143     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0042`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `AGT-0042`    P1         §143     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0043`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `AGT-0043`    P1         §143     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0044`    P1         §143     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `AGT-0044`    P1         §143     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0122`    P1         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `PRD-0122`    P1         §144     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0123`    P2         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `PRD-0123`    P2         §144     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0124`    P2         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `PRD-0124`    P2         §144     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `PRD-0125`    P2         §144     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `PRD-0125`    P2         §144     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0045`    P1         §145     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `AGT-0045`    P1         §145     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
-  `AGT-0046`    P1         §145     `PARTIAL`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
+  `AGT-0046`    P1         §145     `TESTED`   packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/orchestration-runner.test.ts   docs/milestones/M11-manual-validation.md M11 synthesis on plan complete
 
   `PRD-0126`    P1         §146     `TESTED`   packages/marketplace-agent/src/platform-inference.ts, apps/api/src/routes/marketplace-agent.ts, apps/web/src/app/agent   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 platform inference port
 
@@ -1366,15 +1366,15 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0056`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0057`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0057`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  per-task model env overrides
 
   `AGT-0058`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0059`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0059`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  INTENT/RECOMMENDATION/ORCHESTRATION routing
 
   `AGT-0060`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0061`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0061`    P1         §168     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  platform-inference-policy.test.ts  no source-code model default
 
   `AGT-0062`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1398,25 +1398,25 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0052`     P1         §172     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0070`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0070`    P1         §173     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0071`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0071`    P1         §173     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0072`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0072`    P1         §173     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0073`    P1         §173     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0073`    P1         §173     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `PRD-0163`    P1         §174     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0163`    P1         §174     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `PRD-0164`    P2         §174     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0164`    P2         §174     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `PRD-0165`    P2         §174     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0165`    P2         §174     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
   `AGT-0074`    P1         §175     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0075`    P1         §176     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0075`    P1         §176     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0076`    P1         §176     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0076`    P1         §176     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
   `PRD-0166`    P1         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1444,9 +1444,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0178`    P2         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0077`    P1         §180     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0077`    P1         §180     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0078`    P1         §180     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0078`    P1         §180     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
   `AGT-0079`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1470,19 +1470,19 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0056`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `UI-0016`     P1         §184     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0016`     P1         §184     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `UI-0017`     P2         §184     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0017`     P2         §184     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `UI-0018`     P2         §184     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0018`     P2         §184     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0086`    P1         §185     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0086`    P1         §185     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0087`    P1         §186     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0087`    P1         §186     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0088`    P1         §186     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0088`    P1         §186     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0089`    P1         §186     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0089`    P1         §186     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
   `AGT-0090`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1640,9 +1640,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0104`     P1         §217     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0105`     P1         §217     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0105`     P1         §217     `TESTED`   packages/job-io/src/archive-inputs.ts  archive-inputs.test.ts  archives rejected
 
-  `IO-0106`     P1         §217     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0106`     P1         §217     `TESTED`   packages/job-io/src/validate-buyer-input.ts  archive-inputs.test.ts  no archive extraction path
 
   `IO-0107`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1710,7 +1710,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0128`     P1         §230     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0129`     P1         §230     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0129`     P1         §230     `TESTED`   packages/marketplace/src/seller-test-case.ts  seller-test-case.test.ts  seller test cases, max 10
 
   `TST-0019`    P1         §231     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2136,31 +2136,31 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0107`    P1         §311      `TESTED`   packages/capability-publish, scripts/verify-m03-flow.mjs vitest   vitest   docs/milestones/M03-manual-validation.md M03
 
-  `CAP-0084`    P1         §312     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0084`    P1         §312     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0085`    P1         §312     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0085`    P1         §312     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `TST-0020`    P1         §313     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `TST-0020`    P1         §313     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0316`    P1         §314     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0316`    P1         §314     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0317`    P2         §314     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0317`    P2         §314     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0318`    P1         §315     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0318`    P1         §315     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0319`    P2         §315     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0319`    P2         §315     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0086`    P1         §316     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0086`    P1         §316     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `JOB-0066`    P1         §317     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0066`    P1         §317     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `JOB-0067`    P1         §317     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0067`    P1         §317     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0320`    P1         §318     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0320`    P1         §318     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0321`    P2         §318     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0321`    P2         §318     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0322`    P2         §318     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0322`    P2         §318     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
   `API-0008`    P1         §319     `TESTED`   apps/api/src/routes/buyer-api-keys.ts, packages/buyer-api/src/api-key-service.ts, packages/buyer-api/src/api-key-crypto.ts, packages/buyer-api/src/api-key-audit.ts   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 buyer API keys
 
@@ -2344,67 +2344,67 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0332`    P2         §356     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0095`    P1         §357     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0095`    P1         §357     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0096`    P1         §357     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0096`    P1         §357     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0097`    P1         §357     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0097`    P1         §357     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0098`    P1         §358     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0098`    P1         §358     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0099`    P1         §358     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0099`    P1         §358     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0100`    P1         §358     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0100`    P1         §358     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0101`    P1         §359     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0101`    P1         §359     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0333`    P1         §360     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0333`    P1         §360     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0334`    P2         §360     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0334`    P2         §360     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0335`    P2         §360     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0335`    P2         §360     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `IO-0138`     P1         §361     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0138`     P1         §361     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `IO-0139`     P1         §361     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0139`     P1         §361     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0102`    P1         §362     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0102`    P1         §362     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0103`    P1         §362     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0103`    P1         §362     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0104`    P1         §362     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0104`    P1         §362     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0336`    P1         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0336`    P1         §363     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0337`    P2         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0337`    P2         §363     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0338`    P2         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0338`    P2         §363     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0339`    P2         §363     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0339`    P2         §363     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `IO-0140`     P1         §364     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0140`     P1         §364     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `IO-0141`     P1         §364     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0141`     P1         §364     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `IO-0142`     P1         §364     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0142`     P1         §364     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0105`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0105`    P1         §365     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0106`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0106`    P1         §365     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0107`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0107`    P1         §365     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0108`    P1         §365     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0108`    P1         §365     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0340`    P1         §366     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0340`    P1         §366     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0341`    P2         §366     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0341`    P2         §366     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `IO-0143`     P1         §367     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0143`     P1         §367     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `IO-0144`     P1         §367     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0144`     P1         §367     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0109`    P1         §368     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0109`    P1         §368     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
   `OBS-0007`    P1         §369      `TESTED`   apps/worker, packages/openclaw-adapter   vitest   docs/milestones/M02-manual-validation.md M02
 
@@ -3006,25 +3006,25 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0387`    P2         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0388`    P1         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0388`    P1         §490     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0389`    P2         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0389`    P2         §490     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0390`    P2         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0390`    P2         §490     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `PRD-0391`    P2         §490     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0391`    P2         §490     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0115`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0115`    P1         §491     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0116`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0116`    P1         §491     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0117`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0117`    P1         §491     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `CAP-0118`    P1         §491     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0118`    P1         §491     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `AVL-0077`    P1         §492     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0077`    P1         §492     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `AVL-0078`    P1         §492     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0078`    P1         §492     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
   `JOB-0244`    P1         §493     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3038,7 +3038,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0079`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0080`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0080`    P1         §495     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  future-only excluded from immediate mode
 
   `AVL-0081`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3084,13 +3084,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0090`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0091`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0091`    P1         §503     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  structured timing snapshot on ranked rows
 
   `AVL-0092`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `AVL-0093`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0094`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0094`    P1         §504     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  hard timing filter outside the model
 
   `AVL-0095`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3104,7 +3104,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0249`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0250`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0250`    P1         §506     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  immediate mode uses online accepting only
 
   `JOB-0251`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3112,7 +3112,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0097`    P1         §508     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0098`    P1         §508     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0098`    P1         §508     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  immediate mode does not schedule future jobs
 
   `CAP-0119`    P1         §509     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3132,7 +3132,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0102`    P1         §512     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0103`    P1         §512     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0103`    P1         §512     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  future-only services excluded by default
 
   `PRD-0401`    P1         §513     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3150,9 +3150,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0103`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0104`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0104`    P1         §516     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  unavailable capability rejected in IMMEDIATE
 
-  `AVL-0105`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0105`    P1         §516     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  deadline mode only if completion fits
 
   `AVL-0106`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 

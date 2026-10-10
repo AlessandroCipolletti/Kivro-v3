@@ -13,6 +13,14 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
   const category = typeof params.category === "string" ? params.category : "";
   const sort = typeof params.sort === "string" ? params.sort : "relevance";
   const onlineOnly = params.onlineOnly === "true" ? "true" : "";
+  const availability =
+    params.availability === "now" ||
+    params.availability === "today" ||
+    params.availability === "schedulable"
+      ? params.availability
+      : onlineOnly === "true"
+        ? "now"
+        : "any";
   const minRating = typeof params.minRating === "string" ? params.minRating : "";
   const minPriceCents = typeof params.minPrice === "string" ? params.minPrice : "";
   const maxPriceCents = typeof params.maxPrice === "string" ? params.maxPrice : "";
@@ -21,7 +29,8 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
     q,
     category,
     sort,
-    onlineOnly,
+    onlineOnly: availability === "now" ? "true" : "",
+    availability: availability === "any" ? "" : availability,
     minRating,
     minPriceCents: minPriceCents ? String(Math.round(Number(minPriceCents) * 100)) : "",
     maxPriceCents: maxPriceCents ? String(Math.round(Number(maxPriceCents) * 100)) : "",
@@ -117,16 +126,15 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
             />
           </div>
           <div className="form-field">
-            <span className="field-label">Availability</span>
-            <label className="checkbox-field">
-              <input
-                type="checkbox"
-                name="onlineOnly"
-                value="true"
-                defaultChecked={onlineOnly === "true"}
-              />
-              <span>Online now</span>
+            <label className="field-label" htmlFor="search-availability">
+              Availability
             </label>
+            <select id="search-availability" name="availability" defaultValue={availability}>
+              <option value="any">Any</option>
+              <option value="now">Available now</option>
+              <option value="today">Available today</option>
+              <option value="schedulable">Schedulable</option>
+            </select>
           </div>
           <div className="filter-actions">
             <button className="button" type="submit">

@@ -43,6 +43,18 @@ enum WorkerRoutingPolicy {
   ANY_ASSIGNED_ELIGIBLE
 }
 
+enum CapabilityVisibility {
+  DRAFT
+  PRIVATE
+  UNLISTED
+  PUBLIC
+}
+
+enum CapabilityExampleSource {
+  REAL_EXECUTION
+  SELLER_CURATED
+}
+
 enum JobPaymentFunding {
   PREPAID_CREDITS
   CARD_AUTHORIZATION
@@ -165,6 +177,7 @@ enum OrchestrationStepStatus {
   COMPLETED
   FAILED
   SKIPPED
+  NEEDS_APPROVAL
 }
 
 enum AgentApprovalMode {
@@ -446,6 +459,7 @@ model Capability {
   scheduleWindows   Json             @default("[]")
   maxConcurrentJobs Int?
   workerRoutingPolicy WorkerRoutingPolicy @default(ANY_ASSIGNED_ELIGIBLE)
+  visibility        CapabilityVisibility @default(PUBLIC)
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
 
@@ -455,9 +469,55 @@ model Capability {
   scheduleChanges CapabilityScheduleChange[]
   favorites       Favorite[]
   reviews         CapabilityReview[]
+  accessGrants    CapabilityAccessGrant[]
+  publishedExamples CapabilityExample[]
+  testCases       CapabilityTestCase[]
 
   @@unique([sellerProfileId, slug])
   @@index([sellerProfileId])
+}
+
+model CapabilityAccessGrant {
+  id            String   @id @default(uuid())
+  capabilityId  String
+  granteeUserId String
+  createdAt     DateTime @default(now())
+
+  capability Capability @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+
+  @@unique([capabilityId, granteeUserId])
+  @@index([granteeUserId])
+}
+
+model CapabilityExample {
+  id                  String                  @id @default(uuid())
+  capabilityId        String
+  capabilityVersionId String?
+  title               String
+  description         String?
+  inputValues         Json
+  outputValues        Json
+  source              CapabilityExampleSource
+  sortOrder           Int                     @default(0)
+  published           Boolean                 @default(false)
+  createdAt           DateTime                @default(now())
+
+  capability Capability @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+
+  @@index([capabilityId])
+}
+
+model CapabilityTestCase {
+  id             String   @id @default(uuid())
+  capabilityId   String
+  name           String
+  inputValues    Json
+  expectedOutput Json?
+  createdAt      DateTime @default(now())
+
+  capability Capability @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+
+  @@index([capabilityId])
 }
 
 model CapabilityScheduleChange {

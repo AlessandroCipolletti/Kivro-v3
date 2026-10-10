@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { dependenciesMet, findRunnableSteps, toStepRecord } from "./orchestration-runner.js";
+import { dependenciesMet, decideUnavailableStep, findRunnableSteps, toStepRecord } from "./orchestration-runner.js";
 
 describe("orchestration-runner", () => {
   it("runs steps with satisfied dependencies only", () => {
@@ -32,6 +32,13 @@ describe("orchestration-runner", () => {
     const after = [completed, steps[1]!];
     expect(findRunnableSteps(after)).toHaveLength(1);
     expect(findRunnableSteps(after)[0]?.clientStepKey).toBe("compare");
+  });
+
+  it("pauses instead of substituting a paid provider", () => {
+    expect(decideUnavailableStep("APPROVE_PLAN")).toEqual({
+      action: "PAUSE_FOR_APPROVAL",
+      substitute: false,
+    });
   });
 
   it("dependenciesMet requires COMPLETED status", () => {

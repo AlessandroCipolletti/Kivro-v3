@@ -10,6 +10,8 @@ export type BuyerConstraints = {
   blockedSellerProfileIds?: string[];
   /** ISO-8601 hard delivery deadline (BUYERUX-004/006). */
   hardDeliveryDeadlineAt?: string;
+  /** IMMEDIATE excludes future-only services. DEADLINE allows a window that finishes in time. */
+  timingMode?: "IMMEDIATE" | "DEADLINE";
 };
 
 export function normalizeBuyerConstraints(raw: Partial<BuyerConstraints>): BuyerConstraints {
@@ -43,6 +45,9 @@ export function normalizeBuyerConstraints(raw: Partial<BuyerConstraints>): Buyer
     if (Number.isFinite(t)) {
       out.hardDeliveryDeadlineAt = new Date(t).toISOString();
     }
+  }
+  if (raw.timingMode === "IMMEDIATE" || raw.timingMode === "DEADLINE") {
+    out.timingMode = raw.timingMode;
   }
   return out;
 }

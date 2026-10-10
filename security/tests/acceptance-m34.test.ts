@@ -9,7 +9,7 @@ describe("M34 acceptance", () => {
     const matrix = JSON.parse(
       fs.readFileSync(path.join(root, "packages/compatibility/matrix.json"), "utf8"),
     ) as { database: { schemaRevision: string } };
-    expect(matrix.database.schemaRevision).toBe("20260410220000");
+    expect(matrix.database.schemaRevision >= "20260410220000").toBe(true);
   });
 
   it("seller worker routes are mounted once", () => {

@@ -110,6 +110,28 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
             </ul>
           </div>
         ) : null}
+        {detail.publishedExamples && detail.publishedExamples.length > 0 && (
+          <div className="detail-panel" style={{ marginTop: "1rem" }}>
+            <strong>Examples</strong>
+            {detail.publishedExamples.map((example) => (
+              <div key={example.id} style={{ marginTop: "0.75rem" }}>
+                <p>
+                  {example.title}
+                  <span className="meta"> · {example.source === "REAL_EXECUTION" ? "From a real run" : "Seller curated"}</span>
+                </p>
+                {example.description && <p className="meta">{example.description}</p>}
+                <p className="meta">Input</p>
+                <pre style={{ fontSize: "0.85rem", overflow: "auto" }}>
+                  {JSON.stringify(example.inputValues, null, 2)}
+                </pre>
+                <p className="meta">Output</p>
+                <pre style={{ fontSize: "0.85rem", overflow: "auto" }}>
+                  {JSON.stringify(example.outputValues, null, 2)}
+                </pre>
+              </div>
+            ))}
+          </div>
+        )}
         {detail.examples && detail.examples.length > 0 && (
           <div className="detail-panel" style={{ marginTop: "1rem" }}>
             <strong>Example inputs</strong>

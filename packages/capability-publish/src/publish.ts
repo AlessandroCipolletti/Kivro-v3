@@ -76,6 +76,7 @@ export async function createDraftCapability(
       name: contract.name,
       description: contract.description,
       status: "DRAFT",
+      visibility: "DRAFT",
       priceTierCents: tier.buyerPriceMinor,
       priceTierId: tier.id,
       currency: contract.currency,
@@ -313,6 +314,7 @@ export async function publishCapability(
       where: { id: capability.id },
       data: {
         status: "PUBLISHED",
+        visibility: capability.visibility === "DRAFT" ? "PUBLIC" : capability.visibility,
         name: contract.name,
         description: contract.description,
         priceTierCents: priceTier.buyerPriceMinor,

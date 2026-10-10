@@ -1,12 +1,21 @@
-import {
-  filterCapabilityListings,
+import { filterCapabilityListings,
+  mergeMarketplaceCategories,
   sortCapabilityListings,
+  type AvailabilityFilter,
   type CapabilityListingRow,
   type MarketplaceSort,
 } from "@kivro/marketplace";
 import { getPrismaClient } from "@kivro/database";
 import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import { Hono } from "hono";
+import { publicMarketplaceWhere } from "../services/capability-visibility.js";
+
+function parseAvailability(raw: string | undefined): AvailabilityFilter {
+  if (raw === "now" || raw === "today" || raw === "schedulable") {
+    return raw;
+  }
+  return "any";
+}
 
 function parseSort(raw: string | undefined): MarketplaceSort {
   const allowed: MarketplaceSort[] = [
@@ -28,23 +37,24 @@ export function marketplaceRoutes(): Hono {
     const category = c.req.query("category");
     const sort = parseSort(c.req.query("sort"));
     const onlineOnly = c.req.query("onlineOnly") === "true";
+    const availabilityFilter = parseAvailability(c.req.query("availability"));
     const minRating = c.req.query("minRating");
     const minPriceCents = c.req.query("minPriceCents");
     const maxPriceCents = c.req.query("maxPriceCents");
 
     const rows = await getPrismaClient().capability.findMany({
-      where: { status: "PUBLISHED", currentVersionId: { not: null } },
+      where: publicMarketplaceWhere,
       include: {
         sellerProfile: { select: { id: true, displayName: true } },
         currentVersion: { select: { priceSnapshotCents: true } },
       },
     });
 
-    const availability = await summarizeMarketplaceAvailability(
+    const summaries = await summarizeMarketplaceAvailability(
       getPrismaClient(),
       rows.map((r) => r.id),
     );
-    const availById = new Map(availability.map((a) => [a.capabilityId, a]));
+    const availById = new Map(summaries.map((a) => [a.capabilityId, a]));
 
     const listings: CapabilityListingRow[] = rows.map((row) => {
       const avail = availById.get(row.id);
@@ -71,6 +81,7 @@ export function marketplaceRoutes(): Hono {
       q,
       category,
       onlineOnly,
+      availability: availabilityFilter,
       minRating: minRating ? Number(minRating) : undefined,
       minPriceCents: minPriceCents ? Number(minPriceCents) : undefined,
       maxPriceCents: maxPriceCents ? Number(maxPriceCents) : undefined,
@@ -78,7 +89,7 @@ export function marketplaceRoutes(): Hono {
     });
     const sorted = sortCapabilityListings(filtered, sort, q);
 
-    const categories = [...new Set(listings.map((r) => r.category))].sort();
+    const categories = mergeMarketplaceCategories(listings.map((r) => r.category));
 
     return c.json({
       capabilities: sorted,
@@ -88,12 +99,12 @@ export function marketplaceRoutes(): Hono {
 
   app.get("/marketplace/categories", async (c) => {
     const rows = await getPrismaClient().capability.findMany({
-      where: { status: "PUBLISHED" },
+      where: { status: "PUBLISHED", visibility: "PUBLIC" },
       select: { marketplaceCategory: true },
       distinct: ["marketplaceCategory"],
     });
     return c.json({
-      categories: rows.map((r) => r.marketplaceCategory).sort(),
+      categories: mergeMarketplaceCategories(rows.map((r) => r.marketplaceCategory)),
     });
   });
 

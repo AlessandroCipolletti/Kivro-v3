@@ -46,6 +46,17 @@ describe("marketplace search §125", () => {
     expect(filtered[0]?.slug).toBe("alpha");
   });
 
+  it("filters available today and ranks available-now first", () => {
+    const later = new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString();
+    const rows = sample.map((row) =>
+      row.slug === "beta" ? { ...row, nextAvailableAt: later } : row,
+    );
+    const today = filterCapabilityListings(rows, { availability: "today", nowMs: Date.now() });
+    expect(today.map((row) => row.slug).sort()).toEqual(["alpha", "beta"]);
+    const ranked = sortCapabilityListings(rows, "relevance");
+    expect(ranked[0]?.slug).toBe("alpha");
+  });
+
   it("sorts by price ascending", () => {
     const sorted = sortCapabilityListings(sample, "price_asc");
     expect(sorted[0]?.slug).toBe("alpha");
