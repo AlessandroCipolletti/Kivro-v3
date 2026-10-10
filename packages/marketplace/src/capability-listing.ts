@@ -38,6 +38,8 @@ export type CapabilityListingRow = {
   availabilityStatus?: string;
   accepting?: boolean;
   nextAvailableAt?: string | null;
+  /** When false, a file request must not rank this capability on description text alone. */
+  acceptsFileInput?: boolean;
 };
 
 export function filterCapabilityListings(

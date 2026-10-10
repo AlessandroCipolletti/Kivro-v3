@@ -3,6 +3,8 @@ export const WEBHOOK_EVENT_TYPES = [
   "job.failed",
   "job.cancelled",
   "job.started",
+  "job.scheduled",
+  "job.expired",
 ] as const;
 
 export type WebhookEventType = (typeof WEBHOOK_EVENT_TYPES)[number];

@@ -33,6 +33,7 @@ export {
   buildProviderCostEstimateView,
 } from "./provider-cost-view.js";
 export { buildSellerEarningsDashboard } from "./earnings-dashboard.js";
+export { scheduledPauseWarning, summarizeScheduledDemand } from "./scheduled-demand.js";
 export { buildSellerProfitAnalytics } from "./profit-analytics.js";
 export { buildCapabilityAnalytics } from "./capability-analytics.js";
 export { assessRollbackReadiness } from "./rollback-readiness.js";

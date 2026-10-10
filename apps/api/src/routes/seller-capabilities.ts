@@ -14,7 +14,7 @@ import {
   suggestInputContractFromDiscovery,
   validateImportConsent,
 } from "@kivro/capability-publish";
-import { assessRollbackReadiness, buildSemanticVersionDiff } from "@kivro/seller-experience";
+import { assessRollbackReadiness, buildSemanticVersionDiff, scheduledPauseWarning } from "@kivro/seller-experience";
 import { parseCapabilityContract, parseInternetResearchPolicy, parseWorkerManifest } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
 import {
@@ -99,7 +99,10 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         profile.id,
         c.req.param("id"),
       );
-      return c.json({ capability });
+      const waiting = await getPrismaClient().job.count({
+        where: { capabilityId: capability.id, status: "SCHEDULED" },
+      });
+      return c.json({ capability, pauseWarning: scheduledPauseWarning(waiting) });
     } catch (err) {
       if (err instanceof Error && err.message === "NOT_FOUND") {
         return c.json({ error: "NOT_FOUND" }, 404);

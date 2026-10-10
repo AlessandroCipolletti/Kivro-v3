@@ -17,6 +17,7 @@ export function CapabilityCard({ capability }: { capability: MarketplaceCapabili
   const avail = marketplaceAvailabilityUi({
     status: capability.availabilityStatus,
     accepting: capability.accepting,
+    cardLabel: capability.availabilityStatus === "SCHEDULED_OFFLINE" ? "Eligible to start later" : null,
   });
   return (
     <article className="card">

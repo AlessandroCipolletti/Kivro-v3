@@ -48,6 +48,55 @@ export async function reconcileJobPaymentAfterTerminal(
   return { released, refunded: true };
 }
 
+/** §486 — a scheduled reservation that never starts is released, not settled. */
+export function shouldReleaseUnstartedReservation(input: {
+  status: string;
+  scheduleWaitDeadlineAt?: Date | null;
+  now: Date;
+}): boolean {
+  return (
+    input.status === "SCHEDULED" &&
+    input.scheduleWaitDeadlineAt != null &&
+    input.scheduleWaitDeadlineAt.getTime() <= input.now.getTime()
+  );
+}
+
+export async function sweepUnstartedScheduledJobs(
+  prisma: PrismaClient,
+  limit = 25,
+): Promise<{ scanned: number; released: number }> {
+  const now = new Date();
+  const jobs = await prisma.job.findMany({
+    where: { status: "SCHEDULED", scheduleWaitDeadlineAt: { lte: now } },
+    take: limit,
+  });
+  let released = 0;
+  for (const job of jobs) {
+    if (!shouldReleaseUnstartedReservation({ status: job.status, scheduleWaitDeadlineAt: job.scheduleWaitDeadlineAt, now })) {
+      continue;
+    }
+    assertJobTransition("SCHEDULED", "EXPIRED");
+    await prisma.job.update({
+      where: { id: job.id },
+      data: { status: "EXPIRED", failureCode: "SCHEDULE_WAIT_EXCEEDED" },
+    });
+    await prisma.jobStateTransition.create({
+      data: {
+        jobId: job.id,
+        fromStatus: "SCHEDULED",
+        toStatus: "EXPIRED",
+        actor: "SYSTEM",
+        reason: "SCHEDULE_WAIT_EXCEEDED",
+      },
+    });
+    const payment = await reconcileJobPaymentAfterTerminal(prisma, job.id);
+    if (payment.released) {
+      released += 1;
+    }
+  }
+  return { scanned: jobs.length, released };
+}
+
 export async function sweepStaleJobPaymentReservations(
   prisma: PrismaClient,
   limit = 50,

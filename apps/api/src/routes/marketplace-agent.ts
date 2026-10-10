@@ -5,6 +5,7 @@ import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import { publicMarketplaceWhere } from "../services/capability-visibility.js";
 import {
   authorizePlanApproval,
+  buildInferenceUsageRecord,
   planStepEstimatedMinutes,
   buildOrchestrationPlanDraft,
   buildStepAgentDraft,
@@ -85,6 +86,24 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
         result,
       });
     }
+    await getPrismaClient()
+      .auditEvent.create({
+        data: {
+          type: "PLATFORM_INFERENCE",
+          actor: "SYSTEM",
+          correlationId: body.conversationId ?? null,
+          sanitizedPayload: buildInferenceUsageRecord({
+            task: "INTENT",
+            provider: parsed.servedBy,
+            model: parsed.usage?.model ?? null,
+            inputTokens: parsed.usage?.inputTokens ?? null,
+            outputTokens: parsed.usage?.outputTokens ?? null,
+            cachedInputTokens: parsed.usage?.cachedInputTokens ?? null,
+            latencyMs: parsed.usage?.latencyMs ?? null,
+          }),
+        },
+      })
+      .catch(() => undefined);
     return c.json({
       ...result,
       intentLabel: parsed.intentLabel,

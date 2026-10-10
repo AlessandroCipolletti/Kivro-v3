@@ -12,6 +12,13 @@ type Earnings = {
   paidCents: number;
   transferCount: number;
   disclaimer: string;
+  scheduledDemand?: {
+    jobCount: number;
+    reservedBuyerValueCents: number;
+    estimatedSellerEarningsCents: number;
+    note: string;
+    windows: Array<{ startsAt: string; jobCount: number; workloadMinutes: number }>;
+  };
 };
 
 type Profit = {
@@ -65,7 +72,7 @@ export default function SellerEconomicsPage() {
           <h2 className="text-lg font-medium">Earnings (ledger)</h2>
           <dl className="mt-3 grid gap-2 sm:grid-cols-3">
             <div>
-              <dt className="text-sm text-muted">Pending</dt>
+              <dt className="text-sm text-muted">Reserved, not settled</dt>
               <dd className="text-xl font-semibold tabular-nums">{usd(earnings.pendingCents)}</dd>
             </div>
             <div>
@@ -78,6 +85,17 @@ export default function SellerEconomicsPage() {
             </div>
           </dl>
           <p className="mt-3 text-xs text-muted">{earnings.disclaimer}</p>
+          {earnings.scheduledDemand && earnings.scheduledDemand.jobCount > 0 ? (
+            <div className="mt-4 border-t border-border pt-3">
+              <h3 className="text-sm font-medium">Scheduled jobs</h3>
+              <p className="mt-1 text-sm">
+                {earnings.scheduledDemand.jobCount} waiting. Reserved buyer value{" "}
+                {usd(earnings.scheduledDemand.reservedBuyerValueCents)}. Estimated seller earnings{" "}
+                {usd(earnings.scheduledDemand.estimatedSellerEarningsCents)}.
+              </p>
+              <p className="mt-1 text-xs text-muted">{earnings.scheduledDemand.note}</p>
+            </div>
+          ) : null}
         </section>
       ) : null}
       {profit ? (

@@ -14,6 +14,7 @@ export {
   type MarketplacePriceTier,
 } from "./price-tiers.js";
 export { requireEnabledPriceTier, listPublicPriceTiers } from "./tier-validation.js";
+export { CARD_AUTHORIZATION_WINDOW_MS, paymentMethodForSchedule } from "./card-auth-window.js";
 export { sellerPricingBreakdown, estimateSellerMarginMinor } from "./seller-economics.js";
 export {
   mapSellerConnectStatus,
@@ -62,7 +63,9 @@ export {
 export { getBuyerBillingSummary, pricingProductPrincipleCopy } from "./buyer-billing-read.js";
 export {
   reconcileJobPaymentAfterTerminal,
+  shouldReleaseUnstartedReservation,
   sweepStaleJobPaymentReservations,
+  sweepUnstartedScheduledJobs,
 } from "./job-payment-hooks.js";
 export {
   executeSellerStripeTransfer,

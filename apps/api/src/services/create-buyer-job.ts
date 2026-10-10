@@ -3,6 +3,12 @@ import type { PrismaClient } from "@kivro/database";
 import type { CapabilityContract } from "@kivro/contracts";
 import { validateBuyerSubmissionAssets } from "@kivro/buyer-experience";
 import { validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
+import {
+  buyerInputAttemptsScheduleControl,
+  evaluateCapabilityAvailability,
+  resolveExecutionPreference,
+  type ExecutionPreferenceMode,
+} from "@kivro/job-scheduling";
 import { buyerMayPurchase } from "./capability-visibility.js";
 
 export async function createBuyerJobFromApi(
@@ -17,6 +23,7 @@ export async function createBuyerJobFromApi(
     buyerApiKeyId?: string;
     executionQuoteId?: string;
     buyerHardDeadlineAt?: Date;
+    executionMode?: ExecutionPreferenceMode;
   },
 ): Promise<
   | {
@@ -42,6 +49,25 @@ export async function createBuyerJobFromApi(
   }
   if (!(await buyerMayPurchase(prisma, capability, input.buyerId))) {
     return { error: "NOT_FOUND" };
+  }
+  if (buyerInputAttemptsScheduleControl(input.inputs ?? {})) {
+    return { error: "SCHEDULE_CONTROL_FORBIDDEN" };
+  }
+  let scheduledRunAt = input.scheduledRunAt;
+  if (input.executionMode) {
+    const availability = await evaluateCapabilityAvailability(prisma, input.capabilityId);
+    if ("error" in availability) {
+      return { error: availability.error };
+    }
+    const resolved = resolveExecutionPreference({
+      mode: input.executionMode,
+      accepting: availability.accepting,
+      nextAvailableAt: availability.nextAvailableAt,
+    });
+    if (!resolved.ok) {
+      return { error: resolved.error };
+    }
+    scheduledRunAt = resolved.scheduledRunAt ? new Date(resolved.scheduledRunAt) : undefined;
   }
   const version = capability.currentVersion;
   const contract = {
@@ -73,7 +99,7 @@ export async function createBuyerJobFromApi(
     capabilityId: input.capabilityId,
     structuredInput: input.inputs ?? {},
     assetManifest: assetCheck.normalized,
-    scheduledRunAt: input.scheduledRunAt,
+    scheduledRunAt,
     executionQuoteId: input.executionQuoteId,
     buyerHardDeadlineAt: input.buyerHardDeadlineAt,
   });

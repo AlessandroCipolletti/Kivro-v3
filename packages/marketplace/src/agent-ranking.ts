@@ -36,6 +36,9 @@ export function rankAgentCandidates(
         return false;
       }
     }
+    if (input.constraints.needsFileInput && row.acceptsFileInput === false) {
+      return false;
+    }
     if (input.constraints.onlineOnly && (row.availabilityStatus !== "ONLINE" || !row.accepting)) {
       return false;
     }

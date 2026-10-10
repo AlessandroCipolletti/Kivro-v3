@@ -7,6 +7,7 @@ import { getPrismaClient } from "@kivro/database";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
 import { retryDueWebhookDeliveries } from "@kivro/buyer-webhooks";
 import { runSchedulingSweeps } from "@kivro/job-scheduling";
+import { aggregateInferenceUsage, buildInferenceUsageRecord, readPlatformInferenceHealth, routingChangeAudit } from "@kivro/marketplace-agent";
 import {
   assertAdminToken,
   isGlobalDispatchEnabled,
@@ -328,6 +329,77 @@ export function platformAdminRoutes(): Hono {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
     return c.json({ revoked: true, workerDeviceId: id });
+  });
+
+  app.get("/inference", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const since = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    const events = await getPrismaClient().auditEvent.findMany({
+      where: { type: "PLATFORM_INFERENCE", createdAt: { gte: since } },
+      select: { sanitizedPayload: true },
+      take: 500,
+    });
+    const usage = events.flatMap((event) => {
+      const payload = event.sanitizedPayload;
+      if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+        return [];
+      }
+      const row = payload as Record<string, unknown>;
+      if (
+        (row.task !== "INTENT" && row.task !== "RECOMMENDATION" && row.task !== "ORCHESTRATION") ||
+        typeof row.provider !== "string"
+      ) {
+        return [];
+      }
+      return [
+        buildInferenceUsageRecord({
+          task: row.task,
+          provider: row.provider,
+          model: typeof row.model === "string" ? row.model : null,
+          inputTokens: typeof row.inputTokens === "number" ? row.inputTokens : null,
+          outputTokens: typeof row.outputTokens === "number" ? row.outputTokens : null,
+          cachedInputTokens: typeof row.cachedInputTokens === "number" ? row.cachedInputTokens : null,
+          latencyMs: typeof row.latencyMs === "number" ? row.latencyMs : null,
+        }),
+      ];
+    });
+    return c.json({
+      inference: readPlatformInferenceHealth(),
+      lastDay: aggregateInferenceUsage(usage),
+    });
+  });
+
+  app.post("/inference/routing", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const body = await c.req
+      .json<{ task?: "INTENT" | "RECOMMENDATION" | "ORCHESTRATION"; previousModel?: string; nextModel?: string }>()
+      .catch(() => null);
+    if (!body?.task || !body.nextModel?.trim()) {
+      return c.json({ error: "INVALID_ROUTING" }, 400);
+    }
+    const audit = routingChangeAudit({
+      task: body.task,
+      previousModel: body.previousModel ?? null,
+      nextModel: body.nextModel.trim(),
+    });
+    await getPrismaClient().auditEvent.create({
+      data: {
+        type: "PLATFORM_INFERENCE_ROUTING_CHANGE",
+        actor: "ADMIN",
+        sanitizedPayload: JSON.parse(JSON.stringify(audit)),
+      },
+    });
+    return c.json({ recorded: true, audit });
   });
 
   return app;

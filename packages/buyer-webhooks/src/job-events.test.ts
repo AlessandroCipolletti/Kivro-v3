@@ -8,5 +8,7 @@ describe("webhookEventForJobStatus §328", () => {
     expect(webhookEventForJobStatus("CANCELLED")).toBe("job.cancelled");
     expect(webhookEventForJobStatus("FAILED_EXECUTION")).toBe("job.failed");
     expect(webhookEventForJobStatus("QUEUED")).toBe(null);
+    expect(webhookEventForJobStatus("SCHEDULED")).toBe("job.scheduled");
+    expect(webhookEventForJobStatus("EXPIRED")).toBe("job.expired");
   });
 });

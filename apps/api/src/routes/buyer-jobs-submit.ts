@@ -7,6 +7,11 @@ import {
 import { getPrismaClient } from "@kivro/database";
 import { validateBuyerSubmissionAssets } from "@kivro/buyer-experience";
 import { validateBuyerInput, type JobAssetRef } from "@kivro/job-io";
+import {
+  buyerInputAttemptsScheduleControl,
+  evaluateCapabilityAvailability,
+  resolveExecutionPreference,
+} from "@kivro/job-scheduling";
 import type { CapabilityContract } from "@kivro/contracts";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
@@ -30,6 +35,7 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
       scheduledRunAt?: string;
       executionQuoteId?: string;
       hardDeliveryDeadlineAt?: string;
+      execution?: { mode?: string };
     };
     try {
       body = await c.req.json();
@@ -81,6 +87,9 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
     if (!validation.ok) {
       return c.json({ error: "VALIDATION_FAILED", issues: validation.issues }, 400);
     }
+    if (buyerInputAttemptsScheduleControl(body.inputs ?? {})) {
+      return c.json({ error: "SCHEDULE_CONTROL_FORBIDDEN" }, 400);
+    }
     const paymentMode = body.paymentMode ?? "credits";
     let scheduledRunAt: Date | undefined;
     if (body.scheduledRunAt) {
@@ -95,6 +104,24 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
       if (Number.isNaN(buyerHardDeadlineAt.getTime())) {
         return c.json({ error: "INVALID_DEADLINE" }, 400);
       }
+    }
+    if (body.execution?.mode != null) {
+      if (body.execution.mode !== "IMMEDIATE_ONLY" && body.execution.mode !== "EARLIEST_AVAILABLE") {
+        return c.json({ error: "INVALID_EXECUTION_MODE" }, 400);
+      }
+      const availability = await evaluateCapabilityAvailability(getPrismaClient(), body.capabilityId);
+      if ("error" in availability) {
+        return c.json({ error: availability.error }, 404);
+      }
+      const resolved = resolveExecutionPreference({
+        mode: body.execution.mode,
+        accepting: availability.accepting,
+        nextAvailableAt: availability.nextAvailableAt,
+      });
+      if (!resolved.ok) {
+        return c.json({ error: resolved.error }, 409);
+      }
+      scheduledRunAt = resolved.scheduledRunAt ? new Date(resolved.scheduledRunAt) : undefined;
     }
     const result =
       paymentMode === "card"

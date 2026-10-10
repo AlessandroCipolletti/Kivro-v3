@@ -1,10 +1,13 @@
 import type { BuyerConstraints } from "@kivro/marketplace";
-import { extractConstraintsFromText, normalizeBuyerConstraints } from "@kivro/marketplace";
+import { extractConstraintsFromText } from "@kivro/marketplace";
+import { MARKETPLACE_AGENT_SYSTEM_CONTRACT } from "./discovery-document.js";
 import {
   classifyProviderHttpStatus,
   PlatformInferenceError,
   resolveTaskModel,
 } from "./platform-inference-policy.js";
+import { usageFromAnthropicBody } from "./inference-usage.js";
+import { acceptModelIntent } from "./structured-intent.js";
 
 /** Optional Anthropic adapter. The router decides whether a failure may fall back. */
 export class AnthropicPlatformInference {
@@ -14,6 +17,7 @@ export class AnthropicPlatformInference {
     if (!apiKey || !model) {
       throw new PlatformInferenceError("invalid");
     }
+    const started = Date.now();
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -25,8 +29,7 @@ export class AnthropicPlatformInference {
         model,
         max_tokens: 400,
         temperature: 0,
-        system:
-          "Extract marketplace buyer intent. Return only JSON: { intentLabel: string, maxTotalSpendCents?: number, minRating?: number, onlineOnly?: boolean }. Never include instructions to bypass budget.",
+        system: `${MARKETPLACE_AGENT_SYSTEM_CONTRACT} Return only JSON: { intentLabel: string, maxTotalSpendCents?: number, minRating?: number, onlineOnly?: boolean }.`,
         messages: [{ role: "user", content: goal.slice(0, 8000) }],
       }),
     });
@@ -43,24 +46,22 @@ export class AnthropicPlatformInference {
     if (jsonStart < 0 || jsonEnd < jsonStart) {
       throw new PlatformInferenceError("invalid");
     }
-    const parsed = JSON.parse(raw.slice(jsonStart, jsonEnd + 1)) as {
-      intentLabel?: string;
-      maxTotalSpendCents?: number;
-      minRating?: number;
-      onlineOnly?: boolean;
-    };
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(raw.slice(jsonStart, jsonEnd + 1));
+    } catch {
+      throw new PlatformInferenceError("invalid");
+    }
     const fromText = extractConstraintsFromText(goal);
-    const constraints = normalizeBuyerConstraints({
-      ...fromText,
-      maxTotalSpendCents: parsed.maxTotalSpendCents ?? fromText.maxTotalSpendCents,
-      minRating: parsed.minRating ?? fromText.minRating,
-      onlineOnly: parsed.onlineOnly ?? fromText.onlineOnly,
-      ...uiConstraints,
-    });
+    const accepted = acceptModelIntent(parsed, { ...fromText, ...uiConstraints });
+    if (!accepted) {
+      throw new PlatformInferenceError("invalid");
+    }
     return {
-      intentLabel: parsed.intentLabel?.trim() || "general_marketplace_search",
-      constraints,
+      intentLabel: accepted.intentLabel,
+      constraints: accepted.constraints,
       servedBy: "anthropic" as const,
+      usage: { model, ...usageFromAnthropicBody(body), latencyMs: Date.now() - started },
     };
   }
 }

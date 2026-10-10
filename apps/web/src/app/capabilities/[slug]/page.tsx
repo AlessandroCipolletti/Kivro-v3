@@ -190,13 +190,22 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
           </div>
         )}
         <p style={{ marginTop: "1.25rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-          {accepting ? (
+          {availability?.purchaseAction === "RUN_NOW" || (!availability?.purchaseAction && accepting) ? (
             <Link className="button" href={`/capabilities/${slug}/run`}>
-              Run
+              {availability?.purchaseLabel ?? "Run now"}
+            </Link>
+          ) : availability?.purchaseAction === "JOIN_QUEUE" ? (
+            <Link className="button" href={`/capabilities/${slug}/run`}>
+              {availability.purchaseLabel ?? "Join queue"}
+            </Link>
+          ) : availability?.purchaseAction === "SCHEDULE_EARLIEST" ||
+            (!availability?.purchaseAction && availability?.nextAvailableAt) ? (
+            <Link className="button" href={`/capabilities/${slug}/run?schedule=earliest`}>
+              {availability?.purchaseLabel ?? "Schedule for earliest availability"}
             </Link>
           ) : (
             <button className="button" type="button" disabled>
-              Run unavailable
+              {availability?.purchaseLabel ?? "Unavailable"}
             </button>
           )}
           <FavoriteButton capabilityId={cap.id} />

@@ -1,3 +1,4 @@
+import { describeAvailabilityLayers, type AvailabilityLayer } from "./availability-layers.js";
 import type { CapabilityScheduleConfig } from "./weekly-schedule.js";
 import { isScheduleOpen } from "./weekly-schedule.js";
 import { mapWorkerDeviceToBuyerAvailability, type BuyerAvailabilityStatus } from "./availability-status.js";
@@ -6,6 +7,7 @@ export type AcceptingJobsEvaluation = {
   accepting: boolean;
   buyerAvailability: BuyerAvailabilityStatus;
   reasons: string[];
+  layers: AvailabilityLayer[];
 };
 
 /** Master Spec §402 — deterministic acceptance gate (MVP concurrency = 1). */
@@ -67,5 +69,9 @@ export function evaluateAcceptingNewJobs(input: {
     hasActiveJob: input.hasActiveJobOnWorker,
   });
   const accepting = reasons.length === 0;
-  return { accepting, buyerAvailability, reasons };
+  const layers = describeAvailabilityLayers({
+    visibleToBuyer: input.capabilityPublished,
+    reasons,
+  });
+  return { accepting, buyerAvailability, reasons, layers };
 }

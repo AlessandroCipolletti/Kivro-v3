@@ -1,5 +1,11 @@
 import { getPrismaClient } from "@kivro/database";
 import { evaluateCapabilityAvailability } from "@kivro/job-scheduling";
+import {
+  buildJobScheduleQuote,
+  buyerPurchaseAction,
+  buyerPurchaseActionLabel,
+  marketplaceCardCopy,
+} from "@kivro/marketplace";
 import { buildBuyerMaintenanceCopy, buildMaintenanceState } from "@kivro/seller-experience";
 import { resolveSessionUser } from "@kivro/auth";
 import { getCookie } from "hono/cookie";
@@ -37,6 +43,13 @@ export function capabilityAvailabilityRoutes(): Hono {
     const buyerMessage = availability.reasons.includes("SELLER_MAINTENANCE")
       ? buildBuyerMaintenanceCopy(maintenance)
       : null;
+    const timeZone = c.req.query("timeZone") ?? "UTC";
+    const purchaseAction = buyerPurchaseAction({
+      accepting: availability.accepting,
+      availabilityStatus: availability.buyerAvailability,
+      nextAvailableAt: availability.nextAvailableAt ?? null,
+    });
+    const version = visible.currentVersion;
     return c.json({
       capabilityId: capability.id,
       accepting: availability.accepting,
@@ -44,6 +57,24 @@ export function capabilityAvailabilityRoutes(): Hono {
       scheduleStatus: availability.buyerAvailability,
       reasons: availability.reasons,
       nextAvailableAt: availability.nextAvailableAt ?? null,
+      purchaseAction,
+      purchaseLabel: buyerPurchaseActionLabel(purchaseAction),
+      cardLabel: marketplaceCardCopy({
+        status: availability.buyerAvailability,
+        nextAvailableAt: availability.nextAvailableAt ?? null,
+        timeZone,
+      }),
+      scheduleQuote: version
+        ? buildJobScheduleQuote({
+            capabilityId: capability.id,
+            capabilityVersionId: version.id,
+            amountMinor: version.priceSnapshotCents,
+            accepting: availability.accepting,
+            nextEligibleAt: availability.nextAvailableAt ?? null,
+            estimatedDurationSeconds: visible.estimatedDuration,
+            timeZone,
+          })
+        : null,
       buyerMessage,
       maintenanceExpectedReturnAt: maintenance.active ? maintenance.expectedReturnAt : null,
     });

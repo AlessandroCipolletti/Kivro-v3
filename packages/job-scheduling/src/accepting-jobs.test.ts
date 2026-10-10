@@ -20,6 +20,27 @@ describe("accepting jobs §402", () => {
     expect(result.buyerAvailability).toBe("ONLINE");
   });
 
+  it("rejects an offline or paused capability", () => {
+    const offline = evaluateAcceptingNewJobs({
+      capabilityPublished: true,
+      schedule: openSchedule,
+      workerDeviceStatus: "OFFLINE",
+      hasActiveJobOnWorker: false,
+      globalDispatchEnabled: true,
+    });
+    expect(offline.accepting).toBe(false);
+    expect(offline.reasons).toContain("WORKER_NOT_ONLINE");
+    const paused = evaluateAcceptingNewJobs({
+      capabilityPublished: true,
+      schedule: { mode: "MANUALLY_PAUSED", timezone: "UTC", windows: [] },
+      workerDeviceStatus: "ONLINE",
+      hasActiveJobOnWorker: false,
+      globalDispatchEnabled: true,
+    });
+    expect(paused.accepting).toBe(false);
+    expect(paused.reasons).toContain("MANUALLY_PAUSED");
+  });
+
   it("rejects when worker busy", () => {
     const result = evaluateAcceptingNewJobs({
       capabilityPublished: true,

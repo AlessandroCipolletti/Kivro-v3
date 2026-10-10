@@ -1,4 +1,5 @@
 export { digestStructuredBuyerInputs } from "./inputs-digest.js";
+export { quoteChargeAllowed } from "./quote-freshness.js";
 export { buildPrivacyDisclosureFromManifest, type BuyerPrivacyDisclosure } from "./privacy-disclosure.js";
 export {
   buildMinimizedWorkerExecutionBundle,

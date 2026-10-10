@@ -8,7 +8,6 @@ const FAILURE_TERMINAL_STATUSES: ReadonlySet<JobStatus> = new Set([
   "TIMED_OUT",
   "RESULT_REJECTED",
   "REJECTED",
-  "EXPIRED",
 ]);
 
 export function webhookEventForJobStatus(status: JobStatus): WebhookEventType | null {
@@ -20,6 +19,12 @@ export function webhookEventForJobStatus(status: JobStatus): WebhookEventType | 
   }
   if (status === "RUNNING") {
     return "job.started";
+  }
+  if (status === "SCHEDULED") {
+    return "job.scheduled";
+  }
+  if (status === "EXPIRED") {
+    return "job.expired";
   }
   if (FAILURE_TERMINAL_STATUSES.has(status)) {
     return "job.failed";

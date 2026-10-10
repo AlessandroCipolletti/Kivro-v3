@@ -1,4 +1,5 @@
 import type { JobOutputAssetRef } from "@kivro/marketplace";
+import { issueCrossJobAssetGrant, type CrossJobAssetGrant } from "./asset-grant.js";
 
 export type CompletedStepOutput = {
   clientStepKey: string;
@@ -14,9 +15,18 @@ export function buildCrossJobAgentDraft(input: {
   stepLabel: string;
   inputMapping: Record<string, unknown> | null;
   completedSteps: CompletedStepOutput[];
-}): { instructions: string; attachments: Array<{ filename: string; assetId: string; sizeBytes: number; sniffedMimeType?: string }> } {
+  targetJobId?: string;
+  now?: Date;
+}): {
+  instructions: string;
+  attachments: Array<{ filename: string; assetId: string; sizeBytes: number; sniffedMimeType?: string }>;
+  grants: CrossJobAssetGrant[];
+} {
   const lines = [`Orchestration goal: ${input.planGoal}`, `Step: ${input.stepLabel}`];
   const attachments: Array<{ filename: string; assetId: string; sizeBytes: number; sniffedMimeType?: string }> = [];
+  const grants: CrossJobAssetGrant[] = [];
+  const now = input.now ?? new Date();
+  const targetJobId = input.targetJobId ?? `pending:${input.stepLabel}`;
 
   const sourceSteps = input.inputMapping?.sourceSteps;
   if (Array.isArray(sourceSteps)) {
@@ -41,6 +51,14 @@ export function buildCrossJobAgentDraft(input: {
           sizeBytes: asset.sizeBytes ?? 0,
           sniffedMimeType: asset.mimeType,
         });
+        grants.push(
+          issueCrossJobAssetGrant({
+            assetId: asset.id,
+            sourceJobId: completed.jobId,
+            targetJobId,
+            now,
+          }),
+        );
       }
     }
   }
@@ -52,5 +70,6 @@ export function buildCrossJobAgentDraft(input: {
   return {
     instructions: lines.join("\n"),
     attachments,
+    grants,
   };
 }

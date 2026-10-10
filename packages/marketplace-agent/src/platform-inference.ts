@@ -17,6 +17,13 @@ export type PlatformIntent = {
   constraints: BuyerConstraints;
   servedBy: ProviderId;
   budgetLimited?: boolean;
+  usage?: {
+    model: string | null;
+    inputTokens: number | null;
+    outputTokens: number | null;
+    cachedInputTokens: number | null;
+    latencyMs: number | null;
+  };
 };
 
 export type InferenceCallOptions = { userId?: string };

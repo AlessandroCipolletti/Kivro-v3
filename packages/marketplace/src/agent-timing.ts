@@ -1,7 +1,7 @@
 import type { CapabilityListingRow } from "./capability-listing.js";
 
 /** §488–§516 — deterministic timing. The model cannot override this filter. */
-export type AgentTimingMode = "IMMEDIATE" | "DEADLINE";
+export type AgentTimingMode = "IMMEDIATE" | "DEADLINE" | "EARLIEST_AVAILABLE_ALLOWED";
 
 export type AgentTimingSnapshot = {
   availabilityStatus: string | null;
@@ -13,7 +13,7 @@ export type AgentTimingSnapshot = {
 type TimingRow = Pick<
   CapabilityListingRow,
   "availabilityStatus" | "accepting" | "nextAvailableAt" | "estimatedDuration"
->;
+> & { estimatedQueueWaitSeconds?: number | null };
 
 export function agentTimingSnapshot(row: TimingRow): AgentTimingSnapshot {
   return {
@@ -36,8 +36,16 @@ export function capabilityFitsAgentTiming(
   deadlineMs?: number,
 ): boolean {
   const runnableNow = row.availabilityStatus === "ONLINE" && row.accepting === true;
+  const shortQueue =
+    row.availabilityStatus === "BUSY" &&
+    row.accepting === true &&
+    row.estimatedQueueWaitSeconds != null &&
+    row.estimatedQueueWaitSeconds <= 5 * 60;
   if (mode === "IMMEDIATE") {
-    return runnableNow;
+    return runnableNow || shortQueue;
+  }
+  if (mode === "EARLIEST_AVAILABLE_ALLOWED") {
+    return runnableNow || shortQueue || Boolean(row.nextAvailableAt);
   }
   if (runnableNow) {
     return true;

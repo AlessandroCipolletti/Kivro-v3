@@ -14,3 +14,4 @@ export {
   computePauseDeadline,
   isPauseDurationExceeded,
 } from "./job-pause-policy.js";
+export { networkPrimitivesForPurpose, type NetworkPurpose } from "./network-purpose.js";

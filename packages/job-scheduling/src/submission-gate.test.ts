@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { evaluateAcceptingNewJobs } from "./accepting-jobs.js";
+import { purchaseBlockedBeforeFunds } from "./submission-gate.js";
 
 describe("submission gate semantics §406", () => {
   it("maps schedule closed to scheduled offline class", () => {
@@ -18,5 +19,11 @@ describe("submission gate semantics §406", () => {
     expect(evaluation.accepting).toBe(false);
     expect(evaluation.reasons).toContain("SCHEDULE_CLOSED");
     expect(evaluation.buyerAvailability).toBe("SCHEDULED_OFFLINE");
+    expect(
+      purchaseBlockedBeforeFunds({
+        accepting: evaluation.accepting,
+        buyerAvailability: evaluation.buyerAvailability,
+      }),
+    ).toEqual({ ok: false, error: "CAPABILITY_SCHEDULED_OFFLINE" });
   });
 });

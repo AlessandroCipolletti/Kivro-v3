@@ -34,6 +34,46 @@ describe("capabilityFitsAgentTiming", () => {
     ).toBe(false);
   });
 
+  it("allows a future window only after the buyer explicitly permits waiting", () => {
+    const row = {
+      availabilityStatus: "SCHEDULED_OFFLINE" as const,
+      accepting: false,
+      nextAvailableAt: "2026-10-10T18:00:00.000Z",
+      estimatedDuration: 60,
+    };
+    expect(capabilityFitsAgentTiming(row, "EARLIEST_AVAILABLE_ALLOWED", now)).toBe(true);
+    expect(capabilityFitsAgentTiming(row, "IMMEDIATE", now)).toBe(false);
+  });
+
+  it("treats a five-minute queue as immediate and an eight-hour queue as not", () => {
+    expect(
+      capabilityFitsAgentTiming(
+        {
+          availabilityStatus: "BUSY",
+          accepting: true,
+          nextAvailableAt: null,
+          estimatedDuration: 60,
+          estimatedQueueWaitSeconds: 5 * 60,
+        },
+        "IMMEDIATE",
+        now,
+      ),
+    ).toBe(true);
+    expect(
+      capabilityFitsAgentTiming(
+        {
+          availabilityStatus: "BUSY",
+          accepting: true,
+          nextAvailableAt: null,
+          estimatedDuration: 60,
+          estimatedQueueWaitSeconds: 8 * 60 * 60,
+        },
+        "IMMEDIATE",
+        now,
+      ),
+    ).toBe(false);
+  });
+
   it("keeps an offline capability out of deadline mode when no window exists", () => {
     expect(
       capabilityFitsAgentTiming(

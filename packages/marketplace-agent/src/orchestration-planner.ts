@@ -7,6 +7,7 @@ import {
   type BuyerConstraints,
 } from "@kivro/marketplace";
 import { pickOrchestrationCapability } from "./capability-match.js";
+import { validatePlanCompatibility, type IoKind, type PlanIoStep } from "./plan-compatibility.js";
 
 export type PlannedStep = {
   clientStepKey: string;
@@ -48,6 +49,26 @@ export function parseParallelResearchCount(goal: string): number {
     return 3;
   }
   return 0;
+}
+
+function stepIo(step: PlannedStep): PlanIoStep {
+  let outputKind: IoKind = "text";
+  let inputKind: IoKind | undefined;
+  if (step.clientStepKey.startsWith("research")) {
+    outputKind = "json";
+  } else if (step.clientStepKey === "compare") {
+    outputKind = "markdown";
+    inputKind = "text";
+  } else if (step.clientStepKey === "pdf") {
+    outputKind = "pdf";
+    inputKind = "markdown";
+  }
+  return {
+    clientStepKey: step.clientStepKey,
+    outputKind,
+    inputKind,
+    dependsOnStepIds: step.dependsOnStepIds,
+  };
 }
 
 function priceCents(row: CapabilityListingRow): number {
@@ -133,7 +154,15 @@ export function buildOrchestrationPlanDraft(
     notes.push("No PDF capability on marketplace; plan ends after compare step.");
   }
 
-  const estimatedCostCents = steps.reduce((sum, s) => sum + s.estimatedPriceCents, 0);
+  const incompatible = new Set(
+    validatePlanCompatibility(steps.map(stepIo)).map((issue) => issue.split(":")[0] ?? ""),
+  );
+  const compatibleSteps = steps.filter((step) => !incompatible.has(step.clientStepKey));
+  if (compatibleSteps.length !== steps.length) {
+    notes.push("Dropped steps whose outputs cannot feed the next input without an unsupported conversion.");
+  }
+
+  const estimatedCostCents = compatibleSteps.reduce((sum, step) => sum + step.estimatedPriceCents, 0);
   const maxBudgetCents =
     constraints.maxTotalSpendCents ?? constraints.maxPerJobSpendCents ?? null;
 
@@ -141,7 +170,7 @@ export function buildOrchestrationPlanDraft(
     return { error: "BUDGET_TOO_LOW" };
   }
 
-  for (const step of steps) {
+  for (const step of compatibleSteps) {
     const cap = listings.find((l) => l.id === step.capabilityId);
     if (constraints.maxPerJobSpendCents != null && step.estimatedPriceCents > constraints.maxPerJobSpendCents) {
       return { error: "BUDGET_TOO_LOW" };
@@ -156,7 +185,7 @@ export function buildOrchestrationPlanDraft(
     constraints,
     maxBudgetCents,
     estimatedCostCents,
-    steps,
+    steps: compatibleSteps,
     notes,
   };
 }

@@ -46,7 +46,7 @@ export function buildPrivacyDisclosureFromManifest(input: {
 
   return {
     executionModel:
-      "Jobs run on seller-controlled worker hardware inside Kivro's isolated marketplace sandbox.",
+      "Your uploaded files will be processed on the seller's computer in an isolated marketplace worker. Local execution is not confidential computing.",
     dataHandling:
       input.internetSummary?.join(" ") ??
       (manifest ? categoryDetail(manifest, "PUBLIC_INTERNET") : undefined) ??

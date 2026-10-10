@@ -6,6 +6,7 @@ import {
   readPlatformInferenceHealth,
   resetInferenceBudgetForTests,
   resolveTaskModel,
+  selectPrimaryProvider,
 } from "./platform-inference-policy.js";
 
 describe("platform inference policy", () => {
@@ -46,5 +47,14 @@ describe("platform inference policy", () => {
     ).toBe("task-model");
     expect(resolveTaskModel("ORCHESTRATION", "provider-default", {})).toBe("provider-default");
     expect(resolveTaskModel("INTENT", "  ", {})).toBeNull();
+  });
+
+  it("runs with only one provider configured and does not put secrets in health", () => {
+    expect(selectPrimaryProvider({ KIVRO_PLATFORM_OPENAI_API_KEY: "sk-openai" })).toBe("openai");
+    expect(selectPrimaryProvider({ KIVRO_PLATFORM_ANTHROPIC_API_KEY: "sk-anthropic" })).toBe("anthropic");
+    const health = readPlatformInferenceHealth({ KIVRO_PLATFORM_ANTHROPIC_API_KEY: "sk-anthropic" });
+    expect(health.anthropic.configured).toBe(true);
+    expect(health.openai.configured).toBe(false);
+    expect(JSON.stringify(health)).not.toContain("sk-anthropic");
   });
 });

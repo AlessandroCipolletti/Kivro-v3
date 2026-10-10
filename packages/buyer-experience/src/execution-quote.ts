@@ -1,5 +1,6 @@
 import type { PrismaClient } from "@kivro/database";
 import { digestStructuredBuyerInputs } from "./inputs-digest.js";
+import { quoteChargeAllowed } from "./quote-freshness.js";
 import { runBuyerExecutionPreflight } from "./execution-preflight.js";
 
 const QUOTE_TTL_MS = 15 * 60_000;
@@ -107,7 +108,7 @@ export async function validateExecutionQuoteAtPurchase(
   if (quote.consumedAt) {
     return { ok: false, error: "QUOTE_ALREADY_USED" };
   }
-  if (quote.expiresAt.getTime() <= Date.now()) {
+  if (!quoteChargeAllowed(quote.expiresAt, new Date())) {
     return { ok: false, error: "QUOTE_EXPIRED" };
   }
   if (quote.capabilityId !== input.capabilityId) {

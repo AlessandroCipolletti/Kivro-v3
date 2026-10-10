@@ -3,6 +3,7 @@ import {
   reconcileJobPaymentAfterTerminal,
   sweepPendingSellerTransfers,
   sweepStaleJobPaymentReservations,
+  sweepUnstartedScheduledJobs,
 } from "@kivro/billing";
 import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
@@ -23,6 +24,7 @@ export async function runCloudMaintenanceSweeps(
   limits: { paymentReservationSweep: number },
 ): Promise<{
   staleReservations: Awaited<ReturnType<typeof sweepStaleJobPaymentReservations>>;
+  unstartedScheduled: Awaited<ReturnType<typeof sweepUnstartedScheduledJobs>>;
   pendingTransfers: Awaited<ReturnType<typeof sweepPendingSellerTransfers>>;
   pauseTimeouts: Awaited<ReturnType<typeof sweepExpiredJobPauses>>;
   failureOps: Awaited<ReturnType<typeof runJobFailureOperationsSweeps>>;
@@ -36,6 +38,7 @@ export async function runCloudMaintenanceSweeps(
   };
 }> {
   const staleReservations = await sweepStaleJobPaymentReservations(prisma);
+  const unstartedScheduled = await sweepUnstartedScheduledJobs(prisma, limits.paymentReservationSweep);
   const pendingTransfers = await sweepPendingSellerTransfers(prisma);
   const pauseTimeouts = await sweepExpiredJobPauses(prisma);
   const failureOps = await runJobFailureOperationsSweeps(prisma);
@@ -75,6 +78,7 @@ export async function runCloudMaintenanceSweeps(
 
   return {
     staleReservations,
+    unstartedScheduled,
     pendingTransfers,
     pauseTimeouts,
     failureOps,

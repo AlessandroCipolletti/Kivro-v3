@@ -7,6 +7,7 @@ import {
   queueJobAfterPayment,
 } from "@kivro/job-scheduling";
 import { assessHardDeliveryDeadline, validateExecutionQuoteAtPurchase } from "@kivro/buyer-experience";
+import { paymentMethodForSchedule } from "./card-auth-window.js";
 import { requireEnabledPriceTier } from "./tier-validation.js";
 
 function toJsonValue(value: unknown): Prisma.InputJsonValue {
@@ -91,6 +92,9 @@ export async function createCardAuthorizedJob(
     if (!deadlineCheck.feasible) {
       return { error: deadlineCheck.code };
     }
+  }
+  if (paymentMethodForSchedule({ scheduledRunAt }) === "PREPAID_CREDITS_ONLY") {
+    return { error: "CARD_AUTH_WINDOW_EXCEEDED" };
   }
   if (!scheduledRunAt) {
     const pre = await assertImmediateSubmissionBeforePayment(prisma, input.capabilityId);

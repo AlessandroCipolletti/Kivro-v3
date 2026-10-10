@@ -697,3 +697,27 @@ greenfield.
 ## DEC-AGT-001 — Agent timing, archives, and task models
 
 **Decision:** Marketplace Agent ranking defaults to IMMEDIATE when availability is known: only ONLINE and accepting capabilities are eligible. DEADLINE mode may include a future window only when start plus estimated duration finishes by the buyer's deadline. Ranked rows carry a structured timing snapshot; the model cannot override the filter. Archive MIME types and extensions are rejected because no safe extraction path exists. Inference model names come from provider or per-task environment variables (`KIVRO_PLATFORM_AI_MODEL_INTENT`, `RECOMMENDATION`, `ORCHESTRATION`). Sellers may store up to ten named test cases per capability; storing a case does not execute a job.
+
+## DEC-AGT-002 — Agent boundaries, file ceilings, and card windows
+
+**Decision:** Orchestration plans keep a step only when upstream outputs can feed it through an explicit transform (text to markdown, JSON to text, or combined text). PDF and other file conversions are not invented. Model JSON is rejected when it carries a purchase instruction or tries to raise the buyer's budget or lower the rating floor. Marketplace tools run only from a fixed allowlist. Discovery documents sent toward a model contain public listing fields and at most eight candidates. The platform agent does not inspect buyer files. Inference logs omit prompts unless `KIVRO_PLATFORM_AI_DEBUG=true`, and that mode redacts secrets. A seller file limit cannot exceed `KIVRO_PLATFORM_MAX_FILE_BYTES` (default 2 GiB). Card authorization is refused when the scheduled run is more than seven days out; the buyer must use prepaid credits. Cross-job files are passed as a single READ grant for one asset and one target job.
+
+## DEC-SCH-001 — Immediate runs and scheduled reservations stay distinct
+
+**Decision:** `IMMEDIATE_ONLY` fails before payment when the capability is not accepting. `EARLIEST_AVAILABLE` reserves a job for the authoritative next window. Buyer inputs cannot change schedule, pause, or concurrency. Public availability shows the next window, not the seller's weekly timetable. A future purchase is labeled "Schedule for earliest availability" and the buyer is told the job is reserved now and starts later. Scheduled delivery is measured from the scheduled run, not the reservation. The agent skips an unavailable candidate and will not spend more or drop a permission to buy something available now. A new required input, or an optional output that becomes required, is a breaking contract change.
+
+## DEC-SCH-004 — Checkout uses a server schedule quote
+
+**Decision:** Before payment the server returns earliest eligibility, a delivery range rounded to minutes, and a three-minute quote expiry. The label is "Eligible to start from", and `guaranteedStart` stays false. Buyer clocks use the buyer's timezone. Cards and the detail action distinguish run now, join queue, schedule, and unavailable. A paused, blocked, or unexpectedly offline capability is unavailable even if an old next window is stored. Autonomous execution stays immediate unless the buyer explicitly allows a wait. A queue of about five minutes can count as immediate; an hours-long wait cannot. When a window closes, running work continues, queued work waits for the next window inside the buyer's deadline, and work past that deadline expires. Scheduled and expired jobs emit their own webhook events.
+
+## DEC-PUB-001 — Buyer capability detail is a public projection
+
+**Decision:** The buyer capability endpoint returns schemas, price, rating, and schedule fields. It omits the worker manifest and the seller account id. Historical jobs keep their own snapshots.
+
+## DEC-SCH-003 — Scheduled demand and inference usage stay auditable
+
+**Decision:** A seller pause still takes effect when jobs are already scheduled, and the response names how many are waiting and that buyers may be refunded if the wait expires. Reserved buyer value is summed by availability hour and is never added to settled revenue. Marketplace Agent calls write a usage audit with provider, model, token counts, and latency. The buyer prompt is not stored. Estimated platform cost stays empty until a provider rate is configured, so the dashboard does not invent a dollar amount.
+
+## DEC-SCH-002 — Waits are bounded and files stay out of the API body
+
+**Decision:** A scheduled reservation that passes its wait deadline expires and the reserved credits are released. They are not settled as seller revenue. Buyer-facing start times are rounded to minutes. Autonomous execution stays immediate unless the buyer explicitly approves a wait that still finishes by the deadline. A text-only capability is excluded when the request needs a file, even if its description matches. Uploads above 1 MiB use object storage, and uploads above 8 MiB use multipart. A platform security pause cannot be cleared by the buyer or the seller.

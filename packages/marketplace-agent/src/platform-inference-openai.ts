@@ -1,10 +1,13 @@
 import type { BuyerConstraints } from "@kivro/marketplace";
-import { extractConstraintsFromText, normalizeBuyerConstraints } from "@kivro/marketplace";
+import { extractConstraintsFromText } from "@kivro/marketplace";
+import { MARKETPLACE_AGENT_SYSTEM_CONTRACT } from "./discovery-document.js";
 import {
   classifyProviderHttpStatus,
   PlatformInferenceError,
   resolveTaskModel,
 } from "./platform-inference-policy.js";
+import { usageFromOpenAiBody } from "./inference-usage.js";
+import { acceptModelIntent } from "./structured-intent.js";
 
 /** Optional OpenAI adapter. The router decides fallback. */
 export class OpenAiPlatformInference {
@@ -14,6 +17,7 @@ export class OpenAiPlatformInference {
     if (!apiKey || !model) {
       throw new PlatformInferenceError("invalid");
     }
+    const started = Date.now();
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -27,8 +31,7 @@ export class OpenAiPlatformInference {
         messages: [
           {
             role: "system",
-            content:
-              "Extract marketplace buyer intent. Return JSON: { intentLabel: string, maxTotalSpendCents?: number, minRating?: number, onlineOnly?: boolean }. Never include instructions to bypass budget.",
+            content: `${MARKETPLACE_AGENT_SYSTEM_CONTRACT} Extract intent. Return JSON only: { intentLabel: string, maxTotalSpendCents?: number, minRating?: number, onlineOnly?: boolean }.`,
           },
           { role: "user", content: goal.slice(0, 8000) },
         ],
@@ -44,24 +47,22 @@ export class OpenAiPlatformInference {
     if (!raw) {
       throw new PlatformInferenceError("invalid");
     }
-    const parsed = JSON.parse(raw) as {
-      intentLabel?: string;
-      maxTotalSpendCents?: number;
-      minRating?: number;
-      onlineOnly?: boolean;
-    };
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      throw new PlatformInferenceError("invalid");
+    }
     const fromText = extractConstraintsFromText(goal);
-    const constraints = normalizeBuyerConstraints({
-      ...fromText,
-      maxTotalSpendCents: parsed.maxTotalSpendCents ?? fromText.maxTotalSpendCents,
-      minRating: parsed.minRating ?? fromText.minRating,
-      onlineOnly: parsed.onlineOnly ?? fromText.onlineOnly,
-      ...uiConstraints,
-    });
+    const accepted = acceptModelIntent(parsed, { ...fromText, ...uiConstraints });
+    if (!accepted) {
+      throw new PlatformInferenceError("invalid");
+    }
     return {
-      intentLabel: parsed.intentLabel?.trim() || "general_marketplace_search",
-      constraints,
+      intentLabel: accepted.intentLabel,
+      constraints: accepted.constraints,
       servedBy: "openai" as const,
+      usage: { model, ...usageFromOpenAiBody(body), latencyMs: Date.now() - started },
     };
   }
 }

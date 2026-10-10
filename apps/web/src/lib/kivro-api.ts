@@ -91,6 +91,9 @@ export type AvailabilityResponse = {
   status: string;
   accepting: boolean;
   nextAvailableAt?: string | null;
+  purchaseAction?: "RUN_NOW" | "SCHEDULE_EARLIEST" | "JOIN_QUEUE" | "UNAVAILABLE";
+  purchaseLabel?: string;
+  cardLabel?: string;
 };
 
 export async function fetchAvailability(slug: string): Promise<AvailabilityResponse | null> {

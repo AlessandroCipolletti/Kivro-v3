@@ -185,6 +185,7 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
       scheduledRunAt?: string;
       executionQuoteId?: string;
       hardDeliveryDeadlineAt?: string;
+      execution?: { mode?: string };
     };
     try {
       body = await c.req.json();
@@ -223,6 +224,13 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
       }
     }
 
+    let executionMode: "IMMEDIATE_ONLY" | "EARLIEST_AVAILABLE" | undefined;
+    if (body.execution?.mode != null) {
+      if (body.execution.mode !== "IMMEDIATE_ONLY" && body.execution.mode !== "EARLIEST_AVAILABLE") {
+        return c.json({ error: "INVALID_EXECUTION_MODE" }, 400);
+      }
+      executionMode = body.execution.mode;
+    }
     const result = await createBuyerJobFromApi(getPrismaClient(), {
       buyerId: user.id,
       buyerEmail: user.email ?? "",
@@ -233,6 +241,7 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
       buyerApiKeyId: apiKey?.id,
       executionQuoteId: body.executionQuoteId,
       buyerHardDeadlineAt,
+      executionMode,
     });
 
     const responseBody =

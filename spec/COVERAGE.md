@@ -1286,11 +1286,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0142`    P1         §153     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0143`    P2         §153     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0143`    P2         §153     `TESTED`   packages/marketplace/src/verified-reputation.ts  verified-reputation.test.ts  reputation uses completed jobs only
 
   `PRD-0144`    P1         §154     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0145`    P2         §154     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0145`    P2         §154     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  description match is not limited to category
 
   `PRD-0146`    P1         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1298,17 +1298,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0148`    P2         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0055`    P1         §156     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0055`    P1         §156     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  public discovery document
 
-  `IO-0045`     P1         §157     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0045`     P1         §157     `TESTED`   packages/marketplace-agent/src/agent-safety.test.ts  agent-safety.test.ts  budget, rating, and catalog-only ranking
 
-  `IO-0046`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0046`     P1         §158     `TESTED`   packages/marketplace-agent/src/plan-compatibility.ts  plan-compatibility.test.ts  orchestration IO compatibility
 
-  `IO-0047`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0047`     P1         §158     `TESTED`   packages/marketplace-agent/src/plan-compatibility.ts  plan-compatibility.test.ts  outputs must feed downstream inputs
 
-  `IO-0048`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0048`     P1         §158     `TESTED`   packages/marketplace-agent/src/orchestration-planner.ts  plan-compatibility.test.ts  incompatible steps are dropped
 
-  `IO-0049`     P1         §158     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0049`     P1         §158     `TESTED`   packages/marketplace-agent/src/plan-compatibility.ts  plan-compatibility.test.ts  no silent file conversion
 
   `PRD-0149`    P1         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1324,7 +1324,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0155`    P1         §161     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0156`    P2         §161     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0156`    P2         §161     `TESTED`   packages/marketplace-agent/src/purchase-authorization.ts  purchase-authorization.test.ts  plan spend cannot exceed authorization
 
   `PRD-0157`    P1         §162     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1346,13 +1346,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0050`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0051`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0051`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  provider keys stay server-side
 
-  `AGT-0052`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0052`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  both providers are not required
 
-  `AGT-0053`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0053`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  OpenAI alone selects OpenAI
 
-  `AGT-0054`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0054`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  Anthropic alone selects Anthropic
 
   `AGT-0055`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1386,17 +1386,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0066`    P1         §170     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0067`    P1         §171     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0067`    P1         §171     `TESTED`   packages/marketplace-agent/src/tool-executor.ts  agent-safety.test.ts  allowlisted marketplace tools
 
-  `AGT-0068`    P1         §171     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0068`    P1         §171     `TESTED`   packages/marketplace-agent/src/tool-executor.ts  agent-safety.test.ts  search, quote, availability, plan tools
 
-  `AGT-0069`    P1         §171     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0069`    P1         §171     `TESTED`   packages/marketplace-agent/src/tool-executor.ts  agent-safety.test.ts  unknown tool names are rejected
 
-  `IO-0050`     P1         §172     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0050`     P1         §172     `TESTED`   packages/marketplace-agent/src/structured-intent.ts  agent-safety.test.ts  intent JSON schema
 
-  `IO-0051`     P1         §172     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0051`     P1         §172     `TESTED`   packages/marketplace-agent/src/structured-intent.ts  agent-safety.test.ts  provider JSON validated before use
 
-  `IO-0052`     P1         §172     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0052`     P1         §172     `TESTED`   packages/marketplace-agent/src/structured-intent.ts  agent-safety.test.ts  malformed or purchase JSON is rejected
 
   `AGT-0070`    P1         §173     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
@@ -1412,37 +1412,37 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0165`    P2         §174     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0074`    P1         §175     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0074`    P1         §175     `TESTED`   packages/marketplace-agent/src/inference-usage.ts  inference-usage.test.ts  usage is recorded without the prompt; price stays unset until a provider rate exists
 
   `AGT-0075`    P1         §176     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
   `AGT-0076`    P1         §176     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `PRD-0166`    P1         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0166`    P1         §177     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  bounded candidate set
 
-  `PRD-0167`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0167`    P2         §177     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  catalog is not sent whole
 
-  `PRD-0168`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0168`    P2         §177     `TESTED`   packages/marketplace-agent/src/agent-tools.ts  agent-safety.test.ts  search and filter happen in code
 
-  `PRD-0169`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0169`    P2         §177     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  at most eight candidates
 
-  `PRD-0170`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0170`    P2         §177     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  public metadata only
 
-  `PRD-0171`    P2         §177     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0171`    P2         §177     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  prompt size stays bounded
 
-  `PRD-0172`    P1         §178     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0172`    P1         §178     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  only task metadata is publishable
 
-  `PRD-0173`    P2         §178     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0173`    P2         §178     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  private prompts and credentials omitted
 
-  `PRD-0174`    P2         §178     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0174`    P2         §178     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  seller secrets are not discovery fields
 
-  `PRD-0175`    P1         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0175`    P1         §179     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  platform agent does not inspect buyer files
 
-  `PRD-0176`    P2         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0176`    P2         §179     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  files go to the paid capability
 
-  `PRD-0177`    P2         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0177`    P2         §179     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  file inspection is off for MVP
 
-  `PRD-0178`    P2         §179     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0178`    P2         §179     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  no buyer file in platform inference
 
   `AGT-0077`    P1         §180     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
@@ -1450,17 +1450,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0079`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0080`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0080`    P1         §181     `TESTED`   apps/api/src/routes/platform-admin.ts  platform-inference-policy.test.ts  admin health omits provider keys
 
-  `AGT-0081`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0081`    P1         §181     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  health omits secrets
 
-  `AGT-0082`    P1         §181     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0082`    P1         §181     `TESTED`   apps/api/src/routes/platform-admin.ts  agent-safety.test.ts  routing changes are audited without secrets
 
-  `AGT-0083`    P1         §182     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0083`    P1         §182     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  safe inference metadata
 
-  `AGT-0084`    P1         §182     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0084`    P1         §182     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  prompts are not logged by default
 
-  `AGT-0085`    P1         §182     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0085`    P1         §182     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  debug mode redacts secrets
 
   `IO-0053`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1484,33 +1484,33 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0089`    P1         §186     `TESTED`   ---              ---        packages/marketplace-agent/src/platform-inference.ts, packages/marketplace-agent/src/platform-inference-policy.ts, packages/marketplace-agent/src/orchestration-runner.ts, apps/api/src/services/orchestration-execution.ts   packages/marketplace-agent/src/platform-inference-policy.test.ts, packages/marketplace-agent/src/platform-inference-router.test.ts, packages/marketplace-agent/src/orchestration-runner.test.ts   inference router and orchestration pause
 
-  `AGT-0090`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0090`    P1         §187     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  task feature requirements
 
-  `AGT-0091`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0091`    P1         §187     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  model must declare required features
 
-  `AGT-0092`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0092`    P1         §187     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  intent requires structured output
 
-  `AGT-0093`    P1         §187     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0093`    P1         §187     `TESTED`   packages/marketplace-agent/src/inference-safety.ts  agent-safety.test.ts  orchestration requires tool calling
 
-  `PRD-0179`    P1         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0179`    P1         §188     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  system contract
 
-  `PRD-0180`    P2         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0180`    P2         §188     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  do not invent marketplace facts
 
-  `PRD-0181`    P2         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0181`    P2         §188     `TESTED`   packages/marketplace-agent/src/structured-intent.ts  agent-safety.test.ts  financial constraints stay hard
 
-  `PRD-0182`    P2         §188     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0182`    P2         §188     `TESTED`   packages/marketplace-agent/src/prompt-safety.ts  agent-safety.test.ts  seller text is untrusted
 
-  `TST-0016`    P1         §189     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `TST-0016`    P1         §189     `TESTED`   packages/marketplace-agent/src/agent-safety.test.ts  agent-safety.test.ts  intent and tool tests
 
-  `TST-0017`    P2         §189     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `TST-0017`    P2         §189     `TESTED`   packages/marketplace-agent/src/agent-safety.test.ts  agent-safety.test.ts  budget cannot be raised by the model
 
-  `TST-0018`    P2         §189     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `TST-0018`    P2         §189     `TESTED`   packages/marketplace-agent/src/agent-safety.test.ts  agent-safety.test.ts  unknown capability is not ranked
 
   `AGT-0094`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0095`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0095`    P1         §190     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  works with only OpenAI configured
 
-  `AGT-0096`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0096`    P1         §190     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  works with only Anthropic configured
 
   `AGT-0097`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1644,65 +1644,65 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0106`     P1         §217     `TESTED`   packages/job-io/src/validate-buyer-input.ts  archive-inputs.test.ts  no archive extraction path
 
-  `IO-0107`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0107`     P1         §218     `TESTED`   packages/job-io/src/upload-transport.ts  upload-transport.test.ts  large files use object storage
 
-  `IO-0108`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0108`     P1         §218     `TESTED`   packages/job-io/src/upload-transport.ts  upload-transport.test.ts  uploads are not assumed tiny
 
-  `IO-0109`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0109`     P1         §218     `TESTED`   packages/job-io/src/upload-transport.ts  upload-transport.test.ts  multipart above part size
 
-  `IO-0110`     P1         §218     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0110`     P1         §218     `TESTED`   packages/job-io/src/upload-transport.ts  upload-transport.test.ts  worker does not load the whole file
 
-  `CAP-0060`    P1         §219     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0060`    P1         §219     `TESTED`   packages/job-io/src/field-constraints.ts  field-constraints.test.ts  effective file limit
 
-  `CAP-0061`    P1         §219     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0061`    P1         §219     `TESTED`   packages/job-io/src/field-constraints.ts  field-constraints.test.ts  seller cannot exceed platform ceiling
 
-  `CAP-0062`    P1         §219     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0062`    P1         §219     `TESTED`   packages/job-io/src/field-constraints.ts  field-constraints.test.ts  ceiling comes from configuration
 
   `IO-0111`     P1         §220     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0112`     P1         §220     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0112`     P1         §220     `TESTED`   packages/job-io/src/storage-telemetry.ts  storage-telemetry.test.ts  byte telemetry does not change buyer price
 
   `IO-0113`     P1         §221     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0114`     P1         §222     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0114`     P1         §222     `TESTED`   packages/job-io/src/contract-break.ts  contract-break.test.ts  breaking contract changes
 
-  `IO-0115`     P1         §222     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0115`     P1         §222     `TESTED`   packages/job-io/src/contract-break.ts  contract-break.test.ts  new required field is breaking
 
-  `IO-0116`     P1         §222     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0116`     P1         §222     `TESTED`   packages/job-io/src/contract-break.ts  contract-break.test.ts  optional output becoming required is breaking
 
   `IO-0117`     P1         §223     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `PRD-0190`    P1         §224     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0191`    P2         §224     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0191`    P2         §224     `TESTED`   packages/job-io/src/upload-transport.ts  upload-transport.test.ts  tags do not replace MIME checks
 
   `IO-0118`     P1         §225     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0119`     P1         §225     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0119`     P1         §225     `TESTED`   packages/buyer-experience/src/buyer-asset-validation.ts  buyer-asset-validation.test.ts  buyer must own the asset
 
-  `IO-0120`     P1         §225     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0120`     P1         §225     `TESTED`   packages/buyer-experience/src/buyer-asset-validation.ts  buyer-asset-validation.test.ts  another user's asset id is rejected
 
-  `IO-0121`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0121`     P1         §226     `TESTED`   packages/marketplace-agent/src/asset-grant.ts  agent-safety.test.ts  cross-job read grant
 
-  `IO-0122`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0122`     P1         §226     `TESTED`   packages/marketplace-agent/src/asset-grant.ts  agent-safety.test.ts  grant references the asset, no copy
 
-  `IO-0123`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0123`     P1         §226     `TESTED`   packages/marketplace-agent/src/asset-grant.ts  agent-safety.test.ts  grant is one asset and one target job
 
-  `IO-0124`     P1         §226     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0124`     P1         §226     `TESTED`   packages/marketplace-agent/src/asset-grant.ts  agent-safety.test.ts  other assets stay unauthorized
 
-  `PRD-0192`    P1         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0192`    P1         §227     `TESTED`   packages/buyer-experience/src/privacy-disclosure.ts  privacy-disclosure.test.ts  sensitive input warning
 
-  `PRD-0193`    P2         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0193`    P2         §227     `TESTED`   packages/buyer-experience/src/privacy-disclosure.ts  privacy-disclosure.test.ts  files processed on seller computer
 
-  `PRD-0194`    P2         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0194`    P2         §227     `TESTED`   packages/buyer-experience/src/privacy-disclosure.ts  privacy-disclosure.test.ts  warning before confidential data
 
-  `PRD-0195`    P2         §227     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0195`    P2         §227     `TESTED`   packages/buyer-experience/src/privacy-disclosure.ts  privacy-disclosure.test.ts  not confidential computing
 
   `IO-0125`     P1         §228     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0126`     P1         §228     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0126`     P1         §228     `TESTED`   packages/buyer-experience/src/retention-ux.ts  retention-ux.test.ts  job page retention policy
 
-  `IO-0127`     P1         §228     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0127`     P1         §228     `TESTED`   packages/openclaw-adapter/src/job-paths.ts  job-paths.test.ts  local buyer input is deleted after the job
 
   `PRD-0196`    P1         §229     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1722,11 +1722,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0198`    P1         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0199`    P2         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0199`    P2         §233     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  contract filter before ranking
 
-  `PRD-0200`    P2         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0200`    P2         §233     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  text-only capability excluded for a file request
 
-  `PRD-0201`    P2         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0201`    P2         §233     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  file compatibility is a hard filter
 
   `IO-0130`     P1         §234     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1736,7 +1736,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0202`    P1         §236     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0203`    P2         §236     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0203`    P2         §236     `TESTED`   packages/marketplace/src/public-capability.ts  public-capability.test.ts  buyer view omits OpenClaw internals
 
   `PRD-0204`    P1         §237     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
@@ -1948,7 +1948,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0090`    P1         §277     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0091`    P0         §277     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0091`    P0         §277     `TESTED`   packages/platform-policy/src/network-purpose.ts  network-purpose.test.ts  minimum network for the declared purpose
 
   `PRD-0277`    P1         §278     `TESTED`   packages/billing, apps/api/routes/buyer-billing.ts, apps/api/routes/buyer-jobs-submit.ts, apps/api/routes/seller-billing.ts, apps/api/routes/stripe-webhooks.ts, apps/api/routes/platform-admin.ts   vitest; security/tests/m08-payment-db.test.ts; scripts/verify-m08-flow.mjs   docs/milestones/M08-manual-validation.md M08
 
@@ -2332,11 +2332,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0090`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `CAP-0091`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0091`    P1         §355     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  offline capability is not accepting
 
-  `CAP-0092`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0092`    P1         §355     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  paused capability is not accepting
 
-  `CAP-0093`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0093`    P1         §355     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  a full slot is not overbooked
 
   `CAP-0094`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2524,11 +2524,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0118`    P0         §393     `TESTED`   apps/api/src/services/platform-security-pause-service.ts, packages/seller-health/src/platform-security.ts, apps/api/src/services/worker-heartbeat-service.ts   packages/seller-health/src/platform-security.test.ts; security/tests/acceptance-m12.test.ts   docs/milestones/M12-closure.md M12 §393 platform security pause
 
-  `JOB-0115`    P1         §394     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0115`    P1         §394     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0116`    P1         §394     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0116`    P1         §394     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0117`    P1         §394     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0117`    P1         §394     `TESTED`   packages/marketplace/src/buyer-timing-copy.ts  buyer-timing-copy.test.ts  security pause cannot be cleared by buyer or seller
 
   `PRD-0345`    P1         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2652,37 +2652,37 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0358`    P2         §419     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `AVL-0051`    P1         §420     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0051`    P1         §420     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  public schedule omits weekly windows
 
-  `AVL-0052`    P1         §420     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0052`    P1         §420     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  buyers see next window only
 
   `PRD-0359`    P1         §421     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0133`    P1         §422     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0133`    P1         §422     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0134`    P1         §422     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0134`    P1         §422     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
   `AVL-0053`    P1         §423     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
   `AVL-0054`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0055`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0055`    P1         §424     `TESTED`   packages/job-scheduling/src/weekly-schedule.ts  weekly-schedule.test.ts  seller can choose always available
 
-  `AVL-0056`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0056`    P1         §424     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  immediate purchase is blocked outside the schedule
 
-  `AVL-0057`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0057`    P1         §424     `TESTED`   apps/api/src/services/create-buyer-job.ts  accepting-jobs.test.ts  the same gate blocks the API
 
-  `AVL-0058`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0058`    P1         §424     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  job input cannot change the seller schedule
 
-  `PRD-0360`    P1         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0360`    P1         §425     `TESTED`   packages/job-scheduling/src/availability-layers.ts  availability-layers.test.ts  availability layers
 
-  `PRD-0361`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0361`    P2         §425     `TESTED`   packages/job-scheduling/src/availability-layers.ts  availability-layers.test.ts  visibility through capacity
 
-  `PRD-0362`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0362`    P2         §425     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  all layers must pass
 
-  `PRD-0363`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0363`    P2         §425     `TESTED`   packages/job-scheduling/src/availability-layers.ts  availability-layers.test.ts  paused operator layer blocks acceptance
 
-  `PRD-0364`    P2         §425     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0364`    P2         §425     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  seller machine stays under seller control
 
   `JOB-0135`    P1         §426     `TESTED`   apps/api/routes/seller-control-ui.ts, apps/api/routes/seller-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
@@ -2842,51 +2842,51 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0210`    P1         §450     `TESTED`   packages/job-control, packages/job-dispatch, packages/domain/job-status.ts, apps/api/routes/seller-jobs.ts, apps/api/routes/worker-jobs.ts   vitest; scripts/verify-m07-flow.mjs   docs/milestones/M07-manual-validation.md M07
 
-  `AVL-0059`    P1         §451     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0059`    P1         §451     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `AVL-0060`    P1         §451     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0060`    P1         §451     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `AVL-0061`    P1         §451     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0061`    P1         §451     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `AVL-0062`    P1         §452     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0062`    P1         §452     `TESTED`   apps/web/src/app/capabilities/[slug]/page.tsx  schedule-purchase-policy.test.ts  Run now versus schedule
 
-  `AVL-0063`    P1         §452     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0063`    P1         §452     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  future action is not labeled Run
 
-  `JOB-0211`    P1         §453     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0211`    P1         §453     `TESTED`   apps/web/src/app/capabilities/[slug]/run/page.tsx  schedule-purchase-policy.test.ts  reservation copy
 
-  `JOB-0212`    P1         §453     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0212`    P1         §453     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  reserve now, execute at availability
 
   `JOB-0213`    P1         §454     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0214`    P1         §454     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0214`    P1         §454     `TESTED`   apps/web/src/lib/status-ui.ts  status-ui.test.ts  approximate start delay
 
-  `JOB-0215`    P1         §455     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0215`    P1         §455     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0216`    P1         §455     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0216`    P1         §455     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
   `JOB-0217`    P1         §456     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0218`    P1         §457     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0218`    P1         §457     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  checkout quotes earliest eligibility, not a guaranteed start
 
-  `JOB-0219`    P1         §457     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0219`    P1         §457     `TESTED`   packages/marketplace/src/buyer-timing-copy.ts  buyer-timing-copy.test.ts  delivery after start is an estimate
 
-  `JOB-0220`    P1         §458     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0220`    P1         §458     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  wording is eligible to start, not will start at
 
-  `JOB-0221`    P1         §459     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0221`    P1         §459     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  delivery is a minute range, not a single second
 
-  `JOB-0222`    P1         §459     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0222`    P1         §459     `TESTED`   packages/marketplace/src/buyer-timing-copy.ts  buyer-timing-copy.test.ts  no second-level precision
 
-  `PAY-0109`    P1         §460     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PAY-0109`    P1         §460     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  payment is secured now and execution waits for availability
 
-  `PAY-0110`    P0         §460     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PAY-0110`    P0         §460     `TESTED`   apps/web/src/app/capabilities/[slug]/run/page.tsx  buyer-timing-copy.test.ts  reserved credits are not settled revenue
 
-  `UI-0028`     P1         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0028`     P1         §461     `TESTED`   packages/billing/src/card-auth-window.ts  card-auth-window.test.ts  card auth window
 
-  `UI-0029`     P2         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0029`     P2         §461     `TESTED`   packages/billing/src/card-auth-window.ts  card-auth-window.test.ts  authorization is not open-ended
 
-  `UI-0030`     P2         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0030`     P2         §461     `TESTED`   packages/billing/src/job-card-payment.ts  card-auth-window.test.ts  card only inside seven days
 
-  `UI-0031`     P2         §461     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0031`     P2         §461     `TESTED`   packages/billing/src/card-auth-window.ts  card-auth-window.test.ts  seven-day card authorization window
 
   `PRD-0368`    P1         §462     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
@@ -2932,19 +2932,19 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0069`    P1         §472     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
-  `JOB-0231`    P1         §473     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0231`    P1         §473     `TESTED`   packages/job-scheduling/src/window-overflow.ts  window-overflow.test.ts  running jobs continue; queued jobs roll or release
 
-  `CAP-0114`    P1         §474     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0114`    P1         §474     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  the server returns the schedule quote used at checkout
 
   `AVL-0070`    P1         §475     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0071`    P1         §475     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0071`    P1         §475     `TESTED`   packages/buyer-experience/src/quote-freshness.ts  quote-freshness.test.ts  expired quotes are not charged
 
-  `PRD-0376`    P1         §476     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0376`    P1         §476     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  buyer times render in the buyer timezone
 
-  `AVL-0072`    P1         §477     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0072`    P1         §477     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  cards distinguish available now, tonight, offline, and paused
 
-  `AVL-0073`    P1         §478     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0073`    P1         §478     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  run, queue, schedule, and unavailable stay distinct
 
   `PRD-0377`    P1         §479     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2958,35 +2958,35 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0101`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0232`    P1         §481     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0232`    P1         §481     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0233`    P1         §481     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0233`    P1         §481     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0234`    P1         §481     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0234`    P1         §481     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0235`    P1         §482     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0235`    P1         §482     `TESTED`   packages/buyer-webhooks/src/job-events.ts  job-events.test.ts  scheduled and expired jobs have their own webhook events
 
-  `JOB-0236`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0236`    P1         §483     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `JOB-0237`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0237`    P1         §483     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
   `JOB-0238`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0239`    P1         §483     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0239`    P1         §483     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `PRD-0379`    P1         §484     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0379`    P1         §484     `TESTED`   packages/seller-experience/src/scheduled-demand.ts  scheduled-demand.test.ts  seller sees reserved value apart from settled revenue
 
-  `PRD-0380`    P2         §484     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0380`    P2         §484     `TESTED`   apps/web/src/app/seller/economics/page.tsx  buyer-timing-copy.test.ts  reserved value is labeled separately from settled
 
-  `PRD-0381`    P2         §484     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0381`    P2         §484     `TESTED`   packages/marketplace/src/buyer-timing-copy.ts  buyer-timing-copy.test.ts  reserved value is not settled revenue
 
-  `JOB-0240`    P1         §485     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0240`    P1         §485     `TESTED`   packages/seller-experience/src/scheduled-demand.ts  scheduled-demand.test.ts  pause warns about waiting scheduled jobs and still proceeds
 
   `JOB-0241`    P1         §486     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `JOB-0242`    P1         §486     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0242`    P1         §486     `TESTED`   packages/billing/src/job-payment-hooks.ts  unstarted-release.test.ts  release if the job never starts
 
-  `JOB-0243`    P1         §486     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0243`    P1         §486     `TESTED`   packages/billing/src/job-payment-hooks.ts  unstarted-release.test.ts  wait deadline releases the reservation
 
   `PRD-0382`    P1         §487     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2994,17 +2994,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0074`    P1         §488     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0075`    P1         §488     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0075`    P1         §488     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  skip work outside the timing policy
 
-  `AVL-0076`    P1         §488     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0076`    P1         §488     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  immediate and recommendation modes differ
 
-  `PRD-0384`    P1         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0384`    P1         §489     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `PRD-0385`    P2         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0385`    P2         §489     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `PRD-0386`    P2         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0386`    P2         §489     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `PRD-0387`    P2         §489     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0387`    P2         §489     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
   `PRD-0388`    P1         §490     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
@@ -3026,15 +3026,15 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0078`    P1         §492     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
-  `JOB-0244`    P1         §493     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0244`    P1         §493     `TESTED`   packages/marketplace/src/buyer-timing-copy.ts  buyer-timing-copy.test.ts  checkout explains a reservation instead of an error
 
-  `JOB-0245`    P1         §493     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0245`    P1         §493     `TESTED`   apps/web/src/app/capabilities/[slug]/run/page.tsx  schedule-purchase-policy.test.ts  checkout switches to a reservation
 
-  `JOB-0246`    P1         §493     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0246`    P1         §493     `TESTED`   apps/web/src/app/capabilities/[slug]/run/page.tsx  schedule-purchase-policy.test.ts  scheduling is presented as a reservation, not an error
 
   `PRD-0392`    P1         §494     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0393`    P2         §494     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0393`    P2         §494     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  autonomous mode excludes future services
 
   `AVL-0079`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3042,75 +3042,75 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0081`    P1         §495     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0082`    P1         §496     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0082`    P1         §496     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  immediate use is online now or a short queue
 
-  `AVL-0083`    P1         §496     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0083`    P1         §496     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  busy wait must fit the policy
 
-  `JOB-0247`    P1         §497     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0247`    P1         §497     `TESTED`   packages/marketplace/src/agent-availability.ts  agent-availability.test.ts  a five-minute queue fits; an eight-hour wait does not
 
-  `JOB-0248`    P1         §497     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0248`    P1         §497     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  busy wait threshold is configurable
 
-  `UI-0032`     P1         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0032`     P1         §498     `TESTED`   packages/marketplace-agent/src/agent-continuation.ts  agent-continuation.test.ts  keep searching after an unavailable match
 
-  `UI-0033`     P2         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0033`     P2         §498     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `UI-0034`     P2         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0034`     P2         §498     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `UI-0035`     P2         §498     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0035`     P2         §498     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `UI-0036`     P1         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0036`     P1         §499     `TESTED`   packages/marketplace-agent/src/agent-continuation.ts  agent-continuation.test.ts  every step must fit timing
 
-  `UI-0037`     P2         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0037`     P2         §499     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `UI-0038`     P2         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0038`     P2         §499     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `UI-0039`     P2         §499     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `UI-0039`     P2         §499     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
   `AVL-0084`    P1         §500     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0085`    P1         §500     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0085`    P1         §500     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  each step is judged on its own
 
-  `AVL-0086`    P1         §500     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0086`    P1         §500     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  repair one step or pause
 
   `PRD-0394`    P1         §501     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0395`    P2         §501     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0395`    P2         §501     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  do not schedule when budget or permissions fail
 
-  `AVL-0087`    P1         §502     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0087`    P1         §502     `TESTED`   packages/job-scheduling/src/submission-gate.ts  submission-gate.test.ts  purchase rechecks availability before funds move
 
-  `AVL-0088`    P1         §502     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0088`    P1         §502     `TESTED`   packages/job-scheduling/src/submission-gate.ts  submission-gate.test.ts  a model suggestion is not enough to take payment
 
-  `AVL-0089`    P1         §502     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0089`    P1         §502     `TESTED`   packages/billing/src/job-payment.ts  submission-gate.test.ts  immediate purchase is refused when the capability is scheduled offline
 
-  `AVL-0090`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0090`    P1         §503     `TESTED`   packages/marketplace/src/agent-availability.ts  agent-availability.test.ts  agent results carry structured timing
 
   `AVL-0091`    P1         §503     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  structured timing snapshot on ranked rows
 
-  `AVL-0092`    P1         §503     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0092`    P1         §503     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  description text is not availability
 
-  `AVL-0093`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0093`    P1         §504     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  availability is filtered in code
 
   `AVL-0094`    P1         §504     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  hard timing filter outside the model
 
-  `AVL-0095`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0095`    P1         §504     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  prefer-available is enforced outside the model
 
-  `AVL-0096`    P1         §504     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0096`    P1         §504     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  the model cannot override the timing filter
 
-  `PRD-0396`    P1         §505     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0396`    P1         §505     `TESTED`   packages/marketplace/src/buyer-constraints.ts  buyer-constraints.test.ts  waiting is enabled only by an explicit buyer request
 
-  `PRD-0397`    P2         §505     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0397`    P2         §505     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  waiting requires explicit approval
 
-  `PRD-0398`    P2         §505     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0398`    P2         §505     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  a better future rating does not imply waiting
 
-  `JOB-0249`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0249`    P1         §506     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  immediate, deadline, and explicit earliest-available modes
 
   `JOB-0250`    P1         §506     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  immediate mode uses online accepting only
 
-  `JOB-0251`    P1         §506     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0251`    P1         §506     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  future service only if completion fits
 
-  `TST-0021`    P1         §507     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `TST-0021`    P1         §507     `TESTED`   packages/marketplace/src/agent-availability.ts  agent-availability.test.ts  autonomous choice prefers a runnable service
 
-  `AVL-0097`    P1         §508     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0097`    P1         §508     `TESTED`   packages/marketplace/src/agent-availability.ts  agent-availability.test.ts  no immediate option is explained and not silently scheduled
 
   `AVL-0098`    P1         §508     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  immediate mode does not schedule future jobs
 
@@ -3118,13 +3118,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0120`    P1         §509     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0099`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0099`    P1         §510     `TESTED`   packages/marketplace-agent/src/agent-continuation.ts  agent-continuation.test.ts  immediacy cannot break budget or permissions
 
-  `AVL-0100`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0100`    P1         §510     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `AVL-0101`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0101`    P1         §510     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `AVL-0102`    P1         §510     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0102`    P1         §510     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
   `PRD-0399`    P1         §511     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -3136,31 +3136,31 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0401`    P1         §513     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0402`    P2         §513     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0402`    P2         §513     `TESTED`   apps/web/src/app/capabilities/[slug]/run/page.tsx  status-ui.test.ts  timing is shown before submit
 
-  `PRD-0403`    P1         §514     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0403`    P1         §514     `TESTED`   packages/marketplace-agent/src/agent-progress.ts  agent-progress.test.ts  progress names the step, not the reasoning
 
-  `PRD-0404`    P2         §514     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0404`    P2         §514     `TESTED`   packages/marketplace-agent/src/structured-intent.ts  agent-safety.test.ts  chain-of-thought is not accepted as an instruction
 
-  `JOB-0252`    P1         §515     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0252`    P1         §515     `TESTED`   packages/marketplace-agent/src/plan-completion.ts  plan-completion.test.ts  completion includes wait and overlapping steps
 
-  `JOB-0253`    P1         §515     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0253`    P1         §515     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  estimate includes wait plus duration
 
-  `JOB-0254`    P1         §515     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0254`    P1         §515     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  immediate plans stay a short estimate
 
-  `AVL-0103`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0103`    P1         §516     `TESTED`   packages/marketplace-agent/src/agent-continuation.ts  agent-continuation.test.ts  permission is not sacrificed for availability
 
   `AVL-0104`    P1         §516     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  unavailable capability rejected in IMMEDIATE
 
   `AVL-0105`    P1         §516     `TESTED`   packages/marketplace/src/agent-timing.ts  agent-timing.test.ts  deadline mode only if completion fits
 
-  `AVL-0106`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0106`    P1         §516     `TESTED`   packages/marketplace-agent/src/agent-continuation.ts  agent-continuation.test.ts  hard permission constraint stays
 
-  `AVL-0107`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0107`    P1         §516     `TESTED`   packages/marketplace-agent/src/agent-continuation.ts  agent-continuation.test.ts  budget is not exceeded for a faster alternative
 
-  `AVL-0108`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0108`    P1         §516     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  recommendation may show a future option
 
-  `AVL-0109`    P1         §516     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0109`    P1         §516     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  execution defaults to immediate-only
 
   `PRD-0405`    P1         §517     `TESTED`   docs/design-system.md, apps/web/src/app/globals.css, apps/web/src/components/ui   apps/web/src/lib/status-ui.test.ts; security/tests/acceptance-m14.test.ts   docs/milestones/M14-manual-validation.md M14 design system §541
 

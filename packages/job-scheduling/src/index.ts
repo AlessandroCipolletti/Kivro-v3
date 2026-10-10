@@ -11,6 +11,11 @@ export {
 } from "./weekly-schedule.js";
 export { evaluateAcceptingNewJobs, type AcceptingJobsEvaluation } from "./accepting-jobs.js";
 export {
+  allAvailabilityLayersPass,
+  describeAvailabilityLayers,
+  type AvailabilityLayer,
+} from "./availability-layers.js";
+export {
   assignmentsToCarryForward,
   selectEligibleAssignedWorker,
   summarizeAssignedWorkerPool,
@@ -31,7 +36,15 @@ export {
   parseLocalTimeToMinutes,
   type ScheduleWindowInput,
 } from "./schedule-validation.js";
-export { assertImmediateSubmissionBeforePayment } from "./submission-gate.js";
+export { assertImmediateSubmissionBeforePayment, purchaseBlockedBeforeFunds } from "./submission-gate.js";
+export {
+  buyerInputAttemptsScheduleControl,
+  deliveryMeasurementStart,
+  queuedJobMayStart,
+  resolveExecutionPreference,
+  scheduledJobNotification,
+  type ExecutionPreferenceMode,
+} from "./execution-preference.js";
 export {
   assertQueuedJobDispatchAllowed,
   isCapabilityExecutionWindowOpen,
@@ -42,6 +55,11 @@ export {
   type BuyerSchedulingPhase,
 } from "./buyer-job-scheduling-view.js";
 export { expireOverdueScheduledJobs, runSchedulingSweeps } from "./scheduled-sweeps.js";
+export {
+  releaseQueuedJobsAfterClosedWindow,
+  windowOverflowDecision,
+  type WindowOverflowDecision,
+} from "./window-overflow.js";
 export { expireQueuedJobsWhileAcceptanceBlocked } from "./queue-pause-expiry.js";
 export {
   computeScheduleWaitDeadline,

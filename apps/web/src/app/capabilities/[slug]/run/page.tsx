@@ -7,7 +7,7 @@ import { LoadingState } from "@/components/ui/LoadingState";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { API_BASE } from "@/lib/kivro-api";
-import { marketplaceAvailabilityUi } from "@/lib/status-ui";
+import { approximateStartLabel, formatBuyerLocalTime, marketplaceAvailabilityUi } from "@/lib/status-ui";
 import Link from "next/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -26,6 +26,8 @@ export default function RunCapabilityPage() {
   const [priceLabel, setPriceLabel] = useState<string | null>(null);
   const [accepting, setAccepting] = useState(true);
   const [nextAvailableAt, setNextAvailableAt] = useState<string | null>(null);
+  const [purchaseLabel, setPurchaseLabel] = useState<string | null>(null);
+  const [paymentNotice, setPaymentNotice] = useState<string | null>(null);
   const [scheduledRunAt, setScheduledRunAt] = useState("");
   const [hardDeadline, setHardDeadline] = useState("");
   const [useJson, setUseJson] = useState(false);
@@ -55,7 +57,12 @@ export default function RunCapabilityPage() {
         return (await res.json()) as {
           capability: { id: string; priceTierCents: number | null; currency: string };
           buyerForm?: { fields: BuyerFormField[] };
-          availability?: { accepting: boolean; nextAvailableAt: string | null };
+          availability?: {
+            accepting: boolean;
+            nextAvailableAt: string | null;
+            purchaseLabel?: string;
+            scheduleQuote?: { paymentNotice: string; earliestExecutionLabel: string } | null;
+          };
         };
       })
       .then((detail) => {
@@ -70,7 +77,19 @@ export default function RunCapabilityPage() {
           );
         }
         setAccepting(detail.availability?.accepting !== false);
-        setNextAvailableAt(detail.availability?.nextAvailableAt ?? null);
+        setPurchaseLabel(detail.availability?.purchaseLabel ?? null);
+        setPaymentNotice(detail.availability?.scheduleQuote?.paymentNotice ?? null);
+        const nextAt = detail.availability?.nextAvailableAt ?? null;
+        setNextAvailableAt(nextAt);
+        if (searchParams.get("schedule") === "earliest" && nextAt) {
+          const when = new Date(nextAt);
+          if (!Number.isNaN(when.getTime())) {
+            const pad = (n: number) => String(n).padStart(2, "0");
+            setScheduledRunAt(
+              `${when.getFullYear()}-${pad(when.getMonth() + 1)}-${pad(when.getDate())}T${pad(when.getHours())}:${pad(when.getMinutes())}`,
+            );
+          }
+        }
         if (detail.buyerForm?.fields?.length) {
           setFields(detail.buyerForm.fields);
         } else {
@@ -78,7 +97,7 @@ export default function RunCapabilityPage() {
         }
       })
       .catch(() => setError("Could not load capability form"));
-  }, [params.slug]);
+  }, [params.slug, searchParams]);
 
   useEffect(() => {
     if (!fromJobId) {
@@ -216,7 +235,7 @@ export default function RunCapabilityPage() {
   return (
     <>
       <PageHeader
-        title="Run job"
+        title={purchaseLabel ?? (accepting ? "Run now" : "Schedule for earliest availability")}
         description={
           <>
             Signed in with verified email and credits required.
@@ -239,10 +258,20 @@ export default function RunCapabilityPage() {
       )}
       {!accepting && (
         <div className="detail-panel form-stack">
-          <Alert tone="warning">
-            Not accepting immediate runs
-            {nextAvailableAt ? ` until ${new Date(nextAvailableAt).toLocaleString()}` : ""}. Schedule
-            below or return later.
+          <Alert tone="info">
+            This service is not running right now. You can reserve it for its next availability.
+            {nextAvailableAt
+              ? ` Eligible to start from ${
+                  formatBuyerLocalTime(
+                    nextAvailableAt,
+                    Intl.DateTimeFormat().resolvedOptions().timeZone,
+                  ) ?? "the next published window"
+                }. Your local time. ${approximateStartLabel(new Date(), new Date(nextAvailableAt))}.`
+              : ""}{" "}
+            {paymentNotice ??
+              "Your payment will be secured now. The job will execute when the capability becomes available."}{" "}
+            Credits stay reserved and are released if the job never starts. The time after start is an
+            estimate, not a guaranteed minute.
           </Alert>
           <div className="form-field">
             <label className="field-label" htmlFor="deadline">
@@ -308,7 +337,7 @@ export default function RunCapabilityPage() {
           </div>
           <div className="form-actions">
             <button className="button" type="submit" disabled={loading}>
-              {loading ? "Submitting…" : "Submit with credits"}
+              {loading ? "Submitting…" : (purchaseLabel ?? (accepting ? "Run now" : "Schedule for earliest availability"))}
             </button>
             {fields && (
               <button className="button secondary" type="button" onClick={() => setUseJson(false)}>

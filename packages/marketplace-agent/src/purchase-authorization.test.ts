@@ -22,6 +22,15 @@ describe("authorizePlanApproval (BUYERUX-006)", () => {
     notes: [],
   };
 
+  it("rejects a plan whose total exceeds the authorized spend", () => {
+    const authz = authorizePlanApproval({
+      plan: { ...basePlan, estimatedCostCents: 8000, maxBudgetCents: 1000 },
+      constraints: { maxTotalSpendCents: 1000 },
+      stepEstimatedDurationMinutes: [10],
+    });
+    expect(authz).toEqual({ ok: false, code: "BUDGET_EXCEEDED" });
+  });
+
   it("rejects plan that cannot meet hard deadline", () => {
     const deadline = new Date(Date.now() + 30 * 60_000).toISOString();
     const authz = authorizePlanApproval({

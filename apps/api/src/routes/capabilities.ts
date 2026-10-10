@@ -19,6 +19,13 @@ import { getCookie } from "hono/cookie";
 import { Hono } from "hono";
 import type { Context } from "hono";
 import { sessionCookieName } from "../env.js";
+import {
+  buildJobScheduleQuote,
+  buyerPurchaseAction,
+  buyerPurchaseActionLabel,
+  marketplaceCardCopy,
+  publicCapabilityForBuyer,
+} from "@kivro/marketplace";
 import { findVisibleCapability, publicMarketplaceWhere } from "../services/capability-visibility.js";
 
 async function optionalViewerId(c: Context): Promise<string | null> {
@@ -102,6 +109,26 @@ export function marketplaceCapabilityRoutes(): Hono {
       });
     const buyerForm = contract ? buildBuyerFormSchema(contract) : null;
     const availability = await evaluateCapabilityAvailability(getPrismaClient(), row.id);
+    const purchaseAction =
+      "error" in availability
+        ? "UNAVAILABLE"
+        : buyerPurchaseAction({
+            accepting: availability.accepting,
+            availabilityStatus: availability.buyerAvailability,
+            nextAvailableAt: availability.nextAvailableAt ?? null,
+          });
+    const scheduleQuote =
+      "error" in availability || !row.currentVersion
+        ? null
+        : buildJobScheduleQuote({
+            capabilityId: row.id,
+            capabilityVersionId: row.currentVersion.id,
+            amountMinor: row.currentVersion.priceSnapshotCents,
+            accepting: availability.accepting,
+            nextEligibleAt: availability.nextAvailableAt ?? null,
+            estimatedDurationSeconds: row.estimatedDuration,
+            timeZone: "UTC",
+          });
     const scheduleAwareness =
       "error" in availability
         ? null
@@ -109,6 +136,14 @@ export function marketplaceCapabilityRoutes(): Hono {
             status: availability.buyerAvailability,
             accepting: availability.accepting,
             nextAvailableAt: availability.nextAvailableAt ?? null,
+            purchaseAction,
+            purchaseLabel: buyerPurchaseActionLabel(purchaseAction),
+            cardLabel: marketplaceCardCopy({
+              status: availability.buyerAvailability,
+              nextAvailableAt: availability.nextAvailableAt ?? null,
+              timeZone: "UTC",
+            }),
+            scheduleQuote,
           };
     const externalProcessors =
       version && Array.isArray(version.externalProcessorsSnapshot)
@@ -121,7 +156,7 @@ export function marketplaceCapabilityRoutes(): Hono {
     });
     const reliability = await computeSellerReliabilityForCapability(getPrismaClient(), row.id);
     return c.json({
-      capability: row,
+      capability: publicCapabilityForBuyer(row),
       seller: {
         id: row.sellerProfile.id,
         displayName: row.sellerProfile.displayName,

@@ -22,7 +22,7 @@ import type {
   WorkerEnvironment,
   WorkerValidationReport,
 } from "./types.js";
-import { jobAttemptPaths } from "./job-paths.js";
+import { jobAttemptPaths, localBuyerInputDirToDelete } from "./job-paths.js";
 import { writeMarketplaceWorkerEnvironment } from "./worker-environment.js";
 
 const execFileAsync = promisify(execFile);
@@ -36,6 +36,7 @@ function resolveRuntimeRoot(): string {
 
 export class OpenClawCliAdapter implements AgentRuntimeAdapter {
   private readonly supervisors = new Map<string, JobProcessSupervisor>();
+  private readonly buyerInputDirs = new Map<string, { runtimeRoot: string; inputDir: string }>();
 
   constructor(
     private readonly binary = process.env.OPENCLAW_BIN ?? "openclaw",
@@ -204,6 +205,10 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
         metadata: { error: envCheck.issues.join("; ") },
       };
     }
+    this.buyerInputDirs.set(context.attemptId, {
+      runtimeRoot: resolveRuntimeRoot(),
+      inputDir: context.inputDir,
+    });
     fs.mkdirSync(context.inputDir, { recursive: true });
     fs.mkdirSync(context.outputDir, { recursive: true });
     fs.mkdirSync(context.workDir, { recursive: true });
@@ -353,6 +358,14 @@ export class OpenClawCliAdapter implements AgentRuntimeAdapter {
     for (const key of [...this.supervisors.keys()]) {
       if (key.endsWith(`:${jobAttemptId}`)) {
         this.supervisors.delete(key);
+      }
+    }
+    const recorded = this.buyerInputDirs.get(jobAttemptId);
+    this.buyerInputDirs.delete(jobAttemptId);
+    if (recorded) {
+      const target = localBuyerInputDirToDelete(recorded.runtimeRoot, recorded.inputDir);
+      if (target) {
+        fs.rmSync(target, { recursive: true, force: true });
       }
     }
     return Promise.resolve();

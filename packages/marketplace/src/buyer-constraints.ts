@@ -10,8 +10,14 @@ export type BuyerConstraints = {
   blockedSellerProfileIds?: string[];
   /** ISO-8601 hard delivery deadline (BUYERUX-004/006). */
   hardDeliveryDeadlineAt?: string;
-  /** IMMEDIATE excludes future-only services. DEADLINE allows a window that finishes in time. */
-  timingMode?: "IMMEDIATE" | "DEADLINE";
+  /**
+   * IMMEDIATE excludes future-only services.
+   * DEADLINE allows a window that finishes in time.
+   * EARLIEST_AVAILABLE_ALLOWED is set only when the buyer explicitly permits a wait.
+   */
+  timingMode?: "IMMEDIATE" | "DEADLINE" | "EARLIEST_AVAILABLE_ALLOWED";
+  /** Hard contract filter: a text-only capability cannot satisfy a file request. */
+  needsFileInput?: boolean;
 };
 
 export function normalizeBuyerConstraints(raw: Partial<BuyerConstraints>): BuyerConstraints {
@@ -46,8 +52,15 @@ export function normalizeBuyerConstraints(raw: Partial<BuyerConstraints>): Buyer
       out.hardDeliveryDeadlineAt = new Date(t).toISOString();
     }
   }
-  if (raw.timingMode === "IMMEDIATE" || raw.timingMode === "DEADLINE") {
+  if (
+    raw.timingMode === "IMMEDIATE" ||
+    raw.timingMode === "DEADLINE" ||
+    raw.timingMode === "EARLIEST_AVAILABLE_ALLOWED"
+  ) {
     out.timingMode = raw.timingMode;
+  }
+  if (raw.needsFileInput === true) {
+    out.needsFileInput = true;
   }
   return out;
 }
@@ -74,6 +87,14 @@ export function extractConstraintsFromText(text: string): BuyerConstraints {
 
   if (/\bonline now\b|\bonline only\b|\bavailable now\b/.test(lower)) {
     out.onlineOnly = true;
+  }
+
+  if (
+    /\byou can schedule\b|\bschedule if necessary\b|\bi can wait\b|\bwilling to wait\b|\bdon't care if it runs\b|\bdont care if it runs\b/.test(
+      lower,
+    )
+  ) {
+    out.timingMode = "EARLIEST_AVAILABLE_ALLOWED";
   }
 
   const deadlineIso = text.match(
