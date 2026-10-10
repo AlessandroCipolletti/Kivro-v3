@@ -1,5 +1,11 @@
 /** Sanitized Worker heartbeat payload (Master Spec §373–§379). */
 
+export type WorkerCredentialRefHeartbeat = {
+  refId: string;
+  provider: string;
+  lastVerifiedAt: string | null;
+};
+
 export type WorkerHealthReport = {
   workerVersion: string;
   openClawVersion?: string | null;
@@ -9,6 +15,7 @@ export type WorkerHealthReport = {
   openClawCompatible: boolean;
   globalPauseActive: boolean;
   cloudConnectionOk?: boolean;
+  credentialRefs?: WorkerCredentialRefHeartbeat[];
   reportedAt: string;
 };
 
@@ -30,6 +37,17 @@ export function parseWorkerHealthReport(raw: unknown): WorkerHealthReport | null
     globalPauseActive: o.globalPauseActive === true,
     cloudConnectionOk: o.cloudConnectionOk === true ? true : o.cloudConnectionOk === false ? false : undefined,
     reportedAt: o.reportedAt,
+    credentialRefs: Array.isArray(o.credentialRefs)
+      ? o.credentialRefs
+          .filter((r): r is Record<string, unknown> => Boolean(r) && typeof r === "object")
+          .map((r) => ({
+            refId: String(r.refId ?? ""),
+            provider: String(r.provider ?? ""),
+            lastVerifiedAt:
+              typeof r.lastVerifiedAt === "string" ? r.lastVerifiedAt : null,
+          }))
+          .filter((r) => r.refId.length > 0)
+      : undefined,
   };
 }
 

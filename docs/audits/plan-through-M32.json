@@ -1,0 +1,177 @@
+{
+  "generatedAt": "2026-10-10T08:58:46.285Z",
+  "planThrough": "M32",
+  "verifyScripts": [
+    {
+      "id": "M03",
+      "verify": "verify:m03",
+      "present": true
+    },
+    {
+      "id": "M04",
+      "verify": "verify:m04",
+      "present": true
+    },
+    {
+      "id": "M05",
+      "verify": "verify:m05",
+      "present": true
+    },
+    {
+      "id": "M06",
+      "verify": "verify:m06",
+      "present": true
+    },
+    {
+      "id": "M07",
+      "verify": "verify:m07",
+      "present": true
+    },
+    {
+      "id": "M08",
+      "verify": "verify:m08",
+      "present": true
+    },
+    {
+      "id": "M09",
+      "verify": "verify:m09",
+      "present": true
+    },
+    {
+      "id": "M10",
+      "verify": "verify:m10",
+      "present": true
+    },
+    {
+      "id": "M11",
+      "verify": "verify:m11",
+      "present": true
+    },
+    {
+      "id": "M12",
+      "verify": "verify:m12",
+      "present": true
+    },
+    {
+      "id": "M13",
+      "verify": "verify:m13",
+      "present": true
+    },
+    {
+      "id": "M14",
+      "verify": "verify:m14",
+      "present": true
+    },
+    {
+      "id": "M15",
+      "verify": "verify:m15",
+      "present": true
+    },
+    {
+      "id": "M16",
+      "verify": "verify:m16",
+      "present": true
+    },
+    {
+      "id": "M17",
+      "verify": "verify:m17",
+      "present": true
+    },
+    {
+      "id": "M18",
+      "verify": "verify:m18",
+      "present": true
+    },
+    {
+      "id": "M19",
+      "verify": "verify:m19",
+      "present": true
+    },
+    {
+      "id": "M20",
+      "verify": "verify:m20",
+      "present": true
+    },
+    {
+      "id": "M21",
+      "verify": "verify:m21",
+      "present": true
+    },
+    {
+      "id": "M22",
+      "verify": "verify:m22",
+      "present": true
+    },
+    {
+      "id": "M23",
+      "verify": "verify:m23",
+      "present": true
+    },
+    {
+      "id": "M24",
+      "verify": "verify:m24",
+      "present": true
+    },
+    {
+      "id": "M25",
+      "verify": "verify:m25",
+      "present": true
+    },
+    {
+      "id": "M26",
+      "verify": "verify:m26",
+      "present": true
+    },
+    {
+      "id": "M27",
+      "verify": "verify:m27",
+      "present": true
+    },
+    {
+      "id": "M28",
+      "verify": "verify:m28",
+      "present": true
+    },
+    {
+      "id": "M29",
+      "verify": "verify:m29",
+      "present": true
+    },
+    {
+      "id": "M30",
+      "verify": "verify:m30",
+      "present": true
+    },
+    {
+      "id": "M31",
+      "verify": "verify:m31",
+      "present": true
+    },
+    {
+      "id": "M32",
+      "verify": "verify:m32",
+      "present": true
+    }
+  ],
+  "missingVerifyScripts": [],
+  "experienceHarness": [
+    {
+      "m": "M30",
+      "path": "/Users/cippo/Workspace/Me/Kivro-v3/docs/audits/M30-exit-criteria.json",
+      "ok": true,
+      "harness": true
+    },
+    {
+      "m": "M31",
+      "path": "/Users/cippo/Workspace/Me/Kivro-v3/docs/audits/M31-exit-criteria.json",
+      "ok": true,
+      "harness": true
+    },
+    {
+      "m": "M32",
+      "path": "/Users/cippo/Workspace/Me/Kivro-v3/docs/audits/M32-exit-criteria.json",
+      "ok": true,
+      "harness": true
+    }
+  ]
+}

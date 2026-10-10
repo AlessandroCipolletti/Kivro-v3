@@ -7,6 +7,7 @@ import { authRoutes, googleOAuthRoutes } from "./routes/auth.js";
 import { marketplaceCapabilityRoutes } from "./routes/capabilities.js";
 import { sellerAssetRoutes } from "./routes/seller-assets.js";
 import { sellerCapabilityRoutes } from "./routes/seller-capabilities.js";
+import { sellerOnboardingRoutes } from "./routes/seller-onboarding.js";
 import { buyerAssetRoutes } from "./routes/buyer-assets.js";
 import { platformAdminRoutes } from "./routes/platform-admin.js";
 import { platformCronRoutes } from "./routes/platform-cron.js";
@@ -148,6 +149,7 @@ export function createApp(): Hono<AppEnv> {
   app.route("/", capabilityReviewRoutes());
   app.route("/", capabilityAvailabilityRoutes());
   app.route("/seller", sellerCapabilityRoutes());
+  app.route("/seller", sellerOnboardingRoutes());
   app.route("/seller", sellerScheduleRoutes());
   app.route("/seller", sellerAssetRoutes());
   app.route("/worker-devices", workerDeviceRoutes());

@@ -48,6 +48,11 @@
       "folder": "20260410180000_m31_buyer_history",
       "phase": "expand",
       "notes": "Job reuse feedback, retention reminders — M31"
+    },
+    {
+      "folder": "20260410190000_m32_seller_onboarding",
+      "phase": "expand",
+      "notes": "Seller identity separation, first publish tracking — M32"
     }
   ]
 }

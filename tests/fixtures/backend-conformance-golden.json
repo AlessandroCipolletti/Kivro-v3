@@ -391,6 +391,56 @@
       "id": "BUYERUX-GOLD-018",
       "name": "buyer dashboard",
       "assert": "mixed states from authoritative job records"
+    },
+    {
+      "id": "SELLERUX-GOLD-001",
+      "name": "seller onboarding",
+      "assert": "guided pairing and health blockers without policy weaken"
+    },
+    {
+      "id": "SELLERUX-GOLD-002",
+      "name": "discovery consent",
+      "assert": "candidates not exposed until individually selected"
+    },
+    {
+      "id": "SELLERUX-GOLD-003",
+      "name": "AI draft boundary",
+      "assert": "draft cannot publish or expand permissions without seller"
+    },
+    {
+      "id": "SELLERUX-GOLD-004",
+      "name": "dependency permission review",
+      "assert": "mandatory dependency blocks publish; summary matches manifest"
+    },
+    {
+      "id": "SELLERUX-GOLD-005",
+      "name": "buyer preview readiness",
+      "assert": "draft preview matches contract; blockers prevent publish"
+    },
+    {
+      "id": "SELLERUX-GOLD-006",
+      "name": "secrets health",
+      "assert": "local credentials; cloud metadata only; sanitized doctor"
+    },
+    {
+      "id": "SELLERUX-GOLD-012",
+      "name": "version diff immutability",
+      "assert": "permission expansion prominent; historical jobs pinned"
+    },
+    {
+      "id": "SELLERUX-GOLD-016",
+      "name": "doctor diagnostics",
+      "assert": "blocking factors surfaced; output sanitized"
+    },
+    {
+      "id": "SELLERUX-GOLD-017",
+      "name": "security disclosure",
+      "assert": "seller disclosure matches selected resources"
+    },
+    {
+      "id": "SELLERUX-GOLD-018",
+      "name": "marketplace identity",
+      "assert": "public brand differs from private KYC; no API leak"
     }
   ]
 }

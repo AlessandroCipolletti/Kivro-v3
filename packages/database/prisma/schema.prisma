@@ -344,6 +344,9 @@ model SellerProfile {
   id                     String   @id @default(uuid())
   userId                 String   @unique
   displayName            String
+  legalNameForKyc        String?
+  firstPublishedAt       DateTime?
+  sellerOnboarding       Json?
   payoutStatus           String   @default("NOT_STARTED")
   verificationStatus     String   @default("UNVERIFIED")
   ratingSummary          Json?

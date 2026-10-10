@@ -15,11 +15,15 @@ import { buildWorkerManifestTemplate } from "@kivro/capability-publish";
 import { ResearchBroker, StaticWebSearchProvider } from "@kivro/research-broker";
 import { validateExecutionPreflight } from "@kivro/policy-engine";
 import { buildDockerSandboxSpec } from "@kivro/sandbox";
-import { isGlobalDispatchEnabled } from "@kivro/platform-policy";
 import { generateDeviceKeyPair } from "@kivro/crypto";
 import { verifyWorkerManifestSkillHashes } from "@kivro/capability-publish";
 import { hashOpenClawSkill } from "@kivro/openclaw-adapter";
 import { WORKER_COMMANDS } from "@kivro/job-protocol";
+import { buildDoctorChecklist, sanitizeDoctorReport } from "@kivro/seller-experience";
+import {
+  listLocalCredentialRefs,
+  setLocalCredentialSecret,
+} from "@kivro/worker-store";
 import {
   KIVRO_COMPATIBILITY_MATRIX,
   beginStagedWorkerUpdate,
@@ -68,45 +72,46 @@ program
   .description("Environment and security prerequisite checks (§57)")
   .action(async () => {
     const snapshot = await collectLocalHealthSnapshot();
-    console.log(
-      JSON.stringify(
-        {
-          checks: [
-            {
-              name: "marketplace_pause",
-              status: snapshot.globalPauseActive ? "WARN" : "PASS",
-              globalPauseActive: snapshot.globalPauseActive,
-            },
-            {
-              name: "docker_sandbox",
-              status: snapshot.dockerOk && snapshot.sandboxOk ? "PASS" : "FAIL",
-              dockerOk: snapshot.dockerOk,
-              sandboxOk: snapshot.sandboxOk,
-            },
-            {
-              name: "openclaw",
-              status: snapshot.openClawInstalled ? "PASS" : "WARN",
-              version: snapshot.openClawVersion,
-              compatible: snapshot.openClawCompatible,
-            },
-            {
-              name: "global_dispatch",
-              status: isGlobalDispatchEnabled() ? "PASS" : "WARN",
-              enabled: isGlobalDispatchEnabled(),
-            },
-            {
-              name: "cloud_environment",
-              status: "PASS",
-              cloudUrl: process.env.KIVRO_CLOUD_URL ?? "http://localhost:3001",
-              nodeEnv: process.env.NODE_ENV ?? "development",
-            },
-          ],
-          workerVersion: snapshot.workerVersion,
-        },
-        null,
-        2,
-      ),
-    );
+    const store = openWorkerStore(runtimeRoot());
+    const creds = listLocalCredentialRefs(store);
+    const staleCount = creds.filter((c) => {
+      if (!c.lastVerifiedAt) return true;
+      return Date.now() - new Date(c.lastVerifiedAt).getTime() > 86_400_000;
+    }).length;
+    const raw = {
+      checklist: buildDoctorChecklist({
+        ...snapshot,
+        credentialRefsConfigured: creds.length,
+        credentialRefsStale: staleCount,
+      }),
+      workerVersion: snapshot.workerVersion,
+      openClawVersion: snapshot.openClawVersion,
+    };
+    console.log(JSON.stringify(sanitizeDoctorReport(raw), null, 2));
+  });
+
+program
+  .command("credential")
+  .description("Configure local execution credentials (secrets never leave this machine)")
+  .requiredOption("--ref-id <id>", "Credential reference id")
+  .requiredOption("--provider <name>", "Provider label")
+  .option("--secret-stdin", "Read secret from stdin")
+  .action(async (opts: { refId: string; provider: string; secretStdin?: boolean }) => {
+    let secret = "";
+    if (opts.secretStdin) {
+      secret = fs.readFileSync(0, "utf8").trim();
+    }
+    if (!secret) {
+      console.error("Provide --secret-stdin with a piped secret value.");
+      process.exit(1);
+    }
+    const store = openWorkerStore(runtimeRoot());
+    const record = setLocalCredentialSecret(store, {
+      refId: opts.refId,
+      provider: opts.provider,
+      secret,
+    });
+    console.log(JSON.stringify({ configured: record.refId, provider: record.provider }, null, 2));
   });
 
 program
@@ -489,6 +494,11 @@ program
     const snapshot = await collectLocalHealthSnapshot();
     const store = openWorkerStore(runtimeRoot());
     const identity = getDeviceIdentity(store);
+    const credentialRefs = listLocalCredentialRefs(store).map((c) => ({
+      refId: c.refId,
+      provider: c.provider,
+      lastVerifiedAt: c.lastVerifiedAt,
+    }));
     let cloud: unknown = { skipped: true };
     if (opts.cloud !== false && identity?.workerDeviceId && identity.cloudUrl) {
       const res = await fetch(`${identity.cloudUrl}/worker/heartbeat`, {
@@ -497,7 +507,7 @@ program
           "content-type": "application/json",
           "x-worker-device-id": identity.workerDeviceId,
         },
-        body: JSON.stringify(snapshot),
+        body: JSON.stringify({ ...snapshot, credentialRefs }),
       });
       cloud = await res.json().catch(() => ({ error: "INVALID_JSON" }));
       applyCloudMarketplaceSync(store, cloud);

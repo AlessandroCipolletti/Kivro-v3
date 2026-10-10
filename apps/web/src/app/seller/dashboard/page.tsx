@@ -33,6 +33,7 @@ type Dashboard = {
     dockerOk: boolean | null;
     sandboxOk: boolean | null;
     warnings: Array<{ severity: string; title: string; blocking: boolean }>;
+    credentialRefs?: Array<{ refId: string; provider: string; status: string }>;
   }>;
   capabilities: CapabilityRow[];
   jobMetrics: {
@@ -137,6 +138,13 @@ export default function SellerDashboardPage() {
           </Link>
         }
       />
+      <p className="page-shell">
+        <Link href="/seller/onboarding">Seller onboarding</Link>
+        {" · "}
+        <Link href="/seller/capabilities/new">New capability wizard</Link>
+        {" · "}
+        <Link href="/seller/settings/identity">Identity settings</Link>
+      </p>
 
       {error && <Alert tone="danger">{error}</Alert>}
 
@@ -212,6 +220,15 @@ export default function SellerDashboardPage() {
                         <li key={i} className="meta">
                           {warn.title}
                           {warn.blocking ? " (blocks dispatch)" : ""}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {w.credentialRefs && w.credentialRefs.length > 0 && (
+                    <ul style={{ margin: "0.5rem 0 0", paddingLeft: "1.1rem" }}>
+                      {w.credentialRefs.map((cred) => (
+                        <li key={cred.refId} className="meta">
+                          Credential {cred.refId} ({cred.provider}): {cred.status}
                         </li>
                       ))}
                     </ul>

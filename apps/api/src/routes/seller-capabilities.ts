@@ -12,9 +12,9 @@ import {
   publishCapability,
   rollbackCapabilityVersion,
   suggestInputContractFromDiscovery,
-  summarizeVersionDiff,
   validateImportConsent,
 } from "@kivro/capability-publish";
+import { buildSemanticVersionDiff } from "@kivro/seller-experience";
 import { parseCapabilityContract, parseInternetResearchPolicy } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
 import {
@@ -177,7 +177,7 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
     if (!from || !to) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
-    return c.json({ diff: summarizeVersionDiff(from, to) });
+    return c.json({ diff: buildSemanticVersionDiff(from, to) });
   });
 
   app.get("/capabilities/:id/package", async (c) => {

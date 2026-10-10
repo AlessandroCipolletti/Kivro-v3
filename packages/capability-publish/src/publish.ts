@@ -285,6 +285,17 @@ export async function publishCapability(
       },
     });
 
+    await tx.sellerProfile.updateMany({
+      where: { id: sellerProfileId, firstPublishedAt: null },
+      data: {
+        firstPublishedAt: new Date(),
+        sellerOnboarding: {
+          firstPublicationAt: new Date().toISOString(),
+          guideRelativePath: `/seller/capabilities/${capability.id}/guide`,
+        },
+      },
+    });
+
     return { capability: updated, version };
   });
 }

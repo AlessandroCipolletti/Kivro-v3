@@ -1,0 +1,25 @@
+{
+  "name": "@kivro/seller-experience",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kivro/capability-publish": "workspace:*",
+    "@kivro/contracts": "workspace:*",
+    "@kivro/database": "workspace:*",
+    "@kivro/job-io": "workspace:*",
+    "@kivro/seller-health": "workspace:*"
+  }
+}

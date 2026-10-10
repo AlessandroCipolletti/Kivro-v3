@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-10-10T09:00:29.287Z",
+  "m32HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "m31-regression-gate",
+      "status": "PASS",
+      "detail": "verify:m31 / M31-exit-criteria.json"
+    },
+    {
+      "id": "sellerux-m32-tested",
+      "status": "PASS",
+      "detail": "20/20 M32-scope SELLERUX rows TESTED"
+    },
+    {
+      "id": "sellerux-gold-m32",
+      "status": "PASS",
+      "detail": "M32 exit SELLERUX-GOLD scenarios in golden registry"
+    },
+    {
+      "id": "m32-migration",
+      "status": "PASS",
+      "detail": "seller identity + first publish tracking schema"
+    },
+    {
+      "id": "seller-onboarding-routes",
+      "status": "PASS",
+      "detail": "onboarding, readiness, preview, identity API"
+    },
+    {
+      "id": "seller-web-onboarding",
+      "status": "PASS",
+      "detail": "guided seller UI entry"
+    },
+    {
+      "id": "verify-m32-script",
+      "status": "PASS",
+      "detail": "pnpm verify:m32 gate registered"
+    },
+    {
+      "id": "sellerux-spotcheck",
+      "status": "PASS",
+      "detail": "M32-scope SELLERUX COVERAGE rows with evidence paths"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import {
   MIN_SECURITY_WORKER_VERSION,
   parseWorkerHealthReport,
 } from "@kivro/seller-health";
+import { buildCloudCredentialRefs } from "@kivro/seller-experience";
 
 const ACTIVE_JOB_STATUSES = [
   "DISPATCHED",
@@ -68,6 +69,13 @@ export async function buildSellerHealthDashboard(
       dockerOk: report?.dockerOk ?? null,
       sandboxOk: report?.sandboxOk ?? null,
       warnings,
+      credentialRefs: buildCloudCredentialRefs({
+        refs: (report?.credentialRefs ?? []).map((r) => ({
+          refId: r.refId,
+          provider: r.provider,
+          lastVerifiedAt: r.lastVerifiedAt,
+        })),
+      }),
     };
   });
 

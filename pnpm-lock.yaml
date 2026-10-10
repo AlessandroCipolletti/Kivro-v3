@@ -137,6 +137,9 @@ importers:
       '@kivro/research-broker':
         specifier: workspace:*
         version: link:../../packages/research-broker
+      '@kivro/seller-experience':
+        specifier: workspace:*
+        version: link:../../packages/seller-experience
       '@kivro/seller-health':
         specifier: workspace:*
         version: link:../../packages/seller-health
@@ -247,6 +250,9 @@ importers:
       '@kivro/sandbox':
         specifier: workspace:*
         version: link:../../packages/sandbox
+      '@kivro/seller-experience':
+        specifier: workspace:*
+        version: link:../../packages/seller-experience
       '@kivro/worker-store':
         specifier: workspace:*
         version: link:../../packages/worker-store
@@ -686,6 +692,24 @@ importers:
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
+
+  packages/seller-experience:
+    dependencies:
+      '@kivro/capability-publish':
+        specifier: workspace:*
+        version: link:../capability-publish
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/job-io':
+        specifier: workspace:*
+        version: link:../job-io
+      '@kivro/seller-health':
+        specifier: workspace:*
+        version: link:../seller-health
 
   packages/seller-health:
     dependencies:

@@ -644,6 +644,10 @@ greenfield.
 
 **Decision:** Buyer preflight, execution quote, deadline feasibility, ETA/progress honesty, legal actions, reliability aggregation, privacy disclosure, minimized worker payload, and dashboard summaries live in `@kivro/buyer-experience` and `@kivro/marketplace` read models — not provider adapters or UI-only logic. Purchase must revalidate `BuyerExecutionQuote` when `executionQuoteId` is supplied. Gate: `pnpm verify:m30` (includes `verify:m29`).
 
+## DEC-M32-001 --- Seller onboarding and publication are Core semantics
+
+**Decision:** Guided seller onboarding, publish readiness, draft buyer preview, effective permission summaries, semantic version diff, local credential storage, sanitized doctor output, marketplace/KYC identity separation, and first-publication guidance live in `@kivro/seller-experience` with seller API + web flows. AI/discovery drafts are advisory only. Gate: `pnpm verify:m32` (includes `verify:m31`).
+
 ## DEC-M31-001 --- Buyer history and results are Core semantics
 
 **Decision:** Run again / duplicate, semantic result rendering, safe previews, download-all bundling, immutable input/purchase snapshots, retention UX, and acknowledgement/problem reporting are implemented in shared packages (`@kivro/buyer-experience`, `@kivro/job-delivery`, `@kivro/marketplace`) with session + v1 download parity where applicable. Gate: `pnpm verify:m31` (includes `verify:m30`).

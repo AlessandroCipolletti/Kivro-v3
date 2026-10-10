@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-10-10T08:58:42.495Z",
+  "milestone": "M32",
+  "focus": "Seller onboarding, discovery consent, safe publication",
+  "m32HarnessComplete": true,
+  "packages": [
+    "@kivro/seller-experience"
+  ],
+  "golden": [
+    "SELLERUX-GOLD-001",
+    "SELLERUX-GOLD-002",
+    "SELLERUX-GOLD-003",
+    "SELLERUX-GOLD-004",
+    "SELLERUX-GOLD-005",
+    "SELLERUX-GOLD-006",
+    "SELLERUX-GOLD-012",
+    "SELLERUX-GOLD-016",
+    "SELLERUX-GOLD-017",
+    "SELLERUX-GOLD-018"
+  ]
+}

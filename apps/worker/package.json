@@ -26,6 +26,7 @@
     "@kivro/job-failure": "workspace:*",
     "@kivro/job-io": "workspace:*",
     "@kivro/research-broker": "workspace:*",
+    "@kivro/seller-experience": "workspace:*",
     "@kivro/worker-store": "workspace:*",
     "@kivro/cloud-core": "workspace:*",
     "@kivro/worker-transport": "workspace:*",

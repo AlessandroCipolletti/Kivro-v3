@@ -172,3 +172,10 @@ export function setWorkerDeviceId(store: WorkerStoreHandle, workerDeviceId: stri
   file.device.workerDeviceId = workerDeviceId;
   writeStore(store.statePath, file);
 }
+
+export {
+  listLocalCredentialRefs,
+  readLocalCredentialSecret,
+  setLocalCredentialSecret,
+  type LocalCredentialRecord,
+} from "./local-credentials.js";

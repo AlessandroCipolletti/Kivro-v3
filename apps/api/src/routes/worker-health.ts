@@ -36,6 +36,18 @@ export function workerHealthRoutes(): Hono<AppEnv> {
       openClawCompatible: body.openClawCompatible === true,
       globalPauseActive: body.globalPauseActive === true,
       cloudConnectionOk: true,
+      credentialRefs: Array.isArray(body.credentialRefs)
+        ? body.credentialRefs
+            .filter((r) => r && typeof r === "object" && typeof (r as { refId?: string }).refId === "string")
+            .map((r) => {
+              const row = r as { refId: string; provider?: string; lastVerifiedAt?: string | null };
+              return {
+                refId: row.refId,
+                provider: row.provider ?? "unknown",
+                lastVerifiedAt: row.lastVerifiedAt ?? null,
+              };
+            })
+        : undefined,
     });
     const result = await applyWorkerHeartbeat(getPrismaClient(), { workerDeviceId, report });
     if ("error" in result) {
