@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-10T07:18:23.876Z",
+  "m24HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "dependency-fitness",
+      "status": "PASS",
+      "detail": "Architecture, composition thinness, BullMQ guard in verify:m24"
+    },
+    {
+      "id": "duplicate-semantic-guard",
+      "status": "PASS",
+      "detail": "check-duplicate-semantic-ownership.mjs + API import boundary"
+    },
+    {
+      "id": "golden-registry",
+      "status": "PASS",
+      "detail": "15 scenarios wired via verify-golden-registry.mjs"
+    },
+    {
+      "id": "compatibility-matrix-seed",
+      "status": "PASS",
+      "detail": "HARD-007 seed matrix verified in verify:m24"
+    },
+    {
+      "id": "golden-registry-shape",
+      "status": "PASS",
+      "detail": "check-golden-registry-shape.mjs (provider-neutral registry)"
+    },
+    {
+      "id": "drift-canary",
+      "status": "PASS",
+      "detail": "Composition + transport broken probes must fail CI"
+    },
+    {
+      "id": "provider-parity-evidence",
+      "status": "PASS",
+      "detail": "M24-provider-parity-report.json"
+    },
+    {
+      "id": "both-provider-golden-suite",
+      "status": "PASS",
+      "detail": "run-backend-conformance.mjs + M24 vitest suite passed before exit artifact"
+    },
+    {
+      "id": "intentional-divergence-rejection",
+      "status": "PASS",
+      "detail": "architecture-uni-023 + M24-GOLD-001/002/008 + divergence rejection suite"
+    },
+    {
+      "id": "hard-004-full-paid-golden",
+      "status": "DEFERRED_M29",
+      "detail": "M24-GOLD-005 seeds payment idempotency unit/DB tests only"
+    },
+    {
+      "id": "hard-005-fault-injection",
+      "status": "DEFERRED_M26",
+      "detail": "Fault matrix expands in M26"
+    }
+  ]
+}

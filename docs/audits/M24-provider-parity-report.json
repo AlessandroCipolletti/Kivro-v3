@@ -1,7 +1,18 @@
 {
-  "generatedAt": "2026-10-10T07:12:55.908Z",
+  "generatedAt": "2026-10-10T07:18:20.278Z",
   "apiContractVersion": "v1-mvp",
   "workerProtocolVersion": 1,
+  "compatibilityMatrix": {
+    "description": "HARD-007 — independently identifiable version surfaces (M24 seed; expanded in M25).",
+    "apiContractVersion": "v1-mvp",
+    "workerProtocolMin": 1,
+    "workerProtocolMax": 1,
+    "database": {
+      "schemaPackage": "@kivro/database",
+      "migrationsRelativePath": "packages/database/prisma/migrations"
+    },
+    "contractsPackage": "@kivro/contracts"
+  },
   "profiles": {
     "netsons": {
       "durableWorkProfile": "netsons-db-cron",

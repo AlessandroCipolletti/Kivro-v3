@@ -9,19 +9,18 @@
 
 | Deliverable | Evidence |
 |-------------|----------|
-| Dependency fitness | `check-architecture.mjs`, `check-composition-thinness.mjs` (in verify flow) |
-| Duplicate semantic ownership guard | `check-duplicate-semantic-ownership.mjs` |
-| Golden scenario registry v2 | `tests/fixtures/backend-conformance-golden.json` + `verify-golden-registry.mjs` |
-| Drift canary | `createBrokenCompositionDriftProbe`, `createBrokenTransportDriftProbe` tests |
-| Generated parity evidence | `docs/audits/M24-provider-parity-report.json` |
-| Both-provider golden suite | `conformance-golden-m19`, `conformance-golden-m24`, `conformance-dual-control-plane-m22` |
-| Intentional divergence rejection | M24-GOLD-001/002 + `architecture-uni-023-m19` |
-
-## Forbidden shortcuts (absent)
-
-- Manual-only parity checks — parity report generated in CI
-- Provider-specific golden expectations for shared semantics — registry is neutral
-- Disabled architecture checks — run first in `verify:m24`
+| Dependency fitness | `check-architecture.mjs`, `check-composition-thinness.mjs`, `check-no-bullmq-production.mjs` |
+| Duplicate semantic ownership | `check-duplicate-semantic-ownership.mjs` |
+| API composition boundary | `check-api-provider-import-boundary.mjs` |
+| Golden registry v2 (15 scenarios) | `backend-conformance-golden.json`, `verify-golden-registry.mjs`, `check-golden-registry-shape.mjs` |
+| Compatibility matrix (HARD-007 seed) | `compatibility-matrix.json` + `verify-compatibility-matrix.mjs` |
+| Drift canary | `createBrokenCompositionDriftProbe`, `createBrokenTransportDriftProbe` |
+| Parity + fitness reports | `M24-provider-parity-report.{json,md}`, `M24-fitness-report.{json,md}` |
+| Exit criteria artifact | `M24-exit-criteria.json`, `acceptance-m24-exit.test.ts` (after vitest) |
+| Divergence rejection suite | `conformance-divergence-rejection-m24.test.ts` |
+| Both-provider suite | golden m19/m24, both-roots m19, dual-CP m22, `run-backend-conformance.mjs` |
+| Payment golden seed (HARD-004) | `M24-GOLD-005` → `m08-payment-db.test.ts` / `verify-m08` |
+| Divergence rejection | M24-GOLD-001/002, `architecture-uni-023-m19` |
 
 ## Exit criteria
 
@@ -29,9 +28,12 @@
 pnpm verify:m24
 ```
 
-A deliberately divergent adapter **cannot** pass CI (proven by drift canary tests).
+Deliberately divergent adapters **cannot** pass CI.
 
-## Deferred to later milestones
+## Deferred (by plan, not M24 blockers)
 
-- HARD-005/006 full fault-injection matrix → **M26**
-- ASYNC-GOLD paid exactly-once E2E depth → **M29+**
+| Item | Milestone |
+|------|-----------|
+| HARD-005/006 full fault-injection matrix | M26 |
+| HARD-004 full paid success/fail golden E2E | M29+ |
+| Expanded compatibility / Worker update policy | M25 |

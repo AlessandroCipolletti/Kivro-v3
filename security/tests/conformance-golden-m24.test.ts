@@ -15,6 +15,7 @@ import {
   createWssWorkerTransport,
 } from "@kivro/worker-transport";
 import { PROTOCOL_VERSION } from "@kivro/contracts";
+import { execSync } from "node:child_process";
 
 const root = process.cwd();
 
@@ -88,7 +89,23 @@ describe("M24 golden conformance hardening", () => {
     expect(report.workerProtocolVersion).toBe(PROTOCOL_VERSION);
   });
 
-  it("M24-GOLD-004 duplicate semantic ownership gate script exists", () => {
-    expect(fs.existsSync(path.join(root, "scripts/check-duplicate-semantic-ownership.mjs"))).toBe(true);
+  it("M24-GOLD-004 duplicate semantic ownership gate passes on tree", () => {
+    execSync("node scripts/check-duplicate-semantic-ownership.mjs", {
+      cwd: root,
+      stdio: "pipe",
+    });
+  });
+
+  it("M24-GOLD-005 payment idempotency golden seed wired", () => {
+    expect(fs.existsSync(path.join(root, "security/tests/m08-payment-db.test.ts"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "scripts/verify-m08-flow.mjs"))).toBe(true);
+  });
+
+  it("M24-GOLD-007 backend conformance manifest records both profiles", () => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(root, "tests/fixtures/backend-conformance-manifest.json"), "utf8"),
+    ) as { profiles: { netsons: unknown; aws: unknown } };
+    expect(manifest.profiles.netsons).toBeTruthy();
+    expect(manifest.profiles.aws).toBeTruthy();
   });
 });

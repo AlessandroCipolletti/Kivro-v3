@@ -56,6 +56,26 @@
       "id": "M22-GOLD-001",
       "name": "dual control-plane routing",
       "assert": "in-flight Netsons execution stays on Netsons while AWS is ACTIVE for new work"
+    },
+    {
+      "id": "M24-GOLD-005",
+      "name": "payment idempotency golden seed (HARD-004)",
+      "assert": "duplicate credit grant and payment reconciliation remain idempotent"
+    },
+    {
+      "id": "M24-GOLD-006",
+      "name": "compatibility matrix (HARD-007)",
+      "assert": "API contract, protocol window, and migration history match fixture"
+    },
+    {
+      "id": "M24-GOLD-007",
+      "name": "backend conformance manifest",
+      "assert": "shared backend conformance matrix executes on both profiles"
+    },
+    {
+      "id": "M24-GOLD-008",
+      "name": "divergence rejection",
+      "assert": "broken composition and transport adapters fail CI parity checks"
     }
   ]
 }

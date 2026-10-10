@@ -3567,13 +3567,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-003   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-004   P0         TESTED   scripts/check-duplicate-semantic-ownership.mjs, scripts/generate-provider-parity-report.mjs   security/tests/conformance-golden-m24.test.ts; security/tests/architecture-fitness-m24.test.ts; scripts/verify-m24-flow.mjs   docs/milestones/M24-closure.md M24
+  HARD-004   P0         TESTED   scripts/check-duplicate-semantic-ownership.mjs, scripts/check-api-provider-import-boundary.mjs, scripts/generate-provider-parity-report.mjs, scripts/verify-compatibility-matrix.mjs   security/tests/conformance-golden-m24.test.ts; security/tests/architecture-fitness-m24.test.ts; security/tests/conformance-divergence-rejection-m24.test.ts; security/tests/acceptance-m24-exit.test.ts; scripts/verify-m24-flow.mjs   docs/audits/M24-exit-criteria.json; docs/milestones/M24-closure.md M24
 
   HARD-005      P0           TODO         ---              ---
 
   HARD-006      P0           TODO         ---              ---
 
-  HARD-007   P0         TESTED   scripts/check-duplicate-semantic-ownership.mjs, scripts/generate-provider-parity-report.mjs   security/tests/conformance-golden-m24.test.ts; security/tests/architecture-fitness-m24.test.ts; scripts/verify-m24-flow.mjs   docs/milestones/M24-closure.md M24
+  HARD-007   P0         TESTED   scripts/check-duplicate-semantic-ownership.mjs, scripts/check-api-provider-import-boundary.mjs, scripts/generate-provider-parity-report.mjs, scripts/verify-compatibility-matrix.mjs   security/tests/conformance-golden-m24.test.ts; security/tests/architecture-fitness-m24.test.ts; security/tests/conformance-divergence-rejection-m24.test.ts; security/tests/acceptance-m24-exit.test.ts; scripts/verify-m24-flow.mjs   docs/audits/M24-exit-criteria.json; docs/milestones/M24-closure.md M24
 
   HARD-008      P0           TODO         ---              ---
 

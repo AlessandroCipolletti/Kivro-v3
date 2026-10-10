@@ -6,7 +6,7 @@ const file = path.join(path.resolve(import.meta.dirname, ".."), "spec/COVERAGE.m
 let text = fs.readFileSync(file, "utf8");
 
 const evidence =
-  "scripts/check-duplicate-semantic-ownership.mjs, scripts/generate-provider-parity-report.mjs   security/tests/conformance-golden-m24.test.ts; security/tests/architecture-fitness-m24.test.ts; scripts/verify-m24-flow.mjs   docs/milestones/M24-closure.md M24";
+  "scripts/check-duplicate-semantic-ownership.mjs, scripts/check-api-provider-import-boundary.mjs, scripts/generate-provider-parity-report.mjs, scripts/verify-compatibility-matrix.mjs   security/tests/conformance-golden-m24.test.ts; security/tests/architecture-fitness-m24.test.ts; security/tests/conformance-divergence-rejection-m24.test.ts; security/tests/acceptance-m24-exit.test.ts; scripts/verify-m24-flow.mjs   docs/audits/M24-exit-criteria.json; docs/milestones/M24-closure.md M24";
 
 function formatLine(id, priority) {
   const [impl, tests, ...noteParts] = evidence.split("   ");
@@ -14,7 +14,7 @@ function formatLine(id, priority) {
   return `  ${id}   ${priority}         TESTED   ${impl}   ${tests}   ${notes}`;
 }
 
-const hardIds = new Set(["HARD-004", "HARD-007"]);
+const hardIds = new Set(["HARD-001", "HARD-002", "HARD-003", "HARD-004", "HARD-007"]);
 const archIds = new Set(["ARCH-UNI-023", "ARCH-UNI-024"]);
 
 const out = text.split("\n").map((line) => {

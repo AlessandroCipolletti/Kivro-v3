@@ -612,6 +612,10 @@ greenfield.
 
 **Decision:** Ship `check-duplicate-semantic-ownership.mjs`, golden registry v2 with `verify-golden-registry.mjs`, `createBrokenCompositionDriftProbe`, `generate-provider-parity-report.mjs`, and `pnpm verify:m24` (includes `verify:m23`). Full fault-injection golden (HARD-005/006) remains M26. Gate: `pnpm verify:m24`.
 
+## DEC-M24-002 — M24 exit criteria vs deferred HARD-004/005
+
+**Decision:** M24 is **DONE** when `M24-exit-criteria.json` reports `m24HarnessComplete: true` after `verify:m24`. HARD-004 full paid success/fail golden E2E and HARD-005 fault matrix are explicitly **DEFERRED** (M29+ / M26) while M24-GOLD-005 seeds payment idempotency tests and drift canaries prove divergence rejection.
+
 ## DEC-M23-002 — M23 milestone done vs Master Spec literal completion
 
 **Context:** IMPLEMENTATION-PLAN M23 lists “all P0/P1/P2 complete” and full staging E2E; M28 is the superseding terminal lossless audit.

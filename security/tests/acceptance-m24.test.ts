@@ -14,6 +14,9 @@ describe("M24 architecture fitness milestone", () => {
       fs.readFileSync(path.join(root, "tests/fixtures/backend-conformance-golden.json"), "utf8"),
     ) as { version: number; scenarios: unknown[] };
     expect(golden.version).toBeGreaterThanOrEqual(2);
-    expect(golden.scenarios.length).toBeGreaterThanOrEqual(10);
+    expect(golden.scenarios.length).toBeGreaterThanOrEqual(15);
+    expect(fs.existsSync(path.join(root, "docs/audits/M24-fitness-report.json"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "tests/fixtures/compatibility-matrix.json"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "scripts/audit-m24-exit-criteria.mjs"))).toBe(true);
   });
 });

@@ -14,10 +14,15 @@ const netsons = mod.createNetsonsComposition();
 const aws = awsMod.createAwsComposition();
 coreMod.assertCompositionParity(netsons, aws);
 
+const matrix = JSON.parse(
+  fs.readFileSync(path.join(root, "tests/fixtures/compatibility-matrix.json"), "utf8"),
+);
+
 const report = {
   generatedAt: new Date().toISOString(),
   apiContractVersion: netsons.apiContractVersion,
   workerProtocolVersion: netsons.workerProtocolVersion,
+  compatibilityMatrix: matrix,
   profiles: {
     netsons: {
       durableWorkProfile: netsons.durableWorkProfile,

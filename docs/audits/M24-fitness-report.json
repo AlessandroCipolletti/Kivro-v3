@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-10-10T07:18:22.982Z",
+  "milestone": "M24",
+  "goldenScenarioCount": 15,
+  "goldenRegistryVersion": 2,
+  "providerParity": {
+    "generatedAt": "2026-10-10T07:18:20.278Z",
+    "apiContractVersion": "v1-mvp",
+    "workerProtocolVersion": 1,
+    "compatibilityMatrix": {
+      "description": "HARD-007 — independently identifiable version surfaces (M24 seed; expanded in M25).",
+      "apiContractVersion": "v1-mvp",
+      "workerProtocolMin": 1,
+      "workerProtocolMax": 1,
+      "database": {
+        "schemaPackage": "@kivro/database",
+        "migrationsRelativePath": "packages/database/prisma/migrations"
+      },
+      "contractsPackage": "@kivro/contracts"
+    },
+    "profiles": {
+      "netsons": {
+        "durableWorkProfile": "netsons-db-cron",
+        "objectStorageProfile": "s3-compatible",
+        "workerTransportKind": "polling"
+      },
+      "aws": {
+        "durableWorkProfile": "aws-managed-queue",
+        "objectStorageProfile": "aws-s3",
+        "workerTransportKind": "wss"
+      }
+    },
+    "parityAsserted": true
+  },
+  "compatibilityMatrix": {
+    "description": "HARD-007 — independently identifiable version surfaces (M24 seed; expanded in M25).",
+    "apiContractVersion": "v1-mvp",
+    "workerProtocolMin": 1,
+    "workerProtocolMax": 1,
+    "database": {
+      "schemaPackage": "@kivro/database",
+      "migrationsRelativePath": "packages/database/prisma/migrations"
+    },
+    "contractsPackage": "@kivro/contracts"
+  },
+  "fitnessScripts": [
+    "scripts/check-architecture.mjs",
+    "scripts/check-composition-thinness.mjs",
+    "scripts/check-duplicate-semantic-ownership.mjs",
+    "scripts/check-api-provider-import-boundary.mjs",
+    "scripts/verify-compatibility-matrix.mjs",
+    "scripts/verify-golden-registry.mjs",
+    "scripts/check-golden-registry-shape.mjs"
+  ],
+  "driftCanaries": [
+    "packages/cloud-core createBrokenCompositionDriftProbe",
+    "packages/worker-transport createBrokenTransportDriftProbe"
+  ],
+  "deferredToM26": [
+    "HARD-005",
+    "HARD-006 fault-injection matrix"
+  ],
+  "hard004Note": "Golden registry links payment idempotency tests; full paid golden E2E M29+"
+}

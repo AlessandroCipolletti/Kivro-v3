@@ -1,0 +1,11 @@
+{
+  "description": "HARD-007 — independently identifiable version surfaces (M24 seed; expanded in M25).",
+  "apiContractVersion": "v1-mvp",
+  "workerProtocolMin": 1,
+  "workerProtocolMax": 1,
+  "database": {
+    "schemaPackage": "@kivro/database",
+    "migrationsRelativePath": "packages/database/prisma/migrations"
+  },
+  "contractsPackage": "@kivro/contracts"
+}
