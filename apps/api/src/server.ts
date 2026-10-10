@@ -15,6 +15,7 @@ import { buyerJobRoutes, sellerJobRoutes } from "./routes/seller-jobs.js";
 import { sellerControlUiRoutes } from "./routes/seller-control-ui.js";
 import { workerJobRoutes } from "./routes/worker-jobs.js";
 import { buyerBillingRoutes } from "./routes/buyer-billing.js";
+import { buyerExperienceRoutes } from "./routes/buyer-experience.js";
 import { buyerJobSubmitRoutes } from "./routes/buyer-jobs-submit.js";
 import { sellerBillingRoutes } from "./routes/seller-billing.js";
 import { stripeWebhookRoutes } from "./routes/stripe-webhooks.js";
@@ -153,6 +154,7 @@ export function createApp(): Hono<AppEnv> {
   app.route("/platform/cron", platformCronRoutes());
   app.route("/buyer", buyerAssetRoutes());
   app.route("/buyer", buyerBillingRoutes());
+  app.route("/buyer/experience", buyerExperienceRoutes());
   app.route("/buyer", buyerJobSubmitRoutes());
   app.route("/buyer", buyerJobsListRoutes());
   app.route("/buyer", buyerJobAssetRoutes());

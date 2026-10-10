@@ -34,6 +34,20 @@ export const v1BuyerOpenApiSpec = {
         responses: { "200": { description: "OK" }, "404": { description: "NOT_FOUND" } },
       },
     },
+    "/capabilities/{id}/preflight": {
+      post: {
+        summary: "Purchase preflight (readiness + deadline feasibility)",
+        parameters: [{ name: "id", in: "path", required: true, schema: { type: "string" } }],
+        responses: { "200": { description: "OK" } },
+      },
+    },
+    "/capabilities/{id}/quote": {
+      post: {
+        summary: "Execution quote (immutable price authorization)",
+        parameters: [{ name: "id", in: "path", required: true, schema: { type: "string" } }],
+        responses: { "200": { description: "OK" }, "409": { description: "Conflict" } },
+      },
+    },
     "/capabilities/{id}/jobs": {
       post: {
         summary: "Create job (credits)",

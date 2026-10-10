@@ -33,6 +33,16 @@
       "folder": "20260410150000_m29_async_retention",
       "phase": "expand",
       "notes": "nullable retention + JobTerminalNotification — M29 async delivery"
+    },
+    {
+      "folder": "20260410160000_m30_buyer_experience",
+      "phase": "expand",
+      "notes": "BuyerExecutionQuote, deadlines, notification prefs — M30"
+    },
+    {
+      "folder": "20260410170000_m30_scheduled_reminder",
+      "phase": "expand",
+      "notes": "Job.scheduledReminderSentAt — M30 scheduled reminders"
     }
   ]
 }

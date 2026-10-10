@@ -22,6 +22,15 @@ type JobDetail = {
   review: { stars: number; body: string | null } | null;
   resultRetentionExpiresAt?: string | null;
   resultRetentionExpired?: boolean;
+  timingEstimate?: {
+    confidence: string;
+    disclaimer: string;
+    completeEarliestAt: string | null;
+    completeLatestAt: string | null;
+  };
+  legalActions?: string[];
+  progress?: Array<{ stageLabel: string; recordedAt: string }>;
+  missedWindow?: { missed: boolean; headline?: string; detail?: string };
   result: {
     structuredOutput: unknown;
     hasAssets: boolean;
@@ -133,6 +142,47 @@ export default function JobDetailPage() {
         }
       />
       {job.buyerVisible.detail && <p className="meta">{job.buyerVisible.detail}</p>}
+      {job.timingEstimate && (
+        <p className="meta">
+          Timing confidence: {job.timingEstimate.confidence}. {job.timingEstimate.disclaimer}
+        </p>
+      )}
+      {job.missedWindow?.missed && (
+        <div className="detail-panel">
+          <strong>{job.missedWindow.headline}</strong>
+          <p className="meta">{job.missedWindow.detail}</p>
+        </div>
+      )}
+      {job.legalActions?.includes("cancel") && (
+        <p style={{ marginTop: "0.75rem" }}>
+          <button
+            type="button"
+            className="button secondary"
+            onClick={() => {
+              void fetch(`${API_BASE}/buyer/jobs/${params.id}/cancel`, {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ reason: "BUYER_CANCELLED" }),
+              }).then(() => window.location.reload());
+            }}
+          >
+            Cancel before start
+          </button>
+        </p>
+      )}
+      {job.progress && job.progress.length > 0 && (
+        <div className="detail-panel">
+          <strong>Progress</strong>
+          <ul className="meta">
+            {job.progress.map((p) => (
+              <li key={`${p.recordedAt}-${p.stageLabel}`}>
+                {p.stageLabel} — {new Date(p.recordedAt).toLocaleString()}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {job.inputSummary && (
         <div className="detail-panel">
           <strong>Inputs</strong>

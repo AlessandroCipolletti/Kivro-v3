@@ -8,6 +8,7 @@ import type { ReactNode } from "react";
 const links = [
   { href: "/settings/api-keys", label: "API keys", Icon: IconKey },
   { href: "/settings/webhooks", label: "Webhooks", Icon: IconWebhook },
+  { href: "/settings/notifications", label: "Notifications", Icon: IconWebhook },
 ];
 
 export default function SettingsLayout({ children }: { children: ReactNode }) {

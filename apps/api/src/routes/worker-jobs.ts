@@ -225,12 +225,16 @@ export function workerJobRoutes(): Hono<AppEnv> {
     if (!job || !job.input || !job.capabilityVersion.workerManifest) {
       return c.json({ error: job ? "BUNDLE_INCOMPLETE" : "FORBIDDEN" }, job ? 409 : 403);
     }
-    return c.json({
-      jobId: job.id,
-      structuredInput: job.input.structuredInput as Record<string, unknown>,
-      workerManifest: job.capabilityVersion.workerManifest,
-      sellerProfileId: job.capabilityVersion.capability.sellerProfileId,
-    });
+    const { buildMinimizedWorkerExecutionBundle } = await import("@kivro/buyer-experience");
+    return c.json(
+      buildMinimizedWorkerExecutionBundle({
+        jobId: job.id,
+        buyerId: job.buyerId,
+        structuredInput: job.input.structuredInput as Record<string, unknown>,
+        workerManifest: job.capabilityVersion.workerManifest,
+        sellerProfileId: job.capabilityVersion.capability.sellerProfileId,
+      }),
+    );
   });
 
   app.post("/jobs/:jobId/dispatch", async (c) => {
@@ -327,8 +331,20 @@ export function workerJobRoutes(): Hono<AppEnv> {
     const { onOrchestrationJobCompleted } = await import("../services/orchestration-execution.js");
     await onOrchestrationJobCompleted(getPrismaClient(), jobId);
     if (result.status === "COMPLETED") {
+      const { getBuyerNotificationPreferences, terminalEmailAllowed } = await import(
+        "@kivro/buyer-experience"
+      );
       const { enqueueJobTerminalEmailNotification } = await import("@kivro/job-delivery");
-      await enqueueJobTerminalEmailNotification(getPrismaClient(), jobId);
+      const jobRow = await getPrismaClient().job.findUnique({
+        where: { id: jobId },
+        select: { buyerId: true },
+      });
+      if (jobRow) {
+        const prefs = await getBuyerNotificationPreferences(getPrismaClient(), jobRow.buyerId);
+        if (terminalEmailAllowed(prefs)) {
+          await enqueueJobTerminalEmailNotification(getPrismaClient(), jobId);
+        }
+      }
     }
     try {
       const { emitBuyerJobWebhook } = await import("../services/buyer-webhook-emitter.js");

@@ -71,6 +71,9 @@ importers:
       '@kivro/buyer-api':
         specifier: workspace:*
         version: link:../../packages/buyer-api
+      '@kivro/buyer-experience':
+        specifier: workspace:*
+        version: link:../../packages/buyer-experience
       '@kivro/buyer-webhooks':
         specifier: workspace:*
         version: link:../../packages/buyer-webhooks
@@ -274,6 +277,9 @@ importers:
       '@kivro/abuse-controls':
         specifier: workspace:*
         version: link:../abuse-controls
+      '@kivro/buyer-experience':
+        specifier: workspace:*
+        version: link:../buyer-experience
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
@@ -298,6 +304,24 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
+
+  packages/buyer-experience:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@kivro/database':
+        specifier: workspace:*
+        version: link:../database
+      '@kivro/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@kivro/job-control':
+        specifier: workspace:*
+        version: link:../job-control
+      '@kivro/job-scheduling':
+        specifier: workspace:*
+        version: link:../job-scheduling
 
   packages/buyer-webhooks:
     dependencies:
@@ -370,6 +394,9 @@ importers:
       '@kivro/billing':
         specifier: workspace:*
         version: link:../billing
+      '@kivro/buyer-experience':
+        specifier: workspace:*
+        version: link:../buyer-experience
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../contracts
@@ -556,6 +583,9 @@ importers:
 
   packages/marketplace:
     dependencies:
+      '@kivro/buyer-experience':
+        specifier: workspace:*
+        version: link:../buyer-experience
       '@kivro/database':
         specifier: workspace:*
         version: link:../database
@@ -568,6 +598,9 @@ importers:
 
   packages/marketplace-agent:
     dependencies:
+      '@kivro/buyer-experience':
+        specifier: workspace:*
+        version: link:../buyer-experience
       '@kivro/marketplace':
         specifier: workspace:*
         version: link:../marketplace

@@ -36,6 +36,15 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
     status: availability?.status,
     accepting: availability?.accepting,
   });
+  const sellerReliability =
+    detail && "sellerReliability" in detail && detail.sellerReliability &&
+    typeof detail.sellerReliability === "object"
+      ? (detail.sellerReliability as {
+          windowDays: number;
+          eligibleJobs: number;
+          onTimeRate: number | null;
+        })
+      : null;
 
   return (
     <>
@@ -117,6 +126,10 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
             <p className="meta">{detail.privacyDisclosure.executionModel}</p>
             <p className="meta">{detail.privacyDisclosure.dataHandling}</p>
             <p className="meta">{detail.privacyDisclosure.retention}</p>
+            {"paymentAndProfile" in detail.privacyDisclosure &&
+            detail.privacyDisclosure.paymentAndProfile ? (
+              <p className="meta">{String(detail.privacyDisclosure.paymentAndProfile)}</p>
+            ) : null}
             {"llmDisclosure" in detail.privacyDisclosure && detail.privacyDisclosure.llmDisclosure ? (
               <p className="meta">{String(detail.privacyDisclosure.llmDisclosure)}</p>
             ) : null}
@@ -132,6 +145,14 @@ export default async function CapabilityDetailPage({ params }: { params: Params 
               </div>
             ) : null}
           </div>
+        )}
+        {sellerReliability && sellerReliability.eligibleJobs != null && (
+          <p className="meta" style={{ marginTop: "0.75rem" }}>
+            Seller reliability (last {sellerReliability.windowDays} days):{" "}
+            {sellerReliability.onTimeRate != null
+              ? `${Math.round(sellerReliability.onTimeRate * 100)}% on-time (${sellerReliability.eligibleJobs} jobs sampled)`
+              : "insufficient sample — timing not scored yet"}
+          </p>
         )}
         {reviews && reviews.reviews.length > 0 && (
           <div className="detail-panel" style={{ marginTop: "1rem" }}>

@@ -20,6 +20,7 @@ import {
   assertBuyerJobSubmissionAllowed,
   recordBuyerSubmissionAttempt,
 } from "@kivro/abuse-controls";
+import { assessHardDeliveryDeadline, validateExecutionQuoteAtPurchase } from "@kivro/buyer-experience";
 
 function toJsonValue(value: unknown): Prisma.InputJsonValue {
   return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
@@ -221,6 +222,8 @@ export interface SubmitPaidJobInput {
   assetManifest?: Record<string, unknown>;
   /** When set, job stays SCHEDULED until promotion sweep (§462). */
   scheduledRunAt?: Date;
+  executionQuoteId?: string;
+  buyerHardDeadlineAt?: Date;
 }
 
 /** Reserve prepaid credits and queue job for dispatch (§24.4). */
@@ -231,7 +234,25 @@ export async function submitPaidJob(
   | { jobId: string; status: JobStatus }
   | { error: string; reasons?: string[]; nextAvailableAt?: string }
 > {
-  const immediate = !input.scheduledRunAt;
+  let scheduledRunAt = input.scheduledRunAt;
+  let buyerHardDeadlineAt = input.buyerHardDeadlineAt;
+  let executionQuoteId: string | undefined;
+  if (input.executionQuoteId) {
+    const quote = await validateExecutionQuoteAtPurchase(prisma, {
+      quoteId: input.executionQuoteId,
+      buyerId: input.buyerId,
+      capabilityId: input.capabilityId,
+      structuredInput: input.structuredInput,
+      assetManifest: input.assetManifest,
+    });
+    if (!quote.ok) {
+      return { error: quote.error };
+    }
+    executionQuoteId = input.executionQuoteId;
+    scheduledRunAt = quote.scheduledRunAt ?? scheduledRunAt;
+    buyerHardDeadlineAt = quote.hardDeliveryDeadlineAt ?? buyerHardDeadlineAt;
+  }
+  const immediate = !scheduledRunAt;
   if (immediate) {
     const pre = await assertImmediateSubmissionBeforePayment(prisma, input.capabilityId);
     if (!("ok" in pre)) {
@@ -247,6 +268,16 @@ export async function submitPaidJob(
   });
   if (!capability?.currentVersion || capability.status !== "PUBLISHED") {
     return { error: "CAPABILITY_NOT_AVAILABLE" };
+  }
+  if (buyerHardDeadlineAt) {
+    const deadlineCheck = assessHardDeliveryDeadline({
+      hardDeliveryDeadlineAt: buyerHardDeadlineAt,
+      scheduledRunAt,
+      estimatedDurationMinutes: capability.estimatedDuration,
+    });
+    if (!deadlineCheck.feasible) {
+      return { error: deadlineCheck.code, reasons: [deadlineCheck.reason] };
+    }
   }
   const version = capability.currentVersion;
   const tier = requireEnabledPriceTier({
@@ -318,10 +349,14 @@ export async function submitPaidJob(
         actor: "SYSTEM",
       },
     });
-    if (input.scheduledRunAt) {
+    if (scheduledRunAt || buyerHardDeadlineAt || executionQuoteId) {
       await tx.job.update({
         where: { id: created.id },
-        data: { scheduledRunAt: input.scheduledRunAt },
+        data: {
+          scheduledRunAt,
+          buyerHardDeadlineAt,
+          executionQuoteId,
+        },
       });
     }
     return created;
@@ -329,7 +364,7 @@ export async function submitPaidJob(
 
   const queued = await queueJobAfterPayment(prisma, job.id, {
     immediate,
-    scheduledRunAt: input.scheduledRunAt,
+    scheduledRunAt,
   });
   if ("error" in queued) {
     await abortJobAfterQueueFailure(prisma, job.id);

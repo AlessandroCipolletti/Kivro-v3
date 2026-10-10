@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-10-10T08:22:13.655Z",
+  "milestone": "M30",
+  "exitCriteria": {
+    "generatedAt": "2026-10-10T08:22:13.629Z",
+    "m30HarnessComplete": true,
+    "criteria": [
+      {
+        "id": "m29-regression-gate",
+        "status": "PASS",
+        "detail": "verify:m29 / M29-exit-criteria.json"
+      },
+      {
+        "id": "buyerux-m30-tested",
+        "status": "PASS",
+        "detail": "32/32 M30-scope BUYERUX rows TESTED"
+      },
+      {
+        "id": "buyerux-gold-m30",
+        "status": "PASS",
+        "detail": "M30 exit BUYERUX-GOLD scenarios in golden registry"
+      },
+      {
+        "id": "buyer-experience-package",
+        "status": "PASS",
+        "detail": "shared @kivro/buyer-experience Core semantics"
+      },
+      {
+        "id": "m30-migration",
+        "status": "PASS",
+        "detail": "quotes, deadlines, notification preferences schema"
+      },
+      {
+        "id": "buyerux-spotcheck",
+        "status": "PASS",
+        "detail": "M30-scope BUYERUX COVERAGE rows with evidence paths"
+      },
+      {
+        "id": "v1-quote-preflight",
+        "status": "PASS",
+        "detail": "REST v1 quote + preflight parity"
+      }
+    ]
+  },
+  "harnessScripts": [
+    "scripts/verify-m30-flow.mjs",
+    "scripts/verify-m30-evidence.mjs",
+    "scripts/sync-m30-coverage.mjs",
+    "scripts/audit-m30-spotcheck.mjs",
+    "packages/buyer-experience/src/execution-quote.ts",
+    "apps/api/src/routes/buyer-experience.ts"
+  ]
+}

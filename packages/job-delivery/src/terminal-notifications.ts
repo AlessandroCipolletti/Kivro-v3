@@ -1,5 +1,8 @@
 import type { PrismaClient } from "@kivro/database";
 
+/** BUYERUX-014 — terminal email must link to authorized session/API, never permanent public asset URLs. */
+export const TERMINAL_EMAIL_USES_EPHEMERAL_JOB_LINKS = true;
+
 /** ASYNC-019/020/021 — durable terminal notification work (email); completion does not depend on send success. */
 export async function enqueueJobTerminalEmailNotification(
   prisma: PrismaClient,

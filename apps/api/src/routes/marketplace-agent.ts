@@ -4,6 +4,7 @@ import { prepareAgentJobSubmission } from "@kivro/job-io";
 import { summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import {
   authorizePlanApproval,
+  planStepEstimatedMinutes,
   buildOrchestrationPlanDraft,
   buildStepAgentDraft,
   getPlatformInference,
@@ -108,7 +109,11 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
     }
     const requoted = requotePlanSteps(draft.steps, listings);
     draft = { ...draft, steps: requoted.steps, estimatedCostCents: requoted.estimatedCostCents };
-    const authz = authorizePlanApproval({ plan: draft, constraints: draft.constraints });
+    const authz = authorizePlanApproval({
+      plan: draft,
+      constraints: draft.constraints,
+      stepEstimatedDurationMinutes: planStepEstimatedMinutes(draft.steps, listings),
+    });
     if (!authz.ok) {
       return c.json({ error: authz.code }, 400);
     }
@@ -198,7 +203,11 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
       steps: requoted.steps,
       notes: requoted.priceChanged ? ["Prices refreshed from marketplace at approval."] : [],
     };
-    const authz = authorizePlanApproval({ plan: draft, constraints: draft.constraints });
+    const authz = authorizePlanApproval({
+      plan: draft,
+      constraints: draft.constraints,
+      stepEstimatedDurationMinutes: planStepEstimatedMinutes(requoted.steps, listings),
+    });
     if (!authz.ok) {
       return c.json({ error: authz.code }, 400);
     }

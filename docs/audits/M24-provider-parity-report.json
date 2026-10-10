@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T08:07:37.459Z",
+  "generatedAt": "2026-10-10T08:21:54.344Z",
   "apiContractVersion": "v1-mvp",
   "workerProtocolVersion": 1,
   "compatibilityMatrix": {
@@ -12,7 +12,7 @@
     "workerProtocolMax": 1,
     "database": {
       "schemaPackage": "@kivro/database",
-      "schemaRevision": "20260410150000",
+      "schemaRevision": "20260410170000",
       "migrationsRelativePath": "packages/database/prisma/migrations",
       "rolloutRegistryPath": "tests/fixtures/schema-rollout-registry.json"
     },

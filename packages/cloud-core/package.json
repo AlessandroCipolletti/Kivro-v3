@@ -21,6 +21,7 @@
     "@kivro/database": "workspace:*",
     "@kivro/job-control": "workspace:*",
     "@kivro/job-failure": "workspace:*",
-    "@kivro/job-delivery": "workspace:*"
+    "@kivro/job-delivery": "workspace:*",
+    "@kivro/buyer-experience": "workspace:*"
   }
 }

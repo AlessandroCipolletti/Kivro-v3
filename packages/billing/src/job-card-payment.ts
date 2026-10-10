@@ -6,6 +6,7 @@ import {
   assertImmediateSubmissionBeforePayment,
   queueJobAfterPayment,
 } from "@kivro/job-scheduling";
+import { assessHardDeliveryDeadline, validateExecutionQuoteAtPurchase } from "@kivro/buyer-experience";
 import { requireEnabledPriceTier } from "./tier-validation.js";
 
 function toJsonValue(value: unknown): Prisma.InputJsonValue {
@@ -49,6 +50,8 @@ export async function createCardAuthorizedJob(
     structuredInput: Record<string, unknown>;
     assetManifest?: Record<string, unknown>;
     scheduledRunAt?: Date;
+    executionQuoteId?: string;
+    buyerHardDeadlineAt?: Date;
   },
 ): Promise<
   | { jobId: string; clientSecret: string; paymentIntentId: string; status: JobStatus }
@@ -61,7 +64,35 @@ export async function createCardAuthorizedJob(
   if (!capability?.currentVersion || capability.status !== "PUBLISHED") {
     return { error: "CAPABILITY_NOT_AVAILABLE" };
   }
-  if (!input.scheduledRunAt) {
+  let scheduledRunAt = input.scheduledRunAt;
+  let buyerHardDeadlineAt = input.buyerHardDeadlineAt;
+  let executionQuoteId: string | undefined;
+  if (input.executionQuoteId) {
+    const quote = await validateExecutionQuoteAtPurchase(prisma, {
+      quoteId: input.executionQuoteId,
+      buyerId: input.buyerId,
+      capabilityId: input.capabilityId,
+      structuredInput: input.structuredInput,
+      assetManifest: input.assetManifest,
+    });
+    if (!quote.ok) {
+      return { error: quote.error };
+    }
+    executionQuoteId = input.executionQuoteId;
+    scheduledRunAt = quote.scheduledRunAt ?? scheduledRunAt;
+    buyerHardDeadlineAt = quote.hardDeliveryDeadlineAt ?? buyerHardDeadlineAt;
+  }
+  if (buyerHardDeadlineAt) {
+    const deadlineCheck = assessHardDeliveryDeadline({
+      hardDeliveryDeadlineAt: buyerHardDeadlineAt,
+      scheduledRunAt,
+      estimatedDurationMinutes: capability.estimatedDuration,
+    });
+    if (!deadlineCheck.feasible) {
+      return { error: deadlineCheck.code };
+    }
+  }
+  if (!scheduledRunAt) {
     const pre = await assertImmediateSubmissionBeforePayment(prisma, input.capabilityId);
     if (!("ok" in pre)) {
       return pre;
@@ -91,7 +122,9 @@ export async function createCardAuthorizedJob(
         currency: tier.currency,
         status: "CREATED",
         paymentFunding: "CARD_AUTHORIZATION",
-        scheduledRunAt: input.scheduledRunAt,
+        scheduledRunAt,
+        buyerHardDeadlineAt,
+        executionQuoteId,
       },
     });
     await tx.jobInput.create({

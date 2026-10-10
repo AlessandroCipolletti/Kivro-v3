@@ -9,6 +9,10 @@ import {
   readIdempotentResponse,
   storeIdempotentResponse,
 } from "@kivro/buyer-api";
+import {
+  createBuyerExecutionQuote,
+  runBuyerExecutionPreflight,
+} from "@kivro/buyer-experience";
 import { buyerCancelScheduledOrQueuedJob, summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
 import { getBuyerJobDetail } from "@kivro/marketplace";
 import { Hono } from "hono";
@@ -62,6 +66,66 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
     });
   });
 
+  app.post("/capabilities/:id/preflight", requireBuyerApiKey("capabilities:read"), async (c) => {
+    const capabilityId = c.req.param("id") ?? "";
+    if (!capabilityId) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    let body: { scheduledRunAt?: string; hardDeliveryDeadlineAt?: string } = {};
+    try {
+      body = await c.req.json();
+    } catch {
+      body = {};
+    }
+    const capability = await getPrismaClient().capability.findUnique({ where: { id: capabilityId } });
+    const result = await runBuyerExecutionPreflight(getPrismaClient(), {
+      capabilityId,
+      immediate: !body.scheduledRunAt,
+      scheduledRunAt: body.scheduledRunAt ? new Date(body.scheduledRunAt) : undefined,
+      hardDeliveryDeadlineAt: body.hardDeliveryDeadlineAt
+        ? new Date(body.hardDeliveryDeadlineAt)
+        : undefined,
+      estimatedDurationMinutes: capability?.estimatedDuration ?? null,
+    });
+    if (!result.ok) {
+      return c.json(result, 404);
+    }
+    return c.json(result);
+  });
+
+  app.post("/capabilities/:id/quote", requireBuyerApiKey("jobs:create"), async (c) => {
+    const user = c.get("user");
+    const capabilityId = c.req.param("id") ?? "";
+    if (!capabilityId) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    let body: {
+      inputs?: Record<string, unknown>;
+      assets?: Record<string, unknown>;
+      scheduledRunAt?: string;
+      hardDeliveryDeadlineAt?: string;
+    };
+    try {
+      body = await c.req.json();
+    } catch {
+      return c.json({ error: "INVALID_JSON" }, 400);
+    }
+    const quote = await createBuyerExecutionQuote(getPrismaClient(), {
+      buyerId: user.id,
+      capabilityId,
+      structuredInput: body.inputs ?? {},
+      assetManifest: body.assets,
+      scheduledRunAt: body.scheduledRunAt ? new Date(body.scheduledRunAt) : undefined,
+      hardDeliveryDeadlineAt: body.hardDeliveryDeadlineAt
+        ? new Date(body.hardDeliveryDeadlineAt)
+        : undefined,
+    });
+    if ("error" in quote) {
+      return c.json(quote, 409);
+    }
+    return c.json(quote);
+  });
+
   app.get("/capabilities/:id", requireBuyerApiKey("capabilities:read"), async (c) => {
     const row = await getPrismaClient().capability.findFirst({
       where: { id: c.req.param("id"), status: "PUBLISHED" },
@@ -98,6 +162,8 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
       inputs?: Record<string, unknown>;
       assets?: Record<string, unknown>;
       scheduledRunAt?: string;
+      executionQuoteId?: string;
+      hardDeliveryDeadlineAt?: string;
     };
     try {
       body = await c.req.json();
@@ -128,6 +194,13 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
         return c.json({ error: "INVALID_SCHEDULE_TIME" }, 400);
       }
     }
+    let buyerHardDeadlineAt: Date | undefined;
+    if (body.hardDeliveryDeadlineAt) {
+      buyerHardDeadlineAt = new Date(body.hardDeliveryDeadlineAt);
+      if (Number.isNaN(buyerHardDeadlineAt.getTime())) {
+        return c.json({ error: "INVALID_DEADLINE" }, 400);
+      }
+    }
 
     const result = await createBuyerJobFromApi(getPrismaClient(), {
       buyerId: user.id,
@@ -137,6 +210,8 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
       assets: body.assets,
       scheduledRunAt,
       buyerApiKeyId: apiKey?.id,
+      executionQuoteId: body.executionQuoteId,
+      buyerHardDeadlineAt,
     });
 
     const responseBody =

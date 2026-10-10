@@ -8,6 +8,8 @@ export type BuyerConstraints = {
   maxJobs?: number;
   preferredCapabilitySlugs?: string[];
   blockedSellerProfileIds?: string[];
+  /** ISO-8601 hard delivery deadline (BUYERUX-004/006). */
+  hardDeliveryDeadlineAt?: string;
 };
 
 export function normalizeBuyerConstraints(raw: Partial<BuyerConstraints>): BuyerConstraints {
@@ -36,6 +38,12 @@ export function normalizeBuyerConstraints(raw: Partial<BuyerConstraints>): Buyer
   if (raw.blockedSellerProfileIds?.length) {
     out.blockedSellerProfileIds = raw.blockedSellerProfileIds.slice(0, 50);
   }
+  if (raw.hardDeliveryDeadlineAt) {
+    const t = Date.parse(raw.hardDeliveryDeadlineAt);
+    if (Number.isFinite(t)) {
+      out.hardDeliveryDeadlineAt = new Date(t).toISOString();
+    }
+  }
   return out;
 }
 
@@ -61,6 +69,13 @@ export function extractConstraintsFromText(text: string): BuyerConstraints {
 
   if (/\bonline now\b|\bonline only\b|\bavailable now\b/.test(lower)) {
     out.onlineOnly = true;
+  }
+
+  const deadlineIso = text.match(
+    /\b(?:by|before|deadline)\s+(\d{4}-\d{2}-\d{2}(?:T[\d:.]+Z)?)/i,
+  );
+  if (deadlineIso) {
+    out.hardDeliveryDeadlineAt = new Date(deadlineIso[1]!).toISOString();
   }
 
   const runtimeMatch = lower.match(/(?:under|less than|max)\s*(\d+)\s*(?:sec|seconds|min|minutes)/);

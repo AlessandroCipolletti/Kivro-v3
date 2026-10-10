@@ -7,7 +7,7 @@ export {
   type PlannedStep,
   type OrchestrationListingRow,
 } from "./orchestration-planner.js";
-export { authorizePlanApproval } from "./purchase-authorization.js";
+export { authorizePlanApproval, planStepEstimatedMinutes } from "./purchase-authorization.js";
 export { toolSearchCapabilities, toolGetCapability } from "./agent-tools.js";
 export {
   buildStepAgentDraft,

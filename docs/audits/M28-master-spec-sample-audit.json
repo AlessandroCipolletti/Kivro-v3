@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-10T08:07:39.041Z",
+  "generatedAt": "2026-10-10T08:21:55.957Z",
   "milestone": "M28",
-  "p0TestedPopulation": 307,
+  "p0TestedPopulation": 335,
   "sampleSize": 60,
   "sampleMissingPaths": 0,
   "pass": true

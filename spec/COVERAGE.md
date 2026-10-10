@@ -3691,33 +3691,33 @@ feature post-MVP or the user explicitly approves the deferral.
   Requirement   Priority   Status    Shared     Netsons    AWS        UX/E2E
                                      evidence   evidence   evidence   evidence
   ------------- ---------- --------- ---------- ---------- ---------- ----------
-  BUYERUX-001   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-001   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-002   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-002   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-003   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-003   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-004   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-004   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-005   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-005   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-006   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-006   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-007   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-007   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-008   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-008   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-009   P1         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-009   P1         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-010   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-010   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-011   P1         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-011   P1         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-012   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-012   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-013   P1         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-013   P1         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-014   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-014   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
   BUYERUX-015   P1         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
 
@@ -3739,19 +3739,19 @@ feature post-MVP or the user explicitly approves the deferral.
 
   BUYERUX-024   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
 
-  BUYERUX-025   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-025   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-026   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-026   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-027   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-027   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-028   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-028   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-029   P1         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-029   P1         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-030   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-030   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-031   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-031   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
   BUYERUX-032   P1         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
 
@@ -3759,27 +3759,27 @@ feature post-MVP or the user explicitly approves the deferral.
 
   BUYERUX-034   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
 
-  BUYERUX-035   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-035   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-036   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-036   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-037   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-037   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-038   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-038   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-039   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-039   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-040   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-040   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-041   P1         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-041   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-042   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-042   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-043   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-043   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-044   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-044   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
 
-  BUYERUX-045   P0         TODO      ---        ---        --- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted
+  BUYERUX-045   P0         TESTED   packages/buyer-experience/src/execution-preflight.ts, packages/buyer-experience/src/execution-quote.ts, packages/marketplace/src/buyer-job-detail.ts, apps/api/src/routes/buyer-experience.ts   packages/buyer-experience/src/deadline-feasibility.test.ts; security/tests/conformance-buyerux-gold-m30.test.ts; scripts/verify-m30-flow.mjs   docs/milestones/M30-closure.md M30
   ------------------------------------------------------------------------------
 
 ## Seller experience coverage

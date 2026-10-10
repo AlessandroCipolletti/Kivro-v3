@@ -6,6 +6,7 @@ import {
 } from "@kivro/billing";
 import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
+import { expireJobsPastHardDeadline, processDueScheduledJobReminders } from "@kivro/buyer-experience";
 import {
   processPendingJobTerminalEmailNotifications,
   purgeExpiredJobDeliverables,
@@ -26,6 +27,7 @@ export async function runCloudMaintenanceSweeps(
     terminalEmail: Awaited<ReturnType<typeof processPendingJobTerminalEmailNotifications>>;
     retentionCleanup: Awaited<ReturnType<typeof purgeExpiredJobDeliverables>>;
     integritySample: Awaited<ReturnType<typeof sampleCompletedJobIntegrity>>;
+    scheduledReminders: Awaited<ReturnType<typeof processDueScheduledJobReminders>>;
   };
 }> {
   const staleReservations = await sweepStaleJobPaymentReservations(prisma);
@@ -33,8 +35,13 @@ export async function runCloudMaintenanceSweeps(
   const pauseTimeouts = await sweepExpiredJobPauses(prisma);
   const failureOps = await runJobFailureOperationsSweeps(prisma);
 
+  const hardDeadlineExpiry = await expireJobsPastHardDeadline(prisma);
+
   const terminalJobIds = new Set<string>();
   for (const jobId of failureOps.lostWorker.jobIds) {
+    terminalJobIds.add(jobId);
+  }
+  for (const jobId of hardDeadlineExpiry.jobIds) {
     terminalJobIds.add(jobId);
   }
 
@@ -55,6 +62,7 @@ export async function runCloudMaintenanceSweeps(
     }
   }
 
+  const scheduledReminders = await processDueScheduledJobReminders(prisma);
   const terminalEmail = await processPendingJobTerminalEmailNotifications(prisma);
   const retentionCleanup = await purgeExpiredJobDeliverables(prisma);
   const integritySample = await sampleCompletedJobIntegrity(prisma, 5);
@@ -65,6 +73,6 @@ export async function runCloudMaintenanceSweeps(
     pauseTimeouts,
     failureOps,
     paymentsReleased,
-    asyncDelivery: { terminalEmail, retentionCleanup, integritySample },
+    asyncDelivery: { terminalEmail, retentionCleanup, integritySample, scheduledReminders },
   };
 }

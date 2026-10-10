@@ -301,6 +301,66 @@
       "id": "ASYNC-GOLD-010",
       "name": "mixed control planes",
       "assert": "identical buyer-result semantics both profiles"
+    },
+    {
+      "id": "BUYERUX-GOLD-001",
+      "name": "quote preflight unavailable",
+      "assert": "preflight blocks purchase when hard readiness fails"
+    },
+    {
+      "id": "BUYERUX-GOLD-002",
+      "name": "hard deadline infeasible",
+      "assert": "infeasible deadline rejected before payment"
+    },
+    {
+      "id": "BUYERUX-GOLD-003",
+      "name": "cancel before start",
+      "assert": "scheduled buyer cancel before execution"
+    },
+    {
+      "id": "BUYERUX-GOLD-004",
+      "name": "cancel claim race",
+      "assert": "atomic cancel vs worker claim"
+    },
+    {
+      "id": "BUYERUX-GOLD-005",
+      "name": "progress persistence",
+      "assert": "buyer sees sanitized progress after reconnect"
+    },
+    {
+      "id": "BUYERUX-GOLD-006",
+      "name": "ETA honesty",
+      "assert": "unknown confidence when history insufficient"
+    },
+    {
+      "id": "BUYERUX-GOLD-011",
+      "name": "missed window",
+      "assert": "seller never appears; buyer legal choices"
+    },
+    {
+      "id": "BUYERUX-GOLD-012",
+      "name": "hard expiry",
+      "assert": "latest-start expiry prevents limbo"
+    },
+    {
+      "id": "BUYERUX-GOLD-013",
+      "name": "reliability metrics",
+      "assert": "authoritative eligible sample thresholds"
+    },
+    {
+      "id": "BUYERUX-GOLD-016",
+      "name": "privacy disclosure",
+      "assert": "UI disclosure matches permission manifest"
+    },
+    {
+      "id": "BUYERUX-GOLD-017",
+      "name": "seller disappearance",
+      "assert": "stale worker before start does not trap buyer"
+    },
+    {
+      "id": "BUYERUX-GOLD-018",
+      "name": "buyer dashboard",
+      "assert": "mixed states from authoritative job records"
     }
   ]
 }

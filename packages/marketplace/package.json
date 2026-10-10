@@ -18,6 +18,7 @@
   "dependencies": {
     "@kivro/database": "workspace:*",
     "@kivro/job-control": "workspace:*",
-    "@kivro/job-scheduling": "workspace:*"
+    "@kivro/job-scheduling": "workspace:*",
+    "@kivro/buyer-experience": "workspace:*"
   }
 }

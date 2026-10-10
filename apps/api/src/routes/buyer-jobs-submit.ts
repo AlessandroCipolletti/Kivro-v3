@@ -26,6 +26,8 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
       assets?: Record<string, unknown>;
       paymentMode?: "credits" | "card";
       scheduledRunAt?: string;
+      executionQuoteId?: string;
+      hardDeliveryDeadlineAt?: string;
     };
     try {
       body = await c.req.json();
@@ -67,6 +69,13 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
         return c.json({ error: "INVALID_SCHEDULE_TIME" }, 400);
       }
     }
+    let buyerHardDeadlineAt: Date | undefined;
+    if (body.hardDeliveryDeadlineAt) {
+      buyerHardDeadlineAt = new Date(body.hardDeliveryDeadlineAt);
+      if (Number.isNaN(buyerHardDeadlineAt.getTime())) {
+        return c.json({ error: "INVALID_DEADLINE" }, 400);
+      }
+    }
     const prisma = getPrismaClient();
     const result =
       paymentMode === "card"
@@ -82,6 +91,8 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
               structuredInput: body.inputs ?? {},
               assetManifest: body.assets,
               scheduledRunAt,
+              executionQuoteId: body.executionQuoteId,
+              buyerHardDeadlineAt,
             });
           })()
         : await submitPaidJob(prisma, {
@@ -90,6 +101,8 @@ export function buyerJobSubmitRoutes(): Hono<AppEnv> {
             structuredInput: body.inputs ?? {},
             assetManifest: body.assets,
             scheduledRunAt,
+            executionQuoteId: body.executionQuoteId,
+            buyerHardDeadlineAt,
           });
     if ("error" in result) {
       const status =

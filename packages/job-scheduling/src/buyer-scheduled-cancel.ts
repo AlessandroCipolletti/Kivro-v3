@@ -29,21 +29,34 @@ export async function buyerCancelScheduledOrQueuedJob(
     return { error: "JOB_NOT_CANCELLABLE" };
   }
   assertJobTransition(from, "CANCELLED");
-  await prisma.job.update({
-    where: { id: job.id },
-    data: {
-      status: "CANCELLED",
-      failureCode: input.reason ?? "BUYER_CANCELLED",
-    },
+  const cancelled = await prisma.$transaction(async (tx) => {
+    const updated = await tx.job.updateMany({
+      where: {
+        id: job.id,
+        buyerId: input.buyerId,
+        status: { in: [...BUYER_CANCELLABLE] },
+      },
+      data: {
+        status: "CANCELLED",
+        failureCode: input.reason ?? "BUYER_CANCELLED",
+      },
+    });
+    if (updated.count !== 1) {
+      return { error: "JOB_NOT_CANCELLABLE" as const };
+    }
+    await tx.jobStateTransition.create({
+      data: {
+        jobId: job.id,
+        fromStatus: from,
+        toStatus: "CANCELLED",
+        actor: "BUYER",
+        reason: input.reason,
+      },
+    });
+    return { status: "CANCELLED" as const };
   });
-  await prisma.jobStateTransition.create({
-    data: {
-      jobId: job.id,
-      fromStatus: from,
-      toStatus: "CANCELLED",
-      actor: "BUYER",
-      reason: input.reason,
-    },
-  });
-  return { status: "CANCELLED" };
+  if ("error" in cancelled) {
+    return cancelled;
+  }
+  return cancelled;
 }

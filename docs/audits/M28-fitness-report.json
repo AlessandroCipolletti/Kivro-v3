@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-10T08:07:41.868Z",
+  "generatedAt": "2026-10-10T08:21:58.992Z",
   "milestone": "M28",
   "exitCriteria": {
-    "generatedAt": "2026-10-10T08:07:41.843Z",
+    "generatedAt": "2026-10-10T08:21:58.965Z",
     "m28HarnessComplete": true,
     "productMasterSpecComplete": false,
     "terminalAuditExecuted": true,
@@ -55,7 +55,7 @@
       {
         "id": "all-p0-p1-p2-complete",
         "status": "OPEN",
-        "detail": "P0 TODO 74, P1 TODO 327, P2 TODO 97"
+        "detail": "P0 TODO 47, P1 TODO 322, P2 TODO 97"
       },
       {
         "id": "staging-paid-e2e",
@@ -65,8 +65,8 @@
     ]
   },
   "complianceSummary": {
-    "TESTED": 1434,
-    "TODO": 498,
+    "TESTED": 1466,
+    "TODO": 466,
     "PARTIAL": 15,
     "BLOCKED": 0,
     "DEFERRED": 4,
@@ -74,12 +74,12 @@
   },
   "masterSpecCompletion": {
     "p0": {
-      "tested": 307,
-      "todo": 74
+      "tested": 335,
+      "todo": 47
     },
     "p1": {
-      "tested": 875,
-      "todo": 327
+      "tested": 879,
+      "todo": 322
     },
     "p2": {
       "tested": 252,

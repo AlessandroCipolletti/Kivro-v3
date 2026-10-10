@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-10T08:06:45.371Z",
+  "generatedAt": "2026-10-10T08:21:00.863Z",
   "milestone": "M24",
-  "goldenScenarioCount": 60,
+  "goldenScenarioCount": 72,
   "goldenRegistryVersion": 2,
   "providerParity": {
-    "generatedAt": "2026-10-10T08:06:42.308Z",
+    "generatedAt": "2026-10-10T08:20:57.637Z",
     "apiContractVersion": "v1-mvp",
     "workerProtocolVersion": 1,
     "compatibilityMatrix": {
@@ -17,7 +17,7 @@
       "workerProtocolMax": 1,
       "database": {
         "schemaPackage": "@kivro/database",
-        "schemaRevision": "20260410150000",
+        "schemaRevision": "20260410170000",
         "migrationsRelativePath": "packages/database/prisma/migrations",
         "rolloutRegistryPath": "tests/fixtures/schema-rollout-registry.json"
       },
@@ -62,7 +62,7 @@
     "workerProtocolMax": 1,
     "database": {
       "schemaPackage": "@kivro/database",
-      "schemaRevision": "20260410150000",
+      "schemaRevision": "20260410170000",
       "migrationsRelativePath": "packages/database/prisma/migrations",
       "rolloutRegistryPath": "tests/fixtures/schema-rollout-registry.json"
     },

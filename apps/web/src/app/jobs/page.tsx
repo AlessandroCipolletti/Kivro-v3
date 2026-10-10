@@ -27,12 +27,26 @@ const BUCKETS = [
   { key: "cancelled", label: "Cancelled" },
 ] as const;
 
+type DashboardSummary = {
+  scheduled: number;
+  queued: number;
+  running: number;
+  needsAttention: number;
+  completedRecent: number;
+};
+
 export default function MyJobsPage() {
   const [jobs, setJobs] = useState<JobRow[] | null>(null);
+  const [summary, setSummary] = useState<DashboardSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [bucket, setBucket] = useState("");
 
   useEffect(() => {
+    fetch(`${API_BASE}/buyer/experience/dashboard`, { credentials: "include" })
+      .then(async (res) => (res.ok ? ((await res.json()) as { summary: DashboardSummary }) : null))
+      .then((data) => data && setSummary(data.summary))
+      .catch(() => undefined);
+
     const qs = bucket ? `?bucket=${encodeURIComponent(bucket)}` : "";
     fetch(`${API_BASE}/buyer/jobs${qs}`, { credentials: "include" })
       .then(async (res) => {
@@ -67,6 +81,12 @@ export default function MyJobsPage() {
   return (
     <>
       <PageHeader title="My jobs" description="Track queued, running, and completed capability runs." />
+      {summary && (
+        <p className="meta" style={{ marginBottom: "1rem" }}>
+          {summary.running} running · {summary.queued} queued · {summary.scheduled} scheduled
+          {summary.needsAttention > 0 ? ` · ${summary.needsAttention} need attention` : ""}
+        </p>
+      )}
       <div className="nav" style={{ flexWrap: "wrap", marginBottom: "1rem" }}>
         {BUCKETS.map((b) => (
           <button

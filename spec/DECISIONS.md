@@ -640,6 +640,14 @@ greenfield.
 
 **Decision:** Worker `complete` must include deliverables; shared `runCloudFinalizationBarrier` validates contract shape and confirmed `JOB_DELIVERABLE` assets before `COMPLETED` and settlement. Invalid outputs transition to `RESULT_REJECTED`. Retention expiry and cleanup run via shared maintenance sweeps on both profiles. Gate: `pnpm verify:m29` (includes `verify:m28`).
 
+## DEC-M30-001 — Shared buyer experience Core before UI
+
+**Decision:** Buyer preflight, execution quote, deadline feasibility, ETA/progress honesty, legal actions, reliability aggregation, privacy disclosure, minimized worker payload, and dashboard summaries live in `@kivro/buyer-experience` and `@kivro/marketplace` read models — not provider adapters or UI-only logic. Purchase must revalidate `BuyerExecutionQuote` when `executionQuoteId` is supplied. Gate: `pnpm verify:m30` (includes `verify:m29`).
+
+## DEC-M30-002 — Orchestration and v1 honor hard deadlines
+
+**Decision:** Marketplace agent plan approval calls `authorizePlanApproval` with per-step `estimatedDuration` and rejects `DEADLINE_INFEASIBLE` when `BuyerConstraints.hardDeliveryDeadlineAt` cannot fit the plan. REST v1 exposes the same preflight/quote/create semantics as session checkout. Gate: `verify-m30-evidence.mjs`.
+
 ## DEC-M29-002 — Bounded integrity sampling on maintenance ticks
 
 **Decision:** Both deployment profiles invoke `runCloudMaintenanceSweeps`, which runs retention purge, terminal email retries, and a bounded `sampleCompletedJobIntegrity` pass (ASYNC-028 observability). Local/dev Worker synthetic completion must include `structuredOutput` deliverables so paid-path tests exercise the same barrier as production. Gate: `verify-m29-async-evidence.mjs` + `dual-profile-maintenance` exit criterion.

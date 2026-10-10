@@ -21,6 +21,7 @@
     "@kivro/job-control": "workspace:*",
     "@kivro/job-delivery": "workspace:*",
     "@kivro/job-scheduling": "workspace:*",
+    "@kivro/buyer-experience": "workspace:*",
     "stripe": "^17.7.0"
   }
 }

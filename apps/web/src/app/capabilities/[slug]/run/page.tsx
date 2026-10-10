@@ -21,6 +21,7 @@ export default function RunCapabilityPage() {
   const [accepting, setAccepting] = useState(true);
   const [nextAvailableAt, setNextAvailableAt] = useState<string | null>(null);
   const [scheduledRunAt, setScheduledRunAt] = useState("");
+  const [hardDeadline, setHardDeadline] = useState("");
   const [useJson, setUseJson] = useState(false);
   const [inputsJson, setInputsJson] = useState("{}");
   const [error, setError] = useState<string | null>(null);
@@ -80,9 +81,39 @@ export default function RunCapabilityPage() {
     setError(null);
     setLoading(true);
     try {
-      const payload: Record<string, unknown> = { capabilityId, inputs, paymentMode: "credits" };
+      const quoteRes = await fetch(`${API_BASE}/buyer/experience/quote`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          capabilityId,
+          inputs,
+          scheduledRunAt: !accepting && scheduledRunAt ? new Date(scheduledRunAt).toISOString() : undefined,
+          hardDeliveryDeadlineAt: hardDeadline ? new Date(hardDeadline).toISOString() : undefined,
+        }),
+      });
+      const quoteBody = (await quoteRes.json()) as { error?: string; quoteId?: string };
+      if (!quoteRes.ok || !quoteBody.quoteId) {
+        setError(quoteBody.error ?? "Quote failed");
+        return;
+      }
+      const preflight = (quoteBody as { preflight?: { accepting?: boolean; reasons?: string[] } })
+        .preflight;
+      if (preflight && preflight.accepting === false) {
+        setError(preflight.reasons?.join(", ") ?? "Preflight blocked this purchase");
+        return;
+      }
+      const payload: Record<string, unknown> = {
+        capabilityId,
+        inputs,
+        paymentMode: "credits",
+        executionQuoteId: quoteBody.quoteId,
+      };
       if (!accepting && scheduledRunAt) {
         payload.scheduledRunAt = new Date(scheduledRunAt).toISOString();
+      }
+      if (hardDeadline) {
+        payload.hardDeliveryDeadlineAt = new Date(hardDeadline).toISOString();
       }
       const res = await fetch(`${API_BASE}/buyer/jobs`, {
         method: "POST",
@@ -158,6 +189,18 @@ export default function RunCapabilityPage() {
             {nextAvailableAt ? ` until ${new Date(nextAvailableAt).toLocaleString()}` : ""}. Schedule
             below or return later.
           </Alert>
+          <div className="form-field">
+            <label className="field-label" htmlFor="deadline">
+              Hard delivery deadline (optional)
+            </label>
+            <input
+              id="deadline"
+              type="datetime-local"
+              value={hardDeadline}
+              onChange={(e) => setHardDeadline(e.target.value)}
+            />
+            <p className="meta">Kivro checks feasibility; estimates are not guaranteed SLAs.</p>
+          </div>
           <div className="form-field">
             <label className="field-label" htmlFor="schedule">
               Schedule run

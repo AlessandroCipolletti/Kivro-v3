@@ -1,4 +1,10 @@
 import type { PrismaClient } from "@kivro/database";
+import {
+  describeMissedWindow,
+  estimateBuyerJobTiming,
+  resolveBuyerLegalActions,
+  sanitizeBuyerProgressCheckpoints,
+} from "@kivro/buyer-experience";
 import { buyerVisibleJobStatus } from "@kivro/job-control";
 import { resolveBuyerSchedulingPhase } from "@kivro/job-scheduling";
 import { buildBuyerJobTimeline } from "./buyer-audit-timeline.js";
@@ -30,6 +36,7 @@ export async function getBuyerJobDetail(
       transitions: { orderBy: { createdAt: "asc" } },
       review: true,
       auditEvents: { orderBy: { createdAt: "asc" } },
+      checkpoints: { orderBy: { recordedAt: "asc" } },
     },
   });
   if (!job || job.buyerId !== input.buyerId) {
@@ -58,15 +65,45 @@ export async function getBuyerJobDetail(
   const outputAssets = job.result
     ? parseJobOutputAssetManifest(job.result.outputAssetManifest)
     : [];
+  const schedulingPhase = resolveBuyerSchedulingPhase({
+    status: job.status,
+    scheduledRunAt: job.scheduledRunAt,
+  });
+  const completedSample = await prisma.job.count({
+    where: { capabilityId: cap.id, status: "COMPLETED" },
+  });
+  const timing = estimateBuyerJobTiming({
+    status: job.status,
+    scheduledRunAt: job.scheduledRunAt,
+    scheduleWaitDeadlineAt: job.scheduleWaitDeadlineAt,
+    startedAt: job.startedAt,
+    estimatedDurationMinutes: cap.estimatedDuration,
+    sampleCompletedCount: completedSample,
+  });
+  const missedWindow = describeMissedWindow({
+    status: job.status,
+    failureCode: job.failureCode,
+    scheduleWaitDeadlineAt: job.scheduleWaitDeadlineAt,
+  });
+  const legalActions = resolveBuyerLegalActions({
+    status: job.status,
+    failureCode: job.failureCode,
+    schedulingPhase,
+    resultAvailable: Boolean(job.result && !isResultRetentionExpired(job.resultRetentionExpiresAt)),
+  });
+  const progress = sanitizeBuyerProgressCheckpoints(job.checkpoints);
   return {
     job: {
       id: job.id,
       status: job.status,
       buyerVisible: visible,
-      schedulingPhase: resolveBuyerSchedulingPhase({
-        status: job.status,
-        scheduledRunAt: job.scheduledRunAt,
-      }),
+      schedulingPhase,
+      buyerHardDeadlineAt: job.buyerHardDeadlineAt?.toISOString() ?? null,
+      scheduleWaitDeadlineAt: job.scheduleWaitDeadlineAt?.toISOString() ?? null,
+      timingEstimate: timing,
+      missedWindow,
+      legalActions,
+      progress,
       capabilityId: cap.id,
       capabilitySlug: cap.slug,
       capabilityName: cap.name,

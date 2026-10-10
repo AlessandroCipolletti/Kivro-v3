@@ -1,6 +1,6 @@
+import { enrichBuyerJobListRow } from "@kivro/buyer-experience";
 import { getPrismaClient } from "@kivro/database";
 import { buyerVisibleJobStatus } from "@kivro/job-control";
-import { resolveBuyerSchedulingPhase } from "@kivro/job-scheduling";
 import { getBuyerJobDetail, submitJobReview } from "@kivro/marketplace";
 import { Hono } from "hono";
 import { requireAuth, requireVerifiedEmail } from "../middleware/auth.js";
@@ -59,7 +59,13 @@ export function buyerJobsListRoutes(): Hono<AppEnv> {
       },
     });
     return c.json({
-      jobs: jobs.map((job) => ({
+      jobs: jobs.map((job) => {
+        const enriched = enrichBuyerJobListRow({
+          status: job.status,
+          failureCode: job.failureCode,
+          scheduledRunAt: job.scheduledRunAt,
+        });
+        return {
         id: job.id,
         slug: job.capabilityVersion.capability.slug,
         capabilityName: job.capabilityVersion.capability.name,
@@ -69,17 +75,17 @@ export function buyerJobsListRoutes(): Hono<AppEnv> {
           scheduleWaitDeadlineAt: job.scheduleWaitDeadlineAt,
           scheduleAdjustedAt: job.scheduleAdjustedAt,
         }),
-        schedulingPhase: resolveBuyerSchedulingPhase({
-          status: job.status,
-          scheduledRunAt: job.scheduledRunAt,
-        }),
+        schedulingPhase: enriched.schedulingPhase,
+        legalActions: enriched.legalActions,
+        needsAttention: enriched.needsAttention,
         createdAt: job.createdAt.toISOString(),
         completedAt: job.completedAt?.toISOString() ?? null,
         resultRetentionExpiresAt: job.resultRetentionExpiresAt?.toISOString() ?? null,
         scheduledRunAt: job.scheduledRunAt?.toISOString() ?? null,
         priceSnapshotCents: job.priceSnapshotCents,
         currency: job.currency,
-      })),
+        };
+      }),
     });
   });
 

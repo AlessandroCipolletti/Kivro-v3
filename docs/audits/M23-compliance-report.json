@@ -1,10 +1,10 @@
 {
   "audit": "M23",
-  "generatedAt": "2026-10-10T08:06:49.616Z",
+  "generatedAt": "2026-10-10T08:21:05.127Z",
   "totalRequirements": 1951,
   "summary": {
-    "TESTED": 1434,
-    "TODO": 498,
+    "TESTED": 1466,
+    "TODO": 466,
     "PARTIAL": 15,
     "BLOCKED": 0,
     "DEFERRED": 4,
@@ -12,13 +12,13 @@
   },
   "byPriority": {
     "P0": {
-      "TESTED": 307,
+      "TESTED": 335,
       "DEFERRED": 2,
-      "TODO": 74
+      "TODO": 47
     },
     "P1": {
-      "TODO": 327,
-      "TESTED": 875,
+      "TODO": 322,
+      "TESTED": 879,
       "PARTIAL": 9,
       "DEFERRED": 1
     },
@@ -35,9 +35,9 @@
   "unexplainedCount": 0,
   "invalidTestedCount": 0,
   "testedP0MissingTestEvidenceCount": 0,
-  "p0p1OpenCount": 410,
-  "p0OpenCount": 74,
-  "p1OpenCount": 327,
+  "p0p1OpenCount": 378,
+  "p0OpenCount": 47,
+  "p1OpenCount": 322,
   "p2OpenCount": 97,
   "sectionRollupP0P1Open": {
     "§1": {
@@ -971,7 +971,7 @@
       "scheduled": "?"
     },
     "§0": {
-      "TODO": 86,
+      "TODO": 54,
       "PARTIAL": 0,
       "BLOCKED": 0,
       "scheduled": "?"
@@ -1058,12 +1058,12 @@
   ],
   "masterSpecCompletion": {
     "p0": {
-      "tested": 307,
-      "todo": 74
+      "tested": 335,
+      "todo": 47
     },
     "p1": {
-      "tested": 875,
-      "todo": 327
+      "tested": 879,
+      "todo": 322
     },
     "p2": {
       "tested": 252,

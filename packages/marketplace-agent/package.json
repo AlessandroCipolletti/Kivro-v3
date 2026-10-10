@@ -16,6 +16,7 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@kivro/buyer-experience": "workspace:*",
     "@kivro/marketplace": "workspace:*"
   }
 }

@@ -130,6 +130,9 @@ model User {
   apiIdempotencyRecords   ApiIdempotencyRecord[]
   abuseReports            AbuseReport[]
   buyerSubmissionRateBuckets BuyerSubmissionRateBucket[]
+  buyerExecutionQuotes      BuyerExecutionQuote[]
+  buyerNotifyTerminalEmail    Boolean @default(true)
+  buyerNotifyScheduledReminder Boolean @default(true)
 }
 
 enum MarketplaceMessageRole {
@@ -592,9 +595,13 @@ model Job {
   startedAt                  DateTime?
   completedAt                DateTime?
   resultRetentionExpiresAt   DateTime?
+  buyerHardDeadlineAt        DateTime?
+  scheduledReminderSentAt    DateTime?
+  executionQuoteId           String?   @unique
   updatedAt                  DateTime  @updatedAt
 
   buyer             User              @relation("BuyerJobs", fields: [buyerId], references: [id])
+  executionQuote    BuyerExecutionQuote? @relation(fields: [executionQuoteId], references: [id])
   buyerApiKey       BuyerApiKey?      @relation(fields: [buyerApiKeyId], references: [id])
   capabilityVersion CapabilityVersion @relation(fields: [capabilityVersionId], references: [id])
   workerDevice      WorkerDevice?     @relation(fields: [workerDeviceId], references: [id])
@@ -616,6 +623,29 @@ model Job {
   @@index([status, scheduledRunAt])
   @@index([orchestrationStepId])
   @@index([resultRetentionExpiresAt])
+}
+
+model BuyerExecutionQuote {
+  id                     String    @id @default(uuid())
+  buyerId                String
+  capabilityId           String
+  capabilityVersionId    String
+  versionNumber          Int
+  priceSnapshotCents     Int
+  currency               String    @default("USD")
+  inputsDigest           String
+  hardDeliveryDeadlineAt DateTime?
+  scheduledRunAt         DateTime?
+  expiresAt              DateTime
+  consumedAt             DateTime?
+  createdAt              DateTime  @default(now())
+
+  buyer User @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  job   Job?
+
+  @@index([buyerId])
+  @@index([capabilityId])
+  @@index([expiresAt])
 }
 
 model JobTerminalNotification {

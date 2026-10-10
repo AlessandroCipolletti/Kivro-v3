@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-10T08:07:38.979Z",
+  "generatedAt": "2026-10-10T08:21:55.896Z",
   "milestone": "M28",
-  "openP0Count": 74,
-  "openP1Count": 336,
+  "openP0Count": 47,
+  "openP1Count": 331,
   "openP2Count": 103,
   "openByScheduledTarget": {
     "M28": {
@@ -16,8 +16,8 @@
       "P2": 9
     },
     "M30": {
-      "P0": 34,
-      "P1": 11,
+      "P0": 7,
+      "P1": 6,
       "P2": 0
     },
     "M32": {
@@ -70,61 +70,6 @@
       "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
     },
     {
-      "id": "BUYERUX-001",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-002",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-003",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-004",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-005",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-006",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-007",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-008",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-010",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-012",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "BUYERUX-014",
-      "status": "TODO",
-      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
       "id": "BUYERUX-017",
       "status": "TODO",
       "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
@@ -153,6 +98,61 @@
       "id": "BUYERUX-024",
       "status": "TODO",
       "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "BUYERUX-034",
+      "status": "TODO",
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-001",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-002",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-003",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-005",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-006",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-008",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-009",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-010",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-011",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-012",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
     }
   ]
 }

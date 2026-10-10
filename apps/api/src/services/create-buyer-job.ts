@@ -13,6 +13,8 @@ export async function createBuyerJobFromApi(
     assets?: Record<string, unknown>;
     scheduledRunAt?: Date;
     buyerApiKeyId?: string;
+    executionQuoteId?: string;
+    buyerHardDeadlineAt?: Date;
   },
 ): Promise<
   | {
@@ -60,6 +62,8 @@ export async function createBuyerJobFromApi(
     structuredInput: input.inputs ?? {},
     assetManifest: input.assets,
     scheduledRunAt: input.scheduledRunAt,
+    executionQuoteId: input.executionQuoteId,
+    buyerHardDeadlineAt: input.buyerHardDeadlineAt,
   });
   if ("error" in result) {
     return { error: result.error, reasons: "reasons" in result ? (result.reasons as string[]) : undefined };

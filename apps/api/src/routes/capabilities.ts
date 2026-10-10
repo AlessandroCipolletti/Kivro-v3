@@ -9,6 +9,7 @@ import {
   type JobAssetRef,
 } from "@kivro/job-io";
 import { buildInternetPermissionSummary } from "@kivro/research-broker";
+import { buildPrivacyDisclosureFromManifest, computeSellerReliabilityForCapability } from "@kivro/buyer-experience";
 import {
   evaluateCapabilityAvailability,
   summarizeMarketplaceAvailability,
@@ -109,21 +110,12 @@ export function marketplaceCapabilityRoutes(): Hono {
       version && Array.isArray(version.externalProcessorsSnapshot)
         ? (version.externalProcessorsSnapshot as string[])
         : [];
-    const privacyDisclosure = {
-      executionModel:
-        "Jobs execute on seller-controlled hardware in an isolated marketplace worker sandbox; the seller's worker processes your inputs for this capability.",
-      dataHandling:
-        internetDisclosure?.buyerDetail?.join(" ") ??
-        "See trust summary for network and tool permissions for this published version.",
-      retention:
-        "Kivro temporarily stores uploaded inputs and completed deliverables so you can download results; see Legal for retention details.",
-      thirdPartyServices:
-        externalProcessors.length > 0
-          ? externalProcessors
-          : ["Seller has not declared external processors for this version; LLM or API use may still apply per permissions."],
-      llmDisclosure:
-        "When inference permissions are enabled, configured LLM providers may receive job content per the published permission manifest.",
-    };
+    const privacyDisclosure = buildPrivacyDisclosureFromManifest({
+      permissionManifest: version?.permissionManifest,
+      externalProcessors,
+      internetSummary: internetDisclosure?.buyerDetail,
+    });
+    const reliability = await computeSellerReliabilityForCapability(getPrismaClient(), row.id);
     return c.json({
       capability: row,
       seller: row.sellerProfile,
@@ -138,6 +130,7 @@ export function marketplaceCapabilityRoutes(): Hono {
         average: row.rating,
         count: row.reviewCount,
       },
+      sellerReliability: reliability,
     });
   });
 

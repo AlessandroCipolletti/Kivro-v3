@@ -40,6 +40,7 @@
     "@kivro/marketplace-agent": "workspace:*",
     "@kivro/seller-health": "workspace:*",
     "@kivro/buyer-api": "workspace:*",
+    "@kivro/buyer-experience": "workspace:*",
     "@kivro/buyer-webhooks": "workspace:*",
     "@kivro/storage": "workspace:*",
     "@kivro/domain": "workspace:*",
