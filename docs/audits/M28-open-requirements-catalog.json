@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-10T08:50:23.183Z",
+  "generatedAt": "2026-10-10T09:06:17.477Z",
   "milestone": "M28",
-  "openP0Count": 40,
-  "openP1Count": 325,
+  "openP0Count": 23,
+  "openP1Count": 322,
   "openP2Count": 103,
   "openByScheduledTarget": {
     "M28": {
@@ -16,8 +16,8 @@
       "P2": 9
     },
     "M32": {
-      "P0": 32,
-      "P1": 9,
+      "P0": 15,
+      "P1": 6,
       "P2": 0
     }
   },
@@ -65,56 +65,6 @@
       "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
     },
     {
-      "id": "SELLERUX-001",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-002",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-003",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-005",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-006",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-008",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-009",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-010",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-011",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
-      "id": "SELLERUX-012",
-      "status": "TODO",
-      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
-    },
-    {
       "id": "SELLERUX-013",
       "status": "TODO",
       "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
@@ -145,7 +95,47 @@
       "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "SELLERUX-022",
+      "id": "SELLERUX-024",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-025",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-026",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-027",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-029",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-030",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-036",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-037",
+      "status": "TODO",
+      "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
+    },
+    {
+      "id": "SELLERUX-041",
       "status": "TODO",
       "notes": "--- scheduled:M32 per IMPLEMENTATION-PLAN; M17 audit accounted"
     }

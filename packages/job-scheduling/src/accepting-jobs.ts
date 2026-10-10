@@ -14,10 +14,13 @@ export function evaluateAcceptingNewJobs(input: {
   schedule: CapabilityScheduleConfig;
   workerDeviceStatus: string;
   hasActiveJobOnWorker: boolean;
+  activeJobCountOnWorker?: number;
+  maxConcurrentJobs?: number;
   globalDispatchEnabled: boolean;
   sellerEmergencyPause?: boolean;
   platformSecurityPause?: boolean;
   securityBlocksDispatch?: boolean;
+  sellerMaintenanceMode?: boolean;
   now?: Date;
 }): AcceptingJobsEvaluation {
   const reasons: string[] = [];
@@ -33,6 +36,9 @@ export function evaluateAcceptingNewJobs(input: {
   if (input.sellerEmergencyPause) {
     reasons.push("EMERGENCY_PAUSE");
   }
+  if (input.sellerMaintenanceMode) {
+    reasons.push("SELLER_MAINTENANCE");
+  }
   if (input.securityBlocksDispatch) {
     reasons.push("SECURITY_NOT_READY");
   }
@@ -46,8 +52,10 @@ export function evaluateAcceptingNewJobs(input: {
   if (input.workerDeviceStatus !== "ONLINE") {
     reasons.push("WORKER_NOT_ONLINE");
   }
-  if (input.hasActiveJobOnWorker) {
-    reasons.push("WORKER_BUSY");
+  const activeCount = input.activeJobCountOnWorker ?? (input.hasActiveJobOnWorker ? 1 : 0);
+  const maxConcurrent = Math.max(1, input.maxConcurrentJobs ?? 1);
+  if (activeCount >= maxConcurrent) {
+    reasons.push("CONCURRENCY_LIMIT");
   }
   const buyerAvailability = mapWorkerDeviceToBuyerAvailability({
     deviceStatus: input.workerDeviceStatus,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T08:52:12.028Z",
+  "generatedAt": "2026-10-10T09:05:22.663Z",
   "m23HarnessComplete": true,
   "productMasterSpecComplete": false,
   "terminalGate": "M28",
@@ -32,7 +32,7 @@
       "id": "all-p0-p1-p2-complete",
       "planItem": "All P0/P1/P2 requirements complete",
       "status": "DEFERRED_M28",
-      "detail": "P0 TODO 40, P1 TODO 316, P2 TODO 97"
+      "detail": "P0 TODO 23, P1 TODO 313, P2 TODO 97"
     },
     {
       "id": "product-security-sandbox-satisfied",
@@ -55,8 +55,9 @@
     {
       "id": "terminal-lossless-audit",
       "planItem": "Lossless Master Spec proof",
-      "status": "DEFERRED_M28",
-      "detail": "IMPLEMENTATION-PLAN M28 supersedes terminal gate"
+      "status": "EXECUTED_M28",
+      "detail": "M28 terminal harness executed; productMasterSpecComplete=false"
     }
-  ]
+  ],
+  "terminalGateExecutedAt": "2026-10-10T09:06:21.093Z"
 }

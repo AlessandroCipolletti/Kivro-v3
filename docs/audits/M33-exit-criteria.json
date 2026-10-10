@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-10-10T09:06:53.371Z",
+  "m33HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "m32-regression-gate",
+      "status": "PASS",
+      "detail": "verify:m32 / M32-exit-criteria.json"
+    },
+    {
+      "id": "sellerux-m33-tested",
+      "status": "PASS",
+      "detail": "19/19 M33-scope SELLERUX rows TESTED"
+    },
+    {
+      "id": "sellerux-gold-m33",
+      "status": "PASS",
+      "detail": "M33 exit SELLERUX-GOLD scenarios in golden registry"
+    },
+    {
+      "id": "m33-migration",
+      "status": "PASS",
+      "detail": "seller maintenance, concurrency, provider cost schema"
+    },
+    {
+      "id": "seller-operations-routes",
+      "status": "PASS",
+      "detail": "operations, economics, maintenance, notifications API"
+    },
+    {
+      "id": "seller-web-operations",
+      "status": "PASS",
+      "detail": "seller operations & economics UI"
+    },
+    {
+      "id": "verify-m33-script",
+      "status": "PASS",
+      "detail": "pnpm verify:m33 gate registered"
+    },
+    {
+      "id": "sellerux-spotcheck",
+      "status": "PASS",
+      "detail": "M33-scope SELLERUX COVERAGE rows with evidence paths"
+    }
+  ]
+}

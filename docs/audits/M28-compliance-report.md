@@ -1,11 +1,11 @@
 # M28 compliance audit snapshot
 
-Generated: 2026-10-10T08:50:25.469Z
+Generated: 2026-10-10T09:06:20.081Z
 
 ## Totals
 
 - Requirements parsed: **1951**
-- TESTED: 1479 · TODO: 453 · PARTIAL: 15 · DEFERRED: 4
+- TESTED: 1499 · TODO: 433 · PARTIAL: 15 · DEFERRED: 4
 
 ## M00–M27 closure check
 

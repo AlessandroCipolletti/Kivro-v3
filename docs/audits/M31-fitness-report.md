@@ -8,4 +8,5 @@
 - m31-migration: PASS — acknowledgement, problem reports, retention reminder schema
 - buyer-job-history-routes: PASS — reuse, acknowledge, problem-report, download-all API
 - v1-m31-parity: PASS — v1 reuse/download-all/ack/problem-report parity
+- plan-through-m31: PASS — IMPLEMENTATION-PLAN verify M03–M31 + M29–M31 harness snapshot
 - buyerux-spotcheck: PASS — M31-scope BUYERUX COVERAGE rows with evidence paths

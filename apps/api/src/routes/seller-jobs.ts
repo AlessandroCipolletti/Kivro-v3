@@ -19,10 +19,48 @@ import {
   resolveBuyerSchedulingPhase,
 } from "@kivro/job-scheduling";
 import { randomUUID } from "node:crypto";
+import { parseWorkerManifest } from "@kivro/contracts";
+import { buildSellerJobExecutionView } from "@kivro/seller-experience";
 
 export function sellerJobRoutes(): Hono<AppEnv> {
   const app = new Hono<AppEnv>();
   app.use("*", requireAuth, requireVerifiedEmail);
+
+  app.get("/jobs/:jobId/execution", async (c) => {
+    const user = c.get("user");
+    const profile = await ensureSellerProfile(getPrismaClient(), user.id, user.email);
+    const job = await getPrismaClient().job.findFirst({
+      where: {
+        id: c.req.param("jobId"),
+        capabilityVersion: { capability: { sellerProfileId: profile.id } },
+      },
+      include: {
+        input: true,
+        capabilityVersion: { include: { capability: true } },
+      },
+    });
+    if (!job) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    const structuredInput =
+      job.input?.structuredInput && typeof job.input.structuredInput === "object"
+        ? (job.input.structuredInput as Record<string, unknown>)
+        : {};
+    const manifest = job.capabilityVersion.workerManifest
+      ? parseWorkerManifest(job.capabilityVersion.workerManifest)
+      : null;
+    return c.json(
+      buildSellerJobExecutionView({
+        jobId: job.id,
+        buyerId: job.buyerId,
+        sellerProfileId: profile.id,
+        structuredInput,
+        workerManifest: manifest,
+        status: job.status,
+        capabilitySlug: job.capabilityVersion.capability.slug,
+      }),
+    );
+  });
 
   app.get("/jobs/running", async (c) => {
     const user = c.get("user");

@@ -423,9 +423,49 @@
       "assert": "local credentials; cloud metadata only; sanitized doctor"
     },
     {
+      "id": "SELLERUX-GOLD-007",
+      "name": "schedule pause capacity",
+      "assert": "schedule, temporary pause and concurrency limit prevent over-dispatch"
+    },
+    {
+      "id": "SELLERUX-GOLD-008",
+      "name": "seller job privacy",
+      "assert": "execution payload has declared inputs only; no buyer email/payment/profile"
+    },
+    {
+      "id": "SELLERUX-GOLD-009",
+      "name": "cost protection",
+      "assert": "provider cost estimate and per-job guardrail labeled separately from buyer price"
+    },
+    {
+      "id": "SELLERUX-GOLD-010",
+      "name": "earnings profit",
+      "assert": "ledger transfers drive earnings; Worker cannot forge totals"
+    },
+    {
+      "id": "SELLERUX-GOLD-011",
+      "name": "analytics privacy",
+      "assert": "capability metrics from authoritative events without buyer-private fields"
+    },
+    {
       "id": "SELLERUX-GOLD-012",
       "name": "version diff immutability",
       "assert": "permission expansion prominent; historical jobs pinned"
+    },
+    {
+      "id": "SELLERUX-GOLD-013",
+      "name": "rollback safety",
+      "assert": "insecure rollback blocked; in-flight jobs pinned to current version"
+    },
+    {
+      "id": "SELLERUX-GOLD-014",
+      "name": "auto pause explain",
+      "assert": "deterministic pause surfaces remediation without policy weaken"
+    },
+    {
+      "id": "SELLERUX-GOLD-015",
+      "name": "notifications maintenance",
+      "assert": "maintenance mode and seller notification preferences are authoritative"
     },
     {
       "id": "SELLERUX-GOLD-016",

@@ -347,6 +347,14 @@ model SellerProfile {
   legalNameForKyc        String?
   firstPublishedAt       DateTime?
   sellerOnboarding       Json?
+  maxConcurrentJobs      Int      @default(1)
+  maintenanceMode        Boolean  @default(false)
+  maintenanceMessage     String?
+  maintenanceExpectedReturnAt DateTime?
+  sellerNotifyJobCompleted Boolean @default(true)
+  sellerNotifyHealthAlert  Boolean @default(true)
+  sellerNotifyPayout       Boolean @default(true)
+  firstSaleExplainedAt     DateTime?
   payoutStatus           String   @default("NOT_STARTED")
   verificationStatus     String   @default("UNVERIFIED")
   ratingSummary          Json?
@@ -429,6 +437,7 @@ model Capability {
   scheduleMode      CapabilityScheduleMode @default(ALWAYS_AVAILABLE)
   scheduleTimezone  String           @default("UTC")
   scheduleWindows   Json             @default("[]")
+  maxConcurrentJobs Int?
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
 
@@ -605,6 +614,7 @@ model Job {
   scheduledReminderSentAt         DateTime?
   resultRetentionReminderSentAt   DateTime?
   executionQuoteId                String?   @unique
+  estimatedProviderCostCents      Int?
   updatedAt                       DateTime  @updatedAt
 
   buyer             User              @relation("BuyerJobs", fields: [buyerId], references: [id])

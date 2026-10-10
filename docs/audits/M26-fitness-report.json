@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T08:51:51.276Z",
+  "generatedAt": "2026-10-10T09:05:00.744Z",
   "milestone": "M26",
   "rpoRto": {
     "generatedAt": "2026-10-10T00:00:00.000Z",
@@ -56,7 +56,7 @@
     ]
   },
   "exitCriteria": {
-    "generatedAt": "2026-10-10T08:49:10.633Z",
+    "generatedAt": "2026-10-10T09:04:22.756Z",
     "m26HarnessComplete": true,
     "criteria": [
       {

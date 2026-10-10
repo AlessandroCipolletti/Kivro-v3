@@ -30,7 +30,7 @@ describe("accepting jobs §402", () => {
     });
     expect(result.accepting).toBe(false);
     expect(result.buyerAvailability).toBe("BUSY");
-    expect(result.reasons).toContain("WORKER_BUSY");
+    expect(result.reasons).toContain("CONCURRENCY_LIMIT");
   });
 
   it("maps schedule closed to SCHEDULED_OFFLINE", () => {

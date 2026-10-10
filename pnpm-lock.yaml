@@ -695,6 +695,12 @@ importers:
 
   packages/seller-experience:
     dependencies:
+      '@kivro/billing':
+        specifier: workspace:*
+        version: link:../billing
+      '@kivro/buyer-experience':
+        specifier: workspace:*
+        version: link:../buyer-experience
       '@kivro/capability-publish':
         specifier: workspace:*
         version: link:../capability-publish
@@ -707,6 +713,9 @@ importers:
       '@kivro/job-io':
         specifier: workspace:*
         version: link:../job-io
+      '@kivro/platform-policy':
+        specifier: workspace:*
+        version: link:../platform-policy
       '@kivro/seller-health':
         specifier: workspace:*
         version: link:../seller-health

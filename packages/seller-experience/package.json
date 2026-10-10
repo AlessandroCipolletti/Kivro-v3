@@ -16,10 +16,13 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@kivro/billing": "workspace:*",
+    "@kivro/buyer-experience": "workspace:*",
     "@kivro/capability-publish": "workspace:*",
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
     "@kivro/job-io": "workspace:*",
+    "@kivro/platform-policy": "workspace:*",
     "@kivro/seller-health": "workspace:*"
   }
 }

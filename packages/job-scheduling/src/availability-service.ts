@@ -43,6 +43,8 @@ export async function evaluateCapabilityAvailability(
           marketplaceEmergencyPause: true,
           platformSecurityPause: true,
           platformSecurityPauseReason: true,
+          maintenanceMode: true,
+          maxConcurrentJobs: true,
         },
       },
       currentVersion: {
@@ -58,16 +60,17 @@ export async function evaluateCapabilityAvailability(
   const binding = capability.currentVersion.bindings[0];
   const device = binding?.workerDevice;
   const schedule = parseScheduleConfig(capability);
-  let hasActiveJob = false;
+  let activeJobCount = 0;
   if (device) {
-    const active = await prisma.job.count({
+    activeJobCount = await prisma.job.count({
       where: {
         workerDeviceId: device.id,
         status: { in: [...ACTIVE_JOB_STATUSES] },
       },
     });
-    hasActiveJob = active > 0;
   }
+  const maxConcurrent =
+    capability.maxConcurrentJobs ?? capability.sellerProfile.maxConcurrentJobs ?? 1;
   const healthReport = device ? parseWorkerHealthReport(device.lastHealthReport) : null;
   const securityWarnings = buildSecurityWarnings({
     report: healthReport,
@@ -80,11 +83,14 @@ export async function evaluateCapabilityAvailability(
     capabilityPublished: capability.status === "PUBLISHED",
     schedule,
     workerDeviceStatus: device?.status ?? "OFFLINE",
-    hasActiveJobOnWorker: hasActiveJob,
+    hasActiveJobOnWorker: activeJobCount > 0,
+    activeJobCountOnWorker: activeJobCount,
+    maxConcurrentJobs: maxConcurrent,
     globalDispatchEnabled: isGlobalDispatchEnabled(),
     sellerEmergencyPause: capability.sellerProfile.marketplaceEmergencyPause,
     platformSecurityPause: capability.sellerProfile.platformSecurityPause,
     securityBlocksDispatch: hasBlockingSecurityWarning(securityWarnings),
+    sellerMaintenanceMode: capability.sellerProfile.maintenanceMode,
   });
   const nextAvailableAt = computeNextAvailableAt(schedule);
   return {

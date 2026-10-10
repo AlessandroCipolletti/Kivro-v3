@@ -32,6 +32,7 @@ import { marketplaceAgentToolRoutes } from "./routes/marketplace-agent-tools.js"
 import { buyerJobAssetRoutes } from "./routes/buyer-job-assets.js";
 import { buyerJobHistoryRoutes } from "./routes/buyer-job-history.js";
 import { sellerDashboardRoutes } from "./routes/seller-dashboard.js";
+import { sellerOperationsRoutes } from "./routes/seller-operations.js";
 import { workerHealthRoutes } from "./routes/worker-health.js";
 import { workerWssShimRoutes } from "./routes/worker-wss-shim.js";
 import { workerDiscoveryRoutes } from "./routes/worker-discovery.js";
@@ -174,6 +175,7 @@ export function createApp(): Hono<AppEnv> {
   app.route("/seller", sellerJobRoutes());
   app.route("/seller", sellerControlUiRoutes());
   app.route("/seller", sellerDashboardRoutes());
+  app.route("/seller", sellerOperationsRoutes());
   app.route("/worker", workerJobRoutes());
   app.route("/worker", workerHealthRoutes());
   app.route("/worker", workerDiscoveryRoutes());

@@ -144,6 +144,10 @@ export default function SellerDashboardPage() {
         <Link href="/seller/capabilities/new">New capability wizard</Link>
         {" · "}
         <Link href="/seller/settings/identity">Identity settings</Link>
+        {" · "}
+        <Link href="/seller/operations">Operations</Link>
+        {" · "}
+        <Link href="/seller/economics">Economics</Link>
       </p>
 
       {error && <Alert tone="danger">{error}</Alert>}

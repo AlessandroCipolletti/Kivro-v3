@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-10-10T09:06:53.398Z",
+  "milestone": "M33",
+  "focus": "Seller operations, economics, reliability after publication",
+  "m33HarnessComplete": true,
+  "packages": [
+    "@kivro/seller-experience",
+    "@kivro/job-scheduling"
+  ],
+  "golden": [
+    "SELLERUX-GOLD-007",
+    "SELLERUX-GOLD-008",
+    "SELLERUX-GOLD-009",
+    "SELLERUX-GOLD-010",
+    "SELLERUX-GOLD-011",
+    "SELLERUX-GOLD-013",
+    "SELLERUX-GOLD-014",
+    "SELLERUX-GOLD-015"
+  ]
+}
