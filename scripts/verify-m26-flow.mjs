@@ -21,6 +21,7 @@ for (const required of [
   "scripts/verify-fault-injection-matrix.mjs",
   "scripts/check-redis-non-authoritative.mjs",
   "scripts/verify-isolated-restore-evidence.mjs",
+  "scripts/verify-backup-automation-evidence.mjs",
   "scripts/audit-m26-exit-criteria.mjs",
 ]) {
   if (!fs.existsSync(path.join(root, required))) {
@@ -31,10 +32,12 @@ for (const required of [
 
 run("pnpm", ["--filter", "@kivro/resilience", "run", "build"]);
 run("pnpm", ["--filter", "@kivro/billing", "run", "build"]);
+run("pnpm", ["--filter", "@kivro/job-dispatch", "run", "build"]);
 
 run("node", ["scripts/sync-fault-injection-fixture.mjs"]);
 run("node", ["scripts/check-redis-non-authoritative.mjs"]);
 run("node", ["scripts/verify-isolated-restore-evidence.mjs"]);
+run("node", ["scripts/verify-backup-automation-evidence.mjs"]);
 run("node", ["scripts/verify-fault-injection-matrix.mjs"]);
 
 run("pnpm", [
@@ -43,9 +46,14 @@ run("pnpm", [
   "run",
   "packages/resilience/src/convergence.test.ts",
   "packages/billing/src/job-completion-idempotency.test.ts",
+  "packages/billing/src/ledger-idempotency.test.ts",
+  "packages/billing/src/stripe-webhook-idempotency.test.ts",
+  "packages/job-dispatch/src/worker-reconcile.test.ts",
+  "packages/resilience/src/cache-loss-recovery.test.ts",
   "security/tests/fault-injection-convergence-m26.test.ts",
   "security/tests/fault-injection-control-plane-m26.test.ts",
   "security/tests/acceptance-m26.test.ts",
+  "security/tests/fault-injection-transport-ack-m26.test.ts",
 ]);
 
 run("node", ["scripts/audit-m26-fitness-report.mjs"]);

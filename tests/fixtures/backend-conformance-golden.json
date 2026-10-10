@@ -156,6 +156,26 @@
       "id": "M26-GOLD-006",
       "name": "control-plane outage routing",
       "assert": "in-flight execution stays on owning control plane"
+    },
+    {
+      "id": "M26-GOLD-007",
+      "name": "worker reconnect after restart",
+      "assert": "expired DISPATCHED offers recovered on reconcile"
+    },
+    {
+      "id": "M26-GOLD-008",
+      "name": "duplicate stripe webhook",
+      "assert": "stripeEventId dedupe prevents double handling"
+    },
+    {
+      "id": "M26-GOLD-009",
+      "name": "redis cache loss recovery plan",
+      "assert": "rehydration targets PostgreSQL authoritative stores"
+    },
+    {
+      "id": "M26-GOLD-010",
+      "name": "transport ack ambiguity",
+      "assert": "reconnect preserves transport ack idempotency keys"
     }
   ]
 }

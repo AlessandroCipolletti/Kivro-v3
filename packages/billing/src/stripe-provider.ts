@@ -49,47 +49,49 @@ export async function handleStripeWebhookEvent(
   prisma: PrismaClient,
   event: Stripe.Event,
 ): Promise<{ handled: boolean }> {
-  const existing = await prisma.stripeWebhookEvent.findUnique({
-    where: { stripeEventId: event.id },
+  const claim = await prisma.stripeWebhookEvent.createMany({
+    data: [{ stripeEventId: event.id, type: event.type }],
+    skipDuplicates: true,
   });
-  if (existing) {
+  if (claim.count === 0) {
     return { handled: true };
   }
 
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
-    const userId = session.metadata?.kivroUserId;
-    const amountCents = session.amount_total;
-    if (userId && amountCents != null && amountCents > 0) {
-      await grantBuyerCredits(prisma, {
-        buyerId: userId,
-        amountCents,
-        externalId: session.id,
-      });
+  try {
+    if (event.type === "checkout.session.completed") {
+      const session = event.data.object;
+      const userId = session.metadata?.kivroUserId;
+      const amountCents = session.amount_total;
+      if (userId && amountCents != null && amountCents > 0) {
+        await grantBuyerCredits(prisma, {
+          buyerId: userId,
+          amountCents,
+          externalId: session.id,
+        });
+      }
     }
-  }
 
-  if (event.type === "account.updated") {
-    await syncSellerProfileFromStripeAccount(prisma, event.data.object);
-  }
-
-  if (
-    event.type === "payment_intent.amount_capturable_updated" ||
-    event.type === "payment_intent.succeeded"
-  ) {
-    const intent = event.data.object;
-    const jobId = intent.metadata?.kivroJobId;
-    if (jobId && intent.status === "requires_capture") {
-      await secureCardAuthorizedJob(prisma, jobId, createStripeClient());
+    if (event.type === "account.updated") {
+      await syncSellerProfileFromStripeAccount(prisma, event.data.object);
     }
+
+    if (
+      event.type === "payment_intent.amount_capturable_updated" ||
+      event.type === "payment_intent.succeeded"
+    ) {
+      const intent = event.data.object;
+      const jobId = intent.metadata?.kivroJobId;
+      if (jobId && intent.status === "requires_capture") {
+        await secureCardAuthorizedJob(prisma, jobId, createStripeClient());
+      }
+    }
+  } catch (error) {
+    await prisma.stripeWebhookEvent.delete({
+      where: { stripeEventId: event.id },
+    });
+    throw error;
   }
 
-  await prisma.stripeWebhookEvent.create({
-    data: {
-      stripeEventId: event.id,
-      type: event.type,
-    },
-  });
   return { handled: true };
 }
 

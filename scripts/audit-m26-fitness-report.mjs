@@ -20,6 +20,7 @@ const report = {
     "scripts/verify-fault-injection-matrix.mjs",
     "scripts/check-redis-non-authoritative.mjs",
     "scripts/verify-isolated-restore-evidence.mjs",
+    "scripts/verify-backup-automation-evidence.mjs",
   ],
 };
 

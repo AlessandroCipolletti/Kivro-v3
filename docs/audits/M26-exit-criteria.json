@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T07:33:16.672Z",
+  "generatedAt": "2026-10-10T07:37:27.951Z",
   "m26HarnessComplete": true,
   "criteria": [
     {
@@ -41,6 +41,36 @@
       "id": "duplicate-completion-idempotency",
       "status": "PASS",
       "detail": "markJobDeliveredAndSettle COMPLETED path + billing test"
+    },
+    {
+      "id": "ledger-idempotency",
+      "status": "PASS",
+      "detail": "appendLedgerEntry duplicate key convergence"
+    },
+    {
+      "id": "stripe-webhook-dedupe",
+      "status": "PASS",
+      "detail": "handleStripeWebhookEvent claim-before-process (createMany + rollback)"
+    },
+    {
+      "id": "worker-reconnect-restart",
+      "status": "PASS",
+      "detail": "reconcileWorkerSessionOnReconnect expired offer recovery"
+    },
+    {
+      "id": "cache-loss-recovery-plan",
+      "status": "PASS",
+      "detail": "buildCacheLossRecoveryPlan HARD-016"
+    },
+    {
+      "id": "backup-automation-evidence",
+      "status": "PASS",
+      "detail": "both-profile backup runbook + declared RPO (HARD-014)"
+    },
+    {
+      "id": "fault-matrix-min-scenarios",
+      "status": "PASS",
+      "detail": "≥11 fault scenarios including transport ack ambiguity"
     }
   ]
 }

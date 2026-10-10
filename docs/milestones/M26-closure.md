@@ -17,6 +17,12 @@
 | Isolated restore evidence | `verify-isolated-restore-evidence.mjs` |
 | Redis non-authoritative | `check-redis-non-authoritative.mjs`, `redis-policy.ts` |
 | Reconciliation alerts manifest | `M26-reconciliation-alerts.json` |
+| Ledger / Stripe dedupe tests | `ledger-idempotency.test.ts`, `stripe-webhook-idempotency.test.ts` |
+| Worker reconnect on restart | `worker-reconcile.test.ts` (expired dispatch recovery) |
+| Cache loss recovery plan | `cache-loss-recovery.ts` |
+| Transport ack ambiguity | `fault-injection-transport-ack-m26.test.ts` (M26-FAULT-011) |
+| Stripe claim-before-process | `handleStripeWebhookEvent` createMany + rollback |
+| Backup profile evidence | `verify-backup-automation-evidence.mjs` |
 | Gate | **`pnpm verify:m26`** |
 
 ## Exit criteria

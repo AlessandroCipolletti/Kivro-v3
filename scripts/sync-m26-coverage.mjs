@@ -6,7 +6,7 @@ const file = path.join(path.resolve(import.meta.dirname, ".."), "spec/COVERAGE.m
 let text = fs.readFileSync(file, "utf8");
 
 const evidence =
-  "packages/resilience, packages/billing/src/job-completion.ts, docs/deploy/backup-restore-runbook.md   packages/resilience/src/convergence.test.ts; packages/billing/src/job-completion-idempotency.test.ts; security/tests/fault-injection-convergence-m26.test.ts; security/tests/fault-injection-control-plane-m26.test.ts; scripts/verify-m26-flow.mjs   docs/audits/M26-exit-criteria.json; docs/audits/M26-rpo-rto.json; docs/milestones/M26-closure.md M26";
+  "packages/resilience, packages/billing/src/stripe-provider.ts, docs/deploy/backup-restore-runbook.md   packages/resilience/src/convergence.test.ts; packages/billing/src/job-completion-idempotency.test.ts; packages/billing/src/ledger-idempotency.test.ts; packages/billing/src/stripe-webhook-idempotency.test.ts; security/tests/fault-injection-convergence-m26.test.ts; security/tests/fault-injection-control-plane-m26.test.ts; security/tests/fault-injection-transport-ack-m26.test.ts; scripts/verify-m26-flow.mjs   docs/audits/M26-exit-criteria.json; docs/audits/M26-rpo-rto.json; docs/milestones/M26-closure.md M26";
 
 function formatLine(id, priority) {
   const [impl, tests, ...noteParts] = evidence.split("   ");

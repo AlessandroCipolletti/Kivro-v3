@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T07:33:16.647Z",
+  "generatedAt": "2026-10-10T07:37:27.925Z",
   "milestone": "M26",
   "rpoRto": {
     "generatedAt": "2026-10-10T00:00:00.000Z",
@@ -56,7 +56,7 @@
     ]
   },
   "exitCriteria": {
-    "generatedAt": "2026-10-10T07:32:44.052Z",
+    "generatedAt": "2026-10-10T07:35:10.876Z",
     "m26HarnessComplete": true,
     "criteria": [
       {
@@ -98,12 +98,33 @@
         "id": "duplicate-completion-idempotency",
         "status": "PASS",
         "detail": "markJobDeliveredAndSettle COMPLETED path + billing test"
+      },
+      {
+        "id": "ledger-idempotency",
+        "status": "PASS",
+        "detail": "appendLedgerEntry duplicate key convergence"
+      },
+      {
+        "id": "stripe-webhook-dedupe",
+        "status": "PASS",
+        "detail": "handleStripeWebhookEvent stripeEventId guard"
+      },
+      {
+        "id": "worker-reconnect-restart",
+        "status": "PASS",
+        "detail": "reconcileWorkerSessionOnReconnect expired offer recovery"
+      },
+      {
+        "id": "cache-loss-recovery-plan",
+        "status": "PASS",
+        "detail": "buildCacheLossRecoveryPlan HARD-016"
       }
     ]
   },
   "harnessScripts": [
     "scripts/verify-fault-injection-matrix.mjs",
     "scripts/check-redis-non-authoritative.mjs",
-    "scripts/verify-isolated-restore-evidence.mjs"
+    "scripts/verify-isolated-restore-evidence.mjs",
+    "scripts/verify-backup-automation-evidence.mjs"
   ]
 }

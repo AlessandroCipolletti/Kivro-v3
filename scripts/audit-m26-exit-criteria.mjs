@@ -46,6 +46,45 @@ const criteria = [
     status: "PASS",
     detail: "markJobDeliveredAndSettle COMPLETED path + billing test",
   },
+  {
+    id: "ledger-idempotency",
+    status: exists("packages/billing/src/ledger-idempotency.test.ts") ? "PASS" : "FAIL",
+    detail: "appendLedgerEntry duplicate key convergence",
+  },
+  {
+    id: "stripe-webhook-dedupe",
+    status: exists("packages/billing/src/stripe-webhook-idempotency.test.ts") ? "PASS" : "FAIL",
+    detail: "handleStripeWebhookEvent claim-before-process (createMany + rollback)",
+  },
+  {
+    id: "worker-reconnect-restart",
+    status: exists("packages/job-dispatch/src/worker-reconcile.test.ts") ? "PASS" : "FAIL",
+    detail: "reconcileWorkerSessionOnReconnect expired offer recovery",
+  },
+  {
+    id: "cache-loss-recovery-plan",
+    status: exists("packages/resilience/src/cache-loss-recovery.ts") ? "PASS" : "FAIL",
+    detail: "buildCacheLossRecoveryPlan HARD-016",
+  },
+  {
+    id: "backup-automation-evidence",
+    status: exists("scripts/verify-backup-automation-evidence.mjs") ? "PASS" : "FAIL",
+    detail: "both-profile backup runbook + declared RPO (HARD-014)",
+  },
+  {
+    id: "fault-matrix-min-scenarios",
+    status: (() => {
+      try {
+        const matrix = JSON.parse(
+          fs.readFileSync(path.join(root, "packages/resilience/fault-injection-matrix.json"), "utf8"),
+        );
+        return matrix.scenarios?.length >= 11 ? "PASS" : "FAIL";
+      } catch {
+        return "FAIL";
+      }
+    })(),
+    detail: "≥11 fault scenarios including transport ack ambiguity",
+  },
 ];
 
 const m26HarnessComplete = criteria.every((c) => c.status === "PASS");

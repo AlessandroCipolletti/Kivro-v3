@@ -32,6 +32,11 @@ const testCorpus = [
   "security/tests/fault-injection-control-plane-m26.test.ts",
   "packages/billing/src/job-completion-idempotency.test.ts",
   "packages/resilience/src/convergence.test.ts",
+  "packages/resilience/src/cache-loss-recovery.test.ts",
+  "packages/billing/src/ledger-idempotency.test.ts",
+  "packages/billing/src/stripe-webhook-idempotency.test.ts",
+  "packages/job-dispatch/src/worker-reconcile.test.ts",
+  "security/tests/fault-injection-transport-ack-m26.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");

@@ -616,6 +616,10 @@ greenfield.
 
 **Decision:** M26 is **DONE** when `M26-exit-criteria.json` reports `m26HarnessComplete: true` after `verify:m26`. Fault scenarios must assert authoritative job/ledger/payment convergence (HARD-006); Redis remains non-authoritative (HARD-016). Gate: `pnpm verify:m26` (includes `verify:m25`).
 
+## DEC-M26-002 — Stripe webhooks claim before side effects
+
+**Decision:** `handleStripeWebhookEvent` inserts `StripeWebhookEvent` with `createMany({ skipDuplicates: true })` before any handler side effect and deletes the row if processing throws, so concurrent duplicate deliveries cannot double-apply credits or job payment transitions.
+
 ## DEC-M25-002 — Production may require Worker protocol headers
 
 **Decision:** When `KIVRO_REQUIRE_WORKER_PROTOCOL_HEADER=1`, poll/heartbeat fail closed without `x-kivro-protocol-version` or body `protocolVersion`. Default off in development; operators enable for strict release gates.

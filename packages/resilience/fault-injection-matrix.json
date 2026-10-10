@@ -41,6 +41,21 @@
       "id": "M26-FAULT-008",
       "name": "ambiguous payment reconcile",
       "assert": "terminal reconcile converges reservation release"
+    },
+    {
+      "id": "M26-FAULT-009",
+      "name": "duplicate stripe webhook",
+      "assert": "recorded stripeEventId prevents double credit grant"
+    },
+    {
+      "id": "M26-FAULT-010",
+      "name": "process restart worker reconnect",
+      "assert": "expired dispatch offers recovered without duplicate execution"
+    },
+    {
+      "id": "M26-FAULT-011",
+      "name": "ambiguous transport ack",
+      "assert": "reconnect does not change transport ack idempotency keys"
     }
   ]
 }
