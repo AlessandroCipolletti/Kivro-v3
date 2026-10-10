@@ -3624,65 +3624,65 @@ feature post-MVP or the user explicitly approves the deferral.
   Requirement   Priority   Status   Shared     Netsons    AWS        Test
                                     evidence   evidence   evidence   evidence
   ------------- ---------- -------- ---------- ---------- ---------- ----------
-  ASYNC-001     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-001   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-002     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-002   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-003     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-003   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-004     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-004   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-005     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-005   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-006     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-006   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-007     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-007   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-008     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-008   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-009     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-009   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-010     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-010   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-011     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-011   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-012     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-012   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-013     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-013   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-014     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-014   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-015     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-015   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-016     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-016   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-017     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-017   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-018     P1         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-018   P1         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-019     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-019   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-020     P1         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-020   P1         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-021     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-021   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-022     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-022   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-023     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-023   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-024     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-024   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-025     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-025   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-026     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-026   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-027     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-027   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-028     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-028   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-029     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-029   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
 
-  ASYNC-030     P0         TODO     ---        ---        --- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted
+  ASYNC-030   P0         TESTED   packages/job-delivery/src/cloud-finalization.ts, packages/billing/src/job-completion.ts, apps/api/src/services/buyer-job-download.ts   packages/job-delivery/src/cloud-finalization.test.ts; security/tests/conformance-async-gold-m29.test.ts; security/tests/buyer-result-auth-m29.test.ts; scripts/verify-m29-flow.mjs   docs/milestones/M29-closure.md M29
   -----------------------------------------------------------------------------
 
 ## Buyer experience coverage

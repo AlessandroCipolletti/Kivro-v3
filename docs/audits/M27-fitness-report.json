@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T07:45:32.757Z",
+  "generatedAt": "2026-10-10T08:07:38.338Z",
   "milestone": "M27",
   "performanceEnvelope": {
     "milestone": "M27",
@@ -60,7 +60,7 @@
     ]
   },
   "exitCriteria": {
-    "generatedAt": "2026-10-10T07:43:19.400Z",
+    "generatedAt": "2026-10-10T08:05:16.638Z",
     "m27HarnessComplete": true,
     "criteria": [
       {
@@ -112,6 +112,16 @@
         "id": "performance-envelope-fixture-sync",
         "status": "PASS",
         "detail": "fixture mirrors docs/audits envelope"
+      },
+      {
+        "id": "product-limits-vs-envelope",
+        "status": "PASS",
+        "detail": "job-io, webhooks, transport, durable work vs envelope"
+      },
+      {
+        "id": "envelope-fixture-drift-guard",
+        "status": "PASS",
+        "detail": "docs/fixture envelope byte parity"
       }
     ]
   },

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-10T07:54:11.509Z",
+  "generatedAt": "2026-10-10T08:07:38.979Z",
   "milestone": "M28",
-  "openP0Count": 102,
-  "openP1Count": 338,
+  "openP0Count": 74,
+  "openP1Count": 336,
   "openP2Count": 103,
   "openByScheduledTarget": {
     "M28": {
@@ -14,11 +14,6 @@
       "P0": 0,
       "P1": 10,
       "P2": 9
-    },
-    "M29": {
-      "P0": 28,
-      "P1": 2,
-      "P2": 0
     },
     "M30": {
       "P0": 34,
@@ -75,89 +70,89 @@
       "notes": "scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted"
     },
     {
-      "id": "ASYNC-001",
+      "id": "BUYERUX-001",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-002",
+      "id": "BUYERUX-002",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-003",
+      "id": "BUYERUX-003",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-004",
+      "id": "BUYERUX-004",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-005",
+      "id": "BUYERUX-005",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-006",
+      "id": "BUYERUX-006",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-007",
+      "id": "BUYERUX-007",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-008",
+      "id": "BUYERUX-008",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-009",
+      "id": "BUYERUX-010",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-010",
+      "id": "BUYERUX-012",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-011",
+      "id": "BUYERUX-014",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-012",
+      "id": "BUYERUX-017",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-013",
+      "id": "BUYERUX-018",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-014",
+      "id": "BUYERUX-020",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-015",
+      "id": "BUYERUX-022",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-016",
+      "id": "BUYERUX-023",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     },
     {
-      "id": "ASYNC-017",
+      "id": "BUYERUX-024",
       "status": "TODO",
-      "notes": "--- scheduled:M29 per IMPLEMENTATION-PLAN; M17 audit accounted"
+      "notes": "--- scheduled:M30 per IMPLEMENTATION-PLAN; M17 audit accounted"
     }
   ]
 }

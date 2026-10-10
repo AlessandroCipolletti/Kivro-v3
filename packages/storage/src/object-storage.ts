@@ -1,4 +1,5 @@
 import {
+  DeleteObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
   PutObjectCommand,
@@ -128,6 +129,21 @@ export async function putObjectBytes(input: {
       },
     }),
   );
+}
+
+export async function objectExists(input: { bucket: string; objectKey: string }): Promise<boolean> {
+  const { client } = requireObjectStorage();
+  try {
+    await client.send(new HeadObjectCommand({ Bucket: input.bucket, Key: input.objectKey }));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function deleteObject(input: { bucket: string; objectKey: string }): Promise<void> {
+  const { client } = requireObjectStorage();
+  await client.send(new DeleteObjectCommand({ Bucket: input.bucket, Key: input.objectKey }));
 }
 
 export async function readObjectPrefix(input: {

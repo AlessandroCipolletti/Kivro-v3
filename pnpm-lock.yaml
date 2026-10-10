@@ -104,6 +104,9 @@ importers:
       '@kivro/job-control':
         specifier: workspace:*
         version: link:../../packages/job-control
+      '@kivro/job-delivery':
+        specifier: workspace:*
+        version: link:../../packages/job-delivery
       '@kivro/job-dispatch':
         specifier: workspace:*
         version: link:../../packages/job-dispatch
@@ -376,6 +379,9 @@ importers:
       '@kivro/job-control':
         specifier: workspace:*
         version: link:../job-control
+      '@kivro/job-delivery':
+        specifier: workspace:*
+        version: link:../job-delivery
       '@kivro/job-failure':
         specifier: workspace:*
         version: link:../job-failure

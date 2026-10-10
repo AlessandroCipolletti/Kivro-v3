@@ -135,6 +135,13 @@ export async function runWorkerPollDaemon(): Promise<void> {
           await workerFetch(workerIdentity, `/worker/jobs/${offer.jobId}/complete`, {
             method: "POST",
             controlPlaneId: offer.controlPlaneId,
+            body: JSON.stringify({
+              structuredOutput: {
+                synthetic: true,
+                jobId: offer.jobId,
+                note: "M29 dev synthetic deliverable",
+              },
+            }),
           });
           console.log(JSON.stringify({ event: "job_completed_synthetic", jobId: offer.jobId }));
         } else if (executionMode === "sandbox-fixture") {

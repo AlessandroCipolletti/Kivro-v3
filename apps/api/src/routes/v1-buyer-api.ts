@@ -17,6 +17,7 @@ import { requireBuyerApiKey } from "../middleware/buyer-api-auth.js";
 import { emitBuyerJobWebhookForCurrentStatus } from "../services/buyer-webhook-emitter.js";
 import { createBuyerJobFromApi } from "../services/create-buyer-job.js";
 import { formatV1JobCreateSuccess } from "../services/v1-buyer-response.js";
+import { createBuyerJobAssetDownload } from "../services/buyer-job-download.js";
 import type { AppEnv } from "../types.js";
 
 /** §322–§325 — buyer REST API v1 (Bearer API key). */
@@ -172,6 +173,24 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
     return c.json(responseBody, statusCode);
   });
 
+  app.get("/jobs/:jobId/assets/:assetRef/download", requireBuyerApiKey("jobs:read"), async (c) => {
+    const user = c.get("user");
+    const jobId = c.req.param("jobId") ?? "";
+    const assetRef = c.req.param("assetRef") ?? "";
+    if (!jobId || !assetRef) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    const signed = await createBuyerJobAssetDownload(getPrismaClient(), {
+      jobId,
+      buyerId: user.id,
+      assetRef,
+    });
+    if ("error" in signed) {
+      return c.json({ error: signed.error }, signed.httpStatus);
+    }
+    return c.json(signed);
+  });
+
   app.get("/jobs/:id", requireBuyerApiKey("jobs:read"), async (c) => {
     const user = c.get("user");
     const jobId = c.req.param("id") ?? "";
@@ -215,6 +234,8 @@ export function v1BuyerApiRoutes(): Hono<AppEnv> {
         slug: job.capabilityVersion.capability.slug,
         createdAt: job.createdAt.toISOString(),
         completedAt: job.completedAt?.toISOString() ?? null,
+        scheduledRunAt: job.scheduledRunAt?.toISOString() ?? null,
+        resultRetentionExpiresAt: job.resultRetentionExpiresAt?.toISOString() ?? null,
       })),
       nextCursor,
     });

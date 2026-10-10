@@ -8,4 +8,6 @@ export {
   readObjectPrefix,
   createPresignedDownload,
   putObjectBytes,
+  deleteObject,
+  objectExists,
 } from "./object-storage.js";

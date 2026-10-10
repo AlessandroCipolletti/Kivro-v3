@@ -70,6 +70,20 @@ export const v1BuyerOpenApiSpec = {
         responses: { "200": { description: "OK" }, "404": { description: "NOT_FOUND" } },
       },
     },
+    "/jobs/{jobId}/assets/{assetRef}/download": {
+      get: {
+        summary: "Presigned download for completed job deliverable (ASYNC-029)",
+        parameters: [
+          { name: "jobId", in: "path", required: true, schema: { type: "string" } },
+          { name: "assetRef", in: "path", required: true, schema: { type: "string" } },
+        ],
+        responses: {
+          "200": { description: "Presigned URL" },
+          "404": { description: "NOT_FOUND / NO_DELIVERABLES" },
+          "410": { description: "RESULT_EXPIRED / RESULT_INTEGRITY" },
+        },
+      },
+    },
     "/jobs/{id}/cancel": {
       post: {
         summary: "Cancel queued/scheduled job",

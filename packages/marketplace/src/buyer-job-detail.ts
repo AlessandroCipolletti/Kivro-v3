@@ -5,6 +5,10 @@ import { buildBuyerJobTimeline } from "./buyer-audit-timeline.js";
 import { buildJobAuditSummary } from "./job-audit-summary.js";
 import { parseJobOutputAssetManifest } from "./output-assets.js";
 
+function isResultRetentionExpired(expiresAt: Date | null | undefined): boolean {
+  return Boolean(expiresAt && expiresAt.getTime() <= Date.now());
+}
+
 /** §127 / §29 — buyer job detail with sanitized timeline (no secrets). */
 export async function getBuyerJobDetail(
   prisma: PrismaClient,
@@ -73,12 +77,15 @@ export async function getBuyerJobDetail(
       currency: job.currency,
       createdAt: job.createdAt.toISOString(),
       completedAt: job.completedAt?.toISOString() ?? null,
+      resultRetentionExpiresAt: job.resultRetentionExpiresAt?.toISOString() ?? null,
+      resultRetentionExpired: isResultRetentionExpired(job.resultRetentionExpiresAt),
       inputSummary: summarizeInput(job.input?.structuredInput),
       result: job.result
         ? {
             structuredOutput: job.result.structuredOutput,
             hasAssets: outputAssets.length > 0,
             assets: outputAssets,
+            retentionExpired: isResultRetentionExpired(job.resultRetentionExpiresAt),
           }
         : null,
       review: job.review

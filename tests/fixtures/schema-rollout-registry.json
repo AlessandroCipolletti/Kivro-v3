@@ -26,8 +26,13 @@
     { "folder": "20260410120000_m20_durable_work", "phase": "contract" },
     {
       "folder": "20260410140000_m22_execution_control_plane",
-      "phase": "expand",
+      "phase": "contract",
       "notes": "nullable executionControlPlaneId — safe during overlapping ACTIVE/DRAINING"
+    },
+    {
+      "folder": "20260410150000_m29_async_retention",
+      "phase": "expand",
+      "notes": "nullable retention + JobTerminalNotification — M29 async delivery"
     }
   ]
 }

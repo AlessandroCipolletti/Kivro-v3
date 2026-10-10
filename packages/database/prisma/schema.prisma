@@ -496,6 +496,7 @@ model StoredAsset {
   sizeBytes         BigInt
   mimeType          String?
   uploadConfirmedAt DateTime?
+  retentionExpiresAt DateTime?
   createdAt         DateTime           @default(now())
 
   sellerProfile SellerProfile? @relation(fields: [sellerProfileId], references: [id], onDelete: Cascade)
@@ -590,6 +591,7 @@ model Job {
   createdAt                  DateTime  @default(now())
   startedAt                  DateTime?
   completedAt                DateTime?
+  resultRetentionExpiresAt   DateTime?
   updatedAt                  DateTime  @updatedAt
 
   buyer             User              @relation("BuyerJobs", fields: [buyerId], references: [id])
@@ -605,6 +607,7 @@ model Job {
   auditEvents       AuditEvent[]
   sellerTransfer    SellerTransferRecord?
   review            CapabilityReview?
+  terminalNotification JobTerminalNotification?
 
   @@index([buyerId])
   @@index([capabilityVersionId])
@@ -612,6 +615,22 @@ model Job {
   @@index([executionControlPlaneId])
   @@index([status, scheduledRunAt])
   @@index([orchestrationStepId])
+  @@index([resultRetentionExpiresAt])
+}
+
+model JobTerminalNotification {
+  id        String   @id @default(uuid())
+  jobId     String   @unique
+  channel   String
+  status    String
+  attempts  Int      @default(0)
+  lastError String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([status])
 }
 
 model JobAttempt {

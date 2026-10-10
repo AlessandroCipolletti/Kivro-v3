@@ -298,6 +298,17 @@ export function workerJobRoutes(): Hono<AppEnv> {
       deliverables,
     });
     if ("error" in result) {
+      if (result.error === "RESULT_REJECTED") {
+        await reconcileJobPaymentAfterTerminal(getPrismaClient(), jobId);
+        try {
+          const { emitBuyerJobWebhookForCurrentStatus } = await import(
+            "../services/buyer-webhook-emitter.js"
+          );
+          await emitBuyerJobWebhookForCurrentStatus(getPrismaClient(), jobId);
+        } catch {
+          /* ASYNC-021 */
+        }
+      }
       return c.json(result, 409);
     }
     await getPrismaClient().auditEvent.create({
@@ -315,8 +326,16 @@ export function workerJobRoutes(): Hono<AppEnv> {
     });
     const { onOrchestrationJobCompleted } = await import("../services/orchestration-execution.js");
     await onOrchestrationJobCompleted(getPrismaClient(), jobId);
-    const { emitBuyerJobWebhook } = await import("../services/buyer-webhook-emitter.js");
-    await emitBuyerJobWebhook(getPrismaClient(), jobId, "job.completed");
+    if (result.status === "COMPLETED") {
+      const { enqueueJobTerminalEmailNotification } = await import("@kivro/job-delivery");
+      await enqueueJobTerminalEmailNotification(getPrismaClient(), jobId);
+    }
+    try {
+      const { emitBuyerJobWebhook } = await import("../services/buyer-webhook-emitter.js");
+      await emitBuyerJobWebhook(getPrismaClient(), jobId, "job.completed");
+    } catch {
+      // ASYNC-021 — notification failure must not roll back completion.
+    }
     return c.json(result);
   });
 

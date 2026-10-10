@@ -75,6 +75,8 @@ export function buyerJobsListRoutes(): Hono<AppEnv> {
         }),
         createdAt: job.createdAt.toISOString(),
         completedAt: job.completedAt?.toISOString() ?? null,
+        resultRetentionExpiresAt: job.resultRetentionExpiresAt?.toISOString() ?? null,
+        scheduledRunAt: job.scheduledRunAt?.toISOString() ?? null,
         priceSnapshotCents: job.priceSnapshotCents,
         currency: job.currency,
       })),

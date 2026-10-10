@@ -1,11 +1,11 @@
 # M17 compliance audit snapshot
 
-Generated: 2026-10-10T07:13:38.277Z
+Generated: 2026-10-10T08:07:30.775Z
 
 ## Totals
 
-- Requirements parsed: **1934**
-- TESTED: 1387 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
+- Requirements parsed: **1951**
+- TESTED: 1434 · TODO: 498 · PARTIAL: 15 · DEFERRED: 4
 
 ## M00–M16 closure check
 

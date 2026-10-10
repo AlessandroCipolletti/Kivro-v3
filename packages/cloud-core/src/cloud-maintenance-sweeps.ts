@@ -6,6 +6,11 @@ import {
 } from "@kivro/billing";
 import { runJobFailureOperationsSweeps } from "@kivro/job-failure";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
+import {
+  processPendingJobTerminalEmailNotifications,
+  purgeExpiredJobDeliverables,
+  sampleCompletedJobIntegrity,
+} from "@kivro/job-delivery";
 
 /** Shared bounded maintenance (Netsons cron + AWS event tick). */
 export async function runCloudMaintenanceSweeps(
@@ -17,6 +22,11 @@ export async function runCloudMaintenanceSweeps(
   pauseTimeouts: Awaited<ReturnType<typeof sweepExpiredJobPauses>>;
   failureOps: Awaited<ReturnType<typeof runJobFailureOperationsSweeps>>;
   paymentsReleased: number;
+  asyncDelivery: {
+    terminalEmail: Awaited<ReturnType<typeof processPendingJobTerminalEmailNotifications>>;
+    retentionCleanup: Awaited<ReturnType<typeof purgeExpiredJobDeliverables>>;
+    integritySample: Awaited<ReturnType<typeof sampleCompletedJobIntegrity>>;
+  };
 }> {
   const staleReservations = await sweepStaleJobPaymentReservations(prisma);
   const pendingTransfers = await sweepPendingSellerTransfers(prisma);
@@ -45,11 +55,16 @@ export async function runCloudMaintenanceSweeps(
     }
   }
 
+  const terminalEmail = await processPendingJobTerminalEmailNotifications(prisma);
+  const retentionCleanup = await purgeExpiredJobDeliverables(prisma);
+  const integritySample = await sampleCompletedJobIntegrity(prisma, 5);
+
   return {
     staleReservations,
     pendingTransfers,
     pauseTimeouts,
     failureOps,
     paymentsReleased,
+    asyncDelivery: { terminalEmail, retentionCleanup, integritySample },
   };
 }

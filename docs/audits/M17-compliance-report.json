@@ -1,10 +1,10 @@
 {
   "audit": "M17",
-  "generatedAt": "2026-10-10T07:13:38.277Z",
-  "totalRequirements": 1934,
+  "generatedAt": "2026-10-10T08:07:30.775Z",
+  "totalRequirements": 1951,
   "summary": {
-    "TESTED": 1387,
-    "TODO": 528,
+    "TESTED": 1434,
+    "TODO": 498,
     "PARTIAL": 15,
     "BLOCKED": 0,
     "DEFERRED": 4,
@@ -12,13 +12,13 @@
   },
   "byPriority": {
     "P0": {
-      "TESTED": 264,
+      "TESTED": 307,
       "DEFERRED": 2,
-      "TODO": 102
+      "TODO": 74
     },
     "P1": {
-      "TODO": 329,
-      "TESTED": 871,
+      "TODO": 327,
+      "TESTED": 875,
       "PARTIAL": 9,
       "DEFERRED": 1
     },
@@ -37,9 +37,9 @@
   "unexplainedCount": 0,
   "invalidTestedCount": 0,
   "testedP0MissingTestEvidenceCount": 0,
-  "p0p1OpenCount": 440,
-  "p0OpenCount": 102,
-  "p1OpenCount": 329,
+  "p0p1OpenCount": 410,
+  "p0OpenCount": 74,
+  "p1OpenCount": 327,
   "p2OpenCount": 97,
   "sectionRollupP0P1Open": {
     "§1": {
@@ -973,7 +973,7 @@
       "scheduled": "?"
     },
     "§0": {
-      "TODO": 116,
+      "TODO": 86,
       "PARTIAL": 0,
       "BLOCKED": 0,
       "scheduled": "?"

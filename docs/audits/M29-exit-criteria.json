@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-10-10T08:07:49.724Z",
+  "m29HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "m28-regression-gate",
+      "status": "PASS",
+      "detail": "verify:m28 / M28-exit-criteria.json"
+    },
+    {
+      "id": "async-requirements-tested",
+      "status": "PASS",
+      "detail": "30/30 ASYNC rows TESTED"
+    },
+    {
+      "id": "async-gold-registry",
+      "status": "PASS",
+      "detail": "ASYNC-GOLD-001..010 in golden registry"
+    },
+    {
+      "id": "cloud-finalization-barrier",
+      "status": "PASS",
+      "detail": "COMPLETED requires cloud finalization barrier"
+    },
+    {
+      "id": "async-evidence-script",
+      "status": "PASS",
+      "detail": "maintenance + OpenAPI + migration evidence"
+    },
+    {
+      "id": "v1-download-openapi",
+      "status": "PASS",
+      "detail": "REST v1 presigned download documented"
+    },
+    {
+      "id": "async-spotcheck",
+      "status": "PASS",
+      "detail": "ASYNC-* COVERAGE rows TESTED with evidence paths"
+    },
+    {
+      "id": "dual-profile-maintenance",
+      "status": "PASS",
+      "detail": "Netsons + AWS cron ticks run shared async maintenance sweeps"
+    }
+  ]
+}

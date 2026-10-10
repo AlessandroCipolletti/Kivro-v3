@@ -50,6 +50,10 @@ const testCorpus = [
   "security/tests/conformance-unified-audit-m28.test.ts",
   "security/tests/acceptance-m28-exit.test.ts",
   "security/tests/conformance-golden-m28.test.ts",
+  "security/tests/conformance-async-gold-m29.test.ts",
+  "packages/job-delivery/src/cloud-finalization.test.ts",
+  "security/tests/buyer-result-auth-m29.test.ts",
+  "packages/billing/src/job-completion-barrier-m29.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");

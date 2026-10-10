@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-10T07:51:05.513Z",
+  "generatedAt": "2026-10-10T08:07:41.868Z",
   "milestone": "M28",
   "exitCriteria": {
-    "generatedAt": "2026-10-10T07:51:05.486Z",
+    "generatedAt": "2026-10-10T08:07:41.843Z",
     "m28HarnessComplete": true,
     "productMasterSpecComplete": false,
     "terminalAuditExecuted": true,
@@ -40,7 +40,12 @@
       {
         "id": "open-requirements-catalog",
         "status": "PASS",
-        "detail": "all open P0/P1 rows have explicit schedule notes"
+        "detail": "all open P0/P1/P2 rows have explicit schedule notes"
+      },
+      {
+        "id": "m23-terminal-lossless-sync",
+        "status": "PASS",
+        "detail": "M23 terminal-lossless-audit → EXECUTED_M28 after harness"
       },
       {
         "id": "portability-families-p0",
@@ -50,7 +55,7 @@
       {
         "id": "all-p0-p1-p2-complete",
         "status": "OPEN",
-        "detail": "P0 TODO 102, P1 TODO 329, P2 TODO 97"
+        "detail": "P0 TODO 74, P1 TODO 327, P2 TODO 97"
       },
       {
         "id": "staging-paid-e2e",
@@ -60,8 +65,8 @@
     ]
   },
   "complianceSummary": {
-    "TESTED": 1404,
-    "TODO": 528,
+    "TESTED": 1434,
+    "TODO": 498,
     "PARTIAL": 15,
     "BLOCKED": 0,
     "DEFERRED": 4,
@@ -69,12 +74,12 @@
   },
   "masterSpecCompletion": {
     "p0": {
-      "tested": 279,
-      "todo": 102
+      "tested": 307,
+      "todo": 74
     },
     "p1": {
-      "tested": 873,
-      "todo": 329
+      "tested": 875,
+      "todo": 327
     },
     "p2": {
       "tested": 252,
@@ -87,6 +92,10 @@
     "scripts/audit-m28-unified.mjs",
     "scripts/audit-m28-requirement-families.mjs",
     "scripts/audit-m28-master-spec-sampling.mjs",
+    "scripts/audit-m28-open-requirements-catalog.mjs",
+    "scripts/audit-m28-readiness-checklist.mjs",
+    "scripts/verify-m28-dual-control-plane-evidence.mjs",
+    "scripts/verify-m28-threat-control-evidence.mjs",
     "scripts/lib/m28-mandatory-runs.mjs"
   ]
 }

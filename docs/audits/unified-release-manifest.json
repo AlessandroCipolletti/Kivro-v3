@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-10T07:54:09.900Z",
-  "gitCommit": "ca081805ffd15c05b11a5db62df23cbab2a8b449",
+  "generatedAt": "2026-10-10T08:07:37.355Z",
+  "gitCommit": "067c8cf8be1fcd3ec2be0d4b755cdfd4291c7212",
   "cloudReleaseChannel": "mvp",
   "apiContractVersion": "v1-mvp",
   "workerProtocolMin": 1,
   "workerProtocolMax": 1,
   "capabilityManifestSchemaVersion": 1,
-  "databaseSchemaRevision": "20260410140000",
+  "databaseSchemaRevision": "20260410150000",
   "schemaRolloutPhase": "contract",
   "workerReleaseChannel": "stable",
   "workerMinSupportedVersion": "0.0.0-m07",
@@ -21,7 +21,7 @@
   },
   "parityReportPath": "docs/audits/M24-provider-parity-report.json",
   "conformanceManifestPath": "tests/fixtures/backend-conformance-manifest.json",
-  "exactReleaseId": "kivro@ca081805ffd1",
+  "exactReleaseId": "kivro@067c8cf8be1f",
   "performanceEnvelopePath": "docs/audits/M27-performance-envelope.json",
   "operationalAlarmsPath": "docs/audits/M27-operational-alarms.json"
 }

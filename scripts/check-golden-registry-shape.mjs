@@ -15,7 +15,7 @@ if (!registry.version || registry.version < 2) {
 
 const ids = new Set();
 for (const scenario of registry.scenarios ?? []) {
-  if (!/^M\d{2}-GOLD-\d{3}$/.test(scenario.id)) {
+  if (!/^(M\d{2}-GOLD-\d{3}|ASYNC-GOLD-\d{3})$/.test(scenario.id)) {
     console.error(`Invalid golden id format: ${scenario.id}`);
     process.exit(1);
   }

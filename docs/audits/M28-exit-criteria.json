@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T07:54:23.011Z",
+  "generatedAt": "2026-10-10T08:07:41.843Z",
   "m28HarnessComplete": true,
   "productMasterSpecComplete": false,
   "terminalAuditExecuted": true,
@@ -52,7 +52,7 @@
     {
       "id": "all-p0-p1-p2-complete",
       "status": "OPEN",
-      "detail": "P0 TODO 102, P1 TODO 329, P2 TODO 97"
+      "detail": "P0 TODO 74, P1 TODO 327, P2 TODO 97"
     },
     {
       "id": "staging-paid-e2e",

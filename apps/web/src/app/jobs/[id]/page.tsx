@@ -20,10 +20,13 @@ type JobDetail = {
   status: string;
   canReview: boolean;
   review: { stars: number; body: string | null } | null;
+  resultRetentionExpiresAt?: string | null;
+  resultRetentionExpired?: boolean;
   result: {
     structuredOutput: unknown;
     hasAssets: boolean;
     assets?: Array<{ id: string; filename: string }>;
+    retentionExpired?: boolean;
   } | null;
   inputSummary: string;
   priceSnapshotCents: number;
@@ -136,9 +139,19 @@ export default function JobDetailPage() {
           <p className="meta">{job.inputSummary}</p>
         </div>
       )}
+      {job.resultRetentionExpiresAt && (
+        <p className="meta">
+          Result files available until{" "}
+          {new Date(job.resultRetentionExpiresAt).toLocaleString()}
+          {job.resultRetentionExpired ? " (expired)" : ""}
+        </p>
+      )}
       {job.result && (
         <div className="detail-panel">
           <strong>Result</strong>
+          {job.result.retentionExpired && (
+            <p className="meta">Downloads expired — contact support if you need a copy.</p>
+          )}
           {job.result.structuredOutput != null && (
             <pre className="pre-block font-mono">
               {typeof job.result.structuredOutput === "string"

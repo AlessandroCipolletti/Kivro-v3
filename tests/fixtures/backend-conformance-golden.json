@@ -251,6 +251,56 @@
       "id": "M28-GOLD-006",
       "name": "portability families P0 closed",
       "assert": "ARCH-UNI PORT HOST-NET P0 requirements TESTED through M27"
+    },
+    {
+      "id": "ASYNC-GOLD-001",
+      "name": "buyer disconnects",
+      "assert": "durable job retrievable after buyer leaves"
+    },
+    {
+      "id": "ASYNC-GOLD-002",
+      "name": "overnight seller",
+      "assert": "scheduled wait then retrieval"
+    },
+    {
+      "id": "ASYNC-GOLD-003",
+      "name": "cloud restart while waiting",
+      "assert": "queued job survives restart without duplicate payment"
+    },
+    {
+      "id": "ASYNC-GOLD-004",
+      "name": "Worker disappears after finalization",
+      "assert": "completed outputs remain retrievable"
+    },
+    {
+      "id": "ASYNC-GOLD-005",
+      "name": "lost completion acknowledgement",
+      "assert": "idempotent completion and settlement"
+    },
+    {
+      "id": "ASYNC-GOLD-006",
+      "name": "authorization isolation",
+      "assert": "non-owner cannot download; owner can regenerate"
+    },
+    {
+      "id": "ASYNC-GOLD-007",
+      "name": "retention cleanup",
+      "assert": "expired assets purged idempotently"
+    },
+    {
+      "id": "ASYNC-GOLD-008",
+      "name": "notification failure",
+      "assert": "completion authoritative when webhook fails"
+    },
+    {
+      "id": "ASYNC-GOLD-009",
+      "name": "missing corrupt object",
+      "assert": "reconciliation blocks unhealthy presentation"
+    },
+    {
+      "id": "ASYNC-GOLD-010",
+      "name": "mixed control planes",
+      "assert": "identical buyer-result semantics both profiles"
     }
   ]
 }

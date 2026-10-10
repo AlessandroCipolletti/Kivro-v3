@@ -20,6 +20,7 @@
     "@kivro/contracts": "workspace:*",
     "@kivro/database": "workspace:*",
     "@kivro/job-control": "workspace:*",
-    "@kivro/job-failure": "workspace:*"
+    "@kivro/job-failure": "workspace:*",
+    "@kivro/job-delivery": "workspace:*"
   }
 }

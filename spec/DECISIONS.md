@@ -636,6 +636,14 @@ greenfield.
 
 **Decision:** M28 is **DONE** when `M28-exit-criteria.json` reports `m28HarnessComplete: true` after `verify:m28` (includes `verify:m27`). That executes the lossless audit machinery: M00–M27 closed-section traceability, expanded P0 TESTED sampling, HARD M24–M27 family checks, and mandatory golden/fault/release/conformance runs. **`productMasterSpecComplete` is true only when P0/P1/P2 TODO counts are all zero** (expected false until M29+). Gate: `pnpm verify:m28`.
 
+## DEC-M29-001 — Cloud finalization barrier before COMPLETED
+
+**Decision:** Worker `complete` must include deliverables; shared `runCloudFinalizationBarrier` validates contract shape and confirmed `JOB_DELIVERABLE` assets before `COMPLETED` and settlement. Invalid outputs transition to `RESULT_REJECTED`. Retention expiry and cleanup run via shared maintenance sweeps on both profiles. Gate: `pnpm verify:m29` (includes `verify:m28`).
+
+## DEC-M29-002 — Bounded integrity sampling on maintenance ticks
+
+**Decision:** Both deployment profiles invoke `runCloudMaintenanceSweeps`, which runs retention purge, terminal email retries, and a bounded `sampleCompletedJobIntegrity` pass (ASYNC-028 observability). Local/dev Worker synthetic completion must include `structuredOutput` deliverables so paid-path tests exercise the same barrier as production. Gate: `verify-m29-async-evidence.mjs` + `dual-profile-maintenance` exit criterion.
+
 ## DEC-M28-002 — Terminal audit includes portability families and open catalog
 
 **Decision:** M28 family audit requires ARCH-UNI/PORT/HOST-NET **P0** rows to be TESTED (M00–M27 scope) and every open family P0/P1 row to carry an explicit schedule note. `M28-open-requirements-catalog.json` documents remaining catalog work; successful M28 run updates M23 `terminal-lossless-audit` to `EXECUTED_M28`.
