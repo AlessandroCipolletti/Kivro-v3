@@ -1280,11 +1280,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0139`    P2         §151     `TESTED`   packages/database/prisma/schema.prisma, apps/api/src/routes/marketplace-agent.ts   security/tests/acceptance-m11.test.ts   docs/milestones/M11-manual-validation.md M11 conversation persistence
 
-  `PRD-0140`    P1         §152     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0140`    P1         §152     `TESTED`   apps/web/src/lib/primary-nav.ts  primary-nav.test.ts  discover, AI request, jobs, favorites, selling
 
-  `PRD-0141`    P2         §152     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0141`    P2         §152     `TESTED`   apps/web/src/lib/primary-nav.ts  primary-nav.test.ts  recommended navigation labels
 
-  `PRD-0142`    P1         §153     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0142`    P1         §153     `TESTED`   packages/seller-experience/src/marketplace-identity.ts  marketplace-identity.test.ts  public page omits the seller machine
 
   `PRD-0143`    P2         §153     `TESTED`   packages/marketplace/src/verified-reputation.ts  verified-reputation.test.ts  reputation uses completed jobs only
 
@@ -1672,7 +1672,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0117`     P1         §223     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0190`    P1         §224     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0190`    P1         §224     `TESTED`   packages/marketplace/src/contract-match.ts  contract-match.test.ts  small semantic taxonomy does not replace file checks
 
   `PRD-0191`    P2         §224     `TESTED`   packages/job-io/src/upload-transport.ts  upload-transport.test.ts  tags do not replace MIME checks
 
@@ -1714,13 +1714,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `TST-0019`    P1         §231     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PAY-0078`    P1         §232     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PAY-0078`    P1         §232     `TESTED`   packages/billing/src/fixed-price.ts  fixed-price.test.ts  job price ignores image count and file size
 
-  `PAY-0079`    P0         §232     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PAY-0079`    P0         §232     `TESTED`   packages/billing/src/fixed-price.ts  fixed-price.test.ts  MVP price stays fixed per job
 
-  `PAY-0080`    P0         §232     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PAY-0080`    P0         §232     `TESTED`   packages/billing/src/fixed-price.ts  fixed-price.test.ts  contract dimensions do not change the charged price
 
-  `PRD-0198`    P1         §233     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0198`    P1         §233     `TESTED`   packages/marketplace/src/contract-match.ts  contract-match.test.ts  a Blender description does not accept a blend file
 
   `PRD-0199`    P2         §233     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  contract filter before ranking
 
@@ -1728,7 +1728,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0201`    P2         §233     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  file compatibility is a hard filter
 
-  `IO-0130`     P1         §234     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0130`     P1         §234     `TESTED`   packages/marketplace/src/contract-card.ts  contract-card.test.ts  cards show input and output kinds
 
   `IO-0131`     P1         §235     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2656,7 +2656,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0052`    P1         §420     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  buyers see next window only
 
-  `PRD-0359`    P1         §421     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0359`    P1         §421     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  weekly hours stay private unless the seller publishes them
 
   `JOB-0133`    P1         §422     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
@@ -2956,7 +2956,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0100`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0101`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0101`    P1         §480     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  a single capability may be scheduled; a plan waits only after approval
 
   `JOB-0232`    P1         §481     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
@@ -2982,15 +2982,15 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0240`    P1         §485     `TESTED`   packages/seller-experience/src/scheduled-demand.ts  scheduled-demand.test.ts  pause warns about waiting scheduled jobs and still proceeds
 
-  `JOB-0241`    P1         §486     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0241`    P1         §486     `TESTED`   packages/job-scheduling/src/scheduled-fairness.ts  scheduled-fairness.test.ts  a reservation is disclosed, bounded, cancellable, and ordered by creation time
 
   `JOB-0242`    P1         §486     `TESTED`   packages/billing/src/job-payment-hooks.ts  unstarted-release.test.ts  release if the job never starts
 
   `JOB-0243`    P1         §486     `TESTED`   packages/billing/src/job-payment-hooks.ts  unstarted-release.test.ts  wait deadline releases the reservation
 
-  `PRD-0382`    P1         §487     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0382`    P1         §487     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  later supply stays visible with a separate start time
 
-  `PRD-0383`    P2         §487     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0383`    P2         §487     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  a schedule does not hide the capability
 
   `AVL-0074`    P1         §488     `TESTED`   packages/marketplace/src/human-availability.ts  human-availability.test.ts  humans and agents use the same availability with different decisions
 

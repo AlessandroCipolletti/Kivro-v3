@@ -1,5 +1,10 @@
 import { getPrismaClient } from "@kivro/database";
-import { buildPublicSellerIdentity, assertPublicSellerPayloadSafe } from "@kivro/seller-experience";
+import { verifiedReputation } from "@kivro/marketplace";
+import {
+  assertPublicSellerPayloadSafe,
+  buildPublicSellerIdentity,
+  publicSellerPage,
+} from "@kivro/seller-experience";
 import { Hono } from "hono";
 
 /** §124 — public seller profile for marketplace. */
@@ -31,12 +36,32 @@ export function marketplaceSellerRoutes(): Hono {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
     const identity = buildPublicSellerIdentity(profile);
+    const completedJobs = await getPrismaClient().job.count({
+      where: {
+        status: "COMPLETED",
+        capabilityVersion: { capability: { sellerProfileId: profile.id } },
+      },
+    });
+    const reviews = await getPrismaClient().capabilityReview.findMany({
+      where: { sellerProfileId: profile.id, job: { status: "COMPLETED" } },
+      select: { stars: true },
+    });
+    const reputation = verifiedReputation(
+      reviews.map((review) => ({ stars: review.stars, fromCompletedJob: true })),
+    );
+    const page = publicSellerPage({
+      displayName: identity.marketplaceDisplayName,
+      memberSince: profile.firstPublishedAt,
+      aggregateRating: reputation.average,
+      completedJobs,
+      publishedCapabilityCount: profile.capabilities.length,
+      verificationStatus: identity.verificationStatus,
+    });
     const seller = {
       id: identity.sellerProfileId,
-      displayName: identity.marketplaceDisplayName,
+      ...page,
       marketplaceDisplayName: identity.marketplaceDisplayName,
-      verificationStatus: identity.verificationStatus,
-      capabilityCount: profile.capabilities.length,
+      capabilityCount: page.publishedCapabilityCount,
     };
     assertPublicSellerPayloadSafe(seller as Record<string, unknown>);
     return c.json({

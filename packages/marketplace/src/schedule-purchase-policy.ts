@@ -43,11 +43,16 @@ export function publicScheduleSummary(input: {
   availabilityStatus?: string | null;
   nextAvailableAt?: string | null;
   scheduleWindows?: unknown;
-}): { status: string | null; nextAvailableAt: string | null } {
-  return {
+  publishServiceHours?: boolean;
+}): { status: string | null; nextAvailableAt: string | null; serviceHours?: unknown } {
+  const summary = {
     status: input.availabilityStatus ?? null,
     nextAvailableAt: input.nextAvailableAt ?? null,
   };
+  if (!input.publishServiceHours) {
+    return summary;
+  }
+  return { ...summary, serviceHours: input.scheduleWindows ?? null };
 }
 
 /** Human search keeps schedule-closed capabilities visible. */

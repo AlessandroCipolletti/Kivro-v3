@@ -66,6 +66,7 @@ export {
   maxScheduledReservationsPerWindow,
   scheduledMaxWaitMs,
 } from "./wait-policy.js";
+export { fairQueueOrder, scheduledReservationFairness, type ReservationFairness } from "./scheduled-fairness.js";
 export { validateScheduledRunAt } from "./scheduled-run-validation.js";
 export {
   applyEligibleTimeChange,

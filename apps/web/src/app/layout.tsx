@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteNavAuth } from "@/components/SiteNavAuth";
+import { PRIMARY_NAV } from "@/lib/primary-nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,13 +19,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Kivro
             </Link>
             <nav className="nav" aria-label="Primary">
-              <Link href="/">Discover</Link>
+              {PRIMARY_NAV.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
               <Link href="/search">Search</Link>
-              <Link href="/favorites">Saved</Link>
-              <Link href="/agent">Agent</Link>
-              <Link href="/jobs">My jobs</Link>
               <Link href="/settings/api-keys">Developer</Link>
-              <Link href="/seller/dashboard">Seller</Link>
               <SiteNavAuth />
             </nav>
           </div>

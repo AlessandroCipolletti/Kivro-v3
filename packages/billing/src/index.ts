@@ -15,6 +15,7 @@ export {
 } from "./price-tiers.js";
 export { requireEnabledPriceTier, listPublicPriceTiers } from "./tier-validation.js";
 export { CARD_AUTHORIZATION_WINDOW_MS, paymentMethodForSchedule } from "./card-auth-window.js";
+export { mvpJobPriceCents } from "./fixed-price.js";
 export { sellerPricingBreakdown, estimateSellerMarginMinor } from "./seller-economics.js";
 export {
   mapSellerConnectStatus,

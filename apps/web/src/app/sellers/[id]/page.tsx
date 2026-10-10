@@ -15,7 +15,14 @@ type Params = Promise<{ id: string }>;
 export default async function SellerProfilePage({ params }: { params: Params }) {
   const { id } = await params;
   type SellerPayload = {
-    seller: { displayName: string; verificationStatus: string; capabilityCount: number };
+    seller: {
+      displayName: string;
+      verificationStatus: string;
+      capabilityCount: number;
+      memberSince?: string | null;
+      aggregateRating?: number | null;
+      completedJobs?: number;
+    };
     capabilities: Array<{ slug: string; name: string; description: string; rating: number | null }>;
   };
   let data: SellerPayload | null = null;
@@ -37,7 +44,17 @@ export default async function SellerProfilePage({ params }: { params: Params }) 
     <>
       <PageHeader
         title={data.seller.displayName}
-        description={`${data.seller.verificationStatus.replaceAll("_", " ").toLowerCase()} · ${data.seller.capabilityCount} published capabilities`}
+        description={[
+          data.seller.verificationStatus.replaceAll("_", " ").toLowerCase(),
+          data.seller.memberSince
+            ? `member since ${new Date(data.seller.memberSince).toLocaleDateString("en-US", { month: "short", year: "numeric" })}`
+            : null,
+          data.seller.aggregateRating != null ? `rating ${data.seller.aggregateRating.toFixed(1)}` : null,
+          `${data.seller.completedJobs ?? 0} completed jobs`,
+          `${data.seller.capabilityCount} published capabilities`,
+        ]
+          .filter(Boolean)
+          .join(" · ")}
       />
       <h2 style={{ fontSize: "1.15rem", marginTop: "0.5rem" }}>Capabilities</h2>
       {data.capabilities.length === 0 && (

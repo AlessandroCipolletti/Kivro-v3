@@ -1,3 +1,4 @@
+export { OUTPUT_QUALITY_NOTE, technicalValidationProvesQuality } from "./output-quality.js";
 export { normalizeInputFieldType, isFileInputField } from "./normalize-field-type.js";
 export { MEDIA_PRESETS, fileConstraintsFromPreset, type MediaPresetKey } from "./media-presets.js";
 export { sniffMime, extensionOfFilename } from "./file-signature.js";

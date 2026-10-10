@@ -1,4 +1,14 @@
 /** §488–§516 — availability decisions the model cannot override. */
+/** §480 — multi-step autonomous plans wait only after an explicit buyer approval. */
+export function autonomousPlanIncludesFutureStep(userApprovedWait: boolean): boolean {
+  return userApprovedWait;
+}
+
+/** A purchased single capability may still be scheduled for its next window. */
+export function singleCapabilityJobMayBeScheduled(): true {
+  return true;
+}
+
 export function defaultExecutionMode(): "IMMEDIATE_ONLY" {
   return "IMMEDIATE_ONLY";
 }

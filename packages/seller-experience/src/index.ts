@@ -9,7 +9,9 @@ export {
 } from "./onboarding-status.js";
 export { buildSellerSecurityDisclosure } from "./seller-security-disclosure.js";
 export {
+  aggregateCapabilityRating,
   buildPublicSellerIdentity,
+  publicSellerPage,
   buildPrivateSellerIdentity,
   assertPublicSellerPayloadSafe,
   type PublicSellerIdentity,

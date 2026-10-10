@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   autonomousMayScheduleFuture,
+  autonomousPlanIncludesFutureStep,
+  singleCapabilityJobMayBeScheduled,
   availabilityInferredFromDescription,
   busyWaitFitsPolicy,
   defaultExecutionMode,
@@ -16,6 +18,8 @@ describe("availability decisions", () => {
     expect(autonomousMayScheduleFuture({ userApprovedWait: false, completionFitsDeadline: true })).toBe(false);
     expect(autonomousMayScheduleFuture({ userApprovedWait: true, completionFitsDeadline: true })).toBe(true);
     expect(recommendationMayShowFutureOption()).toBe(true);
+    expect(autonomousPlanIncludesFutureStep(false)).toBe(false);
+    expect(singleCapabilityJobMayBeScheduled()).toBe(true);
     expect(availabilityInferredFromDescription("available now, runs instantly")).toBeNull();
   });
 

@@ -1,4 +1,5 @@
-import { filterCapabilityListings,
+import { contractDiscoverabilityCard,
+  filterCapabilityListings,
   mergeMarketplaceCategories,
   partitionHumanListings,
   sortCapabilityListings,
@@ -47,7 +48,7 @@ export function marketplaceRoutes(): Hono {
       where: publicMarketplaceWhere,
       include: {
         sellerProfile: { select: { id: true, displayName: true } },
-        currentVersion: { select: { priceSnapshotCents: true } },
+        currentVersion: { select: { priceSnapshotCents: true, inputSchema: true, outputSchema: true } },
       },
     });
 
@@ -93,8 +94,21 @@ export function marketplaceRoutes(): Hono {
     const categories = mergeMarketplaceCategories(listings.map((r) => r.category));
     const groups = partitionHumanListings(sorted);
 
+    const contractCards = new Map(
+      rows.map((row) => [
+        row.id,
+        contractDiscoverabilityCard({
+          inputSchema: row.currentVersion?.inputSchema,
+          outputSchema: row.currentVersion?.outputSchema,
+        }),
+      ]),
+    );
+
     return c.json({
-      capabilities: sorted,
+      capabilities: sorted.map((row) => ({
+        ...row,
+        contractCard: contractCards.get(row.id) ?? null,
+      })),
       groups: {
         availableNow: groups.availableNow.map((row) => row.id),
         availableLater: groups.availableLater.map((row) => row.id),

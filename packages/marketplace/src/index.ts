@@ -77,6 +77,15 @@ export {
   mergeMarketplaceCategories,
   type MarketplaceCategory,
 } from "./categories.js";
+export {
+  SEMANTIC_TYPES,
+  contractAcceptsBuyerFiles,
+  descriptionCannotOverrideContract,
+  isSemanticType,
+  semanticTypeReplacesFileValidation,
+  type SemanticType,
+} from "./contract-match.js";
+export { contractDiscoverabilityCard } from "./contract-card.js";
 export { MAX_SELLER_TEST_CASES, validateSellerTestCase } from "./seller-test-case.js";
 export { publicCapabilityForBuyer, type PublicCapability, type PublicCapabilityVersion } from "./public-capability.js";
 export { verifiedReputation } from "./verified-reputation.js";

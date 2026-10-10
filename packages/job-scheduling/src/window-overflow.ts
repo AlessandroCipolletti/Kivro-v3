@@ -3,6 +3,7 @@ import { assertJobTransition } from "@kivro/domain";
 import { parseScheduleConfig } from "./capability-schedule.js";
 import { isCapabilityExecutionWindowOpen } from "./dispatch-window.js";
 import { computeNextAvailableAt } from "./next-available.js";
+import { fairQueueOrder } from "./scheduled-fairness.js";
 import { computeScheduleWaitDeadline } from "./wait-policy.js";
 
 export type WindowOverflowDecision = "CONTINUE" | "HOLD_FOR_NEXT_WINDOW" | "RELEASE";
@@ -45,11 +46,12 @@ export async function releaseQueuedJobsAfterClosedWindow(
   const now = new Date();
   const jobs = await prisma.job.findMany({
     where: { status: "QUEUED" },
-    orderBy: { updatedAt: "asc" },
+    orderBy: { createdAt: "asc" },
     take: limit,
   });
+  const ordered = fairQueueOrder(jobs);
   const releasedJobIds: string[] = [];
-  for (const job of jobs) {
+  for (const job of ordered) {
     const windowOpen = await isCapabilityExecutionWindowOpen(prisma, job.capabilityId, now);
     const capability = await prisma.capability.findUnique({ where: { id: job.capabilityId } });
     const nextWindowAt = capability

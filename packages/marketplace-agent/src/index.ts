@@ -51,6 +51,8 @@ export { dispatchMarketplaceTool, MARKETPLACE_TOOL_NAMES } from "./tool-executor
 export { continueImmediateSearch, maySwapForImmediacy, planStepsFitTiming } from "./agent-continuation.js";
 export {
   autonomousMayScheduleFuture,
+  autonomousPlanIncludesFutureStep,
+  singleCapabilityJobMayBeScheduled,
   availabilityInferredFromDescription,
   defaultExecutionMode,
   estimateReadyAt,

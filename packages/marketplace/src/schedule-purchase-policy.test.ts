@@ -31,6 +31,13 @@ describe("schedule purchase policy", () => {
     });
     expect(summary.nextAvailableAt).toBe("2026-10-11T18:00:00.000Z");
     expect(JSON.stringify(summary)).not.toContain("tuesday");
+    const published = publicScheduleSummary({
+      availabilityStatus: "SCHEDULED_OFFLINE",
+      nextAvailableAt: "2026-10-11T18:00:00.000Z",
+      scheduleWindows: [{ day: "tuesday", start: "09:00" }],
+      publishServiceHours: true,
+    });
+    expect(published.serviceHours).toEqual([{ day: "tuesday", start: "09:00" }]);
   });
 
   it("keeps paused, blocked, and unexpectedly offline capabilities unavailable", () => {

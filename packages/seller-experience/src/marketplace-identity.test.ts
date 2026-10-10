@@ -1,23 +1,25 @@
 import { describe, expect, it } from "vitest";
-import { assertPublicSellerPayloadSafe, buildPublicSellerIdentity } from "./marketplace-identity.js";
+import { aggregateCapabilityRating, assertPublicSellerPayloadSafe, publicSellerPage } from "./marketplace-identity.js";
 
-describe("marketplace identity SELLERUX-034..035", () => {
-  it("public payload excludes KYC fields", () => {
-    const profile = {
-      id: "sp1",
-      displayName: "Studio Alpha",
-      verificationStatus: "UNVERIFIED",
-      legalNameForKyc: "Legal Name Hidden",
-      payoutStatus: "NOT_STARTED",
-      connectOnboardingStatus: null,
-    } as never;
-    const pub = buildPublicSellerIdentity(profile);
-    expect(pub.marketplaceDisplayName).toBe("Studio Alpha");
+describe("public seller page", () => {
+  it("shows marketplace activity and rejects machine details", () => {
+    const page = publicSellerPage({
+      displayName: "Ada",
+      memberSince: new Date("2026-01-02T00:00:00.000Z"),
+      aggregateRating: 4.83,
+      completedJobs: 12,
+      publishedCapabilityCount: 2,
+      verificationStatus: "VERIFIED",
+    });
+    expect(page.memberSince).toBe("2026-01-02T00:00:00.000Z");
+    expect(page.aggregateRating).toBe(4.8);
+    expect(page.completedJobs).toBe(12);
     expect(() =>
       assertPublicSellerPayloadSafe({
-        ...pub,
-        legalNameForKyc: "leak",
-      } as Record<string, unknown>),
+        ...page,
+        localIp: "192.168.1.20",
+      }),
     ).toThrow(/PUBLIC_SELLER_LEAK/);
+    expect(aggregateCapabilityRating([{ rating: 5, reviewCount: 1 }, { rating: 4, reviewCount: 1 }])).toBe(4.5);
   });
 });

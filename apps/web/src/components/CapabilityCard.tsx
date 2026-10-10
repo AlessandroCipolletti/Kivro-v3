@@ -26,6 +26,11 @@ export function CapabilityCard({ capability }: { capability: MarketplaceCapabili
         <Link href={`/capabilities/${capability.slug}`}>{capability.name}</Link>
       </h2>
       <p className="meta">{capability.description.slice(0, 160)}</p>
+      {capability.contractCard && (
+        <p className="meta">
+          Input {capability.contractCard.input} · Output {capability.contractCard.output}
+        </p>
+      )}
       <div className="meta">
         {capability.rating != null ? `★ ${capability.rating.toFixed(1)}` : "New"} ·{" "}
         {capability.jobCount.toLocaleString()} jobs

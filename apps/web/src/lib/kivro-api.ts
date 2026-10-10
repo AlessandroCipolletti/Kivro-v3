@@ -18,6 +18,7 @@ export type MarketplaceCapability = {
   availabilityStatus?: string;
   accepting?: boolean;
   nextAvailableAt?: string | null;
+  contractCard?: { input: string; output: string } | null;
 };
 
 export async function fetchMarketplaceCapabilities(
