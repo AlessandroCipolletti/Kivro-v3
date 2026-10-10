@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-10-10T00:00:00.000Z",
+  "description": "M26 reconciliation dashboards/alerts manifest (shared Core — both profiles).",
+  "alerts": [
+    {
+      "id": "payment-reconcile-backlog",
+      "signal": "terminal_jobs_with_open_reservation",
+      "owner": "platform-cron",
+      "action": "reconcileJobPaymentAfterTerminal batch"
+    },
+    {
+      "id": "worker-reconnect-reconcile",
+      "signal": "worker_heartbeat_after_disconnect",
+      "owner": "worker-heartbeat-service",
+      "action": "reconcileWorkerSessionOnReconnect"
+    },
+    {
+      "id": "durable-work-backlog",
+      "signal": "durable_task_queue_depth",
+      "owner": "cloud-netsons|cloud-aws profile cron",
+      "action": "bounded idempotent retry"
+    }
+  ],
+  "dashboards": [
+    "platform/admin payment reconcile endpoints",
+    "seller health + worker lastSeenAt",
+    "job terminal status vs reservedAmountCents"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-10-10T00:00:00.000Z",
+  "milestone": "M26",
+  "description": "Declared MVP recovery targets (HARD-014) — production go-live requires operator sign-off.",
+  "postgresql": {
+    "rpoMinutes": 15,
+    "rtoMinutes": 60,
+    "backupCadence": "continuous-wal-plus-daily-snapshot",
+    "authoritative": true
+  },
+  "objectStorage": {
+    "rpoMinutes": 60,
+    "rtoMinutes": 240,
+    "versioningRequired": true
+  },
+  "redis": {
+    "authoritative": false,
+    "recoveryModel": "rebuild-from-postgresql-and-redispatch"
+  },
+  "evidenceArtifacts": [
+    "docs/deploy/backup-restore-runbook.md",
+    "scripts/verify-isolated-restore-evidence.mjs",
+    "docs/audits/M26-reconciliation-alerts.json"
+  ]
+}

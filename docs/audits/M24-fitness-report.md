@@ -1,8 +1,8 @@
 # M24 architecture fitness report
 
-Generated: 2026-10-10T07:30:05.360Z
+Generated: 2026-10-10T07:33:31.843Z
 
-- Golden scenarios: **25** (registry v2)
+- Golden scenarios: **31** (registry v2)
 - Provider parity asserted: **true**
 - API contract: `v1-mvp`
 

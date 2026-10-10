@@ -610,7 +610,11 @@ greenfield.
 
 **Context:** IMPLEMENTATION-PLAN M24 requires dependency fitness, duplicate-semantic guard, golden registry, drift canary, and generated provider parity evidence.
 
-**Decision:** Ship `check-duplicate-semantic-ownership.mjs`, golden registry v2 with `verify-golden-registry.mjs`, `createBrokenCompositionDriftProbe`, `generate-provider-parity-report.mjs`, and `pnpm verify:m24` (includes `verify:m23`). Full fault-injection golden (HARD-005/006) remains M26. Gate: `pnpm verify:m24`.
+**Decision:** Ship `check-duplicate-semantic-ownership.mjs`, golden registry v2 with `verify-golden-registry.mjs`, `createBrokenCompositionDriftProbe`, `generate-provider-parity-report.mjs`, and `pnpm verify:m24` (includes `verify:m23`). HARD-005/006 fault matrix completes in M26 (`pnpm verify:m26`). Gate: `pnpm verify:m24`.
+
+## DEC-M26-001 — M26 fault injection asserts convergence not transport alone
+
+**Decision:** M26 is **DONE** when `M26-exit-criteria.json` reports `m26HarnessComplete: true` after `verify:m26`. Fault scenarios must assert authoritative job/ledger/payment convergence (HARD-006); Redis remains non-authoritative (HARD-016). Gate: `pnpm verify:m26` (includes `verify:m25`).
 
 ## DEC-M25-002 — Production may require Worker protocol headers
 

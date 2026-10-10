@@ -126,6 +126,36 @@
       "id": "M25-GOLD-010",
       "name": "staged update persistence",
       "assert": "Worker store persists staged update state across restarts"
+    },
+    {
+      "id": "M26-GOLD-001",
+      "name": "fault injection matrix",
+      "assert": "M26 fault scenarios wired to convergence tests"
+    },
+    {
+      "id": "M26-GOLD-002",
+      "name": "duplicate job completion",
+      "assert": "COMPLETED job re-completion triggers idempotent capture only"
+    },
+    {
+      "id": "M26-GOLD-003",
+      "name": "redis non-authoritative",
+      "assert": "job and payment truth cannot be Redis-only"
+    },
+    {
+      "id": "M26-GOLD-004",
+      "name": "restore invariants",
+      "assert": "isolated restore harness rejects duplicate ledger keys"
+    },
+    {
+      "id": "M26-GOLD-005",
+      "name": "webhook duplicate delivery",
+      "assert": "buyer webhook signatures verify deterministically"
+    },
+    {
+      "id": "M26-GOLD-006",
+      "name": "control-plane outage routing",
+      "assert": "in-flight execution stays on owning control plane"
     }
   ]
 }

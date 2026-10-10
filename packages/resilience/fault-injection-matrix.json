@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "description": "M26 fault-injection catalog — every scenario asserts converged authoritative state (HARD-005/006).",
+  "scenarios": [
+    {
+      "id": "M26-FAULT-001",
+      "name": "duplicate ledger capture",
+      "assert": "second capture attempt is idempotent"
+    },
+    {
+      "id": "M26-FAULT-002",
+      "name": "duplicate job completion",
+      "assert": "duplicate completion does not double-settle"
+    },
+    {
+      "id": "M26-FAULT-003",
+      "name": "duplicate buyer webhook delivery",
+      "assert": "signature verification remains deterministic"
+    },
+    {
+      "id": "M26-FAULT-004",
+      "name": "worker reconnect reconciliation",
+      "assert": "reconcileWorkerSessionOnReconnect is profile-neutral"
+    },
+    {
+      "id": "M26-FAULT-005",
+      "name": "redis cache loss",
+      "assert": "authoritative state remains PostgreSQL-backed"
+    },
+    {
+      "id": "M26-FAULT-006",
+      "name": "control-plane outage",
+      "assert": "in-flight execution ownership unchanged during DRAINING"
+    },
+    {
+      "id": "M26-FAULT-007",
+      "name": "post-restore invariants",
+      "assert": "ledger/job invariants hold after restore snapshot"
+    },
+    {
+      "id": "M26-FAULT-008",
+      "name": "ambiguous payment reconcile",
+      "assert": "terminal reconcile converges reservation release"
+    }
+  ]
+}

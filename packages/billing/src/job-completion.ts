@@ -19,6 +19,13 @@ export async function markJobDeliveredAndSettle(
     return { error: "FORBIDDEN" };
   }
   let status: JobStatus = job.status;
+  if (status === "COMPLETED") {
+    const settle = await captureAndSettleJobPayment(prisma, job.id);
+    if ("error" in settle) {
+      return settle;
+    }
+    return { status: "COMPLETED" };
+  }
   if (status === "RUNNING") {
     assertJobTransition(status, "UPLOADING_RESULT");
     await prisma.job.update({ where: { id: job.id }, data: { status: "UPLOADING_RESULT" } });

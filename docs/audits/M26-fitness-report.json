@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-10-10T07:33:16.647Z",
+  "milestone": "M26",
+  "rpoRto": {
+    "generatedAt": "2026-10-10T00:00:00.000Z",
+    "milestone": "M26",
+    "description": "Declared MVP recovery targets (HARD-014) — production go-live requires operator sign-off.",
+    "postgresql": {
+      "rpoMinutes": 15,
+      "rtoMinutes": 60,
+      "backupCadence": "continuous-wal-plus-daily-snapshot",
+      "authoritative": true
+    },
+    "objectStorage": {
+      "rpoMinutes": 60,
+      "rtoMinutes": 240,
+      "versioningRequired": true
+    },
+    "redis": {
+      "authoritative": false,
+      "recoveryModel": "rebuild-from-postgresql-and-redispatch"
+    },
+    "evidenceArtifacts": [
+      "docs/deploy/backup-restore-runbook.md",
+      "scripts/verify-isolated-restore-evidence.mjs",
+      "docs/audits/M26-reconciliation-alerts.json"
+    ]
+  },
+  "reconciliationAlerts": {
+    "generatedAt": "2026-10-10T00:00:00.000Z",
+    "description": "M26 reconciliation dashboards/alerts manifest (shared Core — both profiles).",
+    "alerts": [
+      {
+        "id": "payment-reconcile-backlog",
+        "signal": "terminal_jobs_with_open_reservation",
+        "owner": "platform-cron",
+        "action": "reconcileJobPaymentAfterTerminal batch"
+      },
+      {
+        "id": "worker-reconnect-reconcile",
+        "signal": "worker_heartbeat_after_disconnect",
+        "owner": "worker-heartbeat-service",
+        "action": "reconcileWorkerSessionOnReconnect"
+      },
+      {
+        "id": "durable-work-backlog",
+        "signal": "durable_task_queue_depth",
+        "owner": "cloud-netsons|cloud-aws profile cron",
+        "action": "bounded idempotent retry"
+      }
+    ],
+    "dashboards": [
+      "platform/admin payment reconcile endpoints",
+      "seller health + worker lastSeenAt",
+      "job terminal status vs reservedAmountCents"
+    ]
+  },
+  "exitCriteria": {
+    "generatedAt": "2026-10-10T07:32:44.052Z",
+    "m26HarnessComplete": true,
+    "criteria": [
+      {
+        "id": "fault-injection-harness",
+        "status": "PASS",
+        "detail": "@kivro/resilience + verify-fault-injection-matrix.mjs"
+      },
+      {
+        "id": "convergence-tests",
+        "status": "PASS",
+        "detail": "HARD-006 authoritative state assertions in M26 vitest suite"
+      },
+      {
+        "id": "backup-restore-runbook",
+        "status": "PASS",
+        "detail": "HARD-014/015 documented recovery"
+      },
+      {
+        "id": "rpo-rto-declared",
+        "status": "PASS",
+        "detail": "Measurable PostgreSQL/object RPO/RTO"
+      },
+      {
+        "id": "isolated-restore-evidence",
+        "status": "PASS",
+        "detail": "verify-isolated-restore-evidence.mjs"
+      },
+      {
+        "id": "redis-non-authoritative",
+        "status": "PASS",
+        "detail": "check-redis-non-authoritative.mjs + redis-policy"
+      },
+      {
+        "id": "reconciliation-alerts",
+        "status": "PASS",
+        "detail": "payment + worker reconnect reconcile signals"
+      },
+      {
+        "id": "duplicate-completion-idempotency",
+        "status": "PASS",
+        "detail": "markJobDeliveredAndSettle COMPLETED path + billing test"
+      }
+    ]
+  },
+  "harnessScripts": [
+    "scripts/verify-fault-injection-matrix.mjs",
+    "scripts/check-redis-non-authoritative.mjs",
+    "scripts/verify-isolated-restore-evidence.mjs"
+  ]
+}

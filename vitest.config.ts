@@ -29,6 +29,7 @@ export default defineConfig({
       "@kivro/job-failure": path.resolve("packages/job-failure/src/index.ts"),
       "@kivro/database": path.resolve("packages/database/src/index.ts"),
       "@kivro/compatibility": path.resolve("packages/compatibility/src/index.ts"),
+      "@kivro/resilience": path.resolve("packages/resilience/src/index.ts"),
       "@kivro/cloud-core": path.resolve("packages/cloud-core/src/index.ts"),
       "@kivro/cloud-netsons": path.resolve("packages/cloud-netsons/src/index.ts"),
       "@kivro/cloud-aws": path.resolve("packages/cloud-aws/src/index.ts"),

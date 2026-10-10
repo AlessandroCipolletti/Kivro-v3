@@ -24,7 +24,7 @@ const criteria = [
   },
   {
     id: "golden-registry",
-    status: fitness.goldenScenarioCount >= 25 ? "PASS" : "FAIL",
+    status: fitness.goldenScenarioCount >= 31 ? "PASS" : "FAIL",
     detail: `${fitness.goldenScenarioCount} scenarios wired via verify-golden-registry.mjs`,
   },
   {

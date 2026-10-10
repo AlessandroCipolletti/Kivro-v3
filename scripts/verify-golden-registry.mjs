@@ -28,6 +28,10 @@ const testCorpus = [
   "packages/worker-store/src/staged-update.test.ts",
   "security/tests/conformance-golden-m25.test.ts",
   "apps/api/src/services/worker-compatibility-gate.test.ts",
+  "security/tests/fault-injection-convergence-m26.test.ts",
+  "security/tests/fault-injection-control-plane-m26.test.ts",
+  "packages/billing/src/job-completion-idempotency.test.ts",
+  "packages/resilience/src/convergence.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");
