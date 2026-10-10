@@ -1,7 +1,11 @@
 export { normalizeInputFieldType, isFileInputField } from "./normalize-field-type.js";
 export { MEDIA_PRESETS, fileConstraintsFromPreset, type MediaPresetKey } from "./media-presets.js";
 export { sniffMime, extensionOfFilename } from "./file-signature.js";
-export { resolvedFileConstraints, resolvedTextMaxLength } from "./field-constraints.js";
+export {
+  DEFAULT_MAX_FILE_SIZE_BYTES_PER_JOB,
+  resolvedFileConstraints,
+  resolvedTextMaxLength,
+} from "./field-constraints.js";
 export { isFieldActive, activeInputFields } from "./conditionals.js";
 export {
   validateBuyerInput,

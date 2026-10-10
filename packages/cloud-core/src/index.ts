@@ -12,7 +12,9 @@ export {
 export type { DurableWorkPort } from "./durable-work-port.js";
 export {
   createPostgresDurableWorkPort,
+  DURABLE_WORK_DEFAULT_BATCH_LIMIT,
   DURABLE_WORK_KIND,
+  DURABLE_WORK_MAX_ATTEMPTS,
   enqueueDurableWorkItem,
   processPostgresDurableWorkBatch,
   type ProcessDurableWorkResult,

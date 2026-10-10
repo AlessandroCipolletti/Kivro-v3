@@ -620,6 +620,18 @@ greenfield.
 
 **Decision:** `handleStripeWebhookEvent` inserts `StripeWebhookEvent` with `createMany({ skipDuplicates: true })` before any handler side effect and deletes the row if processing throws, so concurrent duplicate deliveries cannot double-apply credits or job payment transitions.
 
+## DEC-M27-001 — M27 release activation is exact, bounded, and profile-neutral
+
+**Decision:** M27 is **DONE** when `M27-exit-criteria.json` reports `m27HarnessComplete: true` after `verify:m27`. The unified release manifest carries `exactReleaseId`; activation requires parity assertion, both-profile conformance, M26 DR harness completion, and envelope/load evidence via `@kivro/release-ops`. Gate: `pnpm verify:m27` (includes `verify:m26`).
+
+## DEC-M27-002 — Runtime retry/batch knobs stay within the envelope
+
+**Decision:** `DURABLE_WORK_MAX_ATTEMPTS` and `DURABLE_WORK_DEFAULT_BATCH_LIMIT` in `@kivro/cloud-core` are the authoritative shared caps for durable work; `check-bounded-runtime-vs-envelope.mjs` fails if they exceed `M27-performance-envelope.json`.
+
+## DEC-M27-003 — Product upload/webhook caps align with envelope
+
+**Decision:** `DEFAULT_MAX_FILE_SIZE_BYTES_PER_JOB`, `BUYER_WEBHOOK_MAX_TOTAL_ATTEMPTS`, and polling retry policy must stay within `M27-performance-envelope.json`; `check-envelope-product-limits.mjs` enforces alignment at `verify:m27`. Release activation also requires M25+M26 harness completion and matching `apiContractVersion` across manifest, parity, and conformance evidence.
+
 ## DEC-M25-002 — Production may require Worker protocol headers
 
 **Decision:** When `KIVRO_REQUIRE_WORKER_PROTOCOL_HEADER=1`, poll/heartbeat fail closed without `x-kivro-protocol-version` or body `protocolVersion`. Default off in development; operators enable for strict release gates.

@@ -3597,9 +3597,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-018   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-019   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
+  HARD-019   P1         TESTED   packages/release-ops, packages/cloud-core/src/postgres-durable-work.ts, docs/audits/M27-performance-envelope.json   packages/release-ops/src/*.test.ts; security/tests/release-activation-m27.test.ts; security/tests/release-activation-rejection-m27.test.ts; security/tests/performance-envelope-m27.test.ts; scripts/check-bounded-runtime-vs-envelope.mjs; scripts/verify-m27-flow.mjs   docs/audits/M27-exit-criteria.json; docs/audits/M27-fitness-report.json; docs/milestones/M27-closure.md M27
 
-  HARD-020   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
+  HARD-020   P1         TESTED   packages/release-ops, packages/cloud-core/src/postgres-durable-work.ts, docs/audits/M27-performance-envelope.json   packages/release-ops/src/*.test.ts; security/tests/release-activation-m27.test.ts; security/tests/release-activation-rejection-m27.test.ts; security/tests/performance-envelope-m27.test.ts; scripts/check-bounded-runtime-vs-envelope.mjs; scripts/verify-m27-flow.mjs   docs/audits/M27-exit-criteria.json; docs/audits/M27-fitness-report.json; docs/milestones/M27-closure.md M27
 
   HARD-021      P0           TODO         ---              ---
 
@@ -3613,9 +3613,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-026      P0           TODO         ---              ---
 
-  HARD-027      P0           TODO         ---              ---
+  HARD-027   P0         TESTED   packages/release-ops, packages/cloud-core/src/postgres-durable-work.ts, docs/audits/M27-performance-envelope.json   packages/release-ops/src/*.test.ts; security/tests/release-activation-m27.test.ts; security/tests/release-activation-rejection-m27.test.ts; security/tests/performance-envelope-m27.test.ts; scripts/check-bounded-runtime-vs-envelope.mjs; scripts/verify-m27-flow.mjs   docs/audits/M27-exit-criteria.json; docs/audits/M27-fitness-report.json; docs/milestones/M27-closure.md M27
 
-  HARD-028      P1           TODO         ---              ---
+  HARD-028   P1         TESTED   packages/release-ops, packages/cloud-core/src/postgres-durable-work.ts, docs/audits/M27-performance-envelope.json   packages/release-ops/src/*.test.ts; security/tests/release-activation-m27.test.ts; security/tests/release-activation-rejection-m27.test.ts; security/tests/performance-envelope-m27.test.ts; scripts/check-bounded-runtime-vs-envelope.mjs; scripts/verify-m27-flow.mjs   docs/audits/M27-exit-criteria.json; docs/audits/M27-fitness-report.json; docs/milestones/M27-closure.md M27
   ------------------------------------------------------------------------
 
 ## Durable asynchronous job/result coverage

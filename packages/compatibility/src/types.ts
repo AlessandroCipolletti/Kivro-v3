@@ -61,6 +61,10 @@ export type UnifiedReleaseManifest = {
   };
   parityReportPath: string;
   conformanceManifestPath: string;
+  /** M27 — exact releasable build identifier (shared across Netsons/AWS). */
+  exactReleaseId: string | null;
+  performanceEnvelopePath: string;
+  operationalAlarmsPath: string;
 };
 
 export type WorkerReleaseManifest = {

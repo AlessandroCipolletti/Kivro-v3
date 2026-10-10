@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-10-10T07:45:32.784Z",
+  "m27HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "performance-envelope-documented",
+      "status": "PASS",
+      "detail": "HARD-019 MVP envelope artifact"
+    },
+    {
+      "id": "operational-alarms-manifest",
+      "status": "PASS",
+      "detail": "HARD-028 backlog/worker/reconciliation alarms"
+    },
+    {
+      "id": "release-ops-package",
+      "status": "PASS",
+      "detail": "@kivro/release-ops activation + load simulation"
+    },
+    {
+      "id": "envelope-load-verification",
+      "status": "PASS",
+      "detail": "verify-performance-envelope-load.mjs"
+    },
+    {
+      "id": "release-activation-gate",
+      "status": "PASS",
+      "detail": "verify-release-activation-gate.mjs"
+    },
+    {
+      "id": "unified-manifest-exact-release",
+      "status": "PASS",
+      "detail": "HARD-021 manifest includes exactReleaseId + envelope refs"
+    },
+    {
+      "id": "provider-parity-evidence",
+      "status": "PASS",
+      "detail": "HARD-022 generated parity report"
+    },
+    {
+      "id": "bounded-runtime-vs-envelope",
+      "status": "PASS",
+      "detail": "cloud-core durable work limits ≤ M27 envelope"
+    },
+    {
+      "id": "unified-release-evidence-check",
+      "status": "PASS",
+      "detail": "manifest validation + on-disk evidence paths"
+    },
+    {
+      "id": "performance-envelope-fixture-sync",
+      "status": "PASS",
+      "detail": "fixture mirrors docs/audits envelope"
+    },
+    {
+      "id": "product-limits-vs-envelope",
+      "status": "PASS",
+      "detail": "job-io, webhooks, transport, durable work vs envelope"
+    },
+    {
+      "id": "envelope-fixture-drift-guard",
+      "status": "PASS",
+      "detail": "docs/fixture envelope byte parity"
+    }
+  ]
+}

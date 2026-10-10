@@ -37,6 +37,16 @@ const testCorpus = [
   "packages/billing/src/stripe-webhook-idempotency.test.ts",
   "packages/job-dispatch/src/worker-reconcile.test.ts",
   "security/tests/fault-injection-transport-ack-m26.test.ts",
+  "packages/release-ops/src/performance-envelope.test.ts",
+  "packages/release-ops/src/load-simulation.test.ts",
+  "packages/release-ops/src/release-activation.test.ts",
+  "packages/release-ops/src/operational-alarms.test.ts",
+  "security/tests/performance-envelope-m27.test.ts",
+  "security/tests/release-activation-m27.test.ts",
+  "security/tests/release-activation-rejection-m27.test.ts",
+  "security/tests/conformance-golden-m27.test.ts",
+  "packages/release-ops/src/bounded-runtime.test.ts",
+  "packages/release-ops/src/envelope-product-limits.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");

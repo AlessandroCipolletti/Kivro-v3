@@ -28,6 +28,9 @@ export function buildUnifiedReleaseManifest(input: {
     parityReportPath: input.parityReportPath ?? "docs/audits/M24-provider-parity-report.json",
     conformanceManifestPath:
       input.conformanceManifestPath ?? "tests/fixtures/backend-conformance-manifest.json",
+    exactReleaseId: input.gitCommit ? `kivro@${input.gitCommit.slice(0, 12)}` : null,
+    performanceEnvelopePath: "docs/audits/M27-performance-envelope.json",
+    operationalAlarmsPath: "docs/audits/M27-operational-alarms.json",
   };
 }
 
@@ -50,6 +53,12 @@ export function validateUnifiedReleaseManifest(manifest: UnifiedReleaseManifest)
   }
   if (manifest.workerMinSupportedVersion !== m.workerRelease.minSupportedWorkerVersion) {
     issues.push("worker min version mismatch");
+  }
+  if (!manifest.performanceEnvelopePath?.startsWith("docs/")) {
+    issues.push("performanceEnvelopePath must reference docs audit artifact");
+  }
+  if (!manifest.operationalAlarmsPath?.startsWith("docs/")) {
+    issues.push("operationalAlarmsPath must reference docs audit artifact");
   }
   return issues.length ? { ok: false, issues } : { ok: true };
 }

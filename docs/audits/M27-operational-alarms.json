@@ -1,0 +1,36 @@
+{
+  "milestone": "M27",
+  "description": "Operational alarms catalog (HARD-028) — no seller secrets in signals.",
+  "alarms": [
+    {
+      "id": "release-parity-regression",
+      "signal": "provider_parity_report.parityAsserted == false",
+      "severity": "critical",
+      "description": "Netsons/AWS behavioral parity evidence failed or drifted from unified release."
+    },
+    {
+      "id": "durable-work-backlog-age",
+      "signal": "max(durable_work_queue_age_seconds) > envelope.maxQueueDepthPerProfile threshold",
+      "severity": "warning",
+      "description": "Deferred durable work backlog age exceeds MVP envelope for the active profile."
+    },
+    {
+      "id": "worker-version-skew",
+      "signal": "connected_workers outside [minSupported, latestSupported] or revoked list",
+      "severity": "warning",
+      "description": "Worker population includes unsupported or revoked versions during rollout."
+    },
+    {
+      "id": "payment-reconciliation-anomaly",
+      "signal": "open_reservations_on_terminal_jobs > 0 OR duplicate_ledger_idempotency_keys > 0",
+      "severity": "critical",
+      "description": "Financial reconciliation invariant breach detected (see M26 restore harness)."
+    },
+    {
+      "id": "conformance-golden-failure",
+      "signal": "backend_conformance_golden_failures > 0",
+      "severity": "critical",
+      "description": "Shared golden scenario regression blocks release activation."
+    }
+  ]
+}

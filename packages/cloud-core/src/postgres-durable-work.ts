@@ -7,7 +7,12 @@ export const DURABLE_WORK_KIND = {
   WORKER_SIGNAL: "WORKER_SIGNAL",
 } as const;
 
-const DEFAULT_MAX_ATTEMPTS = 8;
+/** M27 — must stay ≤ docs/audits/M27-performance-envelope.json maxRetryAttemptsPerWorkItem. */
+export const DURABLE_WORK_MAX_ATTEMPTS = 8;
+const DEFAULT_MAX_ATTEMPTS = DURABLE_WORK_MAX_ATTEMPTS;
+
+/** M27 — default cron batch size; must stay ≤ profile maxDurableWorkBatchSize. */
+export const DURABLE_WORK_DEFAULT_BATCH_LIMIT = 25;
 
 export type DurableWorkProfileId = DurableWorkPort["profile"];
 
@@ -86,7 +91,7 @@ function backoffMs(attempt: number): number {
 
 export async function processPostgresDurableWorkBatch(
   prisma: PrismaClient,
-  limit = 25,
+  limit = DURABLE_WORK_DEFAULT_BATCH_LIMIT,
 ): Promise<ProcessDurableWorkResult> {
   const now = new Date();
   const due = await prisma.durableWorkItem.findMany({

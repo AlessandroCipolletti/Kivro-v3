@@ -5,7 +5,12 @@ import { buildWebhookSignatureHeader } from "./signing.js";
 import type { WebhookEventType } from "./events.js";
 
 const INLINE_RETRIES = 3;
-const MAX_TOTAL_ATTEMPTS = 8;
+/** M27 — must stay ≤ docs/audits/M27-performance-envelope.json maxWebhookDeliveryAttempts. */
+export const BUYER_WEBHOOK_MAX_TOTAL_ATTEMPTS = 8;
+const MAX_TOTAL_ATTEMPTS = BUYER_WEBHOOK_MAX_TOTAL_ATTEMPTS;
+
+/** M27 — bounded retry sweep batch (non-unbounded queue drain). */
+export const BUYER_WEBHOOK_RETRY_BATCH_LIMIT = 25;
 
 export type WebhookJobPayload = {
   jobId: string;
@@ -164,7 +169,7 @@ export async function deliverBuyerWebhookEvent(
 
 export async function retryDueWebhookDeliveries(
   prisma: PrismaClient,
-  limit = 25,
+  limit = BUYER_WEBHOOK_RETRY_BATCH_LIMIT,
 ): Promise<{ retried: number; delivered: number }> {
   const due = await prisma.webhookDeliveryAttempt.findMany({
     where: {

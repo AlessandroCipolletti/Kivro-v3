@@ -26,6 +26,12 @@ importers:
       '@kivro/database':
         specifier: workspace:*
         version: link:packages/database
+      '@kivro/release-ops':
+        specifier: workspace:*
+        version: link:packages/release-ops
+      '@kivro/resilience':
+        specifier: workspace:*
+        version: link:packages/resilience
       '@types/node':
         specifier: ^22.10.2
         version: 22.20.5
@@ -598,6 +604,12 @@ importers:
         specifier: workspace:*
         version: link:../contracts
 
+  packages/release-ops:
+    dependencies:
+      '@kivro/compatibility':
+        specifier: workspace:*
+        version: link:../compatibility
+
   packages/research-broker:
     dependencies:
       '@kivro/contracts':
@@ -612,6 +624,8 @@ importers:
       '@kivro/policy-engine':
         specifier: workspace:*
         version: link:../policy-engine
+
+  packages/resilience: {}
 
   packages/resource-broker:
     dependencies:

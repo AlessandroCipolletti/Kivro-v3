@@ -176,6 +176,51 @@
       "id": "M26-GOLD-010",
       "name": "transport ack ambiguity",
       "assert": "reconnect preserves transport ack idempotency keys"
+    },
+    {
+      "id": "M27-GOLD-001",
+      "name": "performance envelope bounds",
+      "assert": "MVP envelope load suite passes for both profiles"
+    },
+    {
+      "id": "M27-GOLD-002",
+      "name": "activation gate rejects bad parity",
+      "assert": "missing parityAsserted blocks activation"
+    },
+    {
+      "id": "M27-GOLD-003",
+      "name": "activation gate accepts evidence",
+      "assert": "manifest + parity + conformance + M26 unlock activation"
+    },
+    {
+      "id": "M27-GOLD-004",
+      "name": "profile load within envelope",
+      "assert": "netsons and aws synthetic load stays bounded"
+    },
+    {
+      "id": "M27-GOLD-005",
+      "name": "operational alarms catalog",
+      "assert": "backlog, worker version, reconciliation alarms declared"
+    },
+    {
+      "id": "M27-GOLD-006",
+      "name": "bounded durable work runtime",
+      "assert": "cloud-core retry/batch limits stay within MVP envelope"
+    },
+    {
+      "id": "M27-GOLD-007",
+      "name": "release api contract alignment",
+      "assert": "parity/conformance apiContractVersion matches unified manifest"
+    },
+    {
+      "id": "M27-GOLD-008",
+      "name": "product limits vs envelope",
+      "assert": "uploads, webhooks, transport, durable work caps align with envelope"
+    },
+    {
+      "id": "M27-GOLD-009",
+      "name": "queue depth ceiling load",
+      "assert": "synthetic load at max queue depth stays bounded"
     }
   ]
 }

@@ -8,6 +8,8 @@ export {
   rotateBuyerWebhookSecret,
 } from "./endpoint-service.js";
 export {
+  BUYER_WEBHOOK_MAX_TOTAL_ATTEMPTS,
+  BUYER_WEBHOOK_RETRY_BATCH_LIMIT,
   deliverBuyerWebhookEvent,
   listWebhookDeliveries,
   retryDueWebhookDeliveries,

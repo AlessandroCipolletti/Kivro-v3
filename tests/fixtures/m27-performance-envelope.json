@@ -1,0 +1,22 @@
+{
+  "milestone": "M27",
+  "description": "MVP performance/resource envelope (HARD-019) — staging/production must stay within these bounds unless explicitly revised.",
+  "shared": {
+    "maxConcurrentJobsPerSeller": 3,
+    "maxQueueDepthPerProfile": 500,
+    "maxApiRequestsPerSecondPerInstance": 50,
+    "maxUploadBytesPerJob": 52428800,
+    "maxRetryAttemptsPerWorkItem": 8,
+    "maxWebhookDeliveryAttempts": 8
+  },
+  "profiles": {
+    "netsons": {
+      "maxDurableWorkBatchSize": 100,
+      "maxWorkerPollIntervalSeconds": 30
+    },
+    "aws": {
+      "maxDurableWorkBatchSize": 100,
+      "maxWorkerPollIntervalSeconds": 15
+    }
+  }
+}
