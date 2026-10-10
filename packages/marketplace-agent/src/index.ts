@@ -65,3 +65,9 @@ export { requotePlanSteps } from "./plan-requote.js";
 export { sanitizeMarketplaceTextForAgent } from "./prompt-safety.js";
 export { resetPlatformInferenceCache } from "./platform-inference.js";
 export { inferenceFailureMayCreatePurchase, inferenceOwnership, type InferenceOwner } from "./inference-ownership.js";
+export {
+  exampleAssignsSecretValue,
+  platformAiKeyVisibleTo,
+  productionPlatformSecretSource,
+  type SecretAudience,
+} from "./platform-secrets.js";

@@ -15,10 +15,15 @@ describe("seller security disclosure SELLERUX-033", () => {
           },
         ],
       },
-      selectedSkills: ["demo-skill"],
+      selectedSkills: ["company-research"],
       selectedTools: [],
+      readOnlyCredentials: ["Company DB"],
     });
-    expect(d.localResourcesDisclosed.some((l) => l.includes("demo-skill"))).toBe(true);
+    expect(d.localResourcesDisclosed.some((l) => l.includes("company-research"))).toBe(true);
     expect(d.notAccessibleToBuyers.some((l) => l.includes("Unselected"))).toBe(true);
+    expect(d.can).toContain('use skill "company-research"');
+    expect(d.can).toContain("query Company DB through a read-only credential");
+    expect(d.cannot.join(" ")).toContain("personal OpenClaw");
+    expect(d.cannot.join(" ")).toContain("~/Documents");
   });
 });

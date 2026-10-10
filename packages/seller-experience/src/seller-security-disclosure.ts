@@ -6,11 +6,14 @@ export function buildSellerSecurityDisclosure(input: {
   workerManifest?: WorkerManifest | null;
   selectedSkills: string[];
   selectedTools: string[];
+  readOnlyCredentials?: string[];
 }): {
   isolation: string;
   buyerDataHandling: string;
   localResourcesDisclosed: string[];
   notAccessibleToBuyers: string[];
+  can: string[];
+  cannot: string[];
 } {
   const localResourcesDisclosed = [
     ...input.selectedSkills.map((s) => `Skill: ${s}`),
@@ -27,10 +30,19 @@ export function buildSellerSecurityDisclosure(input: {
       "Buyers receive only declared deliverables. Your personal files, credentials, and unselected discovery candidates are never exposed.",
     localResourcesDisclosed: [...localResourcesDisclosed, ...activeCategories.map((l) => `Permission: ${l}`)],
     notAccessibleToBuyers: [
-      "Personal OpenClaw configuration",
+      "Personal OpenClaw workspace",
+      "Home documents",
       "Unselected discovery candidates",
       "Local credential secret values",
       "Seller legal/KYC identity (private)",
+    ],
+    can: [
+      ...input.selectedSkills.map((skill) => `use skill "${skill}"`),
+      ...(input.readOnlyCredentials ?? []).map((name) => `query ${name} through a read-only credential`),
+    ],
+    cannot: [
+      "access your personal OpenClaw workspace",
+      "access ~/Documents",
     ],
   };
 }

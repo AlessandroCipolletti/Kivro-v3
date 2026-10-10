@@ -92,6 +92,7 @@ export {
   InternetResearchPolicySchema,
   ResearchSourceSchema,
   defaultPublicWebResearchPolicy,
+  networkPrimitiveForPurpose,
   parseInternetResearchPolicy,
   type InternetResearchPolicy,
   type ResearchSource,

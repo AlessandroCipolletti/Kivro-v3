@@ -5,6 +5,7 @@ export {
 } from "./dispatch.js";
 export { canWorkerDeviceAcceptJobs, type WorkerDeviceStatus } from "./worker-device.js";
 export { assertAdminToken } from "./admin-auth.js";
+export { CORE_ARCHITECTURE_PRINCIPLES, MVP_ONE_SENTENCE } from "./architecture-principles.js";
 export {
   DEFAULT_PLATFORM_RESEARCH_CEILINGS,
   type PlatformResearchCeilings,

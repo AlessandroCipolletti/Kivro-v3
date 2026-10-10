@@ -71,3 +71,19 @@ export function defaultPublicWebResearchPolicy(): InternetResearchPolicy {
     },
   };
 }
+
+/** §277 — a job receives the smallest network mode that matches its declared purpose. */
+export function networkPrimitiveForPurpose(
+  purpose: "none" | "public_web_research" | "declared_api" | "arbitrary_seller_network",
+): "NO_NETWORK" | "PUBLIC_WEB_RESEARCH" | "DECLARED_API_ACCESS" | null {
+  if (purpose === "none") {
+    return "NO_NETWORK";
+  }
+  if (purpose === "public_web_research") {
+    return "PUBLIC_WEB_RESEARCH";
+  }
+  if (purpose === "declared_api") {
+    return "DECLARED_API_ACCESS";
+  }
+  return null;
+}

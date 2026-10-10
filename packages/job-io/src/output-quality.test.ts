@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { OUTPUT_QUALITY_NOTE, technicalValidationProvesQuality } from "./output-quality.js";
+import { OUTPUT_QUALITY_NOTE, qualityEvidenceIncludesTechnicalValidity, technicalValidationProvesQuality } from "./output-quality.js";
 
 describe("output quality", () => {
   it("keeps technical validity separate from quality", () => {
     expect(technicalValidationProvesQuality()).toBe(false);
+    expect(qualityEvidenceIncludesTechnicalValidity()).toBe(false);
     expect(OUTPUT_QUALITY_NOTE).toContain("does not prove");
   });
 });

@@ -44,4 +44,16 @@ describe("publish readiness SELLERUX-008", () => {
       true,
     );
   });
+
+  it("publishes only when every blocking check has passed", () => {
+    const blocked = buildPublishReadinessReport({
+      dependencyGraph: { graphVersion: 1, rootCapabilityName: "x", nodes: [] },
+      workerPaired: true,
+      workerHealthLabel: "HEALTHY",
+      executionModelAcknowledged: false,
+      contractValid: true,
+      payoutReady: true,
+    });
+    expect(blocked.ready).toBe(false);
+  });
 });

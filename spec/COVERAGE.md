@@ -472,11 +472,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0048`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0049`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0049`    P1         §27      `TESTED`   packages/seller-experience/src/seller-security-disclosure.ts  seller-security-disclosure.test.ts  a selected read-only credential is shown as allowed
 
-  `WRK-0050`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0050`    P1         §27      `TESTED`   packages/seller-experience/src/seller-security-disclosure.ts  seller-security-disclosure.test.ts  the preview lists the personal workspace and documents as denied
 
-  `WRK-0051`    P1         §27      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0051`    P1         §27      `TESTED`   packages/seller-experience/src/publish-readiness.ts  publish-readiness.test.ts  publish stays blocked while a required check fails
 
   `PRD-0043`    P1         §28      `TESTED`   packages/marketplace, apps/api/src/routes/marketplace.ts, apps/api/src/routes/marketplace-sellers.ts, apps/api/src/routes/marketplace-agent.ts, apps/api/src/routes/buyer-jobs-list.ts, apps/api/src/routes/buyer-job-assets.ts, apps/api/src/routes/capability-reviews.ts, apps/web   packages/marketplace/src/*.test.ts; security/tests/acceptance-m10.test.ts; scripts/verify-m10-flow.mjs   docs/milestones/M10-manual-validation.md M10
 
@@ -568,17 +568,17 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0056`    P2         §46      `TESTED`   docs/PRODUCT-VALIDATION.md   security/tests/acceptance-m16.test.ts   docs/milestones/M16-closure.md M16 §46
 
-  `PRD-0057`    P1         §47      `TODO`   ---              ---        post-MVP (Master Spec); M17 audit accounted
+  `PRD-0057`    P1         §47      `DEFERRED`   ---              ---        post-MVP stages after the core is proven (Master Spec §47)
 
-  `PRD-0058`    P2         §47      `TODO`   ---              ---        post-MVP (Master Spec); M17 audit accounted
+  `PRD-0058`    P2         §47      `DEFERRED`   ---              ---        post-MVP stages after the core is proven (Master Spec §47)
 
-  `PRD-0059`    P2         §47      `TODO`   ---              ---        post-MVP (Master Spec); M17 audit accounted
+  `PRD-0059`    P2         §47      `DEFERRED`   ---              ---        post-MVP stages after the core is proven (Master Spec §47)
 
-  `PRD-0060`    P2         §47      `TODO`   ---              ---        post-MVP (Master Spec); M17 audit accounted
+  `PRD-0060`    P2         §47      `DEFERRED`   ---              ---        post-MVP stages after the core is proven (Master Spec §47)
 
-  `SEC-0042`    P1         §48      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0042`    P1         §48      `TESTED`   packages/platform-policy/src/architecture-principles.ts  architecture-principles.test.ts  the fifteen architecture principles stay in the README
 
-  `SEC-0043`    P0         §48      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0043`    P0         §48      `TESTED`   packages/platform-policy/src/architecture-principles.ts  architecture-principles.test.ts  README repeats each core principle
 
   `WRK-0054`    P1         §49      `TESTED`   docs/ARCHITECTURE.md vitest; docs/milestones/M00-manual-validation.md M00
 
@@ -590,9 +590,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0058`    P1         §49      `TESTED`   docs/ARCHITECTURE.md vitest; docs/milestones/M00-manual-validation.md M00
 
-  `WRK-0059`    P1         §50      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0059`    P1         §50      `TESTED`   packages/platform-policy/src/architecture-principles.ts  architecture-principles.test.ts  the MVP is one sentence in the README
 
-  `WRK-0060`    P1         §50      `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0060`    P1         §50      `TESTED`   packages/platform-policy/src/architecture-principles.ts  architecture-principles.test.ts  the sentence is install, select, publish, and isolated execution
 
   `SEC-0044`    P1         §51      `TESTED`   AGENTS.md, spec/DECISIONS.md vitest; docs/milestones/M00-manual-validation.md M00
 
@@ -1312,9 +1312,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0149`    P1         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0150`    P2         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0150`    P2         §159     `TESTED`   packages/marketplace/src/agent-scope.ts  agent-scope.test.ts  the agent stays inside an OpenClaw marketplace
 
-  `PRD-0151`    P2         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0151`    P2         §159     `TESTED`   packages/marketplace/src/agent-scope.ts  agent-scope.test.ts  shortlist and recommendation are in scope
 
   `PRD-0152`    P1         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1360,9 +1360,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0067`    P0         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `SEC-0068`    P0         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0068`    P0         §166     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  platform AI keys are visible only on the server
 
-  `SEC-0069`    P0         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0069`    P0         §166     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  .env.example does not assign secret values
 
   `AGT-0056`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1638,7 +1638,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0103`     P1         §216     `TESTED`   packages/contracts/capability-io.ts, packages/job-io   vitest; scripts/verify-m05-flow.mjs   docs/milestones/M05-manual-validation.md M05
 
-  `IO-0104`     P1         §217     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0104`     P1         §217     `TESTED`   packages/job-io/src/archive-inputs.ts  archive-inputs.test.ts  archives stay disabled unless a safe extractor is enabled
 
   `IO-0105`     P1         §217     `TESTED`   packages/job-io/src/archive-inputs.ts  archive-inputs.test.ts  archives rejected
 
@@ -1946,7 +1946,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0276`    P2         §276     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `SEC-0090`    P1         §277     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0090`    P1         §277     `TESTED`   packages/contracts/src/research-policy.ts  research-policy.test.ts  network access is the smallest declared primitive
 
   `SEC-0091`    P0         §277     `TESTED`   packages/platform-policy/src/network-purpose.ts  network-purpose.test.ts  minimum network for the declared purpose
 

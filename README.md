@@ -2,6 +2,26 @@
 
 Marketplace where an OpenClaw user publishes a capability they already use as a paid, constrained job. Buyers discover that capability, pay with marketplace credits, submit a structured job, and retrieve the result. The seller's personal OpenClaw environment stays private. Each job runs in a separate Worker, with an explicit input/output contract, permissions, and sandbox.
 
+Install the Worker next to OpenClaw, select the capability to expose, publish it as a paid job, and let other users execute it through a restricted isolated runtime without exposing the personal OpenClaw environment.
+
+## Architectural principles
+
+- Never execute buyer jobs in personal OpenClaw.
+- Import selectively; never clone blindly.
+- Buyer input is always untrusted.
+- Prompt instructions are not a security boundary.
+- Deny tools, resources, and network by default.
+- Sandbox failure must fail closed.
+- The seller's personal secrets should not be copied to the marketplace cloud.
+- Dedicated worker credentials are preferred.
+- Do not turn seller machines into general-purpose proxies.
+- Every published capability has a narrow contract.
+- Permissions are versioned and visible.
+- Expanding permissions requires explicit seller approval.
+- OpenClaw is an adapter, not the permanent domain model.
+- Marketplace security policy overrides seller convenience.
+- Build the smallest safe execution surface first.
+
 Authoritative product and technical spec: [`spec/MASTER-SPEC.md`](spec/MASTER-SPEC.md).
 
 ## What you can do
