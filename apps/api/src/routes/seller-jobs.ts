@@ -56,9 +56,12 @@ export function sellerJobRoutes(): Hono<AppEnv> {
         sellerProfileId: profile.id,
         structuredInput,
         workerManifest: manifest,
-        status: job.status,
-        capabilitySlug: job.capabilityVersion.capability.slug,
-      }),
+      status: job.status,
+      capabilitySlug: job.capabilityVersion.capability.slug,
+      buyerPaidCents: job.priceSnapshotCents,
+      platformFeeCents: job.platformFeeSnapshotCents ?? 0,
+      sellerNetCents: job.sellerNetSnapshotCents ?? 0,
+    }),
     );
   });
 

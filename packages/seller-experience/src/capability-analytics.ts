@@ -9,16 +9,17 @@ export async function buildCapabilityAnalytics(
   | { error: "NOT_FOUND" }
   | {
       capabilityId: string;
-      viewsProxy: number;
       jobsCreated: number;
       jobsCompleted: number;
       jobsFailed: number;
+      completionRate: number | null;
+      revenueCents: number;
       avgRuntimeMinutes: number | null;
     }
 > {
   const cap = await prisma.capability.findFirst({
     where: { id: capabilityId, sellerProfileId },
-    select: { id: true, jobCount: true },
+    select: { id: true },
   });
   if (!cap) {
     return { error: "NOT_FOUND" };
@@ -26,15 +27,22 @@ export async function buildCapabilityAnalytics(
   const since = new Date(Date.now() - 90 * 86_400_000);
   const jobs = await prisma.job.findMany({
     where: { capabilityId, createdAt: { gte: since } },
-    select: { status: true, startedAt: true, completedAt: true },
+    select: {
+      status: true,
+      startedAt: true,
+      completedAt: true,
+      sellerNetSnapshotCents: true,
+    },
     take: 1000,
   });
   let completed = 0;
   let failed = 0;
+  let revenueCents = 0;
   const runtimes: number[] = [];
   for (const job of jobs) {
     if (job.status === "COMPLETED") {
       completed += 1;
+      revenueCents += job.sellerNetSnapshotCents ?? 0;
       if (job.startedAt && job.completedAt) {
         runtimes.push((job.completedAt.getTime() - job.startedAt.getTime()) / 60_000);
       }
@@ -46,12 +54,14 @@ export async function buildCapabilityAnalytics(
   }
   const avgRuntimeMinutes =
     runtimes.length > 0 ? runtimes.reduce((a, b) => a + b, 0) / runtimes.length : null;
+  const terminal = completed + failed;
   return {
     capabilityId,
-    viewsProxy: cap.jobCount,
     jobsCreated: jobs.length,
     jobsCompleted: completed,
     jobsFailed: failed,
+    completionRate: terminal > 0 ? completed / terminal : null,
+    revenueCents,
     avgRuntimeMinutes,
   };
 }

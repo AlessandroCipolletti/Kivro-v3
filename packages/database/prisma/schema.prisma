@@ -353,6 +353,9 @@ model SellerProfile {
   maintenanceExpectedReturnAt DateTime?
   sellerNotifyJobCompleted Boolean @default(true)
   sellerNotifyHealthAlert  Boolean @default(true)
+  sellerNotifyFailure      Boolean @default(true)
+  sellerNotifyMissedWindow Boolean @default(true)
+  sellerNotifyProblemReport Boolean @default(true)
   sellerNotifyPayout       Boolean @default(true)
   firstSaleExplainedAt     DateTime?
   payoutStatus           String   @default("NOT_STARTED")

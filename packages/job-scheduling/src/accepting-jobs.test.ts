@@ -33,6 +33,20 @@ describe("accepting jobs §402", () => {
     expect(result.reasons).toContain("CONCURRENCY_LIMIT");
   });
 
+  it("allows a second slot when capacity is above the active count", () => {
+    const result = evaluateAcceptingNewJobs({
+      capabilityPublished: true,
+      schedule: openSchedule,
+      workerDeviceStatus: "ONLINE",
+      hasActiveJobOnWorker: true,
+      activeJobCountOnWorker: 1,
+      maxConcurrentJobs: 2,
+      globalDispatchEnabled: true,
+    });
+    expect(result.accepting).toBe(true);
+    expect(result.reasons).not.toContain("CONCURRENCY_LIMIT");
+  });
+
   it("maps schedule closed to SCHEDULED_OFFLINE", () => {
     const result = evaluateAcceptingNewJobs({
       capabilityPublished: true,

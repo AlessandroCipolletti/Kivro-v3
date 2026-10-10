@@ -7,7 +7,7 @@ describe("buildSellerJobExecutionView", () => {
       jobId: "job-1",
       buyerId: "buyer-1",
       sellerProfileId: "seller-1",
-      structuredInput: { topic: "hello" },
+      structuredInput: { topic: "hello", buyerEmail: "a@b.c", stripeCustomer: "cus_1" },
       workerManifest: {
         manifestVersion: 1,
         workerId: "00000000-0000-0000-0000-000000000001",
@@ -28,9 +28,14 @@ describe("buildSellerJobExecutionView", () => {
       },
       status: "RUNNING",
       capabilitySlug: "demo",
+      buyerPaidCents: 999,
+      platformFeeCents: 200,
+      sellerNetCents: 799,
     });
+    expect(view.earnings.source).toBe("job_price_snapshot");
     expect(view.excludedFromWorkerPayload).toContain("buyerEmail");
     expect(JSON.stringify(view.workerBundle)).not.toContain("buyerEmail");
+    expect(JSON.stringify(view.workerBundle)).not.toContain("cus_1");
     expect(JSON.stringify(view.workerBundle)).toContain("topic");
   });
 });

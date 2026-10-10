@@ -12,6 +12,13 @@ describe("M33 seller operations route guards", () => {
     expect(src).toContain("/operations/summary");
     expect(src).toContain("/maintenance");
     expect(src).toContain("sellerProfileId: profile.id");
+    expect(src).toContain("sellerNotifyFailure");
+    const rollback = fs.readFileSync(
+      path.join(root, "apps/api/src/routes/seller-capabilities.ts"),
+      "utf8",
+    );
+    expect(rollback).toContain("ROLLBACK_BLOCKED");
+    expect(rollback).toContain("assessRollbackReadiness");
   });
 
   it("seller job execution route is seller-scoped", () => {

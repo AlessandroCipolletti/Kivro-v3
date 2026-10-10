@@ -12,6 +12,7 @@ type Summary = {
   capabilitiesPublished: number;
   capabilitiesPaused: number;
   recentFailures: number;
+  earnings: { pendingCents: number; availableCents: number; paidCents: number };
 };
 
 type Maintenance = {
@@ -21,6 +22,9 @@ type Maintenance = {
 };
 
 export default function SellerOperationsPage() {
+  const [blockers, setBlockers] = useState<
+    Array<{ capabilityId: string; slug: string; reasons: Array<{ code: string; title: string; remediation: string }> }>
+  >([]);
   const [summary, setSummary] = useState<Summary | null>(null);
   const [maintenance, setMaintenance] = useState<Maintenance | null>(null);
   const [message, setMessage] = useState("");
@@ -30,9 +34,10 @@ export default function SellerOperationsPage() {
 
   const load = useCallback(async () => {
     setError(null);
-    const [sumRes, maintRes] = await Promise.all([
+    const [sumRes, maintRes, blockRes] = await Promise.all([
       fetch(`${API_BASE}/seller/operations/summary`, { credentials: "include" }),
       fetch(`${API_BASE}/seller/maintenance`, { credentials: "include" }),
+      fetch(`${API_BASE}/seller/operations/blockers`, { credentials: "include" }),
     ]);
     if (!sumRes.ok || !maintRes.ok) {
       setError("Sign in as a verified seller to view operations.");
@@ -40,6 +45,16 @@ export default function SellerOperationsPage() {
     }
     setSummary((await sumRes.json()) as Summary);
     const m = (await maintRes.json()) as Maintenance;
+    if (blockRes.ok) {
+      const body = (await blockRes.json()) as {
+        blockers: Array<{
+          capabilityId: string;
+          slug: string;
+          reasons: Array<{ code: string; title: string; remediation: string }>;
+        }>;
+      };
+      setBlockers(body.blockers);
+    }
     setMaintenance(m);
     setMessage(m.message ?? "");
     setReturnAt(m.expectedReturnAt?.slice(0, 16) ?? "");
@@ -101,7 +116,34 @@ export default function SellerOperationsPage() {
             <p className="text-sm text-muted">Failures (7d)</p>
             <p className="text-2xl font-semibold tabular-nums">{summary.recentFailures}</p>
           </li>
+          <li className="rounded border border-border p-4 sm:col-span-2">
+            <p className="text-sm text-muted">Ledger earnings</p>
+            <p className="text-sm tabular-nums">
+              Pending ${(summary.earnings.pendingCents / 100).toFixed(2)} · Available $
+              {(summary.earnings.availableCents / 100).toFixed(2)} · Paid $
+              {(summary.earnings.paidCents / 100).toFixed(2)}
+            </p>
+          </li>
         </ul>
+      ) : null}
+      {blockers.length > 0 ? (
+        <section className="mb-8 rounded border border-border p-4">
+          <h2 className="text-lg font-medium">Why work is not available</h2>
+          <ul className="mt-3 grid gap-3">
+            {blockers.map((row) => (
+              <li key={row.capabilityId}>
+                <p className="font-medium">{row.slug}</p>
+                <ul className="mt-1 text-sm text-muted">
+                  {row.reasons.map((reason) => (
+                    <li key={reason.code}>
+                      {reason.title}. {reason.remediation}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </section>
       ) : null}
       <section className="rounded border border-border p-4">
         <h2 className="text-lg font-medium">Maintenance mode</h2>

@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 
 type Earnings = {
   pendingCents: number;
+  availableCents: number;
   paidCents: number;
   transferCount: number;
   disclaimer: string;
@@ -62,10 +63,14 @@ export default function SellerEconomicsPage() {
       {earnings ? (
         <section className="mb-8 rounded border border-border p-4">
           <h2 className="text-lg font-medium">Earnings (ledger)</h2>
-          <dl className="mt-3 grid gap-2 sm:grid-cols-2">
+          <dl className="mt-3 grid gap-2 sm:grid-cols-3">
             <div>
               <dt className="text-sm text-muted">Pending</dt>
               <dd className="text-xl font-semibold tabular-nums">{usd(earnings.pendingCents)}</dd>
+            </div>
+            <div>
+              <dt className="text-sm text-muted">Available</dt>
+              <dd className="text-xl font-semibold tabular-nums">{usd(earnings.availableCents)}</dd>
             </div>
             <div>
               <dt className="text-sm text-muted">Paid</dt>

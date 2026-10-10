@@ -14,8 +14,8 @@ import {
   suggestInputContractFromDiscovery,
   validateImportConsent,
 } from "@kivro/capability-publish";
-import { buildSemanticVersionDiff } from "@kivro/seller-experience";
-import { parseCapabilityContract, parseInternetResearchPolicy } from "@kivro/contracts";
+import { assessRollbackReadiness, buildSemanticVersionDiff } from "@kivro/seller-experience";
+import { parseCapabilityContract, parseInternetResearchPolicy, parseWorkerManifest } from "@kivro/contracts";
 import { getPrismaClient } from "@kivro/database";
 import {
   buildBuyerFormSchema,
@@ -115,6 +115,45 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
     if (!body.targetVersionId) {
       return c.json({ error: "INVALID_INPUT" }, 400);
     }
+    const target = await getPrismaClient().capabilityVersion.findFirst({
+      where: {
+        id: body.targetVersionId,
+        capability: { id: c.req.param("id"), sellerProfileId: profile.id },
+      },
+    });
+    if (!target) {
+      return c.json({ error: "NOT_FOUND" }, 404);
+    }
+    let manifest = null;
+    if (target.workerManifest) {
+      try {
+        manifest = parseWorkerManifest(target.workerManifest);
+      } catch {
+        manifest = null;
+      }
+    }
+    const capability = await getPrismaClient().capability.findFirst({
+      where: { id: c.req.param("id"), sellerProfileId: profile.id },
+      select: { currentVersionId: true },
+    });
+    const inFlight = capability?.currentVersionId
+      ? await getPrismaClient().job.count({
+          where: {
+            capabilityVersionId: capability.currentVersionId,
+            status: { in: ["RUNNING", "STARTING", "DISPATCHED", "ACCEPTED"] },
+          },
+        })
+      : 0;
+    const readiness = assessRollbackReadiness({
+      targetWorkerManifest: manifest,
+      inFlightJobsOnCurrentVersion: inFlight,
+    });
+    if (!readiness.allowed) {
+      return c.json(
+        { error: "ROLLBACK_BLOCKED", blockers: readiness.blockers, warnings: readiness.warnings },
+        409,
+      );
+    }
     try {
       const result = await rollbackCapabilityVersion(
         getPrismaClient(),
@@ -122,7 +161,7 @@ export function sellerCapabilityRoutes(): Hono<AppEnv> {
         c.req.param("id"),
         body.targetVersionId,
       );
-      return c.json(result);
+      return c.json({ ...result, warnings: readiness.warnings });
     } catch (err) {
       if (err instanceof Error) {
         if (err.message === "NOT_FOUND") {

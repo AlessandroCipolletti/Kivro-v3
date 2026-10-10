@@ -9,7 +9,7 @@ describe("M33 acceptance", () => {
     const matrix = JSON.parse(
       fs.readFileSync(path.join(root, "packages/compatibility/matrix.json"), "utf8"),
     ) as { database: { schemaRevision: string } };
-    expect(matrix.database.schemaRevision).toBe("20260410200000");
+    expect(matrix.database.schemaRevision).toBe("20260410210000");
   });
 
   it("seller operations mounted from server composition root", () => {

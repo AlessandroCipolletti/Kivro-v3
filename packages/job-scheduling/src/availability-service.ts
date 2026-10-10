@@ -101,6 +101,38 @@ export async function evaluateCapabilityAvailability(
   };
 }
 
+/** SELLERUX-014 — lock the Worker row, then count active jobs, before dispatch. */
+export async function reserveWorkerDispatchSlot(
+  tx: Prisma.TransactionClient,
+  input: { workerDeviceId: string; capabilityId: string },
+): Promise<{ ok: true } | { error: "CONCURRENCY_LIMIT" | "NOT_FOUND" }> {
+  await tx.$queryRaw`SELECT id FROM "WorkerDevice" WHERE id = ${input.workerDeviceId} FOR UPDATE`;
+  const capability = await tx.capability.findUnique({
+    where: { id: input.capabilityId },
+    select: {
+      maxConcurrentJobs: true,
+      sellerProfile: { select: { maxConcurrentJobs: true } },
+    },
+  });
+  if (!capability) {
+    return { error: "NOT_FOUND" };
+  }
+  const max = Math.max(
+    1,
+    capability.maxConcurrentJobs ?? capability.sellerProfile.maxConcurrentJobs ?? 1,
+  );
+  const active = await tx.job.count({
+    where: {
+      workerDeviceId: input.workerDeviceId,
+      status: { in: [...ACTIVE_JOB_STATUSES] },
+    },
+  });
+  if (active >= max) {
+    return { error: "CONCURRENCY_LIMIT" };
+  }
+  return { ok: true };
+}
+
 export async function assertImmediateJobSubmissionAllowed(
   prisma: SchedulingDb,
   capabilityId: string,

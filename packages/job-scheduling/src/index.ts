@@ -14,6 +14,7 @@ export { parseScheduleConfig, updateCapabilitySchedule } from "./capability-sche
 export {
   assertImmediateJobSubmissionAllowed,
   evaluateCapabilityAvailability,
+  reserveWorkerDispatchSlot,
 } from "./availability-service.js";
 export { queueJobAfterPayment, promoteDueScheduledJobs } from "./scheduled-jobs.js";
 export { computeNextAvailableAt } from "./next-available.js";

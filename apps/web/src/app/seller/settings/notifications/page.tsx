@@ -9,6 +9,9 @@ import { useCallback, useEffect, useState } from "react";
 type Prefs = {
   jobCompleted: boolean;
   healthAlert: boolean;
+  failure: boolean;
+  missedWindow: boolean;
+  problemReport: boolean;
   payout: boolean;
 };
 
@@ -87,8 +90,11 @@ export default function SellerNotificationsPage() {
       {saved ? <Alert tone="info">Saved.</Alert> : null}
       <div className="grid gap-3">
         {row("jobCompleted", "Job completed", "When a buyer job reaches a terminal success state.")}
+        {row("failure", "Execution failures", "When a job fails startup, policy, or execution.")}
+        {row("missedWindow", "Missed windows", "When a job misses its scheduled or deadline window.")}
         {row("healthAlert", "Health alerts", "When Worker health blocks new purchases.")}
-        {row("payout", "Payout events", "When transfers move to paid/settled.")}
+        {row("problemReport", "Problem reports", "When a buyer reports a delivery problem.")}
+        {row("payout", "Payout events", "When transfers move to paid or settled.")}
       </div>
     </main>
   );

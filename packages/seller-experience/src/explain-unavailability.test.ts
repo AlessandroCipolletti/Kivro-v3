@@ -10,5 +10,7 @@ describe("buildExplainableUnavailability", () => {
     });
     expect(rows[0]?.code).toBe("CONCURRENCY_LIMIT");
     expect(rows[1]?.detail).toContain("Upgrading OpenClaw");
+    expect(rows[1]?.detail).toContain("Expected return");
+    expect(rows[0]?.remediation).toContain("capacity");
   });
 });

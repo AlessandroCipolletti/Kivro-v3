@@ -7,6 +7,7 @@ import {
   assessRollbackReadiness,
   buildAutoPauseExplanation,
   buildCapabilityAnalytics,
+  assertProviderCostWithinGuardrail,
   buildExplainableUnavailability,
   buildFirstSaleExplanation,
   buildMaintenanceState,
@@ -32,6 +33,34 @@ export function sellerOperationsRoutes(): Hono<AppEnv> {
     const profile = await ensureSellerProfile(getPrismaClient(), user.id, user.email);
     const summary = await buildSellerOperationsSummary(getPrismaClient(), profile.id);
     return c.json(summary);
+  });
+
+  app.get("/operations/blockers", async (c) => {
+    const user = c.get("user");
+    const profile = await ensureSellerProfile(getPrismaClient(), user.id, user.email);
+    const caps = await getPrismaClient().capability.findMany({
+      where: { sellerProfileId: profile.id, status: "PUBLISHED" },
+      select: { id: true, slug: true, name: true },
+      take: 20,
+    });
+    const blockers = [];
+    for (const cap of caps) {
+      const availability = await evaluateCapabilityAvailability(getPrismaClient(), cap.id);
+      if ("error" in availability || availability.accepting) {
+        continue;
+      }
+      blockers.push({
+        capabilityId: cap.id,
+        slug: cap.slug,
+        name: cap.name,
+        reasons: buildExplainableUnavailability({
+          reasons: availability.reasons,
+          maintenanceMessage: profile.maintenanceMessage,
+          maintenanceExpectedReturnAt: profile.maintenanceExpectedReturnAt?.toISOString() ?? null,
+        }),
+      });
+    }
+    return c.json({ blockers });
   });
 
   app.get("/capabilities/:id/unavailability", async (c) => {
@@ -156,6 +185,9 @@ export function sellerOperationsRoutes(): Hono<AppEnv> {
     const body = await c.req.json<{
       jobCompleted?: boolean;
       healthAlert?: boolean;
+      failure?: boolean;
+      missedWindow?: boolean;
+      problemReport?: boolean;
       payout?: boolean;
     }>();
     const merged = mergeSellerNotificationPreferences(
@@ -163,6 +195,9 @@ export function sellerOperationsRoutes(): Hono<AppEnv> {
       {
         jobCompleted: body.jobCompleted,
         healthAlert: body.healthAlert,
+        failure: body.failure,
+        missedWindow: body.missedWindow,
+        problemReport: body.problemReport,
         payout: body.payout,
       },
     );
@@ -171,6 +206,9 @@ export function sellerOperationsRoutes(): Hono<AppEnv> {
       data: {
         sellerNotifyJobCompleted: merged.jobCompleted,
         sellerNotifyHealthAlert: merged.healthAlert,
+        sellerNotifyFailure: merged.failure,
+        sellerNotifyMissedWindow: merged.missedWindow,
+        sellerNotifyProblemReport: merged.problemReport,
         sellerNotifyPayout: merged.payout,
       },
     });
@@ -266,6 +304,12 @@ export function sellerOperationsRoutes(): Hono<AppEnv> {
     if (!job) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
+    if (job.status === "COMPLETED" && !profile.firstSaleExplainedAt) {
+      await getPrismaClient().sellerProfile.update({
+        where: { id: profile.id },
+        data: { firstSaleExplainedAt: new Date() },
+      });
+    }
     return c.json(
       buildFirstSaleExplanation({
         jobId: job.id,
@@ -285,10 +329,14 @@ export function sellerOperationsRoutes(): Hono<AppEnv> {
       return c.json({ error: "INVALID_INPUT" }, 400);
     }
     const tier = getPriceTierById(tierId);
-    if (!tier) {
+    if (!tier || !Number.isFinite(estimated)) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
-    return c.json(buildProviderCostEstimateView({ tier, estimatedProviderCostCents: estimated }));
+    const view = buildProviderCostEstimateView({ tier, estimatedProviderCostCents: estimated });
+    if (!assertProviderCostWithinGuardrail(estimated)) {
+      return c.json({ error: "PROVIDER_COST_GUARDRAIL", ...view }, 409);
+    }
+    return c.json(view);
   });
 
   return app;

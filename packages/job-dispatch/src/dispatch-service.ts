@@ -1,15 +1,16 @@
 import { PROTOCOL_VERSION, type JobOffer } from "@kivro/contracts";
-import type { PrismaClient } from "@kivro/database";
+import type { Prisma, PrismaClient } from "@kivro/database";
 import { assertJobTransition, type JobStatus } from "@kivro/domain";
 import { isGlobalDispatchEnabled } from "@kivro/platform-policy";
 import {
   assertImmediateJobSubmissionAllowed,
   assertQueuedJobDispatchAllowed,
+  reserveWorkerDispatchSlot,
 } from "@kivro/job-scheduling";
 import { gateWorkerJobOnControlPlane, type WorkerControlPlaneContext } from "./control-plane-guard.js";
 
 async function transition(
-  prisma: PrismaClient,
+  prisma: PrismaClient | Prisma.TransactionClient,
   jobId: string,
   from: JobStatus,
   to: JobStatus,
@@ -66,11 +67,27 @@ export async function dispatchJobToWorker(
   }
   const executionControlPlaneId =
     job.executionControlPlaneId ?? input.executionControlPlaneId;
-  await transition(prisma, job.id, "QUEUED", "DISPATCHED", {
-    workerDeviceId: input.workerDeviceId,
-    dispatchExpiresAt: input.offerExpiresAt,
-    executionControlPlaneId,
-  });
+  try {
+    await prisma.$transaction(async (tx) => {
+      const slot = await reserveWorkerDispatchSlot(tx, {
+        workerDeviceId: input.workerDeviceId,
+        capabilityId: job.capabilityId,
+      });
+      if ("error" in slot) {
+        throw new Error(slot.error);
+      }
+      await transition(tx, job.id, "QUEUED", "DISPATCHED", {
+        workerDeviceId: input.workerDeviceId,
+        dispatchExpiresAt: input.offerExpiresAt,
+        executionControlPlaneId,
+      });
+    });
+  } catch (err) {
+    if (err instanceof Error && (err.message === "CONCURRENCY_LIMIT" || err.message === "NOT_FOUND")) {
+      return { error: err.message };
+    }
+    throw err;
+  }
   const offer: JobOffer = {
     protocolVersion: PROTOCOL_VERSION,
     jobId: job.id,

@@ -21,5 +21,6 @@ export function buildFirstSaleExplanation(input: {
     );
   }
   lines.push(`Settlement status: ${input.settlementStatus}.`);
+  lines.push("Monitor later runs and payouts from Seller operations and Economics.");
   return { title: "First sale — what happened", lines };
 }

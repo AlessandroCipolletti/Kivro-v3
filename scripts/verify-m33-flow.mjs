@@ -39,6 +39,8 @@ run("pnpm", [
   "run",
   "packages/job-scheduling/src/accepting-jobs.test.ts",
   "packages/seller-experience/src/explain-unavailability.test.ts",
+  "packages/seller-experience/src/earnings-dashboard.test.ts",
+  "packages/seller-experience/src/seller-notification-preferences.test.ts",
   "packages/seller-experience/src/provider-cost-view.test.ts",
   "packages/seller-experience/src/rollback-readiness.test.ts",
   "packages/seller-experience/src/seller-job-execution-view.test.ts",

@@ -58,6 +58,11 @@
       "folder": "20260410200000_m33_seller_operations",
       "phase": "expand",
       "notes": "Seller maintenance, concurrency, provider cost — M33"
+    },
+    {
+      "folder": "20260410210000_m33_seller_notification_events",
+      "phase": "expand",
+      "notes": "Seller notification event preferences — M33"
     }
   ]
 }

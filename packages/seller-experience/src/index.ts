@@ -34,10 +34,16 @@ export { buildCapabilityAnalytics } from "./capability-analytics.js";
 export { assessRollbackReadiness } from "./rollback-readiness.js";
 export { buildAutoPauseExplanation } from "./auto-pause-explanation.js";
 export {
+  isWithinSellerNotificationDedupWindow,
   mergeSellerNotificationPreferences,
   readSellerNotificationPreferences,
+  sellerNotificationAllowed,
+  sellerNotificationDedupKey,
+  SELLER_NOTIFICATION_DEDUP_MS,
+  type SellerNotificationEvent,
   type SellerNotificationPreferences,
 } from "./seller-notification-preferences.js";
+export { classifySellerTransferStatus } from "./earnings-dashboard.js";
 export {
   buildBuyerMaintenanceCopy,
   buildMaintenanceState,
