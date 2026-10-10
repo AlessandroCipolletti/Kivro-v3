@@ -47,6 +47,7 @@
     "verify:m22": "node scripts/run-with-env.mjs node scripts/verify-m22-flow.mjs",
     "verify:m23": "node scripts/run-with-env.mjs node scripts/verify-m23-flow.mjs",
     "verify:m24": "node scripts/run-with-env.mjs node scripts/verify-m24-flow.mjs",
+    "verify:m25": "node scripts/run-with-env.mjs node scripts/verify-m25-flow.mjs",
     "dev:doctor": "node scripts/run-with-env.mjs node scripts/local-dev-doctor.mjs",
     "test:m18:preflight": "node scripts/run-with-env.mjs node scripts/run-m18-local-preflight.mjs",
     "worker:dev": "node scripts/run-with-env.mjs node scripts/worker-dev.mjs",
@@ -54,6 +55,7 @@
     "test:e2e:local": "node scripts/run-with-env.mjs node scripts/test-e2e-local.mjs"
   },
   "devDependencies": {
+    "@kivro/compatibility": "workspace:*",
     "@kivro/auth": "workspace:*",
     "@kivro/billing": "workspace:*",
     "@kivro/database": "workspace:*",

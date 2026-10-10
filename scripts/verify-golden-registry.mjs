@@ -19,6 +19,10 @@ const testCorpus = [
   "security/tests/conformance-manifest-m19.test.ts",
   "security/tests/conformance-divergence-rejection-m24.test.ts",
   "scripts/check-golden-registry-shape.mjs",
+  "security/tests/compatibility-fail-closed-m25.test.ts",
+  "security/tests/worker-backend-transition-m25.test.ts",
+  "security/tests/conformance-dual-control-plane-restart-m25.test.ts",
+  "packages/compatibility/src/worker-release-signing.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");

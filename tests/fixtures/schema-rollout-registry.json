@@ -1,0 +1,33 @@
+{
+  "description": "HARD-009 — expand → deploy/backfill → contract phases per migration folder.",
+  "activeRolloutPhase": "contract",
+  "migrations": [
+    { "folder": "20260326220000_m01_domain", "phase": "contract", "notes": "baseline" },
+    { "folder": "20260327010000_m02_auth", "phase": "contract" },
+    { "folder": "20260327020000_m03_publish_assets", "phase": "contract" },
+    { "folder": "20260327030000_m03_graph_supply", "phase": "contract" },
+    { "folder": "20260327040000_m05_buyer_assets", "phase": "contract" },
+    { "folder": "20260327050000_m07_job_control", "phase": "contract" },
+    { "folder": "20260327060000_m07_checkpoints", "phase": "contract" },
+    { "folder": "20260327070000_m08_payments", "phase": "contract" },
+    { "folder": "20260327080000_m08_card_payment", "phase": "contract" },
+    { "folder": "20260327090000_m09_scheduling", "phase": "contract" },
+    { "folder": "20260327100000_m09_scheduling_hardening", "phase": "contract" },
+    { "folder": "20260327110000_m09_schedule_adjusted", "phase": "contract" },
+    { "folder": "20260327120000_m10_marketplace", "phase": "contract" },
+    { "folder": "20260327130000_m10_reviews", "phase": "contract" },
+    { "folder": "20260327140000_m11_agent_orchestration", "phase": "contract" },
+    { "folder": "20260327150000_m11_hardening", "phase": "contract" },
+    { "folder": "20260327160000_m12_seller_health", "phase": "contract" },
+    { "folder": "20260327170000_m12_platform_security_pause", "phase": "contract" },
+    { "folder": "20260327180000_m13_buyer_api", "phase": "contract" },
+    { "folder": "20260327180100_m13_hardening", "phase": "contract" },
+    { "folder": "20260327190000_m15_abuse_ops", "phase": "contract" },
+    { "folder": "20260410120000_m20_durable_work", "phase": "contract" },
+    {
+      "folder": "20260410140000_m22_execution_control_plane",
+      "phase": "expand",
+      "notes": "nullable executionControlPlaneId — safe during overlapping ACTIVE/DRAINING"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-10-10T07:24:59.694Z",
+  "gitCommit": "9e35b4bd5c97e4dd6fe9abbafdb1385226df9839",
+  "cloudReleaseChannel": "mvp",
+  "apiContractVersion": "v1-mvp",
+  "workerProtocolMin": 1,
+  "workerProtocolMax": 1,
+  "capabilityManifestSchemaVersion": 1,
+  "databaseSchemaRevision": "20260410140000",
+  "schemaRolloutPhase": "contract",
+  "workerReleaseChannel": "stable",
+  "workerMinSupportedVersion": "0.0.0-m07",
+  "workerLatestSupportedVersion": "0.0.0-m07",
+  "adapterProfiles": {
+    "netsons": {
+      "revision": "cloud-netsons@workspace"
+    },
+    "aws": {
+      "revision": "cloud-aws@workspace"
+    }
+  },
+  "parityReportPath": "docs/audits/M24-provider-parity-report.json",
+  "conformanceManifestPath": "tests/fixtures/backend-conformance-manifest.json"
+}

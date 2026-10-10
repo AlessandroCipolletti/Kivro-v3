@@ -17,7 +17,9 @@ describe("M24 compatibility matrix (HARD-007)", () => {
       apiContractVersion: string;
       workerProtocolMin: number;
       workerProtocolMax: number;
+      workerRelease: { minSupportedWorkerVersion: string };
     };
+    expect(matrix.workerRelease.minSupportedWorkerVersion).toBeTruthy();
     expect(matrix.apiContractVersion).toBe(SHARED_API_CONTRACT_VERSION);
     expect(matrix.workerProtocolMin).toBe(PROTOCOL_VERSION);
     expect(WORKER_PROTOCOL_COMPATIBILITY_WINDOW.minSupportedProtocolVersion).toBe(

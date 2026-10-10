@@ -21,6 +21,7 @@
     "@kivro/job-failure": "workspace:*",
     "@kivro/auth": "workspace:*",
     "@kivro/capability-publish": "workspace:*",
+    "@kivro/compatibility": "workspace:*",
     "@kivro/cloud-aws": "workspace:*",
     "@kivro/cloud-core": "workspace:*",
     "@kivro/cloud-netsons": "workspace:*",

@@ -612,6 +612,10 @@ greenfield.
 
 **Decision:** Ship `check-duplicate-semantic-ownership.mjs`, golden registry v2 with `verify-golden-registry.mjs`, `createBrokenCompositionDriftProbe`, `generate-provider-parity-report.mjs`, and `pnpm verify:m24` (includes `verify:m23`). Full fault-injection golden (HARD-005/006) remains M26. Gate: `pnpm verify:m24`.
 
+## DEC-M25-001 — M25 compatibility matrix is authoritative in `@kivro/compatibility`
+
+**Decision:** `packages/compatibility/matrix.json` is the single authoritative HARD-007 matrix; `tests/fixtures/compatibility-matrix.json` mirrors it for golden tests. Cloud handshake, Worker policy, release manifest, and schema rollout registry derive from this package. Gate: `pnpm verify:m25` (includes `verify:m24`).
+
 ## DEC-M24-002 — M24 exit criteria vs deferred HARD-004/005
 
 **Decision:** M24 is **DONE** when `M24-exit-criteria.json` reports `m24HarnessComplete: true` after `verify:m24`. HARD-004 full paid success/fail golden E2E and HARD-005 fault matrix are explicitly **DEFERRED** (M29+ / M26) while M24-GOLD-005 seeds payment idempotency tests and drift canaries prove divergence rejection.

@@ -1,6 +1,7 @@
 import { getPrismaClient } from "@kivro/database";
 import { buildWorkerHealthReport, type WorkerHealthReport } from "@kivro/seller-health";
 import { applyWorkerHeartbeat } from "../services/worker-heartbeat-service.js";
+import { gateWorkerCloudHandshake } from "../services/worker-compatibility-gate.js";
 import { Hono } from "hono";
 import type { AppEnv } from "../types.js";
 
@@ -16,7 +17,14 @@ export function workerHealthRoutes(): Hono<AppEnv> {
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
     }
-    const body = await c.req.json<Partial<WorkerHealthReport>>();
+    const body = await c.req.json<Partial<WorkerHealthReport> & { protocolVersion?: number }>();
+    const handshake = gateWorkerCloudHandshake({
+      protocolVersion: body.protocolVersion,
+      workerVersion: body.workerVersion,
+    });
+    if (!handshake.ok) {
+      return c.json(handshake.body, handshake.httpStatus);
+    }
     const report = buildWorkerHealthReport({
       workerVersion: body.workerVersion ?? "unknown",
       openClawVersion: body.openClawVersion ?? null,

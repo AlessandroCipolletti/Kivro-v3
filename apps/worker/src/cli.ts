@@ -20,6 +20,11 @@ import { generateDeviceKeyPair } from "@kivro/crypto";
 import { verifyWorkerManifestSkillHashes } from "@kivro/capability-publish";
 import { hashOpenClawSkill } from "@kivro/openclaw-adapter";
 import { WORKER_COMMANDS } from "@kivro/job-protocol";
+import {
+  KIVRO_COMPATIBILITY_MATRIX,
+  verifyWorkerReleaseManifest,
+  type WorkerReleaseManifest,
+} from "@kivro/compatibility";
 import { createOpenClawAdapter } from "@kivro/openclaw-adapter";
 import {
   clearWorkerGlobalPause,
@@ -38,7 +43,7 @@ import os from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 
-const WORKER_VERSION = "0.0.0-m07";
+const WORKER_VERSION = KIVRO_COMPATIBILITY_MATRIX.workerRelease.latestSupportedWorkerVersion;
 
 function runtimeRoot(): string {
   const configured = process.env.KIVRO_RUNTIME_ROOT ?? "~/.kivro/runtime";
@@ -645,6 +650,25 @@ program
   .action(async () => {
     const { runWorkerPollDaemon } = await import("./start-daemon.js");
     await runWorkerPollDaemon();
+  });
+
+const updateCmd = program.command("update").description("Signed Worker release verification (M25 / HARD-011)");
+
+updateCmd
+  .command("verify")
+  .description("Verify Worker release manifest signature before install")
+  .requiredOption("--manifest <path>", "JSON manifest path")
+  .requiredOption("--signature <base64>", "Base64 signature")
+  .requiredOption("--public-key <path>", "PEM public key path")
+  .action((opts: { manifest: string; signature: string; publicKey: string }) => {
+    const manifest = JSON.parse(fs.readFileSync(opts.manifest, "utf8")) as WorkerReleaseManifest;
+    const publicKeyPem = fs.readFileSync(opts.publicKey, "utf8");
+    const ok = verifyWorkerReleaseManifest(manifest, opts.signature, publicKeyPem);
+    if (!ok) {
+      console.error(JSON.stringify({ error: "SIGNATURE_INVALID" }));
+      process.exit(1);
+    }
+    console.log(JSON.stringify({ ok: true, workerVersion: manifest.workerVersion }));
   });
 
 program.command("version").action(() => console.log(WORKER_VERSION));

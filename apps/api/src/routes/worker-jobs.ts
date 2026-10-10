@@ -23,6 +23,7 @@ import { executeWorkerPoll } from "../services/worker-poll-service.js";
 import { resolveWorkerRequestControlPlane } from "../services/worker-control-plane-context.js";
 import { dispatchJobToWorkerWithProfileSignal } from "../services/cloud-dispatch-hook.js";
 import { sanitizeAuditPayload } from "@kivro/observability";
+import { gateWorkerCloudHandshake } from "../services/worker-compatibility-gate.js";
 import type { Prisma } from "@kivro/database";
 import { Hono } from "hono";
 import type { AppEnv } from "../types.js";
@@ -59,6 +60,14 @@ export function workerJobRoutes(): Hono<AppEnv> {
     const workerDeviceId = resolveWorkerDeviceId(c);
     if (!workerDeviceId) {
       return c.json({ error: "WORKER_DEVICE_REQUIRED" }, 401);
+    }
+    const protocolHeader = c.req.header("x-kivro-protocol-version");
+    const protocolVersion = protocolHeader ? Number.parseInt(protocolHeader, 10) : undefined;
+    const handshake = gateWorkerCloudHandshake({
+      protocolVersion: Number.isFinite(protocolVersion) ? protocolVersion : undefined,
+    });
+    if (!handshake.ok) {
+      return c.json(handshake.body, handshake.httpStatus);
     }
     const cp = resolveWorkerRequestControlPlane(c.req.header("x-kivro-control-plane-id"));
     const poll = await executeWorkerPoll(getPrismaClient(), workerDeviceId, cp);

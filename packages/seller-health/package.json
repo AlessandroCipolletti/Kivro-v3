@@ -15,5 +15,7 @@
     "lint": "eslint src",
     "test": "vitest run"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@kivro/compatibility": "workspace:*"
+  }
 }

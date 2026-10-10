@@ -76,6 +76,31 @@
       "id": "M24-GOLD-008",
       "name": "divergence rejection",
       "assert": "broken composition and transport adapters fail CI parity checks"
+    },
+    {
+      "id": "M25-GOLD-001",
+      "name": "protocol fail-closed",
+      "assert": "unsupported protocol versions reject with remediation"
+    },
+    {
+      "id": "M25-GOLD-002",
+      "name": "worker version handshake",
+      "assert": "supported worker versions pass cloud handshake"
+    },
+    {
+      "id": "M25-GOLD-003",
+      "name": "backend transition independence",
+      "assert": "provider switch does not require binary when transports match"
+    },
+    {
+      "id": "M25-GOLD-004",
+      "name": "dual-CP restart",
+      "assert": "Worker rebuilds multi-transport session during DRAINING/ACTIVE overlap"
+    },
+    {
+      "id": "M25-GOLD-005",
+      "name": "signed worker release",
+      "assert": "tampered Worker release manifests fail signature verification"
     }
   ]
 }

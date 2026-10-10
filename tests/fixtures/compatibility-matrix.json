@@ -1,11 +1,30 @@
 {
-  "description": "HARD-007 — independently identifiable version surfaces (M24 seed; expanded in M25).",
+  "version": 1,
+  "description": "HARD-007 — mirror of packages/compatibility/matrix.json for fixtures/tests.",
+  "cloudReleaseChannel": "mvp",
   "apiContractVersion": "v1-mvp",
+  "capabilityManifestSchemaVersion": 1,
   "workerProtocolMin": 1,
   "workerProtocolMax": 1,
   "database": {
     "schemaPackage": "@kivro/database",
-    "migrationsRelativePath": "packages/database/prisma/migrations"
+    "schemaRevision": "20260410140000",
+    "migrationsRelativePath": "packages/database/prisma/migrations",
+    "rolloutRegistryPath": "tests/fixtures/schema-rollout-registry.json"
+  },
+  "workerRelease": {
+    "channel": "stable",
+    "minSupportedWorkerVersion": "0.0.0-m07",
+    "latestSupportedWorkerVersion": "0.0.0-m07",
+    "revokedWorkerVersions": []
+  },
+  "openClawAdapter": {
+    "minInclusive": "0.0.0",
+    "maxExclusive": "99.0.0"
+  },
+  "controlPlaneOverlap": {
+    "allowedDuringBackendTransition": true,
+    "requiresProtocolWithinWindow": true
   },
   "contractsPackage": "@kivro/contracts"
 }

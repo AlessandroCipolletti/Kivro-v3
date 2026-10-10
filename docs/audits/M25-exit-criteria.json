@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-10-10T07:25:00.479Z",
+  "m25HarnessComplete": true,
+  "criteria": [
+    {
+      "id": "compatibility-matrix-authoritative",
+      "status": "PASS",
+      "detail": "@kivro/compatibility matrix + verify-compatibility-matrix.mjs"
+    },
+    {
+      "id": "schema-rollout-discipline",
+      "status": "PASS",
+      "detail": "expand/deploy/contract registry + overlap guard"
+    },
+    {
+      "id": "unified-release-manifest",
+      "status": "PASS",
+      "detail": "generate-unified-release-manifest.mjs"
+    },
+    {
+      "id": "worker-release-signing",
+      "status": "PASS",
+      "detail": "HARD-011 sign/verify + kivro-worker update verify"
+    },
+    {
+      "id": "cloud-fail-closed-handshake",
+      "status": "PASS",
+      "detail": "HARD-008 evaluateCloudWorkerHandshake on poll/heartbeat"
+    },
+    {
+      "id": "staged-worker-update",
+      "status": "PASS",
+      "detail": "HARD-012 staged update state machine tests"
+    },
+    {
+      "id": "backend-transition-without-binary",
+      "status": "PASS",
+      "detail": "HARD-013 dual-CP restart / transport overlap tests"
+    }
+  ]
+}

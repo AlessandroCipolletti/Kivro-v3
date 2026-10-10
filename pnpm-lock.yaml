@@ -20,6 +20,9 @@ importers:
       '@kivro/billing':
         specifier: workspace:*
         version: link:packages/billing
+      '@kivro/compatibility':
+        specifier: workspace:*
+        version: link:packages/compatibility
       '@kivro/database':
         specifier: workspace:*
         version: link:packages/database
@@ -77,6 +80,9 @@ importers:
       '@kivro/cloud-netsons':
         specifier: workspace:*
         version: link:../../packages/cloud-netsons
+      '@kivro/compatibility':
+        specifier: workspace:*
+        version: link:../../packages/compatibility
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -190,6 +196,9 @@ importers:
       '@kivro/cloud-core':
         specifier: workspace:*
         version: link:../../packages/cloud-core
+      '@kivro/compatibility':
+        specifier: workspace:*
+        version: link:../../packages/compatibility
       '@kivro/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -394,6 +403,12 @@ importers:
       '@kivro/worker-transport':
         specifier: workspace:*
         version: link:../worker-transport
+
+  packages/compatibility:
+    dependencies:
+      '@kivro/contracts':
+        specifier: workspace:*
+        version: link:../contracts
 
   packages/contracts:
     dependencies:
@@ -613,7 +628,11 @@ importers:
         specifier: workspace:*
         version: link:../contracts
 
-  packages/seller-health: {}
+  packages/seller-health:
+    dependencies:
+      '@kivro/compatibility':
+        specifier: workspace:*
+        version: link:../compatibility
 
   packages/storage:
     dependencies:

@@ -12,35 +12,23 @@ export type SecurityWarning = {
   detectedAt: string;
 };
 
+import {
+  compareWorkerVersions,
+  evaluateWorkerVersion,
+  resolveWorkerVersionPolicy,
+} from "@kivro/compatibility";
+
 /** Minimum Worker semver prefix allowed to accept paid jobs (§371). */
-export const MIN_SECURITY_WORKER_VERSION =
-  process.env.KIVRO_MIN_SECURITY_WORKER_VERSION ?? "0.0.0-m07";
+export const MIN_SECURITY_WORKER_VERSION = resolveWorkerVersionPolicy().minSupportedWorkerVersion;
 
 export const LATEST_SUPPORTED_WORKER_VERSION =
-  process.env.KIVRO_LATEST_SUPPORTED_WORKER_VERSION ?? "0.0.0-m07";
+  resolveWorkerVersionPolicy().latestSupportedWorkerVersion;
 
-function versionTuple(v: string): number[] {
-  const core = v.replace(/^v/i, "").split("-")[0] ?? "0";
-  return core.split(".").map((p) => Number.parseInt(p, 10) || 0);
-}
-
-/** Lexicographic compare on numeric semver segments; suffix ignored for MVP. */
-export function compareWorkerVersions(a: string, b: string): number {
-  const ta = versionTuple(a);
-  const tb = versionTuple(b);
-  const len = Math.max(ta.length, tb.length);
-  for (let i = 0; i < len; i += 1) {
-    const da = ta[i] ?? 0;
-    const db = tb[i] ?? 0;
-    if (da !== db) {
-      return da < db ? -1 : 1;
-    }
-  }
-  return 0;
-}
+export { compareWorkerVersions };
 
 export function isWorkerBelowSecurityMinimum(workerVersion: string): boolean {
-  return compareWorkerVersions(workerVersion, MIN_SECURITY_WORKER_VERSION) < 0;
+  const evaluation = evaluateWorkerVersion(workerVersion);
+  return !evaluation.ok && evaluation.code === "WORKER_VERSION_BELOW_MINIMUM";
 }
 
 export function buildSecurityWarnings(input: {
@@ -97,12 +85,23 @@ export function buildSecurityWarnings(input: {
     return warnings;
   }
 
-  if (isWorkerBelowSecurityMinimum(report.workerVersion)) {
+  const versionEval = evaluateWorkerVersion(report.workerVersion);
+  if (!versionEval.ok && versionEval.code === "WORKER_VERSION_REVOKED") {
+    warnings.push({
+      severity: "CRITICAL",
+      code: "WORKER_VERSION_REVOKED",
+      title: "Worker version revoked",
+      description: versionEval.message,
+      blocking: true,
+      requiredAction: "Install a supported non-revoked Worker release.",
+      detectedAt: report.reportedAt,
+    });
+  } else if (!versionEval.ok && versionEval.code === "WORKER_VERSION_BELOW_MINIMUM") {
     warnings.push({
       severity: "CRITICAL",
       code: "WORKER_VERSION_BELOW_MINIMUM",
       title: "Security update required",
-      description: `Worker ${report.workerVersion} is below minimum ${MIN_SECURITY_WORKER_VERSION}.`,
+      description: versionEval.message,
       blocking: true,
       requiredAction: "Upgrade kivro-worker before accepting new jobs.",
       detectedAt: report.reportedAt,
