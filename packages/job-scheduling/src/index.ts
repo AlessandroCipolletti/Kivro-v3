@@ -67,6 +67,8 @@ export {
   scheduledMaxWaitMs,
 } from "./wait-policy.js";
 export { fairQueueOrder, scheduledReservationFairness, type ReservationFairness } from "./scheduled-fairness.js";
+export { availabilityAfterDependencyFailure } from "./dependency-isolation.js";
+export { scheduleAuditRecord, type ScheduleAuditSource } from "./schedule-audit.js";
 export { validateScheduledRunAt } from "./scheduled-run-validation.js";
 export {
   applyEligibleTimeChange,

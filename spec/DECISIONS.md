@@ -706,6 +706,10 @@ greenfield.
 
 **Decision:** `IMMEDIATE_ONLY` fails before payment when the capability is not accepting. `EARLIEST_AVAILABLE` reserves a job for the authoritative next window. Buyer inputs cannot change schedule, pause, or concurrency. Public availability shows the next window, not the seller's weekly timetable. A future purchase is labeled "Schedule for earliest availability" and the buyer is told the job is reserved now and starts later. Scheduled delivery is measured from the scheduled run, not the reservation. The agent skips an unavailable candidate and will not spend more or drop a permission to buy something available now. A new required input, or an optional output that becomes required, is a breaking contract change.
 
+## DEC-SCH-008 — Discovery, dependencies, and seller control stay explicit
+
+**Decision:** The agent index stores public name, description, category, tags, inputs, outputs, examples, strengths, and limitations in PostgreSQL. Private instructions and secrets are not indexed, and there is no separate search cluster. A failed seller dependency changes only capabilities that declare it. A provider failure cannot create a purchase. Platform inference does not perform the paid job. A schedule edit records seller, capability, old and new schedule, timezone, and source. The seller can stop accepting work on the machine and from the web dashboard even when the cloud is unreachable. A future orchestration step waits only with an explicit deadline.
+
 ## DEC-SCH-007 — Public pages show the service, not the machine
 
 **Decision:** The public seller page shows display name, member since, rating from completed-job reviews, completed jobs, published capabilities, and verification. It omits legal name, payout account, local address, and runtime paths. Weekly hours stay off the buyer view unless the seller publishes service hours. Listing cards show the input and output contract. A text description cannot make a capability accept a file it does not declare. The published job price stays fixed. A future reservation is ordered by creation time, disclosed before payment, and measured from the execution window.

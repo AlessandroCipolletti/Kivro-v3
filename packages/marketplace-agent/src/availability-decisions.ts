@@ -4,6 +4,21 @@ export function autonomousPlanIncludesFutureStep(userApprovedWait: boolean): boo
   return userApprovedWait;
 }
 
+/** §480 — a future step is an explicit wait with a deadline, or it is blocked. */
+export function orchestrationWaitState(input: {
+  stepAvailableNow: boolean;
+  userApprovedWait: boolean;
+  waitDeadlineAt: Date | null;
+}): "RUN" | "WAIT" | "BLOCKED" {
+  if (input.stepAvailableNow) {
+    return "RUN";
+  }
+  if (!input.userApprovedWait || input.waitDeadlineAt == null) {
+    return "BLOCKED";
+  }
+  return "WAIT";
+}
+
 /** A purchased single capability may still be scheduled for its next window. */
 export function singleCapabilityJobMayBeScheduled(): true {
   return true;

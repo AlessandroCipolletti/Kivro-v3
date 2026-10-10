@@ -5,6 +5,7 @@ import {
   normalizeWeeklyWindows,
   type ScheduleWindowInput,
 } from "./schedule-validation.js";
+import { scheduleAuditRecord, type ScheduleAuditSource } from "./schedule-audit.js";
 import { recheckScheduledJobsAfterScheduleChange } from "./schedule-change-impact.js";
 
 export function parseScheduleConfig(raw: {
@@ -29,6 +30,8 @@ export async function updateCapabilitySchedule(
     timezone: string;
     windows: WeeklyWindow[] | ScheduleWindowInput[];
     actorUserId?: string;
+    workerId?: string | null;
+    source?: ScheduleAuditSource;
   },
 ): Promise<{ ok: true } | { error: string }> {
   const capability = await prisma.capability.findFirst({
@@ -64,16 +67,26 @@ export async function updateCapabilitySchedule(
     timezone: input.timezone,
     windows: normalized.windows,
   };
+  const audit = scheduleAuditRecord({
+    sellerId: input.sellerProfileId,
+    capabilityId: capability.id,
+    workerId: input.workerId ?? null,
+    oldSchedule: previous,
+    newSchedule: newScheduleConfig,
+    timezone: input.timezone,
+    changedAt: new Date(),
+    source: input.source ?? "WEB",
+  });
   await prisma.capabilityScheduleChange.create({
     data: {
-      capabilityId: capability.id,
-      sellerProfileId: input.sellerProfileId,
-      previousSchedule: JSON.parse(JSON.stringify(previous)) as Prisma.InputJsonValue,
+      capabilityId: audit.capabilityId,
+      sellerProfileId: audit.sellerId,
+      previousSchedule: JSON.parse(JSON.stringify(audit.oldSchedule)) as Prisma.InputJsonValue,
       newSchedule: JSON.parse(
         JSON.stringify({
-          mode: input.mode,
-          timezone: input.timezone,
-          windows: normalized.windows,
+          ...newScheduleConfig,
+          source: audit.source,
+          workerId: audit.workerId,
         }),
       ) as Prisma.InputJsonValue,
       changedByUserId: input.actorUserId,

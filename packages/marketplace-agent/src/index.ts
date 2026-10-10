@@ -52,6 +52,7 @@ export { continueImmediateSearch, maySwapForImmediacy, planStepsFitTiming } from
 export {
   autonomousMayScheduleFuture,
   autonomousPlanIncludesFutureStep,
+  orchestrationWaitState,
   singleCapabilityJobMayBeScheduled,
   availabilityInferredFromDescription,
   defaultExecutionMode,
@@ -63,3 +64,4 @@ export {
 export { requotePlanSteps } from "./plan-requote.js";
 export { sanitizeMarketplaceTextForAgent } from "./prompt-safety.js";
 export { resetPlatformInferenceCache } from "./platform-inference.js";
+export { inferenceFailureMayCreatePurchase, inferenceOwnership, type InferenceOwner } from "./inference-ownership.js";

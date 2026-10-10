@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   autonomousMayScheduleFuture,
   autonomousPlanIncludesFutureStep,
+  orchestrationWaitState,
   singleCapabilityJobMayBeScheduled,
   availabilityInferredFromDescription,
   busyWaitFitsPolicy,
@@ -20,6 +21,20 @@ describe("availability decisions", () => {
     expect(recommendationMayShowFutureOption()).toBe(true);
     expect(autonomousPlanIncludesFutureStep(false)).toBe(false);
     expect(singleCapabilityJobMayBeScheduled()).toBe(true);
+    expect(
+      orchestrationWaitState({
+        stepAvailableNow: false,
+        userApprovedWait: true,
+        waitDeadlineAt: new Date("2026-10-12T00:00:00.000Z"),
+      }),
+    ).toBe("WAIT");
+    expect(
+      orchestrationWaitState({
+        stepAvailableNow: false,
+        userApprovedWait: true,
+        waitDeadlineAt: null,
+      }),
+    ).toBe("BLOCKED");
     expect(availabilityInferredFromDescription("available now, runs instantly")).toBeNull();
   });
 

@@ -1292,11 +1292,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0145`    P2         §154     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  description match is not limited to category
 
-  `PRD-0146`    P1         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0146`    P1         §155     `TESTED`   packages/marketplace/src/discovery-index.ts  discovery-index.test.ts  public discovery fields stay in PostgreSQL
 
-  `PRD-0147`    P2         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0147`    P2         §155     `TESTED`   packages/marketplace/src/discovery-index.ts  discovery-index.test.ts  discovery does not add a search cluster
 
-  `PRD-0148`    P2         §155     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0148`    P2         §155     `TESTED`   packages/marketplace/src/discovery-index.ts  discovery-index.test.ts  private instructions and secrets are not indexed
 
   `CAP-0055`    P1         §156     `TESTED`   packages/marketplace-agent/src/discovery-document.ts  agent-safety.test.ts  public discovery document
 
@@ -1512,11 +1512,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0096`    P1         §190     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  works with only Anthropic configured
 
-  `AGT-0097`    P1         §190     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0097`    P1         §190     `TESTED`   packages/marketplace-agent/src/inference-ownership.ts  inference-ownership.test.ts  a provider failure cannot create a purchase
 
-  `PRD-0183`    P1         §191     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0183`    P1         §191     `TESTED`   packages/marketplace-agent/src/inference-ownership.ts  inference-ownership.test.ts  platform, seller, and buyer inference stay separate
 
-  `PRD-0184`    P2         §191     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0184`    P2         §191     `TESTED`   packages/marketplace-agent/src/inference-ownership.ts  inference-ownership.test.ts  platform inference does not perform the paid job
 
   `IO-0057`    P1         §192      `TESTED`   packages/contracts/capability-io.ts vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -2338,11 +2338,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0093`    P1         §355     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  a full slot is not overbooked
 
-  `CAP-0094`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0094`    P1         §355     `TESTED`   packages/job-scheduling/src/dependency-isolation.ts  dependency-isolation.test.ts  a failed dependency changes only the capability that declared it
 
-  `PRD-0331`    P1         §356     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0331`    P1         §356     `TESTED`   packages/marketplace/src/service-contract.ts  service-contract.test.ts  one capability carries identity, version, permissions, price, and availability
 
-  `PRD-0332`    P2         §356     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0332`    P2         §356     `TESTED`   packages/marketplace/src/service-contract.ts  service-contract.test.ts  arbitrary seller-network control is not a service primitive
 
   `CAP-0095`    P1         §357     `TESTED`   ---              ---        packages/marketplace/src/visibility.ts, packages/marketplace/src/capability-listing.ts, apps/api/src/services/capability-visibility.ts, apps/api/src/routes/seller-visibility.ts, apps/web/src/app/search/page.tsx   packages/marketplace/src/visibility.test.ts, packages/marketplace/src/capability-listing.test.ts   visibility, examples, availability filters
 
@@ -2530,13 +2530,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0117`    P1         §394     `TESTED`   packages/marketplace/src/buyer-timing-copy.ts  buyer-timing-copy.test.ts  security pause cannot be cleared by buyer or seller
 
-  `PRD-0345`    P1         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0345`    P1         §395     `TESTED`   packages/seller-health/src/operational-control.ts  operational-control.test.ts  seller can see health, queue, failures, and stop accepting
 
-  `PRD-0346`    P2         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0346`    P2         §395     `TESTED`   packages/seller-health/src/operational-control.ts  operational-control.test.ts  operational answers stay available to the seller
 
-  `PRD-0347`    P2         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0347`    P2         §395     `TESTED`   packages/seller-health/src/operational-control.ts  operational-control.test.ts  health, version, isolation, queue, and warnings are answerable
 
-  `PRD-0348`    P2         §395     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0348`    P2         §395     `TESTED`   packages/seller-health/src/operational-control.ts  operational-control.test.ts  the seller can stop accepting locally and from the web dashboard
 
   `PRD-0349`    P1         §396     `TESTED`   packages/job-scheduling, apps/api/routes/capability-availability.ts, apps/api/routes/seller-schedule.ts, apps/api/routes/buyer-jobs-submit.ts, packages/job-dispatch/src/dispatch-service.ts   vitest; scripts/verify-m09-flow.mjs   docs/milestones/M09-manual-validation.md M09
 
@@ -2662,7 +2662,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0134`    P1         §422     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `AVL-0053`    P1         §423     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0053`    P1         §423     `TESTED`   packages/job-scheduling/src/schedule-audit.ts  schedule-audit.test.ts  a schedule edit records seller, capability, timezone, and source
 
   `AVL-0054`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2952,9 +2952,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0098`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0099`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0099`    P1         §480     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  a future step is an explicit wait
 
-  `AGT-0100`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0100`    P1         §480     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  a wait without a deadline is blocked
 
   `AGT-0101`    P1         §480     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  a single capability may be scheduled; a plan waits only after approval
 

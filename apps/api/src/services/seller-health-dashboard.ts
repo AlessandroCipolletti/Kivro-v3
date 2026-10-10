@@ -8,6 +8,7 @@ import {
   LATEST_SUPPORTED_WORKER_VERSION,
   MIN_SECURITY_WORKER_VERSION,
   parseWorkerHealthReport,
+  sellerOperationalAnswers,
 } from "@kivro/seller-health";
 import { buildCloudCredentialRefs } from "@kivro/seller-experience";
 
@@ -143,6 +144,19 @@ export async function buildSellerHealthDashboard(
     },
   });
 
+  const primary = deviceSummaries[0];
+  const operationalControl = sellerOperationalAnswers({
+    workerHealthy: primary?.status === "ONLINE",
+    workerVersion: primary?.workerVersion ?? null,
+    openClawCompatible: Boolean(primary?.openClawVersion),
+    isolationWorking: primary != null && primary.sandboxOk !== false && primary.dockerOk !== false,
+    executingNow: runningJobsCount,
+    queued: jobs.filter((job) => job.status === "QUEUED" || job.status === "SCHEDULED").length,
+    recentFailureCount: jobs.filter((job) => job.status.startsWith("FAILED")).length,
+    securityWarnings: deviceSummaries.flatMap((device) => device.warnings.map((warning) => warning.code)),
+    cloudReachable: true,
+  });
+
   return {
     dashboard: {
       sellerProfileId: profile.id,
@@ -165,6 +179,7 @@ export async function buildSellerHealthDashboard(
       workers: deviceSummaries,
       capabilities: capabilityHealth,
       jobMetrics: metrics,
+      operationalControl,
       healthTimeline: events.map((e) => ({
         ...e,
         createdAt: e.createdAt.toISOString(),

@@ -86,6 +86,8 @@ export {
   type SemanticType,
 } from "./contract-match.js";
 export { contractDiscoverabilityCard } from "./contract-card.js";
+export { DISCOVERY_INDEX_BACKEND, semanticDiscoveryIndexEntry, type DiscoveryIndexEntry } from "./discovery-index.js";
+export { marketplaceServiceContract, type MarketplaceServiceContract } from "./service-contract.js";
 export { MAX_SELLER_TEST_CASES, validateSellerTestCase } from "./seller-test-case.js";
 export { publicCapabilityForBuyer, type PublicCapability, type PublicCapabilityVersion } from "./public-capability.js";
 export { verifiedReputation } from "./verified-reputation.js";
