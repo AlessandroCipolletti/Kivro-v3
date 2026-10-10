@@ -706,6 +706,10 @@ greenfield.
 
 **Decision:** `IMMEDIATE_ONLY` fails before payment when the capability is not accepting. `EARLIEST_AVAILABLE` reserves a job for the authoritative next window. Buyer inputs cannot change schedule, pause, or concurrency. Public availability shows the next window, not the seller's weekly timetable. A future purchase is labeled "Schedule for earliest availability" and the buyer is told the job is reserved now and starts later. Scheduled delivery is measured from the scheduled run, not the reservation. The agent skips an unavailable candidate and will not spend more or drop a permission to buy something available now. A new required input, or an optional output that becomes required, is a breaking contract change.
 
+## DEC-SCH-011 — Supply, contracts, and schedules stay explicit
+
+**Decision:** A capability is primary supply when it offers data, a tool, or a record the buyer does not have. A better prompt alone is a recommendation, not a publish block. The domain stays Capability, Job, and Worker. A listing has one category and at most five tags, and the agent ranks the description. An old job shows the input and output contract stored on that job. Markdown can feed text. A file can feed another file only when MIME, extension, count, size, and semantic role fit. A buyer can reuse an asset they own. The seller schedule covers weekdays, weekends, overnight windows, and daylight saving time. A pause, a closed window, and a security hold override an open schedule. A running job continues. A queued job does not start outside the window. The buyer cannot change the schedule.
+
 ## DEC-SCH-010 — The first product and the agent stay behind shared boundaries
 
 **Decision:** The first product allows OpenClaw sellers, read-only discovery, and an outbound worker. It does not include GPU rental, auctions, automatic negotiation, other agent frameworks, or unrestricted shell. The Marketplace Agent calls a shared inference request. OpenAI and Anthropic URLs stay inside their adapters. A request names the task, not the vendor. An optional contract field can be left empty.

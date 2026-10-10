@@ -32,21 +32,21 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0001`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `WRK-0002`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0002`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  a private read-only database is a reason to pay
 
-  `WRK-0003`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0003`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  missing buyer data is a reason to pay
 
-  `WRK-0004`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0004`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  a missing tool or local software is a reason to pay
 
-  `WRK-0005`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0005`    P1         §2       `TESTED`   packages/seller-experience/src/publish-readiness.ts  publish-readiness.test.ts  a better prompt alone is weak supply
 
-  `WRK-0006`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0006`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  prompt-only supply is not the primary target
 
-  `WRK-0007`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0007`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  OpenClaw is the first runtime, not a new agent framework
 
-  `WRK-0008`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0008`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  the database is not modeled as OpenClaw entities
 
-  `WRK-0009`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0009`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  the domain is Worker, Capability, and Job
 
   `PRD-0008`    P1         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1288,7 +1288,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0143`    P2         §153     `TESTED`   packages/marketplace/src/verified-reputation.ts  verified-reputation.test.ts  reputation uses completed jobs only
 
-  `PRD-0144`    P1         §154     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0144`    P1         §154     `TESTED`   packages/marketplace/src/categories.ts  categories.test.ts  one category, a few tags, and ranking uses the description
 
   `PRD-0145`    P2         §154     `TESTED`   packages/marketplace/src/agent-ranking.ts  contract-rank.test.ts  description match is not limited to category
 
@@ -1328,7 +1328,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0157`    P1         §162     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0158`    P2         §162     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0158`    P2         §162     `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  human marketplace and agent primitives both belong in the first product
 
   `PRD-0159`    P1         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -1662,7 +1662,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0112`     P1         §220     `TESTED`   packages/job-io/src/storage-telemetry.ts  storage-telemetry.test.ts  byte telemetry does not change buyer price
 
-  `IO-0113`     P1         §221     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0113`     P1         §221     `TESTED`   packages/buyer-experience/src/purchase-snapshot-view.ts  purchase-snapshot-view.test.ts  an old job keeps the contract it was bought with
 
   `IO-0114`     P1         §222     `TESTED`   packages/job-io/src/contract-break.ts  contract-break.test.ts  breaking contract changes
 
@@ -1670,13 +1670,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0116`     P1         §222     `TESTED`   packages/job-io/src/contract-break.ts  contract-break.test.ts  optional output becoming required is breaking
 
-  `IO-0117`     P1         §223     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0117`     P1         §223     `TESTED`   packages/marketplace-agent/src/plan-compatibility.ts  plan-compatibility.test.ts  markdown can feed text, and a file handoff checks MIME and size
 
   `PRD-0190`    P1         §224     `TESTED`   packages/marketplace/src/contract-match.ts  contract-match.test.ts  small semantic taxonomy does not replace file checks
 
   `PRD-0191`    P2         §224     `TESTED`   packages/job-io/src/upload-transport.ts  upload-transport.test.ts  tags do not replace MIME checks
 
-  `IO-0118`     P1         §225     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0118`     P1         §225     `TESTED`   packages/buyer-experience/src/buyer-asset-choice.ts  buyer-asset-choice.test.ts  a buyer can reuse an owned asset and cannot use someone else's
 
   `IO-0119`     P1         §225     `TESTED`   packages/buyer-experience/src/buyer-asset-validation.ts  buyer-asset-validation.test.ts  buyer must own the asset
 
@@ -1698,7 +1698,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0195`    P2         §227     `TESTED`   packages/buyer-experience/src/privacy-disclosure.ts  privacy-disclosure.test.ts  not confidential computing
 
-  `IO-0125`     P1         §228     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0125`     P1         §228     `TESTED`   packages/buyer-experience/src/retention-ux.ts  retention-ux.test.ts  the job page states retention and the worker deletes local input
 
   `IO-0126`     P1         §228     `TESTED`   packages/buyer-experience/src/retention-ux.ts  retention-ux.test.ts  job page retention policy
 
@@ -1734,7 +1734,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0132`     P1         §235     `TESTED`   packages/job-io/src/validate-buyer-input.ts  validate-buyer-input.test.ts  an optional field can be omitted
 
-  `PRD-0202`    P1         §236     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0202`    P1         §236     `TESTED`   packages/marketplace/src/public-capability.ts  public-capability.test.ts  a buyer sees the service contract, not the seller OpenClaw setup
 
   `PRD-0203`    P2         §236     `TESTED`   packages/marketplace/src/public-capability.ts  public-capability.test.ts  buyer view omits OpenClaw internals
 
@@ -2664,7 +2664,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0053`    P1         §423     `TESTED`   packages/job-scheduling/src/schedule-audit.ts  schedule-audit.test.ts  a schedule edit records seller, capability, timezone, and source
 
-  `AVL-0054`    P1         §424     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0054`    P1         §424     `TESTED`   packages/marketplace/src/schedule-acceptance.test.ts  schedule-acceptance.test.ts  weekly, weekend, pause, queue, audit, and agent timing follow the seller schedule
 
   `AVL-0055`    P1         §424     `TESTED`   packages/job-scheduling/src/weekly-schedule.ts  weekly-schedule.test.ts  seller can choose always available
 

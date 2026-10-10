@@ -56,4 +56,18 @@ describe("publish readiness SELLERUX-008", () => {
     });
     expect(blocked.ready).toBe(false);
   });
+
+  it("recommends a stronger reason to pay when the only advantage is a prompt", () => {
+    const report = buildPublishReadinessReport({
+      dependencyGraph: { graphVersion: 1, rootCapabilityName: "x", nodes: [] },
+      workerPaired: true,
+      workerHealthLabel: "HEALTHY",
+      executionModelAcknowledged: true,
+      contractValid: true,
+      payoutReady: true,
+      supplyAdvantages: ["better_prompt"],
+    });
+    expect(report.ready).toBe(true);
+    expect(report.items.some((item) => item.id === "weak_supply")).toBe(true);
+  });
 });

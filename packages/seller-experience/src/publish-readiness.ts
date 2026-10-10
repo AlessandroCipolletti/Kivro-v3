@@ -1,5 +1,6 @@
 import type { DependencyGraph } from "@kivro/contracts";
 import { findPublishBlockers } from "@kivro/capability-publish";
+import { isPrimaryMarketplaceSupply } from "@kivro/platform-policy";
 import type { WorkerHealthLabel } from "@kivro/seller-health";
 
 export type ReadinessItem = {
@@ -20,6 +21,7 @@ export function buildPublishReadinessReport(input: {
   permissionExpansionAcknowledged?: boolean;
   permissionExpansionPending?: boolean;
   staleCredentialRefs?: number;
+  supplyAdvantages?: string[];
 }): { ready: boolean; items: ReadinessItem[] } {
   const items: ReadinessItem[] = [];
 
@@ -112,6 +114,15 @@ export function buildPublishReadinessReport(input: {
       severity: "recommended",
       title: "Refresh local credentials",
       detail: `${input.staleCredentialRefs} credential reference(s) look stale — re-verify on the Worker.`,
+    });
+  }
+
+  if (input.supplyAdvantages && !isPrimaryMarketplaceSupply(input.supplyAdvantages)) {
+    items.push({
+      id: "weak_supply",
+      severity: "recommended",
+      title: "Add a reason to pay",
+      detail: "A better prompt alone is weak supply. Private data, a tool, or a proven record is the reason a buyer pays.",
     });
   }
 

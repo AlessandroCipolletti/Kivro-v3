@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { canFeedOutputToInput, validatePlanCompatibility } from "./plan-compatibility.js";
+import { canFeedOutputToInput, fileOutputCanFeedInput, validatePlanCompatibility } from "./plan-compatibility.js";
 
 describe("plan compatibility", () => {
   it("allows JSON to become text and rejects a silent PDF conversion", () => {
@@ -32,5 +32,34 @@ describe("plan compatibility", () => {
         },
       ]),
     ).toEqual([]);
+  });
+
+  it("maps markdown into text and compares file MIME, extension, size, and role", () => {
+    expect(canFeedOutputToInput("markdown", "text")).toBe(true);
+    expect(canFeedOutputToInput("markdown", "pdf")).toBe(false);
+    expect(
+      fileOutputCanFeedInput(
+        { mime: "text/markdown", extension: ".md", maxFiles: 1, maxBytes: 1000 },
+        { mime: "application/pdf", extension: ".pdf", maxFiles: 1, maxBytes: 1000 },
+      ),
+    ).toBe(false);
+    expect(
+      fileOutputCanFeedInput(
+        {
+          mime: "application/pdf",
+          extension: ".pdf",
+          maxFiles: 1,
+          maxBytes: 1000,
+          semanticType: "research_report",
+        },
+        {
+          mime: "application/pdf",
+          extension: ".pdf",
+          maxFiles: 1,
+          maxBytes: 2000,
+          semanticType: "research_report",
+        },
+      ),
+    ).toBe(true);
   });
 });

@@ -1,4 +1,5 @@
 import type { PrismaClient } from "@kivro/database";
+import { buyerAssetChoice } from "./buyer-asset-choice.js";
 
 export type JobReuseMode = "run_again" | "duplicate_edit";
 
@@ -79,7 +80,16 @@ export async function buildJobReuseSeed(
         continue;
       }
       const stored = await prisma.storedAsset.findUnique({ where: { id: ref.assetId } });
-      if (!stored?.uploadConfirmedAt || stored.buyerId !== input.buyerId) {
+      if (!stored?.uploadConfirmedAt) {
+        continue;
+      }
+      if (
+        buyerAssetChoice({
+          assetId: stored.id,
+          requesterId: input.buyerId,
+          ownerId: stored.buyerId,
+        }) !== "reuse_previous"
+      ) {
         continue;
       }
       enriched.push({

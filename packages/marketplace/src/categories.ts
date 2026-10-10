@@ -18,3 +18,10 @@ export function isMarketplaceCategory(value: string): value is MarketplaceCatego
 export function mergeMarketplaceCategories(live: string[]): string[] {
   return [...new Set([...MARKETPLACE_CATEGORIES, ...live.filter((c) => c.trim())])].sort();
 }
+
+/** A capability has one primary category and only a few tags. */
+export const MAX_CAPABILITY_TAGS = 5;
+
+export function fewCapabilityTags(tags: string[]): string[] {
+  return [...new Set(tags.map((tag) => tag.trim()).filter(Boolean))].slice(0, MAX_CAPABILITY_TAGS);
+}

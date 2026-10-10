@@ -46,7 +46,7 @@ export {
   routingChangeAudit,
   safeInferenceLog,
 } from "./inference-safety.js";
-export { canFeedOutputToInput, validatePlanCompatibility } from "./plan-compatibility.js";
+export { canFeedOutputToInput, fileOutputCanFeedInput, validatePlanCompatibility } from "./plan-compatibility.js";
 export { acceptModelIntent, clampModelConstraints } from "./structured-intent.js";
 export { dispatchMarketplaceTool, MARKETPLACE_TOOL_NAMES } from "./tool-executor.js";
 export { continueImmediateSearch, maySwapForImmediacy, planStepsFitTiming } from "./agent-continuation.js";

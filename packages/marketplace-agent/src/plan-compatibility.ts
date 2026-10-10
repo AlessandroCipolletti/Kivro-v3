@@ -10,6 +10,31 @@ const DIRECT: Array<[IoKind, IoKind]> = [
   ["json", "json"],
 ];
 
+export type FileFeedContract = {
+  mime: string;
+  extension: string;
+  maxFiles: number;
+  maxBytes: number;
+  semanticType?: string;
+};
+
+/** File handoff compares MIME, extension, cardinality, size, and semantic role. */
+export function fileOutputCanFeedInput(output: FileFeedContract, input: FileFeedContract): boolean {
+  if (output.mime !== input.mime) {
+    return false;
+  }
+  if (output.extension.toLowerCase() !== input.extension.toLowerCase()) {
+    return false;
+  }
+  if (output.maxFiles > input.maxFiles || output.maxBytes > input.maxBytes) {
+    return false;
+  }
+  if (input.semanticType && input.semanticType !== output.semanticType) {
+    return false;
+  }
+  return true;
+}
+
 export function canFeedOutputToInput(output: IoKind, input: IoKind): boolean {
   if (output === input && output !== "file" && output !== "pdf") {
     return true;

@@ -1,3 +1,5 @@
+import { fewCapabilityTags } from "./categories.js";
+
 /** §155 — PostgreSQL plus optional reranking. No separate search cluster. */
 export const DISCOVERY_INDEX_BACKEND = "postgresql" as const;
 
@@ -33,7 +35,7 @@ export function semanticDiscoveryIndexEntry(input: {
     name: input.name,
     description: input.description,
     category: input.category,
-    tags: input.tags ?? [],
+    tags: fewCapabilityTags(input.tags ?? []),
     accepts: input.accepts ?? [],
     outputs: input.outputs ?? [],
     examples: (input.examples ?? []).slice(0, 3),

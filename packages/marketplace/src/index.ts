@@ -73,6 +73,8 @@ export {
 } from "./agent-timing.js";
 export {
   MARKETPLACE_CATEGORIES,
+  MAX_CAPABILITY_TAGS,
+  fewCapabilityTags,
   isMarketplaceCategory,
   mergeMarketplaceCategories,
   type MarketplaceCategory,

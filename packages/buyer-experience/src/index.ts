@@ -32,6 +32,7 @@ export { processDueScheduledJobReminders } from "./scheduled-reminders.js";
 export { enrichBuyerJobListRow } from "./buyer-list-enrichment.js";
 export { buildJobReuseSeed, type JobReuseSeed, type JobReuseMode } from "./job-reuse.js";
 export { validateBuyerSubmissionAssets, type SubmissionAssetRef } from "./buyer-asset-validation.js";
+export { buyerAssetChoice } from "./buyer-asset-choice.js";
 export { buildSemanticResultView, type SemanticResultView, type SemanticResultFieldView } from "./semantic-result.js";
 export { buildSanitizedInputSnapshotView } from "./input-snapshot.js";
 export { buildPurchaseSnapshotView } from "./purchase-snapshot-view.js";

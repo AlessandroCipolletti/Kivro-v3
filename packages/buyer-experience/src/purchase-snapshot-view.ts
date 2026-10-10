@@ -20,6 +20,8 @@ export function buildPurchaseSnapshotView(job: {
   sellerNetSnapshotCents: number | null;
   scheduledRunAt: string | null;
   buyerHardDeadlineAt: string | null;
+  inputContract: unknown;
+  outputContract: unknown;
   immutableNote: string;
 } {
   return {
@@ -31,6 +33,8 @@ export function buildPurchaseSnapshotView(job: {
     sellerNetSnapshotCents: job.sellerNetSnapshotCents,
     scheduledRunAt: job.scheduledRunAt?.toISOString() ?? null,
     buyerHardDeadlineAt: job.buyerHardDeadlineAt?.toISOString() ?? null,
+    inputContract: job.inputContractSnapshot,
+    outputContract: job.outputContractSnapshot,
     immutableNote:
       "This purchase snapshot is frozen for this job. Seller catalog changes do not alter what you bought.",
   };
