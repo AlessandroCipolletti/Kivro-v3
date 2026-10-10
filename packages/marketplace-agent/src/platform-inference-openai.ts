@@ -9,6 +9,9 @@ import {
 import { usageFromOpenAiBody } from "./inference-usage.js";
 import { acceptModelIntent } from "./structured-intent.js";
 
+/** Current Chat Completions endpoint. Change it here when the vendor API changes. */
+export const OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions";
+
 /** Optional OpenAI adapter. The router decides fallback. */
 export class OpenAiPlatformInference {
   async parseGoal(goal: string, uiConstraints?: Partial<BuyerConstraints>) {
@@ -18,7 +21,7 @@ export class OpenAiPlatformInference {
       throw new PlatformInferenceError("invalid");
     }
     const started = Date.now();
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    const res = await fetch(OPENAI_CHAT_COMPLETIONS_URL, {
       method: "POST",
       headers: {
         authorization: `Bearer ${apiKey}`,

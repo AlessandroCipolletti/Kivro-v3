@@ -72,6 +72,30 @@ describe("validateBuyerInput", () => {
     });
     expect(result.ok).toBe(true);
   });
+  it("accepts a missing optional text field", () => {
+    const optional = parseCapabilityContract({
+      name: "Notes",
+      description: "Notes",
+      currency: "USD",
+      priceTierCents: 100,
+      inputs: {
+        contractVersion: 2,
+        fields: [
+          {
+            key: "notes",
+            label: "Notes",
+            type: "LONG_TEXT",
+            required: false,
+            constraints: { text: { minLength: 0, maxLength: 1000 } },
+          },
+        ],
+      },
+      output: { contractVersion: 1, type: "TEXT" },
+    });
+    const result = validateBuyerInput({ contract: optional, inputs: {}, assets: {} });
+    expect(result.ok).toBe(true);
+  });
+
   it("rejects missing required file", () => {
     const result = validateBuyerInput({
       contract,

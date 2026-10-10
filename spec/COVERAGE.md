@@ -50,13 +50,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0008`    P1         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `PRD-0009`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0009`    P2         §3       `TESTED`   packages/platform-policy/src/mvp-boundaries.ts  mvp-boundaries.test.ts  first sellers are OpenClaw sellers
 
-  `PRD-0010`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0010`    P2         §3       `TESTED`   packages/platform-policy/src/mvp-boundaries.ts  mvp-boundaries.test.ts  discovery of an existing OpenClaw configuration is read-only
 
-  `PRD-0011`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0011`    P2         §3       `TESTED`   packages/platform-policy/src/mvp-boundaries.ts  mvp-boundaries.test.ts  the worker connection is outbound only
 
-  `PRD-0012`    P2         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0012`    P2         §3       `TESTED`   packages/platform-policy/src/mvp-boundaries.ts  mvp-boundaries.test.ts  GPU rental, auctions, and other frameworks stay out of the first product
 
   `PRD-0013`    P1         §4      `TESTED`   packages/domain, prisma User/SellerProfile vitest; docs/milestones/M01-manual-validation.md M01
 
@@ -1340,9 +1340,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0047`    P1         §164     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0048`    P1         §164     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0048`    P1         §164     `TESTED`   packages/marketplace-agent/src/platform-inference.ts  inference-request.test.ts  the agent router does not call a vendor URL
 
-  `AGT-0049`    P1         §164     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0049`    P1         §164     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  inference-request.test.ts  vendor URLs stay inside the provider adapters
 
   `AGT-0050`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1354,7 +1354,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0054`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  Anthropic alone selects Anthropic
 
-  `AGT-0055`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0055`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  platform AI keys are not returned to a browser or worker audience
 
   `SEC-0066`    P1         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1368,7 +1368,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0057`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  per-task model env overrides
 
-  `AGT-0058`    P1         §167     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0058`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  recommendation uses its own model setting
 
   `AGT-0059`    P1         §167     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  INTENT/RECOMMENDATION/ORCHESTRATION routing
 
@@ -1376,15 +1376,15 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0061`    P1         §168     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  platform-inference-policy.test.ts  no source-code model default
 
-  `AGT-0062`    P1         §168     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0062`    P1         §168     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  the recommendation model comes from configuration
 
   `AGT-0063`    P1         §169     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0064`    P1         §169     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0064`    P1         §169     `TESTED`   packages/marketplace-agent/src/inference-request.ts  inference-request.test.ts  a request does not name the vendor
 
   `AGT-0065`    P1         §170     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AGT-0066`    P1         §170     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0066`    P1         §170     `TESTED`   packages/marketplace-agent/src/inference-request.ts  inference-request.test.ts  a request keeps task, messages, and metadata only
 
   `AGT-0067`    P1         §171     `TESTED`   packages/marketplace-agent/src/tool-executor.ts  agent-safety.test.ts  allowlisted marketplace tools
 
@@ -1466,7 +1466,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0054`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0055`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0055`     P1         §183     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  inference-request.test.ts  the OpenAI URL lives in one adapter constant
 
   `IO-0056`     P1         §183     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -1732,7 +1732,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0131`     P1         §235     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `IO-0132`     P1         §235     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0132`     P1         §235     `TESTED`   packages/job-io/src/validate-buyer-input.ts  validate-buyer-input.test.ts  an optional field can be omitted
 
   `PRD-0202`    P1         §236     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
@@ -2950,7 +2950,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0378`    P2         §479     `TESTED`   packages/marketplace/src/scheduled-disclosure.ts  scheduled-disclosure.test.ts  the disclosure says the service is not available now
 
-  `AGT-0098`    P1         §480     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0098`    P1         §480     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  a future step waits only with an explicit deadline
 
   `AGT-0099`    P1         §480     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  a future step is an explicit wait
 

@@ -706,6 +706,10 @@ greenfield.
 
 **Decision:** `IMMEDIATE_ONLY` fails before payment when the capability is not accepting. `EARLIEST_AVAILABLE` reserves a job for the authoritative next window. Buyer inputs cannot change schedule, pause, or concurrency. Public availability shows the next window, not the seller's weekly timetable. A future purchase is labeled "Schedule for earliest availability" and the buyer is told the job is reserved now and starts later. Scheduled delivery is measured from the scheduled run, not the reservation. The agent skips an unavailable candidate and will not spend more or drop a permission to buy something available now. A new required input, or an optional output that becomes required, is a breaking contract change.
 
+## DEC-SCH-010 — The first product and the agent stay behind shared boundaries
+
+**Decision:** The first product allows OpenClaw sellers, read-only discovery, and an outbound worker. It does not include GPU rental, auctions, automatic negotiation, other agent frameworks, or unrestricted shell. The Marketplace Agent calls a shared inference request. OpenAI and Anthropic URLs stay inside their adapters. A request names the task, not the vendor. An optional contract field can be left empty.
+
 ## DEC-SCH-009 — MVP boundaries stay visible and secrets stay server-side
 
 **Decision:** The README states the one-sentence MVP and the core architecture principles. The seller preview lists what a worker can do, including a selected read-only credential, and what it cannot do, including the personal workspace and documents. Publish stays closed while a required check fails. The Marketplace Agent may discover, recommend, and execute a plan only after approval. It may not negotiate, create capabilities, or buy without a ceiling. Platform AI keys are readable only by the server. Production receives them by host secret injection. `.env.example` does not assign those values. A capability gets no network, public web research, or a declared API, and never arbitrary control of the seller network. Stages after the MVP stay deferred.

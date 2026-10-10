@@ -9,6 +9,9 @@ import {
 import { usageFromAnthropicBody } from "./inference-usage.js";
 import { acceptModelIntent } from "./structured-intent.js";
 
+/** Current Messages endpoint. Change it here when the vendor API changes. */
+export const ANTHROPIC_MESSAGES_URL = "https://api.anthropic.com/v1/messages";
+
 /** Optional Anthropic adapter. The router decides whether a failure may fall back. */
 export class AnthropicPlatformInference {
   async parseGoal(goal: string, uiConstraints?: Partial<BuyerConstraints>) {
@@ -18,7 +21,7 @@ export class AnthropicPlatformInference {
       throw new PlatformInferenceError("invalid");
     }
     const started = Date.now();
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const res = await fetch(ANTHROPIC_MESSAGES_URL, {
       method: "POST",
       headers: {
         "x-api-key": apiKey,

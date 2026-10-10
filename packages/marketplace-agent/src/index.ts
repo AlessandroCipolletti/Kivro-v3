@@ -4,6 +4,7 @@ export { formatPlanTiming, type PlanTimingStep } from "./plan-timing-view.js";
 export { purchaseDecisionForStaleStep, repairParallelBranches, type ParallelBranch } from "./plan-repair.js";
 export { agentStepProgressLabel, type AgentStepProgress } from "./agent-progress.js";
 export { readPlatformInferenceHealth } from "./platform-inference-policy.js";
+export { normalizeInferenceRequest, type PlatformInferenceRequest } from "./inference-request.js";
 export {
   aggregateInferenceUsage,
   buildInferenceUsageRecord,
