@@ -17,6 +17,9 @@ function failing(times: { n: number }, failure: PlatformInferenceError["failure"
       times.n += 1;
       throw new PlatformInferenceError(failure);
     },
+    async generate() {
+      throw new PlatformInferenceError(failure);
+    },
   };
 }
 
@@ -29,7 +32,7 @@ describe("routing platform inference", () => {
         openai: failing({ n: 0 }, "policy"),
         anthropic: failing(anthropicCalls, "retryable"),
       },
-      { async parseGoal() { return intent("deterministic"); } },
+      { async parseGoal() { return intent("deterministic"); }, async generate() { return { provider: "deterministic", model: "local", text: "" }; } },
       { KIVRO_PLATFORM_AI_PROVIDER: "openai", KIVRO_PLATFORM_AI_FALLBACK: "true", KIVRO_PLATFORM_ANTHROPIC_API_KEY: "set" },
       () => 10_000,
     );
@@ -43,9 +46,9 @@ describe("routing platform inference", () => {
     const router = new RoutingPlatformInference(
       {
         openai: failing({ n: 0 }, "retryable"),
-        anthropic: { async parseGoal() { return intent("anthropic"); } },
+        anthropic: { async parseGoal() { return intent("anthropic"); }, async generate() { return { provider: "anthropic", model: "m", text: "" }; } },
       },
-      { async parseGoal() { return intent("deterministic"); } },
+      { async parseGoal() { return intent("deterministic"); }, async generate() { return { provider: "deterministic", model: "local", text: "" }; } },
       {
         KIVRO_PLATFORM_AI_PROVIDER: "openai",
         KIVRO_PLATFORM_AI_FALLBACK: "true",

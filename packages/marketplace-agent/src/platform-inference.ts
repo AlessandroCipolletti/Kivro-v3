@@ -2,6 +2,7 @@ import type { BuyerConstraints } from "@kivro/marketplace";
 import { extractConstraintsFromText } from "@kivro/marketplace";
 import { OpenAiPlatformInference } from "./platform-inference-openai.js";
 import { AnthropicPlatformInference } from "./platform-inference-anthropic.js";
+import { normalizeInferenceRequest, type PlatformInferenceRequest, type PlatformInferenceResponse } from "./inference-request.js";
 import {
   consumeInferenceBudget,
   mayFallback,
@@ -34,6 +35,7 @@ export interface PlatformInferencePort {
     uiConstraints?: Partial<BuyerConstraints>,
     options?: InferenceCallOptions,
   ): Promise<PlatformIntent>;
+  generate(request: PlatformInferenceRequest): Promise<PlatformInferenceResponse>;
 }
 
 export class DeterministicPlatformInference implements PlatformInferencePort {
@@ -41,6 +43,15 @@ export class DeterministicPlatformInference implements PlatformInferencePort {
     const fromText = extractConstraintsFromText(goal);
     const constraints = { ...fromText, ...uiConstraints };
     return { intentLabel: inferIntentLabel(goal), constraints, servedBy: "deterministic" };
+  }
+
+  async generate(request: PlatformInferenceRequest): Promise<PlatformInferenceResponse> {
+    const normalized = normalizeInferenceRequest(request);
+    return {
+      provider: "deterministic",
+      model: "local",
+      text: normalized.messages.map((message) => message.content).join("\n"),
+    };
   }
 }
 
@@ -94,6 +105,36 @@ export class RoutingPlatformInference implements PlatformInferencePort {
       }
     }
     return this.deterministic.parseGoal(goal, uiConstraints, options);
+  }
+
+  async generate(request: PlatformInferenceRequest): Promise<PlatformInferenceResponse> {
+    const normalized = normalizeInferenceRequest(request);
+    const health = readPlatformInferenceHealth(this.env);
+    const budget = consumeInferenceBudget({
+      userId: normalized.metadata.userId ?? "anonymous",
+      nowMs: this.now(),
+      maxPerMinute: health.maxRequestsPerMinute,
+    });
+    if (budget === "deny" || health.primary === "deterministic") {
+      return this.deterministic.generate(normalized);
+    }
+    const primary = this.providers[health.primary];
+    if (!primary) {
+      return this.deterministic.generate(normalized);
+    }
+    try {
+      return await primary.generate(normalized);
+    } catch (error) {
+      const failure = error instanceof PlatformInferenceError ? error.failure : "invalid";
+      const secondary = secondaryProvider(health.primary, this.env);
+      if (secondary && mayFallback(failure, health.fallbackEnabled)) {
+        const next = this.providers[secondary];
+        if (next) {
+          return next.generate(normalized);
+        }
+      }
+      return this.deterministic.generate(normalized);
+    }
   }
 
   private async attempt(

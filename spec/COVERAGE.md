@@ -1338,7 +1338,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0162`    P2         §163      `TESTED`   packages/domain/inference-domain.ts vitest; docs/milestones/M01-manual-validation.md M01
 
-  `AGT-0047`    P1         §164     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0047`    P1         §164     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  provider-interface.test.ts  OpenAI and Anthropic implement the shared provider interface
 
   `AGT-0048`    P1         §164     `TESTED`   packages/marketplace-agent/src/platform-inference.ts  inference-request.test.ts  the agent router does not call a vendor URL
 
@@ -1378,11 +1378,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0062`    P1         §168     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  the recommendation model comes from configuration
 
-  `AGT-0063`    P1         §169     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0063`    P1         §169     `TESTED`   packages/marketplace-agent/src/platform-inference.ts  provider-interface.test.ts  the router chooses the provider and enforces the budget
 
   `AGT-0064`    P1         §169     `TESTED`   packages/marketplace-agent/src/inference-request.ts  inference-request.test.ts  a request does not name the vendor
 
-  `AGT-0065`    P1         §170     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0065`    P1         §170     `TESTED`   packages/marketplace-agent/src/inference-request.ts  provider-interface.test.ts  a request carries task, messages, tools, and schema without a vendor payload
 
   `AGT-0066`    P1         §170     `TESTED`   packages/marketplace-agent/src/inference-request.ts  inference-request.test.ts  a request keeps task, messages, and metadata only
 
