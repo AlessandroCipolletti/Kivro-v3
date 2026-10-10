@@ -6,7 +6,7 @@ const file = path.join(path.resolve(import.meta.dirname, ".."), "spec/COVERAGE.m
 let text = fs.readFileSync(file, "utf8");
 
 const evidence =
-  "scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs   security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23";
+  "scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23";
 
 function formatLine(id, priority) {
   const [impl, tests, ...noteParts] = evidence.split("   ");
@@ -14,7 +14,17 @@ function formatLine(id, priority) {
   return `  ${id}   ${priority}         TESTED   ${impl}   ${tests}   ${notes}`;
 }
 
-const hardIds = new Set(["HARD-018", "HARD-019", "HARD-020"]);
+const hardIds = new Set([
+  "HARD-001",
+  "HARD-002",
+  "HARD-003",
+  "HARD-009",
+  "HARD-013",
+  "HARD-017",
+  "HARD-018",
+  "HARD-019",
+  "HARD-020",
+]);
 
 const out = text.split("\n").map((line) => {
   const m = line.match(/^\s+(HARD-0\d\d)\s+(P\d+)\s+/);
@@ -25,4 +35,4 @@ const out = text.split("\n").map((line) => {
 });
 
 fs.writeFileSync(file, out.join("\n"));
-console.log("Updated COVERAGE.md HARD-* audit rows for M23 (where present)");
+console.log("Updated COVERAGE.md HARD-* rows for M23");

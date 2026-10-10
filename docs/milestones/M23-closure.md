@@ -1,35 +1,51 @@
-# M23 closure — unified compliance audit (bounded)
+# M23 closure — unified compliance audit
+
+## Two levels (DEC-M23-001 / DEC-M23-002)
+
+| Level | Meaning | Status when |
+|-------|---------|-------------|
+| **M23 harness (milestone DONE)** | Audit machinery + automatable mandatory checks | `pnpm verify:m23` + `M23-exit-criteria.json` → `m23HarnessComplete: true` |
+| **Plan literal (full Master Spec)** | All P0/P1/P2 + staging E2E + zero open product scope | **M28** terminal gate (`productMasterSpecComplete`) |
+
+IMPLEMENTATION-PLAN M28 explicitly **supersedes** earlier “final audit” wording for lossless proof.
 
 ## Preconditions (met)
 
-- M17 traceability baseline (`pnpm verify:m17`)
-- M18–M22 deployment/portability gates through **`pnpm verify:m22`**
+- M17 traceability baseline
+- M18–M22 gates through **`pnpm verify:m22`**
 
 ## Deliverables (repo)
 
 | Area | Evidence |
 |------|----------|
-| Shared audit core | `scripts/lib/compliance-audit-core.mjs` |
-| M23 audit | `scripts/audit-m23-unified.mjs` → `docs/audits/M23-compliance-report.{json,md}` |
-| Closure scope | **M00–M22** sections: no stray `TODO`; open rows require schedule notes |
-| Readiness checklist | `docs/audits/M23-readiness-checklist.md` |
-| Regression | **`pnpm verify:m23`** includes `verify:m22` |
+| Audit core | `compliance-audit-core.mjs`, `audit-m23-unified.mjs` |
+| Mandatory runs | `m23-mandatory-runs.mjs` |
+| Security release (HARD-018) | `audit-m23-security-release.mjs` + §91 gate fixture |
+| Sampling audit | `audit-m23-master-spec-sampling.mjs` |
+| Exit criteria | `docs/audits/M23-exit-criteria.{json,md}` |
+| Matrix | `M23-mandatory-audit-matrix.md` |
+| Staging bundle | `verify-m23-staging-bundle.mjs` (optional env) |
+| Tests | `conformance-unified-audit-m23` (M23-GOLD-001..003) |
+| Gate | **`pnpm verify:m23`** |
 
-## Interpretation (DEC-M23-001)
-
-M23 implements the **unified audit harness** from IMPLEMENTATION-PLAN M23: independent COVERAGE accounting, evidence path checks, and unified-backend readiness (single schema, dual composition roots, conformance manifest, architecture lint).
-
-It does **not** claim:
-
-- every P0/P1/P2 requirement is implemented (many remain scheduled M24–M34);
-- full Netsons/AWS/dual-CP **paid staging E2E** (optional when env set; terminal proof is **M28**).
-
-## Exit criteria
+## Exit criteria (milestone DONE)
 
 ```bash
 pnpm verify:m23
 ```
 
-## Manual / staging
+Confirm `docs/audits/M23-exit-criteria.json`:
 
-See `M23-manual-validation.md` for staging E2E and dual control-plane transition sign-off when URLs are available.
+```json
+"m23HarnessComplete": true
+```
+
+## Not required for M23 milestone closure
+
+- All P0/P1/P2 implemented (528+ open rows scheduled M24–M34)
+- Netsons/AWS paid staging E2E without env
+- Dual-host transition soak (documented manual path)
+
+## Manual
+
+`M23-manual-validation.md`, `dual-control-plane-transition.md`

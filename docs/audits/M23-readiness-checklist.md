@@ -17,3 +17,5 @@ Maps IMPLEMENTATION-PLAN M23 mandatory audit items to repo evidence.
 | AWS staging E2E | Optional env | `scripts/aws-staging-e2e.mjs` |
 | Dual control-plane transition E2E | Optional env + manual | `verify-m22-dual-staging.mjs`, transition doc |
 | All P0/P1/P2 complete | **No (M28)** | Report counts open P0/P1/P2 |
+
+Full IMPLEMENTATION-PLAN mapping: **`M23-mandatory-audit-matrix.md`**.

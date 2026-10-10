@@ -1,9 +1,9 @@
 {
   "audit": "M23",
-  "generatedAt": "2026-10-09T22:54:37.182Z",
-  "totalRequirements": 1923,
+  "generatedAt": "2026-10-09T22:58:11.884Z",
+  "totalRequirements": 1932,
   "summary": {
-    "TESTED": 1376,
+    "TESTED": 1385,
     "TODO": 528,
     "PARTIAL": 15,
     "BLOCKED": 0,
@@ -12,13 +12,13 @@
   },
   "byPriority": {
     "P0": {
-      "TESTED": 255,
+      "TESTED": 262,
       "DEFERRED": 2,
       "TODO": 102
     },
     "P1": {
       "TODO": 329,
-      "TESTED": 869,
+      "TESTED": 871,
       "PARTIAL": 9,
       "DEFERRED": 1
     },
@@ -34,6 +34,7 @@
   "closedScopeTodoCount": 0,
   "unexplainedCount": 0,
   "invalidTestedCount": 0,
+  "testedP0MissingTestEvidenceCount": 0,
   "p0p1OpenCount": 440,
   "p0OpenCount": 102,
   "p1OpenCount": 329,
@@ -993,14 +994,9 @@
       "detail": "backend-conformance-manifest.json"
     },
     {
-      "id": "architecture-lint",
-      "pass": true,
-      "detail": "check-architecture.mjs"
-    },
-    {
       "id": "verify-m22-gate",
       "pass": true,
-      "detail": "package.json verify:m22"
+      "detail": "package.json verify:m22 + verify:m23"
     },
     {
       "id": "netsons-staging-e2e",
@@ -1018,5 +1014,62 @@
       "detail": "SKIP (unset: KIVRO_M22_STAGING_URL)"
     }
   ],
-  "terminalAuditNote": "Full P0/P1/P2 completion and lossless Master Spec proof remain M28; M23 extends traceability through M22 and records unified-backend readiness."
+  "mandatoryRuns": [
+    {
+      "id": "single-migration-history",
+      "pass": true,
+      "detail": "packages/database/prisma/migrations"
+    },
+    {
+      "id": "shared-api-contract-source",
+      "pass": true,
+      "detail": "packages/contracts single public contract package"
+    },
+    {
+      "id": "architecture-deps",
+      "pass": true,
+      "detail": "scripts/check-architecture.mjs"
+    },
+    {
+      "id": "composition-thinness",
+      "pass": true,
+      "detail": "scripts/check-composition-thinness.mjs"
+    },
+    {
+      "id": "no-bullmq-production",
+      "pass": true,
+      "detail": "scripts/check-no-bullmq-production.mjs"
+    },
+    {
+      "id": "api-contract-mvp",
+      "pass": true,
+      "detail": "scripts/verify-api-contract-mvp.mjs"
+    },
+    {
+      "id": "security-release-gate-files",
+      "pass": true,
+      "detail": "scripts/verify-release-gate-evidence.mjs"
+    },
+    {
+      "id": "both-composition-roots",
+      "pass": true,
+      "detail": "verify-both-composition-roots.mjs"
+    }
+  ],
+  "masterSpecCompletion": {
+    "p0": {
+      "tested": 262,
+      "todo": 102
+    },
+    "p1": {
+      "tested": 871,
+      "todo": 329
+    },
+    "p2": {
+      "tested": 252,
+      "todo": 97
+    },
+    "note": "Full P0/P1/P2 completion required at M28 terminal audit; M23 enforces traceability + automatable gates."
+  },
+  "terminalAuditNote": "Lossless Master Spec proof and staging paid E2E remain M28; M23 proves unified-backend audit harness through M22."
 }

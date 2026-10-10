@@ -1,11 +1,11 @@
 # M17 compliance audit snapshot
 
-Generated: 2026-10-09T22:55:14.604Z
+Generated: 2026-10-09T22:58:50.867Z
 
 ## Totals
 
-- Requirements parsed: **1926**
-- TESTED: 1379 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
+- Requirements parsed: **1932**
+- TESTED: 1385 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
 
 ## M00–M16 closure check
 
@@ -17,9 +17,11 @@ Generated: 2026-10-09T22:55:14.604Z
 
 - Unexplained TODO/PARTIAL/BLOCKED: **0**
 - TESTED rows with missing evidence paths: **0**
+- P0 TESTED without test evidence: **0**
 
 ## P0/P1 still open (scheduled later)
 
 See `docs/audits/M17-P0-P1-by-section.md`.
 
 Full machine report: `docs/audits/M17-compliance-report.json`.
+

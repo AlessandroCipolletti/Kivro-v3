@@ -1,11 +1,11 @@
 # M23 compliance audit snapshot
 
-Generated: 2026-10-09T22:54:37.182Z
+Generated: 2026-10-09T22:58:11.884Z
 
 ## Totals
 
-- Requirements parsed: **1923**
-- TESTED: 1376 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
+- Requirements parsed: **1932**
+- TESTED: 1385 · TODO: 528 · PARTIAL: 15 · DEFERRED: 4
 
 ## M00–M22 closure check
 
@@ -17,6 +17,7 @@ Generated: 2026-10-09T22:54:37.182Z
 
 - Unexplained TODO/PARTIAL/BLOCKED: **0**
 - TESTED rows with missing evidence paths: **0**
+- P0 TESTED without test evidence: **0**
 
 ## P0/P1 still open (scheduled later)
 
@@ -29,8 +30,18 @@ Full machine report: `docs/audits/M23-compliance-report.json`.
 - single-schema: PASS/SKIP — packages/database/prisma
 - dual-composition-roots: PASS/SKIP — cloud-netsons + cloud-aws
 - conformance-manifest: PASS/SKIP — backend-conformance-manifest.json
-- architecture-lint: PASS/SKIP — check-architecture.mjs
-- verify-m22-gate: PASS/SKIP — package.json verify:m22
+- verify-m22-gate: PASS/SKIP — package.json verify:m22 + verify:m23
 - netsons-staging-e2e: PASS/SKIP — SKIP (unset: KIVRO_NETSONS_STAGING_URL, KIVRO_E2E_BUYER_EMAIL, KIVRO_E2E_SELLER_EMAIL)
 - aws-staging-e2e: PASS/SKIP — SKIP (unset: KIVRO_AWS_STAGING_URL, KIVRO_E2E_BUYER_EMAIL, KIVRO_E2E_SELLER_EMAIL)
 - dual-control-plane-staging: PASS/SKIP — SKIP (unset: KIVRO_M22_STAGING_URL)
+
+## Mandatory automated runs (code/tests, not COVERAGE trust)
+
+- single-migration-history: PASS — packages/database/prisma/migrations
+- shared-api-contract-source: PASS — packages/contracts single public contract package
+- architecture-deps: PASS — scripts/check-architecture.mjs
+- composition-thinness: PASS — scripts/check-composition-thinness.mjs
+- no-bullmq-production: PASS — scripts/check-no-bullmq-production.mjs
+- api-contract-mvp: PASS — scripts/verify-api-contract-mvp.mjs
+- security-release-gate-files: PASS — scripts/verify-release-gate-evidence.mjs
+- both-composition-roots: PASS — verify-both-composition-roots.mjs

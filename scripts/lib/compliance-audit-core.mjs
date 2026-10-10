@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { loadCoverageFromRepo } from "./parse-coverage.mjs";
+import { evidencePaths, looksLikeRepoPath, pathExists } from "./evidence-path.mjs";
 
 function closedSectionsThroughMilestone(root, maxMilestone) {
   const closed = new Set();
@@ -13,33 +14,6 @@ function closedSectionsThroughMilestone(root, maxMilestone) {
   return closed;
 }
 
-function evidencePaths(cell) {
-  if (!cell || cell === "---") return [];
-  return cell
-    .split(/[,;]/)
-    .map((s) => s.trim())
-    .filter(Boolean);
-}
-
-const EVIDENCE_SKIP = new Set([
-  "vitest",
-  "prisma",
-  "pnpm",
-  "---",
-  "post-MVP",
-  "security/tests",
-]);
-
-function looksLikeRepoPath(token) {
-  const t = token.split(/\s+/)[0];
-  if (EVIDENCE_SKIP.has(t)) return false;
-  return (
-    /^(apps|packages|docs|scripts|security|tests|\.github)\//.test(t) ||
-    t.endsWith(".md") ||
-    t.endsWith(".ts")
-  );
-}
-
 function scheduledTargetMilestone(notes) {
   const m = notes.match(/scheduled:(M\d+|post-MVP)/i);
   return m ? m[1].toUpperCase() : null;
@@ -49,29 +23,6 @@ function milestoneOrder(m) {
   if (!m || m === "POST-MVP") return 999;
   const n = Number(m.replace(/^M/, ""));
   return Number.isFinite(n) ? n : 999;
-}
-
-function pathExists(root, rel) {
-  const token = rel.split(/\s+/)[0];
-  const candidates = [token];
-  const pkgFile = token.match(/^packages\/([^/]+)\/([^/]+\.(ts|tsx|mjs|md))$/);
-  if (pkgFile) {
-    candidates.push(`packages/${pkgFile[1]}/src/${pkgFile[2]}`);
-  }
-  const apiRoute = token.match(/^apps\/api\/routes\/(.+)$/);
-  if (apiRoute) {
-    candidates.push(`apps/api/src/routes/${apiRoute[1]}`);
-  }
-  if (token === "apps/api/server.ts") {
-    candidates.push("apps/api/src/server.ts");
-  }
-  if (/^packages\/[^/]+$/.test(token)) {
-    candidates.push(`${token}/package.json`);
-  }
-  if (/^apps\/[^/]+$/.test(token)) {
-    candidates.push(`${token}/package.json`);
-  }
-  return candidates.some((c) => fs.existsSync(path.join(root, c)));
 }
 
 /**
@@ -91,6 +42,7 @@ export function runComplianceAudit(input) {
   const byPriority = { P0: {}, P1: {}, P2: {} };
   const unexplained = [];
   const invalidTested = [];
+  const testedP0MissingTestEvidence = [];
   const closedScopeOpen = [];
   const p0p1Open = [];
 
@@ -121,6 +73,9 @@ export function runComplianceAudit(input) {
     if (row.status === "TESTED") {
       const impl = evidencePaths(row.implementation);
       const tests = evidencePaths(row.tests);
+      if (row.priority === "P0" && (row.tests === "---" || tests.length === 0)) {
+        testedP0MissingTestEvidence.push(row);
+      }
       if (impl.length === 0 && tests.length === 0) {
         invalidTested.push({ row, reason: "missing evidence cells" });
         continue;
@@ -167,6 +122,7 @@ export function runComplianceAudit(input) {
       : {}),
     unexplainedCount: unexplained.length,
     invalidTestedCount: invalidTested.length,
+    testedP0MissingTestEvidenceCount: testedP0MissingTestEvidence.length,
     p0p1OpenCount: p0p1Open.length,
     p0OpenCount: rows.filter((r) => r.priority === "P0" && r.status === "TODO").length,
     p1OpenCount: rows.filter((r) => r.priority === "P1" && r.status === "TODO").length,
@@ -199,6 +155,7 @@ export function runComplianceAudit(input) {
     "",
     `- Unexplained TODO/PARTIAL/BLOCKED: **${unexplained.length}**`,
     `- TESTED rows with missing evidence paths: **${invalidTested.length}**`,
+    `- P0 TESTED without test evidence: **${testedP0MissingTestEvidence.length}**`,
     "",
     "## P0/P1 still open (scheduled later)",
     "",
@@ -206,6 +163,7 @@ export function runComplianceAudit(input) {
     "",
     `Full machine report: \`docs/audits/${input.auditId}-compliance-report.json\`.`,
     "",
+    input.markdownFooter ?? "",
   ].join("\n");
 
   fs.writeFileSync(path.join(auditsDir, `${input.auditId}-compliance-report.md`), md);
@@ -252,6 +210,15 @@ export function runComplianceAudit(input) {
     );
     for (const { row, reason } of invalidTested.slice(0, 5)) {
       console.error(`  ${row.id}: ${reason}`);
+    }
+    failed = true;
+  }
+  if (testedP0MissingTestEvidence.length > 0) {
+    console.error(
+      `${input.auditId} audit FAIL: ${testedP0MissingTestEvidence.length} P0 TESTED without test evidence`,
+    );
+    for (const row of testedP0MissingTestEvidence.slice(0, 5)) {
+      console.error(`  ${row.id}`);
     }
     failed = true;
   }

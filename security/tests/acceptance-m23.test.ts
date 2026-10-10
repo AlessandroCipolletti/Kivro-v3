@@ -11,5 +11,7 @@ describe("M23 unified compliance audit milestone", () => {
     expect(fs.existsSync(path.join(root, "scripts/audit-m23-unified.mjs"))).toBe(true);
     expect(fs.existsSync(path.join(root, "scripts/lib/compliance-audit-core.mjs"))).toBe(true);
     expect(fs.existsSync(path.join(root, "docs/milestones/M23-closure.md"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "docs/audits/M23-mandatory-audit-matrix.md"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "scripts/verify-m23-staging-bundle.mjs"))).toBe(true);
   });
 });

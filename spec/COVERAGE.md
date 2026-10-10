@@ -3561,11 +3561,11 @@ feature post-MVP or the user explicitly approves the deferral.
   Requirement   Priority     Status       Implementation   Test evidence
                                           evidence         
   ------------- ------------ ------------ ---------------- ---------------
-  HARD-001      P0           TODO         ---              ---
+  HARD-001   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-002      P0           TODO         ---              ---
+  HARD-002   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-003      P0           TODO         ---              ---
+  HARD-003   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
   HARD-004      P0           TODO         ---              ---
 
@@ -3577,7 +3577,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-008      P0           TODO         ---              ---
 
-  HARD-009      P0           TODO         ---              ---
+  HARD-009   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
   HARD-010      P0           TODO         ---              ---
 
@@ -3585,7 +3585,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-012      P1           TODO         ---              ---
 
-  HARD-013      P0           TODO         ---              ---
+  HARD-013   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
   HARD-014      P0           TODO         ---              ---
 
@@ -3593,13 +3593,13 @@ feature post-MVP or the user explicitly approves the deferral.
 
   HARD-016      P0           TODO         ---              ---
 
-  HARD-017      P0           TODO         ---              ---
+  HARD-017   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-018   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs   security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
+  HARD-018   P0         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-019   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs   security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
+  HARD-019   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
-  HARD-020   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs   security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
+  HARD-020   P1         TESTED   scripts/lib/compliance-audit-core.mjs, scripts/audit-m23-unified.mjs, scripts/lib/m23-mandatory-runs.mjs   security/tests/conformance-unified-audit-m23.test.ts; security/tests/acceptance-m23.test.ts; scripts/verify-m23-flow.mjs   docs/milestones/M23-closure.md M23
 
   HARD-021      P0           TODO         ---              ---
 

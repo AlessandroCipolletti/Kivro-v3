@@ -606,6 +606,12 @@ greenfield.
 
 **Decision:** Extract shared `compliance-audit-core.mjs`; add `audit-m23-unified.mjs` with M00–M22 section closure, evidence validation, unified-backend readiness checklist, and M23 audit reports. Staging paid E2E and dual-CP transition E2E remain optional (env-gated) until M28. Gate: `pnpm verify:m23` (includes `verify:m22`).
 
+## DEC-M23-002 — M23 milestone done vs Master Spec literal completion
+
+**Context:** IMPLEMENTATION-PLAN M23 lists “all P0/P1/P2 complete” and full staging E2E; M28 is the superseding terminal lossless audit.
+
+**Decision:** **M23 is DONE in-repo** when `pnpm verify:m23` passes and `docs/audits/M23-exit-criteria.json` has `m23HarnessComplete: true`. That includes COVERAGE traceability, evidence sampling, mandatory architecture/API/schema runs, HARD-018 security release test bundle, and `verify:m22` regression. **`productMasterSpecComplete` remains false** until M28 (open P0/P1/P2 counts documented in exit criteria). Staging paid E2E is env-gated, not CI-blocking.
+
 ## DEC-M18-001 — Local development environment & local E2E (§551–§573)
 
 **Context:** M18 maps `DEV-LOCAL-001`–`029`: Compose infra, dev scripts, fake payment adapter, health/readiness, local paid path, and §573 checklist evidence.

@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2026-10-09T22:58:11.940Z",
+  "m23HarnessComplete": true,
+  "productMasterSpecComplete": false,
+  "terminalGate": "M28",
+  "criteria": [
+    {
+      "id": "coverage-traceability",
+      "planItem": "Every requirement accounted with schedule or TESTED evidence",
+      "status": "PASS",
+      "detail": "unexplained=0"
+    },
+    {
+      "id": "m00-m22-closure",
+      "planItem": "No stray TODO in M00–M22 section scope",
+      "status": "PASS",
+      "detail": "closedScopeTodo=0"
+    },
+    {
+      "id": "tested-evidence-paths",
+      "planItem": "TESTED rows resolve on disk; P0 cites tests",
+      "status": "PASS",
+      "detail": "invalid=0 p0NoTests=0"
+    },
+    {
+      "id": "mandatory-automated-runs",
+      "planItem": "Architecture, API contract, schema, dual roots",
+      "status": "PASS",
+      "detail": "0 failed"
+    },
+    {
+      "id": "all-p0-p1-p2-complete",
+      "planItem": "All P0/P1/P2 requirements complete",
+      "status": "DEFERRED_M28",
+      "detail": "P0 TODO 102, P1 TODO 329, P2 TODO 97"
+    },
+    {
+      "id": "product-security-sandbox-satisfied",
+      "planItem": "Original product/security/payment/sandbox requirements satisfied",
+      "status": "PARTIAL",
+      "detail": "Automated security release + verify:m22 chain; full catalog open rows scheduled M24–M34"
+    },
+    {
+      "id": "netsons-aws-staging-e2e",
+      "planItem": "Full Netsons/AWS staging E2E",
+      "status": "ENV_OPTIONAL",
+      "detail": "scripts/verify-m23-staging-bundle.mjs"
+    },
+    {
+      "id": "dual-cp-transition-e2e",
+      "planItem": "Dual control-plane transition E2E",
+      "status": "ENV_OPTIONAL",
+      "detail": "verify-m22-dual-staging + docs/deploy/dual-control-plane-transition.md"
+    },
+    {
+      "id": "terminal-lossless-audit",
+      "planItem": "Lossless Master Spec proof",
+      "status": "DEFERRED_M28",
+      "detail": "IMPLEMENTATION-PLAN M28 supersedes terminal gate"
+    }
+  ]
+}
