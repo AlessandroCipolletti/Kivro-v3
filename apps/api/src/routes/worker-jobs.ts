@@ -65,6 +65,7 @@ export function workerJobRoutes(): Hono<AppEnv> {
     const protocolVersion = protocolHeader ? Number.parseInt(protocolHeader, 10) : undefined;
     const handshake = gateWorkerCloudHandshake({
       protocolVersion: Number.isFinite(protocolVersion) ? protocolVersion : undefined,
+      env: process.env,
     });
     if (!handshake.ok) {
       return c.json(handshake.body, handshake.httpStatus);

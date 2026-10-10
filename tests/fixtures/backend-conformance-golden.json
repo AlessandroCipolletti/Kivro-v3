@@ -101,6 +101,31 @@
       "id": "M25-GOLD-005",
       "name": "signed worker release",
       "assert": "tampered Worker release manifests fail signature verification"
+    },
+    {
+      "id": "M25-GOLD-006",
+      "name": "worker transport protocol header",
+      "assert": "Worker cloud client sends x-kivro-protocol-version"
+    },
+    {
+      "id": "M25-GOLD-007",
+      "name": "protocol overlap during transition",
+      "assert": "ACTIVE and DRAINING protocol windows overlap within matrix"
+    },
+    {
+      "id": "M25-GOLD-008",
+      "name": "revoked worker policy",
+      "assert": "revoked Worker versions fail cloud handshake"
+    },
+    {
+      "id": "M25-GOLD-009",
+      "name": "openclaw adapter range",
+      "assert": "unsupported OpenClaw versions fail cloud handshake"
+    },
+    {
+      "id": "M25-GOLD-010",
+      "name": "staged update persistence",
+      "assert": "Worker store persists staged update state across restarts"
     }
   ]
 }

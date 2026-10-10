@@ -3,6 +3,7 @@ import { getDeviceIdentity, openWorkerStore } from "@kivro/worker-store";
 import os from "node:os";
 import path from "node:path";
 import { dedupePollOffersByJobId } from "@kivro/cloud-core";
+import { KIVRO_COMPATIBILITY_MATRIX } from "@kivro/compatibility";
 import { resolveWorkerCloudRuntime } from "./worker-cloud-client.js";
 
 function runtimeRoot(): string {
@@ -68,7 +69,7 @@ export async function runWorkerPollDaemon(): Promise<void> {
   );
 
   const heartbeatBody = buildWorkerHeartbeatBody({
-    workerVersion: "0.0.0-m19",
+    workerVersion: KIVRO_COMPATIBILITY_MATRIX.workerRelease.latestSupportedWorkerVersion,
     dockerOk: true,
     sandboxOk:
       executionMode === "sandbox-fixture" ||

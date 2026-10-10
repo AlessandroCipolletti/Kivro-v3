@@ -18,6 +18,15 @@
 | Staged update / rollback | `staged-worker-update.ts` |
 | Cloud fail-closed handshake | `evaluateCloudWorkerHandshake`, API poll/heartbeat gates |
 | Backend transition without binary | `backend-transition.ts`, M25 dual-CP restart test |
+| Revoked Worker policy (env) | `KIVRO_REVOKED_WORKER_VERSIONS` + handshake |
+| OpenClaw adapter range | `openclaw-range.ts` + heartbeat gate |
+| HARD-010 deploy backfill guard | `validateBackfillIdempotencyDeclarations` |
+| Worker protocol header | `x-kivro-protocol-version` on cloud client |
+| CLI smoke | `verify-worker-release-cli.mjs` |
+| Staged update CLI + store | `kivro-worker update begin|health-check|rollback|status`, `worker-store` |
+| Fitness report | `M25-fitness-report.json` |
+| Schema rollout ops doc | `docs/deploy/schema-rollout-discipline.md` |
+| Strict protocol header (opt) | `KIVRO_REQUIRE_WORKER_PROTOCOL_HEADER` |
 | Gate | **`pnpm verify:m25`** |
 
 ## Exit criteria

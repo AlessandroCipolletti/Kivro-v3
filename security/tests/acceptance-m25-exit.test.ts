@@ -10,5 +10,6 @@ describe("M25 exit criteria artifact", () => {
       fs.readFileSync(path.join(root, "docs/audits/M25-exit-criteria.json"), "utf8"),
     ) as { m25HarnessComplete: boolean };
     expect(doc.m25HarnessComplete).toBe(true);
+    expect(fs.existsSync(path.join(root, "docs/audits/M25-fitness-report.json"))).toBe(true);
   });
 });

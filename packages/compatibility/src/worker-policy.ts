@@ -27,12 +27,16 @@ export function resolveWorkerVersionPolicy(
   revokedWorkerVersions: string[];
 } {
   const base = KIVRO_COMPATIBILITY_MATRIX.workerRelease;
+  const revokedFromEnv = env.KIVRO_REVOKED_WORKER_VERSIONS?.split(",")
+    .map((v) => v.trim())
+    .filter(Boolean);
   return {
     minSupportedWorkerVersion:
       env.KIVRO_MIN_SECURITY_WORKER_VERSION ?? base.minSupportedWorkerVersion,
     latestSupportedWorkerVersion:
       env.KIVRO_LATEST_SUPPORTED_WORKER_VERSION ?? base.latestSupportedWorkerVersion,
-    revokedWorkerVersions: base.revokedWorkerVersions,
+    revokedWorkerVersions:
+      revokedFromEnv && revokedFromEnv.length > 0 ? revokedFromEnv : base.revokedWorkerVersions,
   };
 }
 

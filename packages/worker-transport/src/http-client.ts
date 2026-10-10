@@ -15,17 +15,22 @@ export function createWorkerCloudClient(input: {
   transport: WorkerTransportPort;
   cloudBaseUrl: string;
   workerDeviceId: string;
+  protocolVersion?: number;
   pollingRetryPolicy?: PollingRetryPolicy;
   wssDispatchMode?: WssDispatchMode;
 }): WorkerCloudClient {
   const base = input.cloudBaseUrl.replace(/\/$/, "");
   const wssMode = input.wssDispatchMode ?? "native";
   function headersFor(envelope: ReturnType<WorkerTransportPort["buildPoll"]>): Record<string, string> {
-    return {
+    const headers: Record<string, string> = {
       "content-type": "application/json",
       "x-worker-device-id": input.workerDeviceId,
       "x-kivro-control-plane-id": envelope.controlPlaneId,
     };
+    if (input.protocolVersion !== undefined) {
+      headers["x-kivro-protocol-version"] = String(input.protocolVersion);
+    }
+    return headers;
   }
 
   async function dispatch(envelope: ReturnType<WorkerTransportPort["buildPoll"]>): Promise<Response> {

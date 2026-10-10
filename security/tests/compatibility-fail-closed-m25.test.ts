@@ -19,4 +19,26 @@ describe("M25 cloud fail-closed (HARD-008)", () => {
     });
     expect(r.ok).toBe(true);
   });
+
+  it("M25-GOLD-008 rejects revoked worker via env policy", () => {
+    const r = evaluateCloudWorkerHandshake({
+      workerVersion: "0.0.0-bad",
+      env: { KIVRO_REVOKED_WORKER_VERSIONS: "0.0.0-bad" },
+    });
+    expect(r.ok).toBe(false);
+    if (!r.ok) {
+      expect(r.code).toBe("WORKER_VERSION_REVOKED");
+    }
+  });
+
+  it("M25-GOLD-009 rejects unsupported OpenClaw version", () => {
+    const r = evaluateCloudWorkerHandshake({
+      workerVersion: "0.0.0-m07",
+      openClawVersion: "99.99.99",
+    });
+    expect(r.ok).toBe(false);
+    if (!r.ok) {
+      expect(r.code).toBe("OPENCLAW_VERSION_UNSUPPORTED");
+    }
+  });
 });

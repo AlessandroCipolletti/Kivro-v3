@@ -22,8 +22,11 @@ export {
   nextRolloutPhase,
   parseSchemaRolloutRegistry,
   phaseIndex,
+  protocolVersionsCompatibleDuringOverlap,
+  validateBackfillIdempotencyDeclarations,
   validateRolloutRegistryCoversDisk,
 } from "./schema-rollout.js";
+export { isOpenClawVersionSupported } from "./openclaw-range.js";
 export {
   buildUnifiedReleaseManifest,
   validateUnifiedReleaseManifest,
@@ -36,6 +39,7 @@ export {
   rollbackStagedWorkerUpdate,
 } from "./staged-worker-update.js";
 export type { StagedWorkerUpdateState } from "./staged-worker-update.js";
+export { parseStagedWorkerUpdateState } from "./staged-worker-update-parse.js";
 export {
   canonicalWorkerReleasePayload,
   demoWorkerReleaseManifest,

@@ -22,6 +22,12 @@ import { hashOpenClawSkill } from "@kivro/openclaw-adapter";
 import { WORKER_COMMANDS } from "@kivro/job-protocol";
 import {
   KIVRO_COMPATIBILITY_MATRIX,
+  beginStagedWorkerUpdate,
+  completeRollback,
+  parseStagedWorkerUpdateState,
+  promoteStagedWorkerToStaging,
+  recordStagingHealthCheck,
+  rollbackStagedWorkerUpdate,
   verifyWorkerReleaseManifest,
   type WorkerReleaseManifest,
 } from "@kivro/compatibility";
@@ -30,11 +36,13 @@ import {
   clearWorkerGlobalPause,
   getDeviceIdentity,
   getLocalJobExecutionState,
+  getStagedWorkerUpdate,
   getWorkerGlobalPause,
   listLocalJobExecutionStates,
   openWorkerStore,
   saveDeviceIdentity,
   setLocalJobExecutionState,
+  setStagedWorkerUpdate,
   setWorkerDeviceId,
   setWorkerGlobalPause,
 } from "@kivro/worker-store";
@@ -669,6 +677,74 @@ updateCmd
       process.exit(1);
     }
     console.log(JSON.stringify({ ok: true, workerVersion: manifest.workerVersion }));
+  });
+
+updateCmd
+  .command("status")
+  .description("Show persisted staged Worker update state (HARD-012)")
+  .action(() => {
+    const store = openWorkerStore(runtimeRoot());
+    const raw = getStagedWorkerUpdate(store);
+    const parsed = raw ? parseStagedWorkerUpdateState(raw) : null;
+    console.log(JSON.stringify({ stagedWorkerUpdate: parsed ?? { phase: "idle" } }));
+  });
+
+updateCmd
+  .command("begin")
+  .description("Verify signed release and begin staged update")
+  .requiredOption("--manifest <path>", "JSON manifest path")
+  .requiredOption("--signature <base64>", "Base64 signature")
+  .requiredOption("--public-key <path>", "PEM public key path")
+  .action((opts: { manifest: string; signature: string; publicKey: string }) => {
+    const manifest = JSON.parse(fs.readFileSync(opts.manifest, "utf8")) as WorkerReleaseManifest;
+    const publicKeyPem = fs.readFileSync(opts.publicKey, "utf8");
+    if (!verifyWorkerReleaseManifest(manifest, opts.signature, publicKeyPem)) {
+      console.error(JSON.stringify({ error: "SIGNATURE_INVALID" }));
+      process.exit(1);
+    }
+    const store = openWorkerStore(runtimeRoot());
+    const current = parseStagedWorkerUpdateState(getStagedWorkerUpdate(store)) ?? { phase: "idle" as const };
+    const next = beginStagedWorkerUpdate({
+      state: current,
+      targetVersion: manifest.workerVersion,
+      signatureVerified: true,
+    });
+    const staged = promoteStagedWorkerToStaging(next);
+    setStagedWorkerUpdate(store, staged as unknown as Record<string, unknown>);
+    console.log(JSON.stringify({ ok: true, stagedWorkerUpdate: staged }));
+  });
+
+updateCmd
+  .command("health-check")
+  .description("Record one staging health check toward activation")
+  .action(() => {
+    const store = openWorkerStore(runtimeRoot());
+    const parsed = parseStagedWorkerUpdateState(getStagedWorkerUpdate(store));
+    if (!parsed) {
+      console.error(JSON.stringify({ error: "NO_STAGED_UPDATE" }));
+      process.exit(1);
+    }
+    const next = recordStagingHealthCheck(parsed);
+    setStagedWorkerUpdate(store, next as unknown as Record<string, unknown>);
+    console.log(JSON.stringify({ ok: true, stagedWorkerUpdate: next }));
+  });
+
+updateCmd
+  .command("rollback")
+  .description("Rollback staged update to previous active version")
+  .requiredOption("--previous-version <ver>", "Version to restore")
+  .option("--reason <text>", "Rollback reason", "manual rollback")
+  .action((opts: { previousVersion: string; reason: string }) => {
+    const store = openWorkerStore(runtimeRoot());
+    const parsed = parseStagedWorkerUpdateState(getStagedWorkerUpdate(store)) ?? { phase: "idle" as const };
+    const rolled = rollbackStagedWorkerUpdate({
+      state: parsed,
+      previousActiveVersion: opts.previousVersion,
+      reason: opts.reason,
+    });
+    const active = completeRollback(rolled);
+    setStagedWorkerUpdate(store, active as unknown as Record<string, unknown>);
+    console.log(JSON.stringify({ ok: true, stagedWorkerUpdate: active }));
   });
 
 program.command("version").action(() => console.log(WORKER_VERSION));

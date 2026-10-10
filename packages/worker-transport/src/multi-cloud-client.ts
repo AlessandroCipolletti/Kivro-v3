@@ -21,6 +21,7 @@ export function createWorkerMultiCloudClient(input: {
   cloudBaseUrl: string;
   workerDeviceId: string;
   bindings: ControlPlaneTransportBinding[];
+  protocolVersion?: number;
   pollingRetryPolicy?: PollingRetryPolicy;
   wssDispatchMode?: WssDispatchMode;
 }): WorkerMultiCloudClient {
@@ -31,6 +32,7 @@ export function createWorkerMultiCloudClient(input: {
     clients.set(
       binding.controlPlaneId,
       createWorkerCloudClient({
+        protocolVersion: input.protocolVersion,
         transport: binding.transport,
         cloudBaseUrl: input.cloudBaseUrl,
         workerDeviceId: input.workerDeviceId,

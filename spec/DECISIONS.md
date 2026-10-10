@@ -612,6 +612,10 @@ greenfield.
 
 **Decision:** Ship `check-duplicate-semantic-ownership.mjs`, golden registry v2 with `verify-golden-registry.mjs`, `createBrokenCompositionDriftProbe`, `generate-provider-parity-report.mjs`, and `pnpm verify:m24` (includes `verify:m23`). Full fault-injection golden (HARD-005/006) remains M26. Gate: `pnpm verify:m24`.
 
+## DEC-M25-002 — Production may require Worker protocol headers
+
+**Decision:** When `KIVRO_REQUIRE_WORKER_PROTOCOL_HEADER=1`, poll/heartbeat fail closed without `x-kivro-protocol-version` or body `protocolVersion`. Default off in development; operators enable for strict release gates.
+
 ## DEC-M25-001 — M25 compatibility matrix is authoritative in `@kivro/compatibility`
 
 **Decision:** `packages/compatibility/matrix.json` is the single authoritative HARD-007 matrix; `tests/fixtures/compatibility-matrix.json` mirrors it for golden tests. Cloud handshake, Worker policy, release manifest, and schema rollout registry derive from this package. Gate: `pnpm verify:m25` (includes `verify:m24`).

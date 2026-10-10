@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-10-10T07:29:58.834Z",
+  "milestone": "M25",
+  "compatibilityMatrixVersion": 1,
+  "unifiedReleaseManifest": {
+    "generatedAt": "2026-10-10T07:29:57.300Z",
+    "gitCommit": "4b6f43193a2394c15fad51406ddb7cedc454c355",
+    "cloudReleaseChannel": "mvp",
+    "apiContractVersion": "v1-mvp",
+    "workerProtocolMin": 1,
+    "workerProtocolMax": 1,
+    "capabilityManifestSchemaVersion": 1,
+    "databaseSchemaRevision": "20260410140000",
+    "schemaRolloutPhase": "contract",
+    "workerReleaseChannel": "stable",
+    "workerMinSupportedVersion": "0.0.0-m07",
+    "workerLatestSupportedVersion": "0.0.0-m07",
+    "adapterProfiles": {
+      "netsons": {
+        "revision": "cloud-netsons@workspace"
+      },
+      "aws": {
+        "revision": "cloud-aws@workspace"
+      }
+    },
+    "parityReportPath": "docs/audits/M24-provider-parity-report.json",
+    "conformanceManifestPath": "tests/fixtures/backend-conformance-manifest.json"
+  },
+  "exitCriteria": {
+    "generatedAt": "2026-10-10T07:29:45.660Z",
+    "m25HarnessComplete": false,
+    "criteria": [
+      {
+        "id": "compatibility-matrix-authoritative",
+        "status": "PASS",
+        "detail": "@kivro/compatibility matrix + verify-compatibility-matrix.mjs"
+      },
+      {
+        "id": "schema-rollout-discipline",
+        "status": "PASS",
+        "detail": "expand/deploy/contract registry + overlap guard"
+      },
+      {
+        "id": "unified-release-manifest",
+        "status": "PASS",
+        "detail": "generate-unified-release-manifest.mjs"
+      },
+      {
+        "id": "worker-release-signing",
+        "status": "PASS",
+        "detail": "HARD-011 sign/verify + kivro-worker update verify"
+      },
+      {
+        "id": "cloud-fail-closed-handshake",
+        "status": "PASS",
+        "detail": "HARD-008 evaluateCloudWorkerHandshake on poll/heartbeat"
+      },
+      {
+        "id": "staged-worker-update",
+        "status": "PASS",
+        "detail": "HARD-012 staged update state machine tests"
+      },
+      {
+        "id": "backend-transition-without-binary",
+        "status": "PASS",
+        "detail": "HARD-013 dual-CP restart / transport overlap tests"
+      },
+      {
+        "id": "hard-010-backfill-idempotency",
+        "status": "PASS",
+        "detail": "validateBackfillIdempotencyDeclarations in verify-schema-rollout-discipline"
+      },
+      {
+        "id": "worker-transport-protocol-header",
+        "status": "PASS",
+        "detail": "x-kivro-protocol-version on Worker cloud client"
+      },
+      {
+        "id": "worker-update-cli-smoke",
+        "status": "PASS",
+        "detail": "verify-worker-release-cli.mjs"
+      },
+      {
+        "id": "staged-update-cli-smoke",
+        "status": "PASS",
+        "detail": "verify-worker-staged-update-cli.mjs"
+      },
+      {
+        "id": "m25-fitness-report",
+        "status": "FAIL",
+        "detail": "audit-m25-fitness-report.mjs"
+      }
+    ]
+  },
+  "harnessScripts": [
+    "scripts/verify-compatibility-matrix.mjs",
+    "scripts/verify-schema-rollout-discipline.mjs",
+    "scripts/generate-unified-release-manifest.mjs",
+    "scripts/verify-worker-release-cli.mjs",
+    "scripts/sync-compatibility-matrix-fixture.mjs"
+  ]
+}

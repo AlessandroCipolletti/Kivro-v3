@@ -11,6 +11,7 @@ export function buildWorkerHeartbeatBody(input: {
   openClawVersion?: string | null;
 }): Record<string, unknown> {
   return {
+    protocolVersion: PROTOCOL_VERSION,
     workerVersion: input.workerVersion,
     openClawVersion: input.openClawVersion ?? null,
     dockerOk: input.dockerOk,

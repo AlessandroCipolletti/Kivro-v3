@@ -3,6 +3,8 @@ import { evaluateCloudWorkerHandshake } from "@kivro/compatibility";
 export function gateWorkerCloudHandshake(input: {
   protocolVersion?: number;
   workerVersion?: string;
+  openClawVersion?: string | null;
+  env?: NodeJS.ProcessEnv;
 }):
   | { ok: true }
   | {
@@ -15,7 +17,12 @@ export function gateWorkerCloudHandshake(input: {
       };
       httpStatus: 426 | 403;
     } {
-  const result = evaluateCloudWorkerHandshake(input);
+  const result = evaluateCloudWorkerHandshake({
+    protocolVersion: input.protocolVersion,
+    workerVersion: input.workerVersion,
+    openClawVersion: input.openClawVersion,
+    env: input.env ?? process.env,
+  });
   if (result.ok) {
     return { ok: true };
   }

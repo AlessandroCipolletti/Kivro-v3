@@ -34,11 +34,13 @@ interface StoreFile {
   syncState: Record<string, string>;
   localJobs: Record<string, LocalJobExecutionState>;
   globalPause: WorkerGlobalPauseState | null;
+  /** M25 staged Worker update state (validated by @kivro/compatibility on read). */
+  stagedWorkerUpdate: Record<string, unknown> | null;
 }
 
 function readStore(statePath: string): StoreFile {
   if (!fs.existsSync(statePath)) {
-    return { device: null, syncState: {}, localJobs: {}, globalPause: null };
+    return { device: null, syncState: {}, localJobs: {}, globalPause: null, stagedWorkerUpdate: null };
   }
   const raw = fs.readFileSync(statePath, "utf8");
   const parsed = JSON.parse(raw) as Partial<StoreFile>;
@@ -47,6 +49,7 @@ function readStore(statePath: string): StoreFile {
     syncState: parsed.syncState ?? {},
     localJobs: parsed.localJobs ?? {},
     globalPause: parsed.globalPause ?? null,
+    stagedWorkerUpdate: parsed.stagedWorkerUpdate ?? null,
   };
 }
 
@@ -62,7 +65,13 @@ export function openWorkerStore(rootDir: string): WorkerStoreHandle {
   fs.mkdirSync(rootDir, { recursive: true, mode: 0o700 });
   const statePath = path.join(rootDir, "worker-state.json");
   if (!fs.existsSync(statePath)) {
-    writeStore(statePath, { device: null, syncState: {}, localJobs: {}, globalPause: null });
+    writeStore(statePath, {
+      device: null,
+      syncState: {},
+      localJobs: {},
+      globalPause: null,
+      stagedWorkerUpdate: null,
+    });
   }
   return { rootDir, statePath };
 }
@@ -140,6 +149,19 @@ export function getLocalJobExecutionState(
 export function listLocalJobExecutionStates(store: WorkerStoreHandle): LocalJobExecutionState[] {
   const file = readStore(store.statePath);
   return Object.values(file.localJobs);
+}
+
+export function getStagedWorkerUpdate(store: WorkerStoreHandle): Record<string, unknown> | null {
+  return readStore(store.statePath).stagedWorkerUpdate;
+}
+
+export function setStagedWorkerUpdate(
+  store: WorkerStoreHandle,
+  state: Record<string, unknown> | null,
+): void {
+  const file = readStore(store.statePath);
+  file.stagedWorkerUpdate = state;
+  writeStore(store.statePath, file);
 }
 
 export function setWorkerDeviceId(store: WorkerStoreHandle, workerDeviceId: string): void {

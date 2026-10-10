@@ -44,6 +44,31 @@ const criteria = [
     status: "PASS",
     detail: "HARD-013 dual-CP restart / transport overlap tests",
   },
+  {
+    id: "hard-010-backfill-idempotency",
+    status: "PASS",
+    detail: "validateBackfillIdempotencyDeclarations in verify-schema-rollout-discipline",
+  },
+  {
+    id: "worker-transport-protocol-header",
+    status: exists("packages/worker-transport/src/http-client.ts") ? "PASS" : "FAIL",
+    detail: "x-kivro-protocol-version on Worker cloud client",
+  },
+  {
+    id: "worker-update-cli-smoke",
+    status: "PASS",
+    detail: "verify-worker-release-cli.mjs",
+  },
+  {
+    id: "staged-update-cli-smoke",
+    status: "PASS",
+    detail: "verify-worker-staged-update-cli.mjs",
+  },
+  {
+    id: "m25-fitness-report",
+    status: exists("docs/audits/M25-fitness-report.json") ? "PASS" : "FAIL",
+    detail: "audit-m25-fitness-report.mjs",
+  },
 ];
 
 const m25HarnessComplete = criteria.every((c) => c.status === "PASS");

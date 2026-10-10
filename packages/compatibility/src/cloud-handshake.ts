@@ -1,5 +1,6 @@
 import { isProtocolVersionWithinCompatibilityWindow } from "@kivro/contracts";
 import { KIVRO_COMPATIBILITY_MATRIX } from "./matrix.js";
+import { isOpenClawVersionSupported } from "./openclaw-range.js";
 import { evaluateWorkerVersion } from "./worker-policy.js";
 
 export type CloudWorkerHandshakeResult =
@@ -9,7 +10,8 @@ export type CloudWorkerHandshakeResult =
       code:
         | "PROTOCOL_VERSION_UNSUPPORTED"
         | "WORKER_VERSION_REVOKED"
-        | "WORKER_VERSION_BELOW_MINIMUM";
+        | "WORKER_VERSION_BELOW_MINIMUM"
+        | "OPENCLAW_VERSION_UNSUPPORTED";
       message: string;
       httpStatus: 426 | 403;
       remediation: string;
@@ -19,9 +21,22 @@ export type CloudWorkerHandshakeResult =
 export function evaluateCloudWorkerHandshake(input: {
   protocolVersion?: number;
   workerVersion?: string;
+  openClawVersion?: string | null;
   env?: NodeJS.ProcessEnv;
 }): CloudWorkerHandshakeResult {
+  const requireProtocol =
+    input.env?.KIVRO_REQUIRE_WORKER_PROTOCOL_HEADER === "1" ||
+    input.env?.KIVRO_REQUIRE_WORKER_PROTOCOL_HEADER === "true";
   const protocol = input.protocolVersion;
+  if (requireProtocol && protocol === undefined) {
+    return {
+      ok: false,
+      code: "PROTOCOL_VERSION_UNSUPPORTED",
+      message: "Worker protocol version header is required.",
+      httpStatus: 426,
+      remediation: `Send x-kivro-protocol-version or protocolVersion ${KIVRO_COMPATIBILITY_MATRIX.workerProtocolMin}–${KIVRO_COMPATIBILITY_MATRIX.workerProtocolMax}.`,
+    };
+  }
   if (protocol !== undefined) {
     const inWindow =
       protocol >= KIVRO_COMPATIBILITY_MATRIX.workerProtocolMin &&
@@ -52,6 +67,16 @@ export function evaluateCloudWorkerHandshake(input: {
             : "Upgrade kivro-worker before connecting.",
       };
     }
+  }
+
+  if (input.openClawVersion && !isOpenClawVersionSupported(input.openClawVersion)) {
+    return {
+      ok: false,
+      code: "OPENCLAW_VERSION_UNSUPPORTED",
+      message: `OpenClaw ${input.openClawVersion} is outside the supported adapter range.`,
+      httpStatus: 403,
+      remediation: "Upgrade or pin OpenClaw to a version compatible with this Worker release.",
+    };
   }
 
   return { ok: true };

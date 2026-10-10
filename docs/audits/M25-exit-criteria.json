@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T07:25:00.479Z",
+  "generatedAt": "2026-10-10T07:29:58.859Z",
   "m25HarnessComplete": true,
   "criteria": [
     {
@@ -36,6 +36,31 @@
       "id": "backend-transition-without-binary",
       "status": "PASS",
       "detail": "HARD-013 dual-CP restart / transport overlap tests"
+    },
+    {
+      "id": "hard-010-backfill-idempotency",
+      "status": "PASS",
+      "detail": "validateBackfillIdempotencyDeclarations in verify-schema-rollout-discipline"
+    },
+    {
+      "id": "worker-transport-protocol-header",
+      "status": "PASS",
+      "detail": "x-kivro-protocol-version on Worker cloud client"
+    },
+    {
+      "id": "worker-update-cli-smoke",
+      "status": "PASS",
+      "detail": "verify-worker-release-cli.mjs"
+    },
+    {
+      "id": "staged-update-cli-smoke",
+      "status": "PASS",
+      "detail": "verify-worker-staged-update-cli.mjs"
+    },
+    {
+      "id": "m25-fitness-report",
+      "status": "PASS",
+      "detail": "audit-m25-fitness-report.mjs"
     }
   ]
 }

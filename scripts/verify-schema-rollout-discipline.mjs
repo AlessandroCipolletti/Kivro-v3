@@ -35,4 +35,10 @@ if (mustFail.ok) {
   process.exit(1);
 }
 
-console.log("Schema rollout discipline OK (expand/deploy/contract + overlap guard)");
+const backfill = compatibility.validateBackfillIdempotencyDeclarations(registry);
+if (!backfill.ok) {
+  console.error("HARD-010 backfill idempotency violations:", backfill.violations.join("; "));
+  process.exit(1);
+}
+
+console.log("Schema rollout discipline OK (expand/deploy/contract + overlap guard + HARD-010)");

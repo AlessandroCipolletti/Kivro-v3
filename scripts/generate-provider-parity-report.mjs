@@ -15,7 +15,7 @@ const aws = awsMod.createAwsComposition();
 coreMod.assertCompositionParity(netsons, aws);
 
 const matrix = JSON.parse(
-  fs.readFileSync(path.join(root, "tests/fixtures/compatibility-matrix.json"), "utf8"),
+  fs.readFileSync(path.join(root, "packages/compatibility/matrix.json"), "utf8"),
 );
 
 const report = {
@@ -36,6 +36,7 @@ const report = {
     },
   },
   parityAsserted: true,
+  unifiedReleaseManifestPath: "docs/audits/unified-release-manifest.json",
 };
 
 const outDir = path.join(root, "docs/audits");

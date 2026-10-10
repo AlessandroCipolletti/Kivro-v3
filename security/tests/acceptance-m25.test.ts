@@ -11,5 +11,7 @@ describe("M25 compatibility milestone", () => {
     expect(fs.existsSync(path.join(root, "packages/compatibility/matrix.json"))).toBe(true);
     expect(fs.existsSync(path.join(root, "tests/fixtures/schema-rollout-registry.json"))).toBe(true);
     expect(fs.existsSync(path.join(root, "docs/audits/unified-release-manifest.json"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "docs/deploy/schema-rollout-discipline.md"))).toBe(true);
+    expect(fs.existsSync(path.join(root, "scripts/audit-m25-fitness-report.mjs"))).toBe(true);
   });
 });

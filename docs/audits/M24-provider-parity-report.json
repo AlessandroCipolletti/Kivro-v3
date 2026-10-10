@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-10T07:25:04.321Z",
+  "generatedAt": "2026-10-10T07:30:02.675Z",
   "apiContractVersion": "v1-mvp",
   "workerProtocolVersion": 1,
   "compatibilityMatrix": {
     "version": 1,
-    "description": "HARD-007 — mirror of packages/compatibility/matrix.json for fixtures/tests.",
+    "description": "HARD-007 — independently identifiable version surfaces (M25 authoritative matrix).",
     "cloudReleaseChannel": "mvp",
     "apiContractVersion": "v1-mvp",
     "capabilityManifestSchemaVersion": 1,
@@ -44,5 +44,6 @@
       "workerTransportKind": "wss"
     }
   },
-  "parityAsserted": true
+  "parityAsserted": true,
+  "unifiedReleaseManifestPath": "docs/audits/unified-release-manifest.json"
 }

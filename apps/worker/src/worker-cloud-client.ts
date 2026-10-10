@@ -70,6 +70,7 @@ export async function resolveWorkerCloudRuntime(input: {
         transport,
         cloudBaseUrl: input.cloudUrl,
         workerDeviceId: input.workerDeviceId,
+        protocolVersion: PROTOCOL_VERSION,
         wssDispatchMode: wssMode,
       }),
     };
@@ -112,6 +113,7 @@ export async function resolveWorkerCloudRuntime(input: {
       cloudBaseUrl: input.cloudUrl,
       workerDeviceId: input.workerDeviceId,
       bindings,
+      protocolVersion: PROTOCOL_VERSION,
       wssDispatchMode: wssMode,
     }),
   };

@@ -23,6 +23,11 @@ const testCorpus = [
   "security/tests/worker-backend-transition-m25.test.ts",
   "security/tests/conformance-dual-control-plane-restart-m25.test.ts",
   "packages/compatibility/src/worker-release-signing.test.ts",
+  "packages/compatibility/src/protocol-overlap.test.ts",
+  "packages/worker-transport/src/http-client.test.ts",
+  "packages/worker-store/src/staged-update.test.ts",
+  "security/tests/conformance-golden-m25.test.ts",
+  "apps/api/src/services/worker-compatibility-gate.test.ts",
 ]
   .map((rel) => fs.readFileSync(path.join(root, rel), "utf8"))
   .join("\n");

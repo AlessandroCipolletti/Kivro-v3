@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { assertRolloutSafeDuringControlPlaneOverlap, parseSchemaRolloutRegistry } from "./schema-rollout.js";
+import {
+  assertRolloutSafeDuringControlPlaneOverlap,
+  parseSchemaRolloutRegistry,
+  validateBackfillIdempotencyDeclarations,
+} from "./schema-rollout.js";
 
 const registry = parseSchemaRolloutRegistry({
   description: "test",
@@ -16,6 +20,11 @@ describe("schema rollout (HARD-009)", () => {
       registry,
       pendingMigrationFolders: ["20260410140000_m22_execution_control_plane"],
     });
+    expect(ok.ok).toBe(true);
+  });
+
+  it("HARD-010 requires backfillIdempotent on deploy migrations", () => {
+    const ok = validateBackfillIdempotencyDeclarations(registry);
     expect(ok.ok).toBe(true);
   });
 

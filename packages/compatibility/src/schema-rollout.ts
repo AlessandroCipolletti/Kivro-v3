@@ -57,3 +57,35 @@ export function nextRolloutPhase(current: SchemaRolloutPhase): SchemaRolloutPhas
   const idx = phaseIndex(current);
   return idx < PHASE_ORDER.length - 1 ? PHASE_ORDER[idx + 1]! : null;
 }
+
+/** HARD-010 — deploy/backfill steps must declare idempotent or resumable semantics. */
+export function validateBackfillIdempotencyDeclarations(registry: SchemaRolloutRegistry): {
+  ok: true;
+} | {
+  ok: false;
+  violations: string[];
+} {
+  const violations: string[] = [];
+  for (const m of registry.migrations) {
+    if (m.phase !== "deploy") {
+      continue;
+    }
+    const meta = m as { backfillIdempotent?: boolean };
+    if (meta.backfillIdempotent !== true) {
+      violations.push(`${m.folder} (deploy phase missing backfillIdempotent: true)`);
+    }
+  }
+  return violations.length ? { ok: false, violations } : { ok: true };
+}
+
+/** Overlapping compatible releases must accept protocol versions inside declared window. */
+export function protocolVersionsCompatibleDuringOverlap(input: {
+  activeMin: number;
+  activeMax: number;
+  drainingMin: number;
+  drainingMax: number;
+}): boolean {
+  const overlapMin = Math.max(input.activeMin, input.drainingMin);
+  const overlapMax = Math.min(input.activeMax, input.drainingMax);
+  return overlapMin <= overlapMax;
+}

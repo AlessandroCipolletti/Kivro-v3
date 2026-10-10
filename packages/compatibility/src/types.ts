@@ -38,6 +38,7 @@ export type SchemaRolloutRegistry = {
     folder: string;
     phase: SchemaRolloutPhase;
     notes?: string;
+    backfillIdempotent?: boolean;
   }>;
 };
 

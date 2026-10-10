@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T07:25:07.861Z",
+  "generatedAt": "2026-10-10T07:30:06.256Z",
   "m24HarnessComplete": true,
   "criteria": [
     {
@@ -15,7 +15,7 @@
     {
       "id": "golden-registry",
       "status": "PASS",
-      "detail": "20 scenarios wired via verify-golden-registry.mjs"
+      "detail": "25 scenarios wired via verify-golden-registry.mjs"
     },
     {
       "id": "compatibility-matrix-seed",

@@ -21,6 +21,8 @@ export function workerHealthRoutes(): Hono<AppEnv> {
     const handshake = gateWorkerCloudHandshake({
       protocolVersion: body.protocolVersion,
       workerVersion: body.workerVersion,
+      openClawVersion: body.openClawVersion,
+      env: process.env,
     });
     if (!handshake.ok) {
       return c.json(handshake.body, handshake.httpStatus);
