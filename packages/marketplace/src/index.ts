@@ -34,6 +34,12 @@ export {
 } from "./buyer-constraints.js";
 export { rankAgentCandidates, type RankedCapability } from "./agent-ranking.js";
 export {
+  agentInteractionMode,
+  humanAvailabilityGroup,
+  partitionHumanListings,
+  type HumanAvailabilityGroup,
+} from "./human-availability.js";
+export {
   buildJobScheduleQuote,
   formatBuyerLocalTime,
   marketplaceCardCopy,

@@ -22,7 +22,11 @@ export type MarketplaceCapability = {
 
 export async function fetchMarketplaceCapabilities(
   searchParams?: Record<string, string>,
-): Promise<{ capabilities: MarketplaceCapability[]; meta: { categories: string[] } }> {
+): Promise<{
+  capabilities: MarketplaceCapability[];
+  groups?: { availableNow: string[]; availableLater: string[] };
+  meta: { categories: string[] };
+}> {
   const qs = new URLSearchParams(searchParams);
   const res = await fetch(`${API_BASE}/marketplace/capabilities?${qs.toString()}`, {
     next: { revalidate: 15 },
@@ -32,6 +36,7 @@ export async function fetchMarketplaceCapabilities(
   }
   return (await res.json()) as {
     capabilities: MarketplaceCapability[];
+    groups?: { availableNow: string[]; availableLater: string[] };
     meta: { categories: string[] };
   };
 }

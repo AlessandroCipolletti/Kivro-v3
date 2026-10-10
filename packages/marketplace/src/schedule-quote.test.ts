@@ -28,6 +28,9 @@ describe("schedule quote", () => {
     expect(quote?.earliestExecutionLabel).not.toMatch(/:\d{2}:\d{2}/);
     expect(quote?.estimatedDeliveryLabel).toContain("–");
     expect(quote?.paymentNotice).toContain("secured now");
+    expect(quote?.availabilityWaitLabel).toBe("Availability wait: 4h");
+    expect(quote?.runtimeLabel).toContain("20 min after start");
+    expect(quote?.timingExplanation).not.toBe("Delivery time: 20 minutes");
     expect(Date.parse(quote!.quoteExpiresAt) - now.getTime()).toBe(3 * 60_000);
   });
 

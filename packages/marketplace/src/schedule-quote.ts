@@ -12,6 +12,9 @@ export type JobScheduleQuote = {
   quoteExpiresAt: string;
   guaranteedStart: false;
   paymentNotice: string;
+  availabilityWaitLabel: string;
+  runtimeLabel: string;
+  timingExplanation: string;
 };
 
 export function buildJobScheduleQuote(input: {
@@ -35,6 +38,18 @@ export function buildJobScheduleQuote(input: {
   const queueSeconds = Math.max(0, input.queueDelaySeconds ?? 0);
   const delivery = new Date(eligible.getTime() + (durationSeconds + queueSeconds) * 1000);
   const zone = safeTimeZone(input.timeZone);
+  const waitMinutes = immediate
+    ? 0
+    : Math.max(0, Math.round((eligible.getTime() - now.getTime()) / 60_000));
+  const runtimeMinutes = Math.round(durationSeconds / 60);
+  const availabilityWaitLabel =
+    waitMinutes === 0 ? "No availability wait" : `Availability wait: ${formatDurationMinutes(waitMinutes)}`;
+  const runtimeLabel =
+    runtimeMinutes > 0 ? `Expected runtime: ${runtimeMinutes} min after start` : "Expected runtime is not published";
+  const timingExplanation =
+    waitMinutes > 0
+      ? `${availabilityWaitLabel}. ${runtimeLabel}. The runtime is not the time until the job can start.`
+      : `${availabilityWaitLabel}. ${runtimeLabel}.`;
   return {
     capabilityId: input.capabilityId,
     capabilityVersionId: input.capabilityVersionId,
@@ -48,6 +63,9 @@ export function buildJobScheduleQuote(input: {
       : `Eligible to start from ${clockLabel(eligible, zone)}`,
     quoteExpiresAt: new Date(now.getTime() + SCHEDULE_QUOTE_TTL_MS).toISOString(),
     guaranteedStart: false,
+    availabilityWaitLabel,
+    runtimeLabel,
+    timingExplanation,
     paymentNotice: immediate
       ? "Your payment will be secured now. The job can start immediately."
       : "Your payment will be secured now. The job will execute when the capability becomes available.",
@@ -106,6 +124,15 @@ export function marketplaceCardCopy(input: {
     default:
       return "Unknown";
   }
+}
+
+function formatDurationMinutes(minutes: number): string {
+  if (minutes < 60) {
+    return `${minutes}m`;
+  }
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+  return rest === 0 ? `${hours}h` : `${hours}h ${rest}m`;
 }
 
 function deliveryRangeLabel(eligible: Date, delivery: Date, durationSeconds: number, timeZone: string): string {

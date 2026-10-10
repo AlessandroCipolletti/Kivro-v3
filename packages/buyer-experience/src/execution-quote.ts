@@ -1,6 +1,7 @@
 import type { PrismaClient } from "@kivro/database";
 import { digestStructuredBuyerInputs } from "./inputs-digest.js";
-import { quoteChargeAllowed } from "./quote-freshness.js";
+import { quoteChargeAllowed, scheduleQuoteNeedsConfirmation } from "./quote-freshness.js";
+import { evaluateCapabilityAvailability } from "@kivro/job-scheduling";
 import { runBuyerExecutionPreflight } from "./execution-preflight.js";
 
 const QUOTE_TTL_MS = 15 * 60_000;
@@ -130,6 +131,16 @@ export async function validateExecutionQuoteAtPurchase(
   }
   if (capability.currentVersion.priceSnapshotCents !== quote.priceSnapshotCents) {
     return { ok: false, error: "QUOTE_PRICE_STALE" };
+  }
+  if (quote.scheduledRunAt) {
+    const availability = await evaluateCapabilityAvailability(prisma, input.capabilityId);
+    const currentEligibleAt =
+      "error" in availability || !availability.nextAvailableAt
+        ? null
+        : new Date(availability.nextAvailableAt);
+    if (scheduleQuoteNeedsConfirmation({ quotedRunAt: quote.scheduledRunAt, currentEligibleAt })) {
+      return { ok: false, error: "QUOTE_SCHEDULE_CHANGED" };
+    }
   }
   await prisma.buyerExecutionQuote.update({
     where: { id: quote.id },

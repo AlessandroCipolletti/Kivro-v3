@@ -1,5 +1,6 @@
 import { filterCapabilityListings,
   mergeMarketplaceCategories,
+  partitionHumanListings,
   sortCapabilityListings,
   type AvailabilityFilter,
   type CapabilityListingRow,
@@ -90,9 +91,14 @@ export function marketplaceRoutes(): Hono {
     const sorted = sortCapabilityListings(filtered, sort, q);
 
     const categories = mergeMarketplaceCategories(listings.map((r) => r.category));
+    const groups = partitionHumanListings(sorted);
 
     return c.json({
       capabilities: sorted,
+      groups: {
+        availableNow: groups.availableNow.map((row) => row.id),
+        availableLater: groups.availableLater.map((row) => row.id),
+      },
       meta: { total: sorted.length, categories },
     });
   });

@@ -28,6 +28,7 @@ export default function RunCapabilityPage() {
   const [nextAvailableAt, setNextAvailableAt] = useState<string | null>(null);
   const [purchaseLabel, setPurchaseLabel] = useState<string | null>(null);
   const [paymentNotice, setPaymentNotice] = useState<string | null>(null);
+  const [timingExplanation, setTimingExplanation] = useState<string | null>(null);
   const [scheduledRunAt, setScheduledRunAt] = useState("");
   const [hardDeadline, setHardDeadline] = useState("");
   const [useJson, setUseJson] = useState(false);
@@ -61,7 +62,7 @@ export default function RunCapabilityPage() {
             accepting: boolean;
             nextAvailableAt: string | null;
             purchaseLabel?: string;
-            scheduleQuote?: { paymentNotice: string; earliestExecutionLabel: string } | null;
+            scheduleQuote?: { paymentNotice: string; earliestExecutionLabel: string; timingExplanation?: string } | null;
           };
         };
       })
@@ -79,6 +80,7 @@ export default function RunCapabilityPage() {
         setAccepting(detail.availability?.accepting !== false);
         setPurchaseLabel(detail.availability?.purchaseLabel ?? null);
         setPaymentNotice(detail.availability?.scheduleQuote?.paymentNotice ?? null);
+        setTimingExplanation(detail.availability?.scheduleQuote?.timingExplanation ?? null);
         const nextAt = detail.availability?.nextAvailableAt ?? null;
         setNextAvailableAt(nextAt);
         if (searchParams.get("schedule") === "earliest" && nextAt) {
@@ -268,6 +270,7 @@ export default function RunCapabilityPage() {
                   ) ?? "the next published window"
                 }. Your local time. ${approximateStartLabel(new Date(), new Date(nextAvailableAt))}.`
               : ""}{" "}
+            {timingExplanation ? `${timingExplanation} ` : ""}
             {paymentNotice ??
               "Your payment will be secured now. The job will execute when the capability becomes available."}{" "}
             Credits stay reserved and are released if the job never starts. The time after start is an

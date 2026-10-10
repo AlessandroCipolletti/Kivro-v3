@@ -58,4 +58,26 @@ describe("assisted discovery §131", () => {
     });
     expect(result.recommendations[0]?.slug).toBe("company-intel");
   });
+
+  it("shows a later service when the buyer asks for advice, and hides it when they ask to buy", () => {
+    const listings = [
+      ...sample,
+      {
+        ...sample[0]!,
+        id: "3",
+        slug: "later-research",
+        name: "Later Research",
+        description: "company intelligence competitors overnight",
+        availabilityStatus: "SCHEDULED_OFFLINE" as const,
+        accepting: false,
+        nextAvailableAt: "2026-10-10T20:00:00.000Z",
+      },
+    ];
+    const advice = runAssistedDiscovery(listings, { goal: "Which service is best for company intelligence?" });
+    const execution = runAssistedDiscovery(listings, { goal: "Do this company intelligence for me" });
+    expect(advice.interaction).toBe("RECOMMENDATION");
+    expect(advice.recommendations.some((row) => row.slug === "later-research")).toBe(true);
+    expect(execution.interaction).toBe("EXECUTION");
+    expect(execution.recommendations.some((row) => row.slug === "later-research")).toBe(false);
+  });
 });

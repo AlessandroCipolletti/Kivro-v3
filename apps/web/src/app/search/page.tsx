@@ -1,4 +1,5 @@
 import { CapabilityCard } from "@/components/CapabilityCard";
+import type { MarketplaceCapability } from "@/lib/kivro-api";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { fetchMarketplaceCapabilities } from "@/lib/kivro-api";
@@ -25,7 +26,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
   const minPriceCents = typeof params.minPrice === "string" ? params.minPrice : "";
   const maxPriceCents = typeof params.maxPrice === "string" ? params.maxPrice : "";
 
-  const { capabilities, meta } = await fetchMarketplaceCapabilities({
+  const { capabilities, groups, meta } = await fetchMarketplaceCapabilities({
     q,
     category,
     sort,
@@ -151,11 +152,66 @@ export default async function SearchPage({ searchParams }: { searchParams: Searc
           action={{ href: "/search", label: "Clear filters" }}
         />
       ) : (
-        <div className="grid">
-          {capabilities.map((cap) => (
-            <CapabilityCard key={cap.id} capability={cap} />
-          ))}
-        </div>
+        <SearchGroups capabilities={capabilities} groups={groups} showComparison={availability === "any"} />
+      )}
+    </>
+  );
+}
+
+function SearchGroups({
+  capabilities,
+  groups,
+  showComparison,
+}: {
+  capabilities: MarketplaceCapability[];
+  groups?: { availableNow: string[]; availableLater: string[] };
+  showComparison: boolean;
+}) {
+  const now = new Set(groups?.availableNow ?? []);
+  const later = new Set(groups?.availableLater ?? []);
+  const availableNow = capabilities.filter((cap) => now.has(cap.id));
+  const availableLater = capabilities.filter((cap) => later.has(cap.id));
+  if (!showComparison || (availableNow.length === 0 && availableLater.length === 0)) {
+    return (
+      <div className="grid">
+        {capabilities.map((cap) => (
+          <CapabilityCard key={cap.id} capability={cap} />
+        ))}
+      </div>
+    );
+  }
+  const rest = capabilities.filter((cap) => !now.has(cap.id) && !later.has(cap.id));
+  return (
+    <>
+      {availableNow.length > 0 && (
+        <section>
+          <h2 className="text-lg font-medium">Available now</h2>
+          <div className="grid">
+            {availableNow.map((cap) => (
+              <CapabilityCard key={cap.id} capability={cap} />
+            ))}
+          </div>
+        </section>
+      )}
+      {availableLater.length > 0 && (
+        <section style={{ marginTop: "1.5rem" }}>
+          <h2 className="text-lg font-medium">Available later</h2>
+          <div className="grid">
+            {availableLater.map((cap) => (
+              <CapabilityCard key={cap.id} capability={cap} />
+            ))}
+          </div>
+        </section>
+      )}
+      {rest.length > 0 && (
+        <section style={{ marginTop: "1.5rem" }}>
+          <h2 className="text-lg font-medium">Not currently schedulable</h2>
+          <div className="grid">
+            {rest.map((cap) => (
+              <CapabilityCard key={cap.id} capability={cap} />
+            ))}
+          </div>
+        </section>
       )}
     </>
   );

@@ -290,12 +290,48 @@ export default function NewCapabilityWizardPage() {
       {disclosure != null && (
         <pre className="detail-panel">{JSON.stringify(disclosure, null, 2)}</pre>
       )}
-      {preview != null && (
-        <pre className="detail-panel">{JSON.stringify(preview, null, 2)}</pre>
-      )}
+      {preview != null && <BuyerPreview preview={preview} />}
       <p>
         <Link href="/seller/onboarding">← Onboarding</Link>
       </p>
     </div>
+  );
+}
+
+function BuyerPreview({ preview }: { preview: unknown }) {
+  const view = preview as {
+    notice?: string;
+    presentation?: {
+      title: string;
+      priceLabel: string;
+      fields: Array<{ label: string; required: boolean; hint: string | null }>;
+      outputNote: string;
+      ctaLabel: string;
+      purchasable: boolean;
+    };
+  };
+  if (!view.presentation) {
+    return <pre className="detail-panel">{JSON.stringify(preview, null, 2)}</pre>;
+  }
+  return (
+    <section className="detail-panel form-stack">
+      <p className="meta">Buyer preview</p>
+      <h2 className="text-lg font-medium">{view.presentation.title}</h2>
+      <p>{view.presentation.priceLabel}</p>
+      <ul>
+        {view.presentation.fields.map((field) => (
+          <li key={field.label}>
+            {field.label}
+            {field.required ? " *" : ""}
+            {field.hint ? ` — ${field.hint}` : ""}
+          </li>
+        ))}
+      </ul>
+      <p className="meta">{view.presentation.outputNote}</p>
+      <button className="button" type="button" disabled>
+        {view.presentation.ctaLabel}
+      </button>
+      <p className="meta">{view.notice}</p>
+    </section>
   );
 }

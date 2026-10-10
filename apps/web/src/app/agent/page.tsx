@@ -34,6 +34,10 @@ export default function MarketplaceAgentPage() {
     steps: Array<{ id: string; label: string; estimatedPriceCents: number; dependsOnStepIds: unknown }>;
   } | null>(null);
   const [planNotes, setPlanNotes] = useState<string[]>([]);
+  const [timingPreview, setTimingPreview] = useState<{
+    lines: string[];
+    completionLabel: string;
+  } | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
 
   function buildConstraints(): Record<string, unknown> {
@@ -141,6 +145,7 @@ export default function MarketplaceAgentPage() {
         error?: string;
         plan?: typeof plan;
         notes?: string[];
+        timingPreview?: { lines: string[]; completionLabel: string };
       };
       if (!res.ok) {
         setError(body.error ?? "Could not build plan");
@@ -148,6 +153,7 @@ export default function MarketplaceAgentPage() {
       }
       setPlan(body.plan ?? null);
       setPlanNotes(body.notes ?? []);
+      setTimingPreview(body.timingPreview ?? null);
       if (body.plan?.id) {
         void refreshPlan(body.plan.id);
       }
@@ -287,6 +293,14 @@ export default function MarketplaceAgentPage() {
           <p className="meta">
             Estimated cost: ${(plan.estimatedCostCents / 100).toFixed(2)} · Status: {plan.status}
           </p>
+          {timingPreview && (
+            <div className="meta" style={{ marginTop: "0.75rem" }}>
+              {timingPreview.lines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+              <p>{timingPreview.completionLabel}</p>
+            </div>
+          )}
           <ol style={{ paddingLeft: "1.2rem" }}>
             {plan.steps.map((step) => (
               <li key={step.id} className="meta" style={{ marginTop: "0.5rem" }}>

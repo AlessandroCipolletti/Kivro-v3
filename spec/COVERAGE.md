@@ -2856,7 +2856,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0212`    P1         §453     `TESTED`   packages/marketplace/src/schedule-purchase-policy.ts  schedule-purchase-policy.test.ts  reserve now, execute at availability
 
-  `JOB-0213`    P1         §454     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `JOB-0213`    P1         §454     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  availability wait is shown separately from runtime
 
   `JOB-0214`    P1         §454     `TESTED`   apps/web/src/lib/status-ui.ts  status-ui.test.ts  approximate start delay
 
@@ -2936,7 +2936,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `CAP-0114`    P1         §474     `TESTED`   packages/marketplace/src/schedule-quote.ts  schedule-quote.test.ts  the server returns the schedule quote used at checkout
 
-  `AVL-0070`    P1         §475     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0070`    P1         §475     `TESTED`   packages/buyer-experience/src/quote-freshness.ts  quote-freshness.test.ts  a moved window must be confirmed before charging
 
   `AVL-0071`    P1         §475     `TESTED`   packages/buyer-experience/src/quote-freshness.ts  quote-freshness.test.ts  expired quotes are not charged
 
@@ -2992,7 +2992,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0383`    P2         §487     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
 
-  `AVL-0074`    P1         §488     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AVL-0074`    P1         §488     `TESTED`   packages/marketplace/src/human-availability.ts  human-availability.test.ts  humans and agents use the same availability with different decisions
 
   `AVL-0075`    P1         §488     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  skip work outside the timing policy
 
@@ -3032,7 +3032,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `JOB-0246`    P1         §493     `TESTED`   apps/web/src/app/capabilities/[slug]/run/page.tsx  schedule-purchase-policy.test.ts  scheduling is presented as a reservation, not an error
 
-  `PRD-0392`    P1         §494     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0392`    P1         §494     `TESTED`   packages/marketplace/src/agent-discovery.ts  agent-discovery.test.ts  execution defaults to services that can run now
 
   `PRD-0393`    P2         §494     `TESTED`   packages/marketplace-agent/src/availability-decisions.ts  availability-decisions.test.ts  autonomous mode excludes future services
 
@@ -3126,15 +3126,15 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0102`    P1         §510     `TESTED`   packages/job-scheduling/src/execution-preference.ts  execution-preference.test.ts  schedule purchase and agent timing policy
 
-  `PRD-0399`    P1         §511     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0399`    P1         §511     `TESTED`   packages/marketplace/src/human-availability.ts  human-availability.test.ts  search separates available now from available later
 
-  `PRD-0400`    P2         §511     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0400`    P2         §511     `TESTED`   packages/marketplace/src/agent-discovery.ts  agent-discovery.test.ts  autonomous execution does not compare later services as purchases
 
-  `AGT-0102`    P1         §512     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0102`    P1         §512     `TESTED`   packages/marketplace/src/human-availability.ts  agent-discovery.test.ts  advice may include later services; execution does not
 
   `AGT-0103`    P1         §512     `TESTED`   packages/marketplace/src/agent-ranking.ts  agent-timing.test.ts  future-only services excluded by default
 
-  `PRD-0401`    P1         §513     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0401`    P1         §513     `TESTED`   packages/marketplace-agent/src/plan-timing-view.ts  plan-timing-view.test.ts  plan timing is visible before approval
 
   `PRD-0402`    P2         §513     `TESTED`   apps/web/src/app/capabilities/[slug]/run/page.tsx  status-ui.test.ts  timing is shown before submit
 

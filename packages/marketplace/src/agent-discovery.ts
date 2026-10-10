@@ -6,6 +6,7 @@ import {
   type BuyerConstraints,
 } from "./buyer-constraints.js";
 import { rankAgentCandidates, type RankedCapability } from "./agent-ranking.js";
+import { agentInteractionMode } from "./human-availability.js";
 
 export type AgentDiscoveryRequest = {
   goal: string;
@@ -15,6 +16,7 @@ export type AgentDiscoveryRequest = {
 
 export type AgentDiscoveryResult = {
   mode: "ASSISTED_DISCOVERY";
+  interaction: "RECOMMENDATION" | "EXECUTION";
   parsedConstraints: BuyerConstraints;
   searchQuery: string;
   recommendations: RankedCapability[];
@@ -31,13 +33,19 @@ export function runAssistedDiscovery(
     ...request.constraints,
   });
   const searchQuery = searchQueryFromIntent(request.goal) || request.goal.trim();
+  const interaction = agentInteractionMode(request.goal);
+  const rankConstraints = { ...parsedConstraints };
+  if (!rankConstraints.timingMode) {
+    rankConstraints.timingMode = interaction === "RECOMMENDATION" ? "EARLIEST_AVAILABLE_ALLOWED" : "IMMEDIATE";
+  }
   const recommendations = rankAgentCandidates(listings, {
     query: searchQuery,
-    constraints: parsedConstraints,
+    constraints: rankConstraints,
     limit: request.limit ?? 5,
   });
   return {
     mode: "ASSISTED_DISCOVERY",
+    interaction,
     parsedConstraints,
     searchQuery,
     recommendations,

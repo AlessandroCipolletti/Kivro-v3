@@ -6,6 +6,8 @@ import { publicMarketplaceWhere } from "../services/capability-visibility.js";
 import {
   authorizePlanApproval,
   buildInferenceUsageRecord,
+  estimatePlanCompletionMinutes,
+  formatPlanTiming,
   planStepEstimatedMinutes,
   buildOrchestrationPlanDraft,
   buildStepAgentDraft,
@@ -171,10 +173,38 @@ export function marketplaceAgentRoutes(): Hono<AppEnv> {
         estimatedCostCents: plan.estimatedCostCents,
       });
     }
+    const timingSteps = draft.steps.map((step) => {
+      const listing = listings.find((row) => row.id === step.capabilityId);
+      const availableNow = listing?.availabilityStatus === "ONLINE" && listing.accepting === true;
+      const eligibleAt = listing?.nextAvailableAt ? Date.parse(listing.nextAvailableAt) : Number.NaN;
+      const waitMinutes =
+        !availableNow && Number.isFinite(eligibleAt)
+          ? Math.max(0, Math.round((eligibleAt - Date.now()) / 60_000))
+          : 0;
+      return {
+        label: step.label,
+        priceCents: step.estimatedPriceCents,
+        availableNow,
+        nextAvailableAt: listing?.nextAvailableAt ?? null,
+        durationMinutes:
+          listing?.estimatedDuration != null ? Math.max(1, Math.round(listing.estimatedDuration / 60)) : null,
+        waitMinutes,
+      };
+    });
+    const timingPreview = formatPlanTiming(
+      timingSteps,
+      estimatePlanCompletionMinutes(
+        timingSteps.map((step) => ({
+          durationMinutes: step.durationMinutes ?? 0,
+          waitUntilEligibleMinutes: step.waitMinutes,
+        })),
+      ),
+    );
     return c.json({
       plan,
       notes: draft.notes,
       approvalMode: "APPROVE_PLAN",
+      timingPreview,
     });
   });
 
