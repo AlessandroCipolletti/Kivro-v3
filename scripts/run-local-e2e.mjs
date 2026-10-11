@@ -9,7 +9,7 @@ import os from "node:os";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
-const base = process.env.KIVRO_E2E_API_URL ?? process.env.KIVRO_CLOUD_URL ?? "http://localhost:3001";
+const base = process.env.KIVRO_E2E_API_URL ?? process.env.KIVRO_CLOUD_URL ?? "http://localhost:3007";
 const sellerEmail = "seller@kivro.local";
 const buyerEmail = "buyer@kivro.local";
 const password = "KivroDevPass123!";
@@ -27,7 +27,7 @@ async function main() {
   if (ready?.checks && (!ready.checks.database || ready.checks.objectStorage === false)) {
     throw new Error(`API not ready: ${JSON.stringify(ready)}`);
   }
-  const webUrl = process.env.WEB_APP_URL ?? "http://localhost:3000";
+  const webUrl = process.env.WEB_APP_URL ?? "http://localhost:3008";
   if (process.env.KIVRO_E2E_CHECK_WEB === "true") {
     const webOk = await fetch(webUrl).then((r) => r.ok).catch(() => false);
     if (!webOk) throw new Error(`Web not reachable at ${webUrl} — is pnpm dev running?`);

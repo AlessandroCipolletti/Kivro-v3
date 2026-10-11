@@ -60,7 +60,7 @@ function baseUrl() {
   return (
     process.env.KIVRO_CLOUD_URL?.trim() ||
     process.env.API_URL?.trim() ||
-    `http://localhost:${process.env.PORT?.trim() || "3001"}`
+    `http://localhost:${process.env.PORT?.trim() || "3007"}`
   );
 }
 

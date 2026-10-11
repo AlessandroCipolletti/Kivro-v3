@@ -33,7 +33,7 @@ function setSessionCookie(c: Parameters<typeof setCookie>[0], token: string, exp
 }
 
 function webAppUrl(): string {
-  return process.env.WEB_APP_URL?.trim() || "http://localhost:3000";
+  return process.env.WEB_APP_URL?.trim() || "http://localhost:3008";
 }
 
 function exposeDevVerificationToken(): boolean {
@@ -222,7 +222,7 @@ export function googleOAuthRoutes(): Hono<AppEnv> {
       );
       const session = await createSession(getPrismaClient(), user.id);
       setSessionCookie(c, session.token, session.expiresAt);
-      return c.redirect(process.env.WEB_APP_URL ?? "http://localhost:3000");
+      return c.redirect(process.env.WEB_APP_URL ?? "http://localhost:3008");
     } catch {
       return c.json({ error: "GOOGLE_AUTH_FAILED" }, 400);
     }

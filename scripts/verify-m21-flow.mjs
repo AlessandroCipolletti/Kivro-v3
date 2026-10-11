@@ -53,7 +53,7 @@ run("node", ["scripts/aws-deploy-preflight.mjs"], {
   env: {
     ...process.env,
     KIVRO_CLOUD_PROFILE: "aws",
-    DATABASE_URL: process.env.DATABASE_URL ?? "postgresql://kivro:kivro@localhost:5433/kivro",
+    DATABASE_URL: process.env.DATABASE_URL ?? "postgresql://kivro:kivro@localhost:5434/kivro",
   },
 });
 

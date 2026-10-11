@@ -48,7 +48,7 @@ import { abuseReportRoutes } from "./routes/abuse-reports.js";
 import type { AppEnv } from "./types.js";
 
 function webAppOrigin(): string {
-  return process.env.WEB_APP_URL ?? "http://localhost:3000";
+  return process.env.WEB_APP_URL ?? "http://localhost:3008";
 }
 
 export function createApp(): Hono<AppEnv> {
@@ -192,7 +192,7 @@ export function createApp(): Hono<AppEnv> {
   return app;
 }
 
-export function startServer(port = Number(process.env.PORT ?? 3001)): void {
+export function startServer(port = Number(process.env.PORT ?? 3007)): void {
   if (process.env.KIVRO_RUNTIME === "production") {
     const posture = productionSecretPosture({
       runtime: "production",

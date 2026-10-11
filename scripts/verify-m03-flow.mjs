@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
  * Terminal M03 gate: auth → pair → analyze deps → publish → marketplace list.
- * Requires API on PORT (default 3001), db + optional MinIO configured.
+ * Requires API on PORT (default 3007), db + optional MinIO configured.
  */
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-const base = process.env.KIVRO_CLOUD_URL ?? "http://localhost:3001";
+const base = process.env.KIVRO_CLOUD_URL ?? "http://localhost:3007";
 const email = `m03-script-${Date.now()}@example.com`;
 const password = "longpassword123";
 const runtime = path.join(os.tmpdir(), `kivro-m03-${process.pid}`);

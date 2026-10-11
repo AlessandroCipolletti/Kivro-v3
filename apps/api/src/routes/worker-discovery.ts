@@ -12,7 +12,7 @@ export function workerDiscoveryRoutes(): Hono<AppEnv> {
     const configured = process.env.KIVRO_CLOUD_URL;
     const base =
       configured ??
-      (host ? `${proto}://${host}` : `http://localhost:${process.env.PORT ?? 3001}`);
+      (host ? `${proto}://${host}` : `http://localhost:${process.env.PORT ?? 3007}`);
     return c.json(buildApiWorkerDiscoveryDocument(base));
   });
 

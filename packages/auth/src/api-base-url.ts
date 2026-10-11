@@ -13,7 +13,7 @@ export function resolvePublicApiBaseUrl(): string {
       return trimmed.replace(/\/$/, "");
     }
   }
-  const port = process.env.PORT?.trim() || "3001";
+  const port = process.env.PORT?.trim() || "3007";
   return `http://localhost:${port}`;
 }
 

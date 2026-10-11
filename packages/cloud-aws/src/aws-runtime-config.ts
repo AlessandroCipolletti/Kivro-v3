@@ -14,8 +14,8 @@ export type AwsRuntimeConfig = {
 export function loadAwsRuntimeConfig(env: NodeJS.ProcessEnv = process.env): AwsRuntimeConfig {
   const databaseUrl = env.DATABASE_URL?.trim();
   const cronSecret = env.KIVRO_CRON_SECRET?.trim();
-  const webAppUrl = env.WEB_APP_URL?.trim() ?? "http://localhost:3000";
-  const cloudUrl = env.KIVRO_CLOUD_URL?.trim() ?? env.API_URL?.trim() ?? "http://localhost:3001";
+  const webAppUrl = env.WEB_APP_URL?.trim() ?? "http://localhost:3008";
+  const cloudUrl = env.KIVRO_CLOUD_URL?.trim() ?? env.API_URL?.trim() ?? "http://localhost:3007";
   if (!databaseUrl) {
     throw new Error("AWS_CONFIG: DATABASE_URL required");
   }

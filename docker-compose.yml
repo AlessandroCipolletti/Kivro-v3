@@ -1,13 +1,13 @@
-# Local dev infrastructure (M18). Postgres uses host port 5433
-# to avoid clashing with other PostgreSQL instances on 5432.
+# Local dev infrastructure (M18).
+# Host ports sit beside Arcads (Postgres 5432, Redis 6379) and Boostrad
+# (Postgres 5433, Redis 6380, MinIO 9000/9001). Container ports stay standard.
 services:
   redis:
     image: redis:7-alpine
     container_name: kivro-redis
     restart: unless-stopped
     ports:
-      # Host port defaults to 6380 (see .env KIVRO_REDIS_HOST_PORT) — avoids clashing with a local Redis on 6379.
-      - "${KIVRO_REDIS_HOST_PORT:-6380}:6379"
+      - "${KIVRO_REDIS_HOST_PORT:-6381}:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 3s
@@ -23,8 +23,8 @@ services:
       MINIO_ROOT_USER: kivro
       MINIO_ROOT_PASSWORD: kivrodevsecret
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "${KIVRO_MINIO_API_PORT:-9002}:9000"
+      - "${KIVRO_MINIO_CONSOLE_PORT:-9003}:9001"
     volumes:
       - kivro_minio_data:/data
 
@@ -37,7 +37,7 @@ services:
       POSTGRES_PASSWORD: kivro
       POSTGRES_DB: kivro
     ports:
-      - "5433:5432"
+      - "${KIVRO_POSTGRES_HOST_PORT:-5434}:5432"
     volumes:
       - kivro_pg_data:/var/lib/postgresql/data
     healthcheck:

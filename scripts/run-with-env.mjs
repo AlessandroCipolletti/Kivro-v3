@@ -38,7 +38,7 @@ if (!hasPlatformKey && !process.env.KIVRO_PLATFORM_AI_PROVIDER?.trim()) {
 }
 
 if (process.env.NODE_ENV !== "production") {
-  const port = process.env.PORT?.trim() || "3001";
+  const port = process.env.PORT?.trim() || "3007";
   if (!process.env.KIVRO_PLATFORM_SEARCH_UPSTREAM?.trim()) {
     process.env.KIVRO_PLATFORM_SEARCH_UPSTREAM = "local";
   }

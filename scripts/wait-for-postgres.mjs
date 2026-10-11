@@ -1,7 +1,21 @@
 import net from "node:net";
 
+function resolvePort() {
+  if (process.env.PGPORT?.trim()) return Number(process.env.PGPORT.trim());
+  const databaseUrl = process.env.DATABASE_URL?.trim();
+  if (databaseUrl) {
+    try {
+      const parsed = new URL(databaseUrl);
+      if (parsed.port) return Number(parsed.port);
+    } catch {
+      // DATABASE_URL is not a URL; use the Kivro host default below.
+    }
+  }
+  return 5434;
+}
+
 const host = process.env.PGHOST ?? "127.0.0.1";
-const port = Number(process.env.PGPORT ?? "5433");
+const port = resolvePort();
 const deadline = Date.now() + 60_000;
 
 function tryConnect() {

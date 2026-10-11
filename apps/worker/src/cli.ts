@@ -192,7 +192,7 @@ program
     const platformBrokerToken = process.env.KIVRO_PLATFORM_RESEARCH_BROKER_TOKEN?.trim();
     const broker = new ResearchBroker(
       new StaticWebSearchProvider([]),
-      platformBrokerUrl ? fetch : () => Promise.resolve(new Response("")),
+      platformBrokerUrl ? globalThis.fetch : () => Promise.resolve(new Response("")),
     );
     const audit: import("@kivro/research-broker").ResearchAuditEntry[] = [];
     const ctx = {
@@ -203,15 +203,15 @@ program
       researchAudience: "generic_public" as const,
     };
     const search = await broker.webSearch(ctx, { query: "probe", maxResults: 1 });
-    let fetch = null;
+    let fetched = null;
     if (opts.url) {
-      fetch = await broker.webFetch(ctx, { url: opts.url });
+      fetched = await broker.webFetch(ctx, { url: opts.url });
     }
-    console.log(JSON.stringify({ search, fetch, audit }, null, 2));
+    console.log(JSON.stringify({ search, fetch: fetched, audit }, null, 2));
     if (!search.allowed && !opts.url) {
       process.exit(1);
     }
-    if (opts.url && fetch && !fetch.allowed) {
+    if (opts.url && fetched && !fetched.allowed) {
       process.exit(1);
     }
   });
@@ -286,7 +286,7 @@ program
     let identity = getDeviceIdentity(db);
     if (!identity) {
       const keys = generateDeviceKeyPair();
-      const cloudUrl = process.env.KIVRO_CLOUD_URL ?? "http://localhost:3001";
+      const cloudUrl = process.env.KIVRO_CLOUD_URL ?? "http://localhost:3007";
       saveDeviceIdentity(db, {
         publicKeyPem: keys.publicKeyPem,
         privateKeyPem: keys.privateKeyPem,

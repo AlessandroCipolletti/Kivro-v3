@@ -12,7 +12,7 @@ pnpm test:m18:preflight
 ## 2. Start stack
 
 ```bash
-pnpm dev          # API :3001 + Web :3000
+pnpm dev          # API :3007 + Web :3008
 pnpm worker:dev   # optional poll daemon
 ```
 

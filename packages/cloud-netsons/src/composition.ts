@@ -21,7 +21,7 @@ export function createNetsonsComposition(input?: {
 }): KivroCloudComposition {
   const controlPlaneId = input?.controlPlaneId ?? NETSONS_DEFAULT_CONTROL_PLANE_ID;
   const workerDeviceId = input?.workerDeviceId ?? "worker-placeholder";
-  const cloudBaseUrl = input?.cloudBaseUrl ?? process.env.KIVRO_CLOUD_URL ?? "http://localhost:3001";
+  const cloudBaseUrl = input?.cloudBaseUrl ?? process.env.KIVRO_CLOUD_URL ?? "http://localhost:3007";
   const durableWork = input?.prisma
     ? createNetsonsDurableWorkPort(input.prisma)
     : createInMemoryDurableWorkStub("netsons-db-cron");

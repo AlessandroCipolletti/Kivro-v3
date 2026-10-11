@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node ../../scripts/web-dev.mjs",
     "build": "next build",
-    "start": "next start -p 3000",
+    "start": "next start -p 3008",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "tsc -p tsconfig.json --noEmit"
   },

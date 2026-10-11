@@ -97,7 +97,7 @@ export function buyerBillingRoutes(): Hono<AppEnv> {
     if (amountCents < 100) {
       return c.json({ error: "INVALID_AMOUNT" }, 400);
     }
-    const webBase = process.env.WEB_APP_URL ?? "http://localhost:3000";
+    const webBase = process.env.WEB_APP_URL ?? "http://localhost:3008";
     const customerId = await ensureStripeCustomer(stripe, getPrismaClient(), user.id, user.email);
     const session = await createCreditCheckoutSession(stripe, {
       customerId,

@@ -36,8 +36,8 @@ Authoritative product and technical spec: [`spec/MASTER-SPEC.md`](spec/MASTER-SP
 
 | Path | Role |
 | --- | --- |
-| `apps/web` | Next.js marketplace and seller/buyer UI (`:3000`) |
-| `apps/api` | Hono HTTP API (`PORT`, default `:3001`) |
+| `apps/web` | Next.js marketplace and seller/buyer UI (`:3008`) |
+| `apps/api` | Hono HTTP API (`PORT`, default `:3007`) |
 | `apps/worker` | Seller Worker CLI and poll/WSS daemon |
 | `packages/*` | Shared domain, jobs, billing, auth, sandbox, protocol |
 | `packages/cloud-netsons`, `packages/cloud-aws` | Deployment profiles. Same application behavior; different hosting adapters |
@@ -66,10 +66,10 @@ Local commands also turn on the deterministic Marketplace Agent when no provider
 
 | Surface | URL |
 | --- | --- |
-| Web | http://localhost:3000 |
-| API | http://localhost:3001 |
-| API ready check | http://localhost:3001/health/ready |
-| MinIO console | http://localhost:9001 (`kivro` / `kivrodevsecret`) |
+| Web | http://localhost:3008 |
+| API | http://localhost:3007 |
+| API ready check | http://localhost:3007/health/ready |
+| MinIO console | http://localhost:9003 (`kivro` / `kivrodevsecret`) |
 
 Seeded accounts (password printed by the seed script; default `KivroDevPass123!`):
 
@@ -78,7 +78,7 @@ Seeded accounts (password printed by the seed script; default `KivroDevPass123!`
 
 With `KIVRO_DEV_PAYMENT_SHORTCUTS=true` (the `.env.example` default), local credit grants and the fake payment adapter are available. Those flags are rejected outside development. Leave `STRIPE_SECRET_KEY` empty unless you are exercising Stripe test mode. Google sign-in needs `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET`; the redirect URI must match `/api/users/auth/google/callback` on the API origin.
 
-If port 3000 is taken, `dev:all` picks the next free port in 3001–3020 and prints it. Pin it with `WEB_DEV_PORT` and a matching `WEB_APP_URL`. Postgres is on host port **5433** and Redis on **6380** so they do not collide with other local instances.
+These ports are reserved so Kivro can run next to Arcads and Boostrad. Postgres is on host port **5434**, Redis on **6381**, MinIO on **9002** (console **9003**). `KIVRO_DEV_WEB_AUTO_PORT` is off so the web app does not grab a neighboring port. Google sign-in needs the redirect URI `http://localhost:3007/api/users/auth/google/callback` registered on the OAuth client.
 
 Stop the app processes with Ctrl+C. Docker keeps running until `pnpm db:down`.
 
@@ -105,7 +105,7 @@ node apps/worker/dist/cli.js commands
 node apps/worker/dist/cli.js start
 ```
 
-`start` polls `KIVRO_CLOUD_URL` (default `http://localhost:3001`). Useful commands include `pair`, `scan`, `manifest`, `health`, `pause`, `resume`, `stop`, and `job pause|resume|cancel`. Runtime files go under `KIVRO_RUNTIME_ROOT` (default `~/.kivro/runtime`).
+`start` polls `KIVRO_CLOUD_URL` (default `http://localhost:3007`). Useful commands include `pair`, `scan`, `manifest`, `health`, `pause`, `resume`, `stop`, and `job pause|resume|cancel`. Runtime files go under `KIVRO_RUNTIME_ROOT` (default `~/.kivro/runtime`).
 
 For a real OpenClaw agent inside the sandbox, set `KIVRO_EXECUTION_MODE=openclaw`, `KIVRO_SANDBOX_DRY_RUN=false`, and install the pinned OpenClaw binary. The default `sandbox-fixture` mode is enough to exercise publish, dispatch, delivery, and settlement.
 

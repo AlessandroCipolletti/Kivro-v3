@@ -7,7 +7,7 @@ import {
 import { logInfo } from "@kivro/observability";
 
 function webAppUrl(): string {
-  return process.env.WEB_APP_URL?.trim() || "http://localhost:3000";
+  return process.env.WEB_APP_URL?.trim() || "http://localhost:3008";
 }
 
 function apiVerificationLink(verificationToken: string): string {

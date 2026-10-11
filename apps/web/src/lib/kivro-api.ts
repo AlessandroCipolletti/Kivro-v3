@@ -1,7 +1,7 @@
 const API_BASE =
   process.env.KIVRO_API_URL ??
   process.env.NEXT_PUBLIC_KIVRO_API_URL ??
-  "http://localhost:3001";
+  "http://localhost:3007";
 
 export type MarketplaceCapability = {
   id: string;

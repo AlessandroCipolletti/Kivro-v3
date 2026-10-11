@@ -22,7 +22,12 @@ export interface SafeFetchResult {
 
 export type FetchImpl = (
   input: string,
-  init?: { method?: string; signal?: AbortSignal; redirect?: "follow" | "error" | "manual" },
+  init?: {
+    method?: string;
+    signal?: AbortSignal;
+    redirect?: "follow" | "error" | "manual";
+    headers?: Record<string, string>;
+  },
 ) => Promise<Response>;
 
 /** §242 / §250 — bounded GET/HEAD fetch at broker connection boundary (§268). */

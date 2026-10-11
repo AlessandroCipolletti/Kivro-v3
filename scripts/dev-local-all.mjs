@@ -31,12 +31,12 @@ function webDevPort() {
   if (process.env.WEB_APP_URL) {
     try {
       const p = new URL(process.env.WEB_APP_URL).port;
-      return Number(p || 3000);
+      return Number(p || 3008);
     } catch {
-      return 3000;
+      return 3008;
     }
   }
-  return 3000;
+  return 3008;
 }
 
 function isPortFree(port, host = "::") {
@@ -126,7 +126,7 @@ function shutdown(exitCode = 0) {
 process.on("SIGINT", () => shutdown(0));
 process.on("SIGTERM", () => shutdown(0));
 
-const apiPort = process.env.PORT?.trim() || "3001";
+const apiPort = process.env.PORT?.trim() || "3007";
 const webPortPreferred = webDevPort();
 const webPortResolved = await resolveWebListenPort(webPortPreferred);
 const apiScript = process.env.KIVRO_DEV_API_WATCH === "true" ? "dev" : "start";
@@ -137,7 +137,7 @@ console.log(
 );
 console.log(`  API    → http://localhost:${apiPort}${apiScript === "start" ? " (no --watch)" : " (--watch)"}`);
 console.log(`  Worker → poll daemon (KIVRO_EXECUTION_MODE=${workerEnv.KIVRO_EXECUTION_MODE})`);
-console.log("  MinIO  → http://localhost:9001 (kivro / kivrodevsecret)");
+console.log("  MinIO  → http://localhost:9003 (kivro / kivrodevsecret)");
 console.log("Press Ctrl+C to stop all processes.");
 console.log("");
 

@@ -4,7 +4,7 @@ const env = (key, fallback) => {
   const v = process.env[key];
   return v && v.trim() ? v.trim() : fallback;
 };
-const endpoint = env("S3_ENDPOINT", "http://localhost:9000");
+const endpoint = env("S3_ENDPOINT", "http://localhost:9002");
 const bucket = env("S3_BUCKET", "kivro-dev");
 const accessKey = env("S3_ACCESS_KEY", "kivro");
 const secretKey = env("S3_SECRET_KEY", "kivrodevsecret");

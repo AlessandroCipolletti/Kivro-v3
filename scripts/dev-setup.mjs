@@ -40,7 +40,7 @@ const composeUp = spawnSync("docker", ["compose", "up", "-d", "postgres", "redis
 });
 if (composeUp.status !== 0) {
   console.error(
-    "\nIf Redis failed with “port is already allocated”, set KIVRO_REDIS_HOST_PORT (e.g. 6380) and matching REDIS_URL in .env — see .env.example.\n",
+    "\nIf Redis failed with “port is already allocated”, set KIVRO_REDIS_HOST_PORT (6381) and matching REDIS_URL in .env — see .env.example.\n",
   );
   process.exit(composeUp.status ?? 1);
 }

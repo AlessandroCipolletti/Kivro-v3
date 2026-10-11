@@ -33,7 +33,7 @@ export function sellerBillingRoutes(): Hono<AppEnv> {
     }
     const user = c.get("user");
     const profile = await ensureSellerProfile(getPrismaClient(), user.id, user.email);
-    const webBase = process.env.WEB_APP_URL ?? "http://localhost:3000";
+    const webBase = process.env.WEB_APP_URL ?? "http://localhost:3008";
     let body: { returnUrl?: string; refreshUrl?: string } = {};
     try {
       body = await c.req.json();

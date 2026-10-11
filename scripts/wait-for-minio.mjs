@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const endpoint = process.env.S3_ENDPOINT ?? "http://localhost:9000";
+const endpoint = process.env.S3_ENDPOINT ?? "http://localhost:9002";
 const deadline = Date.now() + 60_000;
 
 while (Date.now() < deadline) {

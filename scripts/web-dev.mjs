@@ -6,12 +6,12 @@ const webDir = path.resolve(import.meta.dirname, "../apps/web");
 let port = process.env.WEB_DEV_PORT?.trim();
 if (!port && process.env.WEB_APP_URL) {
   try {
-    port = new URL(process.env.WEB_APP_URL).port || "3000";
+    port = new URL(process.env.WEB_APP_URL).port || "3008";
   } catch {
-    port = "3000";
+    port = "3008";
   }
 }
-port = port || "3000";
+port = port || "3008";
 
 const res = spawnSync("pnpm", ["exec", "next", "dev", "-p", port], {
   cwd: webDir,

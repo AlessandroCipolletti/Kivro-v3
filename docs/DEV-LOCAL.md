@@ -14,6 +14,7 @@ Reproducible Kivro on a supported Mac: Docker for Postgres, Redis, and MinIO; ho
 
 - Node 20+, pnpm 9, Docker Desktop
 - copy `.env.example` → `.env` and keep dev-only flags out of production
+- Host ports are fixed so this repo can run beside Arcads and Boostrad: web **3008**, API **3007**, Postgres **5434**, Redis **6381**, MinIO **9002** / console **9003**
 - Default **`KIVRO_EXECUTION_MODE=sandbox-fixture`**: jobs run inside a restricted **Docker** container (Alpine fixture), upload text/file deliverables to MinIO, settle ledger once.
 - Full OpenClaw agent spawn: set `KIVRO_EXECUTION_MODE=openclaw`, `KIVRO_SANDBOX_DRY_RUN=false`, install pinned OpenClaw (manual §573).
 

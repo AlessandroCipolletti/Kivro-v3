@@ -64,7 +64,7 @@ export async function createJobDeliveryProblemReport(
       reporterUserId: input.reporterUserId,
       reason: input.reason,
       details: input.details?.slice(0, 2000),
-      evidenceSnapshot,
+      evidenceSnapshot: JSON.parse(JSON.stringify(evidenceSnapshot)),
     },
   });
   await prisma.auditEvent.create({

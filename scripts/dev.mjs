@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Local dev: infra setup, build API, run API (PORT from .env, default 3001) + web (:3000).
+ * Local dev: infra setup, build API, run API (PORT from .env, default 3007) + web (:3008).
  */
 import { spawn, spawnSync } from "node:child_process";
 import crypto from "node:crypto";
@@ -71,11 +71,19 @@ process.on("SIGINT", () => shutdown(0));
 process.on("SIGTERM", () => shutdown(0));
 
 console.log("");
-const apiPort = process.env.PORT?.trim() || "3001";
+const apiPort = process.env.PORT?.trim() || "3007";
+const webPort = process.env.WEB_DEV_PORT?.trim()
+  || (() => {
+    try {
+      return new URL(process.env.WEB_APP_URL ?? "http://localhost:3008").port || "3008";
+    } catch {
+      return "3008";
+    }
+  })();
 console.log("Kivro dev");
-console.log("  Web  → http://localhost:3000");
+console.log(`  Web  → http://localhost:${webPort}`);
 console.log(`  API  → http://localhost:${apiPort}`);
-console.log("  MinIO console → http://localhost:9001 (kivro / kivrodevsecret)");
+console.log("  MinIO console → http://localhost:9003 (kivro / kivrodevsecret)");
 console.log("Press Ctrl+C to stop.");
 console.log("");
 
