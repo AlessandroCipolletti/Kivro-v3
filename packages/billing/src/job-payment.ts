@@ -14,6 +14,7 @@ import { createStripeClient } from "./stripe-provider.js";
 import { executeSellerStripeTransfer } from "./stripe-seller-transfer.js";
 import {
   assertImmediateSubmissionBeforePayment,
+  jobUpdateAfterPaymentRelease,
   queueJobAfterPayment,
 } from "@kivro/job-scheduling";
 import {
@@ -84,7 +85,7 @@ export async function releaseJobPayment(
   }
   await prisma.job.update({
     where: { id: jobId },
-    data: { reservedAmountCents: null },
+    data: jobUpdateAfterPaymentRelease(job.status),
   });
   return { released: true };
 }

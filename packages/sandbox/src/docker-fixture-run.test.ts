@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isDockerAvailable, runDockerFixtureOutput } from "./docker-fixture-run.js";
+import { isDockerAvailable, previewSandboxResult, runDockerFixtureOutput } from "./docker-fixture-run.js";
 
 const manifest = {
   manifestVersion: 1 as const,
@@ -23,6 +23,14 @@ const manifest = {
 describe("docker fixture run", () => {
   it("isDockerAvailable reflects docker info", () => {
     expect(typeof isDockerAvailable()).toBe("boolean");
+  });
+
+  it("does not spawn a preview when Docker is down", () => {
+    expect(
+      previewSandboxResult(false, () => {
+        throw new Error("docker should not start");
+      }),
+    ).toEqual({ ok: false, reason: "docker_unavailable" });
   });
 
   it("runs fixture output when Docker is up", (ctx) => {

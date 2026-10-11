@@ -3,7 +3,7 @@ export { estimatePlanCompletionMinutes, type PlanCompletionStep } from "./plan-c
 export { formatPlanTiming, type PlanTimingStep } from "./plan-timing-view.js";
 export { purchaseDecisionForStaleStep, repairParallelBranches, type ParallelBranch } from "./plan-repair.js";
 export { agentStepProgressLabel, type AgentStepProgress } from "./agent-progress.js";
-export { readPlatformInferenceHealth } from "./platform-inference-policy.js";
+export { readPlatformInferenceHealth, platformAgentAvailability } from "./platform-inference-policy.js";
 export { normalizeInferenceRequest, type PlatformInferenceRequest } from "./inference-request.js";
 export {
   aggregateInferenceUsage,
@@ -69,7 +69,11 @@ export { resetPlatformInferenceCache } from "./platform-inference.js";
 export { inferenceFailureMayCreatePurchase, inferenceOwnership, type InferenceOwner } from "./inference-ownership.js";
 export {
   exampleAssignsSecretValue,
+  openPlatformSecret,
   platformAiKeyVisibleTo,
+  presentedTokenMatches,
   productionPlatformSecretSource,
+  productionSecretPosture,
+  sealPlatformSecret,
   type SecretAudience,
 } from "./platform-secrets.js";

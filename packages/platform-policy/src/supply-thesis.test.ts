@@ -3,8 +3,13 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { mvpAllows } from "./mvp-boundaries.js";
 import {
+  DEMAND_PATH,
   MARKETPLACE_DOMAIN_CONCEPTS,
+  MARKETPLACE_LOOP,
+  SUPPLY_PATH,
+  buyerAccountRequiresOpenClaw,
   isPrimaryMarketplaceSupply,
+  marketplacePrimarilySellsInference,
   mvpSupportsDemandSurface,
 } from "./supply-thesis.js";
 
@@ -38,5 +43,14 @@ describe("product thesis", () => {
   it("supports a human marketplace and agent primitives together", () => {
     expect(mvpSupportsDemandSurface("human_marketplace")).toBe(true);
     expect(mvpSupportsDemandSurface("agent_primitives")).toBe(true);
+    expect(marketplacePrimarilySellsInference()).toBe(false);
+    expect(buyerAccountRequiresOpenClaw()).toBe(false);
+    expect(SUPPLY_PATH[0]).toBe("import_select");
+    expect(SUPPLY_PATH.at(-1)).toBe("publish_paid_service");
+    expect(DEMAND_PATH).toContain("browse_or_describe");
+    expect(DEMAND_PATH).toContain("reviews");
+    expect(MARKETPLACE_LOOP).toContain("ratings_history");
+    expect(MARKETPLACE_DOMAIN_CONCEPTS).not.toContain("OpenClaw");
+    expect(mvpAllows("hardware_marketplace")).toBe(false);
   });
 });

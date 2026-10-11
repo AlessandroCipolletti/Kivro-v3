@@ -188,12 +188,20 @@ program
   .action(async (opts: { file: string; url?: string }) => {
     const manifest = parseWorkerManifest(JSON.parse(fs.readFileSync(opts.file, "utf8")));
     const policy = manifest.internet ?? defaultPublicWebResearchPolicy();
+    const platformBrokerUrl = process.env.KIVRO_PLATFORM_RESEARCH_BROKER_URL?.trim();
+    const platformBrokerToken = process.env.KIVRO_PLATFORM_RESEARCH_BROKER_TOKEN?.trim();
     const broker = new ResearchBroker(
       new StaticWebSearchProvider([]),
-      () => Promise.resolve(new Response("")),
+      platformBrokerUrl ? fetch : () => Promise.resolve(new Response("")),
     );
     const audit: import("@kivro/research-broker").ResearchAuditEntry[] = [];
-    const ctx = { manifest: { ...manifest, internet: policy }, auditLog: audit };
+    const ctx = {
+      manifest: { ...manifest, internet: policy },
+      auditLog: audit,
+      platformBrokerUrl,
+      platformBrokerToken,
+      researchAudience: "generic_public" as const,
+    };
     const search = await broker.webSearch(ctx, { query: "probe", maxResults: 1 });
     let fetch = null;
     if (opts.url) {

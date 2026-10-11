@@ -93,6 +93,7 @@ describe("platform inference providers", () => {
       new DeterministicPlatformInference(),
       {
         KIVRO_PLATFORM_AI_PROVIDER: "openai",
+        KIVRO_PLATFORM_OPENAI_API_KEY: "sk-openai-test",
         KIVRO_PLATFORM_INFERENCE_MAX_PER_MINUTE: "1",
       },
     );

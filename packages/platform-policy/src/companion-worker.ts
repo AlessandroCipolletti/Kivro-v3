@@ -37,3 +37,61 @@ export function projectDeclaredResult(
   }
   return projected;
 }
+
+export type CompanionPublication = {
+  discoveryMode: "read_only" | "write";
+  scanShown: boolean;
+  resources: Array<{ id: string; selected: boolean }>;
+  workerConfigId: string;
+  personalConfigId: string;
+  credentialStore: "worker" | "personal_openclaw";
+  connection: "outbound" | "inbound";
+  receivesPaidJobs: boolean;
+  runtime: "restricted_sandbox" | "host";
+  output: Record<string, unknown>;
+  declaredOutputKeys: string[];
+  approvedMetadataKeys: string[];
+  auditRecorded: boolean;
+  buyerChannel: string;
+};
+
+/** §1 — the companion publishes only when all ten boundaries hold. */
+export function acceptCompanionPublication(input: CompanionPublication): {
+  ok: boolean;
+  reasons: string[];
+  result: Record<string, unknown>;
+} {
+  const reasons: string[] = [];
+  if (input.discoveryMode !== discoveryAccessMode()) {
+    reasons.push("discovery");
+  }
+  if (!input.scanShown) {
+    reasons.push("scan");
+  }
+  if (explicitMinimumSubset(input.resources).some((resource) => !resource.selected)) {
+    reasons.push("subset");
+  }
+  if (!input.workerConfigId || input.workerConfigId === input.personalConfigId) {
+    reasons.push("separate_config");
+  }
+  if (input.credentialStore !== "worker") {
+    reasons.push("credentials");
+  }
+  if (input.connection !== "outbound") {
+    reasons.push("connection");
+  }
+  if (!input.receivesPaidJobs) {
+    reasons.push("paid_jobs");
+  }
+  if (input.runtime !== "restricted_sandbox") {
+    reasons.push("runtime");
+  }
+  if (!input.auditRecorded) {
+    reasons.push("audit");
+  }
+  if (!buyerStartsOnWebMarketplace(input.buyerChannel)) {
+    reasons.push("buyer_channel");
+  }
+  const result = projectDeclaredResult(input.output, input.declaredOutputKeys, input.approvedMetadataKeys);
+  return { ok: reasons.length === 0, reasons, result };
+}

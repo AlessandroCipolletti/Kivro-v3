@@ -16,7 +16,7 @@ feature post-MVP or the user explicitly approves the deferral.
   Requirement   Priority   Source   Status   Implementation   Test       Notes
                                              evidence         evidence   
   ------------- ---------- -------- -------- ---------------- ---------- ---------
-  `PRD-0001`    P1         §1       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0001`    P1         §1       `TESTED`   packages/platform-policy/src/companion-worker.ts  companion-worker.test.ts  companion publish keeps discovery, credentials, runtime, and the result narrow
 
   `PRD-0002`    P2         §1       `TESTED`   packages/platform-policy/src/companion-worker.ts  companion-worker.test.ts  discovery reads a private database, selected files, or configuration
 
@@ -30,7 +30,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `PRD-0007`    P2         §1       `TESTED`   packages/job-io/src/validate-buyer-input.ts  validate-buyer-input.test.ts  an input outside the contract is rejected
 
-  `WRK-0001`    P1         §2       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `WRK-0001`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  the marketplace sells a capability, not inference, and hardware stays out of scope
 
   `WRK-0002`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  a private read-only database is a reason to pay
 
@@ -48,7 +48,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `WRK-0009`    P1         §2       `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  the domain is Worker, Capability, and Job
 
-  `PRD-0008`    P1         §3       `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0008`    P1         §3       `TESTED`   packages/platform-policy/src/mvp-boundaries.ts  mvp-boundaries.test.ts  every in-scope boundary is allowed and every excluded boundary is refused
 
   `PRD-0009`    P2         §3       `TESTED`   packages/platform-policy/src/mvp-boundaries.ts  mvp-boundaries.test.ts  first sellers are OpenClaw sellers
 
@@ -1310,23 +1310,23 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0049`     P1         §158     `TESTED`   packages/marketplace-agent/src/plan-compatibility.ts  plan-compatibility.test.ts  no silent file conversion
 
-  `PRD-0149`    P1         §159     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0149`    P1         §159     `TESTED`   packages/marketplace/src/agent-scope.ts  mvp-acceptance.test.ts  discovery, a plan, one approval, and the forbidden agent actions
 
   `PRD-0150`    P2         §159     `TESTED`   packages/marketplace/src/agent-scope.ts  agent-scope.test.ts  the agent stays inside an OpenClaw marketplace
 
   `PRD-0151`    P2         §159     `TESTED`   packages/marketplace/src/agent-scope.ts  agent-scope.test.ts  shortlist and recommendation are in scope
 
-  `PRD-0152`    P1         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0152`    P1         §160     `TESTED`   apps/api/src/routes/platform-admin.ts  packages/marketplace-agent/src/staging-scenario.test.ts  admin dry-run loads the public catalog and does not charge; not a live two-user paid staging run
 
-  `PRD-0153`    P2         §160     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0153`    P2         §160     `TESTED`   packages/marketplace-agent/src/staging-scenario.ts  staging-scenario.test.ts  the company-research scenario is included and walks every agent step
 
   `PRD-0154`    P2         §160     `TESTED`   packages/marketplace-agent/src/staging-scenario.ts  staging-scenario.test.ts  fixture listings; one approval settles each provider once and releases the unused budget
 
-  `PRD-0155`    P1         §161     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0155`    P1         §161     `TESTED`   packages/marketplace-agent/src/mvp-acceptance.test.ts  mvp-acceptance.test.ts  browse, search, reviews, plan approval, spend cap, history, and favorites
 
   `PRD-0156`    P2         §161     `TESTED`   packages/marketplace-agent/src/purchase-authorization.ts  purchase-authorization.test.ts  plan spend cannot exceed authorization
 
-  `PRD-0157`    P1         §162     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0157`    P1         §162     `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  supply path, demand path, and the marketplace loop
 
   `PRD-0158`    P2         §162     `TESTED`   packages/platform-policy/src/supply-thesis.ts  supply-thesis.test.ts  human marketplace and agent primitives both belong in the first product
 
@@ -1344,7 +1344,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0049`    P1         §164     `TESTED`   packages/marketplace-agent/src/platform-inference-openai.ts  inference-request.test.ts  vendor URLs stay inside the provider adapters
 
-  `AGT-0050`    P1         §165     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `AGT-0050`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  mvp-acceptance.test.ts  no provider key makes the agent unavailable; the classic marketplace stays functional
 
   `AGT-0051`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-inference-policy.ts  platform-inference-policy.test.ts  provider keys stay server-side
 
@@ -1356,7 +1356,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AGT-0055`    P1         §165     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  platform AI keys are not returned to a browser or worker audience
 
-  `SEC-0066`    P1         §166     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `SEC-0066`    P1         §166     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  production startup requires an AES-GCM key and a runtime role name; IAM stays the host role, not a cloud SDK
 
   `SEC-0067`    P0         §166     `TESTED`   packages/marketplace-agent/src/platform-secrets.ts  platform-secrets.test.ts  production reads host-injected env; the image does not embed a platform key
 
@@ -1704,9 +1704,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0127`     P1         §228     `TESTED`   packages/openclaw-adapter/src/job-paths.ts  job-paths.test.ts  local buyer input is deleted after the job
 
-  `PRD-0196`    P1         §229     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0196`    P1         §229     `TESTED`   apps/api/src/routes/seller-onboarding.ts  packages/sandbox/src/docker-fixture-run.test.ts  a preview run uses the Docker sandbox and stays non-purchasable; Docker down returns 503
 
-  `PRD-0197`    P2         §229     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `PRD-0197`    P2         §229     `TESTED`   packages/sandbox/src/docker-fixture-run.ts  docker-fixture-run.test.ts  preview execution requires Docker and returns only the sandbox summary under declared output keys
 
   `IO-0128`     P1         §230     `TESTED`   packages/marketplace/src/seller-test-run.ts  seller-test-run.test.ts  a failed output, file, runtime, or cost check blocks publishing
 
@@ -1730,7 +1730,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `IO-0130`     P1         §234     `TESTED`   packages/marketplace/src/contract-card.ts  contract-card.test.ts  cards show input and output kinds
 
-  `IO-0131`     P1         §235     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `IO-0131`     P1         §235     `TESTED`   packages/job-io/src/contract-builder.ts  contract-builder-acceptance.test.ts  scalar, file, preset, reorder, buyer form, output check, and a Blender fixture
 
   `IO-0132`     P1         §235     `TESTED`   packages/job-io/src/validate-buyer-input.ts  validate-buyer-input.test.ts  an optional field can be omitted
 
@@ -1904,11 +1904,11 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `SEC-0087`    P0         §268     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0260`    P1         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
+  `PRD-0260`    P1         §269     `TESTED`   packages/research-broker/src/platform-research-search.ts  platform-research-search.test.ts  public research is an authenticated platform route; private and non-HTTPS upstreams are rejected
 
   `PRD-0261`    P2         §269     `TESTED`   packages/research-broker/src/placement.ts  placement.test.ts  the broker serves the local architecture
 
-  `PRD-0262`    P2         §269     `PARTIAL`   packages/research-broker   vitest   local hardened broker MVP; cloud egress deployment post-M06 M06
+  `PRD-0262`    P2         §269     `TESTED`   apps/worker/src/cli.ts  packages/research-broker/src/platform-research-search.test.ts  the worker probe calls the platform broker when its URL is set; missing upstream returns 503
 
   `PRD-0263`    P2         §269     `TESTED`   packages/research-broker/src/placement.ts  placement.test.ts  seller-originated public egress is not the final design
 
@@ -2330,7 +2330,7 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `AVL-0020`    P1         §354     `TESTED`   apps/api/src/routes/v1-buyer-api.ts, packages/job-scheduling   security/tests/acceptance-m13.test.ts   docs/milestones/M13-manual-validation.md M13 v1 availability snapshot
 
-  `CAP-0090`    P1         §355     `TODO`   ---              ---        scheduled:M28 per IMPLEMENTATION-PLAN; M23 audit accounted
+  `CAP-0090`    P1         §355     `TESTED`   packages/job-scheduling/src/availability-acceptance.ts  availability-acceptance.test.ts  heartbeat, pause, queue, slot, failed payment, dependency isolation, and reconnect
 
   `CAP-0091`    P1         §355     `TESTED`   packages/job-scheduling/src/accepting-jobs.ts  accepting-jobs.test.ts  offline capability is not accepting
 

@@ -65,6 +65,42 @@ describe("ResearchBroker", () => {
     expect(result.data?.bodyText).toBe("public facts");
     expect(result.data?.source.url).toContain("example.com");
   });
+
+  it("sends generic public search through the platform broker", async () => {
+    let sellerCalled = false;
+    const broker = new ResearchBroker(
+      {
+        search: async () => {
+          sellerCalled = true;
+          return [];
+        },
+      },
+      async (url) => {
+        expect(String(url)).toBe("https://broker.kivro.test/research/search?q=Acme");
+        return new Response(JSON.stringify({ results: [{ title: "Acme", url: "https://acme.example" }] }), {
+          status: 200,
+        });
+      },
+    );
+    const result = await broker.webSearch(
+      { manifest, platformBrokerUrl: "https://broker.kivro.test", researchAudience: "generic_public" },
+      { query: "Acme" },
+    );
+    expect(sellerCalled).toBe(false);
+    expect(result.data?.[0]?.title).toBe("Acme");
+  });
+
+  it("keeps seller-private search on the local provider", async () => {
+    const broker = new ResearchBroker(
+      new StaticWebSearchProvider([{ title: "Private db", url: "https://seller.local/db" }]),
+      notUsedFetch,
+    );
+    const result = await broker.webSearch(
+      { manifest, platformBrokerUrl: "https://broker.kivro.test", researchAudience: "seller_private" },
+      { query: "Private" },
+    );
+    expect(result.data?.[0]?.title).toBe("Private db");
+  });
 });
 
 const notUsedFetch: FetchImpl = () => Promise.reject(new Error("fetch should not be called"));

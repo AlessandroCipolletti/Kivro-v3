@@ -12,6 +12,7 @@ import {
   buildOrchestrationPlanDraft,
   buildStepAgentDraft,
   getPlatformInference,
+  platformAgentAvailability,
   requotePlanSteps,
   stepCompletedOutputs,
   toStepRecord,
@@ -30,6 +31,12 @@ import type { AppEnv } from "../types.js";
 export function marketplaceAgentRoutes(): Hono<AppEnv> {
   const app = new Hono<AppEnv>();
   app.use("*", requireAuth, requireVerifiedEmail);
+  app.use("*", async (c, next) => {
+    if (platformAgentAvailability(process.env).marketplaceAgent === "unavailable") {
+      return c.json({ error: "AGENT_UNAVAILABLE", classicMarketplace: true }, 503);
+    }
+    await next();
+  });
 
   app.post("/marketplace/agent/conversations", async (c) => {
     const user = c.get("user");

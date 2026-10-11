@@ -173,6 +173,24 @@ export function selectPrimaryProvider(env: Record<string, string | undefined>): 
   return "deterministic";
 }
 
+/** §165 — no configured provider means the agent is unavailable. The classic marketplace stays up. */
+export function platformAgentAvailability(env: Record<string, string | undefined>): {
+  openai: boolean;
+  anthropic: boolean;
+  marketplaceAgent: "available" | "unavailable";
+  classicMarketplace: "functional";
+} {
+  const openai = Boolean(env.KIVRO_PLATFORM_OPENAI_API_KEY?.trim());
+  const anthropic = Boolean(env.KIVRO_PLATFORM_ANTHROPIC_API_KEY?.trim());
+  const explicitLocal = env.KIVRO_PLATFORM_AI_PROVIDER?.trim() === "deterministic";
+  return {
+    openai,
+    anthropic,
+    marketplaceAgent: openai || anthropic || explicitLocal ? "available" : "unavailable",
+    classicMarketplace: "functional",
+  };
+}
+
 export function secondaryProvider(
   primary: ProviderId,
   env: Record<string, string | undefined>,

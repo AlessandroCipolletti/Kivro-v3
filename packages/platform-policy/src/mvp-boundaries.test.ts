@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mvpAllows } from "./mvp-boundaries.js";
+import { MVP_IN_SCOPE, MVP_OUT_OF_SCOPE, mvpAllows } from "./mvp-boundaries.js";
 
 describe("MVP boundaries", () => {
   it("keeps the first product on OpenClaw, read-only discovery, and an outbound worker", () => {
@@ -14,5 +14,14 @@ describe("MVP boundaries", () => {
     expect(mvpAllows("automatic_price_negotiation")).toBe(false);
     expect(mvpAllows("other_agent_frameworks")).toBe(false);
     expect(mvpAllows("unrestricted_shell")).toBe(false);
+    for (const feature of MVP_IN_SCOPE) {
+      expect(mvpAllows(feature)).toBe(true);
+    }
+    for (const feature of MVP_OUT_OF_SCOPE) {
+      expect(mvpAllows(feature)).toBe(false);
+    }
+    expect(MVP_IN_SCOPE).toContain("private_beta");
+    expect(MVP_OUT_OF_SCOPE).toContain("email_sending");
+    expect(MVP_OUT_OF_SCOPE).toContain("cloud_hosted_workers");
   });
 });

@@ -41,3 +41,23 @@ export function runDockerFixtureOutput(input: {
   }
   return { summaryPath, image };
 }
+
+/** Seller preview runs inside the sandbox when Docker is available. It never falls back to the host. */
+export function previewSandboxResult(
+  dockerUp: boolean,
+  run: () => { summaryPath: string },
+): { ok: true; summary: string } | { ok: false; reason: "docker_unavailable" } {
+  if (!dockerUp) {
+    return { ok: false, reason: "docker_unavailable" };
+  }
+  const ran = run();
+  return { ok: true, summary: fs.readFileSync(ran.summaryPath, "utf8").trim() };
+}
+
+export function runLocalPreviewSandbox(input: {
+  manifest: WorkerManifest;
+  outputDir: string;
+  summaryText: string;
+}): { ok: true; summary: string } | { ok: false; reason: "docker_unavailable" } {
+  return previewSandboxResult(isDockerAvailable(), () => runDockerFixtureOutput(input));
+}

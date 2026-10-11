@@ -20,7 +20,7 @@ import {
 import { isDomainAllowedForResearch } from "./domain-policy.js";
 import { isAllowedResearchMethod } from "./method-policy.js";
 import { safeResearchFetch, type FetchImpl } from "./safe-fetch.js";
-import { RESEARCH_BROKER_PLACEMENT } from "./placement.js";
+import { RESEARCH_BROKER_PLACEMENT, platformResearchUrl, selectResearchEgress } from "./placement.js";
 import type { SearchResult, WebSearchProvider } from "./search-provider.js";
 export interface ResearchBrokerContext {
   jobId?: string;
@@ -31,6 +31,9 @@ export interface ResearchBrokerContext {
   auditLog?: ResearchAuditEntry[];
   provenance?: ResearchProvenanceCollector;
   dnsResolver?: DnsResolver;
+  platformBrokerUrl?: string;
+  platformBrokerToken?: string;
+  researchAudience?: "generic_public" | "seller_private";
 }
 
 export interface WebSearchRequest {
@@ -93,10 +96,14 @@ export class ResearchBroker {
     budget.inFlight += 1;
     try {
       const maxResults = Math.min(request.maxResults ?? 10, 20);
-      const results = await this.searchProvider.search({
-        query: request.query,
-        maxResults,
+      const egress = selectResearchEgress({
+        audience: ctx.researchAudience ?? "generic_public",
+        platformBrokerUrl: ctx.platformBrokerUrl,
       });
+      const results =
+        egress === "platform" && ctx.platformBrokerUrl
+          ? await this.searchThroughPlatform(ctx.platformBrokerUrl, ctx.platformBrokerToken, request.query, maxResults)
+          : await this.searchProvider.search({ query: request.query, maxResults });
       budget.searchQueries += 1;
       const entry = buildAuditEntry({
         jobId: ctx.jobId,
@@ -218,6 +225,24 @@ export class ResearchBroker {
     } finally {
       budget.inFlight -= 1;
     }
+  }
+
+  private async searchThroughPlatform(
+    platformBrokerUrl: string,
+    platformBrokerToken: string | undefined,
+    query: string,
+    maxResults: number,
+  ): Promise<SearchResult[]> {
+    const url = platformResearchUrl(platformBrokerUrl, query);
+    const response = await this.fetchImpl(url, {
+      method: "GET",
+      headers: platformBrokerToken ? { authorization: `Bearer ${platformBrokerToken}` } : {},
+    });
+    if (!response.ok) {
+      throw new Error("platform research broker failed");
+    }
+    const body = (await response.json()) as { results?: SearchResult[] };
+    return (body.results ?? []).slice(0, maxResults);
   }
 
   private block<T>(

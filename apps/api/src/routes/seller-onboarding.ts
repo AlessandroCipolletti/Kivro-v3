@@ -24,9 +24,14 @@ import {
   buildSellerOnboardingStatus,
   buildSellerSecurityDisclosure,
   detectPermissionExpansion,
+  runLocalWorkerPreview,
   sanitizeDoctorReport,
 } from "@kivro/seller-experience";
+import { runLocalPreviewSandbox } from "@kivro/sandbox";
 import { parseWorkerManifest } from "@kivro/contracts";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import {
   buildSecurityWarnings,
   deriveWorkerHealthLabel,
@@ -225,7 +230,11 @@ export function sellerOnboardingRoutes(): Hono<AppEnv> {
     if (!capability) {
       return c.json({ error: "NOT_FOUND" }, 404);
     }
-    const body = await c.req.json<{ contract?: unknown }>();
+    const body = await c.req.json<{
+      contract?: unknown;
+      run?: boolean;
+      inputs?: Record<string, unknown>;
+    }>();
     if (body.contract === undefined) {
       return c.json({ error: "INVALID_INPUT" }, 400);
     }
@@ -234,15 +243,72 @@ export function sellerOnboardingRoutes(): Hono<AppEnv> {
     if (!normalized.ok || !normalized.normalized) {
       return c.json({ error: "CONTRACT_INVALID", issues: normalized.issues }, 400);
     }
-    return c.json(
-      buildDraftBuyerPreviewView({
-        capabilityName: capability.name,
-        capabilitySlug: capability.slug,
-        contract: normalized.normalized,
-        priceCents: capability.priceTierCents ?? 0,
-        currency: capability.currency,
-      }),
-    );
+    const preview = buildDraftBuyerPreviewView({
+      capabilityName: capability.name,
+      capabilitySlug: capability.slug,
+      contract: normalized.normalized,
+      priceCents: capability.priceTierCents ?? 0,
+      currency: capability.currency,
+    });
+    if (!body.run) {
+      return c.json(preview);
+    }
+    const declaredOutputKeys =
+      normalized.normalized.output.contractVersion === 2
+        ? normalized.normalized.output.fields.map((field) => field.key)
+        : ["summary"];
+    const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "kivro-preview-"));
+    try {
+      const ran = await runLocalWorkerPreview({
+      capabilityName: capability.name,
+      capabilitySlug: capability.slug,
+      contract: normalized.normalized,
+      priceCents: capability.priceTierCents ?? 0,
+      currency: capability.currency,
+      inputs: body.inputs ?? {},
+      assets: {},
+      declaredOutputKeys,
+      approvedMetadataKeys: [],
+      worker: async () => {
+        const sandbox = runLocalPreviewSandbox({
+          manifest: {
+            manifestVersion: 1,
+            workerId: "550e8400-e29b-41d4-a716-446655440000",
+            capabilityVersionId: "550e8400-e29b-41d4-a716-446655440001",
+            runtime: { type: "openclaw", supportedVersionRange: ">=2026.8.0" },
+            skills: [{ name: "preview", contentHash: `sha256:${"a".repeat(64)}` }],
+            tools: { allow: ["exec"], deny: ["browser", "gateway", "nodes", "cron"] },
+            resources: [],
+            network: { default: "deny", allow: [] },
+            limits: {
+              timeoutSeconds: 120,
+              memoryMb: 512,
+              cpu: 1,
+              maxPids: 64,
+              maxInputBytes: 1048576,
+              maxOutputBytes: 5242880,
+            },
+          },
+          outputDir,
+          summaryText: "preview",
+        });
+        if (!sandbox.ok) {
+          throw new Error(sandbox.reason);
+        }
+        return Object.fromEntries(declaredOutputKeys.map((key) => [key, sandbox.summary]));
+      },
+    });
+    if (!ran.ran) {
+      const status = ran.reason === "worker_required" ? 409 : 400;
+      return c.json({ error: ran.reason === "worker_required" ? "DOCKER_UNAVAILABLE" : "INVALID_INPUT", preview }, status);
+    }
+    return c.json({ ...preview, previewRun: ran });
+    } catch (error) {
+      if (error instanceof Error && error.message === "docker_unavailable") {
+        return c.json({ error: "DOCKER_UNAVAILABLE", preview }, 503);
+      }
+      throw error;
+    }
   });
 
   app.post("/capabilities/:id/effective-permissions", async (c) => {

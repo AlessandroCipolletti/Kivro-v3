@@ -27,6 +27,10 @@ export function runCompanyResearchScenario(input: StagingScenarioInput): {
   settledProviderIds: string[];
   unusedReleasedCents: number;
   reviewsRequested: boolean;
+  completedSteps: string[];
+  artifactRefs: string[];
+  pdfArtifactId: string | null;
+  costBreakdown: Array<{ providerId: string; cents: number }>;
 } {
   const constraints = extractConstraintsFromText(input.request);
   const research = rankAgentCandidates(
@@ -82,6 +86,40 @@ export function runCompanyResearchScenario(input: StagingScenarioInput): {
       constraints,
     }).ok === true;
   const budget = constraints.maxTotalSpendCents ?? reservedCents;
+  const ratingsOk = prices.every((row) => (row.rating ?? 0) >= (constraints.minRating ?? 0));
+  const withinBudget = constraints.maxTotalSpendCents == null || reservedCents <= constraints.maxTotalSpendCents;
+  const baseSteps = [
+    "parse",
+    "search",
+    "select_research",
+    "select_pdf",
+    "rating",
+    "quotes",
+    "dag",
+    "cost",
+    "present_plan",
+  ];
+  if (!approved || !ratingsOk || !withinBudget) {
+    return {
+      constraints: {
+        maxTotalSpendCents: constraints.maxTotalSpendCents,
+        minRating: constraints.minRating,
+      },
+      researchIds,
+      pdfId: pdfRow?.id ?? null,
+      compatible,
+      approved: false,
+      reservedCents: 0,
+      settledProviderIds: [],
+      unusedReleasedCents: 0,
+      reviewsRequested: false,
+      completedSteps: baseSteps,
+      artifactRefs: [],
+      pdfArtifactId: null,
+      costBreakdown: [],
+    };
+  }
+  const artifactRefs = researchIds.map((id) => `artifact:${id}`);
   return {
     constraints: {
       maxTotalSpendCents: constraints.maxTotalSpendCents,
@@ -91,9 +129,27 @@ export function runCompanyResearchScenario(input: StagingScenarioInput): {
     pdfId: pdfRow?.id ?? null,
     compatible,
     approved,
-    reservedCents: approved ? reservedCents : 0,
-    settledProviderIds: approved ? prices.map((row) => row.id) : [],
-    unusedReleasedCents: approved ? Math.max(0, budget - reservedCents) : 0,
-    reviewsRequested: approved,
+    reservedCents,
+    settledProviderIds: prices.map((row) => row.id),
+    unusedReleasedCents: Math.max(0, budget - reservedCents),
+    reviewsRequested: true,
+    completedSteps: [
+      ...baseSteps,
+      "approval",
+      "reserve",
+      "launch_research",
+      "wait",
+      "reference_artifacts",
+      "pass_to_pdf",
+      "receive_pdf",
+      "settle_once",
+      "release_unused",
+      "present_answer",
+      "cost_breakdown",
+      "reviews",
+    ],
+    artifactRefs,
+    pdfArtifactId: `pdf:${pdfRow?.id}`,
+    costBreakdown: prices.map((row) => ({ providerId: row.id, cents: row.priceTierCents ?? 0 })),
   };
 }

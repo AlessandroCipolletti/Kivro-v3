@@ -6,8 +6,8 @@ import {
 import { getPrismaClient } from "@kivro/database";
 import { sweepExpiredJobPauses } from "@kivro/job-control";
 import { retryDueWebhookDeliveries } from "@kivro/buyer-webhooks";
-import { runSchedulingSweeps } from "@kivro/job-scheduling";
-import { aggregateInferenceUsage, buildInferenceUsageRecord, readPlatformInferenceHealth, routingChangeAudit } from "@kivro/marketplace-agent";
+import { runSchedulingSweeps, summarizeMarketplaceAvailability } from "@kivro/job-scheduling";
+import { aggregateInferenceUsage, buildInferenceUsageRecord, readPlatformInferenceHealth, routingChangeAudit, runCompanyResearchScenario } from "@kivro/marketplace-agent";
 import {
   assertAdminToken,
   isGlobalDispatchEnabled,
@@ -20,6 +20,7 @@ import { randomUUID } from "node:crypto";
 import { Hono } from "hono";
 import { readControlPlaneRegistry, resolveActiveControlPlaneIdForNewExecutions } from "@kivro/cloud-core";
 import { getActiveCloudComposition } from "../cloud-composition.js";
+import { publicMarketplaceWhere } from "../services/capability-visibility.js";
 
 export function platformAdminRoutes(): Hono {
   const app = new Hono();
@@ -400,6 +401,58 @@ export function platformAdminRoutes(): Hono {
       },
     });
     return c.json({ recorded: true, audit });
+  });
+
+  app.post("/staging-scenario", async (c) => {
+    try {
+      assertAdminToken(c.req.header("x-kivro-admin-token"));
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "ADMIN_UNAUTHORIZED";
+      return c.json({ error: message }, message === "ADMIN_UNAUTHORIZED" ? 401 : 503);
+    }
+    const body = await c.req.json<{ request?: string }>().catch(() => ({ request: undefined }));
+    const request =
+      body.request?.trim() ||
+      "Research these three companies and create one PDF comparing them.\nMaximum budget: $15.\nMinimum provider rating: 4.5.";
+    const rows = await getPrismaClient().capability.findMany({
+      where: publicMarketplaceWhere,
+      include: {
+        sellerProfile: { select: { id: true, displayName: true } },
+        currentVersion: { select: { priceSnapshotCents: true } },
+      },
+    });
+    const availability = await summarizeMarketplaceAvailability(
+      getPrismaClient(),
+      rows.map((row) => row.id),
+    );
+    const availById = new Map(availability.map((item) => [item.capabilityId, item]));
+    const listings = rows.map((row) => {
+      const avail = availById.get(row.id);
+      return {
+        id: row.id,
+        slug: row.slug,
+        name: row.name,
+        description: row.description,
+        category: row.marketplaceCategory,
+        priceTierCents: row.priceTierCents ?? row.currentVersion?.priceSnapshotCents ?? null,
+        currency: row.currency,
+        rating: row.rating,
+        jobCount: row.jobCount,
+        estimatedDuration: row.estimatedDuration,
+        sellerDisplayName: row.sellerProfile.displayName,
+        sellerProfileId: row.sellerProfile.id,
+        availabilityStatus: avail?.status,
+        accepting: avail?.accepting,
+        nextAvailableAt: avail?.nextAvailableAt ?? null,
+      };
+    });
+    const scenario = runCompanyResearchScenario({ request, listings, approval: "once" });
+    return c.json({
+      liveCatalog: true,
+      charged: false,
+      listingCount: listings.length,
+      scenario,
+    });
   });
 
   return app;

@@ -7,6 +7,7 @@ import {
   consumeInferenceBudget,
   mayFallback,
   PlatformInferenceError,
+  platformAgentAvailability,
   readPlatformInferenceHealth,
   secondaryProvider,
   type ProviderId,
@@ -79,6 +80,9 @@ export class RoutingPlatformInference implements PlatformInferencePort {
     uiConstraints?: Partial<BuyerConstraints>,
     options?: InferenceCallOptions,
   ): Promise<PlatformIntent> {
+    if (platformAgentAvailability(this.env).marketplaceAgent === "unavailable") {
+      throw new PlatformInferenceError("invalid");
+    }
     const health = readPlatformInferenceHealth(this.env);
     const budget = consumeInferenceBudget({
       userId: options?.userId ?? "anonymous",
@@ -108,6 +112,9 @@ export class RoutingPlatformInference implements PlatformInferencePort {
   }
 
   async generate(request: PlatformInferenceRequest): Promise<PlatformInferenceResponse> {
+    if (platformAgentAvailability(this.env).marketplaceAgent === "unavailable") {
+      throw new PlatformInferenceError("invalid");
+    }
     const normalized = normalizeInferenceRequest(request);
     const health = readPlatformInferenceHealth(this.env);
     const budget = consumeInferenceBudget({

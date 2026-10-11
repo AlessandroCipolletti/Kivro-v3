@@ -1,6 +1,7 @@
 export { buildAiAssistedDraftProposal, type AiAssistedDraftProposal } from "./ai-draft-boundary.js";
 export { buildEffectivePermissionSummary, type EffectivePermissionRow } from "./effective-permissions.js";
 export { buildDraftBuyerPreviewView } from "./draft-buyer-preview.js";
+export { runLocalWorkerPreview, type LocalWorkerPreviewExecutor } from "./local-worker-preview.js";
 export { buildPublishReadinessReport, type ReadinessItem } from "./publish-readiness.js";
 export {
   classifyDiscoveredResource,

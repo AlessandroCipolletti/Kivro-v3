@@ -137,6 +137,9 @@ importers:
       '@kivro/research-broker':
         specifier: workspace:*
         version: link:../../packages/research-broker
+      '@kivro/sandbox':
+        specifier: workspace:*
+        version: link:../../packages/sandbox
       '@kivro/seller-experience':
         specifier: workspace:*
         version: link:../../packages/seller-experience

@@ -32,6 +32,7 @@
     "@kivro/job-io": "workspace:*",
     "@kivro/platform-policy": "workspace:*",
     "@kivro/research-broker": "workspace:*",
+    "@kivro/sandbox": "workspace:*",
     "@kivro/job-control": "workspace:*",
     "@kivro/job-delivery": "workspace:*",
     "@kivro/job-dispatch": "workspace:*",

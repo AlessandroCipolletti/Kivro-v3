@@ -30,6 +30,13 @@ if (!cmd) {
   process.exit(1);
 }
 
+const hasPlatformKey = Boolean(
+  process.env.KIVRO_PLATFORM_OPENAI_API_KEY?.trim() || process.env.KIVRO_PLATFORM_ANTHROPIC_API_KEY?.trim(),
+);
+if (!hasPlatformKey && !process.env.KIVRO_PLATFORM_AI_PROVIDER?.trim()) {
+  process.env.KIVRO_PLATFORM_AI_PROVIDER = "deterministic";
+}
+
 const child = spawn(cmd, args, {
   stdio: "inherit",
   env: process.env,

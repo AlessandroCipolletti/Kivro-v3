@@ -33,6 +33,16 @@ export {
 } from "./validate-capability-contract.js";
 export { buildBuyerFormSchema, type BuyerFormField } from "./buyer-form-schema.js";
 export {
+  addFileInput,
+  addOutputField,
+  addScalarInput,
+  compileContract,
+  createContractDraft,
+  publishContract,
+  reorderInputs,
+  type ContractDraft,
+} from "./contract-builder.js";
+export {
   prepareAgentJobSubmission,
   type AgentInputDraft,
   type AgentPrepareResult,

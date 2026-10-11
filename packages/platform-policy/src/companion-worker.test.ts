@@ -5,6 +5,7 @@ import {
   configurationAccessMode,
   discoveryAccessMode,
   explicitMinimumSubset,
+  acceptCompanionPublication,
   projectDeclaredResult,
 } from "./companion-worker.js";
 
@@ -35,4 +36,47 @@ describe("companion worker boundaries", () => {
       ),
     ).toEqual({ report: "ok", runtimeMs: 10 });
   });
+
+  it("publishes a companion only when discovery, credentials, runtime, and the result stay narrow", () => {
+    const ready = acceptCompanionPublication({
+      discoveryMode: "read_only",
+      scanShown: true,
+      resources: [{ id: "notes", selected: true }],
+      workerConfigId: "worker-config",
+      personalConfigId: "personal-config",
+      credentialStore: "worker",
+      connection: "outbound",
+      receivesPaidJobs: true,
+      runtime: "restricted_sandbox",
+      output: { report: "ok", secret: "no" },
+      declaredOutputKeys: ["report"],
+      approvedMetadataKeys: [],
+      auditRecorded: true,
+      buyerChannel: "web_marketplace",
+    });
+    expect(ready.ok).toBe(true);
+    expect(ready.result).toEqual({ report: "ok" });
+    expect(acceptCompanionPublication({ ...readyInput(), credentialStore: "personal_openclaw" }).reasons).toContain(
+      "credentials",
+    );
+  });
 });
+
+function readyInput() {
+  return {
+    discoveryMode: "read_only" as const,
+    scanShown: true,
+    resources: [{ id: "notes", selected: true }],
+    workerConfigId: "worker-config",
+    personalConfigId: "personal-config",
+    credentialStore: "worker" as const,
+    connection: "outbound" as const,
+    receivesPaidJobs: true,
+    runtime: "restricted_sandbox" as const,
+    output: { report: "ok" },
+    declaredOutputKeys: ["report"],
+    approvedMetadataKeys: [],
+    auditRecorded: true,
+    buyerChannel: "web_marketplace",
+  };
+}

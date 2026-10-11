@@ -39,6 +39,11 @@ describe("company research scenario", () => {
     expect(new Set(result.settledProviderIds).size).toBe(4);
     expect(result.unusedReleasedCents).toBe(100);
     expect(result.reviewsRequested).toBe(true);
+    expect(result.completedSteps).toHaveLength(21);
+    expect(result.artifactRefs).toEqual(["artifact:r1", "artifact:r2", "artifact:r3"]);
+    expect(result.pdfArtifactId).toBe("pdf:pdf");
+    expect(result.costBreakdown.reduce((sum, row) => sum + row.cents, 0)).toBe(1400);
+    expect(new Set(result.settledProviderIds).size).toBe(result.settledProviderIds.length);
   });
 
   it("does not reserve or settle anything without the single approval", () => {
@@ -46,5 +51,6 @@ describe("company research scenario", () => {
     expect(result.approved).toBe(false);
     expect(result.reservedCents).toBe(0);
     expect(result.settledProviderIds).toEqual([]);
+    expect(result.completedSteps).not.toContain("settle_once");
   });
 });

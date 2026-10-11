@@ -1,5 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { productionSecretPosture } from "@kivro/marketplace-agent";
 import { createCorrelationId, logInfo } from "@kivro/observability";
 import { getActiveCloudComposition, resolveCloudComposition } from "./cloud-composition.js";
 import { getPrismaClient } from "@kivro/database";
@@ -28,6 +29,7 @@ import { buyerJobsListRoutes } from "./routes/buyer-jobs-list.js";
 import { marketplaceSellerRoutes } from "./routes/marketplace-sellers.js";
 import { capabilityReviewRoutes } from "./routes/capability-reviews.js";
 import { marketplaceAgentRoutes } from "./routes/marketplace-agent.js";
+import { platformResearchRoutes } from "./routes/platform-research.js";
 import { marketplaceAgentToolRoutes } from "./routes/marketplace-agent-tools.js";
 import { buyerJobAssetRoutes } from "./routes/buyer-job-assets.js";
 import { buyerJobHistoryRoutes } from "./routes/buyer-job-history.js";
@@ -171,6 +173,7 @@ export function createApp(): Hono<AppEnv> {
   app.route("/buyer", abuseReportRoutes());
   app.route("/v1", v1BuyerApiRoutes());
   app.route("/", marketplaceAgentRoutes());
+  app.route("/platform/research", platformResearchRoutes());
   app.route("/", marketplaceAgentToolRoutes());
   app.route("/buyer", buyerJobRoutes());
   app.route("/seller", sellerBillingRoutes());
@@ -190,6 +193,20 @@ export function createApp(): Hono<AppEnv> {
 }
 
 export function startServer(port = Number(process.env.PORT ?? 3001)): void {
+  if (process.env.KIVRO_RUNTIME === "production") {
+    const posture = productionSecretPosture({
+      runtime: "production",
+      encryptionKey: process.env.KIVRO_SECRET_ENCRYPTION_KEY,
+      runtimeRole: process.env.KIVRO_RUNTIME_ROLE,
+      stagingKey: process.env.KIVRO_PLATFORM_OPENAI_API_KEY_STAGING,
+      productionKey: process.env.KIVRO_PLATFORM_OPENAI_API_KEY,
+      imageSource: "",
+      clientSource: "",
+    });
+    if (!posture.ok) {
+      throw new Error(`production secret posture incomplete: ${posture.gaps.join(",")}`);
+    }
+  }
   const composition = resolveCloudComposition(process.env.KIVRO_CLOUD_PROFILE);
   const server = serve({ fetch: createApp().fetch, port });
   attachWorkerWssServer(server as import("node:http").Server);

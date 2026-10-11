@@ -14,12 +14,19 @@ export {
   discoveryAccessMode,
   explicitMinimumSubset,
   projectDeclaredResult,
+  acceptCompanionPublication,
+  type CompanionPublication,
 } from "./companion-worker.js";
 export {
   CAPABILITY_VALUE_SOURCES,
   MARKETPLACE_DOMAIN_CONCEPTS,
   MVP_DEMAND_SURFACES,
+  DEMAND_PATH,
+  MARKETPLACE_LOOP,
+  SUPPLY_PATH,
+  buyerAccountRequiresOpenClaw,
   isPrimaryMarketplaceSupply,
+  marketplacePrimarilySellsInference,
   mvpSupportsDemandSurface,
 } from "./supply-thesis.js";
 export {

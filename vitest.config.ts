@@ -20,6 +20,8 @@ export default defineConfig({
       "@kivro/job-dispatch": path.resolve("packages/job-dispatch/src/index.ts"),
       "@kivro/billing": path.resolve("packages/billing/src/index.ts"),
       "@kivro/job-scheduling": path.resolve("packages/job-scheduling/src/index.ts"),
+      "@kivro/buyer-experience": path.resolve("packages/buyer-experience/src/index.ts"),
+      "@kivro/seller-experience": path.resolve("packages/seller-experience/src/index.ts"),
       "@kivro/marketplace": path.resolve("packages/marketplace/src/index.ts"),
       "@kivro/marketplace-agent": path.resolve("packages/marketplace-agent/src/index.ts"),
       "@kivro/seller-health": path.resolve("packages/seller-health/src/index.ts"),

@@ -22,5 +22,9 @@ export {
   RESEARCH_BROKER_PLACEMENT,
   researchBrokerServesLocalArchitecture,
   sellerOriginatedEgressIsFinalDesign,
+  platformResearchUrl,
+  selectResearchEgress,
+  type ResearchAudience,
 } from "./placement.js";
+export { executePlatformResearchSearch } from "./platform-research-search.js";
 export { researchPolicyError, type ResearchPolicyError, type ResearchPolicyErrorCode } from "./research-errors.js";

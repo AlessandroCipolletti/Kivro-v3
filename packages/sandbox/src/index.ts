@@ -5,7 +5,9 @@ export { jobTimeoutPolicyFromManifest, type JobTimeoutPolicy } from "./timeouts.
 export { buildDockerSandboxSpec, type DockerSandboxSpec } from "./docker-spec.js";
 export {
   isDockerAvailable,
+  previewSandboxResult,
   runDockerFixtureOutput,
+  runLocalPreviewSandbox,
 } from "./docker-fixture-run.js";
 export { assertPathWithinJobRoot, isForbiddenHostPath } from "./filesystem-policy.js";
 export {

@@ -31,11 +31,9 @@ export function deriveWorkerHealthLabel(input: {
   if (hasBlockingSecurityWarning(input.warnings)) {
     return "SECURITY_WARNING";
   }
-  if (input.deviceStatus === "OFFLINE" || input.deviceStatus === "PAIRED") {
-    const seen = input.lastSeenAt;
-    if (!seen || now.getTime() - seen.getTime() > staleMs) {
-      return "OFFLINE";
-    }
+  const seen = input.lastSeenAt;
+  if (!seen || now.getTime() - seen.getTime() > staleMs) {
+    return "OFFLINE";
   }
   if (input.report && (!input.report.dockerOk || !input.report.sandboxOk)) {
     return "NOT_READY";

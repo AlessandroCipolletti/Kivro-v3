@@ -36,3 +36,41 @@ export const MVP_DEMAND_SURFACES = ["human_marketplace", "agent_primitives"] as 
 export function mvpSupportsDemandSurface(surface: string): boolean {
   return (MVP_DEMAND_SURFACES as readonly string[]).includes(surface);
 }
+
+/** §2 — the marketplace sells a capability, not tokens. */
+export function marketplacePrimarilySellsInference(): false {
+  return false;
+}
+
+export const SUPPLY_PATH = [
+  "import_select",
+  "dependency_analysis",
+  "explicit_permissions",
+  "isolated_worker",
+  "publish_paid_service",
+] as const;
+
+export const DEMAND_PATH = [
+  "browse_or_describe",
+  "discover",
+  "choose_or_approve",
+  "pay_or_reserve",
+  "execute",
+  "results",
+  "optional_downstream",
+  "final_result",
+  "reviews",
+] as const;
+
+export const MARKETPLACE_LOOP = [
+  "publish",
+  "discover_purchase",
+  "ratings_history",
+  "better_discovery",
+  "more_demand",
+  "more_publish_incentive",
+] as const;
+
+export function buyerAccountRequiresOpenClaw(): false {
+  return false;
+}

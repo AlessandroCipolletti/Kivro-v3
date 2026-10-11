@@ -18,6 +18,8 @@ export function evaluateAcceptingNewJobs(input: {
   hasActiveJobOnWorker: boolean;
   activeJobCountOnWorker?: number;
   maxConcurrentJobs?: number;
+  queuedJobCount?: number;
+  maxQueuedJobs?: number;
   globalDispatchEnabled: boolean;
   sellerEmergencyPause?: boolean;
   platformSecurityPause?: boolean;
@@ -58,6 +60,9 @@ export function evaluateAcceptingNewJobs(input: {
   const maxConcurrent = Math.max(1, input.maxConcurrentJobs ?? 1);
   if (activeCount >= maxConcurrent) {
     reasons.push("CONCURRENCY_LIMIT");
+  }
+  if (input.maxQueuedJobs != null && (input.queuedJobCount ?? 0) >= input.maxQueuedJobs) {
+    reasons.push("QUEUE_MAXIMUM");
   }
   const buyerAvailability = mapWorkerDeviceToBuyerAvailability({
     deviceStatus: input.workerDeviceStatus,
