@@ -14,6 +14,7 @@ export function platformResearchRoutes(): Hono {
       query: c.req.query("q") ?? "",
       upstreamUrl: process.env.KIVRO_PLATFORM_SEARCH_UPSTREAM,
       upstreamKey: process.env.KIVRO_PLATFORM_SEARCH_API_KEY,
+      allowLocalFixture: process.env.NODE_ENV !== "production" && process.env.KIVRO_RUNTIME !== "production",
       fetchImpl: fetch,
     });
     return c.json({ results: result.results, error: result.error }, result.status);

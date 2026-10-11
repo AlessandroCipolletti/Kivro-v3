@@ -59,6 +59,7 @@ export default function NewCapabilityWizardPage() {
   const [capabilityId, setCapabilityId] = useState<string | null>(null);
   const [selectedSkills, setSelectedSkills] = useState<string[]>(["demo-skill"]);
   const [preview, setPreview] = useState<unknown>(null);
+  const [previewRun, setPreviewRun] = useState<string | null>(null);
   const [permissions, setPermissions] = useState<unknown>(null);
   const [disclosure, setDisclosure] = useState<unknown>(null);
   const [readiness, setReadiness] = useState<Readiness | null>(null);
@@ -178,6 +179,29 @@ export default function NewCapabilityWizardPage() {
     if (res.ok) setPreview(await res.json());
   }
 
+  async function runSandboxPreview() {
+    if (!capabilityId) return;
+    setError(null);
+    setPreviewRun(null);
+    const res = await fetch(`${API_BASE}/seller/capabilities/${capabilityId}/draft-preview`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        contract: DEFAULT_CONTRACT,
+        run: true,
+        inputs: { instructions: "Summarize this local preview request." },
+      }),
+    });
+    const body = (await res.json().catch(() => ({}))) as { error?: string; previewRun?: unknown };
+    if (!res.ok) {
+      setError(body.error === "DOCKER_UNAVAILABLE" ? "Docker is not available, so the sandbox preview did not run." : (body.error ?? "Preview run failed"));
+      return;
+    }
+    setPreview(body);
+    setPreviewRun(body.previewRun ? JSON.stringify(body.previewRun, null, 2) : "Preview ran.");
+  }
+
   async function loadReadiness() {
     if (!capabilityId) return;
     const graphRes = await fetch(`${API_BASE}/seller/import/analyze-dependencies`, {
@@ -267,6 +291,9 @@ export default function NewCapabilityWizardPage() {
           <button className="button secondary" type="button" onClick={() => void loadPreview()}>
             Preview as buyer
           </button>
+          <button className="button secondary" type="button" onClick={() => void runSandboxPreview()}>
+            Run sandbox preview
+          </button>
           <label>
             <input
               type="checkbox"
@@ -291,6 +318,7 @@ export default function NewCapabilityWizardPage() {
         <pre className="detail-panel">{JSON.stringify(disclosure, null, 2)}</pre>
       )}
       {preview != null && <BuyerPreview preview={preview} />}
+      {previewRun && <pre className="detail-panel">{previewRun}</pre>}
       <p>
         <Link href="/seller/onboarding">← Onboarding</Link>
       </p>

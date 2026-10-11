@@ -27,4 +27,9 @@ export {
   type ResearchAudience,
 } from "./placement.js";
 export { executePlatformResearchSearch } from "./platform-research-search.js";
+export {
+  researchImplementationMode,
+  researchToolAllowed,
+  sellerBrowserResearchChannelAllowed,
+} from "./first-implementation.js";
 export { researchPolicyError, type ResearchPolicyError, type ResearchPolicyErrorCode } from "./research-errors.js";

@@ -1874,9 +1874,9 @@ feature post-MVP or the user explicitly approves the deferral.
 
   `API-0007`    P1         §263     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 
-  `PRD-0251`    P1         §264     `DEFERRED`   packages/research-broker   ---        cloud/isolated browser research post-MVP (§264); search+fetch MVP M06
+  `PRD-0251`    P1         §264     `TESTED`   packages/research-broker/src/first-implementation.ts  first-implementation.test.ts  first research is search plus safe fetch; seller browser channels stay refused
 
-  `PRD-0252`    P2         §264     `DEFERRED`   packages/research-broker   ---        cloud/isolated browser research post-MVP (§264); search+fetch MVP M06
+  `PRD-0252`    P2         §264     `TESTED`   packages/research-broker/src/first-implementation.ts  first-implementation.test.ts  browser.readPage is not part of the first implementation
 
   `PRD-0253`    P1         §265     `TESTED`   packages/research-broker, packages/contracts/research-policy.ts, packages/platform-policy/research-ceilings.ts   vitest; scripts/verify-m06-flow.mjs   docs/milestones/M06-manual-validation.md M06
 

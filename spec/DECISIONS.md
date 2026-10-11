@@ -706,6 +706,10 @@ greenfield.
 
 **Decision:** `IMMEDIATE_ONLY` fails before payment when the capability is not accepting. `EARLIEST_AVAILABLE` reserves a job for the authoritative next window. Buyer inputs cannot change schedule, pause, or concurrency. Public availability shows the next window, not the seller's weekly timetable. A future purchase is labeled "Schedule for earliest availability" and the buyer is told the job is reserved now and starts later. Scheduled delivery is measured from the scheduled run, not the reservation. The agent skips an unavailable candidate and will not spend more or drop a permission to buy something available now. A new required input, or an optional output that becomes required, is a breaking contract change.
 
+## DEC-SCH-017 — Local manual testing uses the real publish path
+
+**Decision:** `pnpm dev:all:demo` publishes the local summary, three company-research listings, and a PDF listing through the seller publish API after the worker pairs. Public research in local commands uses the `local` upstream fixture, which production startup rejects. The seller wizard can run the Docker sandbox preview from the draft page.
+
 ## DEC-SCH-016 — The four remaining gaps use real local behavior
 
 **Decision:** Production startup seals platform secrets with AES-256-GCM under `KIVRO_SECRET_ENCRYPTION_KEY` and requires a non-empty `KIVRO_RUNTIME_ROLE`. That role name is the least-privilege host identity; the app does not call a cloud secret SDK. Public research is served by an authenticated platform route that fetches only an HTTPS upstream allowed by the existing SSRF check. The worker research probe uses that broker URL when it is configured. A seller preview with `run: true` executes the Docker sandbox and returns 503 when Docker is down. An admin staging route loads the public catalog and dry-runs the company-research scenario without creating jobs or charges. A live two-user paid staging run remains a separate deployment.

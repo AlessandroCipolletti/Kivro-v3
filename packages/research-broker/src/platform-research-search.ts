@@ -21,6 +21,7 @@ export async function executePlatformResearchSearch(input: {
   query: string;
   upstreamUrl?: string;
   upstreamKey?: string;
+  allowLocalFixture?: boolean;
   fetchImpl: FetchImpl;
 }): Promise<{ status: 200 | 400 | 401 | 502 | 503; results: SearchResult[]; error?: string }> {
   if (!tokenMatches(input.presentedToken, input.expectedToken)) {
@@ -31,6 +32,12 @@ export async function executePlatformResearchSearch(input: {
     return { status: 400, results: [], error: "QUERY_REQUIRED" };
   }
   const upstream = input.upstreamUrl?.trim();
+  if (upstream === "local") {
+    if (!input.allowLocalFixture) {
+      return { status: 503, results: [], error: "LOCAL_FIXTURE_FORBIDDEN" };
+    }
+    return { status: 200, results: localResearchFixture(query) };
+  }
   if (!upstream) {
     return { status: 503, results: [], error: "SEARCH_UPSTREAM_UNCONFIGURED" };
   }
@@ -49,4 +56,14 @@ export async function executePlatformResearchSearch(input: {
   }
   const body = (await response.json()) as { results?: SearchResult[] };
   return { status: 200, results: body.results ?? [] };
+}
+
+function localResearchFixture(query: string): SearchResult[] {
+  return [
+    {
+      title: `${query} overview`,
+      url: "https://example.com/research/overview",
+      snippet: "Local development fixture. No upstream was contacted.",
+    },
+  ];
 }

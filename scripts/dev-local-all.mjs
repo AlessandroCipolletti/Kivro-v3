@@ -155,6 +155,17 @@ if (autoPair.status !== 0) {
   );
 } else {
   start("worker", "node", ["apps/worker/dist/cli.js", "start"], workerEnv);
+  if (withSeed) {
+    console.log("\n→ seed local marketplace listings\n");
+    const listingSeed = spawnSync("node", ["scripts/dev-seed-listings.mjs"], {
+      cwd: root,
+      stdio: "inherit",
+      env: process.env,
+    });
+    if (listingSeed.status !== 0) {
+      console.error("\nLocal listing seed failed. The stack keeps running; publish from the seller wizard if needed.\n");
+    }
+  }
 }
 
 if (!webPortResolved) {

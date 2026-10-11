@@ -45,4 +45,30 @@ describe("platform research search", () => {
     expect(JSON.stringify(result)).not.toContain("search-key");
     expect(seenKey).toBe("Bearer search-key");
   });
+
+  it("serves a local fixture only when that mode is allowed", async () => {
+    const allowed = await executePlatformResearchSearch({
+      presentedToken: "broker-token",
+      expectedToken: "broker-token",
+      query: "acme",
+      upstreamUrl: "local",
+      allowLocalFixture: true,
+      fetchImpl: async () => {
+        throw new Error("fetch should not run");
+      },
+    });
+    expect(allowed.status).toBe(200);
+    expect(allowed.results[0]?.url).toBe("https://example.com/research/overview");
+
+    const forbidden = await executePlatformResearchSearch({
+      presentedToken: "broker-token",
+      expectedToken: "broker-token",
+      query: "acme",
+      upstreamUrl: "local",
+      allowLocalFixture: false,
+      fetchImpl: async () => new Response("{}", { status: 200 }),
+    });
+    expect(forbidden.status).toBe(503);
+    expect(forbidden.error).toBe("LOCAL_FIXTURE_FORBIDDEN");
+  });
 });

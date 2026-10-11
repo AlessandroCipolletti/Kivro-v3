@@ -60,7 +60,9 @@ cp .env.example .env
 pnpm dev:all:demo
 ```
 
-`dev:all:demo` starts Docker, applies migrations, creates the MinIO bucket, seeds two users, builds the API and Worker, and runs the web app, API, and Worker together. The Worker auto-pairs as `seller@kivro.local` unless `KIVRO_DEV_AUTO_PAIR=false`.
+`dev:all:demo` starts Docker, applies migrations, creates the MinIO bucket, seeds two users, builds the API and Worker, and runs the web app, API, and Worker together. The Worker auto-pairs as `seller@kivro.local` unless `KIVRO_DEV_AUTO_PAIR=false`. After pairing, the demo publishes five public listings: `local-summary` (the buyer purchase fixture) and three company-research listings plus `local-pdf-report` for the no-charge staging dry-run.
+
+Local commands also turn on the deterministic Marketplace Agent when no provider key is set, and they point public research at `KIVRO_PLATFORM_SEARCH_UPSTREAM=local`. That fixture returns a public example result and does not call the internet. Production rejects it. The staging dry-run is `POST /platform/admin/staging-scenario` with header `x-kivro-admin-token` (local default `kivro-local-admin` when the env value is empty). It loads the public catalog and does not create a job or a charge.
 
 | Surface | URL |
 | --- | --- |

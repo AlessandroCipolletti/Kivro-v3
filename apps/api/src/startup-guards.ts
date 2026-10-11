@@ -16,4 +16,10 @@ export function assertSafeProductionEnvironment(): void {
       throw new Error(`UNSAFE_PRODUCTION_ENV:${key}`);
     }
   }
+  if (process.env.KIVRO_PLATFORM_SEARCH_UPSTREAM?.trim() === "local") {
+    throw new Error("UNSAFE_PRODUCTION_ENV:KIVRO_PLATFORM_SEARCH_UPSTREAM");
+  }
+  if (process.env.KIVRO_PLATFORM_RESEARCH_BROKER_TOKEN?.trim() === "kivro-local-research") {
+    throw new Error("UNSAFE_PRODUCTION_ENV:KIVRO_PLATFORM_RESEARCH_BROKER_TOKEN");
+  }
 }

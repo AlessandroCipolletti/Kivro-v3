@@ -37,6 +37,22 @@ if (!hasPlatformKey && !process.env.KIVRO_PLATFORM_AI_PROVIDER?.trim()) {
   process.env.KIVRO_PLATFORM_AI_PROVIDER = "deterministic";
 }
 
+if (process.env.NODE_ENV !== "production") {
+  const port = process.env.PORT?.trim() || "3001";
+  if (!process.env.KIVRO_PLATFORM_SEARCH_UPSTREAM?.trim()) {
+    process.env.KIVRO_PLATFORM_SEARCH_UPSTREAM = "local";
+  }
+  if (!process.env.KIVRO_PLATFORM_RESEARCH_BROKER_TOKEN?.trim()) {
+    process.env.KIVRO_PLATFORM_RESEARCH_BROKER_TOKEN = "kivro-local-research";
+  }
+  if (!process.env.KIVRO_PLATFORM_RESEARCH_BROKER_URL?.trim()) {
+    process.env.KIVRO_PLATFORM_RESEARCH_BROKER_URL = `http://localhost:${port}/platform/research`;
+  }
+  if (!process.env.KIVRO_ADMIN_TOKEN?.trim()) {
+    process.env.KIVRO_ADMIN_TOKEN = "kivro-local-admin";
+  }
+}
+
 const child = spawn(cmd, args, {
   stdio: "inherit",
   env: process.env,
